@@ -1,3 +1,4 @@
+import 'package:botanico/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/auth_controller.dart';
@@ -16,22 +17,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  String? _emailValidator(String? value) {
-    if (value == null ||
-        value.isEmpty ||
-        !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-      return 'Ingresa un email válido';
-    }
-    return null;
-  }
-
-  String? _passwordValidator(String? value) {
-    if (value == null || value.isEmpty || value.length < 6) {
-      return 'La contraseña debe tener al menos 6 caracteres';
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,14 +32,14 @@ class _LoginPageState extends State<LoginPage> {
                 label: 'Email',
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
-                validator: _emailValidator,
+                validator: Validator.emailValidator,
               ),
               const SizedBox(height: 10),
               AuthInputField(
                 label: 'Contraseña',
                 controller: passwordController,
                 obscureText: true,
-                validator: _passwordValidator,
+                validator: Validator.passwordValidator,
               ),
               const SizedBox(height: 20),
               ElevatedButton(
