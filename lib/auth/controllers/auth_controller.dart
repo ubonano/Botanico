@@ -1,7 +1,7 @@
+import 'package:botanico/services/loggin_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:logger/logger.dart';
 
 import '../../services/navigation_service.dart';
 
@@ -9,17 +9,17 @@ class AuthController extends GetxController {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
   final NavigationService _navigationService;
-  final Logger logger;
+  final LoggingService _loggingService;
 
   AuthController({
     required FirebaseAuth auth,
     required GoogleSignIn googleSignIn,
     required NavigationService navigationService,
-    required Logger logger,
+    required LoggingService loggingService,
   })  : _auth = auth,
         _googleSignIn = googleSignIn,
         _navigationService = navigationService,
-        logger = logger;
+        _loggingService = loggingService;
 
   User? getLoggedInUser() => _auth.currentUser;
 
@@ -27,14 +27,14 @@ class AuthController extends GetxController {
       String successLog, String errorLog) async {
     try {
       final UserCredential userCredential = await operation();
-      logger.i(
+      _loggingService.logInfo(
           '$successLog: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
 
       _navigationService.navigateToHome();
 
       return userCredential.user;
     } catch (e) {
-      logger.e('$errorLog: ${e.toString()}');
+      _loggingService.logError('$errorLog: ${e.toString()}');
       Get.snackbar('Error', _getErrorMessage(e));
       return null;
     }
@@ -74,7 +74,8 @@ class AuthController extends GetxController {
         'Error al iniciar sesión con Google',
       );
     } catch (e) {
-      logger.e('Error al iniciar sesión con Google: ${e.toString()}');
+      _loggingService
+          .logError('Error al iniciar sesión con Google: ${e.toString()}');
       Get.snackbar('Error al iniciar sesión con Google', _getErrorMessage(e));
       return null;
     }
@@ -84,10 +85,10 @@ class AuthController extends GetxController {
     try {
       await _googleSignIn.signOut();
       await _auth.signOut();
-      logger.i('Cierre de sesión exitoso');
+      _loggingService.logInfo('Cierre de sesión exitoso');
       _navigationService.navigateToLogin();
     } catch (e) {
-      logger.e('Error al cerrar sesión: ${e.toString()}');
+      _loggingService.logError('Error al cerrar sesión: ${e.toString()}');
       Get.snackbar('Error al cerrar sesión',
           'No se pudo cerrar sesión correctamente. Inténtalo de nuevo.');
     }
