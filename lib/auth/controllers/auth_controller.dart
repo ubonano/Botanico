@@ -21,11 +21,10 @@ class AuthController extends GetxController {
   Future<User?> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
-      final UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      final UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      logger.i(
+          'Registro exitoso: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
 
       _toHome();
 
@@ -42,6 +41,8 @@ class AuthController extends GetxController {
     try {
       final UserCredential userCredential = await _auth
           .signInWithEmailAndPassword(email: email, password: password);
+      logger.i(
+          'Inicio de sesión exitoso: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
 
       _toHome();
 
@@ -61,11 +62,12 @@ class AuthController extends GetxController {
         final GoogleSignInAuthentication googleAuth =
             await googleUser.authentication;
         final AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
-        );
+            accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
         final UserCredential userCredential =
             await _auth.signInWithCredential(credential);
+
+        logger.i(
+            'Inicio de sesión con Google exitoso: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
 
         _toHome();
 
