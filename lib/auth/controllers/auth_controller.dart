@@ -18,6 +18,10 @@ class AuthController extends GetxController {
         _googleSignIn = googleSignIn,
         logger = logger;
 
+  User? getLoggedInUser() {
+    return _auth.currentUser;
+  }
+
   Future<User?> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -78,6 +82,22 @@ class AuthController extends GetxController {
       logger.e('Error al iniciar sesión con Google: ${e.toString()}');
       Get.snackbar('Error al iniciar sesión con Google', _getErrorMessage(e));
       return null;
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await _googleSignIn.signOut();
+
+      await _auth.signOut();
+
+      logger.i('Cierre de sesión exitoso');
+
+      Get.offAllNamed(Routes.LOGIN);
+    } catch (e) {
+      logger.e('Error al cerrar sesión: ${e.toString()}');
+      Get.snackbar('Error al cerrar sesión',
+          'No se pudo cerrar sesión correctamente. Inténtalo de nuevo.');
     }
   }
 
