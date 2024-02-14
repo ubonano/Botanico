@@ -18,66 +18,56 @@ class AuthController extends GetxController {
         _googleSignIn = googleSignIn,
         logger = logger;
 
-  User? getLoggedInUser() {
-    return _auth.currentUser;
+  User? getLoggedInUser() => _auth.currentUser;
+
+  Future<User?> _authOperation(Future<UserCredential> Function() operation,
+      String successLog, String errorLog) async {
+    try {
+      final UserCredential userCredential = await operation();
+      logger.i(
+          '$successLog: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
+      _toHome();
+      return userCredential.user;
+    } catch (e) {
+      logger.e('$errorLog: ${e.toString()}');
+      Get.snackbar('Error', _getErrorMessage(e));
+      return null;
+    }
   }
 
   Future<User?> createUserWithEmailAndPassword(
       String email, String password) async {
-    try {
-      final UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(email: email, password: password);
-      logger.i(
-          'Registro exitoso: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
-
-      _toHome();
-
-      return userCredential.user;
-    } catch (e) {
-      logger.e('Error al registrar: ${e.toString()}');
-      Get.snackbar('Error al registrar', _getErrorMessage(e));
-      return null;
-    }
+    return _authOperation(
+      () => _auth.createUserWithEmailAndPassword(
+          email: email, password: password),
+      'Registro exitoso',
+      'Error al registrar',
+    );
   }
 
   Future<User?> signInWithEmailAndPassword(
       String email, String password) async {
-    try {
-      final UserCredential userCredential = await _auth
-          .signInWithEmailAndPassword(email: email, password: password);
-      logger.i(
-          'Inicio de sesión exitoso: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
-
-      _toHome();
-
-      return userCredential.user;
-    } catch (e) {
-      logger.e('Error al iniciar sesión: ${e.toString()}');
-      Get.snackbar('Error al iniciar sesión', _getErrorMessage(e));
-
-      return null;
-    }
+    return _authOperation(
+      () => _auth.signInWithEmailAndPassword(email: email, password: password),
+      'Inicio de sesión exitoso',
+      'Error al iniciar sesión',
+    );
   }
 
   Future<User?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser != null) {
-        final GoogleSignInAuthentication googleAuth =
-            await googleUser.authentication;
-        final AuthCredential credential = GoogleAuthProvider.credential(
-            accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-        final UserCredential userCredential =
-            await _auth.signInWithCredential(credential);
-
-        logger.i(
-            'Inicio de sesión con Google exitoso: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
-
-        _toHome();
-
-        return userCredential.user;
-      }
-      return null;
+      if (googleUser == null) return null;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      return _authOperation(
+        () => _auth.signInWithCredential(GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        )),
+        'Inicio de sesión con Google exitoso',
+        'Error al iniciar sesión con Google',
+      );
     } catch (e) {
       logger.e('Error al iniciar sesión con Google: ${e.toString()}');
       Get.snackbar('Error al iniciar sesión con Google', _getErrorMessage(e));
@@ -88,11 +78,8 @@ class AuthController extends GetxController {
   Future<void> signOut() async {
     try {
       await _googleSignIn.signOut();
-
       await _auth.signOut();
-
       logger.i('Cierre de sesión exitoso');
-
       Get.offAllNamed(Routes.LOGIN);
     } catch (e) {
       logger.e('Error al cerrar sesión: ${e.toString()}');
@@ -101,9 +88,7 @@ class AuthController extends GetxController {
     }
   }
 
-  void _toHome() {
-    Get.offAllNamed(Routes.HOME);
-  }
+  void _toHome() => Get.offAllNamed(Routes.HOME);
 
   String _getErrorMessage(Object e) {
     if (e is FirebaseAuthException) {
