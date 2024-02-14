@@ -1,7 +1,8 @@
+import 'package:botanico/services/navigation_service.dart';
 import 'package:botanico/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../config/routes.dart';
+
 import '../controllers/auth_controller.dart';
 import '../widgets/auth_input_field.dart';
 
@@ -14,6 +15,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final AuthController authController = Get.find();
+  final NavigationService navigationService = Get.find();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -60,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               // ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () => authController.navigateTo(Routes.SIGN_UP),
+                onPressed: navigationService.navigateToSingUp,
                 child: const Text('Crear Nueva Cuenta'),
               ),
             ],

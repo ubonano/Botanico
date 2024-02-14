@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../config/routes.dart';
+
+import '../../services/navigation_service.dart';
 import '../../utils/validator.dart';
 import '../controllers/auth_controller.dart';
 import '../widgets/auth_input_field.dart';
@@ -14,6 +15,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final AuthController authController = Get.find();
+  final NavigationService navigationService = Get.find();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
@@ -65,7 +67,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: const Text('Registrar'),
               ),
               TextButton(
-                onPressed: () => authController.navigateTo(Routes.LOGIN),
+                onPressed: navigationService.navigateToLogin,
                 child: const Text('¿Ya tienes cuenta? Inicia sesión'),
               ),
             ],

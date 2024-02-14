@@ -3,19 +3,22 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
 
-import '../../config/routes.dart';
+import '../../services/navigation_service.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
+  final NavigationService _navigationService;
   final Logger logger;
 
   AuthController({
     required FirebaseAuth auth,
     required GoogleSignIn googleSignIn,
+    required NavigationService navigationService,
     required Logger logger,
   })  : _auth = auth,
         _googleSignIn = googleSignIn,
+        _navigationService = navigationService,
         logger = logger;
 
   User? getLoggedInUser() => _auth.currentUser;
@@ -26,7 +29,9 @@ class AuthController extends GetxController {
       final UserCredential userCredential = await operation();
       logger.i(
           '$successLog: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
-      _toHome();
+
+      _navigationService.navigateToHome();
+
       return userCredential.user;
     } catch (e) {
       logger.e('$errorLog: ${e.toString()}');
@@ -80,17 +85,13 @@ class AuthController extends GetxController {
       await _googleSignIn.signOut();
       await _auth.signOut();
       logger.i('Cierre de sesión exitoso');
-      _toLogin();
+      _navigationService.navigateToLogin();
     } catch (e) {
       logger.e('Error al cerrar sesión: ${e.toString()}');
       Get.snackbar('Error al cerrar sesión',
           'No se pudo cerrar sesión correctamente. Inténtalo de nuevo.');
     }
   }
-
-  void _toHome() => Get.offAllNamed(Routes.HOME);
-  void _toLogin() => Get.offAllNamed(Routes.LOGIN);
-  void navigateTo(String route) => Get.offAllNamed(route);
 
   String _getErrorMessage(Object e) {
     if (e is FirebaseAuthException) {
