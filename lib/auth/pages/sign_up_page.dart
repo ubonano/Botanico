@@ -65,7 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: const Text('Registrar'),
               ),
               TextButton(
-                onPressed: () => Get.offAllNamed(Routes.LOGIN),
+                onPressed: () => authController.navigateTo(Routes.LOGIN),
                 child: const Text('¿Ya tienes cuenta? Inicia sesión'),
               ),
             ],

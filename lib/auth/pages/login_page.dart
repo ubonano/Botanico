@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
               // ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () => Get.offAllNamed(Routes.SIGN_UP),
+                onPressed: () => authController.navigateTo(Routes.SIGN_UP),
                 child: const Text('Crear Nueva Cuenta'),
               ),
             ],

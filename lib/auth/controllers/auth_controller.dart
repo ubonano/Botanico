@@ -80,7 +80,7 @@ class AuthController extends GetxController {
       await _googleSignIn.signOut();
       await _auth.signOut();
       logger.i('Cierre de sesión exitoso');
-      Get.offAllNamed(Routes.LOGIN);
+      _toLogin();
     } catch (e) {
       logger.e('Error al cerrar sesión: ${e.toString()}');
       Get.snackbar('Error al cerrar sesión',
@@ -89,6 +89,8 @@ class AuthController extends GetxController {
   }
 
   void _toHome() => Get.offAllNamed(Routes.HOME);
+  void _toLogin() => Get.offAllNamed(Routes.LOGIN);
+  void navigateTo(String route) => Get.offAllNamed(route);
 
   String _getErrorMessage(Object e) {
     if (e is FirebaseAuthException) {
