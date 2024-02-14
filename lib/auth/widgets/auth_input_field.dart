@@ -5,13 +5,14 @@ class AuthInputField extends StatelessWidget {
   final bool obscureText;
   final TextEditingController controller;
   final TextInputType keyboardType;
-
+  final String? Function(String?)? validator;
   const AuthInputField({
     Key? key,
     required this.label,
     this.obscureText = false,
     required this.controller,
     this.keyboardType = TextInputType.text,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -20,6 +21,7 @@ class AuthInputField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       keyboardType: keyboardType,
+      validator: validator,
       decoration: InputDecoration(
         labelText: label,
         border: const OutlineInputBorder(),
