@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 
-class AuthInputField extends StatelessWidget {
+class CustomInputField extends StatelessWidget {
   final String label;
   final bool obscureText;
   final TextEditingController controller;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
-  const AuthInputField({
+  final String? hintText;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final InputBorder? border;
+
+  const CustomInputField({
     Key? key,
     required this.label,
     this.obscureText = false,
     required this.controller,
     this.keyboardType = TextInputType.text,
     this.validator,
+    this.hintText,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.border = const OutlineInputBorder(),
   }) : super(key: key);
 
   @override
@@ -24,7 +33,11 @@ class AuthInputField extends StatelessWidget {
       validator: validator,
       decoration: InputDecoration(
         labelText: label,
-        border: const OutlineInputBorder(),
+        hintText: hintText,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        border: border,
+        // Se puede agregar más personalización aquí si es necesario
       ),
     );
   }

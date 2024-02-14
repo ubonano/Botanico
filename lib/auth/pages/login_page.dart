@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/auth_controller.dart';
-import '../widgets/auth_input_field.dart';
+import '../../widgets/custom_input_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -31,14 +31,14 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AuthInputField(
+              CustomInputField(
                 label: 'Email',
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 validator: Validator.emailValidator,
               ),
               const SizedBox(height: 10),
-              AuthInputField(
+              CustomInputField(
                 label: 'Contraseña',
                 controller: passwordController,
                 obscureText: true,

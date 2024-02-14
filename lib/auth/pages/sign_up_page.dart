@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../services/navigation_service.dart';
 import '../../utils/validator.dart';
 import '../controllers/auth_controller.dart';
-import '../widgets/auth_input_field.dart';
+import '../../widgets/custom_input_field.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -33,21 +33,21 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AuthInputField(
+              CustomInputField(
                 label: 'Email',
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 validator: Validator.emailValidator,
               ),
               const SizedBox(height: 10),
-              AuthInputField(
+              CustomInputField(
                 label: 'Contraseña',
                 controller: passwordController,
                 obscureText: true,
                 validator: Validator.passwordValidator,
               ),
               const SizedBox(height: 10),
-              AuthInputField(
+              CustomInputField(
                 label: 'Confirmar Contraseña',
                 controller: confirmPasswordController,
                 obscureText: true,
