@@ -1,14 +1,24 @@
+import 'package:botanico/auth/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../utils/validator.dart';
 import '../controllers/auth_controller.dart';
 import '../widgets/auth_input_field.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   final AuthController authController = Get.find();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  SignUpPage({super.key});
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,29 +26,50 @@ class SignUpPage extends StatelessWidget {
       appBar: AppBar(title: const Text('Registro')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AuthInputField(
-              label: 'Email',
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 10),
-            AuthInputField(
-              label: 'Contraseña',
-              controller: passwordController,
-              obscureText: true,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => authController.createUserWithEmailAndPassword(
-                emailController.text,
-                passwordController.text,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AuthInputField(
+                label: 'Email',
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                validator: Validator.emailValidator,
               ),
-              child: const Text('Registrar'),
-            ),
-          ],
+              const SizedBox(height: 10),
+              AuthInputField(
+                label: 'Contraseña',
+                controller: passwordController,
+                obscureText: true,
+                validator: Validator.passwordValidator,
+              ),
+              const SizedBox(height: 10),
+              AuthInputField(
+                label: 'Confirmar Contraseña',
+                controller: confirmPasswordController,
+                obscureText: true,
+                validator: (value) => Validator.confirmPasswordValidator(
+                    value, passwordController.text),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    authController.createUserWithEmailAndPassword(
+                      emailController.text,
+                      passwordController.text,
+                    );
+                  }
+                },
+                child: const Text('Registrar'),
+              ),
+              TextButton(
+                onPressed: () => Get.offAll(() => const LoginPage()),
+                child: const Text('¿Ya tienes cuenta? Inicia sesión'),
+              ),
+            ],
+          ),
         ),
       ),
     );

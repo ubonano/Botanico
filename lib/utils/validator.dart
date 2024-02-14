@@ -14,4 +14,11 @@ class Validator {
     }
     return null;
   }
+
+  static String? confirmPasswordValidator(String? value, String password) {
+    if (value != password) {
+      return 'Las contraseñas no coinciden';
+    }
+    return null;
+  }
 }
