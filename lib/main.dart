@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'auth/controllers/auth_controller.dart';
 import 'auth/pages/login_page.dart';
 import 'config/bindings.dart';
 import 'config/firebase_options.dart';
@@ -18,8 +17,6 @@ Future<void> main() async {
 
   FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-
-  Get.put(AuthController()); // TODO Debe ir en AppBindings
 
   runApp(const MyApp());
 }
