@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
 
-import '../../pages/home_page.dart';
+import '../../config/routes.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth;
@@ -82,7 +82,7 @@ class AuthController extends GetxController {
   }
 
   void _toHome() {
-    Get.offAll(() => const HomePage());
+    Get.offAllNamed(Routes.HOME);
   }
 
   String _getErrorMessage(Object e) {

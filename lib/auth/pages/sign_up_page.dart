@@ -1,6 +1,6 @@
-import 'package:botanico/auth/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../config/routes.dart';
 import '../../utils/validator.dart';
 import '../controllers/auth_controller.dart';
 import '../widgets/auth_input_field.dart';
@@ -65,7 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: const Text('Registrar'),
               ),
               TextButton(
-                onPressed: () => Get.offAll(() => const LoginPage()),
+                onPressed: () => Get.offAllNamed(Routes.LOGIN),
                 child: const Text('¿Ya tienes cuenta? Inicia sesión'),
               ),
             ],

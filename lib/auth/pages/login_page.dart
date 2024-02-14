@@ -1,9 +1,9 @@
 import 'package:botanico/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../config/routes.dart';
 import '../controllers/auth_controller.dart';
 import '../widgets/auth_input_field.dart';
-import 'sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
               // ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () => Get.offAll(() => const SignUpPage()),
+                onPressed: () => Get.offAllNamed(Routes.SIGN_UP),
                 child: const Text('Crear Nueva Cuenta'),
               ),
             ],
