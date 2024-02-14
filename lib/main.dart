@@ -4,9 +4,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'auth/pages/login_page.dart';
 import 'config/bindings.dart';
 import 'config/firebase_options.dart';
+import 'config/pages.dart';
+import 'config/routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +30,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: AppBindings(),
-      home: LoginPage(),
+      title: 'Your App Name',
+      initialRoute: Routes.LOGIN,
+      getPages: Pages.pages,
     );
   }
 }
