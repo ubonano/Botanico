@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
 
+import '../../pages/home_page.dart';
+
 class AuthController extends GetxController {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
@@ -24,6 +26,9 @@ class AuthController extends GetxController {
         email: email,
         password: password,
       );
+
+      _toHome();
+
       return userCredential.user;
     } catch (e) {
       logger.e('Error al registrar: ${e.toString()}');
@@ -37,6 +42,9 @@ class AuthController extends GetxController {
     try {
       final UserCredential userCredential = await _auth
           .signInWithEmailAndPassword(email: email, password: password);
+
+      _toHome();
+
       return userCredential.user;
     } catch (e) {
       logger.e('Error al iniciar sesión: ${e.toString()}');
@@ -58,6 +66,9 @@ class AuthController extends GetxController {
         );
         final UserCredential userCredential =
             await _auth.signInWithCredential(credential);
+
+        _toHome();
+
         return userCredential.user;
       }
       return null;
@@ -66,6 +77,10 @@ class AuthController extends GetxController {
       Get.snackbar('Error al iniciar sesión con Google', _getErrorMessage(e));
       return null;
     }
+  }
+
+  void _toHome() {
+    Get.offAll(() => const HomePage());
   }
 
   String _getErrorMessage(Object e) {
