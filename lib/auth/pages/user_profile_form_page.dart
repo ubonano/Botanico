@@ -4,20 +4,20 @@ import 'package:get/get.dart';
 
 import '../controllers/auth_controller.dart';
 import '../../widgets/custom_input_field.dart';
-import '../controllers/user_controller.dart';
+import '../controllers/user_profile_controller.dart';
 
-class UserPage extends StatefulWidget {
-  const UserPage({Key? key}) : super(key: key);
+class UserProfileFormPage extends StatefulWidget {
+  const UserProfileFormPage({Key? key}) : super(key: key);
 
   @override
-  State<UserPage> createState() => _UserPageState();
+  State<UserProfileFormPage> createState() => _UserProfileFormPageState();
 }
 
-class _UserPageState extends State<UserPage> {
+class _UserProfileFormPageState extends State<UserProfileFormPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final AuthController authController = Get.find();
-  final UserController userController = Get.find();
+  final UserProfileController userProfileController = Get.find();
   final NavigationService navigationService = Get.find();
 
   final TextEditingController nameController = TextEditingController();
@@ -72,7 +72,7 @@ class _UserPageState extends State<UserPage> {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    await userController.createUserProfile(
+                    await userProfileController.createUserProfile(
                       name: nameController.text,
                       dob: dobController.text,
                       phone: phoneController.text,

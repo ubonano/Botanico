@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import '../../services/loggin_service.dart';
-import '../models/user_model.dart';
-import '../services/user_service.dart';
+import '../models/user_profile_model.dart';
+import '../services/user_profile_service.dart';
 import 'auth_controller.dart';
 
-class UserController extends GetxController {
-  final UserService _userService = Get.find();
+class UserProfileController extends GetxController {
+  final UserProfileService _userProfileService = Get.find();
   final LoggingService _loggingService = Get.find();
 
-  Rx<UserModel?> currentUser = Rx<UserModel?>(null);
+  Rx<UserProfileModel?> currentUserProfile = Rx<UserProfileModel?>(null);
 
   @override
   void onInit() {
@@ -22,7 +22,9 @@ class UserController extends GetxController {
   void _loadUserProfile() async {
     final user = _getLoggedInUser();
     if (user != null) {
-      currentUser.value = await _userService.getUserProfile(user.uid);
+      currentUserProfile.value =
+          await _userProfileService.getUserProfile(user.uid);
+
       _loggingService.logInfo(
           'Perfil de usuario cargado: UID: ${user.uid} Email: ${user.email}');
     } else {
@@ -30,7 +32,7 @@ class UserController extends GetxController {
     }
   }
 
-  bool get isProfileComplete => currentUser.value?.isComplete ?? false;
+  bool get isProfileComplete => currentUserProfile.value?.isComplete ?? false;
 
   Future<void> createUserProfile({
     required String name,
@@ -40,7 +42,7 @@ class UserController extends GetxController {
   }) async {
     final user = _getLoggedInUser();
     if (user != null) {
-      final userModel = UserModel(
+      final userProfileModel = UserProfileModel(
         uid: user.uid,
         email: user.email!,
         name: name,
@@ -48,8 +50,8 @@ class UserController extends GetxController {
         phone: phone,
         dni: dni,
       );
-      await _userService.setUserProfile(userModel);
-      currentUser.value = userModel;
+      await _userProfileService.setUserProfile(userProfileModel);
+      currentUserProfile.value = userProfileModel;
       _loggingService.logInfo(
           'Perfil de usuario creado/actualizado para UID: ${user.uid} Email: ${user.email}');
     } else {
@@ -58,8 +60,8 @@ class UserController extends GetxController {
     }
   }
 
-  void clearUserData() {
-    currentUser.value = null;
+  void clearUserProfileData() {
+    currentUserProfile.value = null;
     _loggingService.logInfo('Datos de usuario limpiados');
   }
 }

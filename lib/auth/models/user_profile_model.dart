@@ -1,4 +1,4 @@
-class UserModel {
+class UserProfileModel {
   final String uid;
   final String email;
   final String name;
@@ -6,7 +6,7 @@ class UserModel {
   final String phone;
   final String dni;
 
-  UserModel({
+  UserProfileModel({
     required this.uid,
     required this.email,
     required this.name,
@@ -33,8 +33,8 @@ class UserModel {
     };
   }
 
-  factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
+  factory UserProfileModel.fromMap(Map<String, dynamic> map) {
+    return UserProfileModel(
       uid: map['uid'],
       email: map['email'],
       name: map['name'],
