@@ -10,6 +10,7 @@ class CustomInputField extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final InputBorder? border;
+  final bool readOnly;
 
   const CustomInputField({
     Key? key,
@@ -22,6 +23,7 @@ class CustomInputField extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.border = const OutlineInputBorder(),
+    this.readOnly = false,
   }) : super(key: key);
 
   @override
@@ -38,6 +40,7 @@ class CustomInputField extends StatelessWidget {
         suffixIcon: suffixIcon,
         border: border,
       ),
+      readOnly: readOnly,
     );
   }
 }

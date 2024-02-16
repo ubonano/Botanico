@@ -6,20 +6,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../../services/navigation_service.dart';
 
 class AuthController extends GetxController {
-  final FirebaseAuth _auth;
-  final GoogleSignIn _googleSignIn;
-  final NavigationService _navigationService;
-  final LoggingService _loggingService;
-
-  AuthController({
-    required FirebaseAuth auth,
-    required GoogleSignIn googleSignIn,
-    required NavigationService navigationService,
-    required LoggingService loggingService,
-  })  : _auth = auth,
-        _googleSignIn = googleSignIn,
-        _navigationService = navigationService,
-        _loggingService = loggingService;
+  final FirebaseAuth _auth = Get.find();
+  final GoogleSignIn _googleSignIn = Get.find();
+  final NavigationService _navigationService = Get.find();
+  final LoggingService _loggingService = Get.find();
 
   User? getLoggedInUser() => _auth.currentUser;
 
