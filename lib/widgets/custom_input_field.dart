@@ -37,7 +37,6 @@ class CustomInputField extends StatelessWidget {
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         border: border,
-        // Se puede agregar más personalización aquí si es necesario
       ),
     );
   }
