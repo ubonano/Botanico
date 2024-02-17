@@ -12,17 +12,17 @@ class AuthController extends GetxController {
   final GoogleSignIn _googleSignIn = Get.find();
   final NavigationService _navigationService = Get.find();
   final LoggingService _loggingService = Get.find();
-
-  Rx<UserProfileModel?> userProfile = Rx<UserProfileModel?>(null);
   final UserProfileService _userProfileService = Get.find();
 
-  User? getLoggedInUser() => _auth.currentUser;
-  bool isUserLoggedIn() => _auth.currentUser != null;
+  Rx<UserProfileModel?> userProfile = Rx<UserProfileModel?>(null);
 
   @override
   Future<void> onInit() async {
     super.onInit();
   }
+
+  User? getLoggedInUser() => _auth.currentUser;
+  bool isUserLoggedIn() => _auth.currentUser != null;
 
   Future<User?> _authOperation(Future<UserCredential> Function() operation,
       String successLog, String errorLog) async {
