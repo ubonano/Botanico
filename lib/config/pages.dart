@@ -1,5 +1,5 @@
 import 'package:botanico/auth/middlewares/user_profile_completion_middleware.dart';
-import 'package:botanico/auth/pages/user_profile_form_page.dart';
+import 'package:botanico/auth/pages/user_profile_page.dart';
 import 'package:get/get.dart';
 
 import '../auth/middlewares/auth_middleware.dart';
@@ -35,7 +35,7 @@ class Pages {
     ),
     GetPage(
       name: Routes.USER_PROFILE_FORM,
-      page: () => const UserProfileFormPage(),
+      page: () => const UserProfilePage(),
       middlewares: [
         AuthMiddleware(),
       ],

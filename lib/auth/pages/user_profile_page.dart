@@ -6,14 +6,14 @@ import '../controllers/auth_controller.dart';
 import '../../widgets/custom_input_field.dart';
 import '../controllers/user_profile_controller.dart';
 
-class UserProfileFormPage extends StatefulWidget {
-  const UserProfileFormPage({Key? key}) : super(key: key);
+class UserProfilePage extends StatefulWidget {
+  const UserProfilePage({Key? key}) : super(key: key);
 
   @override
-  State<UserProfileFormPage> createState() => _UserProfileFormPageState();
+  State<UserProfilePage> createState() => _UserProfilePageState();
 }
 
-class _UserProfileFormPageState extends State<UserProfileFormPage> {
+class _UserProfilePageState extends State<UserProfilePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final AuthController authController = Get.find();
