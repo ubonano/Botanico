@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../auth/controllers/auth_controller.dart';
 
-import '../auth/controllers/user_profile_controller.dart';
 import '../services/navigation_service.dart';
 
 class HomePage extends StatelessWidget {
   final AuthController authController = Get.find();
-  final UserProfileController userProfileController = Get.find();
+
   final NavigationService navigationService = Get.find();
 
   HomePage({Key? key}) : super(key: key);
@@ -30,7 +29,6 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 await authController.signOut();
-                userProfileController.clearUserProfileData();
 
                 navigationService.navigateToLogin();
               },
