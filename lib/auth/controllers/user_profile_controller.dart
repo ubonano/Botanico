@@ -1,3 +1,4 @@
+import 'package:botanico/services/navigation_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import '../../services/loggin_service.dart';
@@ -8,31 +9,35 @@ import 'auth_controller.dart';
 class UserProfileController extends GetxController {
   final UserProfileService _userProfileService = Get.find();
   final LoggingService _loggingService = Get.find();
+  final NavigationService _navigationService = Get.find();
 
   Rx<UserProfileModel?> currentUserProfile = Rx<UserProfileModel?>(null);
+
+  bool get isProfileComplete => currentUserProfile.value?.isComplete ?? false;
+
+  User? _getLoggedInUser() => Get.find<AuthController>().getLoggedInUser();
 
   @override
   void onInit() {
     super.onInit();
-    _loadUserProfile();
+    loadUserProfile();
   }
 
-  User? _getLoggedInUser() => Get.find<AuthController>().getLoggedInUser();
-
-  void _loadUserProfile() async {
+  void loadUserProfile() async {
     final user = _getLoggedInUser();
+
     if (user != null) {
       currentUserProfile.value =
           await _userProfileService.getUserProfile(user.uid);
 
+      _navigationService.navigateToHome();
+
       _loggingService.logInfo(
-          'Perfil de usuario cargado: UID: ${user.uid} Email: ${user.email}');
+          'Perfil de usuario cargado: UID=${user.uid} Email=${user.email}');
     } else {
       _loggingService.logWarning('No hay usuario logueado para cargar perfil');
     }
   }
-
-  bool get isProfileComplete => currentUserProfile.value?.isComplete ?? false;
 
   Future<void> createUserProfile({
     required String name,
@@ -41,6 +46,7 @@ class UserProfileController extends GetxController {
     required String dni,
   }) async {
     final user = _getLoggedInUser();
+
     if (user != null) {
       final userProfileModel = UserProfileModel(
         uid: user.uid,
@@ -58,10 +64,5 @@ class UserProfileController extends GetxController {
       _loggingService
           .logError('Intento de crear/actualizar perfil sin usuario logueado');
     }
-  }
-
-  void clearUserProfileData() {
-    currentUserProfile.value = null;
-    _loggingService.logInfo('Datos de usuario limpiados');
   }
 }

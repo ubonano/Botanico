@@ -1,3 +1,4 @@
+import 'package:botanico/auth/controllers/user_profile_controller.dart';
 import 'package:botanico/services/loggin_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ class AuthController extends GetxController {
   final LoggingService _loggingService = Get.find();
 
   User? getLoggedInUser() => _auth.currentUser;
+  bool isUserLoggedIn() => _auth.currentUser != null;
 
   Future<User?> _authOperation(Future<UserCredential> Function() operation,
       String successLog, String errorLog) async {
@@ -21,6 +23,8 @@ class AuthController extends GetxController {
           '$successLog: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
 
       _navigationService.navigateToHome();
+
+      Get.find<UserProfileController>().loadUserProfile();
 
       return userCredential.user;
     } catch (e) {
