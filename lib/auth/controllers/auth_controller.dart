@@ -14,7 +14,6 @@ class AuthController extends GetxController {
   final LoggingService _loggingService = Get.find();
 
   Rx<UserProfileModel?> userProfile = Rx<UserProfileModel?>(null);
-  bool get isProfileComplete => userProfile.value?.isComplete ?? false;
   final UserProfileService _userProfileService = Get.find();
 
   User? getLoggedInUser() => _auth.currentUser;
@@ -35,7 +34,11 @@ class AuthController extends GetxController {
 
       await _loadUserProfile(userCredential.user!.uid);
 
-      _navigationService.navigateToHome();
+      if (userProfile.value != null) {
+        _navigationService.navigateToHome();
+      } else {
+        _navigationService.navigateToUserProfileForm();
+      }
 
       return userCredential.user;
     } catch (e) {

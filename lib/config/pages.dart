@@ -1,4 +1,3 @@
-import 'package:botanico/auth/middlewares/user_profile_completion_middleware.dart';
 import 'package:botanico/auth/pages/user_profile_page.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +15,6 @@ class Pages {
       page: () => HomePage(),
       middlewares: [
         AuthMiddleware(),
-        UserProfileCompletionMiddleware(),
       ],
     ),
     GetPage(
