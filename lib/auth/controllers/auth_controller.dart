@@ -1,10 +1,11 @@
-import 'package:botanico/auth/controllers/user_profile_controller.dart';
 import 'package:botanico/services/loggin_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../services/navigation_service.dart';
+import '../models/user_profile_model.dart';
+import '../services/user_profile_service.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = Get.find();
@@ -12,8 +13,17 @@ class AuthController extends GetxController {
   final NavigationService _navigationService = Get.find();
   final LoggingService _loggingService = Get.find();
 
+  Rx<UserProfileModel?> userProfile = Rx<UserProfileModel?>(null);
+  bool get isProfileComplete => userProfile.value?.isComplete ?? false;
+  final UserProfileService _userProfileService = Get.find();
+
   User? getLoggedInUser() => _auth.currentUser;
   bool isUserLoggedIn() => _auth.currentUser != null;
+
+  @override
+  Future<void> onInit() async {
+    super.onInit();
+  }
 
   Future<User?> _authOperation(Future<UserCredential> Function() operation,
       String successLog, String errorLog) async {
@@ -23,7 +33,7 @@ class AuthController extends GetxController {
       _loggingService.logInfo(
           '$successLog: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
 
-      Get.find<UserProfileController>().loadUserProfile();
+      await _loadUserProfile(userCredential.user!.uid);
 
       _navigationService.navigateToHome();
 
@@ -84,6 +94,7 @@ class AuthController extends GetxController {
       await _googleSignIn.signOut();
 
       await _auth.signOut();
+      userProfile.value = null;
 
       _loggingService.logInfo('Cierre de sesión exitoso');
 
@@ -92,6 +103,16 @@ class AuthController extends GetxController {
       _loggingService.logError('Error al cerrar sesión: ${e.toString()}');
       Get.snackbar('Error al cerrar sesión',
           'No se pudo cerrar sesión correctamente. Inténtalo de nuevo.');
+    }
+  }
+
+  Future<void> _loadUserProfile(String uid) async {
+    try {
+      userProfile.value = await _userProfileService.getUserProfile(uid);
+      _loggingService.logInfo('Perfil de usuario cargado para UID=$uid');
+    } catch (e) {
+      _loggingService
+          .logError('Error al cargar el perfil de usuario: ${e.toString()}');
     }
   }
 

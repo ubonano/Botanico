@@ -36,6 +36,9 @@ class Pages {
     GetPage(
       name: Routes.USER_PROFILE_FORM,
       page: () => const UserProfileFormPage(),
+      middlewares: [
+        AuthMiddleware(),
+      ],
     ),
   ];
 }
