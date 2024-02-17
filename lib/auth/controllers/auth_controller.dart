@@ -19,12 +19,13 @@ class AuthController extends GetxController {
       String successLog, String errorLog) async {
     try {
       final UserCredential userCredential = await operation();
+
       _loggingService.logInfo(
           '$successLog: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
 
-      _navigationService.navigateToHome();
-
       Get.find<UserProfileController>().loadUserProfile();
+
+      _navigationService.navigateToHome();
 
       return userCredential.user;
     } catch (e) {
@@ -56,9 +57,12 @@ class AuthController extends GetxController {
   Future<User?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
       if (googleUser == null) return null;
+
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
+
       return _authOperation(
         () => _auth.signInWithCredential(GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken,
@@ -78,8 +82,11 @@ class AuthController extends GetxController {
   Future<void> signOut() async {
     try {
       await _googleSignIn.signOut();
+
       await _auth.signOut();
+
       _loggingService.logInfo('Cierre de sesión exitoso');
+
       _navigationService.navigateToLogin();
     } catch (e) {
       _loggingService.logError('Error al cerrar sesión: ${e.toString()}');

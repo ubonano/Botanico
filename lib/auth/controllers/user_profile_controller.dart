@@ -56,8 +56,11 @@ class UserProfileController extends GetxController {
         phone: phone,
         dni: dni,
       );
+
       await _userProfileService.setUserProfile(userProfileModel);
+
       currentUserProfile.value = userProfileModel;
+      
       _loggingService.logInfo(
           'Perfil de usuario creado/actualizado para UID: ${user.uid} Email: ${user.email}');
     } else {
