@@ -56,10 +56,6 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 child: const Text('Iniciar Sesión'),
               ),
-              // TextButton(
-              //   onPressed: () => authController.signInWithGoogle(),
-              //   child: const Text('Iniciar Sesión con Google'),
-              // ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: navigationService.navigateToSignUp,

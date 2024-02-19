@@ -33,7 +33,7 @@ class Pages {
     ),
     GetPage(
       name: Routes.USER_PROFILE_FORM,
-      page: () => const UserProfilePage(),
+      page: () => UserProfilePage(),
       middlewares: [
         AuthMiddleware(),
       ],

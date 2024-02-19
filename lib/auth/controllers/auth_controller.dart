@@ -1,50 +1,50 @@
-import 'package:botanico/services/loggin_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../services/navigation_service.dart';
+import '../../config/common_services.dart';
 import '../models/user_profile_model.dart';
 import '../services/user_profile_service.dart';
 
-class AuthController extends GetxController {
+class AuthController extends GetxController with CommonServices {
   final FirebaseAuth _auth = Get.find();
-  final GoogleSignIn _googleSignIn = Get.find();
-  final NavigationService _navigationService = Get.find();
-  final LoggingService _loggingService = Get.find();
+
   final UserProfileService _userProfileService = Get.find();
 
   Rx<UserProfileModel?> userProfile = Rx<UserProfileModel?>(null);
+
+  User? getLoggedInUser() => _auth.currentUser;
+  bool isUserLoggedIn() => _auth.currentUser != null;
 
   @override
   Future<void> onInit() async {
     super.onInit();
   }
 
-  User? getLoggedInUser() => _auth.currentUser;
-  bool isUserLoggedIn() => _auth.currentUser != null;
-
   Future<User?> _authOperation(Future<UserCredential> Function() operation,
       String successLog, String errorLog) async {
     try {
       final UserCredential userCredential = await operation();
 
-      _loggingService.logInfo(
+      loggingService.logInfo(
           '$successLog: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
 
       await _loadUserProfile(userCredential.user!.uid);
 
-      if (userProfile.value != null) {
-        _navigationService.navigateToHome();
-      } else {
-        _navigationService.navigateToUserProfileForm();
-      }
+      _navigate();
 
       return userCredential.user;
     } catch (e) {
-      _loggingService.logError('$errorLog: ${e.toString()}');
+      loggingService.logError('$errorLog: ${e.toString()}');
       Get.snackbar('Error', _getErrorMessage(e));
       return null;
+    }
+  }
+
+  void _navigate() {
+    if (userProfile.value != null) {
+      navigationService.navigateToHome();
+    } else {
+      navigationService.navigateToUserProfileForm();
     }
   }
 
@@ -67,43 +67,16 @@ class AuthController extends GetxController {
     );
   }
 
-  Future<User?> signInWithGoogle() async {
-    try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-
-      if (googleUser == null) return null;
-
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-
-      return _authOperation(
-        () => _auth.signInWithCredential(GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
-        )),
-        'Inicio de sesión con Google exitoso',
-        'Error al iniciar sesión con Google',
-      );
-    } catch (e) {
-      _loggingService
-          .logError('Error al iniciar sesión con Google: ${e.toString()}');
-      Get.snackbar('Error al iniciar sesión con Google', _getErrorMessage(e));
-      return null;
-    }
-  }
-
   Future<void> signOut() async {
     try {
-      await _googleSignIn.signOut();
-
       await _auth.signOut();
       userProfile.value = null;
 
-      _loggingService.logInfo('Cierre de sesión exitoso');
+      loggingService.logInfo('Cierre de sesión exitoso');
 
-      _navigationService.navigateToLogin();
+      navigationService.navigateToLogin();
     } catch (e) {
-      _loggingService.logError('Error al cerrar sesión: ${e.toString()}');
+      loggingService.logError('Error al cerrar sesión: ${e.toString()}');
       Get.snackbar('Error al cerrar sesión',
           'No se pudo cerrar sesión correctamente. Inténtalo de nuevo.');
     }
@@ -112,9 +85,14 @@ class AuthController extends GetxController {
   Future<void> _loadUserProfile(String uid) async {
     try {
       userProfile.value = await _userProfileService.getUserProfile(uid);
-      _loggingService.logInfo('Perfil de usuario cargado para UID=$uid');
+      if (userProfile.value != null) {
+        loggingService.logInfo('Perfil de usuario cargado para UID=$uid');
+      } else {
+        loggingService
+            .logWarning('No se encontro perfil para el el usuario UID=$uid');
+      }
     } catch (e) {
-      _loggingService
+      loggingService
           .logError('Error al cargar el perfil de usuario: ${e.toString()}');
     }
   }
