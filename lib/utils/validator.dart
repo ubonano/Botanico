@@ -21,4 +21,32 @@ class Validator {
     }
     return null;
   }
+
+  static String? birthDateValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Este campo es obligatorio";
+    } else if (!RegExp(r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\d{4}$')
+        .hasMatch(value)) {
+      return "La fecha de nacimiento debe tener el formato DD/MM/AAAA";
+    }
+    return null;
+  }
+
+  static String? phoneNumberValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Este campo es obligatorio";
+    } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+      return "El número de teléfono debe ser numérico";
+    }
+    return null;
+  }
+
+  static String? dniValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Este campo es obligatorio";
+    } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+      return "El DNI debe ser numérico";
+    }
+    return null;
+  }
 }

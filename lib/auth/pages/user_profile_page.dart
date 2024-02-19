@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../utils/validator.dart';
 import '../../widgets/custom_input_field.dart';
 import '../controllers/user_profile_controller.dart';
 
@@ -10,8 +11,6 @@ class UserProfilePage extends GetView<UserProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.initializeFormFieldsWithUserProfile();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Completa tu Perfil'),
@@ -27,37 +26,34 @@ class UserProfilePage extends GetView<UserProfileController> {
                 label: "Nombre Completo",
                 controller: controller.nameController,
                 validator: (value) =>
-                    value!.isEmpty ? "Este campo es obligatorio" : null,
+                value!.isEmpty ? "Este campo es obligatorio" : null,
               ),
               const SizedBox(height: 10),
               CustomInputField(
                 label: "Fecha de Nacimiento",
                 controller: controller.birthDateController,
                 keyboardType: TextInputType.datetime,
-                validator: (value) =>
-                    value!.isEmpty ? "Este campo es obligatorio" : null,
+                validator: Validator.birthDateValidator,
               ),
               const SizedBox(height: 10),
               CustomInputField(
                 label: "Número de Teléfono",
                 controller: controller.phoneController,
                 keyboardType: TextInputType.phone,
-                validator: (value) =>
-                    value!.isEmpty ? "Este campo es obligatorio" : null,
+                validator: Validator.phoneNumberValidator,
               ),
               const SizedBox(height: 10),
               CustomInputField(
                 label: "DNI",
                 controller: controller.dniController,
                 keyboardType: TextInputType.number,
-                validator: (value) =>
-                    value!.isEmpty ? "Este campo es obligatorio" : null,
+                validator: Validator.dniValidator,
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    controller.createUserProfile();
+                    await controller.createUserProfile();
                   }
                 },
                 child: const Text('Guardar Perfil'),
