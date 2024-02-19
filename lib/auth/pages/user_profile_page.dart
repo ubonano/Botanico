@@ -32,7 +32,7 @@ class UserProfilePage extends GetView<UserProfileController> {
               const SizedBox(height: 10),
               CustomInputField(
                 label: "Fecha de Nacimiento",
-                controller: controller.dobController,
+                controller: controller.birthDateController,
                 keyboardType: TextInputType.datetime,
                 validator: (value) =>
                     value!.isEmpty ? "Este campo es obligatorio" : null,

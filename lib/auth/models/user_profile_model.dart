@@ -2,7 +2,7 @@ class UserProfileModel {
   final String uid;
   final String email;
   final String name;
-  final String dob; // Fecha de nacimiento
+  final String birthDate;
   final String phone;
   final String dni;
 
@@ -10,14 +10,14 @@ class UserProfileModel {
     required this.uid,
     required this.email,
     required this.name,
-    required this.dob,
+    required this.birthDate,
     required this.phone,
     required this.dni,
   });
 
   bool get isComplete {
     return name.isNotEmpty &&
-        dob.isNotEmpty &&
+        birthDate.isNotEmpty &&
         phone.isNotEmpty &&
         dni.isNotEmpty;
   }
@@ -27,7 +27,7 @@ class UserProfileModel {
       'uid': uid,
       'email': email,
       'name': name,
-      'dob': dob,
+      'birthDate': birthDate,
       'phone': phone,
       'dni': dni,
     };
@@ -35,12 +35,12 @@ class UserProfileModel {
 
   factory UserProfileModel.fromMap(Map<String, dynamic> map) {
     return UserProfileModel(
-      uid: map['uid'],
-      email: map['email'],
-      name: map['name'],
-      dob: map['dob'],
-      phone: map['phone'],
-      dni: map['dni'],
+      uid: map['uid'] ?? '',
+      email: map['email'] ?? '',
+      name: map['name'] ?? '',
+      birthDate: map['birthDate'] ?? '',
+      phone: map['phone'] ?? '',
+      dni: map['dni'] ?? '',
     );
   }
 }
