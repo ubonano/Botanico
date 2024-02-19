@@ -1,8 +1,10 @@
+import 'package:botanico/config/firestore_collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/user_profile_model.dart';
 
 class UserProfileService {
-  final _userProfilesCollectionRef = FirebaseFirestore.instance.collection('user_profiles');
+  final _userProfilesCollectionRef =
+      FirebaseFirestore.instance.collection(FirestoreCollections.userProfile);
 
   UserProfileModel? _toUserProfileModel(DocumentSnapshot doc) {
     if (doc.exists) {
