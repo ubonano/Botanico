@@ -11,6 +11,8 @@ class UserProfilePage extends GetView<UserProfileController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.initializeFormFieldsWithUserProfile();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Completa tu Perfil'),
@@ -26,7 +28,7 @@ class UserProfilePage extends GetView<UserProfileController> {
                 label: "Nombre Completo",
                 controller: controller.nameController,
                 validator: (value) =>
-                value!.isEmpty ? "Este campo es obligatorio" : null,
+                    value!.isEmpty ? "Este campo es obligatorio" : null,
               ),
               const SizedBox(height: 10),
               CustomInputField(
