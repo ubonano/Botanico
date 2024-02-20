@@ -1,6 +1,5 @@
 import 'package:botanico/auth/controllers/user_profile_controller.dart';
 import 'package:botanico/services/loggin_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
@@ -12,8 +11,6 @@ class AppBindings extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<UserProfileService>(() => UserProfileService());
-
-    Get.put(FirebaseAuth.instance);
 
     Get.put(Logger());
     Get.put(NavigationService());

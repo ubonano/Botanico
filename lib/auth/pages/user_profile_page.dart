@@ -11,13 +11,10 @@ class UserProfilePage extends GetView<UserProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.initializeFormFieldsWithUserProfile();
+    controller.initializeFormFields();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Completa tu Perfil'),
-        automaticallyImplyLeading: false,
-      ),
+      appBar: AppBar(title: const Text('Completa tu Perfil')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(

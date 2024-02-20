@@ -2,20 +2,22 @@ import 'package:botanico/config/routes.dart';
 import 'package:get/get.dart';
 
 class NavigationService {
-  void navigateToHome() => navigateTo(Routes.HOME);
-  void navigateToLogin() => navigateTo(Routes.LOGIN);
-  void navigateToSignUp() => navigateTo(Routes.SIGN_UP);
-  void navigateToUserProfileForm() => navigateTo(Routes.USER_PROFILE_FORM);
+  void navigateToHome({bool canPop = false}) =>
+      navigateTo(Routes.HOME, canPop: canPop);
+  void navigateToLogin({bool canPop = false}) =>
+      navigateTo(Routes.LOGIN, canPop: canPop);
+  void navigateToSignUp({bool canPop = false}) =>
+      navigateTo(Routes.SIGN_UP, canPop: canPop);
+  void navigateToUserProfile({bool canPop = false}) =>
+      navigateTo(Routes.USER_PROFILE, canPop: canPop);
 
-  void navigateTo(String route) {
-    Get.offAllNamed(route);
+  void navigateTo(String route, {bool canPop = false}) {
+    if (canPop) {
+      Get.toNamed(route);
+    } else {
+      Get.offAllNamed(route);
+    }
   }
 
-  void goTo(String route) {
-    Get.toNamed(route);
-  }
-
-  void goBack() {
-    Get.back();
-  }
+  void goBack() => Get.back();
 }
