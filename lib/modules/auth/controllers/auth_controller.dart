@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-import '../../config/common_services.dart';
-import '../models/user_profile_model.dart';
-import '../services/user_profile_service.dart';
+import '../../../config/common_services.dart';
+import '../../user_profile/models/user_profile_model.dart';
+import '../../user_profile/services/user_profile_service.dart';
 
 class AuthController extends GetxController with CommonServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;

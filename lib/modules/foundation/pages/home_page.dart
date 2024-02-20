@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../auth/controllers/auth_controller.dart';
+import '../../auth/controllers/auth_controller.dart';
 
-import '../auth/controllers/user_profile_controller.dart';
+import '../../user_profile/controllers/user_profile_controller.dart';
 import '../services/navigation_service.dart';
 
 class HomePage extends StatelessWidget {

@@ -1,8 +1,8 @@
-import 'package:botanico/auth/controllers/auth_controller.dart';
+import 'package:botanico/modules/auth/controllers/auth_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import '../../config/routes.dart';
+import '../../../config/routes.dart';
 
 class NotAuthMiddleware extends GetMiddleware {
   @override

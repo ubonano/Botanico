@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../config/common_services.dart';
+import '../../../config/common_services.dart';
 import '../models/user_profile_model.dart';
 import '../services/user_profile_service.dart';
 
