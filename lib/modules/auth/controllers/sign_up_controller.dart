@@ -1,11 +1,8 @@
 import 'package:botanico/config/common_services.dart';
-import 'package:botanico/modules/auth/services/session_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class SignUpPageController extends GetxController with CommonServices {
-  final SessionService _sessionService = Get.find();
-
   late TextEditingController emailController;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
@@ -34,6 +31,6 @@ class SignUpPageController extends GetxController with CommonServices {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
-    await _sessionService.createUserWithEmailAndPassword(email, password);
+    await sessionService.createUserWithEmailAndPassword(email, password);
   }
 }
