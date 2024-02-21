@@ -11,7 +11,7 @@ service cloud.firestore {
                    && request.resource.data.email.matches('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')
                    // Asegúrate de que birthDate coincida con el formato DD/MM/AAAA
                    && request.resource.data.birthDate is string
-                   && request.resource.data.birthDate.matches('^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\\d{2}$')
+                   && request.resource.data.birthDate.matches('^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}$')
                    // Verifica que phone sea un string numérico
                    && request.resource.data.phone is string && request.resource.data.phone.matches('^\\d+$')
                    // Verifica que dni sea un string numérico

@@ -72,12 +72,6 @@ class SessionService extends GetxService {
     await _auth.signOut();
   }
 
-  // Future<void> fetchUserProfile() async {
-  //   if (currentUser != null) {
-  //     await _loadUserProfile(currentUser!.uid);
-  //   }
-  // }
-
   Future<void> fetchUserProfile() async {
     if (currentUser != null) {
       try {

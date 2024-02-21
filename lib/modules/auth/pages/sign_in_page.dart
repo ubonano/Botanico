@@ -44,9 +44,9 @@ class SignInPage extends GetView<SignInController> {
                 child: const Text('Iniciar Sesión'),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
+              TextButton(
                 onPressed: controller.navigateToSignUp,
-                child: const Text('Crear Nueva Cuenta'),
+                child: const Text('¿No tenes cuenta? Crear nueva cuenta'),
               ),
             ],
           ),
