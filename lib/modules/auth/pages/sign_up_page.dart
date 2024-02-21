@@ -1,29 +1,31 @@
-import 'package:botanico/services/navigation_service.dart';
-import 'package:botanico/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../foundation/services/navigation_service.dart';
+import '../../foundation/utils/validator.dart';
 import '../controllers/auth_controller.dart';
-import '../../widgets/custom_input_field.dart';
+import '../../foundation/widgets/custom_input_field.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final AuthController authController = Get.find();
   final NavigationService navigationService = Get.find();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Iniciar Sesión')),
+      appBar: AppBar(title: const Text('Registro')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -44,26 +46,29 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
                 validator: Validator.passwordValidator,
               ),
+              const SizedBox(height: 10),
+              CustomInputField(
+                label: 'Confirmar Contraseña',
+                controller: confirmPasswordController,
+                obscureText: true,
+                validator: (value) => Validator.confirmPasswordValidator(
+                    value, passwordController.text),
+              ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    authController.signInWithEmailAndPassword(
+                    authController.createUserWithEmailAndPassword(
                       emailController.text,
                       passwordController.text,
                     );
                   }
                 },
-                child: const Text('Iniciar Sesión'),
+                child: const Text('Registrar'),
               ),
-              // TextButton(
-              //   onPressed: () => authController.signInWithGoogle(),
-              //   child: const Text('Iniciar Sesión con Google'),
-              // ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: navigationService.navigateToSignUp,
-                child: const Text('Crear Nueva Cuenta'),
+              TextButton(
+                onPressed: navigationService.navigateToLogin,
+                child: const Text('¿Ya tienes cuenta? Inicia sesión'),
               ),
             ],
           ),

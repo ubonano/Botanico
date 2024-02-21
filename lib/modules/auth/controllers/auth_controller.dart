@@ -1,47 +1,62 @@
-import 'package:botanico/services/loggin_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../services/navigation_service.dart';
+import '../../../config/common_services.dart';
+import '../../user_profile/models/user_profile_model.dart';
+import '../../user_profile/services/user_profile_service.dart';
 
-class AuthController extends GetxController {
-  final FirebaseAuth _auth;
-  final GoogleSignIn _googleSignIn;
-  final NavigationService _navigationService;
-  final LoggingService _loggingService;
+class AuthController extends GetxController with CommonServices {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  AuthController({
-    required FirebaseAuth auth,
-    required GoogleSignIn googleSignIn,
-    required NavigationService navigationService,
-    required LoggingService loggingService,
-  })  : _auth = auth,
-        _googleSignIn = googleSignIn,
-        _navigationService = navigationService,
-        _loggingService = loggingService;
+  final UserProfileService _userProfileService = Get.find();
 
   User? getLoggedInUser() => _auth.currentUser;
+  bool isUserLoggedIn() => _auth.currentUser != null;
 
-  Future<User?> _authOperation(Future<UserCredential> Function() operation,
-      String successLog, String errorLog) async {
+  Future<User?> _authOperation(
+    Future<UserCredential> Function() operation,
+    String successLog,
+    String errorLog,
+  ) async {
     try {
       final UserCredential userCredential = await operation();
-      _loggingService.logInfo(
+
+      loggingService.logInfo(
           '$successLog: UID=${userCredential.user?.uid}, Email=${userCredential.user?.email}');
 
-      _navigationService.navigateToHome();
+      await _navigate(userCredential.user!.uid);
 
       return userCredential.user;
     } catch (e) {
-      _loggingService.logError('$errorLog: ${e.toString()}');
+      loggingService.logError('$errorLog: ${e.toString()}');
       Get.snackbar('Error', _getErrorMessage(e));
       return null;
     }
   }
 
+  Future<void> _navigate(String uid) async {
+    try {
+      UserProfileModel? userProfile =
+          await _userProfileService.getUserProfile(uid);
+
+      if (userProfile != null) {
+        loggingService.logInfo('Perfil de usuario encontrado para UID=$uid');
+        navigationService.navigateToHome();
+      } else {
+        navigationService.navigateToUserProfile();
+        loggingService
+            .logWarning('No se encontro perfil para el el usuario UID=$uid');
+      }
+    } catch (e) {
+      loggingService
+          .logError('Error al cargar el perfil de usuario: ${e.toString()}');
+    }
+  }
+
   Future<User?> createUserWithEmailAndPassword(
-      String email, String password) async {
+    String email,
+    String password,
+  ) async {
     return _authOperation(
       () => _auth.createUserWithEmailAndPassword(
           email: email, password: password),
@@ -51,7 +66,9 @@ class AuthController extends GetxController {
   }
 
   Future<User?> signInWithEmailAndPassword(
-      String email, String password) async {
+    String email,
+    String password,
+  ) async {
     return _authOperation(
       () => _auth.signInWithEmailAndPassword(email: email, password: password),
       'Inicio de sesión exitoso',
@@ -59,36 +76,15 @@ class AuthController extends GetxController {
     );
   }
 
-  Future<User?> signInWithGoogle() async {
-    try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) return null;
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-      return _authOperation(
-        () => _auth.signInWithCredential(GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
-        )),
-        'Inicio de sesión con Google exitoso',
-        'Error al iniciar sesión con Google',
-      );
-    } catch (e) {
-      _loggingService
-          .logError('Error al iniciar sesión con Google: ${e.toString()}');
-      Get.snackbar('Error al iniciar sesión con Google', _getErrorMessage(e));
-      return null;
-    }
-  }
-
   Future<void> signOut() async {
     try {
-      await _googleSignIn.signOut();
       await _auth.signOut();
-      _loggingService.logInfo('Cierre de sesión exitoso');
-      _navigationService.navigateToLogin();
+
+      loggingService.logInfo('Cierre de sesión exitoso');
+
+      navigationService.navigateToLogin();
     } catch (e) {
-      _loggingService.logError('Error al cerrar sesión: ${e.toString()}');
+      loggingService.logError('Error al cerrar sesión: ${e.toString()}');
       Get.snackbar('Error al cerrar sesión',
           'No se pudo cerrar sesión correctamente. Inténtalo de nuevo.');
     }

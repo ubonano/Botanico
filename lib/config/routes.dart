@@ -4,4 +4,5 @@ class Routes {
   static const HOME = '/home';
   static const LOGIN = '/login';
   static const SIGN_UP = '/sign-up';
+  static const USER_PROFILE = '/user-profile';
 }

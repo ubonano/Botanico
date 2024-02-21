@@ -1,31 +1,29 @@
+import 'package:botanico/modules/foundation/services/navigation_service.dart';
+import 'package:botanico/modules/foundation/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../services/navigation_service.dart';
-import '../../utils/validator.dart';
 import '../controllers/auth_controller.dart';
-import '../../widgets/custom_input_field.dart';
+import '../../foundation/widgets/custom_input_field.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _LoginPageState extends State<LoginPage> {
   final AuthController authController = Get.find();
   final NavigationService navigationService = Get.find();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Registro')),
+      appBar: AppBar(title: const Text('Iniciar Sesión')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -46,29 +44,22 @@ class _SignUpPageState extends State<SignUpPage> {
                 obscureText: true,
                 validator: Validator.passwordValidator,
               ),
-              const SizedBox(height: 10),
-              CustomInputField(
-                label: 'Confirmar Contraseña',
-                controller: confirmPasswordController,
-                obscureText: true,
-                validator: (value) => Validator.confirmPasswordValidator(
-                    value, passwordController.text),
-              ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    authController.createUserWithEmailAndPassword(
+                    authController.signInWithEmailAndPassword(
                       emailController.text,
                       passwordController.text,
                     );
                   }
                 },
-                child: const Text('Registrar'),
+                child: const Text('Iniciar Sesión'),
               ),
-              TextButton(
-                onPressed: navigationService.navigateToLogin,
-                child: const Text('¿Ya tienes cuenta? Inicia sesión'),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: navigationService.navigateToSignUp,
+                child: const Text('Crear Nueva Cuenta'),
               ),
             ],
           ),
