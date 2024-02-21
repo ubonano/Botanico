@@ -4,7 +4,7 @@ import '../models/user_profile_model.dart';
 
 class UserProfileService {
   final _userProfilesCollectionRef =
-      FirebaseFirestore.instance.collection(FirestoreCollections.userProfile);
+      FirebaseFirestore.instance.collection(FirestoreCollections.userProfiles);
 
   UserProfileModel? _toUserProfileModel(DocumentSnapshot doc) {
     if (doc.exists) {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../auth/controllers/auth_controller.dart';
 
+import '../../auth/services/session_service.dart';
 import '../../user_profile/controllers/user_profile_controller.dart';
 import '../services/navigation_service.dart';
 
 class HomePage extends StatelessWidget {
-  final AuthController authController = Get.find();
+  final SessionService sessionService = Get.find();
   final UserProfileController userProfileController = Get.find();
   final NavigationService navigationService = Get.find();
 
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    userProfileController.initializeFormFields();
+    sessionService.fetchUserProfile();
 
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
           children: [
             Obx(
               () {
-                final userProfile = userProfileController.userProfile.value;
+                final userProfile = sessionService.userProfileObx.value;
                 return userProfile != null
                     ? Column(
                         children: [
@@ -49,7 +49,10 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () async => await authController.signOut(),
+              onPressed: () async {
+                await sessionService.signOut();
+                navigationService.navigateToLogin();
+              },
               child: const Text("Cerrar Sesión"),
             ),
           ],

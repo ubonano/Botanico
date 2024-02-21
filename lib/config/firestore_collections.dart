@@ -1,3 +1,3 @@
 class FirestoreCollections {
-  static const String userProfile = 'userProfiles';
+  static const String userProfiles = 'userProfiles';
 }

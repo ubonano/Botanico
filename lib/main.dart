@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialBinding: AppBindings(),
       title: 'Your App Name',
-      initialRoute: Routes.LOGIN,
+      initialRoute: Routes.SIGN_IN,
       getPages: Pages.pages,
     );
   }

@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../foundation/services/navigation_service.dart';
 import '../../foundation/utils/validator.dart';
-import '../controllers/auth_controller.dart';
 import '../../foundation/widgets/custom_input_field.dart';
+import '../controllers/sign_up_controller.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
-
-  @override
-  _SignUpPageState createState() => _SignUpPageState();
-}
-
-class _SignUpPageState extends State<SignUpPage> {
-  final AuthController authController = Get.find();
-  final NavigationService navigationService = Get.find();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+class SignUpPage extends GetView<SignUpPageController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,40 +23,38 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               CustomInputField(
                 label: 'Email',
-                controller: emailController,
+                controller: controller.emailController,
                 keyboardType: TextInputType.emailAddress,
                 validator: Validator.emailValidator,
               ),
               const SizedBox(height: 10),
               CustomInputField(
                 label: 'Contraseña',
-                controller: passwordController,
+                controller: controller.passwordController,
                 obscureText: true,
                 validator: Validator.passwordValidator,
               ),
               const SizedBox(height: 10),
               CustomInputField(
                 label: 'Confirmar Contraseña',
-                controller: confirmPasswordController,
+                controller: controller.confirmPasswordController,
                 obscureText: true,
                 validator: (value) => Validator.confirmPasswordValidator(
-                    value, passwordController.text),
+                    value, controller.passwordController.text),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    authController.createUserWithEmailAndPassword(
-                      emailController.text,
-                      passwordController.text,
-                    );
+                    controller.signUp();
                   }
                 },
                 child: const Text('Registrar'),
               ),
+              const SizedBox(height: 20),
               TextButton(
-                onPressed: navigationService.navigateToLogin,
-                child: const Text('¿Ya tienes cuenta? Inicia sesión'),
+                onPressed: controller.navigateToLogin,
+                child: const Text('¿Ya tenes cuenta? Inicia sesión'),
               ),
             ],
           ),
