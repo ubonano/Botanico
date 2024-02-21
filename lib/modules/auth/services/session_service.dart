@@ -1,15 +1,15 @@
 import 'package:botanico/modules/foundation/services/navigation_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:botanico/config/firestore_collections.dart';
 
 import '../../user_profile/models/user_profile_model.dart';
+import '../../user_profile/services/user_profile_service.dart';
 
 class SessionService extends GetxService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   final NavigationService _navigationService = Get.find();
+  final UserProfileService _userProfileService = Get.find();
 
   final Rx<User?> _firebaseUser = Rx<User?>(null);
   final Rx<UserProfileModel?> userProfileObx = Rx<UserProfileModel?>(null);
@@ -21,20 +21,22 @@ class SessionService extends GetxService {
 
   SessionService() {
     _firebaseUser.bindStream(_auth.authStateChanges());
-    _firebaseUser.listen((user) {
-      if (user != null) {
-        _loadUserProfile(user.uid).whenComplete(() {
+
+    _firebaseUser.listen(
+      (user) async {
+        if (user != null) {
+          await fetchUserProfile();
+
           if (userProfile != null) {
             _navigationService.navigateToHome();
           } else {
             _navigationService.navigateToUserProfile();
           }
-        });
-      } else {
-        userProfileObx.value = null;
-        // _navigationService.navigateToLogin();
-      }
-    });
+        } else {
+          userProfileObx.value = null;
+        }
+      },
+    );
   }
 
   Future<User?> signInWithEmailAndPassword(
@@ -70,26 +72,29 @@ class SessionService extends GetxService {
     await _auth.signOut();
   }
 
-  Future<void> _loadUserProfile(String uid) async {
-    try {
-      final docSnapshot = await _firestore
-          .collection(FirestoreCollections.userProfiles)
-          .doc(uid)
-          .get();
-      if (docSnapshot.exists) {
-        userProfileObx.value = UserProfileModel.fromMap(docSnapshot.data()!);
+  // Future<void> fetchUserProfile() async {
+  //   if (currentUser != null) {
+  //     await _loadUserProfile(currentUser!.uid);
+  //   }
+  // }
+
+  Future<void> fetchUserProfile() async {
+    if (currentUser != null) {
+      try {
+        final userProfile =
+            await _userProfileService.getUserProfile(currentUser!.uid);
+
+        userProfileObx.value = userProfile;
+      } catch (e) {
+        Get.snackbar('Error al cargar perfil de usuario', e.toString());
       }
-    } catch (e) {
-      Get.snackbar('Error al cargar perfil de usuario', e.toString());
     }
   }
 
   Future<void> setUserProfile(UserProfileModel userProfile) async {
     try {
-      await _firestore
-          .collection(FirestoreCollections.userProfiles)
-          .doc(userProfile.uid)
-          .set(userProfile.toMap());
+      await _userProfileService.setUserProfile(userProfile);
+
       userProfileObx.value = userProfile;
     } catch (e) {
       Get.snackbar('Error al actualizar perfil de usuario', e.toString());

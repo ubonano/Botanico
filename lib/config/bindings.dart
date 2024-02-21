@@ -12,15 +12,15 @@ import '../modules/foundation/services/navigation_service.dart';
 class AppBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<UserProfileService>(() => UserProfileService());
+    Get.put(Logger());
+    Get.put(NavigationService());
+    Get.put(LoggingService());
+
     Get.lazyPut<SessionService>(() => SessionService());
     Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
     Get.lazyPut<SignUpPageController>(() => SignUpPageController(),
         fenix: true);
-
-    Get.put(Logger());
-    Get.put(NavigationService());
-    Get.put(LoggingService());
+    Get.lazyPut<UserProfileService>(() => UserProfileService());
 
     Get.put(UserProfileController());
   }

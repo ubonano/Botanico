@@ -14,6 +14,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    sessionService.fetchUserProfile();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
