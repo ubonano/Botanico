@@ -5,7 +5,7 @@ class NavigationService {
   void navigateToHome({bool canPop = false}) =>
       navigateTo(Routes.HOME, canPop: canPop);
   void navigateToLogin({bool canPop = false}) =>
-      navigateTo(Routes.LOGIN, canPop: canPop);
+      navigateTo(Routes.SIGN_IN, canPop: canPop);
   void navigateToSignUp({bool canPop = false}) =>
       navigateTo(Routes.SIGN_UP, canPop: canPop);
   void navigateToUserProfile({bool canPop = false}) =>

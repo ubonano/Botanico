@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../config/common_services.dart';
@@ -8,25 +7,21 @@ import '../services/user_profile_service.dart';
 class UserProfileController extends GetxController with CommonServices {
   final UserProfileService _userProfileService = Get.find();
 
-  Rx<UserProfileModel?> userProfile = Rx<UserProfileModel?>(null);
-
   final nameController = TextEditingController();
   final birthDateController = TextEditingController();
   final phoneController = TextEditingController();
   final dniController = TextEditingController();
 
-  Future<UserProfileModel?> getUserProfile() async {
-    User? user = authController.getLoggedInUser();
-
-    if (user != null) {
-      return await _userProfileService.getUserProfile(user.uid);
+  Future<void> initializeFormFields() async {
+    if (sessionService.userProfile != null) {
+      updateFormFields(sessionService.userProfile!);
+    } else {
+      clearFormFields();
     }
-
-    return null;
   }
 
   Future<void> createUserProfile() async {
-    final user = authController.getLoggedInUser();
+    final user = sessionService.currentUser;
 
     if (user == null) {
       loggingService.logError('No hay usuario logueado');
@@ -52,18 +47,6 @@ class UserProfileController extends GetxController with CommonServices {
       loggingService.logError(
           'Error al crear/actualizar el perfil del usuario: ${e.toString()}');
       Get.snackbar('Error', 'Error al crear/actualizar el perfil del usuario');
-    }
-  }
-
-  Future<void> initializeFormFields() async {
-    // ignore: no_leading_underscores_for_local_identifiers
-    UserProfileModel? _userProfile = await getUserProfile();
-
-    if (_userProfile != null) {
-      userProfile.value = _userProfile;
-      updateFormFields(_userProfile);
-    } else {
-      clearFormFields();
     }
   }
 

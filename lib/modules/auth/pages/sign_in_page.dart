@@ -1,24 +1,14 @@
-import 'package:botanico/modules/foundation/services/navigation_service.dart';
-import 'package:botanico/modules/foundation/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/auth_controller.dart';
+import '../../foundation/utils/validator.dart';
 import '../../foundation/widgets/custom_input_field.dart';
+import '../controllers/sign_in_controller.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  final AuthController authController = Get.find();
-  final NavigationService navigationService = Get.find();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+class SignInPage extends GetView<SignInController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +23,14 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               CustomInputField(
                 label: 'Email',
-                controller: emailController,
+                controller: controller.emailController,
                 keyboardType: TextInputType.emailAddress,
                 validator: Validator.emailValidator,
               ),
               const SizedBox(height: 10),
               CustomInputField(
                 label: 'Contraseña',
-                controller: passwordController,
+                controller: controller.passwordController,
                 obscureText: true,
                 validator: Validator.passwordValidator,
               ),
@@ -48,17 +38,14 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    authController.signInWithEmailAndPassword(
-                      emailController.text,
-                      passwordController.text,
-                    );
+                    controller.signIn();
                   }
                 },
                 child: const Text('Iniciar Sesión'),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: navigationService.navigateToSignUp,
+                onPressed: controller.navigateToSignUp,
                 child: const Text('Crear Nueva Cuenta'),
               ),
             ],

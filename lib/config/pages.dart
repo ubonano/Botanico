@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../modules/auth/middlewares/auth_middleware.dart';
 import '../modules/auth/middlewares/not_auth_middleware.dart';
-import '../modules/auth/pages/login_page.dart';
+import '../modules/auth/pages/sign_in_page.dart';
 import '../modules/auth/pages/sign_up_page.dart';
 import '../modules/foundation/pages/home_page.dart';
 import 'routes.dart';
@@ -18,15 +18,15 @@ class Pages {
       ],
     ),
     GetPage(
-      name: Routes.LOGIN,
-      page: () => const LoginPage(),
+      name: Routes.SIGN_IN,
+      page: () => SignInPage(),
       middlewares: [
         NotAuthMiddleware(),
       ],
     ),
     GetPage(
       name: Routes.SIGN_UP,
-      page: () => const SignUpPage(),
+      page: () => SignUpPage(),
       middlewares: [
         NotAuthMiddleware(),
       ],
