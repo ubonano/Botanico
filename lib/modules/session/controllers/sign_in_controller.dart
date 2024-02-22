@@ -1,11 +1,10 @@
-import 'package:botanico/config/common_services.dart';
+import 'package:botanico/modules/foundation/config/common_services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class SignUpPageController extends GetxController with CommonServices {
+class SignInController extends GetxController with CommonServices {
   late TextEditingController emailController;
   late TextEditingController passwordController;
-  late TextEditingController confirmPasswordController;
 
   @override
   void onInit() {
@@ -13,24 +12,22 @@ class SignUpPageController extends GetxController with CommonServices {
 
     emailController = TextEditingController();
     passwordController = TextEditingController();
-    confirmPasswordController = TextEditingController();
   }
 
   @override
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
-    confirmPasswordController.dispose();
 
     super.onClose();
   }
 
-  void navigateToLogin() => navigationService.navigateToLogin();
+  void navigateToSignUp() => navigationService.navigateToSignUp();
 
-  void signUp() async {
+  void signIn() async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
-    await sessionService.createUserWithEmailAndPassword(email, password);
+    await sessionService.signInWithEmailAndPassword(email, password);
   }
 }
