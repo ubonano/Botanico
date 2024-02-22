@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../foundation/config/common_services.dart';
+import '../../foundation/controllers/log_lifecycle_controller.dart';
 import '../models/user_profile_model.dart';
 
-class UserProfileController extends GetxController with CommonServices {
+class UserProfileController extends GetxController with CommonServices, LogLifecycleController {
+  @override
+  String get logTag => 'UserProfileController';
+
   final nameController = TextEditingController();
   final birthDateController = TextEditingController();
   final phoneController = TextEditingController();

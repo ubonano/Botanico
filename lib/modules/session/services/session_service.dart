@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:botanico/modules/foundation/services/async_operation_service.dart';
+import 'package:botanico/modules/foundation/services/log_lifecycle_service.dart';
 import 'package:botanico/modules/foundation/services/navigation_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,7 +10,10 @@ import 'package:get/get.dart';
 import '../../foundation/config/firestore_collections.dart';
 import '../models/user_profile_model.dart';
 
-class SessionService extends GetxService {
+class SessionService extends GetxService with LogLifecycleService {
+  @override
+  String get logTag => 'SessionService';
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _userProfilesCollectionRef = FirebaseFirestore.instance.collection(FirestoreCollections.userProfiles);
 
