@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../auth/services/session_service.dart';
-import '../../user_profile/controllers/user_profile_controller.dart';
+import '../../session/services/session_service.dart';
+import '../../session/controllers/user_profile_controller.dart';
 import '../services/navigation_service.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,8 +14,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    sessionService.fetchUserProfile();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
@@ -43,8 +41,7 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () =>
-                  navigationService.navigateToUserProfile(canPop: true),
+              onPressed: () => navigationService.navigateToUserProfile(canPop: true),
               child: const Text("Perfil del Usuario"),
             ),
             const SizedBox(height: 20),

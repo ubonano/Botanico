@@ -24,8 +24,7 @@ class UserProfilePage extends GetView<UserProfileController> {
               CustomInputField(
                 label: "Nombre Completo",
                 controller: controller.nameController,
-                validator: (value) =>
-                    value!.isEmpty ? "Este campo es obligatorio" : null,
+                validator: (value) => value!.isEmpty ? "Este campo es obligatorio" : null,
               ),
               const SizedBox(height: 10),
               CustomInputField(

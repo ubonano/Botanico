@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../config/common_services.dart';
+import '../../foundation/config/common_services.dart';
+import '../../foundation/config/log_lifecycle_controller.dart';
 import '../models/user_profile_model.dart';
-import '../services/user_profile_service.dart';
 
-class UserProfileController extends GetxController with CommonServices {
-  final UserProfileService _userProfileService = Get.find();
+class UserProfileController extends GetxController with CommonServices, LogLifecycleController {
+  @override
+  String get logTag => 'UserProfileController';
 
   final nameController = TextEditingController();
   final birthDateController = TextEditingController();
@@ -13,7 +14,7 @@ class UserProfileController extends GetxController with CommonServices {
   final dniController = TextEditingController();
 
   Future<void> initializeFormFields() async {
-    if (sessionService.userProfile != null) {
+    if (sessionService.isUserProfile) {
       updateFormFields(sessionService.userProfile!);
     } else {
       clearFormFields();
@@ -23,13 +24,8 @@ class UserProfileController extends GetxController with CommonServices {
   Future<void> createUserProfile() async {
     final user = sessionService.currentUser;
 
-    if (user == null) {
-      loggingService.logError('No hay usuario logueado');
-      return;
-    }
-
     final userProfileModel = UserProfileModel(
-      uid: user.uid,
+      uid: user!.uid,
       email: user.email!,
       name: nameController.text,
       birthDate: birthDateController.text,
@@ -37,17 +33,9 @@ class UserProfileController extends GetxController with CommonServices {
       dni: dniController.text,
     );
 
-    try {
-      await _userProfileService.setUserProfile(userProfileModel);
+    await sessionService.setUserProfile(userProfileModel);
 
-      loggingService.logInfo('Perfil de usuario creado/actualizado');
-
-      navigationService.navigateToHome();
-    } catch (e) {
-      loggingService.logError(
-          'Error al crear/actualizar el perfil del usuario: ${e.toString()}');
-      Get.snackbar('Error', 'Error al crear/actualizar el perfil del usuario');
-    }
+    navigationService.navigateToHome();
   }
 
   void updateFormFields(UserProfileModel userProfile) {
@@ -74,6 +62,7 @@ class UserProfileController extends GetxController with CommonServices {
   @override
   void onClose() {
     disposeFormFields();
+
     super.onClose();
   }
 }

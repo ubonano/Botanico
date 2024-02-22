@@ -39,8 +39,7 @@ class SignUpPage extends GetView<SignUpPageController> {
                 label: 'Confirmar Contraseña',
                 controller: controller.confirmPasswordController,
                 obscureText: true,
-                validator: (value) => Validator.confirmPasswordValidator(
-                    value, controller.passwordController.text),
+                validator: (value) => Validator.confirmPasswordValidator(value, controller.passwordController.text),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
