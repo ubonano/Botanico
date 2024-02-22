@@ -10,12 +10,12 @@ mixin LogLifecycleController on GetxController {
   void onInit() {
     super.onInit();
 
-    _loggingService.logInfo('$logTag iniciado');
+    _loggingService.logDebug('$logTag iniciado');
   }
 
   @override
   void onClose() {
-    _loggingService.logInfo('$logTag eliminado');
+    _loggingService.logDebug('$logTag eliminado');
 
     super.onClose();
   }

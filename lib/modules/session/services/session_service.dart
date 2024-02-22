@@ -1,32 +1,27 @@
 import 'dart:async';
-
-import 'package:botanico/modules/foundation/services/async_operation_service.dart';
-import 'package:botanico/modules/foundation/services/log_lifecycle_service.dart';
-import 'package:botanico/modules/foundation/services/navigation_service.dart';
+import 'package:botanico/modules/foundation/config/common_services.dart';
+import 'package:botanico/modules/foundation/config/log_lifecycle_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-
 import '../../foundation/config/firestore_collections.dart';
 import '../models/user_profile_model.dart';
 
-class SessionService extends GetxService with LogLifecycleService {
+class SessionService extends GetxService with CommonServices, LogLifecycleService {
   @override
   String get logTag => 'SessionService';
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _userProfilesCollectionRef = FirebaseFirestore.instance.collection(FirestoreCollections.userProfiles);
 
-  final NavigationService _navigationService = Get.find();
-  final AsyncOperationService _asyncOperationService = Get.find();
-
   final Rx<User?> _firebaseUser = Rx<User?>(null);
   final Rx<UserProfileModel?> userProfileObx = Rx<UserProfileModel?>(null);
 
   User? get currentUser => _firebaseUser.value;
-  UserProfileModel? get userProfile => userProfileObx.value;
-
   bool get isUserLoggedIn => _auth.currentUser != null;
+
+  UserProfileModel? get userProfile => userProfileObx.value;
+  bool get isUserProfile => userProfile != null;
 
   StreamSubscription<User?>? _authSubscription;
 
@@ -48,34 +43,34 @@ class SessionService extends GetxService with LogLifecycleService {
   }
 
   void _navigate() {
-    if (userProfile != null) {
-      _navigationService.navigateToHome();
+    if (isUserProfile) {
+      navigationService.navigateToHome();
     } else {
-      _navigationService.navigateToUserProfile();
+      navigationService.navigateToUserProfile();
     }
   }
 
   Future<UserCredential?> signInWithEmailAndPassword(String email, String password) async {
-    return _asyncOperationService.performAsyncAuthOperation(
+    return asyncOperationService.performAsyncAuthOperation(
       () => _auth.signInWithEmailAndPassword(email: email, password: password),
       operationName: 'Sign in',
     );
   }
 
   Future<UserCredential?> createUserWithEmailAndPassword(String email, String password) async {
-    return _asyncOperationService.performAsyncAuthOperation(
+    return asyncOperationService.performAsyncAuthOperation(
       () => _auth.createUserWithEmailAndPassword(email: email, password: password),
       operationName: 'Sign up',
     );
   }
 
   Future<void> signOut() async {
-    await _asyncOperationService.performAsyncAuthOperation(() => _auth.signOut(), operationName: 'Sign out');
+    await asyncOperationService.performAsyncAuthOperation(() => _auth.signOut(), operationName: 'Sign out');
   }
 
   Future<void> fetchUserProfile() async {
     if (currentUser != null && userProfileObx.value == null) {
-      userProfileObx.value = await _asyncOperationService.performAsyncOperation<UserProfileModel?>(
+      userProfileObx.value = await asyncOperationService.performAsyncOperation<UserProfileModel?>(
         () async => await _getUserProfile(currentUser!.uid),
         errorMessage: 'Error al cargar el perfil de usuario',
         operationName: "Cargar perfil de usuario UID=${currentUser!.uid}",
@@ -84,7 +79,7 @@ class SessionService extends GetxService with LogLifecycleService {
   }
 
   Future<void> setUserProfile(UserProfileModel userProfile) async {
-    await _asyncOperationService.performAsyncOperation<void>(
+    await asyncOperationService.performAsyncOperation<void>(
       () async {
         await _setUserProfile(userProfile);
         userProfileObx.value = userProfile;

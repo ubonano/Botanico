@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../services/loggin_service.dart';
 import '../services/navigation_service.dart';
 
-mixin CommonServices on GetxController {
+mixin CommonServices {
   late final NavigationService navigationService = Get.find();
   late final LoggingService loggingService = Get.find();
   late final SessionService sessionService = Get.find();

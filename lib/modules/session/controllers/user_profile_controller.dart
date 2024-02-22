@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../foundation/config/common_services.dart';
-import '../../foundation/controllers/log_lifecycle_controller.dart';
+import '../../foundation/config/log_lifecycle_controller.dart';
 import '../models/user_profile_model.dart';
 
 class UserProfileController extends GetxController with CommonServices, LogLifecycleController {
@@ -14,7 +14,7 @@ class UserProfileController extends GetxController with CommonServices, LogLifec
   final dniController = TextEditingController();
 
   Future<void> initializeFormFields() async {
-    if (sessionService.userProfile != null) {
+    if (sessionService.isUserProfile) {
       updateFormFields(sessionService.userProfile!);
     } else {
       clearFormFields();
