@@ -10,7 +10,7 @@ class AuthStateMiddleware extends GetMiddleware {
 
     // Si el usuario intenta acceder a SignIn o SignUp y ya está autenticado, redirigir a HOME
     if (authService.isUserLoggedIn && (route == Routes.SIGN_IN || route == Routes.SIGN_UP)) {
-      return const RouteSettings(name: Routes.HOME);
+      return const RouteSettings(name: Routes.LOBBY);
     }
 
     // Si el usuario intenta acceder a una página que requiere autenticación y no está autenticado, redirigir a SignIn
