@@ -3,12 +3,13 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import '../../foundation/config/log_lifecycle_controller.dart';
 
-class SignInController extends GetxController with CommonServices, LogLifecycleController {
+class SignUpPageController extends GetxController with CommonServices, LogLifecycleController {
   @override
-  String get logTag => 'SignInController';
+  String get logTag => 'SignUpPageController';
 
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController confirmPasswordController;
 
   @override
   void onInit() {
@@ -16,22 +17,24 @@ class SignInController extends GetxController with CommonServices, LogLifecycleC
 
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
   }
 
   @override
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
 
     super.onClose();
   }
 
-  void navigateToSignUp() => navigationService.navigateToSignUp();
+  void navigateToLogin() => navigationService.navigateToLogin();
 
-  void signIn() async {
+  void signUp() async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
-    await sessionService.signInWithEmailAndPassword(email, password);
+    await authService.createUserWithEmailAndPassword(email, password);
   }
 }

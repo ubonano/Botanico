@@ -1,12 +1,9 @@
+import 'package:botanico/modules/foundation/config/common_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'loggin_service.dart';
-
-class AsyncOperationService extends GetxService {
-  final LoggingService _loggingService = Get.find();
-
+class AsyncOperationService extends GetxService with CommonServices {
   Future<T?> performAsyncAuthOperation<T>(
     Future<T> Function() operation, {
     String operationName = "Operacion",
@@ -14,13 +11,13 @@ class AsyncOperationService extends GetxService {
     try {
       T result = await operation();
 
-      _loggingService.logInfo("$operationName exitosa.");
+      loggingService.logInfo("$operationName exitosa.");
 
       return result;
     } catch (e) {
       Get.snackbar('Error', _getErrorMessage(e), backgroundColor: Colors.red, colorText: Colors.white);
 
-      _loggingService.logError("$operationName fallida: ${_getErrorMessage(e)}", e);
+      loggingService.logError("$operationName fallida: ${_getErrorMessage(e)}", e);
 
       return null;
     }
@@ -39,13 +36,13 @@ class AsyncOperationService extends GetxService {
         Get.snackbar('Éxito', successMessage, backgroundColor: Colors.green, colorText: Colors.white);
       }
 
-      _loggingService.logInfo("$operationName exitosa.");
+      loggingService.logInfo("$operationName exitosa.");
 
       return result;
     } catch (e) {
       Get.snackbar('Error', errorMessage, backgroundColor: Colors.red, colorText: Colors.white);
 
-      _loggingService.logError("$operationName fallida: $errorMessage", e);
+      loggingService.logError("$operationName fallida: $errorMessage", e);
 
       return null;
     }

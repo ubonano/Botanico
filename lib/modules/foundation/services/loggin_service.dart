@@ -1,6 +1,8 @@
+import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import '../config/common_services.dart';
 
-class LoggingService {
+class LoggingService extends GetxService with CommonServices {
   final Logger _logger = Logger(
     printer: PrettyPrinter(
         methodCount: 0, // Número de métodos a mostrar

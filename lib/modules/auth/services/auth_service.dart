@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 import '../../foundation/config/firestore_collections.dart';
 import '../models/user_profile_model.dart';
 
-class SessionService extends GetxService with CommonServices, LogLifecycleService {
+class AuthService extends GetxService with CommonServices, LogLifecycleService {
   @override
-  String get logTag => 'SessionService';
+  String get logTag => 'AuthService';
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _userProfilesCollectionRef = FirebaseFirestore.instance.collection(FirestoreCollections.userProfiles);
@@ -25,7 +25,7 @@ class SessionService extends GetxService with CommonServices, LogLifecycleServic
 
   StreamSubscription<User?>? _authSubscription;
 
-  SessionService() {
+  AuthService() {
     _firebaseUser.bindStream(_auth.authStateChanges());
 
     _authSubscription?.cancel();

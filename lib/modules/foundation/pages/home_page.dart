@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../session/services/session_service.dart';
-import '../../session/controllers/user_profile_controller.dart';
+import '../../auth/services/auth_service.dart';
+import '../../auth/controllers/user_profile_controller.dart';
 import '../services/navigation_service.dart';
 
 class HomePage extends StatelessWidget {
-  final SessionService sessionService = Get.find();
+  final AuthService authService = Get.find();
   final UserProfileController userProfileController = Get.find();
   final NavigationService navigationService = Get.find();
 
@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
           children: [
             Obx(
               () {
-                final userProfile = sessionService.userProfileObx.value;
+                final userProfile = authService.userProfileObx.value;
                 return userProfile != null
                     ? Column(
                         children: [
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                await sessionService.signOut();
+                await authService.signOut();
                 navigationService.navigateToLogin();
               },
               child: const Text("Cerrar Sesión"),

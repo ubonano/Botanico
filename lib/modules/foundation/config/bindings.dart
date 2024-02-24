@@ -1,7 +1,7 @@
-import 'package:botanico/modules/session/controllers/sign_in_controller.dart';
-import 'package:botanico/modules/session/controllers/sign_up_controller.dart';
-import 'package:botanico/modules/session/services/session_service.dart';
-import 'package:botanico/modules/session/controllers/user_profile_controller.dart';
+import 'package:botanico/modules/auth/controllers/sign_in_controller.dart';
+import 'package:botanico/modules/auth/controllers/sign_up_controller.dart';
+import 'package:botanico/modules/auth/services/auth_service.dart';
+import 'package:botanico/modules/auth/controllers/user_profile_controller.dart';
 import 'package:botanico/modules/foundation/services/loggin_service.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +14,7 @@ class AppBindings extends Bindings {
     Get.put(LoggingService());
     Get.put(NavigationService());
     Get.put(AsyncOperationService());
-    Get.put(SessionService(), permanent: true);
+    Get.put(AuthService(), permanent: true);
 
     Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
     Get.lazyPut<SignUpPageController>(() => SignUpPageController(), fenix: true);

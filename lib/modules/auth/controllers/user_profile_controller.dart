@@ -14,15 +14,15 @@ class UserProfileController extends GetxController with CommonServices, LogLifec
   final dniController = TextEditingController();
 
   Future<void> initializeFormFields() async {
-    if (sessionService.isUserProfile) {
-      updateFormFields(sessionService.userProfile!);
+    if (authService.isUserProfile) {
+      updateFormFields(authService.userProfile!);
     } else {
       clearFormFields();
     }
   }
 
   Future<void> createUserProfile() async {
-    final user = sessionService.currentUser;
+    final user = authService.currentUser;
 
     final userProfileModel = UserProfileModel(
       uid: user!.uid,
@@ -33,7 +33,7 @@ class UserProfileController extends GetxController with CommonServices, LogLifec
       dni: dniController.text,
     );
 
-    await sessionService.setUserProfile(userProfileModel);
+    await authService.setUserProfile(userProfileModel);
 
     navigationService.navigateToHome();
   }
