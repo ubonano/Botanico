@@ -68,6 +68,17 @@ class AuthService extends GetxService with CommonServices, LogLifecycleService {
     await asyncOperationService.performAsyncAuthOperation(() => _auth.signOut(), operationName: 'Sign out');
   }
 
+  Future<void> recoverPassword(String email) async {
+    await asyncOperationService.performAsyncOperation<void>(
+      () => _auth.sendPasswordResetEmail(email: email),
+      successMessage:
+          'Se ha enviado un correo para restablecer tu contraseña. Por favor, revisa tu bandeja de entrada.',
+      errorMessage:
+          'Error al intentar restablecer la contraseña. Por favor, verifica que el correo electrónico sea correcto.',
+      operationName: 'Recuperación de contraseña',
+    );
+  }
+
   Future<void> fetchUserProfile() async {
     if (currentUser != null && userProfileObx.value == null) {
       userProfileObx.value = await asyncOperationService.performAsyncOperation<UserProfileModel?>(

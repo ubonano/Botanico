@@ -8,6 +8,7 @@ class SignInController extends GetxController with CommonServices, LogLifecycleC
   String get logTag => 'SignInController';
 
   late TextEditingController emailController;
+  late TextEditingController emailRecoverController;
   late TextEditingController passwordController;
 
   @override
@@ -15,12 +16,14 @@ class SignInController extends GetxController with CommonServices, LogLifecycleC
     super.onInit();
 
     emailController = TextEditingController();
+    emailRecoverController = TextEditingController();
     passwordController = TextEditingController();
   }
 
   @override
   void onClose() {
     emailController.dispose();
+    emailRecoverController.dispose();
     passwordController.dispose();
 
     super.onClose();
@@ -33,5 +36,11 @@ class SignInController extends GetxController with CommonServices, LogLifecycleC
     final password = passwordController.text.trim();
 
     await authService.signInWithEmailAndPassword(email, password);
+  }
+
+  void recoverPassword() async {
+    final emailRecover = emailRecoverController.text.trim();
+    navigationService.goBack();
+    await authService.recoverPassword(emailRecover);
   }
 }

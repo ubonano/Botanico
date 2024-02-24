@@ -11,6 +11,8 @@ class CustomInputField extends StatelessWidget {
   final Widget? suffixIcon;
   final InputBorder? border;
   final bool readOnly;
+  final TextInputAction? textInputAction;
+  final Function(String)? onFieldSubmitted;
 
   const CustomInputField({
     Key? key,
@@ -24,6 +26,8 @@ class CustomInputField extends StatelessWidget {
     this.suffixIcon,
     this.border = const OutlineInputBorder(),
     this.readOnly = false,
+    this.textInputAction,
+    this.onFieldSubmitted,
   }) : super(key: key);
 
   @override
@@ -41,6 +45,8 @@ class CustomInputField extends StatelessWidget {
         border: border,
       ),
       readOnly: readOnly,
+      textInputAction: textInputAction,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

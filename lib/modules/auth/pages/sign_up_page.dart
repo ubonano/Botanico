@@ -40,14 +40,12 @@ class SignUpPage extends GetView<SignUpPageController> {
                 controller: controller.confirmPasswordController,
                 obscureText: true,
                 validator: (value) => Validator.confirmPasswordValidator(value, controller.passwordController.text),
+                textInputAction: TextInputAction.go,
+                onFieldSubmitted: (_) => _singUp(),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    controller.signUp();
-                  }
-                },
+                onPressed: _singUp,
                 child: const Text('Registrar'),
               ),
               const SizedBox(height: 20),
@@ -60,5 +58,11 @@ class SignUpPage extends GetView<SignUpPageController> {
         ),
       ),
     );
+  }
+
+  void _singUp() {
+    if (_formKey.currentState!.validate()) {
+      controller.signUp();
+    }
   }
 }
