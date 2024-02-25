@@ -1,10 +1,10 @@
 import 'package:botanico/modules/sign_in/sign_in_controller.dart';
 import 'package:botanico/modules/sign_up/sign_up_controller.dart';
-import 'package:botanico/modules/common/services/auth_service.dart';
+import 'package:botanico/modules/foundation/services/auth_service.dart';
 import 'package:botanico/modules/user_profile/user_profile_controller.dart';
 import 'package:botanico/modules/company_profile/company_profile_controller.dart';
 import 'package:botanico/modules/company_profile/company_profile_service.dart';
-import 'package:botanico/modules/common/utils/loggin_service.dart';
+import 'package:botanico/modules/foundation/utils/loggin_service.dart';
 import 'package:get/get.dart';
 
 import '../../lobby/lobby_controller.dart';

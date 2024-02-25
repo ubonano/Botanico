@@ -1,11 +1,11 @@
-import 'package:botanico/modules/common/config/firestore_collections.dart';
+import 'package:botanico/modules/foundation/config/firestore_collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import 'company_profile_model.dart';
-import '../common/utils/async_operation_service.dart';
-import '../common/utils/common_services.dart';
-import '../common/utils/log_lifecycle_service.dart';
+import '../foundation/utils/async_operation_service.dart';
+import '../foundation/utils/common_services.dart';
+import '../foundation/utils/log_lifecycle_service.dart';
 
 class CompanyProfileService extends GetxService with CommonServices, LogLifecycleService {
   @override

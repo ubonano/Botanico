@@ -1,5 +1,5 @@
-import 'package:botanico/modules/common/services/auth_service.dart';
-import 'package:botanico/modules/common/utils/async_operation_service.dart';
+import 'package:botanico/modules/foundation/services/auth_service.dart';
+import 'package:botanico/modules/foundation/utils/async_operation_service.dart';
 
 import 'package:get/get.dart';
 

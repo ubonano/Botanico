@@ -1,4 +1,4 @@
-import 'package:botanico/modules/common/middlewares/auth_state_middleware.dart';
+import 'package:botanico/modules/foundation/middlewares/auth_state_middleware.dart';
 import 'package:botanico/modules/user_profile/user_profile_page.dart';
 import 'package:get/get.dart';
 

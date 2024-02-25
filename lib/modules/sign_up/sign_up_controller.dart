@@ -1,7 +1,7 @@
-import 'package:botanico/modules/common/utils/common_services.dart';
+import 'package:botanico/modules/foundation/utils/common_services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../common/utils/log_lifecycle_controller.dart';
+import '../foundation/utils/log_lifecycle_controller.dart';
 
 class SignUpPageController extends GetxController with CommonServices, LogLifecycleController {
   @override

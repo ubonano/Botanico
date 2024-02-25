@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../common/utils/common_services.dart';
-import '../common/utils/log_lifecycle_controller.dart';
+import '../foundation/utils/common_services.dart';
+import '../foundation/utils/log_lifecycle_controller.dart';
 import 'user_profile_model.dart';
 
 class UserProfileController extends GetxController with CommonServices, LogLifecycleController {

@@ -1,4 +1,4 @@
-import 'package:botanico/modules/common/utils/common_services.dart';
+import 'package:botanico/modules/foundation/utils/common_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

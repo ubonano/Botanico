@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:botanico/modules/common/utils/common_services.dart';
-import 'package:botanico/modules/common/utils/log_lifecycle_service.dart';
+import 'package:botanico/modules/foundation/utils/common_services.dart';
+import 'package:botanico/modules/foundation/utils/log_lifecycle_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
