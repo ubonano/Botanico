@@ -3,8 +3,8 @@ import 'package:botanico/modules/foundation/utils/async_operation_service.dart';
 
 import 'package:get/get.dart';
 
-import '../utils/loggin_service.dart';
-import '../utils/navigation_service.dart';
+import 'loggin_service.dart';
+import 'navigation_service.dart';
 
 mixin CommonServices {
   late final NavigationService navigationService = Get.find();
