@@ -8,6 +8,7 @@ class NavigationService extends GetxService with CommonServices {
   void navigateToLogin({bool canPop = false}) => navigateTo(Routes.SIGN_IN, canPop: canPop);
   void navigateToSignUp({bool canPop = false}) => navigateTo(Routes.SIGN_UP, canPop: canPop);
   void navigateToUserProfile({bool canPop = false}) => navigateTo(Routes.USER_PROFILE, canPop: canPop);
+  void navigateToCompanyProfile({bool canPop = false}) => navigateTo(Routes.COMPANY_PROFILE, canPop: canPop);
 
   void navigateTo(String route, {bool canPop = false}) {
     if (canPop) {
