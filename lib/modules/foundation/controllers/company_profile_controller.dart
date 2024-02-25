@@ -43,6 +43,7 @@ class CompanyProfileController extends GetxController with CommonServices, LogLi
 
   Future<void> createCompany() async {
     final company = CompanyProfileModel(
+      ownerUid: authService.currentUser!.uid,
       name: nameController.text.trim(),
       address: addressController.text.trim(),
       city: cityController.text.trim(),
@@ -50,7 +51,7 @@ class CompanyProfileController extends GetxController with CommonServices, LogLi
       country: countryController.text.trim(),
       phone: phoneController.text.trim(),
     );
+
     await _companyService.createCompanyProfile(company);
-    //TODO actualizar pefil del usuario
   }
 }

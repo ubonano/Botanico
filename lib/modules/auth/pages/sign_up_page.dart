@@ -50,7 +50,7 @@ class SignUpPage extends GetView<SignUpPageController> {
               ),
               const SizedBox(height: 20),
               TextButton(
-                onPressed: controller.navigateToLogin,
+                onPressed: controller.navigateToSignIn,
                 child: const Text('¿Ya tenes cuenta? Inicia sesión'),
               ),
             ],

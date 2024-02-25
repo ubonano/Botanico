@@ -35,7 +35,7 @@ class UserProfileController extends GetxController with CommonServices, LogLifec
 
     await authService.setUserProfile(userProfileModel);
 
-    navigationService.navigateToHome();
+    navigationService.navigateToLobby();
   }
 
   void updateFormFields(UserProfileModel userProfile) {

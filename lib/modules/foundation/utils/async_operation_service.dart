@@ -40,7 +40,7 @@ class AsyncOperationService extends GetxService with CommonServices {
 
       return result;
     } catch (e) {
-      Get.snackbar('Error', errorMessage, backgroundColor: Colors.red, colorText: Colors.white);
+      Get.snackbar('Error', '$errorMessage: ${e.toString()}', backgroundColor: Colors.red, colorText: Colors.white);
 
       loggingService.logError("$operationName fallida: $errorMessage", e);
 

@@ -5,11 +5,19 @@ import 'package:get/get.dart';
 import '../../auth/pages/sign_in_page.dart';
 import '../../auth/pages/sign_up_page.dart';
 import '../pages/company_profile_page.dart';
+import '../pages/home_page.dart';
 import '../pages/lobby_page.dart';
 import 'routes.dart';
 
 class Pages {
   static final pages = [
+    GetPage(
+      name: Routes.HOME,
+      page: () => const HomePage(),
+      middlewares: [
+        AuthStateMiddleware(),
+      ],
+    ),
     GetPage(
       name: Routes.LOBBY,
       page: () => const LobbyPage(),

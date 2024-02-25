@@ -29,7 +29,7 @@ class SignUpPageController extends GetxController with CommonServices, LogLifecy
     super.onClose();
   }
 
-  void navigateToLogin() => navigationService.navigateToLogin();
+  void navigateToSignIn() => navigationService.navigateToSignIn();
 
   void signUp() async {
     final email = emailController.text.trim();
