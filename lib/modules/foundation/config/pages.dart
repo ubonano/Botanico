@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../sign_in/sign_in_page.dart';
 import '../../sign_up/sign_up_page.dart';
 import '../../company_profile/company_profile_page.dart';
-import '../../home/home_page.dart';
+import '../../pages/home_page.dart';
 import '../../lobby/lobby_page.dart';
 import 'routes.dart';
 
