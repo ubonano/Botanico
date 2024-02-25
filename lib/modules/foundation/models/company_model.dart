@@ -1,4 +1,4 @@
-class Company {
+class CompanyModel {
   final String name;
   final String address;
   final String city;
@@ -6,7 +6,7 @@ class Company {
   final String country;
   final String phone;
 
-  Company({
+  CompanyModel({
     required this.name,
     required this.address,
     required this.city,
@@ -26,8 +26,8 @@ class Company {
     };
   }
 
-  factory Company.fromMap(Map<String, dynamic> map) {
-    return Company(
+  factory CompanyModel.fromMap(Map<String, dynamic> map) {
+    return CompanyModel(
       name: map['name'],
       address: map['address'],
       city: map['city'],
