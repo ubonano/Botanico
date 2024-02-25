@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import '../config/common_services.dart';
+import 'common_services.dart';
 
 class LoggingService extends GetxService with CommonServices {
   final Logger _logger = Logger(
