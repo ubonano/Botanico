@@ -1,4 +1,4 @@
-import 'package:botanico/modules/foundation/config/common_services.dart';
+import 'package:botanico/modules/foundation/utils/common_services.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -17,4 +17,6 @@ class LobbyController extends GetxController with CommonServices {
       Get.snackbar('Éxito', 'UID copiado al portapapeles');
     });
   }
+
+  void navigateToCompanyProfile() => navigationService.navigateToCompanyProfile();
 }

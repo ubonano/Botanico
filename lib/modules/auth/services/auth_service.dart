@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:botanico/modules/foundation/config/common_services.dart';
-import 'package:botanico/modules/foundation/config/log_lifecycle_service.dart';
+import 'package:botanico/modules/foundation/utils/common_services.dart';
+import 'package:botanico/modules/foundation/utils/log_lifecycle_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -43,8 +43,12 @@ class AuthService extends GetxService with CommonServices, LogLifecycleService {
   }
 
   void _navigate() {
-    if (isUserProfile) {
-      navigationService.navigateToHome();
+    if (isUserProfile && currentUser != null) {
+      if (userProfile!.companyUid.isNotEmpty) {
+        navigationService.navigateToHome();
+      } else {
+        navigationService.navigateToLobby();
+      }
     } else {
       navigationService.navigateToUserProfile();
     }
@@ -98,6 +102,16 @@ class AuthService extends GetxService with CommonServices, LogLifecycleService {
       successMessage: 'Perfil de usuario actualizado con éxito',
       errorMessage: 'Error al actualizar el perfil de usuario',
       operationName: "Actualizar perfil de usuario UID=${userProfile.uid}",
+    );
+  }
+
+  Future<void> updateUserProfileWithCompanyUid(String userUid, String companyUid) async {
+    await asyncOperationService.performAsyncOperation<void>(
+      () async {
+        await _userProfilesCollectionRef.doc(userUid).update({'companyUid': companyUid});
+      },
+      errorMessage: 'Error al actualizar el perfil del usuario con el ID de la compañía',
+      operationName: "Actualizar perfil de usuario con ID de la compañía",
     );
   }
 

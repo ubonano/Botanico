@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import '../services/loggin_service.dart';
+import 'loggin_service.dart';
 
-mixin LogLifecycleController on GetxController {
+mixin LogLifecycleService on GetxService {
   String get logTag;
   final LoggingService _loggingService = Get.find();
 

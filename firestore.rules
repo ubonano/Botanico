@@ -17,5 +17,9 @@ service cloud.firestore {
                    // Verifica que dni sea un string numérico
                    && request.resource.data.dni is string && request.resource.data.dni.matches('^\\d+$');
     }
+
+    match /companyProfiles/{companyId}{
+      allow read, delete, update, create: if true;
+    }
   }
 }

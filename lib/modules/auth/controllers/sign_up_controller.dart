@@ -1,7 +1,7 @@
-import 'package:botanico/modules/foundation/config/common_services.dart';
+import 'package:botanico/modules/foundation/utils/common_services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../../foundation/config/log_lifecycle_controller.dart';
+import '../../foundation/utils/log_lifecycle_controller.dart';
 
 class SignUpPageController extends GetxController with CommonServices, LogLifecycleController {
   @override
@@ -29,7 +29,7 @@ class SignUpPageController extends GetxController with CommonServices, LogLifecy
     super.onClose();
   }
 
-  void navigateToLogin() => navigationService.navigateToLogin();
+  void navigateToSignIn() => navigationService.navigateToSignIn();
 
   void signUp() async {
     final email = emailController.text.trim();

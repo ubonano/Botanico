@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../foundation/config/common_services.dart';
-import '../../foundation/config/log_lifecycle_controller.dart';
+import '../../foundation/utils/common_services.dart';
+import '../../foundation/utils/log_lifecycle_controller.dart';
 import '../models/user_profile_model.dart';
 
 class UserProfileController extends GetxController with CommonServices, LogLifecycleController {
@@ -35,7 +35,7 @@ class UserProfileController extends GetxController with CommonServices, LogLifec
 
     await authService.setUserProfile(userProfileModel);
 
-    navigationService.navigateToHome();
+    navigationService.navigateToLobby();
   }
 
   void updateFormFields(UserProfileModel userProfile) {

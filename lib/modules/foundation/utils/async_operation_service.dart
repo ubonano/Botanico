@@ -1,4 +1,4 @@
-import 'package:botanico/modules/foundation/config/common_services.dart';
+import 'package:botanico/modules/foundation/utils/common_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,7 +40,7 @@ class AsyncOperationService extends GetxService with CommonServices {
 
       return result;
     } catch (e) {
-      Get.snackbar('Error', errorMessage, backgroundColor: Colors.red, colorText: Colors.white);
+      Get.snackbar('Error', '$errorMessage: ${e.toString()}', backgroundColor: Colors.red, colorText: Colors.white);
 
       loggingService.logError("$operationName fallida: $errorMessage", e);
 
