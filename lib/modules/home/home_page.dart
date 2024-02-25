@@ -1,8 +1,8 @@
-import 'package:botanico/modules/foundation/utils/navigation_service.dart';
+import 'package:botanico/modules/common/utils/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../auth/services/auth_service.dart';
+import '../common/services/auth_service.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

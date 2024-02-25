@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../../foundation/config/routes.dart';
+import '../config/routes.dart';
 import '../services/auth_service.dart';
 
 class AuthStateMiddleware extends GetMiddleware {

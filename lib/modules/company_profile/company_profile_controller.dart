@@ -1,10 +1,10 @@
-import 'package:botanico/modules/foundation/utils/log_lifecycle_controller.dart';
+import 'package:botanico/modules/common/utils/log_lifecycle_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import '../models/company_profile_model.dart';
-import '../services/company_profile_service.dart';
-import '../utils/common_services.dart';
+import 'company_profile_model.dart';
+import 'company_profile_service.dart';
+import '../common/utils/common_services.dart';
 
 class CompanyProfileController extends GetxController with CommonServices, LogLifecycleController {
   @override

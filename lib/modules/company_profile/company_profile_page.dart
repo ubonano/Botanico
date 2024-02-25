@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/company_profile_controller.dart';
-import '../widgets/custom_input_field.dart';
+import 'company_profile_controller.dart';
+import '../common/widgets/custom_input_field.dart';
 
 class CompanyProfilePage extends GetView<CompanyProfileController> {
   const CompanyProfilePage({super.key});

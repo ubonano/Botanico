@@ -4,10 +4,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'modules/foundation/config/bindings.dart';
-import 'modules/foundation/config/firebase_options.dart';
-import 'modules/foundation/config/pages.dart';
-import 'modules/foundation/config/routes.dart';
+import 'modules/common/config/bindings.dart';
+import 'modules/common/config/firebase_options.dart';
+import 'modules/common/config/pages.dart';
+import 'modules/common/config/routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

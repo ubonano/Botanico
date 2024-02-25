@@ -1,4 +1,4 @@
-import 'package:botanico/modules/foundation/config/routes.dart';
+import 'package:botanico/modules/common/config/routes.dart';
 import 'package:get/get.dart';
 
 import 'common_services.dart';

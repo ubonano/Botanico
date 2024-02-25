@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../foundation/utils/validator.dart';
-import '../../foundation/widgets/custom_input_field.dart';
-import '../controllers/sign_in_controller.dart';
+import '../common/utils/validator.dart';
+import '../common/widgets/custom_input_field.dart';
+import 'sign_in_controller.dart';
 
 class SignInPage extends GetView<SignInController> {
   final _formKey = GlobalKey<FormState>();

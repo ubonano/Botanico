@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../foundation/utils/validator.dart';
-import '../../foundation/widgets/custom_input_field.dart';
-import '../controllers/user_profile_controller.dart';
+import '../common/utils/validator.dart';
+import '../common/widgets/custom_input_field.dart';
+import 'user_profile_controller.dart';
 
 class UserProfilePage extends GetView<UserProfileController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

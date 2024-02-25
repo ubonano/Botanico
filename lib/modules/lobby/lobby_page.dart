@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../controllers/lobby_controller.dart';
+import 'lobby_controller.dart';
 
 class LobbyPage extends StatelessWidget {
   const LobbyPage({super.key});

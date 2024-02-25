@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'package:botanico/modules/foundation/utils/common_services.dart';
-import 'package:botanico/modules/foundation/utils/log_lifecycle_service.dart';
+import 'package:botanico/modules/common/utils/common_services.dart';
+import 'package:botanico/modules/common/utils/log_lifecycle_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import '../../foundation/config/firestore_collections.dart';
-import '../models/user_profile_model.dart';
+import '../config/firestore_collections.dart';
+import '../../user_profile/user_profile_model.dart';
 
 class AuthService extends GetxService with CommonServices, LogLifecycleService {
   @override
