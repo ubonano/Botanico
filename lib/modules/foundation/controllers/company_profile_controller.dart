@@ -50,6 +50,7 @@ class CompanyProfileController extends GetxController with CommonServices, LogLi
       country: countryController.text.trim(),
       phone: phoneController.text.trim(),
     );
-    await _companyService.createCompany(company);
+    await _companyService.createCompanyProfile(company);
+    //TODO actualizar pefil del usuario
   }
 }

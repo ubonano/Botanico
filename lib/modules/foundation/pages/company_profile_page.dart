@@ -17,11 +17,17 @@ class CompanyProfilePage extends GetView<CompanyProfileController> {
           child: Column(
             children: [
               CustomInputField(label: 'Nombre', controller: controller.nameController),
+              const SizedBox(height: 10),
               CustomInputField(label: 'Dirección', controller: controller.addressController),
+              const SizedBox(height: 10),
               CustomInputField(label: 'Localidad', controller: controller.cityController),
+              const SizedBox(height: 10),
               CustomInputField(label: 'Provincia', controller: controller.provinceController),
+              const SizedBox(height: 10),
               CustomInputField(label: 'País', controller: controller.countryController),
+              const SizedBox(height: 10),
               CustomInputField(label: 'Teléfono', controller: controller.phoneController),
+              const SizedBox(height: 20),
               ElevatedButton(onPressed: controller.createCompany, child: const Text('Crear Compañía')),
             ],
           ),

@@ -1,4 +1,5 @@
 class CompanyProfileModel {
+  final String uid;
   final String name;
   final String address;
   final String city;
@@ -7,6 +8,7 @@ class CompanyProfileModel {
   final String phone;
 
   CompanyProfileModel({
+    this.uid = '',
     required this.name,
     required this.address,
     required this.city,
@@ -28,6 +30,7 @@ class CompanyProfileModel {
 
   factory CompanyProfileModel.fromMap(Map<String, dynamic> map) {
     return CompanyProfileModel(
+      uid: map['uid'] ?? '',
       name: map['name'],
       address: map['address'],
       city: map['city'],

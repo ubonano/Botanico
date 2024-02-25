@@ -29,10 +29,10 @@ class LobbyPage extends StatelessWidget {
             const SizedBox(height: 20),
             const Text('Muestra este código a tu empleador para vincularte a la empresa.'),
             const SizedBox(height: 20),
+            ElevatedButton(onPressed: controller.copyToClipboard, child: const Text('Copiar código de vinculación')),
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: controller.copyToClipboard,
-              child: const Text('Copiar código de vinculación'),
-            ),
+                onPressed: controller.navigateToCompanyProfile, child: const Text('¿Necesitas registrar una empresa?')),
           ],
         ),
       ),

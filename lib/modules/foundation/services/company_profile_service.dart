@@ -21,9 +21,10 @@ class CompanyProfileService extends GetxService with CommonServices, LogLifecycl
     super.onInit();
   }
 
-  Future<void> createCompany(CompanyProfileModel company) async {
+  Future<void> createCompanyProfile(CompanyProfileModel company) async {
     await _asyncOperationService.performAsyncOperation<void>(
       () => _companiesCollection.doc().set(company.toMap()),
+      successMessage: 'Compañia creada con exito',
       errorMessage: 'Error al crear compañía',
       operationName: "Crear compañía",
     );

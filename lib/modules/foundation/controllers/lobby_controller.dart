@@ -17,4 +17,6 @@ class LobbyController extends GetxController with CommonServices {
       Get.snackbar('Éxito', 'UID copiado al portapapeles');
     });
   }
+
+  void navigateToCompanyProfile() => navigationService.navigateToCompanyProfile();
 }
