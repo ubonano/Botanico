@@ -9,14 +9,13 @@ class AsyncOperationService extends GetxService {
   Future<T?> performOperation<T>({
     required Future<T> Function() operation,
     String operationName = "Operacion",
-    bool showSuccessMessageBySnackbar = false,
     String successMessage = '',
     bool showErrorMessageBySnackbar = true,
   }) async {
     try {
       T result = await operation();
 
-      if (showSuccessMessageBySnackbar) {
+      if (successMessage != '') {
         Get.snackbar('Éxito', successMessage, backgroundColor: Colors.green, colorText: Colors.white);
       }
 

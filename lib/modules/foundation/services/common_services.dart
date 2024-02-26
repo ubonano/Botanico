@@ -1,9 +1,8 @@
-import 'package:botanico/modules/auth/auth_service.dart';
-import 'package:botanico/modules/foundation/services/async_operation_service.dart';
-import 'package:botanico/modules/user_profile/user_profile_service.dart';
-
 import 'package:get/get.dart';
-
+import '../../auth/auth_service.dart';
+import '../../company_profile/company_profile_service.dart';
+import '../../user_profile/user_profile_service.dart';
+import 'async_operation_service.dart';
 import 'loggin_service.dart';
 import 'navigation_service.dart';
 
@@ -14,4 +13,5 @@ mixin CommonServices {
 
   late final AuthService authService = Get.find();
   late final UserProfileService userProfileService = Get.find();
+  late final CompanyProfileService companyProfileService = Get.find();
 }

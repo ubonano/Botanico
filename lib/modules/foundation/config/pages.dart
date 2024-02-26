@@ -1,4 +1,4 @@
-import 'package:botanico/modules/auth/auth_state_middleware.dart';
+import 'package:botanico/modules/auth/auth_middleware.dart';
 import 'package:botanico/modules/user_profile/user_profile_page.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +17,7 @@ class Pages {
       name: Routes.HOME,
       page: () => const HomePage(),
       middlewares: [
-        AuthStateMiddleware(),
+        AuthMiddleware(),
         UserProfileMiddleware(),
         CompanyProfileMiddleware(),
       ],
@@ -26,7 +26,7 @@ class Pages {
       name: Routes.LOBBY,
       page: () => const LobbyPage(),
       middlewares: [
-        AuthStateMiddleware(),
+        AuthMiddleware(),
         UserProfileMiddleware(),
       ],
     ),
@@ -34,28 +34,28 @@ class Pages {
       name: Routes.SIGN_IN,
       page: () => SignInPage(),
       middlewares: [
-        AuthStateMiddleware(),
+        AuthMiddleware(),
       ],
     ),
     GetPage(
       name: Routes.SIGN_UP,
       page: () => SignUpPage(),
       middlewares: [
-        AuthStateMiddleware(),
+        AuthMiddleware(),
       ],
     ),
     GetPage(
       name: Routes.USER_PROFILE,
       page: () => UserProfilePage(),
       middlewares: [
-        AuthStateMiddleware(),
+        AuthMiddleware(),
       ],
     ),
     GetPage(
       name: Routes.COMPANY_PROFILE,
       page: () => const CompanyProfilePage(),
       middlewares: [
-        AuthStateMiddleware(),
+        AuthMiddleware(),
         UserProfileMiddleware(),
       ],
     ),

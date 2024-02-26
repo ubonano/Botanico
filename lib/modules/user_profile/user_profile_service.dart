@@ -9,24 +9,24 @@ class UserProfileService extends GetxService with CommonServices, LogLifecycleSe
   @override
   String get logTag => 'UserProfileService';
 
-  final CollectionReference _userProfileCollection =
+  final CollectionReference _collectionReference =
       FirebaseFirestore.instance.collection(FirestoreCollections.userProfiles);
 
   final Rx<UserProfileModel?> userProfileObx = Rx<UserProfileModel?>(null);
 
-  UserProfileModel? get userProfile => userProfileObx.value;
+  UserProfileModel? get currentUserProfile => userProfileObx.value;
   void setUserProfileObx(UserProfileModel? userProfileModel) => userProfileObx.value = userProfileModel;
 
   bool get isUserProfile => userProfileObx.value != null;
 
   void cleanUserProfile() => setUserProfileObx(null);
 
-  Future<UserProfileModel?> fetchUserProfile(String uid) async {
-    final docSnapshot = await _userProfileCollection.doc(uid).get();
+  Future<void> fetchUserProfile(String uid) async => setUserProfileObx(await getUserProfile(uid));
 
+  Future<UserProfileModel?> getUserProfile(String id) async {
+    final docSnapshot = await _collectionReference.doc(id).get();
     if (docSnapshot.exists) {
       final userProfile = UserProfileModel.fromMap(docSnapshot.data() as Map<String, dynamic>);
-      setUserProfileObx(userProfile);
       return userProfile;
     }
 
@@ -34,12 +34,12 @@ class UserProfileService extends GetxService with CommonServices, LogLifecycleSe
   }
 
   Future<void> setUserProfile(UserProfileModel userProfile) async {
-    await _userProfileCollection.doc(userProfile.uid).set(userProfile.toMap());
+    await _collectionReference.doc(userProfile.uid).set(userProfile.toMap());
     setUserProfileObx(userProfile);
   }
 
   Future<void> updateUserProfileWithCompanyUid(String userUid, String companyUid) async {
-    await _userProfileCollection.doc(userUid).update({'companyUid': companyUid});
+    await _collectionReference.doc(userUid).update({'companyUid': companyUid});
 
     await fetchUserProfile(userUid);
   }

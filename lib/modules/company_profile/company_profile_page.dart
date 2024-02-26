@@ -28,7 +28,7 @@ class CompanyProfilePage extends GetView<CompanyProfileController> {
               const SizedBox(height: 10),
               CustomInputField(label: 'Teléfono', controller: controller.phoneController),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: controller.createCompany, child: const Text('Crear Compañía')),
+              ElevatedButton(onPressed: controller.setCompany, child: const Text('Crear Compañía')),
             ],
           ),
         ),

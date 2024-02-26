@@ -19,5 +19,5 @@ class NavigationService extends GetxService with CommonServices {
     }
   }
 
-  void goBack() => Get.back();
+  void back() => Get.back();
 }

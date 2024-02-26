@@ -7,41 +7,40 @@ class SignInController extends GetxController with CommonServices, LogLifecycleC
   @override
   String get logTag => 'SignInController';
 
-  late TextEditingController emailController;
-  late TextEditingController emailRecoverController;
-  late TextEditingController passwordController;
+  final emailController = TextEditingController();
+  final emailRecoverController = TextEditingController();
+  final passwordController = TextEditingController();
 
   String get _email => emailController.text.trim();
   String get _emailRecover => emailRecoverController.text.trim();
   String get _password => passwordController.text.trim();
 
-  @override
-  void onInit() {
-    super.onInit();
+  void signIn() async => await asyncOperationService.performOperation(
+        operation: () => authService.signInWithEmailAndPassword(_email, _password),
+        operationName: 'Sign in',
+      );
 
-    emailController = TextEditingController();
-    emailRecoverController = TextEditingController();
-    passwordController = TextEditingController();
-  }
+  void recoverPassword() async {
+    await asyncOperationService.performOperation(
+      operation: () => authService.recoverPassword(_emailRecover),
+      operationName: 'Recover password',
+    );
 
-  @override
-  void onClose() {
-    emailController.dispose();
-    emailRecoverController.dispose();
-    passwordController.dispose();
-
-    super.onClose();
+    navigationService.back();
   }
 
   void navigateToSignUp() => navigationService.toSignUp();
 
-  void signIn() async => await asyncOperationService.performOperation(
-        operation: () => authService.signInWithEmailAndPassword(_email, _password),
-      );
+  @override
+  void onClose() {
+    disposeControllers();
 
-  void recoverPassword() async {
-    await asyncOperationService.performOperation(operation: () => authService.recoverPassword(_emailRecover));
+    super.onClose();
+  }
 
-    navigationService.goBack();
+  void disposeControllers() {
+    emailController.dispose();
+    emailRecoverController.dispose();
+    passwordController.dispose();
   }
 }

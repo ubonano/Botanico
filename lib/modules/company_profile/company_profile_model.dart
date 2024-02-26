@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class CompanyProfileModel {
   final String uid;
   final String ownerUid;
@@ -31,9 +33,9 @@ class CompanyProfileModel {
     };
   }
 
-  factory CompanyProfileModel.fromMap(Map<String, dynamic> map) {
+  factory CompanyProfileModel.fromMap(Map<String, dynamic> map, String documentId) {
     return CompanyProfileModel(
-      uid: map['uid'] ?? '',
+      uid: documentId,
       ownerUid: map['ownerUid'],
       name: map['name'],
       address: map['address'],
@@ -41,6 +43,32 @@ class CompanyProfileModel {
       province: map['province'],
       country: map['country'],
       phone: map['phone'],
+    );
+  }
+
+  static CompanyProfileModel fromSnapshot(DocumentSnapshot snapshot) {
+    return CompanyProfileModel.fromMap(snapshot.data() as Map<String, dynamic>, snapshot.id);
+  }
+
+  CompanyProfileModel copyWith({
+    String? uid,
+    String? ownerUid,
+    String? name,
+    String? address,
+    String? city,
+    String? province,
+    String? country,
+    String? phone,
+  }) {
+    return CompanyProfileModel(
+      uid: uid ?? this.uid,
+      ownerUid: ownerUid ?? this.ownerUid,
+      name: name ?? this.name,
+      address: address ?? this.address,
+      city: city ?? this.city,
+      province: province ?? this.province,
+      country: country ?? this.country,
+      phone: phone ?? this.phone,
     );
   }
 }

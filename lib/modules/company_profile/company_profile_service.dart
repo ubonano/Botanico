@@ -8,50 +8,52 @@ import '../foundation/services/common_services.dart';
 
 class CompanyProfileService extends GetxService with CommonServices, LogLifecycleService {
   @override
-  String get logTag => 'CompanyService';
+  String get logTag => 'CompanyProfileService';
 
-  final CollectionReference _companyProfilesCollection =
+  final CollectionReference _collectionReference =
       FirebaseFirestore.instance.collection(FirestoreCollections.companyProfiles);
 
   final Rx<CompanyProfileModel?> companyProfileObx = Rx<CompanyProfileModel?>(null);
 
-  CompanyProfileModel? get companyProfile => companyProfileObx.value;
+  CompanyProfileModel? get currentCompanyProfile => companyProfileObx.value;
   bool get isCompanyProfile => companyProfileObx.value != null;
 
   void setCompanyProfileObx(CompanyProfileModel? companyProfileModel) => companyProfileObx.value = companyProfileModel;
+  void cleanCompanyProfile() => setCompanyProfileObx(null);
 
-  Future<CompanyProfileModel?> fetchCompanyProfile(String uid) async {
-    final docSnapshot = await _companyProfilesCollection.doc(uid).get();
+  Future<void> fetchUserProfile(String uid) async => setCompanyProfileObx(await getCompanyProfile(uid));
+
+  Future<CompanyProfileModel?> getCompanyProfile(String id) async {
+    final docSnapshot = await _collectionReference.doc(id).get();
 
     if (docSnapshot.exists) {
-      final companyProfile = CompanyProfileModel.fromMap(docSnapshot.data() as Map<String, dynamic>);
-      setCompanyProfileObx(companyProfile);
+      final companyProfile = CompanyProfileModel.fromSnapshot(docSnapshot);
       return companyProfile;
     }
 
     return null;
   }
 
-  Future<void> createCompanyProfile(CompanyProfileModel company) async {
-    bool existCompanyByOwner = await _existsCompanyCreatedByOwner(company.ownerUid);
+  Future<CompanyProfileModel?> getCompanyProfileByOwner(String ownerUid) async {
+    final querySnapshot = await _collectionReference.where('ownerUid', isEqualTo: ownerUid).limit(1).get();
 
-    if (existCompanyByOwner) {
-      throw Exception('Usted ya posee una empresa registrada a su nombre');
+    if (querySnapshot.docs.isNotEmpty) {
+      final docSnapshot = querySnapshot.docs.first;
+      final companyProfile = CompanyProfileModel.fromSnapshot(docSnapshot);
+
+      return companyProfile;
     }
 
-    DocumentReference companyRef = _companyProfilesCollection.doc();
-    await companyRef.set(company.toMap());
-
-    await fetchCompanyProfile(companyRef.id);
-
-    navigationService.toLobby(); // Llevar al controller
-
-    return await userProfileService.updateUserProfileWithCompanyUid(company.ownerUid, companyRef.id);
+    return null;
   }
 
-  Future<bool> _existsCompanyCreatedByOwner(String ownerUid) async {
-    final querySnapshot = await _companyProfilesCollection.where('ownerUid', isEqualTo: ownerUid).limit(1).get();
+  Future<void> updateCompanyProfile(CompanyProfileModel companyProfile) async {
+    await _collectionReference.doc(companyProfile.uid).set(companyProfile.toMap());
+    setCompanyProfileObx(companyProfile);
+  }
 
-    return querySnapshot.docs.isNotEmpty;
+  Future<void> createCompanyProfile(CompanyProfileModel companyProfile) async {
+    await _collectionReference.doc().set(companyProfile.toMap());
+    setCompanyProfileObx(companyProfile);
   }
 }
