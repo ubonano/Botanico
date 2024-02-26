@@ -13,47 +13,32 @@ class CompanyProfileService extends GetxService with CommonServices, LogLifecycl
   final CollectionReference _collectionReference =
       FirebaseFirestore.instance.collection(FirestoreCollections.companyProfiles);
 
-  final Rx<CompanyProfileModel?> companyProfileObx = Rx<CompanyProfileModel?>(null);
+  final Rx<CompanyProfileModel?> currentCompanyProfileObx = Rx<CompanyProfileModel?>(null);
 
-  CompanyProfileModel? get currentCompanyProfile => companyProfileObx.value;
-  bool get isCompanyProfile => companyProfileObx.value != null;
+  CompanyProfileModel? get currentCompanyProfile => currentCompanyProfileObx.value;
+  bool get hasCompanyProfile => currentCompanyProfileObx.value != null;
 
-  void setCompanyProfileObx(CompanyProfileModel? companyProfileModel) => companyProfileObx.value = companyProfileModel;
   void cleanCompanyProfile() => setCompanyProfileObx(null);
+  void setCompanyProfileObx(CompanyProfileModel? companyProfileModel) =>
+      currentCompanyProfileObx.value = companyProfileModel;
 
-  Future<void> fetchUserProfile(String uid) async => setCompanyProfileObx(await getCompanyProfile(uid));
+  Future<void> fetchCompanyProfile(String ownerUid) async =>
+      setCompanyProfileObx(await getCompanyProfileByOwner(ownerUid));
 
-  Future<CompanyProfileModel?> getCompanyProfile(String id) async {
+  Future<CompanyProfileModel?> getCompanyProfileById(String id) async {
     final docSnapshot = await _collectionReference.doc(id).get();
-
-    if (docSnapshot.exists) {
-      final companyProfile = CompanyProfileModel.fromSnapshot(docSnapshot);
-      return companyProfile;
-    }
-
-    return null;
+    return docSnapshot.exists ? CompanyProfileModel.fromSnapshot(docSnapshot) : null;
   }
 
   Future<CompanyProfileModel?> getCompanyProfileByOwner(String ownerUid) async {
     final querySnapshot = await _collectionReference.where('ownerUid', isEqualTo: ownerUid).limit(1).get();
-
-    if (querySnapshot.docs.isNotEmpty) {
-      final docSnapshot = querySnapshot.docs.first;
-      final companyProfile = CompanyProfileModel.fromSnapshot(docSnapshot);
-
-      return companyProfile;
-    }
-
-    return null;
+    return querySnapshot.docs.isNotEmpty ? CompanyProfileModel.fromSnapshot(querySnapshot.docs.first) : null;
   }
 
-  Future<void> updateCompanyProfile(CompanyProfileModel companyProfile) async {
-    await _collectionReference.doc(companyProfile.uid).set(companyProfile.toMap());
-    setCompanyProfileObx(companyProfile);
-  }
+  Future<void> setOrUpdateCompanyProfile(CompanyProfileModel companyProfile) async {
+    final docRef =
+        companyProfile.uid.isNotEmpty ? _collectionReference.doc(companyProfile.uid) : _collectionReference.doc();
 
-  Future<void> createCompanyProfile(CompanyProfileModel companyProfile) async {
-    await _collectionReference.doc().set(companyProfile.toMap());
-    setCompanyProfileObx(companyProfile);
+    await docRef.set(companyProfile.toMap());
   }
 }

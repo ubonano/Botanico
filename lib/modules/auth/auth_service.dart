@@ -26,6 +26,7 @@ class AuthService extends GetxService with CommonServices, LogLifecycleService {
     // TODO
     if (isUserLoggedIn) {
       await userProfileService.fetchUserProfile(user!.uid);
+      await companyProfileService.fetchCompanyProfile(user.uid);
 
       if (userProfileService.isUserProfile) {
         navigationService.toHome();

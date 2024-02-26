@@ -8,7 +8,7 @@ class CompanyProfileMiddleware extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     final CompanyProfileService companyProfileService = Get.find();
 
-    if (!companyProfileService.isCompanyProfile) {
+    if (!companyProfileService.hasCompanyProfile) {
       return const RouteSettings(name: Routes.LOBBY);
     }
 

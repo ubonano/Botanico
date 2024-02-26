@@ -53,7 +53,7 @@ class Pages {
     ),
     GetPage(
       name: Routes.COMPANY_PROFILE,
-      page: () => const CompanyProfilePage(),
+      page: () => CompanyProfilePage(),
       middlewares: [
         AuthMiddleware(),
         UserProfileMiddleware(),

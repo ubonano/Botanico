@@ -24,6 +24,8 @@ class CompanyProfileController extends GetxController with CommonServices, LogLi
   String get _phone => phoneController.text.trim();
 
   CompanyProfileModel get newCompanyProfile => CompanyProfileModel(
+        uid:
+            companyProfileService.currentCompanyProfile != null ? companyProfileService.currentCompanyProfile!.uid : '',
         ownerUid: authService.currentUser!.uid,
         name: _name,
         address: _address,
@@ -36,13 +38,13 @@ class CompanyProfileController extends GetxController with CommonServices, LogLi
   Future<void> setCompany() async {
     await asyncOperationService.performOperation(
       operation: () async {
-        final company = await companyProfileService.getCompanyProfileByOwner(authService.currentUser!.uid);
+        await companyProfileService.setOrUpdateCompanyProfile(newCompanyProfile);
+        await companyProfileService.fetchCompanyProfile(authService.currentUser!.uid);
 
-        if (company != null) {
-          await companyProfileService.updateCompanyProfile(newCompanyProfile.copyWith(uid: company.uid));
-        } else {
-          await companyProfileService.createCompanyProfile(newCompanyProfile);
-        }
+        await userProfileService.updateUserProfileWithCompanyUid(
+          authService.currentUser!.uid,
+          companyProfileService.currentCompanyProfile!.uid,
+        );
       },
       operationName: 'Create company profile',
       successMessage: 'Empresa creada con exito!',
@@ -52,7 +54,7 @@ class CompanyProfileController extends GetxController with CommonServices, LogLi
   }
 
   Future<void> initializeControllers() async {
-    if (companyProfileService.isCompanyProfile) {
+    if (companyProfileService.hasCompanyProfile) {
       setControllers(companyProfileService.currentCompanyProfile!);
     } else {
       clearControllers();
