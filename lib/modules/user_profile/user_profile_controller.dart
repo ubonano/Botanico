@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../foundation/utils/common_services.dart';
-import '../foundation/utils/log_lifecycle_controller.dart';
+import '../foundation/services/common_services.dart';
+import '../foundation/utils/log_lifecycle.dart';
 import 'user_profile_model.dart';
 
 class UserProfileController extends GetxController with CommonServices, LogLifecycleController {
@@ -13,46 +14,48 @@ class UserProfileController extends GetxController with CommonServices, LogLifec
   final phoneController = TextEditingController();
   final dniController = TextEditingController();
 
-  Future<void> initializeFormFields() async {
-    if (authService.isUserProfile) {
-      updateFormFields(authService.userProfile!);
+  User? get _currentUser => authService.currentUser;
+  UserProfileModel? get _currentUserProfile => userProfileService.userProfile;
+  bool get _isUserProfile => userProfileService.isUserProfile;
+
+  UserProfileModel get newUserProfile => UserProfileModel(
+        uid: _currentUser!.uid,
+        email: _currentUser!.email!,
+        name: nameController.text,
+        birthDate: birthDateController.text,
+        phone: phoneController.text,
+        dni: dniController.text,
+      );
+
+  Future<void> initializeControllers() async {
+    if (_isUserProfile) {
+      setControllers(_currentUserProfile!);
     } else {
-      clearFormFields();
+      clearControllers();
     }
   }
 
   Future<void> createUserProfile() async {
-    final user = authService.currentUser;
+    await asyncOperationService.performOperation(operation: () => userProfileService.setUserProfile(newUserProfile));
 
-    final userProfileModel = UserProfileModel(
-      uid: user!.uid,
-      email: user.email!,
-      name: nameController.text,
-      birthDate: birthDateController.text,
-      phone: phoneController.text,
-      dni: dniController.text,
-    );
-
-    await authService.setUserProfile(userProfileModel);
-
-    navigationService.navigateToLobby();
+    navigationService.toLobby();
   }
 
-  void updateFormFields(UserProfileModel userProfile) {
+  void setControllers(UserProfileModel userProfile) {
     nameController.text = userProfile.name;
     birthDateController.text = userProfile.birthDate;
     phoneController.text = userProfile.phone;
     dniController.text = userProfile.dni;
   }
 
-  void clearFormFields() {
+  void clearControllers() {
     nameController.clear();
     birthDateController.clear();
     phoneController.clear();
     dniController.clear();
   }
 
-  void disposeFormFields() {
+  void disposeControllers() {
     nameController.dispose();
     birthDateController.dispose();
     phoneController.dispose();
@@ -61,7 +64,7 @@ class UserProfileController extends GetxController with CommonServices, LogLifec
 
   @override
   void onClose() {
-    disposeFormFields();
+    disposeControllers();
 
     super.onClose();
   }

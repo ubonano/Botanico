@@ -11,7 +11,7 @@ class UserProfilePage extends GetView<UserProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.initializeFormFields();
+    controller.initializeControllers();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Completa tu Perfil')),

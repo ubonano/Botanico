@@ -1,7 +1,7 @@
-import 'package:botanico/modules/foundation/utils/common_services.dart';
+import 'package:botanico/modules/foundation/services/common_services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../foundation/utils/log_lifecycle_controller.dart';
+import '../../foundation/utils/log_lifecycle.dart';
 
 class SignInController extends GetxController with CommonServices, LogLifecycleController {
   @override
@@ -10,6 +10,10 @@ class SignInController extends GetxController with CommonServices, LogLifecycleC
   late TextEditingController emailController;
   late TextEditingController emailRecoverController;
   late TextEditingController passwordController;
+
+  String get _email => emailController.text.trim();
+  String get _emailRecover => emailRecoverController.text.trim();
+  String get _password => passwordController.text.trim();
 
   @override
   void onInit() {
@@ -29,18 +33,15 @@ class SignInController extends GetxController with CommonServices, LogLifecycleC
     super.onClose();
   }
 
-  void navigateToSignUp() => navigationService.navigateToSignUp();
+  void navigateToSignUp() => navigationService.toSignUp();
 
-  void signIn() async {
-    final email = emailController.text.trim();
-    final password = passwordController.text.trim();
-
-    await authService.signInWithEmailAndPassword(email, password);
-  }
+  void signIn() async => await asyncOperationService.performOperation(
+        operation: () => authService.signInWithEmailAndPassword(_email, _password),
+      );
 
   void recoverPassword() async {
-    final emailRecover = emailRecoverController.text.trim();
+    await asyncOperationService.performOperation(operation: () => authService.recoverPassword(_emailRecover));
+
     navigationService.goBack();
-    await authService.recoverPassword(emailRecover);
   }
 }

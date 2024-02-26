@@ -1,8 +1,8 @@
-import 'package:botanico/modules/foundation/utils/navigation_service.dart';
+import 'package:botanico/modules/foundation/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../foundation/services/auth_service.dart';
+import 'auth/auth_service.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 await Get.find<AuthService>().signOut();
-                Get.find<NavigationService>().navigateToSignIn();
+                Get.find<NavigationService>().toSignIn();
               },
               child: const Text('Cerrar Sesión'),
             ),

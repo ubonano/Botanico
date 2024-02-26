@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'common_services.dart';
 
-class LoggingService extends GetxService with CommonServices {
+class LoggingService extends GetxService {
   final Logger _logger = Logger(
     printer: PrettyPrinter(
         methodCount: 0, // Número de métodos a mostrar
@@ -14,19 +13,12 @@ class LoggingService extends GetxService with CommonServices {
         ),
   );
 
-  void logInfo(String message) {
-    _logger.i(message);
-  }
+  void info(String message) => _logger.i(message);
 
-  void logDebug(String message) {
-    _logger.d(message);
-  }
+  void debug(String message) => _logger.d(message);
 
-  void logWarning(String message) {
-    _logger.w(message);
-  }
+  void warning(String message) => _logger.w(message);
 
-  void logError(String message, [dynamic error, StackTrace? stackTrace]) {
-    _logger.e(message, error: error, stackTrace: stackTrace);
-  }
+  void error(String message, [dynamic error, StackTrace? stackTrace]) =>
+      _logger.e(message, error: error, stackTrace: stackTrace);
 }

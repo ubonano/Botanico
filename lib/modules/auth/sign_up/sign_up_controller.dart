@@ -1,7 +1,7 @@
-import 'package:botanico/modules/foundation/utils/common_services.dart';
+import 'package:botanico/modules/foundation/services/common_services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../foundation/utils/log_lifecycle_controller.dart';
+import '../../foundation/utils/log_lifecycle.dart';
 
 class SignUpPageController extends GetxController with CommonServices, LogLifecycleController {
   @override
@@ -10,6 +10,9 @@ class SignUpPageController extends GetxController with CommonServices, LogLifecy
   late TextEditingController emailController;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
+
+  String get _email => emailController.text.trim();
+  String get _password => passwordController.text.trim();
 
   @override
   void onInit() {
@@ -29,12 +32,9 @@ class SignUpPageController extends GetxController with CommonServices, LogLifecy
     super.onClose();
   }
 
-  void navigateToSignIn() => navigationService.navigateToSignIn();
+  void navigateToSignIn() => navigationService.toSignIn();
 
-  void signUp() async {
-    final email = emailController.text.trim();
-    final password = passwordController.text.trim();
-
-    await authService.createUserWithEmailAndPassword(email, password);
-  }
+  void signUp() async => await asyncOperationService.performOperation(
+        operation: () => authService.createUserWithEmailAndPassword(_email, _password),
+      );
 }

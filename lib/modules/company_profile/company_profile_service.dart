@@ -2,40 +2,51 @@ import 'package:botanico/modules/foundation/config/firestore_collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+import '../foundation/utils/log_lifecycle.dart';
 import 'company_profile_model.dart';
-import '../foundation/utils/async_operation_service.dart';
-import '../foundation/utils/common_services.dart';
-import '../foundation/utils/log_lifecycle_service.dart';
+import '../foundation/services/common_services.dart';
 
 class CompanyProfileService extends GetxService with CommonServices, LogLifecycleService {
   @override
   String get logTag => 'CompanyService';
 
-  final AsyncOperationService _asyncOperationService = Get.find();
-
   final CollectionReference _companyProfilesCollection =
       FirebaseFirestore.instance.collection(FirestoreCollections.companyProfiles);
 
+  final Rx<CompanyProfileModel?> companyProfileObx = Rx<CompanyProfileModel?>(null);
+
+  CompanyProfileModel? get companyProfile => companyProfileObx.value;
+  bool get isCompanyProfile => companyProfileObx.value != null;
+
+  void setCompanyProfileObx(CompanyProfileModel? companyProfileModel) => companyProfileObx.value = companyProfileModel;
+
+  Future<CompanyProfileModel?> fetchCompanyProfile(String uid) async {
+    final docSnapshot = await _companyProfilesCollection.doc(uid).get();
+
+    if (docSnapshot.exists) {
+      final companyProfile = CompanyProfileModel.fromMap(docSnapshot.data() as Map<String, dynamic>);
+      setCompanyProfileObx(companyProfile);
+      return companyProfile;
+    }
+
+    return null;
+  }
+
   Future<void> createCompanyProfile(CompanyProfileModel company) async {
-    await _asyncOperationService.performAsyncOperation<void>(
-      () async {
-        bool existCompanyByOwner = await _existsCompanyCreatedByOwner(company.ownerUid);
+    bool existCompanyByOwner = await _existsCompanyCreatedByOwner(company.ownerUid);
 
-        if (existCompanyByOwner) {
-          throw Exception('Usted ya posee una empresa registrada a su nombre');
-        }
+    if (existCompanyByOwner) {
+      throw Exception('Usted ya posee una empresa registrada a su nombre');
+    }
 
-        DocumentReference companyRef = _companyProfilesCollection.doc();
-        await companyRef.set(company.toMap());
+    DocumentReference companyRef = _companyProfilesCollection.doc();
+    await companyRef.set(company.toMap());
 
-        navigationService.navigateToLobby();
+    await fetchCompanyProfile(companyRef.id);
 
-        return await authService.updateUserProfileWithCompanyUid(company.ownerUid, companyRef.id);
-      },
-      successMessage: 'Empresa creada con exito',
-      errorMessage: 'Error al crear compañía',
-      operationName: "Crear empresa",
-    );
+    navigationService.toLobby(); // Llevar al controller
+
+    return await userProfileService.updateUserProfileWithCompanyUid(company.ownerUid, companyRef.id);
   }
 
   Future<bool> _existsCompanyCreatedByOwner(String ownerUid) async {
@@ -43,20 +54,4 @@ class CompanyProfileService extends GetxService with CommonServices, LogLifecycl
 
     return querySnapshot.docs.isNotEmpty;
   }
-
-  // Future<CompanyProfileModel?> getCompanyById(String companyId) async {
-  //   return await _asyncOperationService.performAsyncOperation<CompanyProfileModel?>(
-  //     () async {
-  //       DocumentSnapshot docSnapshot = await _companyProfilesCollection.doc(companyId).get();
-
-  //       if (!docSnapshot.exists) {
-  //         throw Exception('No se encontró la compañía con el ID proporcionado');
-  //       }
-
-  //       return CompanyProfileModel.fromMap(docSnapshot.data() as Map<String, dynamic>);
-  //     },
-  //     errorMessage: 'Error al obtener la compañía',
-  //     operationName: "Obtener compañía por ID",
-  //   );
-  // }
 }

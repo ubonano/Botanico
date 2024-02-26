@@ -1,10 +1,10 @@
-import 'package:botanico/modules/foundation/utils/log_lifecycle_controller.dart';
+import 'package:botanico/modules/foundation/utils/log_lifecycle.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'company_profile_model.dart';
 import 'company_profile_service.dart';
-import '../foundation/utils/common_services.dart';
+import '../foundation/services/common_services.dart';
 
 class CompanyProfileController extends GetxController with CommonServices, LogLifecycleController {
   @override
@@ -38,6 +38,7 @@ class CompanyProfileController extends GetxController with CommonServices, LogLi
     provinceController.dispose();
     countryController.dispose();
     phoneController.dispose();
+
     super.onClose();
   }
 
@@ -53,5 +54,7 @@ class CompanyProfileController extends GetxController with CommonServices, LogLi
     );
 
     await _companyService.createCompanyProfile(company);
+
+    navigationService.toHome();
   }
 }
