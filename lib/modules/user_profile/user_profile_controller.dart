@@ -38,7 +38,7 @@ class UserProfileController extends GetxController with CommonServices, LogLifec
   }
 
   Future<void> initializeControllers() async {
-    if (userProfileService.isUserProfile) {
+    if (userProfileService.hasUserProfile) {
       setControllers(userProfileService.currentUserProfile!);
     } else {
       clearControllers();

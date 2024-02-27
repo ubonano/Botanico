@@ -11,6 +11,8 @@ class AsyncOperationService extends GetxService {
     String operationName = "Operacion",
     String successMessage = '',
     bool showErrorMessageBySnackbar = true,
+    Function()? onSuccess, // Función a ejecutar en caso de éxito
+    Function(Object error)? onError, // Función a ejecutar en caso de error, con el error como parámetro
   }) async {
     try {
       T result = await operation();
@@ -18,16 +20,16 @@ class AsyncOperationService extends GetxService {
       if (successMessage != '') {
         Get.snackbar('Éxito', successMessage, backgroundColor: Colors.green, colorText: Colors.white);
       }
-
       _loggingService.info("$operationName exitosa.");
+      onSuccess?.call();
 
       return result;
     } catch (e) {
       if (showErrorMessageBySnackbar) {
         Get.snackbar('Error', _getErrorMessage(e), backgroundColor: Colors.red, colorText: Colors.white);
       }
-
       _loggingService.error("$operationName fallida: ${_getErrorMessage(e)}", e);
+      onError?.call(e);
       return null;
     }
   }

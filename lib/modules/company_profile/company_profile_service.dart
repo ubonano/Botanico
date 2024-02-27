@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:botanico/modules/foundation/config/firestore_collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -17,11 +19,9 @@ class CompanyProfileService extends GetxService with CommonServices, LogLifecycl
 
   CompanyProfileModel? get currentCompanyProfile => currentCompanyProfileObx.value;
   bool get hasCompanyProfile => currentCompanyProfileObx.value != null;
-
   void cleanCompanyProfile() => setCompanyProfileObx(null);
   void setCompanyProfileObx(CompanyProfileModel? companyProfileModel) =>
       currentCompanyProfileObx.value = companyProfileModel;
-
   Future<void> fetchCompanyProfile(String ownerUid) async =>
       setCompanyProfileObx(await getCompanyProfileByOwner(ownerUid));
 

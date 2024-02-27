@@ -15,9 +15,25 @@ class SignInController extends GetxController with CommonServices, LogLifecycleC
   String get _emailRecover => emailRecoverController.text.trim();
   String get _password => passwordController.text.trim();
 
-  void signIn() async => await asyncOperationService.performOperation(
+  Future<void> signIn() async => await asyncOperationService.performOperation(
         operation: () => authService.signInWithEmailAndPassword(_email, _password),
         operationName: 'Sign in',
+        onSuccess: () async {
+          await userProfileService.fetchUserProfile(authService.currentUser!.uid);
+          await companyProfileService.fetchCompanyProfile(authService.currentUser!.uid);
+
+          if (!userProfileService.hasUserProfile) {
+            navigationService.toUserProfile();
+          }
+
+          if (userProfileService.hasUserProfile && !companyProfileService.hasCompanyProfile) {
+            navigationService.toLobby();
+          }
+
+          if (userProfileService.hasUserProfile && companyProfileService.hasCompanyProfile) {
+            navigationService.toHome();
+          }
+        },
       );
 
   void recoverPassword() async {

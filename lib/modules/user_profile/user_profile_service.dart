@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/config/firestore_collections.dart';
@@ -12,15 +13,12 @@ class UserProfileService extends GetxService with CommonServices, LogLifecycleSe
   final CollectionReference _collectionReference =
       FirebaseFirestore.instance.collection(FirestoreCollections.userProfiles);
 
-  final Rx<UserProfileModel?> userProfileObx = Rx<UserProfileModel?>(null);
+  final Rx<UserProfileModel?> currentUserProfileObx = Rx<UserProfileModel?>(null);
 
-  UserProfileModel? get currentUserProfile => userProfileObx.value;
-  void setUserProfileObx(UserProfileModel? userProfileModel) => userProfileObx.value = userProfileModel;
-
-  bool get isUserProfile => userProfileObx.value != null;
-
+  UserProfileModel? get currentUserProfile => currentUserProfileObx.value;
+  bool get hasUserProfile => currentUserProfileObx.value != null;
+  void setUserProfileObx(UserProfileModel? userProfileModel) => currentUserProfileObx.value = userProfileModel;
   void cleanUserProfile() => setUserProfileObx(null);
-
   Future<void> fetchUserProfile(String uid) async => setUserProfileObx(await getUserProfile(uid));
 
   Future<UserProfileModel?> getUserProfile(String id) async {

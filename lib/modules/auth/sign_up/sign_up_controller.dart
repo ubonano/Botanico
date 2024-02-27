@@ -17,6 +17,7 @@ class SignUpPageController extends GetxController with CommonServices, LogLifecy
   void signUp() async => await asyncOperationService.performOperation(
         operation: () => authService.createUserWithEmailAndPassword(_email, _password),
         operationName: 'Sign up',
+        onSuccess: () => navigationService.toUserProfile(),
       );
 
   void navigateToSignIn() => navigationService.toSignIn();

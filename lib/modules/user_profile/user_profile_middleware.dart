@@ -9,7 +9,7 @@ class UserProfileMiddleware extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     final UserProfileService userProfileService = Get.find();
 
-    if (!userProfileService.isUserProfile) {
+    if (!userProfileService.hasUserProfile) {
       return const RouteSettings(name: Routes.USER_PROFILE);
     }
 

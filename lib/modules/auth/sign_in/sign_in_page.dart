@@ -59,9 +59,9 @@ class SignInPage extends GetView<SignInController> {
     );
   }
 
-  void _signIn() {
+  Future<void> _signIn() async {
     if (_formKey.currentState!.validate()) {
-      controller.signIn();
+      await controller.signIn();
     }
   }
 
