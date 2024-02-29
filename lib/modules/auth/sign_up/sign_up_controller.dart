@@ -7,6 +7,8 @@ class SignUpPageController extends GetxController with CommonServices, LogLifecy
   @override
   String get logTag => 'SignUpPageController';
 
+  final formKey = GlobalKey<FormState>();
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
@@ -14,11 +16,15 @@ class SignUpPageController extends GetxController with CommonServices, LogLifecy
   String get _email => emailController.text.trim();
   String get _password => passwordController.text.trim();
 
-  void signUp() async => await asyncOperationService.performOperation(
-        operation: () => authService.createUserWithEmailAndPassword(_email, _password),
-        operationName: 'Sign up',
-        onSuccess: () => navigationService.toUserProfile(),
-      );
+  void signUp() async {
+    if (!formKey.currentState!.validate()) return;
+
+    await asyncOperationService.performOperation(
+      operationName: 'Sign up',
+      operation: () => authService.signUpWithEmailAndPassword(_email, _password),
+      onSuccess: navigationService.toUserProfile,
+    );
+  }
 
   void navigateToSignIn() => navigationService.toSignIn();
 
