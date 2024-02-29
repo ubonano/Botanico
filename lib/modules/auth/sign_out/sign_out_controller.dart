@@ -6,13 +6,13 @@ class SignOutController extends GetxController with CommonServices, LogLifecycle
   @override
   String get logTag => 'SignOutController';
 
-  Future<void> signOut() async => asyncOperationService.performOperation(
+  Future<void> signOut() async => asyncOperation.perform(
         operationName: 'Sign out',
-        operation: authService.signOut,
+        operation: auth.signOut,
         onSuccess: () {
           userProfileService.clean();
           companyProfileService.clean();
-          navigationService.toSignIn();
+          navigate.toSignIn();
         },
       );
 }
