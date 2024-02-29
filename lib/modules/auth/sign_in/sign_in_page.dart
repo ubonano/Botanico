@@ -14,7 +14,7 @@ class SignInPage extends GetView<SignInController> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: controller.formKey,
+          key: controller.signInFormKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -34,7 +34,7 @@ class SignInPage extends GetView<SignInController> {
                 onFieldSubmitted: (_) => controller.signIn(),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: controller.signIn, child: const Text('Iniciar Sesión')),
+              ElevatedButton(onPressed: () => controller.signIn(), child: const Text('Iniciar Sesión')),
               const SizedBox(height: 20),
               TextButton(onPressed: _showRecoverPasswordDialog, child: const Text("¿Olvidaste tu contraseña?")),
               const SizedBox(height: 20),
@@ -61,7 +61,7 @@ class SignInPage extends GetView<SignInController> {
           ),
         ),
         actions: [
-          TextButton(onPressed: controller.recoverPassword, child: const Text("Enviar")),
+          TextButton(onPressed: () => controller.recoverPassword(), child: const Text("Enviar")),
         ],
       ),
     );

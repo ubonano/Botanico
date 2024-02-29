@@ -7,7 +7,7 @@ class SignInController extends GetxController with CommonServices, LogLifecycleC
   @override
   String get logTag => 'SignInController';
 
-  final formKey = GlobalKey<FormState>();
+  final signInFormKey = GlobalKey<FormState>();
   final recoverPasswordFormKey = GlobalKey<FormState>();
 
   final emailController = TextEditingController();
@@ -19,46 +19,46 @@ class SignInController extends GetxController with CommonServices, LogLifecycleC
   String get _password => passwordController.text.trim();
 
   Future<void> signIn() async {
-    if (!formKey.currentState!.validate()) return;
+    if (!signInFormKey.currentState!.validate()) return;
 
-    await asyncOperationService.performOperation(
+    await asyncOperation.perform(
       operationName: 'Sign in',
-      operation: () => authService.signInWithEmailAndPassword(_email, _password),
+      operation: () => auth.signInWithEmailAndPassword(_email, _password),
       onSuccess: () async {
         await fetchUserProfile();
         await fetchCompanyProfile();
 
         if (userProfileService.hasUserProfile && companyProfileService.hasCompanyProfile) {
-          navigationService.toHome();
+          navigate.toHome();
         }
 
         if (userProfileService.hasUserProfile && !companyProfileService.hasCompanyProfile) {
-          navigationService.toLobby();
+          navigate.toLobby();
         }
 
         if (!userProfileService.hasUserProfile) {
-          navigationService.toUserProfile();
+          navigate.toUserProfile();
         }
       },
     );
   }
 
-  Future<void> fetchUserProfile() async => await userProfileService.fetchById(authService.user!.uid);
-  Future<void> fetchCompanyProfile() async =>
-      await companyProfileService.fetchById(userProfileService.userProfile!.companyUid);
-
   void recoverPassword() async {
     if (!recoverPasswordFormKey.currentState!.validate()) return;
 
-    await asyncOperationService.performOperation(
-        operation: () => authService.recoverPassword(_emailRecover),
+    await asyncOperation.perform(
+        operation: () => auth.recoverPassword(_emailRecover),
         operationName: 'Recover password',
         successMessage: 'Se envio un email a tu casilla para restaurar tu contraseña');
 
-    navigationService.back();
+    navigate.back();
   }
 
-  void navigateToSignUp() => navigationService.toSignUp();
+  Future<void> fetchUserProfile() async => await userProfileService.fetchById(auth.user!.uid);
+  Future<void> fetchCompanyProfile() async =>
+      await companyProfileService.fetchById(userProfileService.userProfile!.companyUid);
+
+  void navigateToSignUp() => navigate.toSignUp();
 
   @override
   void onClose() {
