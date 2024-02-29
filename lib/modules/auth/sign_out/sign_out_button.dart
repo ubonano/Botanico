@@ -9,7 +9,7 @@ class SignOutButton extends GetView<SignOutController> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => controller.signOut(),
+      onPressed: controller.signOut,
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),

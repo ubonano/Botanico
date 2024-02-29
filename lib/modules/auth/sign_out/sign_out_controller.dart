@@ -7,11 +7,11 @@ class SignOutController extends GetxController with CommonServices, LogLifecycle
   String get logTag => 'SignOutController';
 
   Future<void> signOut() async => asyncOperationService.performOperation(
-        operation: () => authService.signOut(),
         operationName: 'Sign out',
+        operation: authService.signOut,
         onSuccess: () {
-          userProfileService.cleanUserProfile();
-          companyProfileService.cleanCompanyProfile();
+          userProfileService.clean();
+          companyProfileService.clean();
           navigationService.toSignIn();
         },
       );
