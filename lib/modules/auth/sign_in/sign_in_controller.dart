@@ -23,7 +23,7 @@ class SignInController extends GetxController with CommonServices, LogLifecycleC
 
     await asyncOperation.perform(
       operationName: 'Sign in',
-      operation: () => auth.signInWithEmailAndPassword(_email, _password),
+      operation: () => auth.signIn(_email, _password),
       onSuccess: () async {
         await fetchUserProfile();
         await fetchCompanyProfile();

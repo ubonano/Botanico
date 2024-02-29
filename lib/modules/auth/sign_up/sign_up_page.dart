@@ -15,7 +15,7 @@ class SignUpPage extends GetView<SignUpPageController> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: controller.formKey,
+          key: controller.signUpformKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
