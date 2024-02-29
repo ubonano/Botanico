@@ -1,11 +1,9 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import '../foundation/services/common_services.dart';
 import '../foundation/utils/log_lifecycle.dart';
 
-class AuthService extends GetxService with CommonServices, LogLifecycleService {
+class AuthService extends GetxService with LogLifecycleService {
   @override
   String get logTag => 'AuthService';
 
@@ -13,15 +11,15 @@ class AuthService extends GetxService with CommonServices, LogLifecycleService {
 
   Stream<User?> get userChanges => _auth.authStateChanges();
 
-  User? get currentUser => _auth.currentUser;
-  bool get isUserLoggedIn => currentUser != null;
+  User? get user => _auth.currentUser;
+  bool get isUserLoggedIn => user != null;
 
-  Future<User?> signInWithEmailAndPassword(String email, String password) async {
+  Future<User?> signIn(String email, String password) async {
     final UserCredential userCredential = await _auth.signInWithEmailAndPassword(email: email, password: password);
     return userCredential.user;
   }
 
-  Future<User?> createUserWithEmailAndPassword(String email, String password) async {
+  Future<User?> signUp(String email, String password) async {
     final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
     return userCredential.user;
   }

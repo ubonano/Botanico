@@ -1,9 +1,8 @@
-import 'package:botanico/modules/foundation/services/common_services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import '../../foundation/utils/log_lifecycle.dart';
 
-class SignInController extends GetxController with CommonServices, LogLifecycleController {
+class SignInController extends GetxController with CustomController {
   @override
   String get logTag => 'SignInController';
 
