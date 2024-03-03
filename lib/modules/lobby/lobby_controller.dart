@@ -17,10 +17,10 @@ class LobbyController extends GetxController with CustomController {
   }
 
   void copyToClipboard() {
-    Clipboard.setData(ClipboardData(text: uid.value)).then((_) {
-      Get.snackbar('Éxito', 'Codigo de vinculación copiado al portapapeles');
-    });
+    Clipboard.setData(ClipboardData(text: uid.value)).then(
+      (_) => Get.snackbar('Éxito', 'Codigo de vinculación copiado al portapapeles'),
+    );
   }
 
-  void navigateToCompanyProfile() => navigate.toCompanyProfile();
+  void navigateToCompany() => navigate.toCompany();
 }

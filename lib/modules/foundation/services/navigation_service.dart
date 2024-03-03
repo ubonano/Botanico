@@ -11,7 +11,7 @@ class NavigationService extends GetxService {
   void toSignIn({bool canPop = false}) => to(Routes.SIGN_IN, canPop: canPop);
   void toSignUp({bool canPop = false}) => to(Routes.SIGN_UP, canPop: canPop);
   void toUserProfile({bool canPop = false}) => to(Routes.USER_PROFILE, canPop: canPop);
-  void toCompanyProfile({bool canPop = false}) => to(Routes.COMPANY_PROFILE, canPop: canPop);
+  void toCompany({bool canPop = false}) => to(Routes.COMPANY_PROFILE, canPop: canPop);
 
   void to(String route, {bool canPop = false}) {
     if (canPop) {
