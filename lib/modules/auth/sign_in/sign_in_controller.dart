@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../../foundation/utils/log_lifecycle.dart';
+import '../../foundation/utils/custom_controller.dart';
 
 class SignInController extends GetxController with CustomController {
   @override
@@ -20,22 +20,25 @@ class SignInController extends GetxController with CustomController {
   Future<void> signIn() async {
     if (!signInFormKey.currentState!.validate()) return;
 
-    await asyncOperation.perform(
+    await async.perform(
       operationName: 'Sign in',
       operation: () => auth.signIn(_email, _password),
       onSuccess: () async {
         await fetchUserProfile();
-        await fetchCompanyProfile();
 
-        if (userProfileService.hasUserProfile && companyProfileService.hasCompanyProfile) {
+        if (isUserProfileLoaded && userHasCompany) {
+          await fetchCompany();
+        }
+
+        if (isUserProfileLoaded && isCompanyLoaded) {
           navigate.toHome();
         }
 
-        if (userProfileService.hasUserProfile && !companyProfileService.hasCompanyProfile) {
+        if (isUserProfileLoaded && !isCompanyLoaded) {
           navigate.toLobby();
         }
 
-        if (!userProfileService.hasUserProfile) {
+        if (!isUserProfileLoaded) {
           navigate.toUserProfile();
         }
       },
@@ -45,17 +48,13 @@ class SignInController extends GetxController with CustomController {
   void recoverPassword() async {
     if (!recoverPasswordFormKey.currentState!.validate()) return;
 
-    await asyncOperation.perform(
-        operation: () => auth.recoverPassword(_emailRecover),
-        operationName: 'Recover password',
-        successMessage: 'Se envio un email a tu casilla para restaurar tu contraseña');
-
-    navigate.back();
+    await async.perform(
+      operationName: 'Recover password',
+      successMessage: 'Se envio un email a tu casilla para restaurar tu contraseña',
+      operation: () => auth.recoverPassword(_emailRecover),
+      onSuccess: navigate.back,
+    );
   }
-
-  Future<void> fetchUserProfile() async => await userProfileService.fetchById(auth.user!.uid);
-  Future<void> fetchCompanyProfile() async =>
-      await companyProfileService.fetchById(userProfileService.userProfile!.companyUid);
 
   void navigateToSignUp() => navigate.toSignUp();
 
