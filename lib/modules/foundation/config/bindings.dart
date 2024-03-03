@@ -2,8 +2,8 @@ import 'package:botanico/modules/auth/sign_in/sign_in_controller.dart';
 import 'package:botanico/modules/auth/sign_up/sign_up_controller.dart';
 import 'package:botanico/modules/auth/auth_service.dart';
 import 'package:botanico/modules/user_profile/user_profile_controller.dart';
-import 'package:botanico/modules/company_profile/company_profile_controller.dart';
-import 'package:botanico/modules/company_profile/company_profile_service.dart';
+import 'package:botanico/modules/company/company_controller.dart';
+import 'package:botanico/modules/company/company_service.dart';
 import 'package:botanico/modules/foundation/services/loggin_service.dart';
 import 'package:get/get.dart';
 
@@ -22,13 +22,13 @@ class AppBindings extends Bindings {
     Get.put(AsyncOperationService(), permanent: true);
     Get.put(AuthService(), permanent: true);
     Get.put(UserProfileService(), permanent: true);
-    Get.put(CompanyProfileService(), permanent: true);
+    Get.put(CompanyService(), permanent: true);
 
     Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
     Get.lazyPut<SignUpPageController>(() => SignUpPageController(), fenix: true);
     
     Get.lazyPut<UserProfileController>(() => UserProfileController(), fenix: true);
-    Get.lazyPut<CompanyProfileController>(() => CompanyProfileController(), fenix: true);
+    Get.lazyPut<CompanyController>(() => CompanyController(), fenix: true);
     Get.lazyPut<LobbyController>(() => LobbyController(), fenix: true);
     Get.lazyPut<SignOutController>(() => SignOutController(), fenix: true);
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);

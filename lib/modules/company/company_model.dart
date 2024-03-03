@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CompanyProfileModel {
+class CompanyModel {
   final String uid;
   final String ownerUid;
   final String name;
@@ -10,7 +10,7 @@ class CompanyProfileModel {
   final String country;
   final String phone;
 
-  CompanyProfileModel({
+  CompanyModel({
     this.uid = '',
     required this.ownerUid,
     required this.name,
@@ -23,8 +23,8 @@ class CompanyProfileModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'name': name,
       'ownerUid': ownerUid,
+      'name': name,
       'address': address,
       'city': city,
       'province': province,
@@ -33,8 +33,8 @@ class CompanyProfileModel {
     };
   }
 
-  factory CompanyProfileModel.fromMap(Map<String, dynamic> map, String documentId) {
-    return CompanyProfileModel(
+  factory CompanyModel.fromMap(Map<String, dynamic> map, String documentId) {
+    return CompanyModel(
       uid: documentId,
       ownerUid: map['ownerUid'],
       name: map['name'],
@@ -46,11 +46,11 @@ class CompanyProfileModel {
     );
   }
 
-  static CompanyProfileModel fromSnapshot(DocumentSnapshot snapshot) {
-    return CompanyProfileModel.fromMap(snapshot.data() as Map<String, dynamic>, snapshot.id);
+  static CompanyModel fromSnapshot(DocumentSnapshot snapshot) {
+    return CompanyModel.fromMap(snapshot.data() as Map<String, dynamic>, snapshot.id);
   }
 
-  CompanyProfileModel copyWith({
+  CompanyModel copyWith({
     String? uid,
     String? ownerUid,
     String? name,
@@ -60,7 +60,7 @@ class CompanyProfileModel {
     String? country,
     String? phone,
   }) {
-    return CompanyProfileModel(
+    return CompanyModel(
       uid: uid ?? this.uid,
       ownerUid: ownerUid ?? this.ownerUid,
       name: name ?? this.name,

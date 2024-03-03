@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'company_profile_controller.dart';
+import 'company_controller.dart';
 import '../foundation/widgets/custom_input_field.dart';
 
-class CompanyProfilePage extends GetView<CompanyProfileController> {
-  const CompanyProfilePage({super.key});
+class CompanyPage extends GetView<CompanyController> {
+  const CompanyPage({super.key});
 
   @override
   Widget build(BuildContext context) {

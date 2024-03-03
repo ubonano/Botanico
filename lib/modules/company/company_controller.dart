@@ -2,11 +2,11 @@ import 'package:botanico/modules/foundation/utils/custom_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import 'company_profile_model.dart';
+import 'company_model.dart';
 
-class CompanyProfileController extends GetxController with CustomController {
+class CompanyController extends GetxController with CustomController {
   @override
-  String get logTag => 'CompanyProfileController';
+  String get logTag => 'CompanyController';
 
   final companyFormKey = GlobalKey<FormState>();
 
@@ -32,8 +32,8 @@ class CompanyProfileController extends GetxController with CustomController {
       operationName: 'Create company',
       successMessage: 'Empresa creada con exito!',
       operation: () async {
-        await companyProfileService.set(
-          CompanyProfileModel(
+        await companyService.set(
+          CompanyModel(
             ownerUid: loggedUserUID,
             name: _name,
             address: _address,
@@ -61,13 +61,13 @@ class CompanyProfileController extends GetxController with CustomController {
     }
   }
 
-  void setControllers(CompanyProfileModel companyProfile) {
-    nameController.text = companyProfile.name;
-    addressController.text = companyProfile.address;
-    cityController.text = companyProfile.city;
-    provinceController.text = companyProfile.province;
-    countryController.text = companyProfile.country;
-    phoneController.text = companyProfile.phone;
+  void setControllers(CompanyModel company) {
+    nameController.text = company.name;
+    addressController.text = company.address;
+    cityController.text = company.city;
+    provinceController.text = company.province;
+    countryController.text = company.country;
+    phoneController.text = company.phone;
   }
 
   void clearControllers() {
