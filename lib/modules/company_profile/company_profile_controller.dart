@@ -8,7 +8,7 @@ class CompanyProfileController extends GetxController with CustomController {
   @override
   String get logTag => 'CompanyProfileController';
 
-  final formKey = GlobalKey<FormState>();
+  final companyFormKey = GlobalKey<FormState>();
 
   final nameController = TextEditingController();
   final addressController = TextEditingController();
@@ -24,8 +24,9 @@ class CompanyProfileController extends GetxController with CustomController {
   String get _country => countryController.text.trim();
   String get _phone => phoneController.text.trim();
 
-  Future<void> save() async {
-    if (!formKey.currentState!.validate()) return;
+  Future<void> submit() async {
+    // TODO analizar de separar para actualizar en otro lado
+    if (!companyFormKey.currentState!.validate()) return;
 
     await async.perform(
       operationName: 'Create company',
@@ -33,8 +34,7 @@ class CompanyProfileController extends GetxController with CustomController {
       operation: () async {
         await companyProfileService.set(
           CompanyProfileModel(
-            uid: userProfile!.companyUid,
-            ownerUid: isCompanyLoaded ? company!.ownerUid : loggedUserUID,
+            ownerUid: loggedUserUID,
             name: _name,
             address: _address,
             city: _city,
@@ -44,14 +44,12 @@ class CompanyProfileController extends GetxController with CustomController {
           ),
         );
 
-        await companyProfileService.fetchByOwnerId(loggedUserUID);
+        await userProfileService.setCompanyUid(loggedUserUID, company!.uid);
+        await fetchUserProfile();
 
-        if (!userHasCompany) {
-          await userProfileService.setCompanyUid(loggedUserUID, company!.uid);
-          await userProfileService.fetchById(loggedUserUID);
-        }
+        await fetchCompany();
       },
-      onSuccess: () => navigate.toHome(),
+      onSuccess: navigate.toHome,
     );
   }
 

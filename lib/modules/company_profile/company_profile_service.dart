@@ -16,11 +16,6 @@ class CompanyProfileService extends GetxService with CustomService {
     companyProfile$.value = snapshot.exists ? CompanyProfileModel.fromSnapshot(snapshot) : null;
   }
 
-  Future<void> fetchByOwnerId(String ownerUid) async {
-    final snapshot = await _collectionRef.where('ownerUid', isEqualTo: ownerUid).limit(1).get();
-    companyProfile$.value = snapshot.docs.isNotEmpty ? CompanyProfileModel.fromSnapshot(snapshot.docs.first) : null;
-  }
-
   Future<void> set(CompanyProfileModel companyProfile) async {
     final docRef = companyProfile.uid.isNotEmpty ? _collectionRef.doc(companyProfile.uid) : _collectionRef.doc();
     await docRef.set(companyProfile.toMap());

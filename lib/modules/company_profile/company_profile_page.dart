@@ -14,7 +14,7 @@ class CompanyProfilePage extends GetView<CompanyProfileController> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: controller.formKey,
+          key: controller.companyFormKey,
           child: Column(
             children: [
               CustomInputField(label: 'Nombre', controller: controller.nameController),
@@ -29,7 +29,7 @@ class CompanyProfilePage extends GetView<CompanyProfileController> {
               const SizedBox(height: 10),
               CustomInputField(label: 'Teléfono', controller: controller.phoneController),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: controller.save, child: const Text('Guardar')),
+              ElevatedButton(onPressed: controller.submit, child: const Text('Guardar')),
             ],
           ),
         ),
