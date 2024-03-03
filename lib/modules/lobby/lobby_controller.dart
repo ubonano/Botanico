@@ -1,15 +1,19 @@
-import 'package:botanico/modules/foundation/services/common_services.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class LobbyController extends GetxController with CommonServices {
+import '../foundation/utils/custom_controller.dart';
+
+class LobbyController extends GetxController with CustomController {
+  @override
+  String get logTag => 'LobbyController';
+
   final RxString uid = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
 
-    uid.value = authService.currentUser?.uid ?? '';
+    uid.value = loggedUserUID;
   }
 
   void copyToClipboard() {
@@ -18,5 +22,5 @@ class LobbyController extends GetxController with CommonServices {
     });
   }
 
-  void navigateToCompanyProfile() => navigationService.toCompanyProfile();
+  void navigateToCompanyProfile() => navigate.toCompanyProfile();
 }

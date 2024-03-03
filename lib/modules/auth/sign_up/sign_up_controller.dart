@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../../foundation/utils/log_lifecycle.dart';
+import '../../foundation/utils/custom_controller.dart';
 
 class SignUpPageController extends GetxController with CustomController {
   @override
@@ -18,7 +18,7 @@ class SignUpPageController extends GetxController with CustomController {
   void signUp() async {
     if (!signUpformKey.currentState!.validate()) return;
 
-    await asyncOperation.perform(
+    await async.perform(
       operationName: 'Sign up',
       operation: () => auth.signUp(_email, _password),
       onSuccess: navigate.toUserProfile,
@@ -29,12 +29,12 @@ class SignUpPageController extends GetxController with CustomController {
 
   @override
   void onClose() {
-    disponseControllers();
+    disposeControllers();
 
     super.onClose();
   }
 
-  void disponseControllers() {
+  void disposeControllers() {
     emailController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();

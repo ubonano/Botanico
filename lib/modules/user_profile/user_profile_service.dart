@@ -2,43 +2,29 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/config/firestore_collections.dart';
-import '../foundation/services/common_services.dart';
-import '../foundation/utils/log_lifecycle.dart';
+import '../foundation/utils/custom_service.dart';
 import 'user_profile_model.dart';
 
-class UserProfileService extends GetxService with CommonServices, LogLifecycleService {
+class UserProfileService extends GetxService with CustomService {
   @override
   String get logTag => 'UserProfileService';
 
-  final CollectionReference _collectionReference =
-      FirebaseFirestore.instance.collection(FirestoreCollections.userProfiles);
+  final _collectionRef = FirebaseFirestore.instance.collection(FirestoreCollections.userProfiles);
 
-  final Rx<UserProfileModel?> currentUserProfileObx = Rx<UserProfileModel?>(null);
+  final userProfile$ = Rx<UserProfileModel?>(null);
 
-  UserProfileModel? get currentUserProfile => currentUserProfileObx.value;
-  bool get hasUserProfile => currentUserProfileObx.value != null;
-  void setUserProfileObx(UserProfileModel? userProfileModel) => currentUserProfileObx.value = userProfileModel;
-  void cleanUserProfile() => setUserProfileObx(null);
-  Future<void> fetchUserProfile(String uid) async => setUserProfileObx(await getUserProfile(uid));
-
-  Future<UserProfileModel?> getUserProfile(String id) async {
-    final docSnapshot = await _collectionReference.doc(id).get();
-    if (docSnapshot.exists) {
-      final userProfile = UserProfileModel.fromMap(docSnapshot.data() as Map<String, dynamic>);
-      return userProfile;
-    }
-
-    return null;
+  Future<void> fetchById(String id) async {
+    final snapshot = await _collectionRef.doc(id).get();
+    userProfile$.value = snapshot.exists ? UserProfileModel.fromSnapshot(snapshot) : null;
   }
 
-  Future<void> setUserProfile(UserProfileModel userProfile) async {
-    await _collectionReference.doc(userProfile.uid).set(userProfile.toMap());
-    setUserProfileObx(userProfile);
+  Future<void> set(UserProfileModel userProfile) async {
+    await _collectionRef.doc(userProfile.uid).set(userProfile.toMap());
   }
 
-  Future<void> updateUserProfileWithCompanyUid(String userUid, String companyUid) async {
-    await _collectionReference.doc(userUid).update({'companyUid': companyUid});
-
-    await fetchUserProfile(userUid);
+  Future<void> setCompanyUid(String userUid, String companyUid) async {
+    await _collectionRef.doc(userUid).update({'companyUid': companyUid});
   }
+
+  void clean() => userProfile$.value = null;
 }

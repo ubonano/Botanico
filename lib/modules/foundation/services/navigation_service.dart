@@ -1,9 +1,8 @@
 import 'package:botanico/modules/foundation/config/routes.dart';
 import 'package:get/get.dart';
 
-import 'common_services.dart';
-
-class NavigationService extends GetxService with CommonServices {
+// TODO ver si tiene sentido que sea un servicio
+class NavigationService extends GetxService {
   void toHome({bool canPop = false}) => to(Routes.HOME, canPop: canPop);
   void toLobby({bool canPop = false}) => to(Routes.LOBBY, canPop: canPop);
   void toSignIn({bool canPop = false}) => to(Routes.SIGN_IN, canPop: canPop);

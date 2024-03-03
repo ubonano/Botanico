@@ -8,6 +8,7 @@ import 'package:botanico/modules/foundation/services/loggin_service.dart';
 import 'package:get/get.dart';
 
 import '../../auth/sign_out/sign_out_controller.dart';
+import '../../home/home_controller.dart';
 import '../../lobby/lobby_controller.dart';
 import '../../user_profile/user_profile_service.dart';
 import '../services/async_operation_service.dart';
@@ -25,9 +26,11 @@ class AppBindings extends Bindings {
 
     Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
     Get.lazyPut<SignUpPageController>(() => SignUpPageController(), fenix: true);
+    
     Get.lazyPut<UserProfileController>(() => UserProfileController(), fenix: true);
     Get.lazyPut<CompanyProfileController>(() => CompanyProfileController(), fenix: true);
     Get.lazyPut<LobbyController>(() => LobbyController(), fenix: true);
     Get.lazyPut<SignOutController>(() => SignOutController(), fenix: true);
+    Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
   }
 }

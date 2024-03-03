@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../foundation/services/common_services.dart';
-import '../foundation/utils/log_lifecycle.dart';
+import '../foundation/utils/custom_controller.dart';
 import 'user_profile_model.dart';
 
-class UserProfileController extends GetxController with CommonServices, LogLifecycleController {
+class UserProfileController extends GetxController with CustomController {
   @override
   String get logTag => 'UserProfileController';
+
+  final userProfileformKey = GlobalKey<FormState>();
 
   final nameController = TextEditingController();
   final birthDateController = TextEditingController();
@@ -18,30 +19,35 @@ class UserProfileController extends GetxController with CommonServices, LogLifec
   String get _phone => phoneController.text.trim();
   String get _dni => dniController.text.trim();
 
-  UserProfileModel get newUserProfile => UserProfileModel(
-        uid: authService.currentUser!.uid,
-        email: authService.currentUser!.email!,
-        name: _name,
-        birthDate: _birthDate,
-        phone: _phone,
-        dni: _dni,
-      );
+  Future<void> submit() async {
+    if (!userProfileformKey.currentState!.validate()) return;
 
-  Future<void> createUserProfile() async {
-    await asyncOperationService.performOperation(
-      operation: () => userProfileService.setUserProfile(newUserProfile),
-      operationName: 'Create user profile',
-      successMessage: 'Perfil creado con exito',
+    await async.perform(
+      operationName: 'submit user profile',
+      successMessage: 'Perfil guardado con exito',
+      operation: () async {
+        userProfileService.set(
+          UserProfileModel(
+            uid: loggedUserUID,
+            email: loggedUserEmail,
+            name: _name,
+            birthDate: _birthDate,
+            phone: _phone,
+            dni: _dni,
+          ),
+        );
+
+        await userProfileService.fetchById(loggedUserUID);
+      },
+      onSuccess: () => navigate.toLobby(), // TODO cuando el usuario ya tenia un perfil ecreado, dede navegar a home
     );
-
-    navigationService.toLobby();
   }
 
   Future<void> initializeControllers() async {
-    if (userProfileService.hasUserProfile) {
-      setControllers(userProfileService.currentUserProfile!);
+    if (isUserProfileLoaded) {
+      setControllers(userProfile!);
     } else {
-      clearControllers();
+      clear();
     }
   }
 
@@ -52,7 +58,7 @@ class UserProfileController extends GetxController with CommonServices, LogLifec
     dniController.text = userProfile.dni;
   }
 
-  void clearControllers() {
+  void clear() {
     nameController.clear();
     birthDateController.clear();
     phoneController.clear();

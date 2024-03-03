@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import '../foundation/utils/log_lifecycle.dart';
+import '../foundation/utils/custom_service.dart';
 
-class AuthService extends GetxService with LogLifecycleService {
+class AuthService extends GetxService with CustomService {
   @override
   String get logTag => 'AuthService';
 

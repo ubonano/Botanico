@@ -5,9 +5,7 @@ import 'company_profile_controller.dart';
 import '../foundation/widgets/custom_input_field.dart';
 
 class CompanyProfilePage extends GetView<CompanyProfileController> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  CompanyProfilePage({super.key});
+  const CompanyProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +14,7 @@ class CompanyProfilePage extends GetView<CompanyProfileController> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: controller.formKey,
           child: Column(
             children: [
               CustomInputField(label: 'Nombre', controller: controller.nameController),
@@ -31,7 +29,7 @@ class CompanyProfilePage extends GetView<CompanyProfileController> {
               const SizedBox(height: 10),
               CustomInputField(label: 'Teléfono', controller: controller.phoneController),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: controller.setCompany, child: const Text('Crear Compañía')),
+              ElevatedButton(onPressed: controller.save, child: const Text('Guardar')),
             ],
           ),
         ),

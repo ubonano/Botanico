@@ -5,9 +5,7 @@ import '../foundation/widgets/custom_input_field.dart';
 import 'user_profile_controller.dart';
 
 class UserProfilePage extends GetView<UserProfileController> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  UserProfilePage({Key? key}) : super(key: key);
+  const UserProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +16,7 @@ class UserProfilePage extends GetView<UserProfileController> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: controller.userProfileformKey,
           child: Column(
             children: [
               CustomInputField(
@@ -49,11 +47,7 @@ class UserProfilePage extends GetView<UserProfileController> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    await controller.createUserProfile();
-                  }
-                },
+                onPressed: controller.submit,
                 child: const Text('Guardar Perfil'),
               ),
             ],

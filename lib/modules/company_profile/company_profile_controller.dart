@@ -1,13 +1,14 @@
-import 'package:botanico/modules/foundation/utils/log_lifecycle.dart';
+import 'package:botanico/modules/foundation/utils/custom_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'company_profile_model.dart';
-import '../foundation/services/common_services.dart';
 
-class CompanyProfileController extends GetxController with CommonServices, LogLifecycleController {
+class CompanyProfileController extends GetxController with CustomController {
   @override
   String get logTag => 'CompanyProfileController';
+
+  final formKey = GlobalKey<FormState>();
 
   final nameController = TextEditingController();
   final addressController = TextEditingController();
@@ -23,39 +24,40 @@ class CompanyProfileController extends GetxController with CommonServices, LogLi
   String get _country => countryController.text.trim();
   String get _phone => phoneController.text.trim();
 
-  CompanyProfileModel get newCompanyProfile => CompanyProfileModel(
-        uid:
-            companyProfileService.currentCompanyProfile != null ? companyProfileService.currentCompanyProfile!.uid : '',
-        ownerUid: authService.currentUser!.uid,
-        name: _name,
-        address: _address,
-        city: _city,
-        province: _province,
-        country: _country,
-        phone: _phone,
-      );
+  Future<void> save() async {
+    if (!formKey.currentState!.validate()) return;
 
-  Future<void> setCompany() async {
-    await asyncOperationService.performOperation(
-      operation: () async {
-        await companyProfileService.setOrUpdateCompanyProfile(newCompanyProfile);
-        await companyProfileService.fetchCompanyProfile(authService.currentUser!.uid);
-
-        await userProfileService.updateUserProfileWithCompanyUid(
-          authService.currentUser!.uid,
-          companyProfileService.currentCompanyProfile!.uid,
-        );
-      },
-      operationName: 'Create company profile',
+    await async.perform(
+      operationName: 'Create company',
       successMessage: 'Empresa creada con exito!',
-    );
+      operation: () async {
+        await companyProfileService.set(
+          CompanyProfileModel(
+            uid: userProfile!.companyUid,
+            ownerUid: isCompanyLoaded ? company!.ownerUid : loggedUserUID,
+            name: _name,
+            address: _address,
+            city: _city,
+            province: _province,
+            country: _country,
+            phone: _phone,
+          ),
+        );
 
-    navigationService.toHome();
+        await companyProfileService.fetchByOwnerId(loggedUserUID);
+
+        if (!userHasCompany) {
+          await userProfileService.setCompanyUid(loggedUserUID, company!.uid);
+          await userProfileService.fetchById(loggedUserUID);
+        }
+      },
+      onSuccess: () => navigate.toHome(),
+    );
   }
 
   Future<void> initializeControllers() async {
-    if (companyProfileService.hasCompanyProfile) {
-      setControllers(companyProfileService.currentCompanyProfile!);
+    if (isCompanyLoaded) {
+      setControllers(company!);
     } else {
       clearControllers();
     }

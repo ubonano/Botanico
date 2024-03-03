@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserProfileModel {
   final String uid;
   final String email;
@@ -47,6 +49,10 @@ class UserProfileModel {
       'dni': dni,
       'companyUid': companyUid,
     };
+  }
+
+  static UserProfileModel fromSnapshot(DocumentSnapshot snapshot) {
+    return UserProfileModel.fromMap(snapshot.data() as Map<String, dynamic>);
   }
 
   factory UserProfileModel.fromMap(Map<String, dynamic> map) {

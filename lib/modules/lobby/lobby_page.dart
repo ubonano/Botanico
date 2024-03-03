@@ -4,13 +4,11 @@ import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'lobby_controller.dart';
 
-class LobbyPage extends StatelessWidget {
+class LobbyPage extends GetView<LobbyController> {
   const LobbyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final LobbyController controller = Get.put(LobbyController());
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Lobby"),

@@ -2,11 +2,11 @@ import 'package:botanico/modules/foundation/services/loggin_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+ //TODO ver si tiene sentido que sea un servicio
 class AsyncOperationService extends GetxService {
   final LoggingService _loggingService = Get.find();
 
-  Future<T?> performOperation<T>({
+  Future<T?> perform<T>({
     required Future<T> Function() operation,
     String operationName = "Operacion",
     String successMessage = '',
