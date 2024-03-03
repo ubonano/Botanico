@@ -34,7 +34,7 @@ class SignInPage extends GetView<SignInController> {
                 onFieldSubmitted: (_) => controller.signIn(),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: () => controller.signIn(), child: const Text('Iniciar Sesión')),
+              ElevatedButton(onPressed: controller.signIn, child: const Text('Iniciar Sesión')),
               const SizedBox(height: 20),
               TextButton(onPressed: _showRecoverPasswordDialog, child: const Text("¿Olvidaste tu contraseña?")),
               const SizedBox(height: 20),
@@ -61,7 +61,7 @@ class SignInPage extends GetView<SignInController> {
           ),
         ),
         actions: [
-          TextButton(onPressed: () => controller.recoverPassword(), child: const Text("Enviar")),
+          TextButton(onPressed: controller.recoverPassword, child: const Text("Enviar")),
         ],
       ),
     );
