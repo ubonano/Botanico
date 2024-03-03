@@ -30,7 +30,9 @@ class LobbyPage extends GetView<LobbyController> {
             ElevatedButton(onPressed: controller.copyToClipboard, child: const Text('Copiar código de vinculación')),
             const SizedBox(height: 20),
             ElevatedButton(
-                onPressed: controller.navigateToCompany, child: const Text('¿Necesitas registrar una empresa?')),
+              onPressed: controller.navigateToCompany,
+              child: const Text('¿Necesitas registrar una empresa?'),
+            ),
             const SizedBox(height: 20),
             const SignOutButton(),
           ],
