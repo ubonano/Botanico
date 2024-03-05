@@ -22,9 +22,5 @@ class UserProfileService extends GetxService with CustomService {
     await _collectionRef.doc(userProfile.uid).set(userProfile.toMap());
   }
 
-  Future<void> setCompanyUid(String userUid, String companyUid) async {
-    await _collectionRef.doc(userUid).update({'companyUid': companyUid});
-  }
-
   void clean() => userProfile$.value = null;
 }

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import '../foundation/utils/custom_controller.dart';
 import 'user_profile_model.dart';
 
+//Refactor: unificar el auth service en el userProfile... Quitar el profile y dejar solo user.. mover todo al modulo auth, y cambiarlo a modulo user...
+
 class UserProfileController extends GetxController with CustomController {
   @override
   String get logTag => 'UserProfileController';
@@ -37,7 +39,7 @@ class UserProfileController extends GetxController with CustomController {
           ),
         );
 
-        await userProfileService.fetchById(loggedUserUID);
+        await fetchUserProfile();
       },
       onSuccess: () => navigate.toLobby(), // TODO cuando el usuario ya tenia un perfil ecreado, dede navegar a home
     );

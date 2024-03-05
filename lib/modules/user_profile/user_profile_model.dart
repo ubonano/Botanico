@@ -7,7 +7,6 @@ class UserProfileModel {
   final String birthDate;
   final String phone;
   final String dni;
-  final String companyUid;
 
   UserProfileModel({
     required this.uid,
@@ -16,7 +15,6 @@ class UserProfileModel {
     required this.birthDate,
     required this.phone,
     required this.dni,
-    this.companyUid = '',
   });
 
   UserProfileModel copyWith({
@@ -35,7 +33,6 @@ class UserProfileModel {
       birthDate: birthDate ?? this.birthDate,
       phone: phone ?? this.phone,
       dni: dni ?? this.dni,
-      companyUid: companyUid ?? this.companyUid,
     );
   }
 
@@ -47,7 +44,6 @@ class UserProfileModel {
       'birthDate': birthDate,
       'phone': phone,
       'dni': dni,
-      'companyUid': companyUid,
     };
   }
 
@@ -63,7 +59,6 @@ class UserProfileModel {
       birthDate: map['birthDate'] ?? '',
       phone: map['phone'] ?? '',
       dni: map['dni'] ?? '',
-      companyUid: map['companyUid'] ?? '',
     );
   }
 }
