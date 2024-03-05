@@ -1,4 +1,4 @@
-import 'package:botanico/modules/user_profile/user_profile_page.dart';
+import 'package:botanico/modules/user_profile/user_page.dart';
 import 'package:get/get.dart';
 import '../../auth/sign_in/sign_in_page.dart';
 import '../../auth/sign_up/sign_up_page.dart';
@@ -27,7 +27,7 @@ class Pages {
     ),
     GetPage(
       name: Routes.USER_PROFILE,
-      page: () => UserProfilePage(),
+      page: () => const UserPage(),
     ),
     GetPage(
       name: Routes.COMPANY_PROFILE,
