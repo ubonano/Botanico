@@ -59,5 +59,10 @@ String _getErrorMessage(Object e) {
       return 'El email proporcionado no es válido.';
     }
   }
+
+  if (e.toString().contains('permission-denied')) {
+    return 'No tiene acceso a la información solicitada.';
+  }
+
   return e.toString();
 }
