@@ -11,9 +11,9 @@ class CompanyService extends GetxService with CustomService {
   final _collectionRef = FirebaseFirestore.instance.collection(FirestoreCollections.companies);
   final company$ = Rx<CompanyModel?>(null);
 
-  Future<void> fetchById(String id) async {
-    final snapshot = await _collectionRef.doc(id).get();
-    company$.value = snapshot.exists ? CompanyModel.fromSnapshot(snapshot) : null;
+  Future<void> fetchByOwnerId(String ownerUid) async {
+    final snapshot = await _collectionRef.where('ownerUid', isEqualTo: ownerUid).limit(1).get();
+    company$.value = snapshot.docs.isNotEmpty ? CompanyModel.fromSnapshot(snapshot.docs.first) : null;
   }
 
   Future<void> set(CompanyModel company) async {
