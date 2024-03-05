@@ -44,12 +44,9 @@ class CompanyController extends GetxController with CustomController {
           ),
         );
 
-        await userProfileService.setCompanyUid(loggedUserUID, company!.uid);
-        await fetchUserProfile();
-
         await fetchCompany();
       },
-      onSuccess: navigate.toHome,
+      onSuccess: () => navigate.toHome(),
     );
   }
 
