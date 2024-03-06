@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../foundation/utils/custom_controller.dart';
-import 'user_model.dart';
+import '../../foundation/utils/custom_controller.dart';
+import '../user_model.dart';
 
 class UserController extends GetxController with CustomController {
   @override

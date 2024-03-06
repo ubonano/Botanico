@@ -1,9 +1,9 @@
 import 'package:botanico/modules/company/company_model.dart';
-import 'package:botanico/modules/user/user_model.dart';
+import 'package:botanico/modules/auth/user_model.dart';
 import 'package:get/get.dart';
-import '../../user/auth_service.dart';
+import '../../auth/services/auth_service.dart';
 import '../../company/company_service.dart';
-import '../../user/user_service.dart';
+import '../../auth/services/user_service.dart';
 import '../services/async_operation_service.dart';
 import '../services/loggin_service.dart';
 import '../services/navigation_service.dart';

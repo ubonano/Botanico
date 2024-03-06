@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/config/firestore_collections.dart';
-import '../foundation/utils/custom_service.dart';
-import 'user_model.dart';
+import '../../foundation/utils/custom_service.dart';
+import '../user_model.dart';
 
 class UserService extends GetxService with CustomService {
   @override
