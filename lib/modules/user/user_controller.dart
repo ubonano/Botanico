@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import '../foundation/utils/custom_controller.dart';
 import 'user_model.dart';
 
-//Refactor: unificar el auth service en el userProfile... Quitar el profile y dejar solo user.. mover todo al modulo auth, y cambiarlo a modulo user...
-
 class UserController extends GetxController with CustomController {
   @override
   String get logTag => 'UserController';
