@@ -18,8 +18,36 @@ service cloud.firestore {
                    && request.resource.data.dni is string && request.resource.data.dni.matches('^\\d+$');
     }
 
-    match /companies/{companyId}{
-      allow read, delete, update, create: if true;
+    match /companies/{companyId} {
+      // Permite leer todos los documentos de empresas
+      allow read: if true;
+      
+      // Crea una nueva empresa sólo si el usuario está autenticado y es el ownerUid,
+      // y verifica que todos los campos necesarios estén presentes y sean válidos
+      allow create: if request.auth != null && request.resource.data.ownerUid == request.auth.uid
+                    && request.resource.data.keys().hasAll(['ownerUid', 'name', 'address', 'city', 'province', 'country', 'phone'])
+                    && request.resource.data.ownerUid is string
+                    && request.resource.data.name is string
+                    && request.resource.data.address is string
+                    && request.resource.data.city is string
+                    && request.resource.data.province is string
+                    && request.resource.data.country is string
+                    // Verifica que phone sea un string numérico
+                    && request.resource.data.phone is string && request.resource.data.phone.matches('^\\d+$');
+
+      // Actualiza una empresa sólo si el usuario está autenticado, es el ownerUid,
+      // y si los campos modificados cumplen con las validaciones especificadas
+      allow update: if request.auth != null && resource.data.ownerUid == request.auth.uid
+                    && (request.resource.data.name is string || !(request.resource.data.keys().hasAny(['name'])))
+                    && (request.resource.data.address is string || !(request.resource.data.keys().hasAny(['address'])))
+                    && (request.resource.data.city is string || !(request.resource.data.keys().hasAny(['city'])))
+                    && (request.resource.data.province is string || !(request.resource.data.keys().hasAny(['province'])))
+                    && (request.resource.data.country is string || !(request.resource.data.keys().hasAny(['country'])))
+                    && (request.resource.data.phone is string && request.resource.data.phone.matches('^\\d+$') || !(request.resource.data.keys().hasAny(['phone'])));
+
+      // Permite eliminar una empresa sólo si el usuario está autenticado y es el ownerUid
+      allow delete: if request.auth != null && resource.data.ownerUid == request.auth.uid;
     }
+
   }
 }

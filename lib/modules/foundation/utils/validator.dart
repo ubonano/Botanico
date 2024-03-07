@@ -1,12 +1,19 @@
 class Validator {
-  static String? emailValidator(String? value) {
+  static String? required(String? value, {String fieldName = "Este campo"}) {
+    if (value == null || value.isEmpty) {
+      return "$fieldName es obligatorio";
+    }
+    return null;
+  }
+
+  static String? email(String? value) {
     if (value == null || value.isEmpty || !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
       return 'Ingresa un email válido';
     }
     return null;
   }
 
-  static String? passwordValidator(String? value) {
+  static String? password(String? value) {
     if (value == null || value.isEmpty || value.length < 6) {
       return 'La contraseña debe tener al menos 6 caracteres';
     }
@@ -20,7 +27,7 @@ class Validator {
     return null;
   }
 
-  static String? birthDateValidator(String? value) {
+  static String? birthDate(String? value) {
     if (value == null || value.isEmpty) {
       return "Este campo es obligatorio";
     } else if (!RegExp(r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\d{4}$').hasMatch(value)) {
@@ -29,7 +36,7 @@ class Validator {
     return null;
   }
 
-  static String? phoneNumberValidator(String? value) {
+  static String? phoneNumber(String? value) {
     if (value == null || value.isEmpty) {
       return "Este campo es obligatorio";
     } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
@@ -38,7 +45,7 @@ class Validator {
     return null;
   }
 
-  static String? dniValidator(String? value) {
+  static String? dni(String? value) {
     if (value == null || value.isEmpty) {
       return "Este campo es obligatorio";
     } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
