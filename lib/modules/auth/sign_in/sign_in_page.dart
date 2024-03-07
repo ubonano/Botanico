@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../foundation/utils/validator.dart';
 import '../../foundation/widgets/custom_input_field.dart';
-import '../controllers/sign_in_controller.dart';
+import 'sign_in_controller.dart';
 
 class SignInPage extends GetView<SignInController> {
-  final _formKey = GlobalKey<FormState>();
-  final recoverPasswordFormKey = GlobalKey<FormState>();
-
-  SignInPage({super.key});
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +14,7 @@ class SignInPage extends GetView<SignInController> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: controller.signInFormKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -35,23 +31,15 @@ class SignInPage extends GetView<SignInController> {
                 obscureText: true,
                 validator: Validator.passwordValidator,
                 textInputAction: TextInputAction.go,
-                onFieldSubmitted: (_) => _signIn(),
+                onFieldSubmitted: (_) => controller.signIn(),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _signIn,
-                child: const Text('Iniciar Sesión'),
-              ),
+              ElevatedButton(onPressed: controller.signIn, child: const Text('Iniciar Sesión')),
               const SizedBox(height: 20),
-              TextButton(
-                onPressed: () => _showRecoverPasswordDialog(),
-                child: const Text("¿Olvidaste tu contraseña?"),
-              ),
+              TextButton(onPressed: _showRecoverPasswordDialog, child: const Text("¿Olvidaste tu contraseña?")),
               const SizedBox(height: 20),
               TextButton(
-                onPressed: controller.navigateToSignUp,
-                child: const Text('¿No tenes cuenta? Crear nueva cuenta'),
-              ),
+                  onPressed: controller.navigateToSignUp, child: const Text('¿No tenes cuenta? Crear nueva cuenta')),
             ],
           ),
         ),
@@ -59,18 +47,12 @@ class SignInPage extends GetView<SignInController> {
     );
   }
 
-  void _signIn() {
-    if (_formKey.currentState!.validate()) {
-      controller.signIn();
-    }
-  }
-
   void _showRecoverPasswordDialog() {
     Get.dialog(
       AlertDialog(
         title: const Text("Recuperar contraseña"),
         content: Form(
-          key: recoverPasswordFormKey,
+          key: controller.recoverPasswordFormKey,
           child: CustomInputField(
             label: 'Email',
             controller: controller.emailRecoverController,
@@ -79,14 +61,7 @@ class SignInPage extends GetView<SignInController> {
           ),
         ),
         actions: [
-          TextButton(
-            onPressed: () {
-              if (recoverPasswordFormKey.currentState!.validate()) {
-                controller.recoverPassword();
-              }
-            },
-            child: const Text("Enviar"),
-          ),
+          TextButton(onPressed: controller.recoverPassword, child: const Text("Enviar")),
         ],
       ),
     );

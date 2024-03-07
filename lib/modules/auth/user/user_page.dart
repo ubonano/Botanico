@@ -2,23 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../foundation/utils/validator.dart';
 import '../../foundation/widgets/custom_input_field.dart';
-import '../controllers/user_profile_controller.dart';
+import 'user_controller.dart';
 
-class UserProfilePage extends GetView<UserProfileController> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  UserProfilePage({Key? key}) : super(key: key);
+class UserPage extends GetView<UserController> {
+  const UserPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    controller.initializeFormFields();
+    controller.initializeControllers();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Completa tu Perfil')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: controller.userFormKey,
           child: Column(
             children: [
               CustomInputField(
@@ -49,11 +47,7 @@ class UserProfilePage extends GetView<UserProfileController> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    await controller.createUserProfile();
-                  }
-                },
+                onPressed: controller.submit,
                 child: const Text('Guardar Perfil'),
               ),
             ],

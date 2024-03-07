@@ -1,49 +1,35 @@
-import 'package:botanico/modules/foundation/utils/common_services.dart';
+import 'package:botanico/modules/foundation/services/loggin_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AsyncOperationService extends GetxService with CommonServices {
-  Future<T?> performAsyncAuthOperation<T>(
-    Future<T> Function() operation, {
+class AsyncOperationService extends GetxService {
+  final _loggingService = Get.find<LoggingService>();
+
+  Future<T?> perform<T>({
+    required Future<T> Function() operation,
     String operationName = "Operacion",
-  }) async {
-    try {
-      T result = await operation();
-
-      loggingService.logInfo("$operationName exitosa.");
-
-      return result;
-    } catch (e) {
-      Get.snackbar('Error', _getErrorMessage(e), backgroundColor: Colors.red, colorText: Colors.white);
-
-      loggingService.logError("$operationName fallida: ${_getErrorMessage(e)}", e);
-
-      return null;
-    }
-  }
-
-  Future<T?> performAsyncOperation<T>(
-    Future<T> Function() operation, {
     String successMessage = '',
-    required String errorMessage,
-    String operationName = "Operacion",
+    bool showErrorMessageBySnackbar = true,
+    Function()? onSuccess,
+    Function(Object error)? onError,
   }) async {
     try {
       T result = await operation();
 
-      if (successMessage.isNotEmpty) {
+      if (successMessage != '') {
         Get.snackbar('Éxito', successMessage, backgroundColor: Colors.green, colorText: Colors.white);
       }
-
-      loggingService.logInfo("$operationName exitosa.");
+      _loggingService.info("$operationName exitosa.");
+      onSuccess?.call();
 
       return result;
     } catch (e) {
-      Get.snackbar('Error', '$errorMessage: ${e.toString()}', backgroundColor: Colors.red, colorText: Colors.white);
-
-      loggingService.logError("$operationName fallida: $errorMessage", e);
-
+      if (showErrorMessageBySnackbar) {
+        Get.snackbar('Error', _getErrorMessage(e), backgroundColor: Colors.red, colorText: Colors.white);
+      }
+      _loggingService.error("$operationName fallida: ${_getErrorMessage(e)}", e);
+      onError?.call(e);
       return null;
     }
   }
@@ -73,5 +59,10 @@ String _getErrorMessage(Object e) {
       return 'El email proporcionado no es válido.';
     }
   }
-  return 'Ocurrió un error desconocido. Por favor, inténtalo de nuevo más tarde.';
+
+  if (e.toString().contains('permission-denied')) {
+    return 'No tiene acceso a la información solicitada.';
+  }
+
+  return e.toString();
 }
