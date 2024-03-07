@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import '../../foundation/utils/custom_controller.dart';
 
-class SignUpPageController extends GetxController with CustomController {
+class SignUpController extends GetxController with CustomController {
   @override
   String get logTag => 'SignUpPageController';
 
@@ -20,7 +20,7 @@ class SignUpPageController extends GetxController with CustomController {
 
     await async.perform(
       operationName: 'Sign up',
-      operation: () => auth.signUp(_email, _password),
+      operation: () async => await auth.signUp(_email, _password),
       onSuccess: navigate.toUser,
     );
   }

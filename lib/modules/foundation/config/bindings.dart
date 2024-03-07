@@ -25,7 +25,7 @@ class AppBindings extends Bindings {
     Get.put(CompanyService(), permanent: true);
 
     Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
-    Get.lazyPut<SignUpPageController>(() => SignUpPageController(), fenix: true);
+    Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true);
     
     Get.lazyPut<UserController>(() => UserController(), fenix: true);
     Get.lazyPut<CompanyController>(() => CompanyController(), fenix: true);

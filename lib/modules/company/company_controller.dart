@@ -25,7 +25,6 @@ class CompanyController extends GetxController with CustomController {
   String get _phone => phoneController.text.trim();
 
   Future<void> submit() async {
-    // TODO analizar de separar para actualizar en otro lado
     if (!companyFormKey.currentState!.validate()) return;
 
     await async.perform(

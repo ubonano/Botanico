@@ -5,7 +5,7 @@ import '../../foundation/utils/validator.dart';
 import '../../foundation/widgets/custom_input_field.dart';
 import 'sign_up_controller.dart';
 
-class SignUpPage extends GetView<SignUpPageController> {
+class SignUpPage extends GetView<SignUpController> {
   const SignUpPage({super.key});
 
   @override

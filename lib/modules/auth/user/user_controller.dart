@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../foundation/utils/custom_controller.dart';
-import '../user_model.dart';
+import 'user_model.dart';
 
 class UserController extends GetxController with CustomController {
   @override
@@ -22,9 +22,11 @@ class UserController extends GetxController with CustomController {
   Future<void> submit() async {
     if (!userFormKey.currentState!.validate()) return;
 
+    bool isForUpdate = isUserLoaded;
+
     await async.perform(
       operationName: 'Submit user',
-      successMessage: 'Perfil guardado con exito',
+      successMessage: 'Usuario guardado con exito',
       operation: () async {
         userService.set(
           UserModel(
@@ -39,7 +41,13 @@ class UserController extends GetxController with CustomController {
 
         await fetchUser();
       },
-      onSuccess: () => navigate.toLobby(), // TODO cuando el usuario ya tenia un perfil ecreado, dede navegar a home
+      onSuccess: () {
+        if (isForUpdate) {
+          navigate.toHome();
+        } else {
+          navigate.toLobby();
+        }
+      },
     );
   }
 

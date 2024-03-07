@@ -1,5 +1,5 @@
 import 'package:botanico/modules/company/company_model.dart';
-import 'package:botanico/modules/auth/user_model.dart';
+import 'package:botanico/modules/auth/user/user_model.dart';
 import 'package:get/get.dart';
 import '../../auth/services/auth_service.dart';
 import '../../company/company_service.dart';
