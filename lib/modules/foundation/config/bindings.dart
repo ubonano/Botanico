@@ -1,6 +1,6 @@
-import 'package:botanico/modules/auth/widgets/sign_in/sign_in_controller.dart';
-import 'package:botanico/modules/auth/widgets/sign_up/sign_up_controller.dart';
-import 'package:botanico/modules/auth/widgets/user_create/user_create_controller.dart';
+import 'package:botanico/modules/auth/widgets/sign_in_page/sign_in_controller.dart';
+import 'package:botanico/modules/auth/widgets/sign_up_page/sign_up_controller.dart';
+import 'package:botanico/modules/auth/widgets/user_create_page/user_create_controller.dart';
 import 'package:botanico/modules/company/company_controller.dart';
 import 'package:botanico/modules/company/company_service.dart';
 import 'package:botanico/modules/foundation/services/loggin_service.dart';
@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 import '../../auth/services/auth_service.dart';
 import '../../auth/services/user_service.dart';
-import '../../auth/widgets/sign_out/sign_out_controller.dart';
+import '../../auth/widgets/sign_out_button/sign_out_controller.dart';
 import '../../home/home_controller.dart';
 import '../../lobby/lobby_controller.dart';
 import '../services/async_operation_service.dart';

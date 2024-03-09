@@ -1,7 +1,7 @@
-import 'package:botanico/modules/auth/widgets/user_create/user_create_page.dart';
+import 'package:botanico/modules/auth/widgets/user_create_page/user_create_page.dart';
 import 'package:get/get.dart';
-import '../../auth/widgets/sign_in/sign_in_page.dart';
-import '../../auth/widgets/sign_up/sign_up_page.dart';
+import '../../auth/widgets/sign_in_page/sign_in_page.dart';
+import '../../auth/widgets/sign_up_page/sign_up_page.dart';
 import '../../company/company_page.dart';
 import '../../home/home_page.dart';
 import '../../lobby/lobby_page.dart';

@@ -23,23 +23,24 @@ class UserCreateController extends GetxController with CustomController {
     if (!userFormKey.currentState!.validate()) return;
 
     await async.perform(
-        operationName: 'Submit user',
-        successMessage: 'Perfil creado!',
-        operation: () async {
-          userService.create(
-            UserModel(
-              uid: loggedUserUID,
-              email: loggedUserEmail,
-              name: _name,
-              birthDate: _birthDate,
-              phone: _phone,
-              dni: _dni,
-            ),
-          );
+      operationName: 'Create user',
+      successMessage: 'Perfil creado!',
+      operation: () async {
+        await userService.create(
+          UserModel(
+            uid: loggedUserUID,
+            email: loggedUserEmail,
+            name: _name,
+            birthDate: _birthDate,
+            phone: _phone,
+            dni: _dni,
+          ),
+        );
 
-          await fetchUser();
-        },
-        onSuccess: navigate.toLobby);
+        await fetchUser();
+      },
+      onSuccess: navigate.toLobby,
+    );
   }
 
   @override
