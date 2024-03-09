@@ -23,14 +23,14 @@ class SignUpPage extends GetView<SignUpController> {
                 label: 'Email',
                 controller: controller.emailController,
                 keyboardType: TextInputType.emailAddress,
-                validator: Validator.emailValidator,
+                validator: Validator.email,
               ),
               const SizedBox(height: 10),
               CustomInputField(
                 label: 'Contraseña',
                 controller: controller.passwordController,
                 obscureText: true,
-                validator: Validator.passwordValidator,
+                validator: Validator.password,
               ),
               const SizedBox(height: 10),
               CustomInputField(

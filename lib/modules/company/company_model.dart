@@ -23,6 +23,7 @@ class CompanyModel {
 
   Map<String, dynamic> toMap() {
     return {
+      'uid': uid,
       'ownerUid': ownerUid,
       'name': name,
       'address': address,
