@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../foundation/utils/validator.dart';
 import '../../../foundation/widgets/custom_input_field.dart';
-import 'user_create_controller.dart';
+import 'profile_create_controller.dart';
 
-class UserCreatePage extends GetView<UserCreateController> {
-  const UserCreatePage({Key? key}) : super(key: key);
+class ProfileCreatePage extends GetView<ProfileCreateController> {
+  const ProfileCreatePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class UserCreatePage extends GetView<UserCreateController> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: controller.userFormKey,
+          key: controller.formKey,
           child: Column(
             children: [
               CustomInputField(

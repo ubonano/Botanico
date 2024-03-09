@@ -21,7 +21,7 @@ class SignUpController extends GetxController with CustomController {
     await async.perform(
       operationName: 'Sign up',
       operation: () async => await auth.signUp(_email, _password),
-      onSuccess: navigate.toUser,
+      onSuccess: navigate.toProfileCreate,
     );
   }
 

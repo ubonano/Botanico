@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../foundation/utils/custom_controller.dart';
-import '../../models/user_model.dart';
+import '../../models/profile_model.dart';
 
-class UserCreateController extends GetxController with CustomController {
+class ProfileCreateController extends GetxController with CustomController {
   @override
-  String get logTag => 'UserCreateController';
+  String get logTag => 'ProfileCreateController';
 
-  final userFormKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   final nameController = TextEditingController();
   final birthDateController = TextEditingController();
@@ -20,14 +20,14 @@ class UserCreateController extends GetxController with CustomController {
   String get _dni => dniController.text.trim();
 
   Future<void> submit() async {
-    if (!userFormKey.currentState!.validate()) return;
+    if (!formKey.currentState!.validate()) return;
 
     await async.perform(
-      operationName: 'Create user',
+      operationName: 'Create profile',
       successMessage: 'Perfil creado!',
       operation: () async {
-        await userService.create(
-          UserModel(
+        await profileService.create(
+          ProfileModel(
             uid: loggedUserUID,
             email: loggedUserEmail,
             name: _name,
@@ -37,7 +37,7 @@ class UserCreateController extends GetxController with CustomController {
           ),
         );
 
-        await fetchUser();
+        await fetchProfile();
       },
       onSuccess: navigate.toLobby,
     );
