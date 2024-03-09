@@ -1,5 +1,5 @@
 import 'package:botanico/modules/company/company_model.dart';
-import 'package:botanico/modules/auth/user/user_model.dart';
+import 'package:botanico/modules/auth/models/user_model.dart';
 import 'package:get/get.dart';
 import '../../auth/services/auth_service.dart';
 import '../../company/company_service.dart';
@@ -28,7 +28,7 @@ mixin CustomController on GetxController {
   CompanyModel? get company => companyService.company$.value;
   bool get isCompanyLoaded => company != null;
 
-  Future<void> fetchUser() async => await userService.fetchById(loggedUserUID);
+  Future<void> fetchUser() async => await userService.fetch(loggedUserUID);
   Future<void> fetchCompany() async => await companyService.fetchByOwnerId(loggedUserUID);
 
   void cleanData() {

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/config/firestore_collections.dart';
 import '../../foundation/utils/custom_service.dart';
-import '../user/user_model.dart';
+import '../models/user_model.dart';
 
 class UserService extends GetxService with CustomService {
   @override
@@ -13,12 +13,12 @@ class UserService extends GetxService with CustomService {
 
   final user$ = Rx<UserModel?>(null);
 
-  Future<void> fetchById(String id) async {
+  Future<void> fetch(String id) async {
     final snapshot = await _collectionRef.doc(id).get();
     user$.value = snapshot.exists ? UserModel.fromSnapshot(snapshot) : null;
   }
 
-  Future<void> set(UserModel user) async {
+  Future<void> create(UserModel user) async {
     await _collectionRef.doc(user.uid).set(user.toMap());
   }
 

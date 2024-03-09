@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../foundation/utils/validator.dart';
-import '../../foundation/widgets/custom_input_field.dart';
-import 'user_controller.dart';
+import '../../../foundation/utils/validator.dart';
+import '../../../foundation/widgets/custom_input_field.dart';
+import 'user_create_controller.dart';
 
-class UserPage extends GetView<UserController> {
-  const UserPage({Key? key}) : super(key: key);
+class UserCreatePage extends GetView<UserCreateController> {
+  const UserCreatePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    controller.initializeControllers();
-
     return Scaffold(
       appBar: AppBar(title: const Text('Completa tu Perfil')),
       body: SingleChildScrollView(
@@ -22,7 +20,7 @@ class UserPage extends GetView<UserController> {
               CustomInputField(
                 label: "Nombre Completo",
                 controller: controller.nameController,
-                validator: (value) => value!.isEmpty ? "Este campo es obligatorio" : null,
+                validator: (value) => Validator.required(value, fieldName: 'El nombre'),
               ),
               const SizedBox(height: 10),
               CustomInputField(
