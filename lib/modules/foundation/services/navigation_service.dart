@@ -1,4 +1,4 @@
-import 'package:botanico/modules/foundation/config/routes.dart';
+import 'package:botanico/config/routes.dart';
 import 'package:get/get.dart';
 
 import 'loggin_service.dart';

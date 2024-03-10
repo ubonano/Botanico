@@ -1,4 +1,4 @@
-import 'package:botanico/modules/foundation/config/firestore_collections.dart';
+import 'package:botanico/config/firestore_collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import '../foundation/utils/custom_service.dart';

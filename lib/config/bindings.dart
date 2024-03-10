@@ -6,13 +6,13 @@ import 'package:botanico/modules/company/company_service.dart';
 import 'package:botanico/modules/foundation/services/loggin_service.dart';
 import 'package:get/get.dart';
 
-import '../../auth/services/auth_service.dart';
-import '../../auth/services/profile_service.dart';
-import '../../auth/widgets/sign_out_button/sign_out_controller.dart';
-import '../../home/home_controller.dart';
-import '../../lobby/lobby_controller.dart';
-import '../services/async_operation_service.dart';
-import '../services/navigation_service.dart';
+import '../modules/auth/services/auth_service.dart';
+import '../modules/auth/services/profile_service.dart';
+import '../modules/auth/widgets/sign_out_button/sign_out_controller.dart';
+import '../modules/home/home_controller.dart';
+import '../modules/lobby/lobby_controller.dart';
+import '../modules/foundation/services/async_operation_service.dart';
+import '../modules/foundation/services/navigation_service.dart';
 
 class AppBindings extends Bindings {
   @override
