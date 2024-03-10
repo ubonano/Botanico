@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utils/validator.dart';
-import '../../../foundation/widgets/custom_input_field.dart';
+import '../../../../widgets/custom_input_field.dart';
 import 'sign_up_controller.dart';
 
 class SignUpPage extends GetView<SignUpController> {
