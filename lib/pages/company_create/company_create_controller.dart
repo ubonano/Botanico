@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 
 import '../../models/company_model.dart';
 
-class CompanyController extends GetxController with CustomController {
+class CompanyCreateController extends GetxController with CustomController {
   @override
-  String get logTag => 'CompanyController';
+  String get logTag => 'CompanyCreateController';
 
-  final companyFormKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   final nameController = TextEditingController();
   final addressController = TextEditingController();
@@ -25,13 +25,13 @@ class CompanyController extends GetxController with CustomController {
   String get _phone => phoneController.text.trim();
 
   Future<void> submit() async {
-    if (!companyFormKey.currentState!.validate()) return;
+    if (!formKey.currentState!.validate()) return;
 
     await async.perform(
       operationName: 'Create company',
-      successMessage: 'Empresa creada con exito!',
+      successMessage: 'Empresa creada!',
       operation: () async {
-        await companyService.set(
+        await companyService.create(
           CompanyModel(
             ownerUid: loggedUserUID,
             name: _name,
@@ -41,38 +41,12 @@ class CompanyController extends GetxController with CustomController {
             country: _country,
             phone: _phone,
           ),
-        );
+        ); // REfactoriza para que devuelva la empresa con el ID, o el ID inclusive (fijate de que tambien le agregue el UID a la empresa antes de insertarla). Hacer lo mismo con profiel talves
 
         await fetchCompany();
       },
-      onSuccess: () => navigate.toHome(),
+      onSuccess: navigate.toHome,
     );
-  }
-
-  Future<void> initializeControllers() async {
-    if (isCompanyLoaded) {
-      setControllers(company!);
-    } else {
-      clearControllers();
-    }
-  }
-
-  void setControllers(CompanyModel company) {
-    nameController.text = company.name;
-    addressController.text = company.address;
-    cityController.text = company.city;
-    provinceController.text = company.province;
-    countryController.text = company.country;
-    phoneController.text = company.phone;
-  }
-
-  void clearControllers() {
-    nameController.clear();
-    addressController.clear();
-    cityController.clear();
-    provinceController.clear();
-    countryController.clear();
-    phoneController.clear();
   }
 
   @override

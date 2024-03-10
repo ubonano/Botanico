@@ -16,9 +16,8 @@ class CompanyService extends GetxService with CustomService {
     company$.value = snapshot.exists ? CompanyModel.fromSnapshot(snapshot) : null;
   }
 
-  Future<void> set(CompanyModel company) async {
-    final docRef = company.uid.isNotEmpty ? _collectionRef.doc(company.uid) : _collectionRef.doc();
-    await docRef.set(company.toMap());
+  Future<void> create(CompanyModel company) async {
+    await _collectionRef.doc().set(company.toMap());
   }
 
   void clean() => company$.value = null;

@@ -1,8 +1,8 @@
-import 'package:botanico/pages/profile_create_page/profile_create_page.dart';
+import 'package:botanico/pages/profile_create/profile_create_page.dart';
 import 'package:get/get.dart';
-import '../pages/sign_in_page/sign_in_page.dart';
-import '../pages/sign_up_page/sign_up_page.dart';
-import '../pages/company/company_page.dart';
+import '../pages/sign_in/sign_in_page.dart';
+import '../pages/sign_up/sign_up_page.dart';
+import '../pages/company_create/company_create_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/lobby/lobby_page.dart';
 import 'routes.dart';
@@ -26,8 +26,8 @@ class Pages {
       page: () => const LobbyPage(),
     ),
     GetPage(
-      name: Routes.COMPANY,
-      page: () => const CompanyPage(),
+      name: Routes.COMPANY_CREATE,
+      page: () => const CompanyCreatePage(),
     ),
     GetPage(
       name: Routes.HOME,

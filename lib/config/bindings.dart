@@ -1,7 +1,7 @@
-import 'package:botanico/pages/sign_in_page/sign_in_controller.dart';
-import 'package:botanico/pages/sign_up_page/sign_up_controller.dart';
-import 'package:botanico/pages/profile_create_page/profile_create_controller.dart';
-import 'package:botanico/pages/company/company_controller.dart';
+import 'package:botanico/pages/sign_in/sign_in_controller.dart';
+import 'package:botanico/pages/sign_up/sign_up_controller.dart';
+import 'package:botanico/pages/profile_create/profile_create_controller.dart';
+import 'package:botanico/pages/company_create/company_create_controller.dart';
 import 'package:botanico/services/company_service.dart';
 import 'package:botanico/utils/log_service.dart';
 import 'package:get/get.dart';
@@ -28,7 +28,7 @@ class AppBindings extends Bindings {
     Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true);
     
     Get.lazyPut<ProfileCreateController>(() => ProfileCreateController(), fenix: true);
-    Get.lazyPut<CompanyController>(() => CompanyController(), fenix: true);
+    Get.lazyPut<CompanyCreateController>(() => CompanyCreateController(), fenix: true);
     Get.lazyPut<LobbyController>(() => LobbyController(), fenix: true);
     Get.lazyPut<SignOutController>(() => SignOutController(), fenix: true);
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);

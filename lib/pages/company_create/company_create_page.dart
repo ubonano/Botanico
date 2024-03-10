@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../utils/validator.dart';
-import 'company_controller.dart';
+import 'company_create_controller.dart';
 import '../../widgets/custom_input_field.dart';
 
-class CompanyPage extends GetView<CompanyController> {
-  const CompanyPage({super.key});
+class CompanyCreatePage extends GetView<CompanyCreateController> {
+  const CompanyCreatePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class CompanyPage extends GetView<CompanyController> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: controller.companyFormKey,
+          key: controller.formKey,
           child: Column(
             children: [
               CustomInputField(

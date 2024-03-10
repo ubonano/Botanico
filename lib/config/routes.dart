@@ -5,6 +5,6 @@ class Routes {
   static const SIGN_UP = '/sign-up';
   static const PROFILE_CREATE = '/profile-create';
   static const LOBBY = '/lobby';
-  static const COMPANY = '/company';
+  static const COMPANY_CREATE = '/company-create';
   static const HOME = '/home';
 }
