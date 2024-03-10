@@ -7,7 +7,7 @@ class ProfileModel {
   final String birthDate;
   final String phone;
   final String dni;
-  final String companyUid;
+  final String companyId;
 
   ProfileModel({
     required this.uid,
@@ -16,7 +16,7 @@ class ProfileModel {
     required this.birthDate,
     required this.phone,
     required this.dni,
-    this.companyUid = '',
+    this.companyId = '',
   });
 
   ProfileModel copyWith({
@@ -26,7 +26,7 @@ class ProfileModel {
     String? birthDate,
     String? phone,
     String? dni,
-    String? companyUid,
+    String? companyId,
   }) {
     return ProfileModel(
       uid: uid ?? this.uid,
@@ -35,7 +35,7 @@ class ProfileModel {
       birthDate: birthDate ?? this.birthDate,
       phone: phone ?? this.phone,
       dni: dni ?? this.dni,
-      companyUid: companyUid ?? this.companyUid,
+      companyId: companyId ?? this.companyId,
     );
   }
 
@@ -47,7 +47,7 @@ class ProfileModel {
       'birthDate': birthDate,
       'phone': phone,
       'dni': dni,
-      'companyUid': companyUid,
+      'companyId': companyId,
     };
   }
 
@@ -63,7 +63,7 @@ class ProfileModel {
       birthDate: map['birthDate'] ?? '',
       phone: map['phone'] ?? '',
       dni: map['dni'] ?? '',
-      companyUid: map['companyUid'] ?? '',
+      companyId: map['companyId'] ?? '',
     );
   }
 }

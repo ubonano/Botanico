@@ -24,12 +24,17 @@ mixin CustomController on GetxController {
 
   ProfileModel? get profile => profileService.profile$.value;
   bool get isProfileLoaded => profile != null;
+  bool get profileHasCompany => isProfileLoaded && profile!.companyId != '';
 
   CompanyModel? get company => companyService.company$.value;
   bool get isCompanyLoaded => company != null;
 
   Future<void> fetchProfile() async => await profileService.fetch(loggedUserUID);
-  Future<void> fetchCompany() async => await companyService.fetchByOwnerId(loggedUserUID);
+  Future<void> fetchCompany() async {
+    if (profileHasCompany) {
+      await companyService.fetch(profile!.companyId);
+    }
+  }
 
   void cleanData() {
     cleanProfile();
