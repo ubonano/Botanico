@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import '../../foundation/utils/custom_service.dart';
+import '../../../utils/custom_service.dart';
 
 class AuthService extends GetxService with CustomService {
   @override

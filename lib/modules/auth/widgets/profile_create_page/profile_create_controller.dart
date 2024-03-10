@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../foundation/utils/custom_controller.dart';
+import '../../../../utils/custom_controller.dart';
 import '../../models/profile_model.dart';
 
 class ProfileCreateController extends GetxController with CustomController {

@@ -1,4 +1,4 @@
-import 'package:botanico/modules/foundation/utils/custom_controller.dart';
+import 'package:botanico/utils/custom_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 

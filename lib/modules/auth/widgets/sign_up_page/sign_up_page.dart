@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../foundation/utils/validator.dart';
+import '../../../../utils/validator.dart';
 import '../../../foundation/widgets/custom_input_field.dart';
 import 'sign_up_controller.dart';
 

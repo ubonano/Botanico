@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../foundation/utils/custom_controller.dart';
+import '../../utils/custom_controller.dart';
 
 class LobbyController extends GetxController with CustomController {
   @override

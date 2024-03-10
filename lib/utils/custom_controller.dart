@@ -1,12 +1,12 @@
 import 'package:botanico/modules/company/company_model.dart';
 import 'package:botanico/modules/auth/models/profile_model.dart';
 import 'package:get/get.dart';
-import '../../auth/services/auth_service.dart';
-import '../../company/company_service.dart';
-import '../../auth/services/profile_service.dart';
-import '../services/async_operation_service.dart';
-import '../services/loggin_service.dart';
-import '../services/navigation_service.dart';
+import '../modules/auth/services/auth_service.dart';
+import '../modules/company/company_service.dart';
+import '../modules/auth/services/profile_service.dart';
+import '../modules/foundation/services/async_operation_service.dart';
+import '../modules/foundation/services/loggin_service.dart';
+import '../modules/foundation/services/navigation_service.dart';
 
 mixin CustomController on GetxController {
   String get logTag;
