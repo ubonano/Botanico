@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-class LoggingService extends GetxService {
+class LogService extends GetxService {
   final _logger = Logger(
     printer: PrettyPrinter(
         methodCount: 0, // Número de métodos a mostrar

@@ -5,13 +5,13 @@ import '../services/auth_service.dart';
 import '../services/company_service.dart';
 import '../services/profile_service.dart';
 import '../services/async_operation_service.dart';
-import '../services/loggin_service.dart';
+import '../services/log_service.dart';
 import '../services/navigation_service.dart';
 
 mixin CustomController on GetxController {
   String get logTag;
 
-  late final log = Get.find<LoggingService>();
+  late final log = Get.find<LogService>();
   late final navigate = Get.find<NavigationService>();
   late final async = Get.find<AsyncOperationService>();
 

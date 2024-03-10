@@ -3,7 +3,7 @@ import 'package:botanico/pages/sign_up_page/sign_up_controller.dart';
 import 'package:botanico/pages/profile_create_page/profile_create_controller.dart';
 import 'package:botanico/pages/company/company_controller.dart';
 import 'package:botanico/services/company_service.dart';
-import 'package:botanico/services/loggin_service.dart';
+import 'package:botanico/services/log_service.dart';
 import 'package:get/get.dart';
 
 import '../services/auth_service.dart';
@@ -17,7 +17,7 @@ import '../services/navigation_service.dart';
 class AppBindings extends Bindings {
   @override
   void dependencies() {
-    Get.put(LoggingService(), permanent: true);
+    Get.put(LogService(), permanent: true);
     Get.put(NavigationService(), permanent: true);
     Get.put(AsyncOperationService(), permanent: true);
     Get.put(AuthService(), permanent: true);

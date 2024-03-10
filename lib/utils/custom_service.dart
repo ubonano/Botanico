@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 
-import '../services/loggin_service.dart';
+import '../services/log_service.dart';
 
 mixin CustomService on GetxService {
   String get logTag;
 
-  final _log = Get.find<LoggingService>();
+  final _log = Get.find<LogService>();
 
   @override
   void onInit() {

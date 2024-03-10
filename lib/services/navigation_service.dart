@@ -1,10 +1,10 @@
 import 'package:botanico/config/routes.dart';
 import 'package:get/get.dart';
 
-import 'loggin_service.dart';
+import 'log_service.dart';
 
 class NavigationService extends GetxService {
-  final log = Get.find<LoggingService>();
+  final log = Get.find<LogService>();
 
   void toHome({bool canPop = false}) => to(Routes.HOME, canPop: canPop);
   void toLobby({bool canPop = false}) => to(Routes.LOBBY, canPop: canPop);

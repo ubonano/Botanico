@@ -1,10 +1,10 @@
-import 'package:botanico/services/loggin_service.dart';
+import 'package:botanico/services/log_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AsyncOperationService extends GetxService {
-  final _loggingService = Get.find<LoggingService>();
+  final _loggingService = Get.find<LogService>();
 
   Future<T?> perform<T>({
     required Future<T> Function() operation,
