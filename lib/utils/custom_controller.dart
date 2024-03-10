@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import '../services/auth_service.dart';
 import '../services/company_service.dart';
 import '../services/profile_service.dart';
-import '../services/async_operation_service.dart';
-import '../services/log_service.dart';
-import '../services/navigation_service.dart';
+import 'async_operation_service.dart';
+import 'log_service.dart';
+import 'navigation_service.dart';
 
 mixin CustomController on GetxController {
   String get logTag;

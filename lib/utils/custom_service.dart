@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../services/log_service.dart';
+import 'log_service.dart';
 
 mixin CustomService on GetxService {
   String get logTag;
