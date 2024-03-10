@@ -1,16 +1,16 @@
-import 'package:botanico/modules/auth/widgets/sign_in_page/sign_in_controller.dart';
-import 'package:botanico/modules/auth/widgets/sign_up_page/sign_up_controller.dart';
-import 'package:botanico/modules/auth/widgets/profile_create_page/profile_create_controller.dart';
-import 'package:botanico/modules/company/company_controller.dart';
-import 'package:botanico/modules/company/company_service.dart';
+import 'package:botanico/pages/sign_in_page/sign_in_controller.dart';
+import 'package:botanico/pages/sign_up_page/sign_up_controller.dart';
+import 'package:botanico/pages/profile_create_page/profile_create_controller.dart';
+import 'package:botanico/pages/company/company_controller.dart';
+import 'package:botanico/services/company_service.dart';
 import 'package:botanico/services/loggin_service.dart';
 import 'package:get/get.dart';
 
-import '../modules/auth/services/auth_service.dart';
-import '../modules/auth/services/profile_service.dart';
-import '../modules/auth/widgets/sign_out_button/sign_out_controller.dart';
-import '../modules/home/home_controller.dart';
-import '../modules/lobby/lobby_controller.dart';
+import '../services/auth_service.dart';
+import '../services/profile_service.dart';
+import '../widgets/sign_out_button/sign_out_controller.dart';
+import '../pages/home/home_controller.dart';
+import '../pages/lobby/lobby_controller.dart';
 import '../services/async_operation_service.dart';
 import '../services/navigation_service.dart';
 

@@ -1,10 +1,10 @@
-import 'package:botanico/modules/auth/widgets/profile_create_page/profile_create_page.dart';
+import 'package:botanico/pages/profile_create_page/profile_create_page.dart';
 import 'package:get/get.dart';
-import '../modules/auth/widgets/sign_in_page/sign_in_page.dart';
-import '../modules/auth/widgets/sign_up_page/sign_up_page.dart';
-import '../modules/company/company_page.dart';
-import '../modules/home/home_page.dart';
-import '../modules/lobby/lobby_page.dart';
+import '../pages/sign_in_page/sign_in_page.dart';
+import '../pages/sign_up_page/sign_up_page.dart';
+import '../pages/company/company_page.dart';
+import '../pages/home/home_page.dart';
+import '../pages/lobby/lobby_page.dart';
 import 'routes.dart';
 
 class Pages {

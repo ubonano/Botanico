@@ -2,7 +2,7 @@ import 'package:botanico/utils/custom_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import 'company_model.dart';
+import '../../models/company_model.dart';
 
 class CompanyController extends GetxController with CustomController {
   @override
