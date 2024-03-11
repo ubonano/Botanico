@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ProfileModel {
+class WorkerModel {
   final String uid;
   final String email;
   final String name;
@@ -9,7 +9,7 @@ class ProfileModel {
   final String dni;
   final String companyId;
 
-  ProfileModel({
+  WorkerModel({
     required this.uid,
     required this.email,
     required this.name,
@@ -19,7 +19,7 @@ class ProfileModel {
     this.companyId = '',
   });
 
-  ProfileModel copyWith({
+  WorkerModel copyWith({
     String? uid,
     String? email,
     String? name,
@@ -28,7 +28,7 @@ class ProfileModel {
     String? dni,
     String? companyId,
   }) {
-    return ProfileModel(
+    return WorkerModel(
       uid: uid ?? this.uid,
       email: email ?? this.email,
       name: name ?? this.name,
@@ -51,12 +51,12 @@ class ProfileModel {
     };
   }
 
-  static ProfileModel fromSnapshot(DocumentSnapshot snapshot) {
-    return ProfileModel.fromMap(snapshot.data() as Map<String, dynamic>);
+  static WorkerModel fromSnapshot(DocumentSnapshot snapshot) {
+    return WorkerModel.fromMap(snapshot.data() as Map<String, dynamic>);
   }
 
-  factory ProfileModel.fromMap(Map<String, dynamic> map) {
-    return ProfileModel(
+  factory WorkerModel.fromMap(Map<String, dynamic> map) {
+    return WorkerModel(
       uid: map['uid'] ?? '',
       email: map['email'] ?? '',
       name: map['name'] ?? '',

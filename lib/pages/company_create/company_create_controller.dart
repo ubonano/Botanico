@@ -45,10 +45,10 @@ class CompanyCreateController extends GetxController with CustomController {
           txn: txn,
         );
 
-        await profileService.update(profile!.copyWith(companyId: newCompany.uid), txn: txn);
+        await workerService.update(worker!.copyWith(companyId: newCompany.uid), txn: txn);
       },
       onSuccess: () async {
-        await fetchProfile();
+        await fetchWorker();
         await fetchCompany();
 
         navigate.toHome();

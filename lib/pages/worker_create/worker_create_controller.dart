@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../utils/custom_controller.dart';
-import '../../models/profile_model.dart';
+import '../../models/worker_model.dart';
 
-class ProfileCreateController extends GetxController with CustomController {
+class WorkerCreateController extends GetxController with CustomController {
   @override
-  String get logTag => 'ProfileCreateController';
+  String get logTag => 'WorkerCreateController';
 
   final formKey = GlobalKey<FormState>();
 
@@ -23,11 +23,11 @@ class ProfileCreateController extends GetxController with CustomController {
     if (!formKey.currentState!.validate()) return;
 
     await async.perform(
-      operationName: 'Create profile',
-      successMessage: 'Perfil creado!',
+      operationName: 'Create worker',
+      successMessage: 'Trabajador creado!',
       operation: (_) async {
-        await profileService.create(
-          ProfileModel(
+        await workerService.create(
+          WorkerModel(
             uid: loggedUserUID,
             email: loggedUserEmail,
             name: _name,
@@ -38,7 +38,7 @@ class ProfileCreateController extends GetxController with CustomController {
         );
       },
       onSuccess: () async {
-        await fetchProfile();
+        await fetchWorker();
         navigate.toLobby();
       },
     );

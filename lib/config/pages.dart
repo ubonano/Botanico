@@ -1,4 +1,4 @@
-import 'package:botanico/pages/profile_create/profile_create_page.dart';
+import 'package:botanico/pages/worker_create/worker_create_page.dart';
 import 'package:get/get.dart';
 import '../pages/sign_in/sign_in_page.dart';
 import '../pages/sign_up/sign_up_page.dart';
@@ -18,8 +18,8 @@ class Pages {
       page: () => const SignUpPage(),
     ),
     GetPage(
-      name: Routes.PROFILE_CREATE,
-      page: () => const ProfileCreatePage(),
+      name: Routes.WORKER_CREATE,
+      page: () => const WorkerCreatePage(),
     ),
     GetPage(
       name: Routes.LOBBY,

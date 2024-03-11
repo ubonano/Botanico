@@ -24,19 +24,19 @@ class SignInController extends GetxController with CustomController {
       operationName: 'Sign in',
       operation: (_) async => await auth.signIn(_email, _password),
       onSuccess: () async {
-        await fetchProfile();
+        await fetchWorker();
         await fetchCompany();
 
-        if (isProfileLoaded && isCompanyLoaded) {
+        if (isWorkerLoaded && isCompanyLoaded) {
           navigate.toHome();
         }
 
-        if (isProfileLoaded && !isCompanyLoaded) {
+        if (isWorkerLoaded && !isCompanyLoaded) {
           navigate.toLobby();
         }
 
-        if (!isProfileLoaded) {
-          navigate.toProfileCreate();
+        if (!isWorkerLoaded) {
+          navigate.toWorkerCreate();
         }
       },
     );

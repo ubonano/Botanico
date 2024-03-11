@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../utils/validator.dart';
 import '../../widgets/custom_input_field.dart';
-import 'profile_create_controller.dart';
+import 'worker_create_controller.dart';
 
-class ProfileCreatePage extends GetView<ProfileCreateController> {
-  const ProfileCreatePage({Key? key}) : super(key: key);
+class WorkerCreatePage extends GetView<WorkerCreateController> {
+  const WorkerCreatePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
