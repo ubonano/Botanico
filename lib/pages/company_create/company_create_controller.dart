@@ -31,7 +31,7 @@ class CompanyCreateController extends GetxController with CustomController {
       operationName: 'Create company',
       successMessage: 'Empresa creada!',
       inTransaction: true,
-      operation: (transaction) async {
+      operation: (txn) async {
         final newCompany = await companyService.create(
           CompanyModel(
             ownerUid: loggedUserUID,
@@ -42,10 +42,10 @@ class CompanyCreateController extends GetxController with CustomController {
             country: _country,
             phone: _phone,
           ),
+          txn: txn,
         );
 
-        await profileService.update(profile!.copyWith(companyId: newCompany.uid));
-        throw Error();
+        await profileService.update(profile!.copyWith(companyId: newCompany.uid), txn: txn);
       },
       onSuccess: () async {
         await fetchProfile();

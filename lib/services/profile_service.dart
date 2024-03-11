@@ -23,8 +23,14 @@ class ProfileService extends GetxService with CustomService {
     return profile;
   }
 
-  Future<void> update(ProfileModel profile) async {
-    await _collectionRef.doc(profile.uid).update(profile.toMap());
+  Future<void> update(ProfileModel profile, {Transaction? txn}) async {
+    DocumentReference docRef = _collectionRef.doc(profile.uid);
+
+    if (txn != null) {
+      txn.update(docRef, profile.toMap());
+    } else {
+      await docRef.update(profile.toMap());
+    }
   }
 
   void clean() => profile$.value = null;
