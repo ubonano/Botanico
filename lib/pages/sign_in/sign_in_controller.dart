@@ -22,12 +22,11 @@ class SignInController extends GetxController with CustomController {
 
     await async.perform(
       operationName: 'Sign in',
-      operation: () async {
-        await auth.signIn(_email, _password);
+      operation: (_) async => await auth.signIn(_email, _password),
+      onSuccess: () async {
         await fetchProfile();
         await fetchCompany();
-      },
-      onSuccess: () {
+
         if (isProfileLoaded && isCompanyLoaded) {
           navigate.toHome();
         }
@@ -49,7 +48,7 @@ class SignInController extends GetxController with CustomController {
     await async.perform(
       operationName: 'Recover password',
       successMessage: 'Se envio un email a tu casilla para restaurar tu contraseña',
-      operation: () => auth.recoverPassword(_emailRecover),
+      operation: (_) => auth.recoverPassword(_emailRecover),
       onSuccess: navigate.back,
     );
   }

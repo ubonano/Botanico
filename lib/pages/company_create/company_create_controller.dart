@@ -30,8 +30,9 @@ class CompanyCreateController extends GetxController with CustomController {
     await async.perform(
       operationName: 'Create company',
       successMessage: 'Empresa creada!',
-      operation: () async {
-        await companyService.create(
+      inTransaction: true,
+      operation: (transaction) async {
+        final newCompany = await companyService.create(
           CompanyModel(
             ownerUid: loggedUserUID,
             name: _name,
@@ -41,11 +42,17 @@ class CompanyCreateController extends GetxController with CustomController {
             country: _country,
             phone: _phone,
           ),
-        ); // REfactoriza para que devuelva la empresa con el ID, o el ID inclusive (fijate de que tambien le agregue el UID a la empresa antes de insertarla). Hacer lo mismo con profiel talves
+        );
 
-        await fetchCompany();
+        await profileService.update(profile!.copyWith(companyId: newCompany.uid));
+        throw Error();
       },
-      onSuccess: navigate.toHome,
+      onSuccess: () async {
+        await fetchProfile();
+        await fetchCompany();
+
+        navigate.toHome();
+      },
     );
   }
 

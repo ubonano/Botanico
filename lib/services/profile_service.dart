@@ -18,8 +18,13 @@ class ProfileService extends GetxService with CustomService {
     profile$.value = snapshot.exists ? ProfileModel.fromSnapshot(snapshot) : null;
   }
 
-  Future<void> create(ProfileModel profile) async {
+  Future<ProfileModel> create(ProfileModel profile) async {
     await _collectionRef.doc(profile.uid).set(profile.toMap());
+    return profile;
+  }
+
+  Future<void> update(ProfileModel profile) async {
+    await _collectionRef.doc(profile.uid).update(profile.toMap());
   }
 
   void clean() => profile$.value = null;

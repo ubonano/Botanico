@@ -25,7 +25,7 @@ class ProfileCreateController extends GetxController with CustomController {
     await async.perform(
       operationName: 'Create profile',
       successMessage: 'Perfil creado!',
-      operation: () async {
+      operation: (_) async {
         await profileService.create(
           ProfileModel(
             uid: loggedUserUID,
@@ -36,10 +36,11 @@ class ProfileCreateController extends GetxController with CustomController {
             dni: _dni,
           ),
         );
-
-        await fetchProfile();
       },
-      onSuccess: navigate.toLobby,
+      onSuccess: () async {
+        await fetchProfile();
+        navigate.toLobby();
+      },
     );
   }
 

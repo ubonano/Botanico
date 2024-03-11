@@ -7,7 +7,7 @@ class SignOutController extends GetxController with CustomController {
 
   Future<void> signOut() async => async.perform(
       operationName: 'Sign out',
-      operation: () async {
+      operation: (_) async {
         await auth.signOut();
         cleanData();
       },
