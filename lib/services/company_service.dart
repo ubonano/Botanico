@@ -30,5 +30,15 @@ class CompanyService extends GetxService with CustomService {
     return newCompany;
   }
 
+  Future<void> update(CompanyModel company, {Transaction? txn}) async {
+    DocumentReference docRef = _collectionRef.doc(company.uid);
+
+    if (txn != null) {
+      txn.update(docRef, company.toMap());
+    } else {
+      await docRef.update(company.toMap());
+    }
+  }
+
   void clean() => company$.value = null;
 }

@@ -18,8 +18,15 @@ class WorkerService extends GetxService with CustomService {
     worker$.value = snapshot.exists ? WorkerModel.fromSnapshot(snapshot) : null;
   }
 
-  Future<WorkerModel> create(WorkerModel worker) async {
-    await _collectionRef.doc(worker.uid).set(worker.toMap());
+  Future<WorkerModel> create(WorkerModel worker, {Transaction? txn}) async {
+    DocumentReference docRef = _collectionRef.doc(worker.uid);
+
+    if (txn != null) {
+      txn.set(docRef, worker.toMap());
+    } else {
+      await docRef.set(worker.toMap());
+    }
+
     return worker;
   }
 
