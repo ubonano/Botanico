@@ -4,7 +4,7 @@ import '../../utils/custom_controller.dart';
 
 class SignUpController extends GetxController with CustomController {
   @override
-  String get logTag => 'SignUpPageController';
+  String get logTag => 'SignUpController';
 
   final signUpformKey = GlobalKey<FormState>();
 

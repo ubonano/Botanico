@@ -8,6 +8,9 @@ import 'sign_up_controller.dart';
 class SignUpPage extends GetView<SignUpController> {
   const SignUpPage({super.key});
 
+  Function signUp() => controller.signUp;
+  Function toSignIn() => controller.navigateToSignIn;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,21 +24,21 @@ class SignUpPage extends GetView<SignUpController> {
             children: [
               EmailInputField(
                 controller: controller.emailController,
-                onFieldSubmitted: controller.signUp,
+                onFieldSubmitted: signUp,
               ),
               PasswordInputField(
                 controller: controller.passwordController,
-                onFieldSubmitted: controller.signUp,
+                onFieldSubmitted: signUp,
               ),
               ConfirmPasswordInputField(
                 controller: controller.confirmPasswordController,
                 passwordController: controller.passwordController,
-                onFieldSubmitted: controller.signUp,
+                onFieldSubmitted: signUp,
               ),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: controller.signUp, child: const Text('Registrar')),
+              ElevatedButton(onPressed: signUp, child: const Text('Registrar')),
               const SizedBox(height: 20),
-              TextButton(onPressed: controller.navigateToSignIn, child: const Text('¿Ya tenes cuenta? Inicia sesión')),
+              TextButton(onPressed: toSignIn, child: const Text('¿Ya tenes cuenta? Inicia sesión')),
             ],
           ),
         ),
