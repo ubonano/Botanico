@@ -8,12 +8,12 @@ class SignUpController extends GetxController with CustomController {
 
   final signUpformKey = GlobalKey<FormState>();
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
+  final emailCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
+  final confirmPasswordCtrl = TextEditingController();
 
-  String get _email => emailController.text.trim();
-  String get _password => passwordController.text.trim();
+  String get _email => emailCtrl.text.trim();
+  String get _password => passwordCtrl.text.trim();
 
   void signUp() async {
     if (!signUpformKey.currentState!.validate()) return;
@@ -35,8 +35,8 @@ class SignUpController extends GetxController with CustomController {
   }
 
   void disposeControllers() {
-    emailController.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
+    emailCtrl.dispose();
+    passwordCtrl.dispose();
+    confirmPasswordCtrl.dispose();
   }
 }

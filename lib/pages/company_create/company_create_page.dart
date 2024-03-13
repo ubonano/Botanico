@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../utils/validator.dart';
+import '../../widgets/input_fields/address_input_field.dart';
+import '../../widgets/input_fields/city_input_field.dart';
+import '../../widgets/input_fields/country_input_field.dart';
+import '../../widgets/input_fields/name_input_field.dart';
+import '../../widgets/input_fields/province_input_field.dart';
+import '../../widgets/input_fields/phone_input_field.dart';
 import 'company_create_controller.dart';
-import '../../widgets/input_fields/custom_input_field.dart';
 
 class CompanyCreatePage extends GetView<CompanyCreateController> {
   const CompanyCreatePage({super.key});
+
+  void submit() => controller.submit();
 
   @override
   Widget build(BuildContext context) {
@@ -18,43 +23,14 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
           key: controller.formKey,
           child: Column(
             children: [
-              CustomInputField(
-                label: 'Nombre',
-                controller: controller.nameController,
-                validator: (value) => Validator.required(value, fieldName: "El nombre"),
-              ),
-              const SizedBox(height: 10),
-              CustomInputField(
-                label: 'Dirección',
-                controller: controller.addressController,
-                validator: (value) => Validator.required(value, fieldName: "La dirección"),
-              ),
-              const SizedBox(height: 10),
-              CustomInputField(
-                label: 'Localidad',
-                controller: controller.cityController,
-                validator: (value) => Validator.required(value, fieldName: "La localidad"),
-              ),
-              const SizedBox(height: 10),
-              CustomInputField(
-                label: 'Provincia',
-                controller: controller.provinceController,
-                validator: (value) => Validator.required(value, fieldName: "La provincia"),
-              ),
-              const SizedBox(height: 10),
-              CustomInputField(
-                label: 'País',
-                controller: controller.countryController,
-                validator: (value) => Validator.required(value, fieldName: "El país"),
-              ),
-              const SizedBox(height: 10),
-              CustomInputField(
-                label: 'Teléfono',
-                controller: controller.phoneController,
-                validator: Validator.phoneNumber,
-              ),
+              NameInputField(controller: controller.nameCtrl),
+              AddressInputField(controller: controller.addressCtrl),
+              CityInputField(controller: controller.cityCtrl),
+              ProvinceInputField(controller: controller.provinceCtrl),
+              CountryInputField(controller: controller.countryCtrl),
+              PhoneInputField(controller: controller.phoneCtrl),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: controller.submit, child: const Text('Guardar')),
+              ElevatedButton(onPressed: submit, child: const Text('Guardar')),
             ],
           ),
         ),

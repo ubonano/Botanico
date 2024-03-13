@@ -9,13 +9,13 @@ class SignInController extends GetxController with CustomController {
   final signInFormKey = GlobalKey<FormState>();
   final recoverPasswordFormKey = GlobalKey<FormState>();
 
-  final emailController = TextEditingController();
-  final emailRecoverController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailCtrl = TextEditingController();
+  final emailRecoverCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
 
-  String get _email => emailController.text.trim();
-  String get _emailRecover => emailRecoverController.text.trim();
-  String get _password => passwordController.text.trim();
+  String get _email => emailCtrl.text.trim();
+  String get _emailRecover => emailRecoverCtrl.text.trim();
+  String get _password => passwordCtrl.text.trim();
 
   void navigateToSignUp() => navigate.toSignUp();
 
@@ -63,8 +63,8 @@ class SignInController extends GetxController with CustomController {
   }
 
   void disposeControllers() {
-    emailController.dispose();
-    emailRecoverController.dispose();
-    passwordController.dispose();
+    emailCtrl.dispose();
+    emailRecoverCtrl.dispose();
+    passwordCtrl.dispose();
   }
 }

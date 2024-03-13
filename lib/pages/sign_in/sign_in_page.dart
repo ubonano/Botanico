@@ -7,8 +7,8 @@ import 'sign_in_controller.dart';
 class SignInPage extends GetView<SignInController> {
   const SignInPage({super.key});
 
-  Function signIn() => controller.signIn;
-  Function toSignUp() => controller.signIn;
+  void signIn() => controller.signIn();
+  void toSignUp() => controller.signIn();
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +22,11 @@ class SignInPage extends GetView<SignInController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               EmailInputField(
-                controller: controller.emailController,
+                controller: controller.emailCtrl,
                 onFieldSubmitted: signIn,
               ),
               PasswordInputField(
-                controller: controller.passwordController,
+                controller: controller.passwordCtrl,
                 onFieldSubmitted: signIn,
               ),
               ElevatedButton(onPressed: signIn, child: const Text('Iniciar Sesión')),
@@ -48,7 +48,7 @@ class SignInPage extends GetView<SignInController> {
         content: Form(
           key: controller.recoverPasswordFormKey,
           child: EmailInputField(
-            controller: controller.emailRecoverController,
+            controller: controller.emailRecoverCtrl,
             onFieldSubmitted: signIn,
           ),
         ),

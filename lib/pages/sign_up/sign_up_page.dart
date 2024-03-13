@@ -8,8 +8,8 @@ import 'sign_up_controller.dart';
 class SignUpPage extends GetView<SignUpController> {
   const SignUpPage({super.key});
 
-  Function signUp() => controller.signUp;
-  Function toSignIn() => controller.navigateToSignIn;
+  void signUp() => controller.signUp();
+  void toSignIn() => controller.navigateToSignIn();
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +23,16 @@ class SignUpPage extends GetView<SignUpController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               EmailInputField(
-                controller: controller.emailController,
+                controller: controller.emailCtrl,
                 onFieldSubmitted: signUp,
               ),
               PasswordInputField(
-                controller: controller.passwordController,
+                controller: controller.passwordCtrl,
                 onFieldSubmitted: signUp,
               ),
               ConfirmPasswordInputField(
-                controller: controller.confirmPasswordController,
-                passwordController: controller.passwordController,
+                controller: controller.confirmPasswordCtrl,
+                passwordController: controller.passwordCtrl,
                 onFieldSubmitted: signUp,
               ),
               const SizedBox(height: 20),

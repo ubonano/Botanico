@@ -10,19 +10,29 @@ class CompanyCreateController extends GetxController with CustomController {
 
   final formKey = GlobalKey<FormState>();
 
-  final nameController = TextEditingController();
-  final addressController = TextEditingController();
-  final cityController = TextEditingController();
-  final provinceController = TextEditingController();
-  final countryController = TextEditingController();
-  final phoneController = TextEditingController();
+  final nameCtrl = TextEditingController();
+  final addressCtrl = TextEditingController();
+  final cityCtrl = TextEditingController();
+  final provinceCtrl = TextEditingController();
+  final countryCtrl = TextEditingController();
+  final phoneCtrl = TextEditingController();
 
-  String get _name => nameController.text.trim();
-  String get _address => addressController.text.trim();
-  String get _city => cityController.text.trim();
-  String get _province => provinceController.text.trim();
-  String get _country => countryController.text.trim();
-  String get _phone => phoneController.text.trim();
+  String get _name => nameCtrl.text.trim();
+  String get _address => addressCtrl.text.trim();
+  String get _city => cityCtrl.text.trim();
+  String get _province => provinceCtrl.text.trim();
+  String get _country => countryCtrl.text.trim();
+  String get _phone => phoneCtrl.text.trim();
+
+  CompanyModel _newCompany() => CompanyModel(
+        ownerUid: loggedUserUID,
+        name: _name,
+        address: _address,
+        city: _city,
+        province: _province,
+        country: _country,
+        phone: _phone,
+      );
 
   Future<void> submit() async {
     if (!formKey.currentState!.validate()) return;
@@ -32,20 +42,9 @@ class CompanyCreateController extends GetxController with CustomController {
       successMessage: 'Empresa creada!',
       inTransaction: true,
       operation: (txn) async {
-        final newCompany = await companyService.create( 
-          CompanyModel(
-            ownerUid: loggedUserUID,
-            name: _name,
-            address: _address,
-            city: _city,
-            province: _province,
-            country: _country,
-            phone: _phone,
-          ),
-          txn: txn,
-        );
+        final newCompany = await companyService.create(_newCompany(), txn: txn);
 
-        await workerService.update(worker!.copyWith(companyId: newCompany.uid), txn: txn);
+        await updateWorkerWithCompanyId(newCompany.uid, txn);
       },
       onSuccess: () async {
         await fetchWorker();
@@ -56,6 +55,10 @@ class CompanyCreateController extends GetxController with CustomController {
     );
   }
 
+  Future<void> updateWorkerWithCompanyId(String companyId, txn) async {
+    await workerService.update(worker!.copyWith(companyId: companyId), txn: txn);
+  }
+
   @override
   void onClose() {
     disposeControllers();
@@ -64,11 +67,11 @@ class CompanyCreateController extends GetxController with CustomController {
   }
 
   void disposeControllers() {
-    nameController.dispose();
-    addressController.dispose();
-    cityController.dispose();
-    provinceController.dispose();
-    countryController.dispose();
-    phoneController.dispose();
+    nameCtrl.dispose();
+    addressCtrl.dispose();
+    cityCtrl.dispose();
+    provinceCtrl.dispose();
+    countryCtrl.dispose();
+    phoneCtrl.dispose();
   }
 }
