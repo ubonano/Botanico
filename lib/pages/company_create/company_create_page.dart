@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../utils/validator.dart';
 import 'company_create_controller.dart';
-import '../../widgets/custom_input_field.dart';
+import '../../widgets/input_fields/custom_input_field.dart';
 
 class CompanyCreatePage extends GetView<CompanyCreateController> {
   const CompanyCreatePage({super.key});

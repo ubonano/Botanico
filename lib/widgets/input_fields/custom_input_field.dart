@@ -32,21 +32,26 @@ class CustomInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscureText,
-      keyboardType: keyboardType,
-      validator: validator,
-      decoration: InputDecoration(
-        labelText: label,
-        hintText: hintText,
-        prefixIcon: prefixIcon,
-        suffixIcon: suffixIcon,
-        border: border,
-      ),
-      readOnly: readOnly,
-      textInputAction: textInputAction,
-      onFieldSubmitted: onFieldSubmitted,
+    return Column(
+      children: [
+        TextFormField(
+          controller: controller,
+          obscureText: obscureText,
+          keyboardType: keyboardType,
+          validator: validator,
+          decoration: InputDecoration(
+            labelText: label,
+            hintText: hintText,
+            prefixIcon: prefixIcon,
+            suffixIcon: suffixIcon,
+            border: border,
+          ),
+          readOnly: readOnly,
+          textInputAction: textInputAction,
+          onFieldSubmitted: onFieldSubmitted,
+        ),
+        const SizedBox(height: 10),
+      ],
     );
   }
 }

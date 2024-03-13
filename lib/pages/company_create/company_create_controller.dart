@@ -32,7 +32,7 @@ class CompanyCreateController extends GetxController with CustomController {
       successMessage: 'Empresa creada!',
       inTransaction: true,
       operation: (txn) async {
-        final newCompany = await companyService.create(
+        final newCompany = await companyService.create( 
           CompanyModel(
             ownerUid: loggedUserUID,
             name: _name,

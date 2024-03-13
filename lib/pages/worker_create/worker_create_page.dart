@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../utils/validator.dart';
-import '../../widgets/custom_input_field.dart';
+import '../../widgets/input_fields/custom_input_field.dart';
 import 'worker_create_controller.dart';
 
 class WorkerCreatePage extends GetView<WorkerCreateController> {

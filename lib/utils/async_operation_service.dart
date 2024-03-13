@@ -29,7 +29,9 @@ class AsyncOperationService extends GetxService {
       if (successMessage != '') {
         Get.snackbar('Éxito', successMessage, backgroundColor: Colors.green, colorText: Colors.white);
       }
+
       _logService.info("$operationName exitosa.");
+
       if (onSuccess != null) {
         onSuccess();
       }

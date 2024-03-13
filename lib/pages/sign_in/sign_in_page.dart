@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../utils/validator.dart';
-import '../../widgets/custom_input_field.dart';
+import '../../widgets/input_fields/email_input_field.dart';
+import '../../widgets/input_fields/password_input_field.dart';
 import 'sign_in_controller.dart';
 
 class SignInPage extends GetView<SignInController> {
@@ -18,28 +18,22 @@ class SignInPage extends GetView<SignInController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CustomInputField(
-                label: 'Email',
+              EmailInputField(
                 controller: controller.emailController,
-                keyboardType: TextInputType.emailAddress,
-                validator: Validator.email,
+                onFieldSubmitted: controller.signIn,
               ),
-              const SizedBox(height: 10),
-              CustomInputField(
-                label: 'Contraseña',
+              PasswordInputField(
                 controller: controller.passwordController,
-                obscureText: true,
-                validator: Validator.password,
-                textInputAction: TextInputAction.go,
-                onFieldSubmitted: (_) => controller.signIn(),
+                onFieldSubmitted: controller.signIn,
               ),
-              const SizedBox(height: 20),
               ElevatedButton(onPressed: controller.signIn, child: const Text('Iniciar Sesión')),
               const SizedBox(height: 20),
               TextButton(onPressed: _showRecoverPasswordDialog, child: const Text("¿Olvidaste tu contraseña?")),
               const SizedBox(height: 20),
               TextButton(
-                  onPressed: controller.navigateToSignUp, child: const Text('¿No tenes cuenta? Crear nueva cuenta')),
+                onPressed: controller.navigateToSignUp,
+                child: const Text('¿No tenes cuenta? Crear nueva cuenta'),
+              ),
             ],
           ),
         ),
@@ -53,11 +47,9 @@ class SignInPage extends GetView<SignInController> {
         title: const Text("Recuperar contraseña"),
         content: Form(
           key: controller.recoverPasswordFormKey,
-          child: CustomInputField(
-            label: 'Email',
+          child: EmailInputField(
             controller: controller.emailRecoverController,
-            keyboardType: TextInputType.emailAddress,
-            validator: Validator.email,
+            onFieldSubmitted: controller.signIn,
           ),
         ),
         actions: [

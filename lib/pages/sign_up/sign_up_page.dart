@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../utils/validator.dart';
-import '../../widgets/custom_input_field.dart';
+import '../../widgets/input_fields/confirm_password_input_field.dart';
+import '../../widgets/input_fields/email_input_field.dart';
+import '../../widgets/input_fields/password_input_field.dart';
 import 'sign_up_controller.dart';
 
 class SignUpPage extends GetView<SignUpController> {
@@ -19,27 +19,18 @@ class SignUpPage extends GetView<SignUpController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CustomInputField(
-                label: 'Email',
+              EmailInputField(
                 controller: controller.emailController,
-                keyboardType: TextInputType.emailAddress,
-                validator: Validator.email,
+                onFieldSubmitted: controller.signUp,
               ),
-              const SizedBox(height: 10),
-              CustomInputField(
-                label: 'Contraseña',
+              PasswordInputField(
                 controller: controller.passwordController,
-                obscureText: true,
-                validator: Validator.password,
+                onFieldSubmitted: controller.signUp,
               ),
-              const SizedBox(height: 10),
-              CustomInputField(
-                label: 'Confirmar Contraseña',
+              ConfirmPasswordInputField(
                 controller: controller.confirmPasswordController,
-                obscureText: true,
-                validator: (value) => Validator.confirmPasswordValidator(value, controller.passwordController.text),
-                textInputAction: TextInputAction.go,
-                onFieldSubmitted: (_) => controller.signUp(),
+                passwordController: controller.passwordController,
+                onFieldSubmitted: controller.signUp,
               ),
               const SizedBox(height: 20),
               ElevatedButton(onPressed: controller.signUp, child: const Text('Registrar')),

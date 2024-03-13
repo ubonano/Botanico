@@ -28,3 +28,13 @@ class HomePage extends GetView<HomeController> {
     );
   }
 }
+
+/*
+
+  Agregar un drawer con: 
+    #info del usuario y empresa.
+    #Cerrar sesion
+    #menu a trabajadores, lista de los mismos y vinculacion 
+    #Revisar flujo del usuario! Ver desde el inicio de sesion, registro, creacion de worker y company
+
+ */ 
