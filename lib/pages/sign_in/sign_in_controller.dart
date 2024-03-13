@@ -17,6 +17,8 @@ class SignInController extends GetxController with CustomController {
   String get _emailRecover => emailRecoverController.text.trim();
   String get _password => passwordController.text.trim();
 
+  void navigateToSignUp() => navigate.toSignUp();
+
   Future<void> signIn() async {
     if (!signInFormKey.currentState!.validate()) return;
 
@@ -49,11 +51,9 @@ class SignInController extends GetxController with CustomController {
       operationName: 'Recover password',
       successMessage: 'Se envio un email a tu casilla para restaurar tu contraseña',
       operation: (_) => auth.recoverPassword(_emailRecover),
-      onSuccess: navigate.back,
+      onSuccess: () => navigate.back(),
     );
   }
-
-  void navigateToSignUp() => navigate.toSignUp();
 
   @override
   void onClose() {

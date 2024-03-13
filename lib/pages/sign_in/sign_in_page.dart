@@ -7,6 +7,9 @@ import 'sign_in_controller.dart';
 class SignInPage extends GetView<SignInController> {
   const SignInPage({super.key});
 
+  Function signIn() => controller.signIn;
+  Function toSignUp() => controller.signIn;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,20 +23,17 @@ class SignInPage extends GetView<SignInController> {
             children: [
               EmailInputField(
                 controller: controller.emailController,
-                onFieldSubmitted: controller.signIn,
+                onFieldSubmitted: signIn,
               ),
               PasswordInputField(
                 controller: controller.passwordController,
-                onFieldSubmitted: controller.signIn,
+                onFieldSubmitted: signIn,
               ),
-              ElevatedButton(onPressed: controller.signIn, child: const Text('Iniciar Sesión')),
+              ElevatedButton(onPressed: signIn, child: const Text('Iniciar Sesión')),
               const SizedBox(height: 20),
               TextButton(onPressed: _showRecoverPasswordDialog, child: const Text("¿Olvidaste tu contraseña?")),
               const SizedBox(height: 20),
-              TextButton(
-                onPressed: controller.navigateToSignUp,
-                child: const Text('¿No tenes cuenta? Crear nueva cuenta'),
-              ),
+              TextButton(onPressed: toSignUp, child: const Text('¿No tenes cuenta? Crear nueva cuenta')),
             ],
           ),
         ),
@@ -49,7 +49,7 @@ class SignInPage extends GetView<SignInController> {
           key: controller.recoverPasswordFormKey,
           child: EmailInputField(
             controller: controller.emailRecoverController,
-            onFieldSubmitted: controller.signIn,
+            onFieldSubmitted: signIn,
           ),
         ),
         actions: [
