@@ -1,3 +1,4 @@
+import 'package:botanico/widgets/custom_drawer/custom_drawer.dart';
 import 'package:botanico/widgets/sign_out_button/sign_out_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,7 @@ class HomePage extends GetView<HomeController> {
       appBar: AppBar(
         title: const Text('Home'),
       ),
+      drawer: const CustomDrawer(),
       body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

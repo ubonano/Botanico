@@ -19,3 +19,44 @@ class SignOutButton extends GetView<SignOutController> {
     );
   }
 }
+
+class SignOutListTile extends GetView<SignOutController> {
+  const SignOutListTile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: const Icon(Icons.exit_to_app),
+      title: const Text('Cerrar Sesión'),
+      onTap: controller.signOut,
+    );
+  }
+}
+
+class SignOutIconButton extends StatefulWidget {
+  const SignOutIconButton({Key? key}) : super(key: key);
+
+  @override
+  State<SignOutIconButton> createState() => _SignOutIconButtonState();
+}
+
+class _SignOutIconButtonState extends State<SignOutIconButton> {
+  bool _isHovering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final signOutController = Get.find<SignOutController>();
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovering = true),
+      onExit: (_) => setState(() => _isHovering = false),
+      child: IconButton(
+        icon: Icon(
+          Icons.exit_to_app,
+          color: _isHovering ? Colors.grey : Colors.white,
+        ),
+        onPressed: signOutController.signOut,
+        tooltip: 'Cerrar sesión',
+      ),
+    );
+  }
+}
