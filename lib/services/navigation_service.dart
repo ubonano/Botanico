@@ -1,7 +1,7 @@
 import 'package:botanico/config/routes.dart';
 import 'package:get/get.dart';
 
-import 'log_service.dart';
+import '../utils/log_service.dart';
 
 class NavigationService extends GetxService {
   final log = Get.find<LogService>();
@@ -12,6 +12,8 @@ class NavigationService extends GetxService {
   void toSignUp({bool canPop = false}) => to(Routes.SIGN_UP, canPop: canPop);
   void toWorkerCreate({bool canPop = false}) => to(Routes.WORKER_CREATE, canPop: canPop);
   void toCompany({bool canPop = false}) => to(Routes.COMPANY_CREATE, canPop: canPop);
+  void toWorkers({bool canPop = false}) => to(Routes.WORKERS, canPop: canPop);
+  void toLinkWorker({bool canPop = false}) => to(Routes.LINK_WORKER, canPop: canPop);
 
   void to(String route, {bool canPop = false}) {
     if (canPop) {

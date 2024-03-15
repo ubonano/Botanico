@@ -33,11 +33,14 @@ class CustomDrawer extends GetView<CustomDrawerController> {
             title: Text(controller.companyName),
           ),
           ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('Inicio'),
+            onTap: controller.navigateToHome,
+          ),
+          ListTile(
             leading: const Icon(Icons.work),
             title: const Text('Trabajadores'),
-            onTap: () {
-              // Navegar a la pantalla de trabajadores
-            },
+            onTap: controller.navigateToWorkers,
           ),
         ],
       ),

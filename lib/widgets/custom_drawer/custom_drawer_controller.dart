@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../utils/custom_controller.dart';
+import '../../services/custom_controller.dart';
 
 class CustomDrawerController extends GetxController with CustomController {
   @override
@@ -9,4 +9,7 @@ class CustomDrawerController extends GetxController with CustomController {
   String get companyName => company?.name ?? '';
   String get workerEmail => loggedUserEmail;
   String get workerName => worker?.name ?? '';
+
+  void navigateToWorkers() => navigate.toWorkers();
+  void navigateToHome() => navigate.toHome();
 }

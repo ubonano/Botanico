@@ -1,11 +1,11 @@
 import 'package:botanico/models/company_model.dart';
 import 'package:botanico/models/worker_model.dart';
 import 'package:get/get.dart';
-import '../services/auth_service.dart';
-import '../services/company_service.dart';
-import '../services/worker_service.dart';
-import 'async_operation_service.dart';
-import 'log_service.dart';
+import 'auth_service.dart';
+import 'company_service.dart';
+import 'worker_service.dart';
+import '../utils/async_operation_service.dart';
+import '../utils/log_service.dart';
 import 'navigation_service.dart';
 
 mixin CustomController on GetxController {
@@ -41,12 +41,19 @@ mixin CustomController on GetxController {
     cleanCompany();
   }
 
+  void fetchData() {
+    fetchWorker();
+    fetchCompany();
+  }
+
   void cleanCompany() => companyService.clean();
   void cleanWorker() => workerService.clean();
 
   @override
   void onInit() {
     super.onInit();
+
+    fetchData();
 
     log.debug('+ $logTag iniciado');
   }
