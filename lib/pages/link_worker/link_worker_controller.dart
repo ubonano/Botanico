@@ -18,7 +18,7 @@ class LinkWorkerController extends GetxController with CustomController {
     super.onClose();
   }
 
-  Future<void> linkWorkerByCode() async {
+  Future<void> linkByCode() async {
     print("Vinculando trabajador con código: $_code");
   }
 

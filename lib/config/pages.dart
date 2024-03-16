@@ -1,12 +1,12 @@
 import 'package:botanico/pages/worker_create/worker_create_page.dart';
 import 'package:get/get.dart';
-import '../pages/link_workers/link_worker_page.dart';
+import '../pages/link_worker/link_worker_page.dart';
 import '../pages/sign_in/sign_in_page.dart';
 import '../pages/sign_up/sign_up_page.dart';
 import '../pages/company_create/company_create_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/lobby/lobby_page.dart';
-import '../pages/workers/workers_page.dart';
+import '../pages/linked_workers/linked_workers_page.dart';
 import 'routes.dart';
 
 class Pages {
@@ -40,8 +40,8 @@ class Pages {
       page: () => const HomePage(),
     ),
     GetPage(
-      name: Routes.WORKERS,
-      page: () => const WorkersPage(),
+      name: Routes.LINKED_WORKERS,
+      page: () => const LinkedWorkersPage(),
     ),
     GetPage(
       name: Routes.LINK_WORKER,

@@ -1,3 +1,5 @@
+import 'package:botanico/models/enums/worker_role.dart';
+import 'package:botanico/models/linked_worker.dart';
 import 'package:botanico/services/custom_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -45,6 +47,7 @@ class CompanyCreateController extends GetxController with CustomController {
         final newCompany = await companyService.create(_newCompany(), txn: txn);
 
         await updateWorkerWithCompanyId(newCompany.uid, txn);
+        await linkWorkerToCompany(newCompany.uid, LinkedWorkerModel.fromWorkerModel(worker!, WorkerRole.owner), txn);
       },
       onSuccess: () async {
         await fetchWorker();
@@ -57,6 +60,10 @@ class CompanyCreateController extends GetxController with CustomController {
 
   Future<void> updateWorkerWithCompanyId(String companyId, txn) async {
     await workerService.update(worker!.copyWith(companyId: companyId), txn: txn);
+  }
+
+  Future<void> linkWorkerToCompany(String companyId, LinkedWorkerModel linkedWorker, txn) async {
+    await linkedWorkerService.create(companyId, linkedWorker, txn: txn);
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:botanico/models/company_model.dart';
 import 'package:botanico/models/worker_model.dart';
+import 'package:botanico/services/linked_worker_service.dart';
 import 'package:get/get.dart';
 import 'auth_service.dart';
 import 'company_service.dart';
@@ -18,6 +19,7 @@ mixin CustomController on GetxController {
   late final auth = Get.find<AuthService>();
   late final workerService = Get.find<WorkerService>();
   late final companyService = Get.find<CompanyService>();
+  late final linkedWorkerService = Get.find<LinkedWorkerService>();
 
   String get loggedUserUID => auth.user!.uid;
   String get loggedUserEmail => auth.user!.email!;

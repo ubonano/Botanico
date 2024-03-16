@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 
 import '../../services/custom_controller.dart';
 
-class WorkersController extends GetxController with CustomController {
+class LinkedWorkersController extends GetxController with CustomController {
   @override
-  String get logTag => 'WorkersController';
+  String get logTag => 'LinkedWorkersController';
 
   final RxList<Worker> workers = RxList<Worker>();
 

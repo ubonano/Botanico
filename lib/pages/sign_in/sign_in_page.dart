@@ -8,7 +8,7 @@ class SignInPage extends GetView<SignInController> {
   const SignInPage({super.key});
 
   void signIn() => controller.signIn();
-  void toSignUp() => controller.signIn();
+  void toSignUp() => controller.navigateToSignUp();
 
   @override
   Widget build(BuildContext context) {

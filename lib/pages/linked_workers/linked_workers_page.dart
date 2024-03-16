@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../widgets/custom_drawer/custom_drawer.dart';
-import 'workers_controller.dart';
+import 'linked_workers_controller.dart';
 
-class WorkersPage extends GetView<WorkersController> {
-  const WorkersPage({super.key});
+class LinkedWorkersPage extends GetView<LinkedWorkersController> {
+  const LinkedWorkersPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -42,7 +42,7 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: controller.linkWorkerByCode,
+                onPressed: controller.linkByCode,
                 child: const Text('Vincular Trabajador'),
               ),
               const SizedBox(height: 20),

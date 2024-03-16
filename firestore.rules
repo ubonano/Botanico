@@ -12,6 +12,11 @@ service cloud.firestore {
 
     match /companies/{companyId} {
       allow read, create, update, delete: if isAuthenticated();
+
+      match /linkedWorkers/{workerId} {
+        allow read, create, update, delete: if isAuthenticated();
+      }
+
     }
   }
 }
