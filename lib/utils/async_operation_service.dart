@@ -1,3 +1,4 @@
+import 'package:botanico/utils/custom_exceptions.dart';
 import 'package:botanico/utils/log_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -41,7 +42,9 @@ class AsyncOperationService extends GetxService {
       if (showErrorMessageBySnackbar) {
         Get.snackbar('Error', _getErrorMessage(e), backgroundColor: Colors.red, colorText: Colors.white);
       }
+
       _logService.error("$operationName fallida: ${_getErrorMessage(e)}", e);
+
       if (onError != null) {
         onError(e);
       }
@@ -50,7 +53,7 @@ class AsyncOperationService extends GetxService {
   }
 }
 
-String _getErrorMessage(Object e) {
+String _getErrorMessage(e) {
   if (e is FirebaseAuthException) {
     if (e.message!.contains('email-already-in-use')) {
       return 'El email ya está en uso por otra cuenta.';
@@ -77,6 +80,10 @@ String _getErrorMessage(Object e) {
 
   if (e.toString().contains('permission-denied')) {
     return 'No tiene acceso a la información solicitada.';
+  }
+
+  if (e is WorkerNotFoundException) {
+    return e.message;
   }
 
   return e.toString();

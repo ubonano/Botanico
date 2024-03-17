@@ -42,6 +42,7 @@ class WorkerService extends GetxService with CustomService {
 
   Future<WorkerModel?> get(String id) async {
     DocumentSnapshot docSnapshot = await _collectionRef.doc(id).get();
+
     if (docSnapshot.exists) {
       return WorkerModel.fromSnapshot(docSnapshot);
     }
