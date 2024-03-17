@@ -1,11 +1,13 @@
+import 'package:botanico/widgets/input_fields/worker_id_input_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'link_worker_controller.dart';
 
 class LinkWorkerPage extends GetView<LinkWorkerController> {
   const LinkWorkerPage({Key? key}) : super(key: key);
+
+  void submit() => controller.submit();
 
   @override
   Widget build(BuildContext context) {
@@ -16,41 +18,30 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: controller.codeCtrl,
-                      decoration: const InputDecoration(
-                        labelText: 'Código del Trabajador',
-                        hintText: 'Ingresa o pega el código aquí',
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.paste),
-                    onPressed: () async {
-                      final ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);
-                      controller.code(data?.text ?? '');
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: controller.linkByCode,
-                child: const Text('Vincular Trabajador'),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: controller.scanQrCode,
-                child: const Text('Escanear Código QR'),
-              ),
-            ],
+          child: Form(
+            key: controller.formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    Expanded(child: WorkerIdInputField(controller: controller.codeCtrl)),
+                    IconButton(icon: const Icon(Icons.paste), onPressed: controller.pasteWorkerId),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: submit,
+                  child: const Text('Vincular Trabajador'),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: controller.scanQrCode,
+                  child: const Text('Escanear Código QR'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

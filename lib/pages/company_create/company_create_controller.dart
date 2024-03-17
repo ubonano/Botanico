@@ -5,10 +5,13 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../models/company_model.dart';
+import '../../services/linked_worker_service.dart';
 
 class CompanyCreateController extends GetxController with CustomController {
   @override
   String get logTag => 'CompanyCreateController';
+
+  late final linkedWorkerService = Get.find<LinkedWorkerService>();
 
   final formKey = GlobalKey<FormState>();
 

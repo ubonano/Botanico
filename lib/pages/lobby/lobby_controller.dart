@@ -10,8 +10,8 @@ class LobbyController extends GetxController with CustomController {
   final RxString uid = ''.obs;
 
   @override
-  void onInit() {
-    super.onInit();
+  Future<void> onInit() async {
+    await super.onInit();
 
     uid.value = loggedUserUID;
   }

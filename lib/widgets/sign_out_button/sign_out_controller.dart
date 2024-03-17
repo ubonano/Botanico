@@ -9,7 +9,9 @@ class SignOutController extends GetxController with CustomController {
       operationName: 'Sign out',
       operation: (_) async {
         await auth.signOut();
-        cleanData();
+
+        workerService.clean();
+        companyService.clean();
       },
       onSuccess: navigate.toSignIn);
 }

@@ -21,23 +21,43 @@ import '../services/navigation_service.dart';
 class AppBindings extends Bindings {
   @override
   void dependencies() {
+    _initCommonServices();
+    _initBussinesServices();
+
+    _initCommonControllers();
+    _initAuthControllers();
+
+    _initBussinesControllers();
+  }
+
+  void _initCommonServices() {
     Get.put(LogService(), permanent: true);
     Get.put(NavigationService(), permanent: true);
     Get.put(AsyncOperationService(), permanent: true);
-    Get.put(AuthService(), permanent: true);
-    Get.put(WorkerService(), permanent: true);
-    Get.put(CompanyService(), permanent: true);
-    Get.put(LinkedWorkerService(), permanent: true);
+  }
 
+  void _initBussinesServices() {
+    Get.lazyPut<AuthService>(() => AuthService(), fenix: true);
+    Get.lazyPut<WorkerService>(() => WorkerService(), fenix: true);
+    Get.lazyPut<CompanyService>(() => CompanyService(), fenix: true);
+    Get.lazyPut<LinkedWorkerService>(() => LinkedWorkerService(), fenix: true);
+  }
+
+  void _initCommonControllers() {
+    Get.lazyPut<CustomDrawerController>(() => CustomDrawerController(), fenix: true);
+    Get.lazyPut<LobbyController>(() => LobbyController(), fenix: true);
+    Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
+  }
+
+  void _initAuthControllers() {
     Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
     Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true);
+    Get.lazyPut<SignOutController>(() => SignOutController(), fenix: true);
+  }
 
+  void _initBussinesControllers() {
     Get.lazyPut<WorkerCreateController>(() => WorkerCreateController(), fenix: true);
     Get.lazyPut<CompanyCreateController>(() => CompanyCreateController(), fenix: true);
-    Get.lazyPut<LobbyController>(() => LobbyController(), fenix: true);
-    Get.lazyPut<SignOutController>(() => SignOutController(), fenix: true);
-    Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
-    Get.lazyPut<CustomDrawerController>(() => CustomDrawerController(), fenix: true);
     Get.lazyPut<LinkedWorkersController>(() => LinkedWorkersController(), fenix: true);
     Get.lazyPut<LinkWorkerController>(() => LinkWorkerController(), fenix: true);
   }

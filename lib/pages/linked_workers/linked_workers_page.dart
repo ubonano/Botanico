@@ -16,12 +16,12 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
       drawer: const CustomDrawer(),
       body: Obx(
         () => ListView.builder(
-          itemCount: controller.workers.length,
+          itemCount: controller.linkedWorkers$.length,
           itemBuilder: (context, index) {
-            // final worker = controller.workers[index];
-            return const ListTile(
-              title: Text('worker.name'),
-              subtitle: Text('worker.email'),
+            final worker = controller.linkedWorkers$[index];
+            return ListTile(
+              title: Text(worker.name),
+              subtitle: Text(worker.email),
             );
           },
         ),

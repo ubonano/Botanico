@@ -1,6 +1,5 @@
 import 'package:botanico/models/company_model.dart';
 import 'package:botanico/models/worker_model.dart';
-import 'package:botanico/services/linked_worker_service.dart';
 import 'package:get/get.dart';
 import 'auth_service.dart';
 import 'company_service.dart';
@@ -19,43 +18,34 @@ mixin CustomController on GetxController {
   late final auth = Get.find<AuthService>();
   late final workerService = Get.find<WorkerService>();
   late final companyService = Get.find<CompanyService>();
-  late final linkedWorkerService = Get.find<LinkedWorkerService>();
 
-  String get loggedUserUID => auth.user!.uid;
-  String get loggedUserEmail => auth.user!.email!;
+  bool get isLoggedInUser => auth.user != null;
+  String get loggedUserUID => auth.user?.uid ?? '';
+  String get loggedUserEmail => auth.user?.email ?? '';
 
   WorkerModel? get worker => workerService.worker$.value;
+  String get workerId => worker?.uid ?? '';
   bool get isWorkerLoaded => worker != null;
   bool get workerHasCompany => isWorkerLoaded && worker!.companyId != '';
 
   CompanyModel? get company => companyService.company$.value;
+  String get companyId => company?.uid ?? '';
   bool get isCompanyLoaded => company != null;
 
-  Future<void> fetchWorker() async => await workerService.fetch(loggedUserUID);
+  Future<void> fetchWorker() async {
+    if (isLoggedInUser) await workerService.fetch(loggedUserUID);
+  }
+
   Future<void> fetchCompany() async {
-    if (workerHasCompany) {
-      await companyService.fetch(worker!.companyId);
-    }
+    if (workerHasCompany) await companyService.fetch(worker!.companyId);
   }
-
-  void cleanData() {
-    cleanWorker();
-    cleanCompany();
-  }
-
-  void fetchData() {
-    fetchWorker();
-    fetchCompany();
-  }
-
-  void cleanCompany() => companyService.clean();
-  void cleanWorker() => workerService.clean();
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
 
-    fetchData();
+    await fetchWorker();
+    await fetchCompany();
 
     log.debug('+ $logTag iniciado');
   }

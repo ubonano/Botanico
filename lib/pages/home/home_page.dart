@@ -28,9 +28,3 @@ class HomePage extends GetView<HomeController> {
     );
   }
 }
-
-/*
-
-  Crear el servicio de LinkWorker o LinkedWorker y vincular
-
- */ 
