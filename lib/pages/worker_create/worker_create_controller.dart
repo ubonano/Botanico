@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../services/custom_controller.dart';
+import '../../utils/custom_controller.dart';
 import '../../models/worker_model.dart';
 
 class WorkerCreateController extends GetxController with CustomController {

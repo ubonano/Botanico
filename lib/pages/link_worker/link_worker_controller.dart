@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../models/worker_model.dart';
-import '../../services/custom_controller.dart';
+import '../../utils/custom_controller.dart';
 import '../../services/linked_worker_service.dart';
 
 class LinkWorkerController extends GetxController with CustomController {

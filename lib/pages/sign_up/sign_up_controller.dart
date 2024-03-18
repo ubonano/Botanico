@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../../services/custom_controller.dart';
+import '../../utils/custom_controller.dart';
 
 class SignUpController extends GetxController with CustomController {
   @override

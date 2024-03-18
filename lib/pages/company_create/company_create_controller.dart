@@ -1,7 +1,7 @@
 import 'package:botanico/models/enums/worker_role.dart';
 import 'package:botanico/models/linked_worker_model.dart';
 import 'package:botanico/models/worker_model.dart';
-import 'package:botanico/services/custom_controller.dart';
+import 'package:botanico/utils/custom_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 

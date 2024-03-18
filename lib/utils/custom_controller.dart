@@ -1,12 +1,12 @@
 import 'package:botanico/models/company_model.dart';
 import 'package:botanico/models/worker_model.dart';
 import 'package:get/get.dart';
-import 'auth_service.dart';
-import 'company_service.dart';
-import 'worker_service.dart';
-import '../utils/async_operation_service.dart';
-import '../utils/log_service.dart';
-import 'navigation_service.dart';
+import '../services/auth_service.dart';
+import '../services/company_service.dart';
+import '../services/worker_service.dart';
+import 'async_operation_service.dart';
+import 'log_service.dart';
+import '../services/navigation_service.dart';
 
 mixin CustomController on GetxController {
   String get logTag;
@@ -33,11 +33,11 @@ mixin CustomController on GetxController {
   bool get loggedInCompanyIsLoaded => loggedIncompany != null;
 
   Future<void> fetchWorker() async {
-    if (isLoggedInUser) await workerService.fetch(loggedUserUID);
+    if (isLoggedInUser && !loggedInWorkerIsLoaded) await workerService.fetch(loggedUserUID);
   }
 
   Future<void> fetchCompany() async {
-    if (loggedInWorkerHasCompany) await companyService.fetch(loggedInWorker!.companyId);
+    if (loggedInWorkerHasCompany && !loggedInCompanyIsLoaded) await companyService.fetch(loggedInWorker!.companyId);
   }
 
   @override

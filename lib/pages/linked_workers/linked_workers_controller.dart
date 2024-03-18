@@ -1,7 +1,7 @@
 import 'package:botanico/models/linked_worker_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import '../../services/custom_controller.dart';
+import '../../utils/custom_controller.dart';
 import '../../services/linked_worker_service.dart';
 
 class LinkedWorkersController extends GetxController with CustomController {
