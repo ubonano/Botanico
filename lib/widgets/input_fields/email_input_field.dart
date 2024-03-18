@@ -5,11 +5,13 @@ import 'custom_input_field.dart';
 class EmailInputField extends StatelessWidget {
   final TextEditingController controller;
   final Function? onFieldSubmitted;
+  final bool required;
 
   const EmailInputField({
     Key? key,
     required this.controller,
     this.onFieldSubmitted,
+    this.required = true,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class EmailInputField extends StatelessWidget {
       label: 'Email',
       controller: controller,
       keyboardType: TextInputType.emailAddress,
-      validator: Validator.email,
+      validator: (value) => Validator.email(value, required: required),
       onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );
   }

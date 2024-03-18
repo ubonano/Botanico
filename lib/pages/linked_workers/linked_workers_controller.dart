@@ -16,24 +16,23 @@ class LinkedWorkersController extends GetxController with CustomController {
   void navigateToBack() => navigate.back();
 
   Future<void> unlinkWorker(LinkedWorkerModel linkedWorker) async {
-    if (!validateLinkedWorker(linkedWorker)) return;
+    if (!canDelete(linkedWorker)) return;
 
     await async.perform(
-      operationName: 'Unlik worker',
+      operationName: 'Unlink worker',
       successMessage: 'Trabajador desvinculado',
       inTransaction: true,
       operation: (txn) async {
-        await _deleteLinkWorker(linkedWorker, txn);
-
-        await _cleanCompanyIdFromWorkerUnliked(linkedWorker, txn);
+        await _unlikWorker(loggedInCompanyId, linkedWorker, txn);
+        await _cleanCompanyId(linkedWorker, txn);
       },
       onSuccess: () => _removeLinkedWorkerFromLocal(linkedWorker),
     );
   }
 
-  bool validateLinkedWorker(LinkedWorkerModel linkedWorker) {
+  bool canDelete(LinkedWorkerModel linkedWorker) {
     if (linkedWorker.uid == loggedInWorkerId) {
-      Get.snackbar('Error', 'No es posible auto-desvincularse');
+      Get.snackbar('Error', 'No es posible desvincularse a si mismo');
       return false;
     }
     if (linkedWorker.isOwner) {
@@ -44,10 +43,10 @@ class LinkedWorkersController extends GetxController with CustomController {
     return true;
   }
 
-  Future<void> _deleteLinkWorker(LinkedWorkerModel linkedWorkerToDelete, txn) async =>
-      await linkedWorkerService.delete(loggedInCompanyId, linkedWorkerToDelete.uid, txn: txn);
+  Future<void> _unlikWorker(String companyId, LinkedWorkerModel linkedWorkerToDelete, txn) async =>
+      await linkedWorkerService.delete(companyId, linkedWorkerToDelete.uid, txn: txn);
 
-  Future<void> _cleanCompanyIdFromWorkerUnliked(LinkedWorkerModel linkedWorker, Transaction? txn) async {
+  Future<void> _cleanCompanyId(LinkedWorkerModel linkedWorker, Transaction? txn) async {
     final worker = await workerService.get(linkedWorker.uid);
 
     await workerService.update(worker!.copyWith(companyId: ''), txn: txn);

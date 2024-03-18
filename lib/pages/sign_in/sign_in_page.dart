@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../widgets/custom_scaffold.dart';
 import '../../widgets/input_fields/email_input_field.dart';
 import '../../widgets/input_fields/password_input_field.dart';
 import 'sign_in_controller.dart';
@@ -12,8 +13,9 @@ class SignInPage extends GetView<SignInController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Iniciar Sesión')),
+    return CustomScaffold(
+      title: 'Iniciar Sesión',
+      drawer: null,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(

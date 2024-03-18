@@ -2,6 +2,7 @@ import 'package:botanico/widgets/sign_out_button/sign_out_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import '../../widgets/custom_scaffold.dart';
 import 'lobby_controller.dart';
 
 class LobbyPage extends GetView<LobbyController> {
@@ -9,10 +10,9 @@ class LobbyPage extends GetView<LobbyController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Lobby"),
-      ),
+    return CustomScaffold(
+      title: 'Lobby',
+      drawer: null,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

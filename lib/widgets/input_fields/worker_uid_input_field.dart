@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import '../../../utils/validator.dart';
 import 'custom_input_field.dart';
 
-class ConfirmPasswordInputField extends StatelessWidget {
+class WorkerUidInputField extends StatelessWidget {
   final TextEditingController controller;
-  final TextEditingController passwordController;
   final Function? onFieldSubmitted;
   final bool required;
 
-  const ConfirmPasswordInputField({
+  const WorkerUidInputField({
     Key? key,
     required this.controller,
-    required this.passwordController,
     this.onFieldSubmitted,
     this.required = true,
   }) : super(key: key);
@@ -19,11 +17,9 @@ class ConfirmPasswordInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomInputField(
-      label: 'Confirmar Contraseña',
+      label: 'Código del Trabajador',
       controller: controller,
-      obscureText: true,
-      validator: (value) => Validator.confirmPassword(value, passwordController.text, required: required),
-      textInputAction: TextInputAction.go,
+      validator: required ? (value) => Validator.required(value) : null,
       onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );
   }

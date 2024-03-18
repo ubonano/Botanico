@@ -1,7 +1,6 @@
-import 'package:botanico/widgets/custom_drawer/custom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../../widgets/custom_scaffold.dart';
 import 'home_controller.dart';
 
 class HomePage extends GetView<HomeController> {
@@ -11,12 +10,9 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     controller.logTag;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      drawer: const CustomDrawer(),
-      body: const Center(
+    return const CustomScaffold(
+      title: 'Home',
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

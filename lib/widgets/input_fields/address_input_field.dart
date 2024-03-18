@@ -19,7 +19,8 @@ class AddressInputField extends StatelessWidget {
     return CustomInputField(
       label: 'Dirección',
       controller: controller,
-      validator: required ? (value) => Validator.required(value, fieldName: "La dirección") : null,
+      validator: required ? (value) => Validator.required(value) : null,
+      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );
   }
 }

@@ -19,7 +19,8 @@ class NameInputField extends StatelessWidget {
     return CustomInputField(
       label: 'Nombre',
       controller: controller,
-      validator: required ? (value) => Validator.required(value, fieldName: "El nombre") : null,
+      validator: required ? (value) => Validator.required(value) : null,
+      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );
   }
 }

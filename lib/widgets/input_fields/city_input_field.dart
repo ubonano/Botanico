@@ -19,7 +19,8 @@ class CityInputField extends StatelessWidget {
     return CustomInputField(
       label: 'Ciudad',
       controller: controller,
-      validator: required ? (value) => Validator.required(value, fieldName: "La ciudad") : null,
+      validator: required ? (value) => Validator.required(value) : null,
+      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );
   }
 }

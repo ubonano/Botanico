@@ -1,6 +1,7 @@
 import 'package:botanico/models/enums/worker_role.dart';
 import 'package:botanico/models/linked_worker_model.dart';
 import 'package:botanico/utils/custom_exceptions.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -25,33 +26,13 @@ class LinkWorkerController extends GetxController with CustomController {
     await async.perform(
       operationName: 'Get worker',
       operation: (_) async {
-        final worker = await getWorkerByCode();
-
+        final worker = await _getWorkerByCode();
         await _linkWorker(worker);
       },
     );
   }
 
-  Future<void> _linkWorker(WorkerModel worker) async {
-    await async.perform(
-      operationName: 'Link worker',
-      successMessage: 'Trabajador vinculado!',
-      inTransaction: true,
-      operation: (txn) async {
-        final linkedWorker = getLinkedWorkerByWorker(worker);
-        final workerModified = getWorkerUpdatedByCompanyId(worker);
-
-        await linkedWorkerService.create(loggedInCompanyId, linkedWorker, txn: txn);
-        await workerService.update(workerModified, txn: txn);
-      },
-      onSuccess: () {
-        linkedWorkerService.fetchAll(loggedInCompanyId);
-        navigate.toLinkedWorkers();
-      },
-    );
-  }
-
-  Future<WorkerModel> getWorkerByCode() async {
+  Future<WorkerModel> _getWorkerByCode() async {
     final worker = await workerService.get(_code);
 
     if (worker == null) {
@@ -61,10 +42,31 @@ class LinkWorkerController extends GetxController with CustomController {
     return worker;
   }
 
-  WorkerModel getWorkerUpdatedByCompanyId(WorkerModel worker) => worker.copyWith(companyId: loggedInCompanyId);
+  Future<void> _linkWorker(WorkerModel worker) async {
+    await async.perform(
+      operationName: 'Link worker',
+      successMessage: 'Trabajador vinculado!',
+      inTransaction: true,
+      operation: (txn) async {
+        await _createLinkedWorerByWorker(loggedInCompanyId, worker, txn);
+        await _updateWorkerByCompanyId(loggedInCompanyId, worker, txn);
+      },
+      onSuccess: () {
+        linkedWorkerService.fetchAll(loggedInCompanyId);
+        navigate.toLinkedWorkers();
+      },
+    );
+  }
 
-  LinkedWorkerModel getLinkedWorkerByWorker(WorkerModel worker) =>
-      LinkedWorkerModel.fromWorkerModel(worker, WorkerRole.employee);
+  Future<void> _createLinkedWorerByWorker(String companyId, WorkerModel worker, Transaction? txn) async {
+    final linkedWorker = LinkedWorkerModel.fromWorkerModel(worker, WorkerRole.employee);
+    await linkedWorkerService.create(companyId, linkedWorker, txn: txn);
+  }
+
+  Future<void> _updateWorkerByCompanyId(String companyId, WorkerModel worker, Transaction? txn) async {
+    final workerModified = worker.copyWith(companyId: companyId);
+    await workerService.update(workerModified, txn: txn);
+  }
 
   void pasteWorkerId() async {
     final ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);

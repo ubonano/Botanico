@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../../../utils/validator.dart';
 import 'custom_input_field.dart';
 
-class WorkerIdInputField extends StatelessWidget {
+class DNIInputField extends StatelessWidget {
   final TextEditingController controller;
   final Function? onFieldSubmitted;
   final bool required;
 
-  const WorkerIdInputField({
+  const DNIInputField({
     Key? key,
     required this.controller,
     this.onFieldSubmitted,
@@ -17,9 +17,11 @@ class WorkerIdInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomInputField(
-      label: 'Código del Trabajador',
+      label: 'DNI',
       controller: controller,
-      validator: required ? (value) => Validator.required(value, fieldName: "El Código del Trabajador") : null,
+      keyboardType: TextInputType.phone,
+      validator: (value) => Validator.number(value, required: required),
+      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );
   }
 }

@@ -26,21 +26,25 @@ class WorkerCreateController extends GetxController with CustomController {
       operationName: 'Create worker',
       successMessage: 'Trabajador creado!',
       operation: (_) async {
-        await workerService.create(
-          WorkerModel(
-            uid: loggedUserUID,
-            email: loggedUserEmail,
-            name: _name,
-            birthDate: _birthDate,
-            phone: _phone,
-            dni: _dni,
-          ),
-        );
+        await _createWorker(loggedUserUID, loggedUserEmail);
       },
       onSuccess: () async {
         await fetchWorker();
         navigate.toLobby();
       },
+    );
+  }
+
+  Future<void> _createWorker(String userId, String email) async {
+    await workerService.create(
+      WorkerModel(
+        uid: userId,
+        email: email,
+        name: _name,
+        birthDate: _birthDate,
+        phone: _phone,
+        dni: _dni,
+      ),
     );
   }
 

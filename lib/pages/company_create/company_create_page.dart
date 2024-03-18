@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../widgets/custom_scaffold.dart';
 import '../../widgets/input_fields/address_input_field.dart';
 import '../../widgets/input_fields/city_input_field.dart';
 import '../../widgets/input_fields/country_input_field.dart';
@@ -15,8 +16,9 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Crear Compañía')),
+    return CustomScaffold(
+      title: 'Crear Compañía',
+      drawer: null,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(

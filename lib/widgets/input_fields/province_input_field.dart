@@ -19,7 +19,8 @@ class ProvinceInputField extends StatelessWidget {
     return CustomInputField(
       label: 'Provincia',
       controller: controller,
-      validator: required ? (value) => Validator.required(value, fieldName: "La provincia") : null,
+      validator: required ? (value) => Validator.required(value) : null,
+      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );
   }
 }

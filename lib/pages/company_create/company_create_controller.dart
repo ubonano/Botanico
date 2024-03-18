@@ -50,8 +50,8 @@ class CompanyCreateController extends GetxController with CustomController {
       operation: (txn) async {
         final newCompany = await companyService.create(_newCompany(), txn: txn);
 
-        await updateWorkerWithCompanyId(newCompany.uid, loggedInWorker!, txn);
-        await linkWorkerToCompany(newCompany.uid, loggedInWorker!, txn);
+        await _updateWorkerWithCompanyId(newCompany.uid, loggedInWorker!, txn);
+        await _linkWorkerToCompany(newCompany.uid, loggedInWorker!, txn);
       },
       onSuccess: () async {
         await fetchWorker();
@@ -62,11 +62,11 @@ class CompanyCreateController extends GetxController with CustomController {
     );
   }
 
-  Future<void> updateWorkerWithCompanyId(String companyId, WorkerModel worker, txn) async {
+  Future<void> _updateWorkerWithCompanyId(String companyId, WorkerModel worker, txn) async {
     await workerService.update(worker.copyWith(companyId: companyId), txn: txn);
   }
 
-  Future<void> linkWorkerToCompany(String companyId, WorkerModel worker, txn) async {
+  Future<void> _linkWorkerToCompany(String companyId, WorkerModel worker, txn) async {
     await linkedWorkerService.create(companyId, LinkedWorkerModel.fromWorkerModel(worker, WorkerRole.owner), txn: txn);
   }
 

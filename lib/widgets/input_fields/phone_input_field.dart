@@ -19,7 +19,9 @@ class PhoneInputField extends StatelessWidget {
     return CustomInputField(
       label: 'Teléfono',
       controller: controller,
-      validator: required ? (value) => Validator.required(value, fieldName: "El teléfono") : null,
+      keyboardType: TextInputType.phone,
+      validator: (value) => Validator.number(value, required: required),
+      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );
   }
 }

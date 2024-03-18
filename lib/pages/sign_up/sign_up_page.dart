@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../widgets/custom_scaffold.dart';
 import '../../widgets/input_fields/confirm_password_input_field.dart';
 import '../../widgets/input_fields/email_input_field.dart';
 import '../../widgets/input_fields/password_input_field.dart';
@@ -13,8 +14,9 @@ class SignUpPage extends GetView<SignUpController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Registro')),
+    return CustomScaffold(
+      title: 'Registro',
+      drawer: null,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(

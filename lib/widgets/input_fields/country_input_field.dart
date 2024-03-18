@@ -19,7 +19,8 @@ class CountryInputField extends StatelessWidget {
     return CustomInputField(
       label: 'País',
       controller: controller,
-      validator: required ? (value) => Validator.required(value, fieldName: "El país") : null,
+      validator: required ? (value) => Validator.required(value) : null,
+      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );
   }
 }
