@@ -13,47 +13,27 @@ class WorkerService extends GetxService with CustomService {
 
   final worker$ = Rx<WorkerModel?>(null);
 
-  Future<void> fetch(String id) async {
-    final snapshot = await _collectionRef.doc(id).get();
-    worker$.value = snapshot.exists ? WorkerModel.fromSnapshot(snapshot) : null;
+  void clean() => worker$.value = null;
+
+  Future<void> fetch(String id) async => worker$.value = await _getWorker(id);
+
+  Future<WorkerModel?> get(String id) async => await _getWorker(id);
+
+  Future<WorkerModel?> _getWorker(String id) async {
+    final docSnapshot = await _getDocumentReference(id).get();
+    return docSnapshot.exists ? WorkerModel.fromSnapshot(docSnapshot) : null;
   }
 
   Future<WorkerModel> create(WorkerModel worker, {Transaction? txn}) async {
-    DocumentReference docRef = _collectionRef.doc(worker.uid);
-
-    if (txn != null) {
-      txn.set(docRef, worker.toMap());
-    } else {
-      await docRef.set(worker.toMap());
-    }
-
+    final docRef = _getDocumentReference(worker.uid);
+    txn != null ? txn.set(docRef, worker.toMap()) : await docRef.set(worker.toMap());
     return worker;
   }
 
   Future<void> update(WorkerModel worker, {Transaction? txn}) async {
-    DocumentReference docRef = _collectionRef.doc(worker.uid);
-
-    if (txn != null) {
-      txn.update(docRef, worker.toMap());
-    } else {
-      await docRef.update(worker.toMap());
-    }
+    final docRef = _getDocumentReference(worker.uid);
+    txn != null ? txn.update(docRef, worker.toMap()) : await docRef.update(worker.toMap());
   }
 
-  Future<WorkerModel?> get(String id) async {
-    DocumentSnapshot docSnapshot = await _collectionRef.doc(id).get();
-
-    if (docSnapshot.exists) {
-      return WorkerModel.fromSnapshot(docSnapshot);
-    }
-    return null;
-  }
-
-  void clean() => worker$.value = null;
+  DocumentReference _getDocumentReference(String id) => _collectionRef.doc(id);
 }
- 
-
-// ver de hacer un dialogo de confirmaicon, mostrnaod los datos del trabajador.
-// ver detalle de usuarios 
-// cuando un empleado inicia sesion y tiene una compania vinculada, dirigir a home
-// agregar campo cuit a la empresa

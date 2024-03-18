@@ -10,16 +10,15 @@ class AuthService extends GetxService with CustomService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Stream<User?> get userChanges => _auth.authStateChanges();
+
   User? get user => _auth.currentUser;
 
   Future<User?> signIn(String email, String password) async {
-    final UserCredential userCredential = await _auth.signInWithEmailAndPassword(email: email, password: password);
-    return userCredential.user;
+    return (await _auth.signInWithEmailAndPassword(email: email, password: password)).user;
   }
 
   Future<User?> signUp(String email, String password) async {
-    final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-    return userCredential.user;
+    return (await _auth.createUserWithEmailAndPassword(email: email, password: password)).user;
   }
 
   Future<void> signOut() async => await _auth.signOut();

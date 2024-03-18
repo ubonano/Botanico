@@ -9,23 +9,25 @@ class CompanyService extends GetxService with CustomService {
   String get logTag => 'CompanyService';
 
   final _collectionRef = FirebaseFirestore.instance.collection(FirestoreCollections.companies);
+
   final company$ = Rx<CompanyModel?>(null);
 
-  Future<void> fetch(String id) async {
-    final snapshot = await _collectionRef.doc(id).get();
-    company$.value = snapshot.exists ? CompanyModel.fromSnapshot(snapshot) : null;
+  void clean() => company$.value = null;
+
+  Future<void> fetch(String id) async => company$.value = await _getCompany(id);
+
+  Future<CompanyModel?> get(String id) async => await _getCompany(id);
+
+  Future<CompanyModel?> _getCompany(String id) async {
+    final docSnapshot = await _getDocumentReference(id).get();
+    return docSnapshot.exists ? CompanyModel.fromSnapshot(docSnapshot) : null;
   }
 
   Future<CompanyModel> create(CompanyModel company, {Transaction? txn}) async {
     DocumentReference docRef = _collectionRef.doc();
-
     CompanyModel newCompany = company.copyWith(uid: docRef.id);
 
-    if (txn != null) {
-      txn.set(docRef, newCompany.toMap());
-    } else {
-      await docRef.set(newCompany.toMap());
-    }
+    txn != null ? txn.set(docRef, newCompany.toMap()) : await docRef.set(newCompany.toMap());
 
     return newCompany;
   }
@@ -33,12 +35,8 @@ class CompanyService extends GetxService with CustomService {
   Future<void> update(CompanyModel company, {Transaction? txn}) async {
     DocumentReference docRef = _collectionRef.doc(company.uid);
 
-    if (txn != null) {
-      txn.update(docRef, company.toMap());
-    } else {
-      await docRef.update(company.toMap());
-    }
+    txn != null ? txn.update(docRef, company.toMap()) : await docRef.update(company.toMap());
   }
 
-  void clean() => company$.value = null;
+  DocumentReference _getDocumentReference(String id) => _collectionRef.doc(id);
 }

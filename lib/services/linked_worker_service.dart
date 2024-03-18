@@ -9,42 +9,30 @@ class LinkedWorkerService extends GetxService with CustomService {
   String get logTag => 'LinkedWorkerService';
 
   final _companiesRef = FirebaseFirestore.instance.collection(FirestoreCollections.companies);
+  final list$ = RxList<LinkedWorkerModel>();
 
-  final linkedWorkers$ = RxList<LinkedWorkerModel>();
+  void clean() => list$.clear();
+  void removeFromLocal(LinkedWorkerModel linkedWorker) => list$.removeWhere((lw) => lw.uid == linkedWorker.uid);
 
-  CollectionReference<Map<String, dynamic>> _linkedWorkersRef(String companyId) =>
-      _companiesRef.doc(companyId).collection(FirestoreCollections.linkedWorkers);
+  Future<void> fetchAll(String companyId) async {
+    final snapshot = await _linkedWorkersRef(companyId).get();
+    list$.assignAll(snapshot.docs.map(LinkedWorkerModel.fromSnapshot).toList());
+  }
 
   Future<LinkedWorkerModel> create(String companyId, LinkedWorkerModel linkedWorker, {Transaction? txn}) async {
-    DocumentReference docRef = _linkedWorkersRef(companyId).doc(linkedWorker.uid);
-
-    if (txn != null) {
-      txn.set(docRef, linkedWorker.toMap());
-    } else {
-      await docRef.set(linkedWorker.toMap());
-    }
-
+    final docRef = _getDocumentReference(companyId, linkedWorker.uid);
+    txn != null ? txn.set(docRef, linkedWorker.toMap()) : await docRef.set(linkedWorker.toMap());
     return linkedWorker;
   }
 
-  Future<void> fetchAll(String companyId) async {
-    QuerySnapshot snapshot = await _linkedWorkersRef(companyId).get();
-
-    linkedWorkers$.assignAll(snapshot.docs.map((doc) => LinkedWorkerModel.fromSnapshot(doc)).toList());
-  }
-
   Future<void> delete(String companyId, String workerId, {Transaction? txn}) async {
-    DocumentReference docRef = _linkedWorkersRef(companyId).doc(workerId);
-
-    if (txn != null) {
-      txn.delete(docRef);
-    } else {
-      await docRef.delete();
-    }
+    final docRef = _getDocumentReference(companyId, workerId);
+    txn != null ? txn.delete(docRef) : await docRef.delete();
   }
 
-  void removeLinkedWorkerFromLocal(LinkedWorkerModel linkedWorker) =>
-      linkedWorkers$.removeWhere((lw) => lw.uid == linkedWorker.uid);
+  DocumentReference _getDocumentReference(String companyId, String docId) => _linkedWorkersRef(companyId).doc(docId);
 
-  void clean() => linkedWorkers$.clear();
+  CollectionReference<Map<String, dynamic>> _linkedWorkersRef(String companyId) {
+    return _companiesRef.doc(companyId).collection(FirestoreCollections.linkedWorkers);
+  }
 }

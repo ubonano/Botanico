@@ -10,7 +10,7 @@ class LinkedWorkersController extends GetxController with CustomController {
 
   late final linkedWorkerService = Get.find<LinkedWorkerService>();
 
-  RxList<LinkedWorkerModel> get linkedWorkers$ => linkedWorkerService.linkedWorkers$;
+  RxList<LinkedWorkerModel> get linkedWorkers$ => linkedWorkerService.list$;
 
   void navigateToLinkWorker() => navigate.toLinkWorker(canPop: true);
   void navigateToBack() => navigate.back();
@@ -53,7 +53,7 @@ class LinkedWorkersController extends GetxController with CustomController {
   }
 
   void _removeLinkedWorkerFromLocal(LinkedWorkerModel linkedWorker) =>
-      linkedWorkerService.removeLinkedWorkerFromLocal(linkedWorker);
+      linkedWorkerService.removeFromLocal(linkedWorker);
 
   @override
   Future<void> onInit() async {
