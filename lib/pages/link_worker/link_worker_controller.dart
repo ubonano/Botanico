@@ -1,5 +1,5 @@
 import 'package:botanico/models/enums/worker_role.dart';
-import 'package:botanico/models/linked_worker.dart';
+import 'package:botanico/models/linked_worker_model.dart';
 import 'package:botanico/utils/custom_exceptions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,11 +41,11 @@ class LinkWorkerController extends GetxController with CustomController {
         final linkedWorker = getLinkedWorkerByWorker(worker);
         final workerModified = getWorkerUpdatedByCompanyId(worker);
 
-        await linkedWorkerService.create(companyId, linkedWorker, txn: txn);
+        await linkedWorkerService.create(loggedInCompanyId, linkedWorker, txn: txn);
         await workerService.update(workerModified, txn: txn);
       },
       onSuccess: () {
-        linkedWorkerService.fetchAll(companyId);
+        linkedWorkerService.fetchAll(loggedInCompanyId);
         navigate.toLinkedWorkers();
       },
     );
@@ -61,7 +61,7 @@ class LinkWorkerController extends GetxController with CustomController {
     return worker;
   }
 
-  WorkerModel getWorkerUpdatedByCompanyId(WorkerModel worker) => worker.copyWith(companyId: companyId);
+  WorkerModel getWorkerUpdatedByCompanyId(WorkerModel worker) => worker.copyWith(companyId: loggedInCompanyId);
 
   LinkedWorkerModel getLinkedWorkerByWorker(WorkerModel worker) =>
       LinkedWorkerModel.fromWorkerModel(worker, WorkerRole.employee);

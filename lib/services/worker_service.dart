@@ -51,3 +51,8 @@ class WorkerService extends GetxService with CustomService {
 
   void clean() => worker$.value = null;
 }
+
+
+// ver de hacer un dialogo de confirmaicon, mostrnaod los datos del trabajador.
+// desvincular usuarios
+// ver detalle de usuarios

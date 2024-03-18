@@ -23,21 +23,21 @@ mixin CustomController on GetxController {
   String get loggedUserUID => auth.user?.uid ?? '';
   String get loggedUserEmail => auth.user?.email ?? '';
 
-  WorkerModel? get worker => workerService.worker$.value;
-  String get workerId => worker?.uid ?? '';
-  bool get isWorkerLoaded => worker != null;
-  bool get workerHasCompany => isWorkerLoaded && worker!.companyId != '';
+  WorkerModel? get loggedInWorker => workerService.worker$.value;
+  String get loggedInWorkerId => loggedInWorker?.uid ?? '';
+  bool get loggedInWorkerIsLoaded => loggedInWorker != null;
+  bool get loggedInWorkerHasCompany => loggedInWorkerIsLoaded && loggedInWorker!.companyId != '';
 
-  CompanyModel? get company => companyService.company$.value;
-  String get companyId => company?.uid ?? '';
-  bool get isCompanyLoaded => company != null;
+  CompanyModel? get loggedIncompany => companyService.company$.value;
+  String get loggedInCompanyId => loggedIncompany?.uid ?? '';
+  bool get loggedInCompanyIsLoaded => loggedIncompany != null;
 
   Future<void> fetchWorker() async {
     if (isLoggedInUser) await workerService.fetch(loggedUserUID);
   }
 
   Future<void> fetchCompany() async {
-    if (workerHasCompany) await companyService.fetch(worker!.companyId);
+    if (loggedInWorkerHasCompany) await companyService.fetch(loggedInWorker!.companyId);
   }
 
   @override

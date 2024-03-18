@@ -9,6 +9,8 @@ class LinkedWorkerModel {
   final String name;
   final WorkerRole role;
 
+  bool get isOwner => role == WorkerRole.owner;
+
   LinkedWorkerModel({
     required this.uid,
     required this.email,

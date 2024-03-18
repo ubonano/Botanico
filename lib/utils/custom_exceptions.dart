@@ -4,5 +4,14 @@ class WorkerNotFoundException implements Exception {
   WorkerNotFoundException({this.message = 'No se encontro trabajador'});
 
   @override
-  String toString() => "WorkerNotFoundException: $message";
+  String toString() => message;
+}
+
+class CustomException implements Exception {
+  final String message;
+
+  CustomException({this.message = ''});
+
+  @override
+  String toString() => message;
 }

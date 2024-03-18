@@ -1,3 +1,4 @@
+import 'package:botanico/models/linked_worker_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +7,14 @@ import 'linked_workers_controller.dart';
 
 class LinkedWorkersPage extends GetView<LinkedWorkersController> {
   const LinkedWorkersPage({super.key});
+
+  int get linkedWorkersLength => controller.linkedWorkers$.length;
+  LinkedWorkerModel getLinkedWorker(int index) => controller.linkedWorkers$[index];
+
+  void _onPressedUnlinkWorker(LinkedWorkerModel linkedWorker) {
+    controller.unlinkWorker(linkedWorker);
+    controller.navigateToBack();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,20 +25,49 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
       drawer: const CustomDrawer(),
       body: Obx(
         () => ListView.builder(
-          itemCount: controller.linkedWorkers$.length,
-          itemBuilder: (context, index) {
-            final worker = controller.linkedWorkers$[index];
-            return ListTile(
-              title: Text(worker.name),
-              subtitle: Text(worker.email),
-            );
-          },
+          itemCount: linkedWorkersLength,
+          itemBuilder: (context, index) => _linkedWorkerListTileBuild(getLinkedWorker(index), context),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: controller.navigateToLinkWorker,
         child: const Icon(Icons.add),
       ),
+    );
+  }
+
+  ListTile _linkedWorkerListTileBuild(LinkedWorkerModel linkedWorker, BuildContext context) {
+    return ListTile(
+      title: Text(linkedWorker.name),
+      subtitle: Text(linkedWorker.email),
+      trailing: !linkedWorker.isOwner
+          ? IconButton(
+              icon: const Icon(Icons.person_off),
+              onPressed: () => _showUnlinkConfirmation(context, linkedWorker),
+            )
+          : null,
+    );
+  }
+
+  void _showUnlinkConfirmation(BuildContext context, LinkedWorkerModel linkedWorker) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirmar'),
+          content: const Text('¿Estás seguro de que quieres desvincular a este trabajador?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: controller.navigateToBack,
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              child: const Text('Desvincular'),
+              onPressed: () => _onPressedUnlinkWorker(linkedWorker),
+            ),
+          ],
+        );
+      },
     );
   }
 }
