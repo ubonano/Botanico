@@ -9,67 +9,57 @@ class LinkedWorkersController extends GetxController with CustomController {
   String get logTag => 'LinkedWorkersController';
 
   late final linkedWorkerService = Get.find<LinkedWorkerService>();
-
-  RxList<LinkedWorkerModel> get linkedWorkers$ => linkedWorkerService.list$;
-
-  void navigateToLinkWorker() => navigate.toLinkWorker(canPop: true);
-  void navigateToBack() => navigate.back();
+  RxList<LinkedWorkerModel> get list$ => linkedWorkerService.list$;
 
   Future<void> unlinkWorker(LinkedWorkerModel linkedWorker) async {
-    if (!canDelete(linkedWorker)) return;
+    if (!canUnlink(linkedWorker)) return;
 
     await async.perform(
       operationName: 'Unlink worker',
       successMessage: 'Trabajador desvinculado',
       inTransaction: true,
-      operation: (txn) async {
-        await _unlikWorker(loggedInCompanyId, linkedWorker, txn);
-        await _cleanCompanyId(linkedWorker, txn);
-      },
-      onSuccess: () => _removeLinkedWorkerFromLocal(linkedWorker),
+      operation: (txn) async => await _handleOperation(linkedWorker, txn),
+      onSuccess: () => linkedWorkerService.removeFromLocal(linkedWorker),
     );
   }
 
-  bool canDelete(LinkedWorkerModel linkedWorker) {
+  bool canUnlink(LinkedWorkerModel linkedWorker) {
     if (linkedWorker.uid == loggedInWorkerId) {
-      Get.snackbar('Error', 'No es posible desvincularse a si mismo');
+      snackbar.error('No es posible desvincularse a si mismo');
       return false;
     }
     if (linkedWorker.isOwner) {
-      Get.snackbar('Error', 'No es posible desvincular a un propietario');
+      snackbar.error('No es posible desvincular a un propietario');
       return false;
     }
 
     return true;
   }
 
-  Future<void> _unlikWorker(String companyId, LinkedWorkerModel linkedWorkerToDelete, txn) async =>
-      await linkedWorkerService.delete(companyId, linkedWorkerToDelete.uid, txn: txn);
+  Future<void> _handleOperation(LinkedWorkerModel linkedWorker, txn) async {
+    await linkedWorkerService.delete(loggedInCompanyId, linkedWorker.uid, txn: txn);
+    await _cleanCompanyId(linkedWorker, txn);
+  }
 
   Future<void> _cleanCompanyId(LinkedWorkerModel linkedWorker, Transaction? txn) async {
     final worker = await workerService.get(linkedWorker.uid);
-
     await workerService.update(worker!.copyWith(companyId: ''), txn: txn);
   }
-
-  void _removeLinkedWorkerFromLocal(LinkedWorkerModel linkedWorker) =>
-      linkedWorkerService.removeFromLocal(linkedWorker);
 
   @override
   Future<void> onInit() async {
     await super.onInit();
 
-    await fetchLinkedWorkers();
+    await linkedWorkerService.fetchAll(loggedInCompanyId);
   }
-
-  Future<void> fetchLinkedWorkers() async => await linkedWorkerService.fetchAll(loggedInCompanyId);
 
   @override
   void onClose() {
-    cleanLinkedWorkers();
+    linkedWorkerService.clean();
 
     super.onClose();
   }
 
-  void cleanLinkedWorkers() => linkedWorkerService.clean();
+  void navigateToLinkWorker() => navigate.toLinkWorker(canPop: true);
+  void navigateBack() => navigate.back();
 }

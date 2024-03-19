@@ -18,7 +18,7 @@ class LobbyController extends GetxController with CustomController {
 
   void copyToClipboard() {
     Clipboard.setData(ClipboardData(text: uid.value)).then(
-      (_) => Get.snackbar('Éxito', 'Codigo de vinculación copiado al portapapeles'),
+      (_) => snackbar.info('Codigo de vinculación copiado al portapapeles'),
     );
   }
 

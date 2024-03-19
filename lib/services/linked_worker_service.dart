@@ -19,6 +19,11 @@ class LinkedWorkerService extends GetxService with CustomService {
     list$.assignAll(snapshot.docs.map(LinkedWorkerModel.fromSnapshot).toList());
   }
 
+  Future<LinkedWorkerModel?> get(String companyId, String workerId) async {
+    final docSnapshot = await _getDocumentReference(companyId, workerId).get();
+    return docSnapshot.exists ? LinkedWorkerModel.fromSnapshot(docSnapshot) : null;
+  }
+
   Future<LinkedWorkerModel> create(String companyId, LinkedWorkerModel linkedWorker, {Transaction? txn}) async {
     final docRef = _getDocumentReference(companyId, linkedWorker.uid);
     txn != null ? txn.set(docRef, linkedWorker.toMap()) : await docRef.set(linkedWorker.toMap());

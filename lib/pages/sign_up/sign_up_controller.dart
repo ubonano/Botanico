@@ -7,25 +7,20 @@ class SignUpController extends GetxController with CustomController {
   String get logTag => 'SignUpController';
 
   final signUpformKey = GlobalKey<FormState>();
-
-  final emailCtrl = TextEditingController();
-  final passwordCtrl = TextEditingController();
-  final confirmPasswordCtrl = TextEditingController();
-
-  String get _email => emailCtrl.text.trim();
-  String get _password => passwordCtrl.text.trim();
+  final textCtrls = List.generate(3, (_) => TextEditingController());
+  List<String> get _fieldValues => textCtrls.map((ctrl) => ctrl.text.trim()).toList();
 
   void signUp() async {
     if (!signUpformKey.currentState!.validate()) return;
 
     await async.perform(
       operationName: 'Sign up',
-      operation: (_) async => await auth.signUp(_email, _password),
+      operation: _handleOperation,
       onSuccess: navigate.toWorkerCreate,
     );
   }
 
-  void navigateToSignIn() => navigate.toSignIn();
+  Future<void> _handleOperation(_) async => await auth.signUp(_fieldValues[0], _fieldValues[1]);
 
   @override
   void onClose() {
@@ -34,9 +29,8 @@ class SignUpController extends GetxController with CustomController {
     super.onClose();
   }
 
-  void disposeControllers() {
-    emailCtrl.dispose();
-    passwordCtrl.dispose();
-    confirmPasswordCtrl.dispose();
-  }
+  // ignore: avoid_function_literals_in_foreach_calls
+  void disposeControllers() => textCtrls.forEach((controller) => controller.dispose());
+
+  void navigateToSignIn() => navigate.toSignIn();
 }

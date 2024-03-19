@@ -1,12 +1,13 @@
 import 'package:botanico/utils/custom_exceptions.dart';
 import 'package:botanico/utils/log_service.dart';
+import 'package:botanico/utils/snackbar_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AsyncOperationService extends GetxService {
   final _logService = Get.find<LogService>();
+  final _snackbar = Get.find<SnackbarService>();
 
   Future<T?> perform<T>({
     required Future<T> Function(Transaction? txn) operation,
@@ -19,29 +20,26 @@ class AsyncOperationService extends GetxService {
   }) async {
     try {
       T result;
+
       if (inTransaction) {
-        result = await FirebaseFirestore.instance.runTransaction<T>((Transaction txn) async {
-          return await operation(txn);
-        });
+        result = await FirebaseFirestore.instance.runTransaction<T>(
+          (Transaction txn) async {
+            return await operation(txn);
+          },
+        );
       } else {
         result = await operation(null);
       }
 
-      if (successMessage != '') {
-        Get.snackbar('Éxito', successMessage, backgroundColor: Colors.green, colorText: Colors.white);
-      }
+      if (successMessage != '') _snackbar.success(successMessage);
 
       _logService.info("$operationName exitosa.");
 
-      if (onSuccess != null) {
-        onSuccess();
-      }
+      if (onSuccess != null) onSuccess();
 
       return result;
     } catch (e) {
-      if (showErrorMessageBySnackbar) {
-        Get.snackbar('Error', _getErrorMessage(e), backgroundColor: Colors.red, colorText: Colors.white);
-      }
+      if (showErrorMessageBySnackbar) _snackbar.error(_getErrorMessage(e));
 
       _logService.error("$operationName fallida: ${_getErrorMessage(e)}", e);
 

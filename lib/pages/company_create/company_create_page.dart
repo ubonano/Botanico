@@ -12,7 +12,16 @@ import 'company_create_controller.dart';
 class CompanyCreatePage extends GetView<CompanyCreateController> {
   const CompanyCreatePage({super.key});
 
-  void submit() => controller.submit();
+  get _formKey => controller.formKey;
+
+  get _nameCtrl => controller.textCtrls[0];
+  get _addressCtrl => controller.textCtrls[1];
+  get _cityCtrl => controller.textCtrls[2];
+  get _provinceCtrl => controller.textCtrls[3];
+  get _contryCtrl => controller.textCtrls[4];
+  get _phoneCtrl => controller.textCtrls[5];
+
+  void _submit() => controller.submit();
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +31,17 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: controller.formKey,
+          key: _formKey,
           child: Column(
             children: [
-              NameInputField(controller: controller.nameCtrl),
-              AddressInputField(controller: controller.addressCtrl),
-              CityInputField(controller: controller.cityCtrl),
-              ProvinceInputField(controller: controller.provinceCtrl),
-              CountryInputField(controller: controller.countryCtrl),
-              PhoneInputField(controller: controller.phoneCtrl),
+              NameInputField(controller: _nameCtrl),
+              AddressInputField(controller: _addressCtrl),
+              CityInputField(controller: _cityCtrl),
+              ProvinceInputField(controller: _provinceCtrl),
+              CountryInputField(controller: _contryCtrl),
+              PhoneInputField(controller: _phoneCtrl),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: submit, child: const Text('Guardar')),
+              ElevatedButton(onPressed: _submit, child: const Text('Guardar')),
             ],
           ),
         ),

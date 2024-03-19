@@ -1,4 +1,5 @@
 import 'package:botanico/pages/link_worker/link_worker_controller.dart';
+import 'package:botanico/pages/recover_password/recover_password_controller.dart';
 import 'package:botanico/pages/sign_in/sign_in_controller.dart';
 import 'package:botanico/pages/sign_up/sign_up_controller.dart';
 import 'package:botanico/pages/worker_create/worker_create_controller.dart';
@@ -7,6 +8,7 @@ import 'package:botanico/pages/linked_workers/linked_workers_controller.dart';
 import 'package:botanico/services/company_service.dart';
 import 'package:botanico/services/linked_worker_service.dart';
 import 'package:botanico/utils/log_service.dart';
+import 'package:botanico/utils/snackbar_service.dart';
 import 'package:botanico/widgets/custom_drawer/custom_drawer_controller.dart';
 import 'package:get/get.dart';
 
@@ -34,6 +36,7 @@ class AppBindings extends Bindings {
     Get.put(LogService(), permanent: true);
     Get.put(NavigationService(), permanent: true);
     Get.put(AsyncOperationService(), permanent: true);
+    Get.put(SnackbarService(), permanent: true);
   }
 
   void _initBussinesServices() {
@@ -53,6 +56,7 @@ class AppBindings extends Bindings {
     Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
     Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true);
     Get.lazyPut<SignOutController>(() => SignOutController(), fenix: true);
+    Get.lazyPut<RecoverPasswordController>(() => RecoverPasswordController(), fenix: true);
   }
 
   void _initBussinesControllers() {

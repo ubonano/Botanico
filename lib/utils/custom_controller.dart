@@ -1,5 +1,6 @@
 import 'package:botanico/models/company_model.dart';
 import 'package:botanico/models/worker_model.dart';
+import 'package:botanico/utils/snackbar_service.dart';
 import 'package:get/get.dart';
 import '../services/auth_service.dart';
 import '../services/company_service.dart';
@@ -14,6 +15,7 @@ mixin CustomController on GetxController {
   late final log = Get.find<LogService>();
   late final navigate = Get.find<NavigationService>();
   late final async = Get.find<AsyncOperationService>();
+  late final snackbar = Get.find<SnackbarService>();
 
   late final auth = Get.find<AuthService>();
   late final workerService = Get.find<WorkerService>();

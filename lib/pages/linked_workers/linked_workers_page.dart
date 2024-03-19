@@ -8,8 +8,10 @@ import 'linked_workers_controller.dart';
 class LinkedWorkersPage extends GetView<LinkedWorkersController> {
   const LinkedWorkersPage({super.key});
 
-  int get linkedWorkersLength => controller.linkedWorkers$.length;
-  LinkedWorkerModel getLinkedWorker(int index) => controller.linkedWorkers$[index];
+  get _list => controller.list$;
+
+  void _toLinkWorker() => controller.navigateToLinkWorker();
+  void _unlinkWorker(LinkedWorkerModel linkedWorker) => controller.unlinkWorker(linkedWorker);
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +19,11 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
       title: 'Trabajadores Vinculados',
       body: Obx(
         () => ListView.builder(
-          itemCount: linkedWorkersLength,
-          itemBuilder: (context, index) => _buildListTile(getLinkedWorker(index), context),
+          itemCount: _list.length,
+          itemBuilder: (context, index) => _buildListTile(_list[index], context),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: controller.navigateToLinkWorker,
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: FloatingActionButton(onPressed: _toLinkWorker, child: const Icon(Icons.add)),
     );
   }
 
@@ -35,18 +34,14 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
       trailing: !linkedWorker.isOwner
           ? IconButton(
               icon: const Icon(Icons.person_off),
-              onPressed: () => _showConfirmationDialog(context, linkedWorker),
+              onPressed: () => ConfirmationDialog.show(
+                context,
+                title: 'Confirmar',
+                content: '¿Estás seguro de que quieres desvincular a este trabajador?',
+                onConfirm: () => _unlinkWorker(linkedWorker),
+              ),
             )
           : null,
-    );
-  }
-
-  void _showConfirmationDialog(BuildContext context, LinkedWorkerModel linkedWorker) {
-    return ConfirmationDialog.show(
-      context,
-      title: 'Confirmar',
-      content: '¿Estás seguro de que quieres desvincular a este trabajador?',
-      onConfirm: () => controller.unlinkWorker(linkedWorker),
     );
   }
 }

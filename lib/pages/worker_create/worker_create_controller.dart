@@ -8,16 +8,8 @@ class WorkerCreateController extends GetxController with CustomController {
   String get logTag => 'WorkerCreateController';
 
   final formKey = GlobalKey<FormState>();
-
-  final nameController = TextEditingController();
-  final birthDateController = TextEditingController();
-  final phoneController = TextEditingController();
-  final dniController = TextEditingController();
-
-  String get _name => nameController.text.trim();
-  String get _birthDate => birthDateController.text.trim();
-  String get _phone => phoneController.text.trim();
-  String get _dni => dniController.text.trim();
+  final textCtrls = List.generate(4, (_) => TextEditingController());
+  List<String> get _fieldValues => textCtrls.map((ctrl) => ctrl.text.trim()).toList();
 
   Future<void> submit() async {
     if (!formKey.currentState!.validate()) return;
@@ -25,25 +17,20 @@ class WorkerCreateController extends GetxController with CustomController {
     await async.perform(
       operationName: 'Create worker',
       successMessage: 'Trabajador creado!',
-      operation: (_) async {
-        await _createWorker(loggedUserUID, loggedUserEmail);
-      },
-      onSuccess: () async {
-        await fetchWorker();
-        navigate.toLobby();
-      },
+      operation: _handleOperation,
+      onSuccess: () => navigate.toLobby(),
     );
   }
 
-  Future<void> _createWorker(String userId, String email) async {
+  Future<void> _handleOperation(_) async {
     await workerService.create(
       WorkerModel(
-        uid: userId,
-        email: email,
-        name: _name,
-        birthDate: _birthDate,
-        phone: _phone,
-        dni: _dni,
+        uid: loggedUserUID,
+        email: loggedUserEmail,
+        name: _fieldValues[0],
+        birthDate: _fieldValues[1],
+        phone: _fieldValues[2],
+        dni: _fieldValues[3],
       ),
     );
   }
@@ -55,10 +42,6 @@ class WorkerCreateController extends GetxController with CustomController {
     super.onClose();
   }
 
-  void disposeControllers() {
-    nameController.dispose();
-    birthDateController.dispose();
-    phoneController.dispose();
-    dniController.dispose();
-  }
+  // ignore: avoid_function_literals_in_foreach_calls
+  void disposeControllers() => textCtrls.forEach((controller) => controller.dispose());
 }

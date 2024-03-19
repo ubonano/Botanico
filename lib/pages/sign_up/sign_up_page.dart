@@ -9,8 +9,14 @@ import 'sign_up_controller.dart';
 class SignUpPage extends GetView<SignUpController> {
   const SignUpPage({super.key});
 
-  void signUp() => controller.signUp();
-  void toSignIn() => controller.navigateToSignIn();
+  get _formKey => controller.signUpformKey;
+
+  get _emailCtrl => controller.textCtrls[0];
+  get _passwordCtrl => controller.textCtrls[1];
+  get _confirmPasswordCtrl => controller.textCtrls[2];
+
+  void _signUp() => controller.signUp();
+  void _toSignIn() => controller.navigateToSignIn();
 
   @override
   Widget build(BuildContext context) {
@@ -20,27 +26,21 @@ class SignUpPage extends GetView<SignUpController> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: controller.signUpformKey,
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              EmailInputField(
-                controller: controller.emailCtrl,
-                onFieldSubmitted: signUp,
-              ),
-              PasswordInputField(
-                controller: controller.passwordCtrl,
-                onFieldSubmitted: signUp,
-              ),
+              EmailInputField(controller: _emailCtrl, onFieldSubmitted: _signUp),
+              PasswordInputField(controller: _passwordCtrl, onFieldSubmitted: _signUp),
               ConfirmPasswordInputField(
-                controller: controller.confirmPasswordCtrl,
-                passwordController: controller.passwordCtrl,
-                onFieldSubmitted: signUp,
+                controller: _confirmPasswordCtrl,
+                passwordController: _passwordCtrl,
+                onFieldSubmitted: _signUp,
               ),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: signUp, child: const Text('Registrar')),
+              ElevatedButton(onPressed: _signUp, child: const Text('Registrar')),
               const SizedBox(height: 20),
-              TextButton(onPressed: toSignIn, child: const Text('¿Ya tenes cuenta? Inicia sesión')),
+              TextButton(onPressed: _toSignIn, child: const Text('¿Ya tenes cuenta? Inicia sesión')),
             ],
           ),
         ),
