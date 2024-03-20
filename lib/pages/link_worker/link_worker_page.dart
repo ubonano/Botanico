@@ -2,6 +2,7 @@ import 'package:botanico/widgets/input_fields/worker_uid_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../widgets/buttons/custom_button.dart';
 import '../../widgets/custom_scaffold.dart';
 import 'link_worker_controller.dart';
 
@@ -32,14 +33,17 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
               children: [
                 Row(
                   children: [
-                    Expanded(child: WorkerUidInputField(controller: _workerUidCtrl)),
+                    Expanded(
+                      child: WorkerUidInputField(
+                        controller: _workerUidCtrl,
+                        onFieldSubmitted: _submit,
+                      ),
+                    ),
                     IconButton(icon: const Icon(Icons.paste), onPressed: _pasteWorkerId),
                   ],
                 ),
-                const SizedBox(height: 20),
-                ElevatedButton(onPressed: _submit, child: const Text('Vincular Trabajador')),
-                const SizedBox(height: 20),
-                ElevatedButton(onPressed: _scanQrCode, child: const Text('Escanear Código QR')),
+                CustomButton(text: 'Vincular Trabajador', onPressed: _submit),
+                CustomButton(text: 'Escanear Código QR', onPressed: _scanQrCode)
               ],
             ),
           ),

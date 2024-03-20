@@ -18,7 +18,7 @@ class LinkedWorkersController extends GetxController with CustomController {
       operationName: 'Unlink worker',
       successMessage: 'Trabajador desvinculado',
       inTransaction: true,
-      operation: (txn) async => await _handleOperation(linkedWorker, txn),
+      operation: (txn) async => await _handleSuccessOperation(linkedWorker, txn),
       onSuccess: () => linkedWorkerService.removeFromLocal(linkedWorker),
     );
   }
@@ -36,7 +36,7 @@ class LinkedWorkersController extends GetxController with CustomController {
     return true;
   }
 
-  Future<void> _handleOperation(LinkedWorkerModel linkedWorker, txn) async {
+  Future<void> _handleSuccessOperation(LinkedWorkerModel linkedWorker, txn) async {
     await linkedWorkerService.delete(loggedInCompanyId, linkedWorker.uid, txn: txn);
     await _cleanCompanyId(linkedWorker, txn);
   }
@@ -50,7 +50,7 @@ class LinkedWorkersController extends GetxController with CustomController {
   Future<void> onInit() async {
     await super.onInit();
 
-    await linkedWorkerService.fetchAll(loggedInCompanyId);
+    linkedWorkerService.fetchAll(loggedInCompanyId);
   }
 
   @override

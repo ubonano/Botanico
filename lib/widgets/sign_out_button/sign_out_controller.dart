@@ -5,13 +5,18 @@ class SignOutController extends GetxController with CustomController {
   @override
   String get logTag => 'SignOutController';
 
-  Future<void> signOut() async => async.perform(
+  Future<void> submit() async {
+    return async.perform(
       operationName: 'Sign out',
-      operation: (_) async {
-        await auth.signOut();
+      operation: _handleOperation,
+      onSuccess: navigate.toSignIn,
+    );
+  }
 
-        workerService.clean();
-        companyService.clean();
-      },
-      onSuccess: navigate.toSignIn);
+  Future<void> _handleOperation(_) async {
+    await auth.signOut();
+
+    workerService.clean();
+    companyService.clean();
+  }
 }

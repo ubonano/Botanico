@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../widgets/buttons/custom_button.dart';
 import '../../widgets/custom_scaffold.dart';
 import '../../widgets/input_fields/address_input_field.dart';
 import '../../widgets/input_fields/city_input_field.dart';
@@ -34,14 +35,13 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
           key: _formKey,
           child: Column(
             children: [
-              NameInputField(controller: _nameCtrl),
-              AddressInputField(controller: _addressCtrl),
-              CityInputField(controller: _cityCtrl),
-              ProvinceInputField(controller: _provinceCtrl),
-              CountryInputField(controller: _contryCtrl),
-              PhoneInputField(controller: _phoneCtrl),
-              const SizedBox(height: 20),
-              ElevatedButton(onPressed: _submit, child: const Text('Guardar')),
+              NameInputField(controller: _nameCtrl, onFieldSubmitted: _submit),
+              AddressInputField(controller: _addressCtrl, onFieldSubmitted: _submit),
+              CityInputField(controller: _cityCtrl, onFieldSubmitted: _submit),
+              ProvinceInputField(controller: _provinceCtrl, onFieldSubmitted: _submit),
+              CountryInputField(controller: _contryCtrl, onFieldSubmitted: _submit),
+              PhoneInputField(controller: _phoneCtrl, onFieldSubmitted: _submit),
+              CustomButton(text: 'Guardar empresa', onPressed: _submit),
             ],
           ),
         ),

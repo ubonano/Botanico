@@ -18,7 +18,7 @@ class RecoverPasswordController extends GetxController with CustomController {
       operationName: 'Recover password',
       successMessage: 'Se envio un email a tu casilla para restaurar tu contraseña',
       operation: (_) => auth.recoverPassword(_fieldValues[0]),
-      onSuccess: () => navigate.back(),
+      onSuccess: navigate.back,
     );
   }
 

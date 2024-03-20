@@ -17,7 +17,6 @@ class HomePage extends GetView<HomeController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Hola Mundo', style: TextStyle(fontSize: 24)),
-            SizedBox(height: 20),
           ],
         ),
       ),

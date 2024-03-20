@@ -22,5 +22,5 @@ class LobbyController extends GetxController with CustomController {
     );
   }
 
-  void navigateToCompany() => navigate.toCompany();
+  void toCompany() => navigate.toCompany();
 }

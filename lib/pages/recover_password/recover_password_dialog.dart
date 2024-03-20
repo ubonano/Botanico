@@ -18,10 +18,10 @@ class RecoverPasswordDialog extends GetView<RecoverPasswordController> {
       title: const Text("Recuperar contraseña"),
       content: Form(
         key: _formKey,
-        child: EmailInputField(controller: _emailCtrl, onFieldSubmitted: (_) => _submit()),
+        child: EmailInputField(controller: _emailCtrl, onFieldSubmitted: _submit),
       ),
       actions: [
-        TextButton(onPressed: () => Get.back(), child: const Text("Cancelar")),
+        TextButton(onPressed: Get.back, child: const Text("Cancelar")),
         TextButton(onPressed: _submit, child: const Text("Enviar")),
       ],
     );

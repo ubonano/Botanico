@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../widgets/buttons/custom_button.dart';
+import '../../widgets/buttons/custom_text_button.dart';
 import '../../widgets/custom_scaffold.dart';
 import '../../widgets/input_fields/confirm_password_input_field.dart';
 import '../../widgets/input_fields/email_input_field.dart';
@@ -15,7 +17,7 @@ class SignUpPage extends GetView<SignUpController> {
   get _passwordCtrl => controller.textCtrls[1];
   get _confirmPasswordCtrl => controller.textCtrls[2];
 
-  void _signUp() => controller.signUp();
+  void _submit() => controller.signUp();
   void _toSignIn() => controller.navigateToSignIn();
 
   @override
@@ -30,17 +32,15 @@ class SignUpPage extends GetView<SignUpController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              EmailInputField(controller: _emailCtrl, onFieldSubmitted: _signUp),
-              PasswordInputField(controller: _passwordCtrl, onFieldSubmitted: _signUp),
+              EmailInputField(controller: _emailCtrl, onFieldSubmitted: _submit),
+              PasswordInputField(controller: _passwordCtrl, onFieldSubmitted: _submit),
               ConfirmPasswordInputField(
                 controller: _confirmPasswordCtrl,
                 passwordController: _passwordCtrl,
-                onFieldSubmitted: _signUp,
+                onFieldSubmitted: _submit,
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(onPressed: _signUp, child: const Text('Registrar')),
-              const SizedBox(height: 20),
-              TextButton(onPressed: _toSignIn, child: const Text('¿Ya tenes cuenta? Inicia sesión')),
+              CustomButton(text: 'Registrar', onPressed: _submit),
+              CustomTextButton(text: '¿Ya tenes cuenta? Inicia sesión', onPressed: _toSignIn),
             ],
           ),
         ),

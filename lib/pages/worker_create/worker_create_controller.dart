@@ -18,7 +18,7 @@ class WorkerCreateController extends GetxController with CustomController {
       operationName: 'Create worker',
       successMessage: 'Trabajador creado!',
       operation: _handleOperation,
-      onSuccess: () => navigate.toLobby(),
+      onSuccess: navigate.toLobby,
     );
   }
 

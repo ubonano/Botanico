@@ -18,13 +18,13 @@ class SignInController extends GetxController with CustomController {
     await async.perform(
       operationName: 'Sign in',
       operation: _handleOperation,
-      onSuccess: _onSuccessOperation,
+      onSuccess: () async => await _handleSuccessOperation(),
     );
   }
 
   Future<void> _handleOperation(_) async => await auth.signIn(_fieldValues[0], _fieldValues[1]);
 
-  void _onSuccessOperation() async {
+  Future<void> _handleSuccessOperation() async {
     await fetchWorker();
     await fetchCompany();
 

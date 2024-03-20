@@ -30,10 +30,7 @@ class LinkWorkerController extends GetxController with CustomController {
       successMessage: 'Trabajador vinculado',
       inTransaction: true,
       operation: (txn) async => await _handleOperation(worker!, txn),
-      onSuccess: () {
-        linkedWorkerService.fetchAll(loggedInCompanyId);
-        navigate.toLinkedWorkers();
-      },
+      onSuccess: _handleSuccessOperation,
     );
   }
 
@@ -58,6 +55,11 @@ class LinkWorkerController extends GetxController with CustomController {
   Future<void> _handleOperation(WorkerModel worker, txn) async {
     await _createLinkedWorker(worker, txn);
     await _updateWithCompanyId(worker, txn);
+  }
+
+  void _handleSuccessOperation() {
+    linkedWorkerService.fetchAll(loggedInCompanyId);
+    navigate.toLinkedWorkers();
   }
 
   Future<void> _createLinkedWorker(WorkerModel worker, Transaction? txn) async {

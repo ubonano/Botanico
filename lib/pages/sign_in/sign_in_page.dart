@@ -1,6 +1,8 @@
 import 'package:botanico/pages/recover_password/recover_password_dialog.dart';
+import 'package:botanico/widgets/buttons/custom_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../widgets/buttons/custom_button.dart';
 import '../../widgets/custom_scaffold.dart';
 import '../../widgets/input_fields/email_input_field.dart';
 import '../../widgets/input_fields/password_input_field.dart';
@@ -14,7 +16,7 @@ class SignInPage extends GetView<SignInController> {
   get _emailCtrl => controller.textCtrls[0];
   get _passwordCtrl => controller.textCtrls[1];
 
-  void _signIn() => controller.submit();
+  void _submit() => controller.submit();
   void _toSignUp() => controller.navigateToSignUp();
   void _showRecoverPasswordDialog() => Get.dialog(const RecoverPasswordDialog());
 
@@ -30,13 +32,11 @@ class SignInPage extends GetView<SignInController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              EmailInputField(controller: _emailCtrl, onFieldSubmitted: _signIn),
-              PasswordInputField(controller: _passwordCtrl, onFieldSubmitted: _signIn),
-              ElevatedButton(onPressed: _signIn, child: const Text('Iniciar Sesión')),
-              const SizedBox(height: 20),
-              TextButton(onPressed: _showRecoverPasswordDialog, child: const Text("¿Olvidaste tu contraseña?")),
-              const SizedBox(height: 20),
-              TextButton(onPressed: _toSignUp, child: const Text('¿No tenes cuenta? Crear nueva cuenta')),
+              EmailInputField(controller: _emailCtrl, onFieldSubmitted: _submit),
+              PasswordInputField(controller: _passwordCtrl, onFieldSubmitted: _submit),
+              CustomButton(text: 'Iniciar Sesión', onPressed: _submit),
+              CustomTextButton(text: '¿Olvidaste tu contraseña', onPressed: _showRecoverPasswordDialog),
+              CustomTextButton(text: '¿No tenes cuenta? Crear nueva cuenta', onPressed: _toSignUp),
             ],
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:botanico/widgets/buttons/custom_button.dart';
 import 'package:botanico/widgets/input_fields/birthdate_input_field.dart';
 import 'package:botanico/widgets/input_fields/fullname_input_field.dart';
 import 'package:botanico/widgets/input_fields/phone_input_field.dart';
@@ -17,6 +18,8 @@ class WorkerCreatePage extends GetView<WorkerCreateController> {
   get _phoneCtrl => controller.textCtrls[2];
   get _dniCtrl => controller.textCtrls[3];
 
+  void _submit() => controller.submit();
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -28,11 +31,11 @@ class WorkerCreatePage extends GetView<WorkerCreateController> {
           key: _formKey,
           child: Column(
             children: [
-              FullnameInputField(controller: _fullNameCtrl),
-              BirthdateInputField(controller: _birthDateCtrl),
-              PhoneInputField(controller: _phoneCtrl),
-              DNIInputField(controller: _dniCtrl),
-              ElevatedButton(onPressed: controller.submit, child: const Text('Guardar Perfil')),
+              FullnameInputField(controller: _fullNameCtrl, onFieldSubmitted: _submit),
+              BirthdateInputField(controller: _birthDateCtrl, onFieldSubmitted: _submit),
+              PhoneInputField(controller: _phoneCtrl, onFieldSubmitted: _submit),
+              DNIInputField(controller: _dniCtrl, onFieldSubmitted: _submit),
+              CustomButton(text: 'Guardar Perfil', onPressed: _submit)
             ],
           ),
         ),

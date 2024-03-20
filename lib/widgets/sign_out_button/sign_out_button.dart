@@ -1,35 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../buttons/custom_button.dart';
 import 'sign_out_controller.dart';
 
 class SignOutButton extends GetView<SignOutController> {
   const SignOutButton({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: controller.signOut,
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18.0),
-        ),
-      ),
-      child: const Text('Cerrar Sesión'),
-    );
-  }
-}
-
-class SignOutListTile extends GetView<SignOutController> {
-  const SignOutListTile({super.key});
+  void _submit() => controller.submit();
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: const Icon(Icons.exit_to_app),
-      title: const Text('Cerrar Sesión'),
-      onTap: controller.signOut,
-    );
+    return CustomButton(text: 'Copiar código de vinculación', onPressed: _submit);
   }
 }
 
@@ -46,6 +28,7 @@ class _SignOutIconButtonState extends State<SignOutIconButton> {
   @override
   Widget build(BuildContext context) {
     final signOutController = Get.find<SignOutController>();
+
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovering = true),
       onExit: (_) => setState(() => _isHovering = false),
@@ -54,7 +37,7 @@ class _SignOutIconButtonState extends State<SignOutIconButton> {
           Icons.exit_to_app,
           color: _isHovering ? Colors.grey : Colors.white,
         ),
-        onPressed: signOutController.signOut,
+        onPressed: signOutController.submit,
         tooltip: 'Cerrar sesión',
       ),
     );

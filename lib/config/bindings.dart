@@ -33,10 +33,10 @@ class AppBindings extends Bindings {
   }
 
   void _initCommonServices() {
-    Get.put(LogService(), permanent: true);
-    Get.put(NavigationService(), permanent: true);
-    Get.put(AsyncOperationService(), permanent: true);
     Get.put(SnackbarService(), permanent: true);
+    Get.put(LogService(), permanent: true);
+    Get.put(AsyncOperationService(), permanent: true);
+    Get.put(NavigationService(), permanent: true);
   }
 
   void _initBussinesServices() {

@@ -10,7 +10,7 @@ import '../../services/linked_worker_service.dart';
 class CompanyCreateController extends GetxController with CustomController {
   @override
   String get logTag => 'CompanyCreateController';
-  
+
   late final linkedWorkerService = Get.find<LinkedWorkerService>();
   final formKey = GlobalKey<FormState>();
   final textCtrls = List.generate(6, (_) => TextEditingController());
@@ -24,7 +24,7 @@ class CompanyCreateController extends GetxController with CustomController {
       successMessage: 'Empresa creada',
       inTransaction: true,
       operation: _handleOperation,
-      onSuccess: () => navigate.toHome(),
+      onSuccess: _handleOnSuccess,
     );
   }
 
@@ -44,6 +44,12 @@ class CompanyCreateController extends GetxController with CustomController {
 
     await _updateLoggedInWorkerWithCompanyId(companyCreated.uid, txn);
     await _linkLoggedInWorkerToCompany(companyCreated.uid, txn);
+  }
+
+  void _handleOnSuccess() async {
+    fetchWorker();
+    fetchCompany();
+    navigate.toHome();
   }
 
   Future<void> _updateLoggedInWorkerWithCompanyId(String companyId, txn) async {
