@@ -21,6 +21,4 @@ class LobbyController extends GetxController with CustomController {
       (_) => snackbar.info('Codigo de vinculación copiado al portapapeles'),
     );
   }
-
-  void toCompany() => navigate.toCompany();
 }

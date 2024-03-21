@@ -12,19 +12,22 @@ class WorkerCreatePage extends GetView<WorkerCreateController> {
   const WorkerCreatePage({Key? key}) : super(key: key);
 
   get _formKey => controller.formKey;
-  get _textCtrls => controller.textCtrls;
 
-  get _fullNameCtrl => _textCtrls[0];
-  get _birthDateCtrl => _textCtrls[1];
-  get _phoneCtrl => _textCtrls[2];
-  get _dniCtrl => _textCtrls[3];
+  get _title => 'Completa tu Perfil';
 
-  void _submit() => controller.submit();
+  get _nameCtrl => controller.getFieldController('name');
+  get _birthDateCtrl => controller.getFieldController('birthDate');
+  get _phoneCtrl => controller.getFieldController('phone');
+  get _dniCtrl => controller.getFieldController('dni');
+
+  get _createWorkerButtonText => 'Guardar Perfil';
+
+  void _workerCreate() => controller.submit();
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: 'Completa tu Perfil',
+      title: _title,
       drawer: null,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -32,11 +35,11 @@ class WorkerCreatePage extends GetView<WorkerCreateController> {
           key: _formKey,
           child: Column(
             children: [
-              FullnameInputField(controller: _fullNameCtrl, onFieldSubmitted: _submit),
-              BirthdateInputField(controller: _birthDateCtrl, onFieldSubmitted: _submit),
-              PhoneInputField(controller: _phoneCtrl, onFieldSubmitted: _submit),
-              DNIInputField(controller: _dniCtrl, onFieldSubmitted: _submit),
-              CustomButton(text: 'Guardar Perfil', onPressed: _submit)
+              FullnameInputField(controller: _nameCtrl),
+              BirthdateInputField(controller: _birthDateCtrl),
+              PhoneInputField(controller: _phoneCtrl),
+              DNIInputField(controller: _dniCtrl),
+              CustomButton(text: _createWorkerButtonText, onPressed: _workerCreate)
             ],
           ),
         ),
