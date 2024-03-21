@@ -39,12 +39,12 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
           key: _formKey,
           child: Column(
             children: [
-              NameInputField(controller: _nameCtrl, onFieldSubmitted: _createCompany),
-              AddressInputField(controller: _addressCtrl, onFieldSubmitted: _createCompany),
-              CityInputField(controller: _cityCtrl, onFieldSubmitted: _createCompany),
-              ProvinceInputField(controller: _provinceCtrl, onFieldSubmitted: _createCompany),
-              CountryInputField(controller: _countryCtrl, onFieldSubmitted: _createCompany),
-              PhoneInputField(controller: _phoneCtrl, onFieldSubmitted: _createCompany),
+              NameInputField(controller: _nameCtrl),
+              AddressInputField(controller: _addressCtrl),
+              CityInputField(controller: _cityCtrl),
+              ProvinceInputField(controller: _provinceCtrl),
+              CountryInputField(controller: _countryCtrl),
+              PhoneInputField(controller: _phoneCtrl),
               CustomButton(text: _labelButton, onPressed: _createCompany),
             ],
           ),
