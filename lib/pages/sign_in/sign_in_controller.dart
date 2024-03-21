@@ -28,15 +28,15 @@ class SignInController extends GetxController with CustomController {
     await fetchWorker();
     await fetchCompany();
 
-    if (loggedInWorkerIsLoaded && loggedInCompanyIsLoaded) {
+    if (currentWorkerIsLoaded && currentCompanyIsLoaded) {
       navigate.toHome();
     }
 
-    if (loggedInWorkerIsLoaded && !loggedInCompanyIsLoaded) {
+    if (currentWorkerIsLoaded && !currentCompanyIsLoaded) {
       navigate.toLobby();
     }
 
-    if (!loggedInWorkerIsLoaded) {
+    if (!currentWorkerIsLoaded) {
       navigate.toWorkerCreate();
     }
   }

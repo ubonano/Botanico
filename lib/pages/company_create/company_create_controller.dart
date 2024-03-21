@@ -1,5 +1,6 @@
 import 'package:botanico/models/enums/worker_role.dart';
 import 'package:botanico/models/linked_worker_model.dart';
+import 'package:botanico/models/worker_model.dart';
 import 'package:botanico/utils/custom_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -11,60 +12,55 @@ class CompanyCreateController extends GetxController with CustomController {
   @override
   String get logTag => 'CompanyCreateController';
 
-  late final linkedWorkerService = Get.find<LinkedWorkerService>();
+  late final _linkedWorkerService = Get.find<LinkedWorkerService>();
   final formKey = GlobalKey<FormState>();
   final textCtrls = List.generate(6, (_) => TextEditingController());
   List<String> get _fieldValues => textCtrls.map((ctrl) => ctrl.text.trim()).toList();
 
-  Future<void> submit() async {
+  Future<void> createCompany() async {
     if (!formKey.currentState!.validate()) return;
 
     await async.perform(
       operationName: 'Create company',
       successMessage: 'Empresa creada',
       inTransaction: true,
-      operation: _handleOperation,
-      onSuccess: _handleOnSuccess,
+      operation: _createCompany,
+      onSuccess: _onCompanyCreated,
     );
   }
 
-  Future<void> _handleOperation(txn) async {
-    final companyCreated = await companyService.create(
-      CompanyModel(
-        ownerUid: loggedUserUID,
-        name: _fieldValues[0],
-        address: _fieldValues[1],
-        city: _fieldValues[2],
-        province: _fieldValues[3],
-        country: _fieldValues[4],
-        phone: _fieldValues[5],
-      ),
-      txn: txn,
+  Future<void> _createCompany(txn) async {
+    final newCompany = CompanyModel(
+      ownerUid: loggedUserUID,
+      name: _fieldValues[0],
+      address: _fieldValues[1],
+      city: _fieldValues[2],
+      province: _fieldValues[3],
+      country: _fieldValues[4],
+      phone: _fieldValues[5],
     );
 
-    await _updateLoggedInWorkerWithCompanyId(companyCreated.uid, txn);
-    await _linkLoggedInWorkerToCompany(companyCreated.uid, txn);
+    final companyCreated = await companyService.create(newCompany, txn: txn);
+
+    await _updateWorkerWithCompanyId(currentWorker!, companyCreated.uid, txn);
+    await _linkWorkerToCompany(currentWorker!, companyCreated.uid, txn);
   }
 
-  void _handleOnSuccess() async {
-    fetchWorker();
-    fetchCompany();
+  void _onCompanyCreated() async {
+    await fetchWorker();
+    await fetchCompany();
+
     navigate.toHome();
   }
 
-  Future<void> _updateLoggedInWorkerWithCompanyId(String companyId, txn) async {
-    await workerService.update(
-      loggedInWorker!.copyWith(companyId: companyId),
-      txn: txn,
-    );
+  Future<void> _updateWorkerWithCompanyId(WorkerModel worker, String companyId, txn) async {
+    final updatedWorker = worker.copyWith(companyId: companyId);
+    await workerService.update(updatedWorker, txn: txn);
   }
 
-  Future<void> _linkLoggedInWorkerToCompany(String companyId, txn) async {
-    await linkedWorkerService.create(
-      companyId,
-      LinkedWorkerModel.fromWorkerModel(loggedInWorker!, WorkerRole.owner),
-      txn: txn,
-    );
+  Future<void> _linkWorkerToCompany(WorkerModel worker, String companyId, txn) async {
+    final linkedWorker = LinkedWorkerModel.fromWorkerModel(worker, WorkerRole.owner);
+    await _linkedWorkerService.create(companyId, linkedWorker, txn: txn);
   }
 
   @override

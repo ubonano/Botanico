@@ -33,7 +33,7 @@ class LobbyPage extends GetView<LobbyController> {
             const SizedBox(height: 20),
             const Text('Mostra este código a tu empleador para vincularte a la empresa.'),
             CustomButton(text: 'Copiar código de vinculación', onPressed: _copyToClipboard),
-            CustomButton(text: '¿Necesitas registrar una empresa', onPressed: _toCompany),
+            CustomButton(text: '¿Necesitas registrar una empresa?', onPressed: _toCompany),
             const SignOutButton(),
           ],
         ),

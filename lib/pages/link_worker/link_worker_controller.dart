@@ -21,15 +21,15 @@ class LinkWorkerController extends GetxController with CustomController {
   Future<void> submit() async {
     if (!formKey.currentState!.validate()) return;
 
-    final worker = await workerService.get(_fieldValues[0]);
+    final workerToLink = await workerService.get(_fieldValues[0]);
 
-    if (!await canLink(worker)) return;
+    if (!await canLink(workerToLink)) return;
 
     await async.perform(
       operationName: 'Link worker',
       successMessage: 'Trabajador vinculado',
       inTransaction: true,
-      operation: (txn) async => await _handleOperation(worker!, txn),
+      operation: (txn) async => await _handleOperation(workerToLink!, txn),
       onSuccess: _handleSuccessOperation,
     );
   }
@@ -39,6 +39,12 @@ class LinkWorkerController extends GetxController with CustomController {
       snackbar.error('No se encontro trabajador con el código ingresado');
       return false;
     }
+
+    if (_isWorkerLinkedToOtherCompany(worker)) {
+      snackbar.error('El trabajador ya se encuentra vinculado a otra empresa');
+      return false;
+    }
+
     if (await _isWorkerAlreadyLinked(worker)) {
       snackbar.warning('El trabajador ya se encuentra vinculado');
       return false;
@@ -47,9 +53,11 @@ class LinkWorkerController extends GetxController with CustomController {
     return true;
   }
 
+  bool _isWorkerLinkedToOtherCompany(WorkerModel worker) =>
+      worker.companyId.isNotEmpty && worker.companyId != currentCompanyId;
+
   Future<bool> _isWorkerAlreadyLinked(WorkerModel worker) async {
-    final workerGetted = await linkedWorkerService.get(loggedInCompanyId, worker.uid);
-    return workerGetted != null;
+    return (await linkedWorkerService.get(currentCompanyId, worker.uid)) != null;
   }
 
   Future<void> _handleOperation(WorkerModel worker, txn) async {
@@ -58,13 +66,13 @@ class LinkWorkerController extends GetxController with CustomController {
   }
 
   void _handleSuccessOperation() {
-    linkedWorkerService.fetchAll(loggedInCompanyId);
+    linkedWorkerService.fetchAll(currentCompanyId);
     navigate.toLinkedWorkers();
   }
 
   Future<void> _createLinkedWorker(WorkerModel worker, Transaction? txn) async {
     await linkedWorkerService.create(
-      loggedInCompanyId,
+      currentCompanyId,
       LinkedWorkerModel.fromWorkerModel(worker, WorkerRole.employee),
       txn: txn,
     );
@@ -72,7 +80,7 @@ class LinkWorkerController extends GetxController with CustomController {
 
   Future<void> _updateWithCompanyId(WorkerModel worker, Transaction? txn) async {
     await workerService.update(
-      worker.copyWith(companyId: loggedInCompanyId),
+      worker.copyWith(companyId: currentCompanyId),
       txn: txn,
     );
   }

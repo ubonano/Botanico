@@ -6,9 +6,9 @@ class CustomDrawerController extends GetxController with CustomController {
   @override
   String get logTag => 'CustomDrawerController';
 
-  String get companyName => loggedIncompany?.name ?? '';
+  String get companyName => currentCompany?.name ?? '';
   String get workerEmail => loggedUserEmail;
-  String get workerName => loggedInWorker?.name ?? '';
+  String get workerName => currentWorker?.name ?? '';
 
   void navigateToLinkedWorkers() => navigate.toLinkedWorkers();
   void navigateToHome() => navigate.toHome();

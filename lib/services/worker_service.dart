@@ -39,6 +39,7 @@ class WorkerService extends GetxService with CustomService {
   /// [id] is the Firestore document ID of the worker.
   /// Returns a [WorkerModel] if the document exists, otherwise null.
   Future<WorkerModel?> _getWorker(String id) async {
+    if (id == '') return null;
     final docSnapshot = await _getDocumentReference(id).get();
     return docSnapshot.exists ? WorkerModel.fromSnapshot(docSnapshot) : null;
   }

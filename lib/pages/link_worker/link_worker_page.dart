@@ -10,8 +10,9 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
   const LinkWorkerPage({Key? key}) : super(key: key);
 
   get _formKey => controller.formKey;
+  get _textCtrls => controller.textCtrls;
 
-  get _workerUidCtrl => controller.textCtrls[0];
+  get _workerUidCtrl => _textCtrls[0];
 
   void _submit() => controller.submit();
   void _scanQrCode() => controller.scanQrCode();

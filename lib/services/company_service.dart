@@ -39,6 +39,7 @@ class CompanyService extends GetxService with CustomService {
   /// Queries Firestore for a company with the specified [id] and
   /// converts the document to a [CompanyModel] if it exists.
   Future<CompanyModel?> _getCompany(String id) async {
+    if (id == '') return null;
     final docSnapshot = await _getDocumentReference(id).get();
     return docSnapshot.exists ? CompanyModel.fromSnapshot(docSnapshot) : null;
   }

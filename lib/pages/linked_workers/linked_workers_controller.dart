@@ -24,10 +24,11 @@ class LinkedWorkersController extends GetxController with CustomController {
   }
 
   bool canUnlink(LinkedWorkerModel linkedWorker) {
-    if (linkedWorker.uid == loggedInWorkerId) {
+    if (linkedWorker.uid == currentWorkerId) {
       snackbar.error('No es posible desvincularse a si mismo');
       return false;
     }
+    
     if (linkedWorker.isOwner) {
       snackbar.error('No es posible desvincular a un propietario');
       return false;
@@ -37,7 +38,7 @@ class LinkedWorkersController extends GetxController with CustomController {
   }
 
   Future<void> _handleSuccessOperation(LinkedWorkerModel linkedWorker, txn) async {
-    await linkedWorkerService.delete(loggedInCompanyId, linkedWorker.uid, txn: txn);
+    await linkedWorkerService.delete(currentCompanyId, linkedWorker.uid, txn: txn);
     await _cleanCompanyId(linkedWorker, txn);
   }
 
@@ -50,7 +51,7 @@ class LinkedWorkersController extends GetxController with CustomController {
   Future<void> onInit() async {
     await super.onInit();
 
-    linkedWorkerService.fetchAll(loggedInCompanyId);
+    linkedWorkerService.fetchAll(currentCompanyId);
   }
 
   @override

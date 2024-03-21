@@ -11,7 +11,7 @@ class SignOutButton extends GetView<SignOutController> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomButton(text: 'Copiar código de vinculación', onPressed: _submit);
+    return CustomButton(text: 'Cerrar sesión', onPressed: _submit);
   }
 }
 

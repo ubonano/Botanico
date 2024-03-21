@@ -30,6 +30,7 @@ class LinkedWorkerService extends GetxService with CustomService {
   ///
   /// [companyId] is the ID of the company whose linked workers are to be fetched.
   Future<void> fetchAll(String companyId) async {
+    if (companyId == '') return;
     final snapshot = await _linkedWorkersRef(companyId).get();
     list$.assignAll(snapshot.docs.map(LinkedWorkerModel.fromSnapshot).toList());
   }
@@ -39,6 +40,7 @@ class LinkedWorkerService extends GetxService with CustomService {
   /// Returns the [LinkedWorkerModel] if found; otherwise, null.
   /// [companyId] is the ID of the company, and [workerId] is the ID of the worker.
   Future<LinkedWorkerModel?> get(String companyId, String workerId) async {
+    if (companyId.isEmpty || workerId.isEmpty) return null;
     final docSnapshot = await _getDocumentReference(companyId, workerId).get();
     return docSnapshot.exists ? LinkedWorkerModel.fromSnapshot(docSnapshot) : null;
   }

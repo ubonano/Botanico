@@ -12,9 +12,10 @@ class SignInPage extends GetView<SignInController> {
   const SignInPage({super.key});
 
   get _formKey => controller.formKey;
+  get _textCtrls => controller.textCtrls;
 
-  get _emailCtrl => controller.textCtrls[0];
-  get _passwordCtrl => controller.textCtrls[1];
+  get _emailCtrl => _textCtrls[0];
+  get _passwordCtrl => _textCtrls[1];
 
   void _submit() => controller.submit();
   void _toSignUp() => controller.navigateToSignUp();

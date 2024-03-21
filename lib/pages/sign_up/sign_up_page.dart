@@ -12,10 +12,11 @@ class SignUpPage extends GetView<SignUpController> {
   const SignUpPage({super.key});
 
   get _formKey => controller.signUpformKey;
+  get _textCtrls => controller.textCtrls;
 
-  get _emailCtrl => controller.textCtrls[0];
-  get _passwordCtrl => controller.textCtrls[1];
-  get _confirmPasswordCtrl => controller.textCtrls[2];
+  get _emailCtrl => _textCtrls[0];
+  get _passwordCtrl => _textCtrls[1];
+  get _confirmPasswordCtrl => _textCtrls[2];
 
   void _submit() => controller.signUp();
   void _toSignIn() => controller.navigateToSignIn();

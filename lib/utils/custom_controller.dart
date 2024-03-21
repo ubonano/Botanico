@@ -25,29 +25,29 @@ mixin CustomController on GetxController {
   String get loggedUserUID => auth.user?.uid ?? '';
   String get loggedUserEmail => auth.user?.email ?? '';
 
-  WorkerModel? get loggedInWorker => workerService.worker$.value;
-  String get loggedInWorkerId => loggedInWorker?.uid ?? '';
-  bool get loggedInWorkerIsLoaded => loggedInWorker != null;
-  bool get loggedInWorkerHasCompany => loggedInWorkerIsLoaded && loggedInWorker!.companyId != '';
+  WorkerModel? get currentWorker => workerService.worker$.value;
+  String get currentWorkerId => currentWorker?.uid ?? '';
+  bool get currentWorkerIsLoaded => currentWorker != null;
+  bool get currentWorkerHasCompany => currentWorkerIsLoaded && currentWorker!.companyId != '';
 
-  CompanyModel? get loggedIncompany => companyService.company$.value;
-  String get loggedInCompanyId => loggedIncompany?.uid ?? '';
-  bool get loggedInCompanyIsLoaded => loggedIncompany != null;
+  CompanyModel? get currentCompany => companyService.company$.value;
+  String get currentCompanyId => currentCompany?.uid ?? '';
+  bool get currentCompanyIsLoaded => currentCompany != null;
 
   Future<void> fetchWorker() async {
-    if (isLoggedInUser && !loggedInWorkerIsLoaded) await workerService.fetch(loggedUserUID);
+    await workerService.fetch(loggedUserUID);
   }
 
   Future<void> fetchCompany() async {
-    if (loggedInWorkerHasCompany && !loggedInCompanyIsLoaded) await companyService.fetch(loggedInWorker!.companyId);
+    await companyService.fetch(currentWorker!.companyId);
   }
 
   @override
   Future<void> onInit() async {
     super.onInit();
 
-    await fetchWorker();
-    await fetchCompany();
+    if (isLoggedInUser && !currentWorkerIsLoaded) await fetchWorker();
+    if (currentWorkerHasCompany && !currentCompanyIsLoaded) await fetchCompany();
 
     log.debug('+ $logTag iniciado');
   }
