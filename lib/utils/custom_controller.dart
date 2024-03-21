@@ -1,6 +1,7 @@
 import 'package:botanico/models/company_model.dart';
 import 'package:botanico/models/worker_model.dart';
 import 'package:botanico/utils/snackbar_service.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../services/auth_service.dart';
 import '../services/company_service.dart';
@@ -12,14 +13,16 @@ import '../services/navigation_service.dart';
 mixin CustomController on GetxController {
   String get logTag;
 
-  late final log = Get.find<LogService>();
-  late final navigate = Get.find<NavigationService>();
-  late final async = Get.find<AsyncOperationService>();
-  late final snackbar = Get.find<SnackbarService>();
+  late final Map<String, TextEditingController> textControllers;
 
-  late final auth = Get.find<AuthService>();
-  late final workerService = Get.find<WorkerService>();
-  late final companyService = Get.find<CompanyService>();
+  late final LogService log = Get.find();
+  late final NavigationService navigate = Get.find();
+  late final AsyncOperationService async = Get.find();
+  late final SnackbarService snackbar = Get.find();
+
+  late final AuthService auth = Get.find();
+  late final WorkerService workerService = Get.find();
+  late final CompanyService companyService = Get.find();
 
   bool get isLoggedInUser => auth.user != null;
   String get loggedUserUID => auth.user?.uid ?? '';
@@ -34,13 +37,11 @@ mixin CustomController on GetxController {
   String get currentCompanyId => currentCompany?.uid ?? '';
   bool get currentCompanyIsLoaded => currentCompany != null;
 
-  Future<void> fetchWorker() async {
-    await workerService.fetch(loggedUserUID);
-  }
+  String getFieldValue(String field) => textControllers[field]!.text.trim();
+  TextEditingController? getFieldController(String field) => textControllers[field];
 
-  Future<void> fetchCompany() async {
-    await companyService.fetch(currentWorker!.companyId);
-  }
+  Future<void> fetchWorker() async => await workerService.fetch(loggedUserUID);
+  Future<void> fetchCompany() async => await companyService.fetch(currentWorker!.companyId);
 
   @override
   Future<void> onInit() async {

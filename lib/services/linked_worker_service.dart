@@ -1,7 +1,9 @@
 import 'package:botanico/config/firestore_collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import '../models/enums/worker_role.dart';
 import '../models/linked_worker_model.dart';
+import '../models/worker_model.dart';
 import '../utils/custom_service.dart';
 
 /// Manages operations related to linked workers in Firestore.
@@ -43,6 +45,11 @@ class LinkedWorkerService extends GetxService with CustomService {
     if (companyId.isEmpty || workerId.isEmpty) return null;
     final docSnapshot = await _getDocumentReference(companyId, workerId).get();
     return docSnapshot.exists ? LinkedWorkerModel.fromSnapshot(docSnapshot) : null;
+  }
+
+  Future<void> linkWorkerToCompany(WorkerModel worker, String companyId, txn) async {
+    final linkedWorker = LinkedWorkerModel.fromWorkerModel(worker, WorkerRole.owner);
+    await create(companyId, linkedWorker, txn: txn);
   }
 
   /// Creates a linked worker document in Firestore.

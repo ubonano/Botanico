@@ -14,16 +14,19 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
   const CompanyCreatePage({super.key});
 
   get _formKey => controller.formKey;
-  get _textCtrls => controller.textCtrls;
 
-  get _nameCtrl => _textCtrls[0];
-  get _addressCtrl => _textCtrls[1];
-  get _cityCtrl => _textCtrls[2];
-  get _provinceCtrl => _textCtrls[3];
-  get _countryCtrl => _textCtrls[4];
-  get _phoneCtrl => _textCtrls[5];
+  get _nameCtrl => _getTextController('name');
+  get _addressCtrl => _getTextController('address');
+  get _cityCtrl => _getTextController('city');
+  get _provinceCtrl => _getTextController('province');
+  get _countryCtrl => _getTextController('country');
+  get _phoneCtrl => _getTextController('phone');
 
-  void _submit() => controller.createCompany();
+  get _labelButton => 'Guardar empresa';
+
+  TextEditingController? _getTextController(String field) => controller.getFieldController(field);
+
+  void _createCompany() => controller.createCompany();
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +39,13 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
           key: _formKey,
           child: Column(
             children: [
-              NameInputField(controller: _nameCtrl, onFieldSubmitted: _submit),
-              AddressInputField(controller: _addressCtrl, onFieldSubmitted: _submit),
-              CityInputField(controller: _cityCtrl, onFieldSubmitted: _submit),
-              ProvinceInputField(controller: _provinceCtrl, onFieldSubmitted: _submit),
-              CountryInputField(controller: _countryCtrl, onFieldSubmitted: _submit),
-              PhoneInputField(controller: _phoneCtrl, onFieldSubmitted: _submit),
-              CustomButton(text: 'Guardar empresa', onPressed: _submit),
+              NameInputField(controller: _nameCtrl, onFieldSubmitted: _createCompany),
+              AddressInputField(controller: _addressCtrl, onFieldSubmitted: _createCompany),
+              CityInputField(controller: _cityCtrl, onFieldSubmitted: _createCompany),
+              ProvinceInputField(controller: _provinceCtrl, onFieldSubmitted: _createCompany),
+              CountryInputField(controller: _countryCtrl, onFieldSubmitted: _createCompany),
+              PhoneInputField(controller: _phoneCtrl, onFieldSubmitted: _createCompany),
+              CustomButton(text: _labelButton, onPressed: _createCompany),
             ],
           ),
         ),

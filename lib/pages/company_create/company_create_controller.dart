@@ -1,6 +1,3 @@
-import 'package:botanico/models/enums/worker_role.dart';
-import 'package:botanico/models/linked_worker_model.dart';
-import 'package:botanico/models/worker_model.dart';
 import 'package:botanico/utils/custom_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -14,8 +11,17 @@ class CompanyCreateController extends GetxController with CustomController {
 
   late final _linkedWorkerService = Get.find<LinkedWorkerService>();
   final formKey = GlobalKey<FormState>();
-  final textCtrls = List.generate(6, (_) => TextEditingController());
-  List<String> get _fieldValues => textCtrls.map((ctrl) => ctrl.text.trim()).toList();
+
+  @override
+  // ignore: overridden_fields
+  Map<String, TextEditingController> textControllers = {
+    'name': TextEditingController(),
+    'address': TextEditingController(),
+    'city': TextEditingController(),
+    'province': TextEditingController(),
+    'country': TextEditingController(),
+    'phone': TextEditingController(),
+  };
 
   Future<void> createCompany() async {
     if (!formKey.currentState!.validate()) return;
@@ -24,43 +30,29 @@ class CompanyCreateController extends GetxController with CustomController {
       operationName: 'Create company',
       successMessage: 'Empresa creada',
       inTransaction: true,
-      operation: _createCompany,
-      onSuccess: _onCompanyCreated,
+      operation: (txn) async {
+        final newCompany = CompanyModel(
+          ownerUid: loggedUserUID,
+          name: getFieldValue('name'),
+          address: getFieldValue('address'),
+          city: getFieldValue('city'),
+          province: getFieldValue('province'),
+          country: getFieldValue('country'),
+          phone: getFieldValue('phone'),
+        );
+
+        final companyCreated = await companyService.create(newCompany, txn: txn);
+
+        await workerService.updateWorkerWithCompanyId(currentWorker!, companyCreated.uid, txn);
+        await _linkedWorkerService.linkWorkerToCompany(currentWorker!, companyCreated.uid, txn);
+      },
+      onSuccess: () async {
+        await fetchWorker();
+        await fetchCompany();
+
+        navigate.toHome();
+      },
     );
-  }
-
-  Future<void> _createCompany(txn) async {
-    final newCompany = CompanyModel(
-      ownerUid: loggedUserUID,
-      name: _fieldValues[0],
-      address: _fieldValues[1],
-      city: _fieldValues[2],
-      province: _fieldValues[3],
-      country: _fieldValues[4],
-      phone: _fieldValues[5],
-    );
-
-    final companyCreated = await companyService.create(newCompany, txn: txn);
-
-    await _updateWorkerWithCompanyId(currentWorker!, companyCreated.uid, txn);
-    await _linkWorkerToCompany(currentWorker!, companyCreated.uid, txn);
-  }
-
-  void _onCompanyCreated() async {
-    await fetchWorker();
-    await fetchCompany();
-
-    navigate.toHome();
-  }
-
-  Future<void> _updateWorkerWithCompanyId(WorkerModel worker, String companyId, txn) async {
-    final updatedWorker = worker.copyWith(companyId: companyId);
-    await workerService.update(updatedWorker, txn: txn);
-  }
-
-  Future<void> _linkWorkerToCompany(WorkerModel worker, String companyId, txn) async {
-    final linkedWorker = LinkedWorkerModel.fromWorkerModel(worker, WorkerRole.owner);
-    await _linkedWorkerService.create(companyId, linkedWorker, txn: txn);
   }
 
   @override
@@ -71,5 +63,5 @@ class CompanyCreateController extends GetxController with CustomController {
   }
 
   // ignore: avoid_function_literals_in_foreach_calls
-  void disposeControllers() => textCtrls.forEach((controller) => controller.dispose());
+  void disposeControllers() => textControllers.values.forEach((controller) => controller.dispose());
 }
