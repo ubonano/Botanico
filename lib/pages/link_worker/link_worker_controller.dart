@@ -13,25 +13,45 @@ class LinkWorkerController extends GetxController with CustomController {
   @override
   String get logTag => 'LinkWorkerController';
 
-  late final linkedWorkerService = Get.find<LinkedWorkerService>();
-  final formKey = GlobalKey<FormState>();
-  final textCtrls = List.generate(1, (_) => TextEditingController());
-  List<String> get _fieldValues => textCtrls.map((ctrl) => ctrl.text.trim()).toList();
+  @override
+  // ignore: overridden_fields
+  Map<String, TextEditingController> textControllers = {
+    'uid': TextEditingController(),
+  };
 
-  Future<void> submit() async {
+  late final _linkedWorkerService = Get.find<LinkedWorkerService>();
+
+  final formKey = GlobalKey<FormState>();
+
+  Future<void> linkWorker() async {
     if (!formKey.currentState!.validate()) return;
 
-    final workerToLink = await workerService.get(_fieldValues[0]);
+    final workerToLink = await workerService.get(getFieldValue('uid'));
 
-    if (!await canLink(workerToLink)) return;
-
-    await async.perform(
-      operationName: 'Link worker',
-      successMessage: 'Trabajador vinculado',
-      inTransaction: true,
-      operation: (txn) async => await _handleOperation(workerToLink!, txn),
-      onSuccess: _handleSuccessOperation,
-    );
+    if (await canLink(workerToLink)) {
+      await async.perform(
+        operationName: 'Link worker',
+        successMessage: 'Trabajador vinculado',
+        inTransaction: true,
+        operation: (txn) async {
+          await _linkedWorkerService.linkWorkerToCompany(
+            workerToLink!,
+            currentCompanyId,
+            WorkerRole.employee,
+            txn: txn,
+          );
+          await workerService.updateWorkerWithCompanyId(
+            workerToLink,
+            currentCompanyId,
+            txn: txn,
+          );
+        },
+        onSuccess: () {
+          _linkedWorkerService.fetchAll(currentCompanyId);
+          navigate.toLinkedWorkers();
+        },
+      );
+    }
   }
 
   Future<bool> canLink(WorkerModel? worker) async {
@@ -40,12 +60,12 @@ class LinkWorkerController extends GetxController with CustomController {
       return false;
     }
 
-    if (_isWorkerLinkedToOtherCompany(worker)) {
+    if (worker.companyId.isNotEmpty && worker.companyId != currentCompanyId) {
       snackbar.error('El trabajador ya se encuentra vinculado a otra empresa');
       return false;
     }
 
-    if (await _isWorkerAlreadyLinked(worker)) {
+    if (await _linkedWorkerService.isWorkerAlreadyLinked(currentCompanyId, worker)) {
       snackbar.warning('El trabajador ya se encuentra vinculado');
       return false;
     }
@@ -53,52 +73,10 @@ class LinkWorkerController extends GetxController with CustomController {
     return true;
   }
 
-  bool _isWorkerLinkedToOtherCompany(WorkerModel worker) =>
-      worker.companyId.isNotEmpty && worker.companyId != currentCompanyId;
-
-  Future<bool> _isWorkerAlreadyLinked(WorkerModel worker) async {
-    return (await linkedWorkerService.get(currentCompanyId, worker.uid)) != null;
-  }
-
-  Future<void> _handleOperation(WorkerModel worker, txn) async {
-    await _createLinkedWorker(worker, txn);
-    await _updateWithCompanyId(worker, txn);
-  }
-
-  void _handleSuccessOperation() {
-    linkedWorkerService.fetchAll(currentCompanyId);
-    navigate.toLinkedWorkers();
-  }
-
-  Future<void> _createLinkedWorker(WorkerModel worker, Transaction? txn) async {
-    await linkedWorkerService.create(
-      currentCompanyId,
-      LinkedWorkerModel.fromWorkerModel(worker, WorkerRole.employee),
-      txn: txn,
-    );
-  }
-
-  Future<void> _updateWithCompanyId(WorkerModel worker, Transaction? txn) async {
-    await workerService.update(
-      worker.copyWith(companyId: currentCompanyId),
-      txn: txn,
-    );
-  }
-
   void pasteWorkerId() async {
     final ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);
-    textCtrls[0].text = data?.text ?? '';
+    setFieldValue('uid', data?.text ?? '');
   }
 
   Future<void> scanQrCode() async {}
-
-  @override
-  void onClose() {
-    disposeControllers();
-
-    super.onClose();
-  }
-
-  // ignore: avoid_function_literals_in_foreach_calls
-  void disposeControllers() => textCtrls.forEach((controller) => controller.dispose());
 }

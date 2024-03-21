@@ -38,6 +38,7 @@ mixin CustomController on GetxController {
   bool get currentCompanyIsLoaded => currentCompany != null;
 
   String getFieldValue(String field) => textControllers[field]!.text.trim();
+  String setFieldValue(String field, dynamic value) => textControllers[field]!.text = field;
   TextEditingController? getFieldController(String field) => textControllers[field];
 
   Future<void> fetchWorker() async => await workerService.fetch(loggedUserUID);

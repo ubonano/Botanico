@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../models/company_model.dart';
+import '../../models/enums/worker_role.dart';
 import '../../services/linked_worker_service.dart';
 
 class CompanyCreateController extends GetxController with CustomController {
@@ -44,7 +45,7 @@ class CompanyCreateController extends GetxController with CustomController {
         final companyCreated = await companyService.create(newCompany, txn: txn);
 
         await workerService.updateWorkerWithCompanyId(currentWorker!, companyCreated.uid, txn: txn);
-        await _linkedWorkerService.linkWorkerToCompany(currentWorker!, companyCreated.uid, txn: txn);
+        await _linkedWorkerService.linkWorkerToCompany(currentWorker!, companyCreated.uid, WorkerRole.owner, txn: txn);
       },
       onSuccess: () async {
         await fetchWorker();

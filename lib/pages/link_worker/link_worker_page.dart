@@ -10,18 +10,22 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
   const LinkWorkerPage({Key? key}) : super(key: key);
 
   get _formKey => controller.formKey;
-  get _textCtrls => controller.textCtrls;
 
-  get _workerUidCtrl => _textCtrls[0];
+  get _title => 'Vincular Trabajador';
 
-  void _submit() => controller.submit();
+  get _uidCtrl => controller.getFieldController('uid');
+
+  get _linkWorkerButtonText => 'Vincular Trabajador';
+  get _scanQrCodeButtonText => 'Escanear Código QR';
+
+  void _linkWorker() => controller.linkWorker();
   void _scanQrCode() => controller.scanQrCode();
   void _pasteWorkerId() => controller.pasteWorkerId();
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: 'Vincular Trabajador',
+      title: _title,
       drawer: null,
       body: Center(
         child: SingleChildScrollView(
@@ -36,15 +40,15 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
                   children: [
                     Expanded(
                       child: WorkerUidInputField(
-                        controller: _workerUidCtrl,
-                        onFieldSubmitted: _submit,
+                        controller: _uidCtrl,
+                        onFieldSubmitted: _linkWorker,
                       ),
                     ),
                     IconButton(icon: const Icon(Icons.paste), onPressed: _pasteWorkerId),
                   ],
                 ),
-                CustomButton(text: 'Vincular Trabajador', onPressed: _submit),
-                CustomButton(text: 'Escanear Código QR', onPressed: _scanQrCode)
+                CustomButton(text: _linkWorkerButtonText, onPressed: _linkWorker),
+                CustomButton(text: _scanQrCodeButtonText, onPressed: _scanQrCode)
               ],
             ),
           ),

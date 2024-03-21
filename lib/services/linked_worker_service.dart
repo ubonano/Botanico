@@ -38,6 +38,9 @@ class LinkedWorkerService extends GetxService with CustomService {
     list$.assignAll(snapshot.docs.map(LinkedWorkerModel.fromSnapshot).toList());
   }
 
+  Future<bool> isWorkerAlreadyLinked(String companyId, WorkerModel worker) async =>
+      (await get(companyId, worker.uid)) != null;
+
   /// Retrieves a single linked worker by company and worker ID.
   ///
   /// Returns a [LinkedWorkerModel] if found, otherwise returns null.
@@ -52,8 +55,8 @@ class LinkedWorkerService extends GetxService with CustomService {
   /// This method creates a linked worker document within the specified company's subcollection.
   /// [worker] is the worker to link, and [companyId] is the company to which the worker is being linked.
   /// [txn] is an optional transaction within which the linking should be performed.
-  Future<void> linkWorkerToCompany(WorkerModel worker, String companyId, {Transaction? txn}) async {
-    final linkedWorker = LinkedWorkerModel.fromWorkerModel(worker, WorkerRole.owner);
+  Future<void> linkWorkerToCompany(WorkerModel worker, String companyId, WorkerRole role, {Transaction? txn}) async {
+    final linkedWorker = LinkedWorkerModel.fromWorkerModel(worker, role);
     await create(companyId, linkedWorker, txn: txn);
   }
 
