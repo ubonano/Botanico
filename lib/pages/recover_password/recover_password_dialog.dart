@@ -7,23 +7,25 @@ class RecoverPasswordDialog extends GetView<RecoverPasswordController> {
   const RecoverPasswordDialog({Key? key}) : super(key: key);
 
   get _formKey => controller.formKey;
-  get _textCtrls => controller.textCtrls;
+  get _title => 'Recuperar contraseña';
+  get _cancelButtonText => 'Cancelar';
+  get _confirmButtonText => 'Enviar';
 
-  get _emailCtrl => _textCtrls[0];
+  get _emailCtrl => controller.getFieldController('email');
 
-  void _submit() => controller.submit();
+  void _recoverPassword() => controller.recoverPassword();
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("Recuperar contraseña"),
+      title: Text(_title),
       content: Form(
         key: _formKey,
-        child: EmailInputField(controller: _emailCtrl, onFieldSubmitted: _submit),
+        child: EmailInputField(controller: _emailCtrl, onFieldSubmitted: _recoverPassword),
       ),
       actions: [
-        TextButton(onPressed: Get.back, child: const Text("Cancelar")),
-        TextButton(onPressed: _submit, child: const Text("Enviar")),
+        TextButton(onPressed: Get.back, child: Text(_cancelButtonText)),
+        TextButton(onPressed: _recoverPassword, child: Text(_confirmButtonText)),
       ],
     );
   }
