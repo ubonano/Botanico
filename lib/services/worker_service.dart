@@ -5,72 +5,79 @@ import 'package:botanico/config/firestore_collections.dart';
 import '../utils/custom_service.dart';
 import '../models/worker_model.dart';
 
-/// Provides functionality for managing worker data in Firestore.
+/// Provides functionality for managing worker data within Firestore.
 ///
-/// This service allows fetching, creating, and updating worker documents
-/// within the Firestore database. It utilizes the [CustomService] for
-/// logging and other common service functionalities.
+/// This service encapsulates operations such as fetching, creating, updating,
+/// and specifically updating a worker's company association within the Firestore database.
 class WorkerService extends GetxService with CustomService {
   @override
   String get logTag => 'WorkerService';
 
-  /// Reference to the workers collection in Firestore.
+  /// Reference to the workers collection within Firestore.
   final _collectionRef = FirebaseFirestore.instance.collection(FirestoreCollections.workers);
 
-  /// A reactive representation of the currently selected worker.
+  /// An observable representing the currently selected worker.
   final worker$ = Rx<WorkerModel?>(null);
 
-  /// Clears the current worker value.
+  /// Clears the current worker observable value, effectively deselecting any worker.
   void clean() => worker$.value = null;
 
-  /// Fetches a worker by ID and updates the observable [worker$].
+  /// Fetches a worker document by ID and updates the observable [worker$].
   ///
-  /// [id] is the Firestore document ID of the worker.
+  /// [id] is the unique Firestore document ID of the worker.
   Future<void> fetch(String id) async => worker$.value = await _getWorker(id);
 
-  /// Retrieves a worker by ID.
+  /// Retrieves a worker document by its unique ID.
   ///
   /// [id] is the Firestore document ID of the worker.
-  /// Returns a [WorkerModel] if found, otherwise null.
+  /// Returns a [WorkerModel] instance if found; otherwise, returns null.
   Future<WorkerModel?> get(String id) async => await _getWorker(id);
 
-  /// Internal method to fetch a worker document by ID.
+  /// Internal method to fetch a worker document by its ID.
   ///
-  /// [id] is the Firestore document ID of the worker.
-  /// Returns a [WorkerModel] if the document exists, otherwise null.
+  /// Performs a Firestore query to retrieve the worker document.
+  /// [id] is the unique ID of the worker document.
+  /// Returns the worker model if the document exists; otherwise, null.
   Future<WorkerModel?> _getWorker(String id) async {
-    if (id == '') return null;
+    if (id.isEmpty) return null;
     final docSnapshot = await _getDocumentReference(id).get();
     return docSnapshot.exists ? WorkerModel.fromSnapshot(docSnapshot) : null;
   }
 
-  /// Creates a new worker document or updates an existing one.
+  /// Creates or updates a worker document within Firestore.
   ///
-  /// [worker] is the worker data to save.
-  /// [txn] is an optional Firestore transaction.
-  /// Returns the [WorkerModel] after the operation.
+  /// This method either creates a new worker document with the provided data or updates an existing one.
+  /// [worker] contains the worker data to be saved.
+  /// [txn] optionally specifies a Firestore transaction within which to perform the save operation.
+  /// Returns the updated [WorkerModel].
   Future<WorkerModel> create(WorkerModel worker, {Transaction? txn}) async {
     final docRef = _getDocumentReference(worker.uid);
     txn != null ? txn.set(docRef, worker.toMap()) : await docRef.set(worker.toMap());
     return worker;
   }
 
-  Future<void> updateWorkerWithCompanyId(WorkerModel worker, String companyId, txn) async {
+  /// Specifically updates a worker document to associate it with a company.
+  ///
+  /// This method is used to update the 'companyId' field of a worker, effectively linking the worker to a company.
+  /// [worker] is the worker model to update.
+  /// [companyId] is the ID of the company to associate with the worker.
+  /// [txn] optionally specifies a Firestore transaction within which to perform the update.
+  Future<void> updateWorkerWithCompanyId(WorkerModel worker, String companyId, {Transaction? txn}) async {
     final updatedWorker = worker.copyWith(companyId: companyId);
     await update(updatedWorker, txn: txn);
   }
 
-  /// Updates an existing worker document.
+  /// Updates an existing worker document with new data.
   ///
-  /// [worker] is the worker data to update.
-  /// [txn] is an optional Firestore transaction.
+  /// [worker] contains the updated data for the worker.
+  /// [txn] optionally specifies a Firestore transaction within which to perform the update.
   Future<void> update(WorkerModel worker, {Transaction? txn}) async {
     final docRef = _getDocumentReference(worker.uid);
     txn != null ? txn.update(docRef, worker.toMap()) : await docRef.update(worker.toMap());
   }
 
-  /// Returns a [DocumentReference] for a given worker ID.
+  /// Retrieves a [DocumentReference] for a specific worker by their ID.
   ///
-  /// [id] is the Firestore document ID of the worker.
+  /// [id] is the unique ID of the worker within Firestore.
   DocumentReference _getDocumentReference(String id) => _collectionRef.doc(id);
 }

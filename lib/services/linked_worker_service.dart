@@ -8,8 +8,9 @@ import '../utils/custom_service.dart';
 
 /// Manages operations related to linked workers in Firestore.
 ///
-/// Provides functionalities to fetch, create, and delete linked workers,
-/// allowing manipulation of the linked workers subcollection within a company document.
+/// This service provides functionalities to manage the linked workers subcollection within
+/// a company document in Firestore. It allows fetching, creating, deleting, and
+/// linking workers to companies.
 class LinkedWorkerService extends GetxService with CustomService {
   @override
   String get logTag => 'LinkedWorkerService';
@@ -17,65 +18,68 @@ class LinkedWorkerService extends GetxService with CustomService {
   /// Reference to the companies collection in Firestore.
   final _companiesRef = FirebaseFirestore.instance.collection(FirestoreCollections.companies);
 
-  /// Observable list of [LinkedWorkerModel]s.
+  /// Observable list of linked workers.
   final list$ = RxList<LinkedWorkerModel>();
 
   /// Clears the observable list of linked workers.
   void clean() => list$.clear();
 
-  /// Removes a linked worker from the local observable list by matching the UID.
+  /// Removes a linked worker from the local observable list by UID.
   ///
-  /// [linkedWorker] is the model to be removed from the list.
+  /// This method removes the worker from the list$ based on matching UID.
+  /// [linkedWorker] is the model to be removed.
   void removeFromLocal(LinkedWorkerModel linkedWorker) => list$.removeWhere((lw) => lw.uid == linkedWorker.uid);
 
-  /// Fetches all linked workers for a given company ID and updates the observable list.
+  /// Fetches all linked workers for a given company and updates the observable list.
   ///
-  /// [companyId] is the ID of the company whose linked workers are to be fetched.
+  /// [companyId] is the unique identifier of the company whose linked workers are fetched.
   Future<void> fetchAll(String companyId) async {
-    if (companyId == '') return;
     final snapshot = await _linkedWorkersRef(companyId).get();
     list$.assignAll(snapshot.docs.map(LinkedWorkerModel.fromSnapshot).toList());
   }
 
-  /// Fetches a single linked worker document by company and worker ID.
+  /// Retrieves a single linked worker by company and worker ID.
   ///
-  /// Returns the [LinkedWorkerModel] if found; otherwise, null.
-  /// [companyId] is the ID of the company, and [workerId] is the ID of the worker.
+  /// Returns a [LinkedWorkerModel] if found, otherwise returns null.
+  /// [companyId] and [workerId] are the unique identifiers for the company and worker, respectively.
   Future<LinkedWorkerModel?> get(String companyId, String workerId) async {
-    if (companyId.isEmpty || workerId.isEmpty) return null;
     final docSnapshot = await _getDocumentReference(companyId, workerId).get();
     return docSnapshot.exists ? LinkedWorkerModel.fromSnapshot(docSnapshot) : null;
   }
 
-  Future<void> linkWorkerToCompany(WorkerModel worker, String companyId, txn) async {
+  /// Links a worker to a company by creating a linked worker document in Firestore.
+  ///
+  /// This method creates a linked worker document within the specified company's subcollection.
+  /// [worker] is the worker to link, and [companyId] is the company to which the worker is being linked.
+  /// [txn] is an optional transaction within which the linking should be performed.
+  Future<void> linkWorkerToCompany(WorkerModel worker, String companyId, {Transaction? txn}) async {
     final linkedWorker = LinkedWorkerModel.fromWorkerModel(worker, WorkerRole.owner);
     await create(companyId, linkedWorker, txn: txn);
   }
 
-  /// Creates a linked worker document in Firestore.
+  /// Creates a linked worker document in Firestore within a company's subcollection.
   ///
-  /// If a [txn] is provided, the creation is part of the given transaction.
-  /// Returns the [LinkedWorkerModel] after creation.
+  /// Returns the created [LinkedWorkerModel]. If [txn] is provided, the creation is part of that transaction.
+  /// [companyId] is the ID of the company. [linkedWorker] is the model to be created.
   Future<LinkedWorkerModel> create(String companyId, LinkedWorkerModel linkedWorker, {Transaction? txn}) async {
     final docRef = _getDocumentReference(companyId, linkedWorker.uid);
     txn != null ? txn.set(docRef, linkedWorker.toMap()) : await docRef.set(linkedWorker.toMap());
     return linkedWorker;
   }
 
-  /// Deletes a linked worker document from Firestore.
+  /// Deletes a linked worker document from a company's subcollection in Firestore.
   ///
-  /// If a [txn] is provided, the deletion is part of the given transaction.
-  /// [companyId] is the ID of the company, and [workerId] is the ID of the worker to delete.
+  /// [companyId] is the ID of the company. [workerId] is the ID of the worker to delete.
+  /// If [txn] is provided, the deletion is part of that transaction.
   Future<void> delete(String companyId, String workerId, {Transaction? txn}) async {
     final docRef = _getDocumentReference(companyId, workerId);
     txn != null ? txn.delete(docRef) : await docRef.delete();
   }
 
-  /// Returns a [DocumentReference] for a linked worker within a company.
+  /// Returns a [DocumentReference] for a specific linked worker within a company's subcollection.
   DocumentReference _getDocumentReference(String companyId, String docId) => _linkedWorkersRef(companyId).doc(docId);
 
   /// Returns a [CollectionReference] for the linked workers subcollection of a company.
-  CollectionReference<Map<String, dynamic>> _linkedWorkersRef(String companyId) {
-    return _companiesRef.doc(companyId).collection(FirestoreCollections.linkedWorkers);
-  }
+  CollectionReference<Map<String, dynamic>> _linkedWorkersRef(String companyId) =>
+      _companiesRef.doc(companyId).collection(FirestoreCollections.linkedWorkers);
 }

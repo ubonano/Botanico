@@ -43,8 +43,8 @@ class CompanyCreateController extends GetxController with CustomController {
 
         final companyCreated = await companyService.create(newCompany, txn: txn);
 
-        await workerService.updateWorkerWithCompanyId(currentWorker!, companyCreated.uid, txn);
-        await _linkedWorkerService.linkWorkerToCompany(currentWorker!, companyCreated.uid, txn);
+        await workerService.updateWorkerWithCompanyId(currentWorker!, companyCreated.uid, txn: txn);
+        await _linkedWorkerService.linkWorkerToCompany(currentWorker!, companyCreated.uid, txn: txn);
       },
       onSuccess: () async {
         await fetchWorker();
