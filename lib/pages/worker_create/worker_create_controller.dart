@@ -9,34 +9,34 @@ class WorkerCreateController extends GetxController with CustomController {
 
   @override
   // ignore: overridden_fields
-  Map<String, TextEditingController> textControllers = {
-    'name': TextEditingController(),
-    'birthDate': TextEditingController(),
-    'phone': TextEditingController(),
-    'dni': TextEditingController(),
-  };
+  List<String> formFields = [
+    'name',
+    'birthDate',
+    'phone',
+    'dni',
+  ];
 
   final formKey = GlobalKey<FormState>();
 
   Future<void> submit() async {
-    if (!formKey.currentState!.validate()) return;
-
-    await async.perform(
-      operationName: 'Create worker',
-      successMessage: 'Trabajador creado!',
-      operation: (_) async {
-        await workerService.create(
-          WorkerModel(
-            uid: loggedUserUID,
-            email: loggedUserEmail,
-            name: getFieldValue('name'),
-            birthDate: getFieldValue('birthDate'),
-            phone: getFieldValue('phone'),
-            dni: getFieldValue('dni'),
-          ),
-        );
-      },
-      onSuccess: navigate.toLobby,
-    );
+    if (formKey.currentState!.validate()) {
+      await async.perform(
+        operationName: 'Create worker',
+        successMessage: 'Trabajador creado!',
+        operation: (_) async {
+          await workerService.create(
+            WorkerModel(
+              uid: loggedUserUID,
+              email: loggedUserEmail,
+              name: getFieldValue('name'),
+              birthDate: getFieldValue('birthDate'),
+              phone: getFieldValue('phone'),
+              dni: getFieldValue('dni'),
+            ),
+          );
+        },
+        onSuccess: navigate.toLobby,
+      );
+    }
   }
 }

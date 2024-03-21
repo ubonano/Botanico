@@ -13,6 +13,7 @@ import '../services/navigation_service.dart';
 mixin CustomController on GetxController {
   String get logTag;
 
+  late List<String> formFields = [];
   late Map<String, TextEditingController> textControllers = {};
 
   late final LogService log = Get.find();
@@ -48,10 +49,18 @@ mixin CustomController on GetxController {
   Future<void> onInit() async {
     super.onInit();
 
+    if (formFields.isNotEmpty) _initializeTextControllers();
+
     if (isLoggedInUser && !currentWorkerIsLoaded) await fetchWorker();
     if (currentWorkerHasCompany && !currentCompanyIsLoaded) await fetchCompany();
 
     log.debug('+ $logTag iniciado');
+  }
+
+  void _initializeTextControllers() {
+    for (var fieldName in formFields) {
+      textControllers[fieldName] = TextEditingController();
+    }
   }
 
   @override

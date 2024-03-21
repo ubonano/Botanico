@@ -1,10 +1,7 @@
 import 'package:botanico/models/enums/worker_role.dart';
-import 'package:botanico/models/linked_worker_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import '../../models/worker_model.dart';
 import '../../utils/custom_controller.dart';
 import '../../services/linked_worker_service.dart';
@@ -15,42 +12,42 @@ class LinkWorkerController extends GetxController with CustomController {
 
   @override
   // ignore: overridden_fields
-  Map<String, TextEditingController> textControllers = {
-    'uid': TextEditingController(),
-  };
+  List<String> formFields = [
+    'uid',
+  ];
 
   late final LinkedWorkerService _linkedWorkerService = Get.find();
 
   final formKey = GlobalKey<FormState>();
 
   Future<void> linkWorker() async {
-    if (!formKey.currentState!.validate()) return;
+    if (formKey.currentState!.validate()) {
+      final workerToLink = await workerService.get(getFieldValue('uid'));
 
-    final workerToLink = await workerService.get(getFieldValue('uid'));
-
-    if (await canLink(workerToLink)) {
-      await async.perform(
-        operationName: 'Link worker',
-        successMessage: 'Trabajador vinculado',
-        inTransaction: true,
-        operation: (txn) async {
-          await _linkedWorkerService.linkWorkerToCompany(
-            workerToLink!,
-            currentCompanyId,
-            WorkerRole.employee,
-            txn: txn,
-          );
-          await workerService.updateWorkerWithCompanyId(
-            workerToLink,
-            currentCompanyId,
-            txn: txn,
-          );
-        },
-        onSuccess: () {
-          _linkedWorkerService.fetchAll(currentCompanyId);
-          navigate.toLinkedWorkers();
-        },
-      );
+      if (await canLink(workerToLink)) {
+        await async.perform(
+          operationName: 'Link worker',
+          successMessage: 'Trabajador vinculado',
+          inTransaction: true,
+          operation: (txn) async {
+            await _linkedWorkerService.linkWorkerToCompany(
+              workerToLink!,
+              currentCompanyId,
+              WorkerRole.employee,
+              txn: txn,
+            );
+            await workerService.updateWorkerWithCompanyId(
+              workerToLink,
+              currentCompanyId,
+              txn: txn,
+            );
+          },
+          onSuccess: () {
+            _linkedWorkerService.fetchAll(currentCompanyId);
+            navigate.toLinkedWorkers();
+          },
+        );
+      }
     }
   }
 

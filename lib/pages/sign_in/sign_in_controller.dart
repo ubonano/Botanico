@@ -8,30 +8,30 @@ class SignInController extends GetxController with CustomController {
 
   @override
   // ignore: overridden_fields
-  Map<String, TextEditingController> textControllers = {
-    'email': TextEditingController(),
-    'password': TextEditingController(),
-  };
+  List<String> formFields = [
+    'email',
+    'password',
+  ];
 
   final formKey = GlobalKey<FormState>();
 
   Future<void> signIn() async {
-    if (!formKey.currentState!.validate()) return;
+    if (formKey.currentState!.validate()) {
+      await async.perform(
+        operationName: 'Sign in',
+        operation: (_) async => await auth.signIn(
+          getFieldValue('email'),
+          getFieldValue('password'),
+        ),
+        onSuccess: () async {
+          await fetchWorker();
+          await fetchCompany();
 
-    await async.perform(
-      operationName: 'Sign in',
-      operation: (_) async => await auth.signIn(
-        getFieldValue('email'),
-        getFieldValue('password'),
-      ),
-      onSuccess: () async {
-        await fetchWorker();
-        await fetchCompany();
-
-        if (currentWorkerIsLoaded && currentCompanyIsLoaded) navigate.toHome();
-        if (currentWorkerIsLoaded && !currentCompanyIsLoaded) navigate.toLobby();
-        if (!currentWorkerIsLoaded) navigate.toWorkerCreate();
-      },
-    );
+          if (currentWorkerIsLoaded && currentCompanyIsLoaded) navigate.toHome();
+          if (currentWorkerIsLoaded && !currentCompanyIsLoaded) navigate.toLobby();
+          if (!currentWorkerIsLoaded) navigate.toWorkerCreate();
+        },
+      );
+    }
   }
 }

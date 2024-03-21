@@ -9,22 +9,22 @@ class RecoverPasswordController extends GetxController with CustomController {
 
   @override
   // ignore: overridden_fields
-  Map<String, TextEditingController> textControllers = {
-    'email': TextEditingController(),
-  };
+  List<String> formFields = [
+    'email',
+  ];
 
   final formKey = GlobalKey<FormState>();
 
   void recoverPassword() async {
-    if (!formKey.currentState!.validate()) return;
-
-    await async.perform(
-      operationName: 'Recover password',
-      successMessage: 'Se envio un email a tu casilla para restaurar tu contraseña',
-      operation: (_) => auth.recoverPassword(
-        getFieldValue('email'),
-      ),
-      onSuccess: navigate.back,
-    );
+    if (formKey.currentState!.validate()) {
+      await async.perform(
+        operationName: 'Recover password',
+        successMessage: 'Se envio un email a tu casilla para restaurar tu contraseña',
+        operation: (_) => auth.recoverPassword(
+          getFieldValue('email'),
+        ),
+        onSuccess: navigate.back,
+      );
+    }
   }
 }
