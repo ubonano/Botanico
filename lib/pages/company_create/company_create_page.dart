@@ -15,16 +15,14 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
 
   get _formKey => controller.formKey;
 
-  get _nameCtrl => _getTextController('name');
-  get _addressCtrl => _getTextController('address');
-  get _cityCtrl => _getTextController('city');
-  get _provinceCtrl => _getTextController('province');
-  get _countryCtrl => _getTextController('country');
-  get _phoneCtrl => _getTextController('phone');
+  get _nameCtrl => controller.getFieldController('name');
+  get _addressCtrl => controller.getFieldController('address');
+  get _cityCtrl => controller.getFieldController('city');
+  get _provinceCtrl => controller.getFieldController('province');
+  get _countryCtrl => controller.getFieldController('country');
+  get _phoneCtrl => controller.getFieldController('phone');
 
   get _labelButton => 'Guardar empresa';
-
-  TextEditingController? _getTextController(String field) => controller.getFieldController(field);
 
   void _createCompany() => controller.createCompany();
 

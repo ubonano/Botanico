@@ -6,50 +6,32 @@ class SignInController extends GetxController with CustomController {
   @override
   String get logTag => 'SignInController';
 
+  @override
+  // ignore: overridden_fields
+  Map<String, TextEditingController> textControllers = {
+    'email': TextEditingController(),
+    'password': TextEditingController(),
+  };
+
   final formKey = GlobalKey<FormState>();
 
-  final textCtrls = List.generate(3, (_) => TextEditingController());
-
-  List<String> get _fieldValues => textCtrls.map((ctrl) => ctrl.text.trim()).toList();
-
-  Future<void> submit() async {
+  Future<void> signIn() async {
     if (!formKey.currentState!.validate()) return;
 
     await async.perform(
       operationName: 'Sign in',
-      operation: _handleOperation,
-      onSuccess: () async => await _handleSuccessOperation(),
+      operation: (_) async => await auth.signIn(
+        getFieldValue('email'),
+        getFieldValue('password'),
+      ),
+      onSuccess: () async {
+        await fetchWorker();
+        await fetchCompany();
+
+        if (currentWorkerIsLoaded && currentCompanyIsLoaded) navigate.toHome();
+        if (currentWorkerIsLoaded && !currentCompanyIsLoaded) navigate.toLobby();
+        if (!currentWorkerIsLoaded) navigate.toWorkerCreate();
+      },
     );
   }
-
-  Future<void> _handleOperation(_) async => await auth.signIn(_fieldValues[0], _fieldValues[1]);
-
-  Future<void> _handleSuccessOperation() async {
-    await fetchWorker();
-    await fetchCompany();
-
-    if (currentWorkerIsLoaded && currentCompanyIsLoaded) {
-      navigate.toHome();
-    }
-
-    if (currentWorkerIsLoaded && !currentCompanyIsLoaded) {
-      navigate.toLobby();
-    }
-
-    if (!currentWorkerIsLoaded) {
-      navigate.toWorkerCreate();
-    }
-  }
-
-  @override
-  void onClose() {
-    disposeControllers();
-
-    super.onClose();
-  }
-
-  // ignore: avoid_function_literals_in_foreach_calls
-  void disposeControllers() => textCtrls.forEach((controller) => controller.dispose());
-
-  void navigateToSignUp() => navigate.toSignUp();
 }
