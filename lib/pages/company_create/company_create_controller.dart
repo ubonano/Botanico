@@ -21,7 +21,8 @@ class CompanyCreateController extends GetxController with CustomController {
     'phone': TextEditingController(),
   };
 
-  late final _linkedWorkerService = Get.find<LinkedWorkerService>();
+  late final LinkedWorkerService _linkedWorkerService = Get.find();
+
   final formKey = GlobalKey<FormState>();
 
   Future<void> createCompany() async {

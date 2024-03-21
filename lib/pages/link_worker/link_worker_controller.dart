@@ -19,7 +19,7 @@ class LinkWorkerController extends GetxController with CustomController {
     'uid': TextEditingController(),
   };
 
-  late final _linkedWorkerService = Get.find<LinkedWorkerService>();
+  late final LinkedWorkerService _linkedWorkerService = Get.find();
 
   final formKey = GlobalKey<FormState>();
 

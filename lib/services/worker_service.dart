@@ -67,6 +67,11 @@ class WorkerService extends GetxService with CustomService {
     await update(updatedWorker, txn: txn);
   }
 
+  Future<void> cleanWorkersCompanyId(String workerId, {Transaction? txn}) async {
+    final worker = await get(workerId);
+    await update(worker!.copyWith(companyId: ''), txn: txn);
+  }
+
   /// Updates an existing worker document with new data.
   ///
   /// [worker] contains the updated data for the worker.

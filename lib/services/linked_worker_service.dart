@@ -38,6 +38,7 @@ class LinkedWorkerService extends GetxService with CustomService {
     list$.assignAll(snapshot.docs.map(LinkedWorkerModel.fromSnapshot).toList());
   }
 
+  //TODO documentar
   Future<bool> isWorkerAlreadyLinked(String companyId, WorkerModel worker) async =>
       (await get(companyId, worker.uid)) != null;
 
