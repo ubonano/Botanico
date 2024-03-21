@@ -13,6 +13,8 @@ class SignInPage extends GetView<SignInController> {
 
   get _formKey => controller.formKey;
 
+  get _title => 'Iniciar Sesión';
+
   get _emailCtrl => controller.getFieldController('email');
   get _passwordCtrl => controller.getFieldController('password');
 
@@ -27,7 +29,7 @@ class SignInPage extends GetView<SignInController> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: 'Iniciar Sesión',
+      title: _title,
       drawer: null,
       body: Padding(
         padding: const EdgeInsets.all(16.0),

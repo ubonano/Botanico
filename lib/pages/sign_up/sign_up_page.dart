@@ -11,20 +11,24 @@ import 'sign_up_controller.dart';
 class SignUpPage extends GetView<SignUpController> {
   const SignUpPage({super.key});
 
-  get _formKey => controller.signUpformKey;
-  get _textCtrls => controller.textCtrls;
+  get _formKey => controller.formKey;
 
-  get _emailCtrl => _textCtrls[0];
-  get _passwordCtrl => _textCtrls[1];
-  get _confirmPasswordCtrl => _textCtrls[2];
+  get _title => 'Registro';
 
-  void _submit() => controller.signUp();
-  void _toSignIn() => controller.navigateToSignIn();
+  get _emailCtrl => controller.getFieldController('email');
+  get _passwordCtrl => controller.getFieldController('password');
+  get _confirmPasswordCtrl => controller.getFieldController('passwordConfirm');
+
+  get _signUpButtonText => 'Registrar';
+  get _toSignInButtonText => '¿Ya tenes cuenta? Inicia sesión';
+
+  void _signUp() => controller.signUp();
+  void _toSignIn() => controller.navigate.toSignIn();
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: 'Registro',
+      title: _title,
       drawer: null,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -33,15 +37,15 @@ class SignUpPage extends GetView<SignUpController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              EmailInputField(controller: _emailCtrl, onFieldSubmitted: _submit),
-              PasswordInputField(controller: _passwordCtrl, onFieldSubmitted: _submit),
+              EmailInputField(controller: _emailCtrl),
+              PasswordInputField(controller: _passwordCtrl, onFieldSubmitted: _signUp),
               ConfirmPasswordInputField(
                 controller: _confirmPasswordCtrl,
                 passwordController: _passwordCtrl,
-                onFieldSubmitted: _submit,
+                onFieldSubmitted: _signUp,
               ),
-              CustomButton(text: 'Registrar', onPressed: _submit),
-              CustomTextButton(text: '¿Ya tenes cuenta? Inicia sesión', onPressed: _toSignIn),
+              CustomButton(text: _signUpButtonText, onPressed: _signUp),
+              CustomTextButton(text: _toSignInButtonText, onPressed: _toSignIn),
             ],
           ),
         ),
