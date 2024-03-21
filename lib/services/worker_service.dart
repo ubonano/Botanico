@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:botanico/utils/custom_exceptions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/config/firestore_collections.dart';
@@ -67,9 +68,20 @@ class WorkerService extends GetxService with CustomService {
     await update(updatedWorker, txn: txn);
   }
 
+  /// Removes the company association from a specified worker.
+  ///
+  /// This method is used to unset the 'companyId' field of a worker, effectively
+  /// removing any link between the worker and a company. This operation is useful
+  /// when a worker leaves a company or when cleaning up data.
+  ///
+  /// [workerId] is the unique ID of the worker whose company association is to be removed.
+  /// [txn] optionally specifies a Firestore transaction within which to perform the operation.
+  ///
+  /// Throws a [CustomException] (Worker not found) if the operation cannot be completed.
   Future<void> cleanWorkersCompanyId(String workerId, {Transaction? txn}) async {
     final worker = await get(workerId);
-    await update(worker!.copyWith(companyId: ''), txn: txn);
+    if (worker == null) throw CustomException(message: 'Worker not found');
+    await update(worker.copyWith(companyId: ''), txn: txn);
   }
 
   /// Updates an existing worker document with new data.
