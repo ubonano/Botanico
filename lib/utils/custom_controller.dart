@@ -13,7 +13,7 @@ import '../services/navigation_service.dart';
 mixin CustomController on GetxController {
   String get logTag;
 
-  late final Map<String, TextEditingController> textControllers;
+  late Map<String, TextEditingController> textControllers = {};
 
   late final LogService log = Get.find();
   late final NavigationService navigate = Get.find();
@@ -55,8 +55,13 @@ mixin CustomController on GetxController {
 
   @override
   void onClose() {
+    if (textControllers.isNotEmpty) disposeControllers();
+
     log.debug('- $logTag eliminado');
 
     super.onClose();
   }
+
+  // ignore: avoid_function_literals_in_foreach_calls
+  void disposeControllers() => textControllers.values.forEach((controller) => controller.dispose());
 }

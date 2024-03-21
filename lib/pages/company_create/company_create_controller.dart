@@ -9,9 +9,6 @@ class CompanyCreateController extends GetxController with CustomController {
   @override
   String get logTag => 'CompanyCreateController';
 
-  late final _linkedWorkerService = Get.find<LinkedWorkerService>();
-  final formKey = GlobalKey<FormState>();
-
   @override
   // ignore: overridden_fields
   Map<String, TextEditingController> textControllers = {
@@ -22,6 +19,9 @@ class CompanyCreateController extends GetxController with CustomController {
     'country': TextEditingController(),
     'phone': TextEditingController(),
   };
+
+  late final _linkedWorkerService = Get.find<LinkedWorkerService>();
+  final formKey = GlobalKey<FormState>();
 
   Future<void> createCompany() async {
     if (!formKey.currentState!.validate()) return;
@@ -54,14 +54,4 @@ class CompanyCreateController extends GetxController with CustomController {
       },
     );
   }
-
-  @override
-  void onClose() {
-    disposeControllers();
-
-    super.onClose();
-  }
-
-  // ignore: avoid_function_literals_in_foreach_calls
-  void disposeControllers() => textControllers.values.forEach((controller) => controller.dispose());
 }
