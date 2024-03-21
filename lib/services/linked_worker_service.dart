@@ -38,7 +38,12 @@ class LinkedWorkerService extends GetxService with CustomService {
     list$.assignAll(snapshot.docs.map(LinkedWorkerModel.fromSnapshot).toList());
   }
 
-  //TODO documentar
+  /// Checks if a worker is already linked to a specified company.
+  ///
+  /// [companyId] The unique identifier of the company.
+  /// [worker] The worker model to check against the linked workers.
+  ///
+  /// Returns `true` if the worker is already linked, `false` otherwise.
   Future<bool> isWorkerAlreadyLinked(String companyId, WorkerModel worker) async =>
       (await get(companyId, worker.uid)) != null;
 
