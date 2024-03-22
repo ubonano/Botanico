@@ -10,7 +10,6 @@ class CompanyCreateController extends FormController with CustomController {
   String get logTag => 'CompanyCreateController';
 
   @override
-  // ignore: overridden_fields
   List<String> formFields = [
     'name',
     'address',

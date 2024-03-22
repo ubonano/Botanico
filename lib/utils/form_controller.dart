@@ -6,12 +6,12 @@ import 'package:get/get.dart';
 /// This class extends GetxController and provides a structured way to handle form fields,
 /// validation, and text editing controllers in a GetX-friendly manner. It's designed to simplify form management
 /// across different parts of the application by centralizing form-related logic.
-class FormController extends GetxController {
+abstract class FormController extends GetxController {
   /// A global key used to uniquely identify the form widget and facilitate form validation and saving.
   final formKey = GlobalKey<FormState>();
 
   /// A list of strings representing the form field identifiers.
-  late List<String> formFields = [];
+  List<String> get formFields;
 
   /// A map holding the text editing controllers for each form field.
   /// The controllers are used to manage the input text of form fields.

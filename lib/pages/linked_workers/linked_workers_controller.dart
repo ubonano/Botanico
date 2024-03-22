@@ -19,7 +19,7 @@ class LinkedWorkersController extends GetxController with CustomController {
   }
 
   Future<void> unlinkWorker(LinkedWorkerModel linkedWorker) async {
-    if (canUnlink(linkedWorker)) {
+    if (_canUnlink(linkedWorker)) {
       await async.perform(
         operationName: 'Unlink worker',
         successMessage: 'Trabajador desvinculado',
@@ -33,7 +33,7 @@ class LinkedWorkersController extends GetxController with CustomController {
     }
   }
 
-  bool canUnlink(LinkedWorkerModel linkedWorker) {
+  bool _canUnlink(LinkedWorkerModel linkedWorker) {
     if (linkedWorker.uid == currentWorkerId) {
       snackbar.error('No es posible desvincularse a si mismo');
       return false;

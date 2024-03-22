@@ -32,8 +32,8 @@ class ConfirmationDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            onConfirm();
             navigationService.back();
+            onConfirm();
           },
           child: Text(confirmButtonText),
         ),

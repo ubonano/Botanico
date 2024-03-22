@@ -6,7 +6,6 @@ class RecoverPasswordController extends FormController with CustomController {
   String get logTag => 'RecoverPasswordController';
 
   @override
-  // ignore: overridden_fields
   List<String> formFields = [
     'email',
   ];

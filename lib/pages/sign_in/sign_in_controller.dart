@@ -6,7 +6,6 @@ class SignInController extends FormController with CustomController {
   String get logTag => 'SignInController';
 
   @override
-  // ignore: overridden_fields
   List<String> formFields = [
     'email',
     'password',

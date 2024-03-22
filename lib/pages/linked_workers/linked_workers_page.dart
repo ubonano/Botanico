@@ -14,7 +14,7 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
   get _contentDialogText => '¿Estás seguro de que quieres desvincular a este trabajador?';
 
   void _toLinkWorker() => controller.navigate.toLinkWorker(canPop: true);
-  void _unlinkWorker(LinkedWorkerModel linkedWorker) => controller.unlinkWorker(linkedWorker);
+  Future<void> _unlinkWorker(LinkedWorkerModel linkedWorker) => controller.unlinkWorker(linkedWorker);
 
   @override
   Widget build(BuildContext context) {

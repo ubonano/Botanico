@@ -6,7 +6,6 @@ class SignUpController extends FormController with CustomController {
   String get logTag => 'SignUpController';
 
   @override
-  // ignore: overridden_fields
   List<String> formFields = [
     'email',
     'password',

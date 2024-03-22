@@ -7,7 +7,6 @@ class WorkerCreateController extends FormController with CustomController {
   String get logTag => 'WorkerCreateController';
 
   @override
-  // ignore: overridden_fields
   List<String> formFields = [
     'name',
     'birthDate',

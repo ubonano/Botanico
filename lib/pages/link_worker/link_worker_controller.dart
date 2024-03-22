@@ -11,7 +11,6 @@ class LinkWorkerController extends FormController with CustomController {
   String get logTag => 'LinkWorkerController';
 
   @override
-  // ignore: overridden_fields
   List<String> formFields = [
     'uid',
   ];
