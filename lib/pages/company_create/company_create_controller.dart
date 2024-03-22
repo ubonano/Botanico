@@ -1,11 +1,11 @@
-import 'package:botanico/utils/custom_controller.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import '../../utils/custom_controller.dart';
+import '../../utils/form_controller.dart';
 import '../../models/company_model.dart';
 import '../../models/enums/worker_role.dart';
 import '../../services/linked_worker_service.dart';
 
-class CompanyCreateController extends GetxController with CustomController {
+class CompanyCreateController extends FormController with CustomController {
   @override
   String get logTag => 'CompanyCreateController';
 
@@ -22,17 +22,15 @@ class CompanyCreateController extends GetxController with CustomController {
 
   late final LinkedWorkerService _linkedWorkerService = Get.find();
 
-  final formKey = GlobalKey<FormState>();
-
   Future<void> createCompany() async {
-    if (formKey.currentState!.validate()) {
+    if (validateForm()) {
       await async.perform(
         operationName: 'Create company',
         successMessage: 'Empresa creada',
         inTransaction: true,
         operation: (txn) async {
           final newCompany = CompanyModel(
-            ownerUid: loggedUserUID,
+            ownerUid: currentUserUID,
             name: getFieldValue('name'),
             address: getFieldValue('address'),
             city: getFieldValue('city'),

@@ -22,7 +22,7 @@ class WorkerCreatePage extends GetView<WorkerCreateController> {
 
   get _createWorkerButtonText => 'Guardar Perfil';
 
-  void _workerCreate() => controller.submit();
+  void _workerCreate() => controller.createWorker();
 
   @override
   Widget build(BuildContext context) {

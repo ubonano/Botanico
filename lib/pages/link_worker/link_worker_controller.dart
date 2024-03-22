@@ -1,12 +1,12 @@
-import 'package:botanico/models/enums/worker_role.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import '../../models/enums/worker_role.dart';
 import '../../models/worker_model.dart';
 import '../../utils/custom_controller.dart';
+import '../../utils/form_controller.dart';
 import '../../services/linked_worker_service.dart';
 
-class LinkWorkerController extends GetxController with CustomController {
+class LinkWorkerController extends FormController with CustomController {
   @override
   String get logTag => 'LinkWorkerController';
 
@@ -18,10 +18,8 @@ class LinkWorkerController extends GetxController with CustomController {
 
   late final LinkedWorkerService _linkedWorkerService = Get.find();
 
-  final formKey = GlobalKey<FormState>();
-
   Future<void> linkWorker() async {
-    if (formKey.currentState!.validate()) {
+    if (validateForm()) {
       final workerToLink = await workerService.get(getFieldValue('uid'));
 
       if (await canLink(workerToLink)) {

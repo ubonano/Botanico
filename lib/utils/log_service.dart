@@ -4,13 +4,13 @@ import 'package:logger/logger.dart';
 class LogService extends GetxService {
   final _logger = Logger(
     printer: PrettyPrinter(
-        methodCount: 0, // Número de métodos a mostrar
-        errorMethodCount: 8, // Número de métodos a mostrar en errores
-        lineLength: 120, // Longitud de la línea del log
-        colors: true, // Colores en el terminal
-        printEmojis: true, // Emojis en el log
-        printTime: false // Tiempos en el log
-        ),
+      methodCount: 0,
+      errorMethodCount: 8,
+      lineLength: 120,
+      colors: true,
+      printEmojis: true,
+      printTime: false,
+    ),
   );
 
   void info(String message) => _logger.i(message);

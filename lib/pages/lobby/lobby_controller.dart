@@ -13,7 +13,7 @@ class LobbyController extends GetxController with CustomController {
   Future<void> onInit() async {
     await super.onInit();
 
-    uid.value = loggedUserUID;
+    uid.value = currentUserUID;
   }
 
   void copyToClipboard() {

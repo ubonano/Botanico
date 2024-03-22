@@ -1,8 +1,7 @@
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 import '../../utils/custom_controller.dart';
+import '../../utils/form_controller.dart';
 
-class SignInController extends GetxController with CustomController {
+class SignInController extends FormController with CustomController {
   @override
   String get logTag => 'SignInController';
 
@@ -13,10 +12,8 @@ class SignInController extends GetxController with CustomController {
     'password',
   ];
 
-  final formKey = GlobalKey<FormState>();
-
   Future<void> signIn() async {
-    if (formKey.currentState!.validate()) {
+    if (validateForm()) {
       await async.perform(
         operationName: 'Sign in',
         operation: (_) async => await auth.signIn(
