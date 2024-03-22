@@ -14,12 +14,6 @@ class WorkerCreatePage extends GetView<WorkerCreateController> {
   get _formKey => controller.formKey;
 
   get _title => 'Completa tu Perfil';
-
-  get _nameCtrl => controller.getFieldController('name');
-  get _birthDateCtrl => controller.getFieldController('birthDate');
-  get _phoneCtrl => controller.getFieldController('phone');
-  get _dniCtrl => controller.getFieldController('dni');
-
   get _createWorkerButtonText => 'Guardar Perfil';
 
   void _workerCreate() => controller.createWorker();
@@ -35,10 +29,10 @@ class WorkerCreatePage extends GetView<WorkerCreateController> {
           key: _formKey,
           child: Column(
             children: [
-              FullnameInputField(controller: _nameCtrl),
-              BirthdateInputField(controller: _birthDateCtrl),
-              PhoneInputField(controller: _phoneCtrl),
-              DNIInputField(controller: _dniCtrl),
+              FullnameInputField(controller: controller.getFieldController('name')!),
+              BirthdateInputField(controller: controller.getFieldController('birthDate')!),
+              PhoneInputField(controller: controller.getFieldController('phone')!),
+              DNIInputField(controller: controller.getFieldController('dni')!),
               CustomButton(text: _createWorkerButtonText, onPressed: _workerCreate)
             ],
           ),

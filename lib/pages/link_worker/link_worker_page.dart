@@ -12,9 +12,6 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
   get _formKey => controller.formKey;
 
   get _title => 'Vincular Trabajador';
-
-  get _uidCtrl => controller.getFieldController('uid');
-
   get _linkWorkerButtonText => 'Vincular Trabajador';
   get _scanQrCodeButtonText => 'Escanear Código QR';
 
@@ -40,7 +37,7 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
                   children: [
                     Expanded(
                       child: WorkerUidInputField(
-                        controller: _uidCtrl,
+                        controller: controller.getFieldController('uid')!,
                         onFieldSubmitted: _linkWorker,
                       ),
                     ),

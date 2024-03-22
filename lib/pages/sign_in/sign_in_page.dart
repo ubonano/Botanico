@@ -14,10 +14,6 @@ class SignInPage extends GetView<SignInController> {
   get _formKey => controller.formKey;
 
   get _title => 'Iniciar Sesión';
-
-  get _emailCtrl => controller.getFieldController('email');
-  get _passwordCtrl => controller.getFieldController('password');
-
   get _signInButtonText => 'Iniciar Sesión';
   get _forgotPasswordButtonText => '¿Olvidaste tu contraseña';
   get _toSignUpButtonText => '¿No tenes cuenta? Crear nueva cuenta';
@@ -38,8 +34,8 @@ class SignInPage extends GetView<SignInController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              EmailInputField(controller: _emailCtrl),
-              PasswordInputField(controller: _passwordCtrl, onFieldSubmitted: _signIn),
+              EmailInputField(controller: controller.getFieldController('email')!),
+              PasswordInputField(controller: controller.getFieldController('password')!, onFieldSubmitted: _signIn),
               CustomButton(text: _signInButtonText, onPressed: _signIn),
               CustomTextButton(text: _forgotPasswordButtonText, onPressed: _showRecoverPasswordDialog),
               CustomTextButton(text: _toSignUpButtonText, onPressed: _toSignUp),

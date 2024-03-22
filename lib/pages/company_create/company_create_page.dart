@@ -14,14 +14,6 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
   const CompanyCreatePage({super.key});
 
   get _formKey => controller.formKey;
-
-  get _nameCtrl => controller.getFieldController('name');
-  get _addressCtrl => controller.getFieldController('address');
-  get _cityCtrl => controller.getFieldController('city');
-  get _provinceCtrl => controller.getFieldController('province');
-  get _countryCtrl => controller.getFieldController('country');
-  get _phoneCtrl => controller.getFieldController('phone');
-
   get _labelButton => 'Guardar empresa';
 
   void _createCompany() => controller.createCompany();
@@ -37,12 +29,12 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
           key: _formKey,
           child: Column(
             children: [
-              NameInputField(controller: _nameCtrl),
-              AddressInputField(controller: _addressCtrl),
-              CityInputField(controller: _cityCtrl),
-              ProvinceInputField(controller: _provinceCtrl),
-              CountryInputField(controller: _countryCtrl),
-              PhoneInputField(controller: _phoneCtrl),
+              NameInputField(controller: controller.getFieldController('name')!),
+              AddressInputField(controller: controller.getFieldController('address')!),
+              CityInputField(controller: controller.getFieldController('city')!),
+              ProvinceInputField(controller: controller.getFieldController('province')!),
+              CountryInputField(controller: controller.getFieldController('country')!),
+              PhoneInputField(controller: controller.getFieldController('phone')!),
               CustomButton(text: _labelButton, onPressed: _createCompany),
             ],
           ),

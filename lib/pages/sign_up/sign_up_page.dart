@@ -14,11 +14,6 @@ class SignUpPage extends GetView<SignUpController> {
   get _formKey => controller.formKey;
 
   get _title => 'Registro';
-
-  get _emailCtrl => controller.getFieldController('email');
-  get _passwordCtrl => controller.getFieldController('password');
-  get _confirmPasswordCtrl => controller.getFieldController('passwordConfirm');
-
   get _signUpButtonText => 'Registrar';
   get _toSignInButtonText => '¿Ya tenes cuenta? Inicia sesión';
 
@@ -37,11 +32,11 @@ class SignUpPage extends GetView<SignUpController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              EmailInputField(controller: _emailCtrl),
-              PasswordInputField(controller: _passwordCtrl, onFieldSubmitted: _signUp),
+              EmailInputField(controller: controller.getFieldController('email')!),
+              PasswordInputField(controller: controller.getFieldController('password')!, onFieldSubmitted: _signUp),
               ConfirmPasswordInputField(
-                controller: _confirmPasswordCtrl,
-                passwordController: _passwordCtrl,
+                controller: controller.getFieldController('passwordConfirm')!,
+                passwordController: controller.getFieldController('password')!,
                 onFieldSubmitted: _signUp,
               ),
               CustomButton(text: _signUpButtonText, onPressed: _signUp),

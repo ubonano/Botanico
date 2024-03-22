@@ -11,8 +11,6 @@ class RecoverPasswordDialog extends GetView<RecoverPasswordController> {
   get _cancelButtonText => 'Cancelar';
   get _confirmButtonText => 'Enviar';
 
-  get _emailCtrl => controller.getFieldController('email');
-
   void _recoverPassword() => controller.recoverPassword();
 
   @override
@@ -21,7 +19,7 @@ class RecoverPasswordDialog extends GetView<RecoverPasswordController> {
       title: Text(_title),
       content: Form(
         key: _formKey,
-        child: EmailInputField(controller: _emailCtrl, onFieldSubmitted: _recoverPassword),
+        child: EmailInputField(controller: controller.getFieldController('email')!, onFieldSubmitted: _recoverPassword),
       ),
       actions: [
         TextButton(onPressed: Get.back, child: Text(_cancelButtonText)),
