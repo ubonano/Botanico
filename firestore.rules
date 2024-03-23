@@ -6,12 +6,17 @@ service cloud.firestore {
       return request.auth != null;
     }
 
-    match /users/{userId} {
+    match /workers/{workerId} {
       allow read, create, update, delete: if isAuthenticated();
     }
 
     match /companies/{companyId} {
       allow read, create, update, delete: if isAuthenticated();
+
+      match /linkedWorkers/{workerId} {
+        allow read, create, update, delete: if isAuthenticated();
+      }
+
     }
   }
 }
