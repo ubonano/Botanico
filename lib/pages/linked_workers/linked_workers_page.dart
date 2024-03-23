@@ -1,4 +1,5 @@
 import 'package:botanico/models/linked_worker_model.dart';
+import 'package:botanico/permissions/permissions.dart';
 import 'package:botanico/widgets/confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,8 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
 
   void _toLinkWorker() => controller.navigate.toLinkWorker(canPop: true);
   Future<void> _unlinkWorker(LinkedWorkerModel linkedWorker) => controller.unlinkWorker(linkedWorker);
+
+  bool get _canLinkWorker => controller.currentWorker!.hasPermission(LinkedWorkerPermissions.link);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,8 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: _toLinkWorker, child: const Icon(Icons.add)),
+      floatingActionButton:
+          _canLinkWorker ? FloatingActionButton(onPressed: _toLinkWorker, child: const Icon(Icons.add)) : null,
     );
   }
 }

@@ -8,6 +8,7 @@ class WorkerModel {
   final String phone;
   final String dni;
   final String companyId;
+  final Map<String, bool> permissions;
 
   WorkerModel({
     required this.uid,
@@ -17,7 +18,12 @@ class WorkerModel {
     required this.phone,
     required this.dni,
     this.companyId = '',
+    this.permissions = const {},
   });
+
+  bool hasPermission(String permissionId) {
+    return permissions[permissionId] ?? false;
+  }
 
   WorkerModel copyWith({
     String? uid,
@@ -27,6 +33,7 @@ class WorkerModel {
     String? phone,
     String? dni,
     String? companyId,
+    Map<String, bool>? permissions,
   }) {
     return WorkerModel(
       uid: uid ?? this.uid,
@@ -36,6 +43,7 @@ class WorkerModel {
       phone: phone ?? this.phone,
       dni: dni ?? this.dni,
       companyId: companyId ?? this.companyId,
+      permissions: permissions ?? this.permissions,
     );
   }
 
@@ -48,6 +56,7 @@ class WorkerModel {
       'phone': phone,
       'dni': dni,
       'companyId': companyId,
+      'permissions': permissions, // Añadir los permisos al mapa
     };
   }
 
@@ -64,6 +73,7 @@ class WorkerModel {
       phone: map['phone'] ?? '',
       dni: map['dni'] ?? '',
       companyId: map['companyId'] ?? '',
+      permissions: Map<String, bool>.from(map['permissions'] ?? {}), // Convertir los permisos
     );
   }
 }
