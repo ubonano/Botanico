@@ -1,6 +1,7 @@
 enum WorkerRole {
   owner,
   employee,
+  undefined,
 }
 
 String workerRoleToString(WorkerRole role) {

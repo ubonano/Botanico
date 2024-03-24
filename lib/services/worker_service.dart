@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:botanico/models/enums/worker_role.dart';
 import 'package:botanico/utils/custom_exceptions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -68,20 +69,66 @@ class WorkerService extends GetxService with CustomService {
     await update(updatedWorker, txn: txn);
   }
 
-  /// Removes the company association from a specified worker.
+  /// Updates a worker document to set their role within the company.
   ///
-  /// This method is used to unset the 'companyId' field of a worker, effectively
-  /// removing any link between the worker and a company. This operation is useful
-  /// when a worker leaves a company or when cleaning up data.
+  /// This method modifies a worker's document to define their role within the company.
+  /// It's useful for specifying or changing a worker's role, such as promoting or demoting them.
   ///
-  /// [workerId] is the unique ID of the worker whose company association is to be removed.
+  /// [worker] is the worker whose role is being updated.
+  /// [role] is the new role assigned to the worker, defined by the [WorkerRole] enum.
+  /// [txn] is an optional parameter that specifies a Firestore transaction within which
+  /// this update operation should be executed. If not provided, the update occurs outside of any transactions.
+  Future<void> updateWorkerWithRole(WorkerModel worker, WorkerRole role, {Transaction? txn}) async {
+    final updatedWorker = worker.copyWith(role: role);
+    await update(updatedWorker, txn: txn);
+  }
+
+  /// Updates both the company association and role of a worker within Firestore.
+  ///
+  /// This method simultaneously updates the company association and role of the specified worker.
+  /// It is particularly useful for operations where both the worker's company and their role within
+  /// that company need to be updated at the same time, optimizing the process by making a single update call.
+  ///
+  /// [worker] is the instance of the worker to be updated. This should be a fully initialized
+  /// WorkerModel object representing the worker whose company and role are being updated.
+  /// [companyId] is the unique identifier of the company to which the worker is being associated.
+  /// It links the worker to the specified company.
+  /// [role] is the new role assigned to the worker within the company, defined by the [WorkerRole] enum.
+  /// [txn] is an optional parameter that specifies a Firestore transaction within which
+  /// this update operation should be executed. Providing a Transaction object allows
+  /// for this operation to be part of a larger, atomic transaction. If not provided,
+  /// the update will be performed outside of any transaction context.
+  ///
+  /// The method performs an update on the worker document within Firestore, setting both
+  /// the 'companyId' and 'role' fields to the specified values. This operation is atomic;
+  /// both fields are updated together in a single transaction if one is provided.
+  Future<void> updateWorkerCompanyAndRole(
+    WorkerModel worker,
+    String companyId,
+    WorkerRole role, {
+    Transaction? txn,
+  }) async {
+    final updatedWorker = worker.copyWith(companyId: companyId, role: role);
+    await update(updatedWorker, txn: txn);
+  }
+
+  /// Removes the company association and resets the role of a specified worker.
+  ///
+  /// This method is used to unset the 'companyId' field and reset the 'role' field of a worker to `WorkerRole.undefined`,
+  /// effectively removing any link between the worker and a company and resetting their role.
+  /// This operation is useful when a worker leaves a company, or when cleaning up data,
+  /// ensuring that the worker no longer has any association with the company or a specific role within it.
+  ///
+  /// [workerId] is the unique ID of the worker whose company association and role are to be reset.
   /// [txn] optionally specifies a Firestore transaction within which to perform the operation.
+  /// Providing a Transaction object allows for this operation to be part of a larger, atomic transaction.
   ///
-  /// Throws a [CustomException] (Worker not found) if the operation cannot be completed.
-  Future<void> cleanWorkersCompanyId(String workerId, {Transaction? txn}) async {
+  /// Throws a [CustomException] with the message 'Worker not found' if the worker document could not be found
+  /// or if the operation cannot be completed for any other reason.
+  Future<void> cleanWorkerCompanyIdAndRole(String workerId, {Transaction? txn}) async {
     final worker = await get(workerId);
     if (worker == null) throw CustomException(message: 'Worker not found');
-    await update(worker.copyWith(companyId: ''), txn: txn);
+    await update(worker.copyWith(companyId: '', role: WorkerRole.undefined), txn: txn);
   }
 
   /// Updates an existing worker document with new data.

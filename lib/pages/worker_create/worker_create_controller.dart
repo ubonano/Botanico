@@ -1,3 +1,5 @@
+import 'package:botanico/models/enums/worker_role.dart';
+
 import '../../utils/custom_controller.dart';
 import '../../models/worker_model.dart';
 import '../../utils/form_controller.dart';
@@ -28,6 +30,7 @@ class WorkerCreateController extends FormController with CustomController {
               birthDate: getFieldValue('birthDate'),
               phone: getFieldValue('phone'),
               dni: getFieldValue('dni'),
+              role: WorkerRole.undefined,
             ),
           );
         },

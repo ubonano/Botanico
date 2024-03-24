@@ -1,4 +1,7 @@
+import 'package:botanico/permissions/permissions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'enums/worker_role.dart';
 
 class WorkerModel {
   final String uid;
@@ -8,7 +11,12 @@ class WorkerModel {
   final String phone;
   final String dni;
   final String companyId;
+  final WorkerRole role;
   final Map<String, bool> permissions;
+
+  bool get isOwner => role == WorkerRole.owner;
+  bool get isNotOwner => role != WorkerRole.owner;
+  bool get isEmployee => role == WorkerRole.employee;
 
   WorkerModel({
     required this.uid,
@@ -17,13 +25,13 @@ class WorkerModel {
     required this.birthDate,
     required this.phone,
     required this.dni,
+    required this.role,
     this.companyId = '',
     this.permissions = const {},
   });
 
-  bool hasPermission(String permissionId) {
-    return permissions[permissionId] ?? false;
-  }
+  bool hasPermissionToLinkWorker() => isOwner || hasPermission(LinkedWorkerPermissions.link);
+  bool hasPermission(String permissionId) => permissions[permissionId] ?? false;
 
   WorkerModel copyWith({
     String? uid,
@@ -33,6 +41,7 @@ class WorkerModel {
     String? phone,
     String? dni,
     String? companyId,
+    WorkerRole? role,
     Map<String, bool>? permissions,
   }) {
     return WorkerModel(
@@ -43,6 +52,7 @@ class WorkerModel {
       phone: phone ?? this.phone,
       dni: dni ?? this.dni,
       companyId: companyId ?? this.companyId,
+      role: role ?? this.role,
       permissions: permissions ?? this.permissions,
     );
   }
@@ -56,7 +66,8 @@ class WorkerModel {
       'phone': phone,
       'dni': dni,
       'companyId': companyId,
-      'permissions': permissions, // Añadir los permisos al mapa
+      'role': workerRoleToString(role),
+      'permissions': permissions,
     };
   }
 
@@ -73,7 +84,8 @@ class WorkerModel {
       phone: map['phone'] ?? '',
       dni: map['dni'] ?? '',
       companyId: map['companyId'] ?? '',
-      permissions: Map<String, bool>.from(map['permissions'] ?? {}), // Convertir los permisos
+      role: workerRoleFromString(map['role']),
+      permissions: Map<String, bool>.from(map['permissions'] ?? {}),
     );
   }
 }

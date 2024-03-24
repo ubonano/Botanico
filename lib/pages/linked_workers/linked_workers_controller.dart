@@ -26,7 +26,7 @@ class LinkedWorkersController extends GetxController with CustomController {
         inTransaction: true,
         operation: (txn) async {
           await _linkedWorkerService.delete(currentCompanyId, linkedWorker.uid, txn: txn);
-          await workerService.cleanWorkersCompanyId(linkedWorker.uid, txn: txn);
+          await workerService.cleanWorkerCompanyIdAndRole(linkedWorker.uid, txn: txn);
         },
         onSuccess: () => _linkedWorkerService.removeFromLocal(linkedWorker),
       );
@@ -46,6 +46,8 @@ class LinkedWorkersController extends GetxController with CustomController {
 
     return true;
   }
+
+  get hasPermissionToLinkWorker => currentCompanyIsLoaded && currentWorker!.hasPermissionToLinkWorker();
 
   @override
   void onClose() {

@@ -21,7 +21,7 @@ class SignInController extends FormController with CustomController {
         ),
         onSuccess: () async {
           await fetchWorker();
-          await fetchCompany();
+          if (currentWorkerIsLoaded) await fetchCompany();
 
           if (currentWorkerIsLoaded && currentCompanyIsLoaded) navigate.toHome();
           if (currentWorkerIsLoaded && !currentCompanyIsLoaded) navigate.toLobby();

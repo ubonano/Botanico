@@ -40,7 +40,12 @@ class CompanyCreateController extends FormController with CustomController {
 
           final companyCreated = await companyService.create(newCompany, txn: txn);
 
-          await workerService.updateWorkerWithCompanyId(currentWorker!, companyCreated.uid, txn: txn);
+          await workerService.updateWorkerCompanyAndRole(
+            currentWorker!,
+            companyCreated.uid,
+            WorkerRole.owner,
+            txn: txn,
+          );
           await _linkedWorkerService.linkWorkerToCompany(
             currentWorker!,
             companyCreated.uid,

@@ -33,9 +33,10 @@ class LinkWorkerController extends FormController with CustomController {
               WorkerRole.employee,
               txn: txn,
             );
-            await workerService.updateWorkerWithCompanyId(
+            await workerService.updateWorkerCompanyAndRole(
               workerToLink,
               currentCompanyId,
+              WorkerRole.employee,
               txn: txn,
             );
           },
