@@ -31,7 +31,12 @@ class WorkerModel {
   });
 
   bool hasPermissionToLinkWorker() => isOwner || hasPermission(LinkedWorkerPermissions.link);
+  bool hasPermissionToUnlinkWorker() => isOwner || hasPermission(LinkedWorkerPermissions.unlink);
+  bool hasPermissionToViewWorkers() => isOwner || hasPermission(LinkedWorkerPermissions.view);
   bool hasPermission(String permissionId) => permissions[permissionId] ?? false;
+
+  // crear middlwares para LinkWorker, LinkedWorkers
+  // Analizar estructura para la interfas de privilegios
 
   WorkerModel copyWith({
     String? uid,

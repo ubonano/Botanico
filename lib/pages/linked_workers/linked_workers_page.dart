@@ -13,6 +13,7 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
   get _title => 'Trabajadores Vinculados';
   get _contentDialogText => '¿Estás seguro de que quieres desvincular a este trabajador?';
   get _hasPermissionToLinkWorker => controller.hasPermissionToLinkWorker;
+  get _hasPermissionToUnlinkWorker => controller.hasPermissionToUnlinkWorker;
 
   void _toLinkWorker() => controller.navigate.toLinkWorker(canPop: true);
   Future<void> _unlinkWorker(LinkedWorkerModel linkedWorker) => controller.unlinkWorker(linkedWorker);
@@ -30,16 +31,7 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
             return ListTile(
               title: Text(linkedWorker.name),
               subtitle: Text(linkedWorker.email),
-              trailing: !linkedWorker.isOwner
-                  ? IconButton(
-                      icon: const Icon(Icons.person_off),
-                      onPressed: () => ConfirmationDialog.show(
-                        context,
-                        content: _contentDialogText,
-                        onConfirm: () => _unlinkWorker(linkedWorker),
-                      ),
-                    )
-                  : null,
+              trailing: _buildUnlinkIconButton(linkedWorker, context),
             );
           },
         ),
@@ -50,5 +42,18 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
             : Container(),
       ),
     );
+  }
+
+  IconButton? _buildUnlinkIconButton(linkedWorker, BuildContext context) {
+    return linkedWorker.isNotOwner && _hasPermissionToUnlinkWorker
+        ? IconButton(
+            icon: const Icon(Icons.person_off),
+            onPressed: () => ConfirmationDialog.show(
+              context,
+              content: _contentDialogText,
+              onConfirm: () => _unlinkWorker(linkedWorker),
+            ),
+          )
+        : null;
   }
 }

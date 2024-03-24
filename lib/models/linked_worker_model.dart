@@ -10,6 +10,7 @@ class LinkedWorkerModel {
   final WorkerRole role;
 
   bool get isOwner => role == WorkerRole.owner;
+  bool get isNotOwner => role != WorkerRole.owner;
 
   LinkedWorkerModel({
     required this.uid,

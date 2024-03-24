@@ -1,6 +1,11 @@
+import 'package:botanico/services/company_service.dart';
 import 'package:get/get.dart';
+import '../../controllers/session_controller.dart';
+import '../../services/navigation_service.dart';
+import '../../services/worker_service.dart';
+import '../../utils/async_operation_service.dart';
 import '../../utils/custom_controller.dart';
-import '../../utils/form_controller.dart';
+import '../../controllers/form_controller.dart';
 import '../../models/company_model.dart';
 import '../../models/enums/worker_role.dart';
 import '../../services/linked_worker_service.dart';
@@ -19,17 +24,22 @@ class CompanyCreateController extends FormController with CustomController {
     'phone',
   ];
 
+  late final AsyncOperationService _async = Get.find();
+  late final NavigationService _navigate = Get.find();
+  late final SessionController _session = Get.find();
+  late final WorkerService _workerService = Get.find();
+  late final CompanyService _companyService = Get.find();
   late final LinkedWorkerService _linkedWorkerService = Get.find();
 
   Future<void> createCompany() async {
     if (validateForm()) {
-      await async.perform(
+      await _async.perform(
         operationName: 'Create company',
         successMessage: 'Empresa creada',
         inTransaction: true,
         operation: (txn) async {
           final newCompany = CompanyModel(
-            ownerUid: currentUserUID,
+            ownerUid: _session.currentUserUID,
             name: getFieldValue('name'),
             address: getFieldValue('address'),
             city: getFieldValue('city'),
@@ -38,26 +48,25 @@ class CompanyCreateController extends FormController with CustomController {
             phone: getFieldValue('phone'),
           );
 
-          final companyCreated = await companyService.create(newCompany, txn: txn);
+          final companyCreated = await _companyService.create(newCompany, txn: txn);
 
-          await workerService.updateWorkerCompanyAndRole(
-            currentWorker!,
+          await _workerService.updateWorkerCompanyAndRole(
+            _session.currentWorker!,
             companyCreated.uid,
             WorkerRole.owner,
             txn: txn,
           );
           await _linkedWorkerService.linkWorkerToCompany(
-            currentWorker!,
+            _session.currentWorker!,
             companyCreated.uid,
             WorkerRole.owner,
             txn: txn,
           );
         },
         onSuccess: () async {
-          await fetchWorker();
-          await fetchCompany();
+          await _session.fetchWorker();
 
-          navigate.toHome();
+          _navigate.toHome();
         },
       );
     }

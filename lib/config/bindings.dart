@@ -1,3 +1,4 @@
+import 'package:botanico/controllers/session_controller.dart';
 import 'package:botanico/pages/link_worker/link_worker_controller.dart';
 import 'package:botanico/pages/recover_password/recover_password_controller.dart';
 import 'package:botanico/pages/sign_in/sign_in_controller.dart';
@@ -53,6 +54,7 @@ class AppBindings extends Bindings {
   }
 
   void _initAuthControllers() {
+    Get.lazyPut<SessionController>(() => SessionController(), fenix: true);
     Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
     Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true);
     Get.lazyPut<SignOutController>(() => SignOutController(), fenix: true);

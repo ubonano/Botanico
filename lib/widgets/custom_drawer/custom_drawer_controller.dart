@@ -1,15 +1,20 @@
 import 'package:get/get.dart';
 
+import '../../controllers/session_controller.dart';
+import '../../services/navigation_service.dart';
 import '../../utils/custom_controller.dart';
 
 class CustomDrawerController extends GetxController with CustomController {
   @override
   String get logTag => 'CustomDrawerController';
 
-  String get companyName => currentCompany?.name ?? '';
-  String get workerEmail => currentUserEmail;
-  String get workerName => currentWorker?.name ?? '';
+  late final SessionController _session = Get.find();
+  late final NavigationService _navigate = Get.find();
 
-  void navigateToLinkedWorkers() => navigate.toLinkedWorkers();
-  void navigateToHome() => navigate.toHome();
+  String get companyName => _session.currentCompany?.name ?? '';
+  String get workerEmail => _session.currentUserEmail;
+  String get workerName => _session.currentWorker?.name ?? '';
+
+  void navigateToLinkedWorkers() => _navigate.toLinkedWorkers();
+  void navigateToHome() => _navigate.toHome();
 }

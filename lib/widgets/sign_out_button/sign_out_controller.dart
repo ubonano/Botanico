@@ -1,22 +1,22 @@
+import 'package:botanico/utils/async_operation_service.dart';
 import 'package:get/get.dart';
+import '../../controllers/session_controller.dart';
+import '../../services/navigation_service.dart';
 import '../../utils/custom_controller.dart';
 
 class SignOutController extends GetxController with CustomController {
   @override
   String get logTag => 'SignOutController';
 
-  Future<void> submit() async {
-    return async.perform(
+  late final AsyncOperationService _async = Get.find();
+  late final SessionController _session = Get.find();
+  late final NavigationService _navigate = Get.find();
+
+  Future<void> signOut() async {
+    return _async.perform(
       operationName: 'Sign out',
-      operation: _handleOperation,
-      onSuccess: navigate.toSignIn,
+      operation: (_) async => await _session.signOut(),
+      onSuccess: _navigate.toSignIn,
     );
-  }
-
-  Future<void> _handleOperation(_) async {
-    await auth.signOut();
-
-    workerService.clean();
-    companyService.clean();
   }
 }

@@ -26,8 +26,15 @@ class CompanyService extends GetxService with CustomService {
   /// Fetches a company by its ID and updates the observable `company$`.
   ///
   /// Attempts to retrieve a company from Firestore using the given [id].
-  /// If a company is found, it updates `company$`; otherwise, it sets `company$` to null.
-  Future<void> fetch(String id) async => company$.value = await _getCompany(id);
+  /// If a company is found, it updates `company$` with the fetched company data,
+  /// allowing UI components and other parts of the application to react to the updated company information.
+  /// If no company is found, it sets `company$` to null, indicating that no current company information is available.
+  ///
+  /// Returns the [CompanyModel] if a company with the specified ID is found, otherwise returns null.
+  Future<CompanyModel?> fetch(String id) async {
+    company$.value = await _getCompany(id);
+    return company$.value;
+  }
 
   /// Retrieves a company by its ID.
   ///

@@ -26,8 +26,16 @@ class WorkerService extends GetxService with CustomService {
 
   /// Fetches a worker document by ID and updates the observable [worker$].
   ///
-  /// [id] is the unique Firestore document ID of the worker.
-  Future<void> fetch(String id) async => worker$.value = await _getWorker(id);
+  /// [id] is the unique Firestore document ID of the worker. This method queries
+  /// the Firestore database to retrieve the worker document associated with the provided ID.
+  /// Upon successful retrieval, it updates the observable `worker$` with the fetched worker data,
+  /// allowing the UI and other parts of the application to react to the updated worker information.
+  ///
+  /// Returns the [WorkerModel] if a worker with the specified ID is found, otherwise returns null.
+  Future<WorkerModel?> fetch(String id) async {
+    worker$.value = await _getWorker(id);
+    return worker$.value;
+  }
 
   /// Retrieves a worker document by its unique ID.
   ///

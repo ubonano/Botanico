@@ -7,7 +7,7 @@ import 'sign_out_controller.dart';
 class SignOutButton extends GetView<SignOutController> {
   const SignOutButton({super.key});
 
-  void _submit() => controller.submit();
+  void _submit() => controller.signOut();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _SignOutIconButtonState extends State<SignOutIconButton> {
           Icons.exit_to_app,
           color: _isHovering ? Colors.grey : Colors.white,
         ),
-        onPressed: signOutController.submit,
+        onPressed: signOutController.signOut,
         tooltip: 'Cerrar sesión',
       ),
     );
