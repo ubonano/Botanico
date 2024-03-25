@@ -1,21 +1,20 @@
 import 'package:botanico/models/enums/worker_role.dart';
 import 'package:get/get.dart';
-
 import '../../controllers/session_controller.dart';
 import '../../services/navigation_service.dart';
 import '../../services/worker_service.dart';
 import '../../utils/async_operation_service.dart';
-import '../../utils/custom_controller.dart';
+import '../../utils/life_cycle_log_controller.dart';
 import '../../models/worker_model.dart';
 import '../../controllers/form_controller.dart';
 
-class WorkerCreateController extends FormController with CustomController {
+class WorkerCreateController extends FormController with LifeCycleLogController {
   @override
   String get logTag => 'WorkerCreateController';
 
   late final AsyncOperationService _async = Get.find();
   late final SessionController _session = Get.find();
-  late final NavigationService navigate = Get.find();
+  late final NavigationService _navigate = Get.find();
   late final WorkerService _workerService = Get.find();
 
   @override
@@ -34,8 +33,8 @@ class WorkerCreateController extends FormController with CustomController {
         operation: (_) async {
           await _workerService.create(
             WorkerModel(
-              uid: _session.currentUserUID,
-              email: _session.currentUserEmail,
+              uid: _session.userUID,
+              email: _session.userEmail,
               name: getFieldValue('name'),
               birthDate: getFieldValue('birthDate'),
               phone: getFieldValue('phone'),
@@ -44,7 +43,7 @@ class WorkerCreateController extends FormController with CustomController {
             ),
           );
         },
-        onSuccess: navigate.toLobby,
+        onSuccess: _navigate.toLobby,
       );
     }
   }

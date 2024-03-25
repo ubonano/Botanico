@@ -8,7 +8,9 @@ import '../utils/log_service.dart';
 /// for navigating to different pages in the app. It also logs navigation actions.
 class NavigationService extends GetxService {
   /// Logs navigation events.
-  final log = Get.find<LogService>();
+  final LogService _log;
+
+  NavigationService({required LogService log}) : _log = log;
 
   /// Navigates to the Home page.
   ///
@@ -56,10 +58,10 @@ class NavigationService extends GetxService {
   /// Logs the navigation action.
   void to(String route, {bool canPop = false}) {
     if (canPop) {
-      log.debug('Navigate to named: $route');
+      _log.debug('Navigate to named: $route');
       Get.toNamed(route);
     } else {
-      log.debug('Navigate off all named: $route');
+      _log.debug('Navigate off all named: $route');
       Get.offAllNamed(route);
     }
   }
@@ -67,7 +69,7 @@ class NavigationService extends GetxService {
   /// Navigates back to the previous page in the navigation stack.
   /// Logs the back navigation action.
   void back() {
-    log.debug('Navigate - back');
+    _log.debug('Navigate - back');
     Get.back();
   }
 }

@@ -6,13 +6,15 @@ import 'home_controller.dart';
 class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
 
+  get _title => 'Home';
+
   @override
   Widget build(BuildContext context) {
     controller.logTag;
 
-    return const CustomScaffold(
-      title: 'Home',
-      body: Center(
+    return CustomScaffold(
+      title: _title,
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

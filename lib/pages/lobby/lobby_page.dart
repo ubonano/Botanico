@@ -2,6 +2,7 @@ import 'package:botanico/widgets/sign_out_button/sign_out_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import '../../services/navigation_service.dart';
 import '../../widgets/buttons/custom_button.dart';
 import '../../widgets/buttons/custom_text_button.dart';
 import '../../widgets/custom_scaffold.dart';
@@ -10,19 +11,17 @@ import 'lobby_controller.dart';
 class LobbyPage extends GetView<LobbyController> {
   const LobbyPage({super.key});
 
-  String get _uid => controller.uid.value;
-
+  get _title => 'Lobby';
   get _info => 'Mostrale este código a tu empleador para vincularte a la empresa.';
   get _copyButtonText => 'Copiar código de vinculación';
   get _toCompanyButtonText => '¿Necesitas registrar una empresa?';
 
-  void _copyToClipboard() => controller.copyToClipboard();
-  void _toCompany() => controller.navigate.toCompany();
+  NavigationService get _navigate => Get.find<NavigationService>();
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: 'Lobby',
+      title: _title,
       drawer: null,
       body: Center(
         child: Column(
@@ -30,7 +29,7 @@ class LobbyPage extends GetView<LobbyController> {
           children: [
             Obx(
               () => QrImageView(
-                data: _uid,
+                data: controller.uid.value,
                 version: QrVersions.auto,
                 size: 200.0,
               ),
@@ -38,8 +37,8 @@ class LobbyPage extends GetView<LobbyController> {
             const SizedBox(height: 20),
             Text(_info),
             const SizedBox(height: 20),
-            CustomTextButton(text: _copyButtonText, onPressed: _copyToClipboard),
-            CustomButton(text: _toCompanyButtonText, onPressed: _toCompany),
+            CustomTextButton(text: _copyButtonText, onPressed: controller.copyToClipboard),
+            CustomButton(text: _toCompanyButtonText, onPressed: _navigate.toCompany),
             const SignOutButton(),
           ],
         ),

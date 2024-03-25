@@ -6,12 +6,12 @@ import '../../models/worker_model.dart';
 import '../../services/navigation_service.dart';
 import '../../services/worker_service.dart';
 import '../../utils/async_operation_service.dart';
-import '../../utils/custom_controller.dart';
+import '../../utils/life_cycle_log_controller.dart';
 import '../../controllers/form_controller.dart';
 import '../../services/linked_worker_service.dart';
 import '../../utils/snackbar_service.dart';
 
-class LinkWorkerController extends FormController with CustomController {
+class LinkWorkerController extends FormController with LifeCycleLogController {
   @override
   String get logTag => 'LinkWorkerController';
 
@@ -22,7 +22,7 @@ class LinkWorkerController extends FormController with CustomController {
 
   late final AsyncOperationService _async = Get.find();
   late final SnackbarService _snackbar = Get.find();
-  late final NavigationService navigate = Get.find();
+  late final NavigationService _navigate = Get.find();
   late final SessionController _session = Get.find();
   late final LinkedWorkerService _linkedWorkerService = Get.find();
   late final WorkerService _workerService = Get.find();
@@ -39,20 +39,20 @@ class LinkWorkerController extends FormController with CustomController {
           operation: (txn) async {
             await _linkedWorkerService.linkWorkerToCompany(
               workerToLink!,
-              _session.currentCompanyId,
-              WorkerRole.employee,
+              _session.companyId,
+              role: WorkerRole.employee,
               txn: txn,
             );
             await _workerService.updateWorkerCompanyAndRole(
               workerToLink,
-              _session.currentCompanyId,
+              _session.companyId,
               WorkerRole.employee,
               txn: txn,
             );
           },
           onSuccess: () {
-            _linkedWorkerService.fetchAll(_session.currentCompanyId);
-            navigate.toLinkedWorkers();
+            _linkedWorkerService.fetchAll(_session.companyId);
+            _navigate.toLinkedWorkers();
           },
         );
       }
@@ -60,7 +60,7 @@ class LinkWorkerController extends FormController with CustomController {
   }
 
   Future<bool> canLink(WorkerModel? worker) async {
-    if (!_session.currentWorker!.hasPermissionToLinkWorker()) {
+    if (!_session.worker!.hasPermissionToLinkWorker()) {
       _snackbar.error('Usted no tiene permiso para vincular trabajadores');
       return false;
     }
@@ -70,12 +70,12 @@ class LinkWorkerController extends FormController with CustomController {
       return false;
     }
 
-    if (worker.companyId.isNotEmpty && worker.companyId != _session.currentCompanyId) {
+    if (worker.companyId.isNotEmpty && worker.companyId != _session.companyId) {
       _snackbar.error('El trabajador ya se encuentra vinculado a otra empresa');
       return false;
     }
 
-    if (await _linkedWorkerService.isWorkerAlreadyLinked(_session.currentCompanyId, worker)) {
+    if (await _linkedWorkerService.isWorkerAlreadyLinked(_session.companyId, worker)) {
       _snackbar.warning('El trabajador ya se encuentra vinculado');
       return false;
     }

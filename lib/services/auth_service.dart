@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import '../utils/custom_service.dart';
+import '../utils/life_cycle_log_service.dart';
 
 /// A service to manage user authentication.
 ///
 /// This class provides methods to handle signing in, signing up, signing out,
 /// and password recovery using Firebase Authentication.
-class AuthService extends GetxService with CustomService {
+class AuthService extends GetxService with LifeCycleLogService {
   @override
   String get logTag => 'AuthService';
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = Get.find();
 
   /// Stream of authentication state changes.
   ///

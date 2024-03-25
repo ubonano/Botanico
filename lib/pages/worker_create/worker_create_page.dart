@@ -11,12 +11,8 @@ import 'worker_create_controller.dart';
 class WorkerCreatePage extends GetView<WorkerCreateController> {
   const WorkerCreatePage({Key? key}) : super(key: key);
 
-  get _formKey => controller.formKey;
-
   get _title => 'Completa tu Perfil';
   get _createWorkerButtonText => 'Guardar Perfil';
-
-  void _workerCreate() => controller.createWorker();
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +22,14 @@ class WorkerCreatePage extends GetView<WorkerCreateController> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: controller.formKey,
           child: Column(
             children: [
               FullnameInputField(controller: controller.getFieldController('name')!),
               BirthdateInputField(controller: controller.getFieldController('birthDate')!),
               PhoneInputField(controller: controller.getFieldController('phone')!),
               DNIInputField(controller: controller.getFieldController('dni')!),
-              CustomButton(text: _createWorkerButtonText, onPressed: _workerCreate)
+              CustomButton(text: _createWorkerButtonText, onPressed: controller.createWorker)
             ],
           ),
         ),

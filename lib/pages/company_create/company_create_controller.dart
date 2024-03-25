@@ -4,13 +4,13 @@ import '../../controllers/session_controller.dart';
 import '../../services/navigation_service.dart';
 import '../../services/worker_service.dart';
 import '../../utils/async_operation_service.dart';
-import '../../utils/custom_controller.dart';
+import '../../utils/life_cycle_log_controller.dart';
 import '../../controllers/form_controller.dart';
 import '../../models/company_model.dart';
 import '../../models/enums/worker_role.dart';
 import '../../services/linked_worker_service.dart';
 
-class CompanyCreateController extends FormController with CustomController {
+class CompanyCreateController extends FormController with LifeCycleLogController {
   @override
   String get logTag => 'CompanyCreateController';
 
@@ -39,7 +39,7 @@ class CompanyCreateController extends FormController with CustomController {
         inTransaction: true,
         operation: (txn) async {
           final newCompany = CompanyModel(
-            ownerUid: _session.currentUserUID,
+            ownerUid: _session.userUID,
             name: getFieldValue('name'),
             address: getFieldValue('address'),
             city: getFieldValue('city'),
@@ -51,15 +51,16 @@ class CompanyCreateController extends FormController with CustomController {
           final companyCreated = await _companyService.create(newCompany, txn: txn);
 
           await _workerService.updateWorkerCompanyAndRole(
-            _session.currentWorker!,
+            _session.worker!,
             companyCreated.uid,
             WorkerRole.owner,
             txn: txn,
           );
+
           await _linkedWorkerService.linkWorkerToCompany(
-            _session.currentWorker!,
+            _session.worker!,
             companyCreated.uid,
-            WorkerRole.owner,
+            role: WorkerRole.owner,
             txn: txn,
           );
         },

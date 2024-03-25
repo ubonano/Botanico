@@ -1,4 +1,4 @@
-import 'package:botanico/models/linked_worker_model.dart';
+import 'package:botanico/services/navigation_service.dart';
 import 'package:botanico/widgets/confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,11 +12,8 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
 
   get _title => 'Trabajadores Vinculados';
   get _contentDialogText => '¿Estás seguro de que quieres desvincular a este trabajador?';
-  get _hasPermissionToLinkWorker => controller.hasPermissionToLinkWorker;
-  get _hasPermissionToUnlinkWorker => controller.hasPermissionToUnlinkWorker;
 
-  void _toLinkWorker() => controller.navigate.toLinkWorker(canPop: true);
-  Future<void> _unlinkWorker(LinkedWorkerModel linkedWorker) => controller.unlinkWorker(linkedWorker);
+  NavigationService get _navigate => Get.find<NavigationService>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +33,24 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
           },
         ),
       ),
+      // TODO refactor con widget de segurida
       floatingActionButton: Obx(
-        () => _hasPermissionToLinkWorker
-            ? FloatingActionButton(onPressed: _toLinkWorker, child: const Icon(Icons.add))
+        () => controller.hasPermissionToLinkWorker
+            ? FloatingActionButton(onPressed: () => _navigate.toLinkWorker(canPop: true), child: const Icon(Icons.add))
             : Container(),
       ),
     );
   }
 
+// TODO refactor con widget de segurida
   IconButton? _buildUnlinkIconButton(linkedWorker, BuildContext context) {
-    return linkedWorker.isNotOwner && _hasPermissionToUnlinkWorker
+    return linkedWorker.isNotOwner && controller.hasPermissionToUnlinkWorker
         ? IconButton(
             icon: const Icon(Icons.person_off),
             onPressed: () => ConfirmationDialog.show(
               context,
               content: _contentDialogText,
-              onConfirm: () => _unlinkWorker(linkedWorker),
+              onConfirm: () => controller.unlinkWorker(linkedWorker),
             ),
           )
         : null;

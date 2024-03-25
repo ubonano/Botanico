@@ -9,15 +9,9 @@ import 'link_worker_controller.dart';
 class LinkWorkerPage extends GetView<LinkWorkerController> {
   const LinkWorkerPage({Key? key}) : super(key: key);
 
-  get _formKey => controller.formKey;
-
   get _title => 'Vincular Trabajador';
   get _linkWorkerButtonText => 'Vincular Trabajador';
   get _scanQrCodeButtonText => 'Escanear Código QR';
-
-  void _linkWorker() => controller.linkWorker();
-  void _scanQrCode() => controller.scanQrCode();
-  void _pasteWorkerId() => controller.pasteWorkerId();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +22,7 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: _formKey,
+            key: controller.formKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -38,14 +32,14 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
                     Expanded(
                       child: WorkerUidInputField(
                         controller: controller.getFieldController('uid')!,
-                        onFieldSubmitted: _linkWorker,
+                        onFieldSubmitted: controller.linkWorker,
                       ),
                     ),
-                    IconButton(icon: const Icon(Icons.paste), onPressed: _pasteWorkerId),
+                    IconButton(icon: const Icon(Icons.paste), onPressed: controller.pasteWorkerId),
                   ],
                 ),
-                CustomButton(text: _linkWorkerButtonText, onPressed: _linkWorker),
-                CustomButton(text: _scanQrCodeButtonText, onPressed: _scanQrCode)
+                CustomButton(text: _linkWorkerButtonText, onPressed: controller.linkWorker),
+                CustomButton(text: _scanQrCodeButtonText, onPressed: controller.scanQrCode)
               ],
             ),
           ),

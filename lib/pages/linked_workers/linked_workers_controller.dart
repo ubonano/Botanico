@@ -1,19 +1,17 @@
 import 'package:botanico/models/linked_worker_model.dart';
-import 'package:botanico/utils/custom_controller.dart';
+import 'package:botanico/utils/life_cycle_log_controller.dart';
 import 'package:botanico/utils/snackbar_service.dart';
 import 'package:get/get.dart';
 import '../../controllers/session_controller.dart';
 import '../../services/linked_worker_service.dart';
-import '../../services/navigation_service.dart';
 import '../../services/worker_service.dart';
 import '../../utils/async_operation_service.dart';
 
-class LinkedWorkersController extends GetxController with CustomController {
+class LinkedWorkersController extends GetxController with LifeCycleLogController {
   @override
   String get logTag => 'LinkedWorkersController';
 
   late final AsyncOperationService _async = Get.find();
-  late final NavigationService navigate = Get.find();
   late final SnackbarService _snackbar = Get.find();
   late final SessionController _session = Get.find();
   late final WorkerService _workerService = Get.find();
@@ -21,16 +19,14 @@ class LinkedWorkersController extends GetxController with CustomController {
 
   RxList<LinkedWorkerModel> get list$ => _linkedWorkerService.list$;
 
-  get hasPermissionToLinkWorker =>
-      _session.currentCompanyIsLoaded && _session.currentWorker!.hasPermissionToLinkWorker();
-  get hasPermissionToUnlinkWorker =>
-      _session.currentCompanyIsLoaded && _session.currentWorker!.hasPermissionToUnlinkWorker();
+  get hasPermissionToLinkWorker => _session.companyIsLoaded && _session.worker!.hasPermissionToLinkWorker();
+  get hasPermissionToUnlinkWorker => _session.companyIsLoaded && _session.worker!.hasPermissionToUnlinkWorker();
 
   @override
   Future<void> onInit() async {
     await super.onInit();
 
-    _linkedWorkerService.fetchAll(_session.currentCompanyId);
+    _linkedWorkerService.fetchAll(_session.companyId);
   }
 
   Future<void> unlinkWorker(LinkedWorkerModel linkedWorker) async {
@@ -40,7 +36,7 @@ class LinkedWorkersController extends GetxController with CustomController {
         successMessage: 'Trabajador desvinculado',
         inTransaction: true,
         operation: (txn) async {
-          await _linkedWorkerService.delete(_session.currentCompanyId, linkedWorker.uid, txn: txn);
+          await _linkedWorkerService.delete(_session.companyId, linkedWorker.uid, txn: txn);
           await _workerService.cleanWorkerCompanyIdAndRole(linkedWorker.uid, txn: txn);
         },
         onSuccess: () => _linkedWorkerService.removeFromLocal(linkedWorker),
@@ -49,12 +45,12 @@ class LinkedWorkersController extends GetxController with CustomController {
   }
 
   bool _canUnlink(LinkedWorkerModel linkedWorker) {
-    if (!_session.currentWorker!.hasPermissionToUnlinkWorker()) {
+    if (!_session.worker!.hasPermissionToUnlinkWorker()) {
       _snackbar.error('Usted no tiene permiso para desvincular un trabajador');
       return false;
     }
 
-    if (linkedWorker.uid == _session.currentWorker!.uid) {
+    if (linkedWorker.uid == _session.worker!.uid) {
       _snackbar.error('No es posible desvincularse a si mismo');
       return false;
     }

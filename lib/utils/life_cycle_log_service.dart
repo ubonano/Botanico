@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import 'log_service.dart';
 
-mixin CustomService on GetxService {
+mixin LifeCycleLogService on GetxService {
   String get logTag;
 
   final _log = Get.find<LogService>();

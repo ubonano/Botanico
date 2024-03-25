@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'log_service.dart';
 
-mixin CustomController on GetxController {
+mixin LifeCycleLogController on GetxController {
   String get logTag;
 
   late final LogService _log = Get.find();

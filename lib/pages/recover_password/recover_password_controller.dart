@@ -4,15 +4,15 @@ import '../../controllers/session_controller.dart';
 import '../../services/navigation_service.dart';
 import '../../utils/async_operation_service.dart';
 import '../../controllers/form_controller.dart';
-import '../../utils/custom_controller.dart';
+import '../../utils/life_cycle_log_controller.dart';
 
-class RecoverPasswordController extends FormController with CustomController {
+class RecoverPasswordController extends FormController with LifeCycleLogController {
   @override
   String get logTag => 'RecoverPasswordController';
 
   late final AsyncOperationService _async = Get.find();
   late final SessionController _session = Get.find();
-  late final NavigationService navigate = Get.find();
+  late final NavigationService _navigate = Get.find();
 
   @override
   List<String> formFields = [
@@ -27,7 +27,7 @@ class RecoverPasswordController extends FormController with CustomController {
         operation: (_) => _session.recoverPassword(
           getFieldValue('email'),
         ),
-        onSuccess: navigate.back,
+        onSuccess: _navigate.back,
       );
     }
   }

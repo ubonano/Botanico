@@ -2,6 +2,7 @@ import 'package:botanico/pages/recover_password/recover_password_dialog.dart';
 import 'package:botanico/widgets/buttons/custom_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../services/navigation_service.dart';
 import '../../widgets/buttons/custom_button.dart';
 import '../../widgets/custom_scaffold.dart';
 import '../../widgets/input_fields/email_input_field.dart';
@@ -11,16 +12,12 @@ import 'sign_in_controller.dart';
 class SignInPage extends GetView<SignInController> {
   const SignInPage({super.key});
 
-  get _formKey => controller.formKey;
-
   get _title => 'Iniciar Sesión';
   get _signInButtonText => 'Iniciar Sesión';
   get _forgotPasswordButtonText => '¿Olvidaste tu contraseña';
   get _toSignUpButtonText => '¿No tenes cuenta? Crear nueva cuenta';
 
-  void _signIn() => controller.signIn();
-  void _toSignUp() => controller.navigate.toSignUp();
-  void _showRecoverPasswordDialog() => Get.dialog(const RecoverPasswordDialog());
+  NavigationService get _navigate => Get.find<NavigationService>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +27,19 @@ class SignInPage extends GetView<SignInController> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: controller.formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               EmailInputField(controller: controller.getFieldController('email')!),
-              PasswordInputField(controller: controller.getFieldController('password')!, onFieldSubmitted: _signIn),
-              CustomButton(text: _signInButtonText, onPressed: _signIn),
-              CustomTextButton(text: _forgotPasswordButtonText, onPressed: _showRecoverPasswordDialog),
-              CustomTextButton(text: _toSignUpButtonText, onPressed: _toSignUp),
+              PasswordInputField(
+                  controller: controller.getFieldController('password')!, onFieldSubmitted: controller.signIn),
+              CustomButton(text: _signInButtonText, onPressed: controller.signIn),
+              CustomTextButton(
+                text: _forgotPasswordButtonText,
+                onPressed: () => Get.dialog(const RecoverPasswordDialog()),
+              ),
+              CustomTextButton(text: _toSignUpButtonText, onPressed: _navigate.toSignUp),
             ],
           ),
         ),

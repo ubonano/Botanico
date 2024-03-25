@@ -2,9 +2,9 @@ import 'package:botanico/utils/async_operation_service.dart';
 import 'package:get/get.dart';
 import '../../controllers/session_controller.dart';
 import '../../services/navigation_service.dart';
-import '../../utils/custom_controller.dart';
+import '../../utils/life_cycle_log_controller.dart';
 
-class SignOutController extends GetxController with CustomController {
+class SignOutController extends GetxController with LifeCycleLogController {
   @override
   String get logTag => 'SignOutController';
 
