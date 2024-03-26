@@ -1,13 +1,13 @@
-import 'package:botanico/pages/worker_create/worker_create_page.dart';
+import 'package:botanico/modules/worker/ui/worker_create/worker_create_page.dart';
 import 'package:get/get.dart';
-import '../pages/link_worker/link_worker_page.dart';
-import '../pages/sign_in/sign_in_page.dart';
-import '../pages/sign_up/sign_up_page.dart';
-import '../pages/company_create/company_create_page.dart';
-import '../pages/home/home_page.dart';
-import '../pages/lobby/lobby_page.dart';
-import '../pages/linked_workers/linked_workers_page.dart';
-import '../pages/worker_permissions/worker_permissions_screen.dart';
+import '../modules/worker/ui/link_worker/link_worker_page.dart';
+import '../modules/authentication/ui/sign_in/sign_in_page.dart';
+import '../modules/authentication/ui/sign_up/sign_up_page.dart';
+import '../modules/company/ui/company_create/company_create_page.dart';
+import '../ui/home/home_page.dart';
+import '../modules/worker/ui/lobby/lobby_page.dart';
+import '../modules/worker/ui/linked_workers/linked_workers_page.dart';
+import '../modules/worker/ui/worker_management_permissions/worker_management_permissions_screen.dart';
 import 'routes.dart';
 
 class Pages {
@@ -49,8 +49,8 @@ class Pages {
       page: () => const LinkWorkerPage(),
     ),
     GetPage(
-      name: Routes.PERMISSIONS,
-      page: () => PermissionsScreen(),
+      name: Routes.WORKER_MANAGEMENT_PERMISSIONS,
+      page: () => const WorkerManagementScreen(),
     ),
   ];
 }
