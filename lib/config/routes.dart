@@ -10,4 +10,5 @@ class Routes {
   static const HOME = '/home';
   static const LINKED_WORKERS = '/linked-workers';
   static const LINK_WORKER = '/link-worker';
+  static const PERMISSIONS = '/permissions';
 }

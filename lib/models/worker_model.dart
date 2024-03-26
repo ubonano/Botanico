@@ -1,4 +1,4 @@
-import 'package:botanico/permissions/permissions.dart';
+import 'package:botanico/services/module_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'enums/worker_role.dart';
@@ -30,9 +30,13 @@ class WorkerModel {
     this.permissions = const {},
   });
 
-  bool hasPermissionToLinkWorker() => isOwner || hasPermission(LinkedWorkerPermissions.link);
-  bool hasPermissionToUnlinkWorker() => isOwner || hasPermission(LinkedWorkerPermissions.unlink);
-  bool hasPermissionToViewWorkers() => isOwner || hasPermission(LinkedWorkerPermissions.view);
+  void togglePermission(String permissionId) {
+    permissions[permissionId] = !(permissions[permissionId] ?? false);
+  }
+
+  // bool hasPermissionToLinkWorker() => isOwner || hasPermission(LinkedWorkerPermissions.link);
+  // bool hasPermissionToUnlinkWorker() => isOwner || hasPermission(LinkedWorkerPermissions.unlink);
+  // bool hasPermissionToViewWorkers() => isOwner || hasPermission(LinkedWorkerPermissions.view);
   bool hasPermission(String permissionId) => permissions[permissionId] ?? false;
 
   // crear middlwares para LinkWorker, LinkedWorkers

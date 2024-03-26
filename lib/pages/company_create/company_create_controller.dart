@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../controllers/session_controller.dart';
 import '../../services/navigation_service.dart';
 import '../../services/worker_service.dart';
-import '../../utils/async_operation_service.dart';
+import '../../services/async_operation_service.dart';
 import '../../utils/life_cycle_log_controller.dart';
 import '../../controllers/form_controller.dart';
 import '../../models/company_model.dart';

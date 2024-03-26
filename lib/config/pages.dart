@@ -7,6 +7,7 @@ import '../pages/company_create/company_create_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/lobby/lobby_page.dart';
 import '../pages/linked_workers/linked_workers_page.dart';
+import '../pages/worker_permissions/worker_permissions_screen.dart';
 import 'routes.dart';
 
 class Pages {
@@ -46,6 +47,10 @@ class Pages {
     GetPage(
       name: Routes.LINK_WORKER,
       page: () => const LinkWorkerPage(),
+    ),
+    GetPage(
+      name: Routes.PERMISSIONS,
+      page: () => PermissionsScreen(),
     ),
   ];
 }

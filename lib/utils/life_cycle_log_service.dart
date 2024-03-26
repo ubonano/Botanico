@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import 'log_service.dart';
+import '../services/log_service.dart';
 
 mixin LifeCycleLogService on GetxService {
   String get logTag;

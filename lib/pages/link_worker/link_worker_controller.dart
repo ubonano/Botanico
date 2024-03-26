@@ -5,11 +5,11 @@ import '../../models/enums/worker_role.dart';
 import '../../models/worker_model.dart';
 import '../../services/navigation_service.dart';
 import '../../services/worker_service.dart';
-import '../../utils/async_operation_service.dart';
+import '../../services/async_operation_service.dart';
 import '../../utils/life_cycle_log_controller.dart';
 import '../../controllers/form_controller.dart';
 import '../../services/linked_worker_service.dart';
-import '../../utils/snackbar_service.dart';
+import '../../services/snackbar_service.dart';
 
 class LinkWorkerController extends FormController with LifeCycleLogController {
   @override
@@ -60,10 +60,10 @@ class LinkWorkerController extends FormController with LifeCycleLogController {
   }
 
   Future<bool> canLink(WorkerModel? worker) async {
-    if (!_session.worker!.hasPermissionToLinkWorker()) {
-      _snackbar.error('Usted no tiene permiso para vincular trabajadores');
-      return false;
-    }
+    // if (!_session.worker!.hasPermissionToLinkWorker()) {
+    //   _snackbar.error('Usted no tiene permiso para vincular trabajadores');
+    //   return false;
+    // }
 
     if (worker == null) {
       _snackbar.error('No se encontro trabajador con el código ingresado');

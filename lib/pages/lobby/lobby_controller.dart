@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../controllers/session_controller.dart';
 import '../../utils/life_cycle_log_controller.dart';
-import '../../utils/snackbar_service.dart';
+import '../../services/snackbar_service.dart';
 
 class LobbyController extends GetxController with LifeCycleLogController {
   @override
