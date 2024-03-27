@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'package:botanico/auxiliaries/auxiliaries.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import '../../../auxiliaries/life_cycle_log.dart';
 
 /// A service to manage user authentication.
 ///

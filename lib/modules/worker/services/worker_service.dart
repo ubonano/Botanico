@@ -1,22 +1,14 @@
 import 'dart:async';
-import 'package:botanico/modules/worker/models/enums/worker_role.dart';
-import 'package:botanico/auxiliaries/custom_exceptions.dart';
+import 'package:botanico/auxiliaries/auxiliaries.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:botanico/config/firestore_collections.dart';
-import '../../../auxiliaries/life_cycle_log.dart';
-import '../models/worker_model.dart';
 
-class WorkerService extends GetxService with LifeCycleLogService {
+class WorkerService extends GetxService with LifeCycleLogService, ContextService {
   @override
   String get logTag => 'WorkerService';
-
-  final FirebaseFirestore _firestore = Get.find();
-  late final CollectionReference _collectionRef;
-
-  WorkerService() {
-    _collectionRef = _firestore.collection(FirestoreCollections.workers);
-  }
+  late final LinkedWorkerService _linkedWorkerService = Get.find();
+  late final CollectionReference _collectionRef = firestore.collection(FirestoreCollections.workers);
 
   Future<WorkerModel?> get(String id) async => await _getWorker(id);
 
@@ -50,6 +42,13 @@ class WorkerService extends GetxService with LifeCycleLogService {
   }) async {
     final updatedWorker = worker.copyWith(companyId: companyId, role: role);
     await update(updatedWorker, txn: txn);
+
+    await _linkedWorkerService.linkWorkerToCompany(
+      worker,
+      companyId,
+      role: role,
+      txn: txn,
+    );
   }
 
   Future<void> cleanWorkerCompanyIdAndRole(String workerId, {Transaction? txn}) async {

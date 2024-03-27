@@ -1,23 +1,16 @@
-import 'package:botanico/config/firestore_collections.dart';
+import 'package:botanico/auxiliaries/auxiliaries.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import '../models/enums/worker_role.dart';
-import '../models/linked_worker_model.dart';
-import '../models/worker_model.dart';
-import '../../../auxiliaries/life_cycle_log.dart';
 
 class LinkedWorkerService extends GetxService with LifeCycleLogService {
   @override
   String get logTag => 'LinkedWorkerService';
 
   final FirebaseFirestore _firestore = Get.find();
-  late final CollectionReference _companiesRef;
+  late final CollectionReference _companiesRef = _firestore.collection(FirestoreCollections.companies);
 
   final list$ = RxList<LinkedWorkerModel>();
-
-  LinkedWorkerService() {
-    _companiesRef = _firestore.collection(FirestoreCollections.companies);
-  }
 
   void clean() => list$.clear();
 
@@ -42,10 +35,9 @@ class LinkedWorkerService extends GetxService with LifeCycleLogService {
     await create(companyId, linkedWorker, txn: txn);
   }
 
-  Future<LinkedWorkerModel> create(String companyId, LinkedWorkerModel linkedWorker, {Transaction? txn}) async {
+  Future<void> create(String companyId, LinkedWorkerModel linkedWorker, {Transaction? txn}) async {
     final docRef = _getDocumentReference(companyId, linkedWorker.uid);
     txn != null ? txn.set(docRef, linkedWorker.toMap()) : await docRef.set(linkedWorker.toMap());
-    return linkedWorker;
   }
 
   Future<void> delete(String companyId, String workerId, {Transaction? txn}) async {

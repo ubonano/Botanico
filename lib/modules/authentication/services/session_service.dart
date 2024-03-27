@@ -1,11 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:botanico/auxiliaries/auxiliaries.dart';
+import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/company/module.dart';
+import 'package:botanico/modules/worker/module.dart';
+
 import 'package:get/get.dart';
-import '../../company/models/company_model.dart';
-import '../../worker/models/worker_model.dart';
-import 'auth_service.dart';
-import '../../company/company_service.dart';
-import '../../worker/services/worker_service.dart';
-import '../../../auxiliaries/life_cycle_log.dart';
 
 class SessionService extends GetxService with LifeCycleLogService {
   @override
@@ -31,8 +29,16 @@ class SessionService extends GetxService with LifeCycleLogService {
   bool get companyIsLoaded => _company.value != null;
   String get companyId => _company.value?.uid ?? '';
 
-  Future<User?> signIn(String email, String password) async => await _authService.signIn(email, password);
-  Future<User?> signUp(String email, String password) async => await _authService.signUp(email, password);
+  Future<void> signIn(String email, String password) async {
+    await _authService.signIn(email, password);
+    await fetchWorker();
+  }
+
+  Future<void> signUp(String email, String password) async {
+    await _authService.signUp(email, password);
+    await fetchWorker();
+  }
+
   Future<void> recoverPassword(String email) async => await _authService.recoverPassword(email);
   Future<void> signOut() async => await _authService.signOut();
 
@@ -63,10 +69,7 @@ class SessionService extends GetxService with LifeCycleLogService {
     }
   }
 
-  Future<void> _fetchCompany(String companyId) async {
-    final company = await _companyService.get(companyId);
-    _company.value = company;
-  }
+  Future<void> _fetchCompany(String companyId) async => _company.value = await _companyService.get(companyId);
 
   void _clearSession() {
     _worker.value = null;

@@ -1,7 +1,4 @@
-import 'package:botanico/auxiliaries/module.dart';
-import 'package:botanico/auxiliaries/permission_module.dart';
-
-import '../../auxiliaries/permission.dart';
+import 'package:botanico/auxiliaries/auxiliaries.dart';
 
 class WorkerPermissions implements PermissionsModule {
   @override

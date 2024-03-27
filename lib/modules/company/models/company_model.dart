@@ -12,7 +12,7 @@ class CompanyModel {
 
   CompanyModel({
     this.uid = '',
-    required this.ownerUid,
+    this.ownerUid = '',
     required this.name,
     required this.address,
     required this.city,
