@@ -8,15 +8,10 @@ import 'package:qr_flutter/qr_flutter.dart';
 class LobbyPage extends GetView<LobbyController> {
   const LobbyPage({super.key});
 
-  get _title => 'Lobby';
-  get _info => 'Mostrale este código a tu empleador para vincularte a la empresa.';
-  get _copyButtonText => 'Copiar código de vinculación';
-  get _toCompanyButtonText => '¿Necesitas registrar una empresa?';
-
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: _title,
+      title: 'Lobby',
       drawer: null,
       body: Center(
         child: Column(
@@ -30,10 +25,10 @@ class LobbyPage extends GetView<LobbyController> {
               ),
             ),
             const SizedBox(height: 20),
-            Text(_info),
+            const Text('Mostrale este código a tu empleador para vincularte a la empresa.'),
             const SizedBox(height: 20),
-            CustomTextButton(text: _copyButtonText, onPressed: controller.copyToClipboard),
-            CustomButton(text: _toCompanyButtonText, onPressed: controller.navigate.toCompany),
+            CustomTextButton(text: 'Copiar código de vinculación', onPressed: controller.copyToClipboard),
+            CustomButton(text: '¿Necesitas registrar una empresa?', onPressed: controller.navigate.toCompany),
             const SignOutButton(),
           ],
         ),

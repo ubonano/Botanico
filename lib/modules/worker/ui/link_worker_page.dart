@@ -29,13 +29,13 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
                     Expanded(
                       child: WorkerUidInputField(
                         controller: controller.getFieldController('uid')!,
-                        onFieldSubmitted: linkWorker,
+                        onFieldSubmitted: controller.secureSubmit,
                       ),
                     ),
                     IconButton(icon: const Icon(Icons.paste), onPressed: controller.pasteWorkerId),
                   ],
                 ),
-                CustomButton(text: _linkWorkerButtonText, onPressed: linkWorker),
+                CustomButton(text: _linkWorkerButtonText, onPressed: controller.secureSubmit),
                 CustomButton(text: _scanQrCodeButtonText, onPressed: controller.scanQrCode)
               ],
             ),
@@ -43,9 +43,5 @@ class LinkWorkerPage extends GetView<LinkWorkerController> {
         ),
       ),
     );
-  }
-
-  linkWorker() {
-    if (controller.validateForm()) controller.linkWorker();
   }
 }

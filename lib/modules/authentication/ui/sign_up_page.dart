@@ -28,18 +28,14 @@ class SignUpPage extends GetView<SignUpController> {
               ConfirmPasswordInputField(
                 controller: controller.getFieldController('passwordConfirm')!,
                 passwordController: controller.getFieldController('password')!,
-                onFieldSubmitted: signUp,
+                onFieldSubmitted: controller.secureSubmit,
               ),
-              CustomButton(text: _signUpButtonText, onPressed: signUp),
+              CustomButton(text: _signUpButtonText, onPressed: controller.secureSubmit),
               CustomTextButton(text: _toSignInButtonText, onPressed: controller.navigate.toSignIn),
             ],
           ),
         ),
       ),
     );
-  }
-
-  signUp() {
-    if (controller.validateForm()) controller.signUp();
   }
 }

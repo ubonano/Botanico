@@ -7,9 +7,7 @@ class NavigationService extends GetxService with LifeCycleLogService {
   @override
   String get logTag => 'NavigationService';
 
-  final LogService _log;
-
-  NavigationService({required LogService log}) : _log = log;
+  final LogService _log = Get.find();
 
   void toHome({bool canPop = false}) => to(Routes.HOME, canPop: canPop);
   void toLobby({bool canPop = false}) => to(Routes.LOBBY, canPop: canPop);

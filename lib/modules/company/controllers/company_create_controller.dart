@@ -12,7 +12,8 @@ class CompanyCreateController extends FormController with LifeCycleLogController
   @override
   List<String> formFields = ['name', 'address', 'city', 'province', 'country', 'phone'];
 
-  Future<void> createCompany() async {
+  @override
+  Future<void> submit() async {
     await operationManager.perform(
       operationName: 'Create company',
       successMessage: 'Empresa creada',

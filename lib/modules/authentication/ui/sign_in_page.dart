@@ -25,11 +25,16 @@ class SignInPage extends GetView<SignInController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               EmailInputField(controller: controller.getFieldController('email')!),
-              PasswordInputField(controller: controller.getFieldController('password')!, onFieldSubmitted: signIn),
-              CustomButton(text: _signInButtonText, onPressed: signIn),
+              PasswordInputField(
+                controller: controller.getFieldController('password')!,
+                onFieldSubmitted: controller.secureSubmit,
+              ),
+              CustomButton(text: _signInButtonText, onPressed: controller.secureSubmit),
               CustomTextButton(
                 text: _forgotPasswordButtonText,
-                onPressed: () => Get.dialog(const RecoverPasswordDialog()),
+                onPressed: () => Get.dialog(
+                  const RecoverPasswordDialog(),
+                ),
               ),
               CustomTextButton(text: _toSignUpButtonText, onPressed: controller.navigate.toSignUp),
             ],
@@ -37,9 +42,5 @@ class SignInPage extends GetView<SignInController> {
         ),
       ),
     );
-  }
-
-  signIn() {
-    if (controller.validateForm()) controller.signIn();
   }
 }

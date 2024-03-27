@@ -36,6 +36,16 @@ abstract class FormController extends GetxController {
   /// Validates all the form fields in the form and returns true if the form is valid.
   bool validateForm() => formKey.currentState!.validate();
 
+  /// Calls `submit` if the form is valid.
+  Future<void> secureSubmit() async {
+    if (validateForm()) {
+      await submit();
+    }
+  }
+
+  /// Abstract method that must be implemented by subclasses to handle form submission.
+  Future<void> submit();
+
   @override
   Future<void> onInit() async {
     super.onInit();

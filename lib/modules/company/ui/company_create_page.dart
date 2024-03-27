@@ -27,15 +27,11 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
               ProvinceInputField(controller: controller.getFieldController('province')!),
               CountryInputField(controller: controller.getFieldController('country')!),
               PhoneInputField(controller: controller.getFieldController('phone')!),
-              CustomButton(text: _labelButton, onPressed: createCompany),
+              CustomButton(text: _labelButton, onPressed: controller.secureSubmit),
             ],
           ),
         ),
       ),
     );
-  }
-
-  createCompany() {
-    if (controller.validateForm()) controller.createCompany();
   }
 }

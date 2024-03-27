@@ -25,13 +25,14 @@ class AppBindings extends Bindings {
   void _setupRepositories() {
     Get.lazyPut<CompanyRepository>(() => CompanyRepository(), fenix: true);
     Get.lazyPut<WorkerRepository>(() => WorkerRepository(), fenix: true);
+    Get.lazyPut<LinkedWorkerRepository>(() => LinkedWorkerRepository(), fenix: true);
   }
 
   void _setupCommonServices() {
     Get.put(LogService(), permanent: true);
     Get.put(SnackbarService(), permanent: true);
     Get.put(OperationManagerService(), permanent: true);
-    Get.put(NavigationService(log: Get.find()), permanent: true);
+    Get.put(NavigationService(), permanent: true);
   }
 
   void _setupBusinessServices() {

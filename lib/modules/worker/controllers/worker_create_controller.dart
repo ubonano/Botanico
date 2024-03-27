@@ -11,16 +11,22 @@ class WorkerCreateController extends FormController with LifeCycleLogController,
   @override
   List<String> formFields = ['name', 'birthDate', 'phone', 'dni'];
 
-  Future<void> createWorker() async {
+  @override
+  Future<void> submit() async {
     await operationManager.perform(
       operationName: 'Create worker',
-      successMessage: 'Trabajador creado!',
+      successMessage: 'Trabajador creado',
       operation: (_) async => await _workerService.create(newWorker),
-      onSuccess: navigate.toLobby,
+      onSuccess: () async {
+        await session.fetchWorker();
+        navigate.toLobby();
+      },
     );
   }
 
   WorkerModel get newWorker => WorkerModel(
+        uid: session.userUID,
+        email: session.userEmail,
         name: getFieldValue('name'),
         birthDate: getFieldValue('birthDate'),
         phone: getFieldValue('phone'),

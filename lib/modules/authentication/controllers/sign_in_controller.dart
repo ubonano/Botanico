@@ -7,7 +7,8 @@ class SignInController extends FormController with LifeCycleLogController, Conte
   @override
   List<String> formFields = ['email', 'password'];
 
-  Future<void> signIn() async {
+  @override
+  Future<void> submit() async {
     await operationManager.perform(
       operationName: 'Sign in',
       operation: (_) async => await session.signIn(

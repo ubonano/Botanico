@@ -18,13 +18,13 @@ class RecoverPasswordDialog extends GetView<RecoverPasswordController> {
         key: controller.formKey,
         child: EmailInputField(
           controller: controller.getFieldController('email')!,
-          onFieldSubmitted: controller.recoverPassword,
+          onFieldSubmitted: controller.secureSubmit,
         ),
       ),
       actions: [
         TextButton(onPressed: controller.navigate.back, child: Text(_cancelButtonText)),
         TextButton(
-          onPressed: controller.validateForm() ? controller.recoverPassword : () {},
+          onPressed: controller.secureSubmit,
           child: Text(_confirmButtonText),
         ),
       ],

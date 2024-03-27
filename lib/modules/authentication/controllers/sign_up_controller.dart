@@ -7,7 +7,8 @@ class SignUpController extends FormController with LifeCycleLogController, Conte
   @override
   List<String> formFields = ['email', 'password', 'passwordConfirm'];
 
-  void signUp() async {
+  @override
+  Future<void> submit() async {
     await operationManager.perform(
       operationName: 'Sign up',
       operation: (_) async => await session.signUp(

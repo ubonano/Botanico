@@ -18,8 +18,8 @@ class WorkerModel {
   bool get isEmployee => role == WorkerRole.employee;
 
   WorkerModel({
-    this.uid = '',
-    this.email = '',
+    required this.uid,
+    required this.email,
     required this.name,
     required this.birthDate,
     required this.phone,

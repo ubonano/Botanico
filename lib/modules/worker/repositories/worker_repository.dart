@@ -15,7 +15,7 @@ class WorkerRepository {
   }
 
   Future<void> create(WorkerModel worker, {Transaction? txn}) async {
-    final docRef = _collectionRef.doc();
+    final docRef = _collectionRef.doc(worker.uid);
     txn != null ? txn.set(docRef, worker.toMap()) : await docRef.set(worker.toMap());
   }
 

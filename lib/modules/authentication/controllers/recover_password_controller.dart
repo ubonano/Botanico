@@ -7,7 +7,8 @@ class RecoverPasswordController extends FormController with LifeCycleLogControll
   @override
   List<String> formFields = ['email'];
 
-  void recoverPassword() async {
+  @override
+  Future<void> submit() async {
     await operationManager.perform(
       operationName: 'Recover password',
       successMessage: 'Se envio un email a tu casilla para restaurar tu contraseña',

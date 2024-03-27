@@ -14,7 +14,8 @@ class LinkWorkerController extends FormController with LifeCycleLogController, C
   late final LinkedWorkerService _linkedWorkerService = Get.find();
   late final WorkerService _workerService = Get.find();
 
-  Future<void> linkWorker() async {
+  @override
+  Future<void> submit() async {
     final workerToLink = await _workerService.get(getFieldValue('uid'));
 
     if (await canLink(workerToLink)) {
@@ -56,7 +57,7 @@ class LinkWorkerController extends FormController with LifeCycleLogController, C
       return false;
     }
 
-    if (await _linkedWorkerService.isWorkerAlreadyLinked(session.companyId, worker)) {
+    if (await _linkedWorkerService.isWorkerAlreadyLinked(session.companyId, worker.uid)) {
       snackbar.warning('El trabajador ya se encuentra vinculado');
       return false;
     }
