@@ -24,11 +24,15 @@ class WorkerCreatePage extends GetView<WorkerCreateController> {
               BirthdateInputField(controller: controller.getFieldController('birthDate')!),
               PhoneInputField(controller: controller.getFieldController('phone')!),
               DNIInputField(controller: controller.getFieldController('dni')!),
-              CustomButton(text: _createWorkerButtonText, onPressed: controller.createWorker)
+              CustomButton(text: _createWorkerButtonText, onPressed: createWorker)
             ],
           ),
         ),
       ),
     );
+  }
+
+  createWorker() {
+    if (controller.validateForm()) controller.createWorker();
   }
 }

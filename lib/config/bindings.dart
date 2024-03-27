@@ -24,6 +24,7 @@ class AppBindings extends Bindings {
 
   void _setupRepositories() {
     Get.lazyPut<CompanyRepository>(() => CompanyRepository(), fenix: true);
+    Get.lazyPut<WorkerRepository>(() => WorkerRepository(), fenix: true);
   }
 
   void _setupCommonServices() {

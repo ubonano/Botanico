@@ -18,10 +18,10 @@ class WorkerService extends GetxService with LifeCycleLogService, ContextService
     return docSnapshot.exists ? WorkerModel.fromSnapshot(docSnapshot) : null;
   }
 
-  Future<WorkerModel> create(WorkerModel worker, {Transaction? txn}) async {
-    final docRef = _getDocumentReference(worker.uid);
-    txn != null ? txn.set(docRef, worker.toMap()) : await docRef.set(worker.toMap());
-    return worker;
+  Future<void> create(WorkerModel worker, {Transaction? txn}) async {
+    final newWorker = worker.copyWith(uid: session.userUID, email: session.userEmail);
+    final docRef = _getDocumentReference(newWorker.uid);
+    txn != null ? txn.set(docRef, newWorker.toMap()) : await docRef.set(newWorker.toMap());
   }
 
   Future<void> updateWorkerWithCompanyId(WorkerModel worker, String companyId, {Transaction? txn}) async {

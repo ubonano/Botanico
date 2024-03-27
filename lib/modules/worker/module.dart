@@ -21,3 +21,4 @@ export 'controllers/worker_management_permissions_controller.dart';
 export 'ui/worker_management_permissions_page.dart';
 
 export 'worker_permission.dart';
+export 'repositories/worker_repository.dart';

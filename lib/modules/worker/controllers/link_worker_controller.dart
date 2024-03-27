@@ -4,10 +4,6 @@ import 'package:get/get.dart';
 
 import '../module.dart';
 
-
-
-
-// Refactor
 class LinkWorkerController extends FormController with LifeCycleLogController, ContextController {
   @override
   String get logTag => 'LinkWorkerController';
@@ -19,35 +15,33 @@ class LinkWorkerController extends FormController with LifeCycleLogController, C
   late final WorkerService _workerService = Get.find();
 
   Future<void> linkWorker() async {
-    if (validateForm()) {
-      final workerToLink = await _workerService.get(getFieldValue('uid'));
+    final workerToLink = await _workerService.get(getFieldValue('uid'));
 
-      if (await canLink(workerToLink)) {
-        await operationManager.perform(
-          operationName: 'Link worker',
-          permissionKey: WorkerPermissions.linkKey,
-          successMessage: 'Trabajador vinculado',
-          inTransaction: true,
-          operation: (txn) async {
-            await _linkedWorkerService.linkWorkerToCompany(
-              workerToLink!,
-              session.companyId,
-              role: WorkerRole.employee,
-              txn: txn,
-            );
-            await _workerService.updateWorkerCompanyAndRole(
-              workerToLink,
-              session.companyId,
-              WorkerRole.employee,
-              txn: txn,
-            );
-          },
-          onSuccess: () {
-            _linkedWorkerService.fetchAll(session.companyId);
-            navigate.toLinkedWorkers();
-          },
-        );
-      }
+    if (await canLink(workerToLink)) {
+      await operationManager.perform(
+        operationName: 'Link worker',
+        permissionKey: WorkerPermissions.linkKey,
+        successMessage: 'Trabajador vinculado',
+        inTransaction: true,
+        operation: (txn) async {
+          await _linkedWorkerService.linkWorkerToCompany(
+            workerToLink!,
+            session.companyId,
+            role: WorkerRole.employee,
+            txn: txn,
+          );
+          await _workerService.updateWorkerCompanyAndRole(
+            workerToLink,
+            session.companyId,
+            WorkerRole.employee,
+            txn: txn,
+          );
+        },
+        onSuccess: () {
+          _linkedWorkerService.fetchAll(session.companyId);
+          navigate.toLinkedWorkers();
+        },
+      );
     }
   }
 

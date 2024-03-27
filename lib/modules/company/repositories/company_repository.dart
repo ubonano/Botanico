@@ -1,7 +1,7 @@
+import 'package:botanico/auxiliaries/auxiliaries.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../../auxiliaries/auxiliaries.dart';
 import '../module.dart';
 
 class CompanyRepository {

@@ -2,10 +2,6 @@ import 'package:botanico/auxiliaries/auxiliaries.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
-
-
-
-// Refactor
 class LinkedWorkersController extends GetxController with LifeCycleLogController, ContextController {
   @override
   String get logTag => 'LinkedWorkersController';
