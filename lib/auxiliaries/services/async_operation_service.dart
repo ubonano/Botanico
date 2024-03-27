@@ -1,40 +1,25 @@
 import 'package:botanico/auxiliaries/custom_exceptions.dart';
 import 'package:botanico/auxiliaries/services/log_service.dart';
 import 'package:botanico/auxiliaries/services/snackbar_service.dart';
+import 'package:botanico/modules/authentication/services/session_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 import '../life_cycle_log.dart';
 
-/// `AsyncOperationService` is designed to facilitate the execution of asynchronous operations,
-/// potentially within a Firebase Firestore transaction. It provides structured error handling,
-/// logging, and success messaging functionalities.
-///
-/// It utilizes [LogService] for logging and [SnackbarService] for displaying messages to the user.
 class AsyncOperationService extends GetxService with LifeCycleLogService {
   @override
   String get logTag => 'AsyncOperationService';
 
-  /// Services for logging and displaying snackbars.
-  final _logService = Get.find<LogService>();
-  final _snackbar = Get.find<SnackbarService>();
+  late final LogService _logService = Get.find();
+  late final SnackbarService _snackbar = Get.find();
+  late final SessionService _session = Get.find();
 
-  /// Performs an asynchronous operation, optionally within a Firestore transaction.
-  ///
-  /// - [operation]: The asynchronous operation to be performed. It may optionally involve a Firestore transaction.
-  /// - [operationName]: A descriptive name for the operation, used in logging.
-  /// - [successMessage]: A message to be displayed upon successful completion of the operation.
-  /// - [showErrorMessageBySnackbar]: Whether to show error messages via Snackbar.
-  /// - [onSuccess]: An optional callback function that gets called upon successful completion of the operation.
-  /// - [onError]: An optional callback function that gets called if the operation fails.
-  /// - [onFinalize]: An optional callback function that gets called after the operation completes, regardless of success or failure.
-  /// - [inTransaction]: Specifies whether the operation should be executed within a Firestore transaction.
-  ///
-  /// Returns the result of the operation if successful, or null if an error occurs.
   Future<T?> perform<T>({
     required Future<T> Function(Transaction? txn) operation,
     String operationName = "Operation",
+    String permissionKey = '',
     String successMessage = '',
     bool showErrorMessageBySnackbar = true,
     Function()? onSuccess,
@@ -43,6 +28,10 @@ class AsyncOperationService extends GetxService with LifeCycleLogService {
     bool inTransaction = false,
   }) async {
     try {
+      if (permissionKey.isNotEmpty && !_session.worker!.hasPermission(permissionKey)) {
+        throw Exception('permission-denied');
+      }
+
       T result = await _executeOperation(operation, inTransaction);
 
       if (successMessage.isNotEmpty) _snackbar.success(successMessage);
@@ -61,12 +50,6 @@ class AsyncOperationService extends GetxService with LifeCycleLogService {
     }
   }
 
-  /// A helper method to execute the provided asynchronous operation, with or without a transaction.
-  ///
-  /// - [operation]: The operation to execute.
-  /// - [inTransaction]: Whether to execute the operation within a Firestore transaction.
-  ///
-  /// Returns the result of executing the operation.
   Future<T> _executeOperation<T>(Future<T> Function(Transaction? txn) operation, bool inTransaction) async {
     if (inTransaction) {
       return FirebaseFirestore.instance.runTransaction<T>((Transaction txn) async => await operation(txn));
@@ -76,11 +59,6 @@ class AsyncOperationService extends GetxService with LifeCycleLogService {
   }
 }
 
-/// Generates an appropriate error message based on the caught exception.
-///
-/// - [error]: The exception or error caught during the operation execution.
-///
-/// Returns a user-friendly error message.
 String _getErrorMessage(Object e) {
   if (e is FirebaseAuthException) {
     if (e.code.contains('email-already-in-use')) {
@@ -107,7 +85,7 @@ String _getErrorMessage(Object e) {
   }
 
   if (e.toString().contains('permission-denied')) {
-    return 'No tiene acceso a la información solicitada.';
+    return 'No tiene permiso para realziar esta operación';
   }
 
   if (e is WorkerNotFoundException) {

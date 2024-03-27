@@ -1,4 +1,6 @@
 import 'package:botanico/modules/authentication/ui/sign_out_button/sign_out_button.dart';
+import 'package:botanico/modules/worker/worker_permission.dart';
+import 'package:botanico/ui/widgets/permission_protected.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,10 +40,13 @@ class CustomDrawer extends GetView<CustomDrawerController> {
               title: const Text('Inicio'),
               onTap: controller.navigateToHome,
             ),
-            ListTile(
-              leading: const Icon(Icons.work),
-              title: const Text('Trabajadores'),
-              onTap: controller.navigateToLinkedWorkers,
+            PermissionProtected(
+              permission: WorkerPermissions.viewKey,
+              child: ListTile(
+                leading: const Icon(Icons.work),
+                title: const Text('Trabajadores'),
+                onTap: controller.navigateToLinkedWorkers,
+              ),
             ),
           ],
         ),

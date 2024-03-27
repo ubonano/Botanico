@@ -1,4 +1,3 @@
-import 'package:botanico/auxiliaries/services/permission_module_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'enums/worker_role.dart';
@@ -30,12 +29,7 @@ class WorkerModel {
     this.permissions = const {},
   });
 
-  // bool hasPermissionToLinkWorker() => isOwner || hasPermission(LinkedWorkerPermissions.link);
-  // bool hasPermissionToUnlinkWorker() => isOwner || hasPermission(LinkedWorkerPermissions.unlink);
-  // bool hasPermissionToViewWorkers() => isOwner || hasPermission(LinkedWorkerPermissions.view);
-  bool hasPermission(String permissionId) => permissions.containsKey(permissionId);
-
-  // crear middlwares para LinkWorker, LinkedWorkers
+  bool hasPermission(String permissionId) => isOwner || permissions.containsKey(permissionId);
 
   WorkerModel copyWith({
     String? uid,

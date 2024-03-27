@@ -1,4 +1,5 @@
 import 'package:botanico/auxiliaries/services/async_operation_service.dart';
+import 'package:botanico/modules/worker/worker_permission.dart';
 import 'package:get/get.dart';
 
 import '../../../../auxiliaries/module.dart';
@@ -45,6 +46,7 @@ class WorkerManagementPermissionsController extends GetxController with LifeCycl
 
       await _async.perform(
         operationName: 'Toggle permission $permissionId',
+        permissionKey: WorkerPermissions.managePermissionsKey,
         operation: (_) async => await _workerService.update(modifiedWorker),
         onSuccess: () => worker$.value = modifiedWorker,
       );

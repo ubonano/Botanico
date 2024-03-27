@@ -1,4 +1,5 @@
 import 'package:botanico/modules/authentication/services/session_service.dart';
+import 'package:botanico/modules/worker/worker_permission.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../models/enums/worker_role.dart';
@@ -34,6 +35,7 @@ class LinkWorkerController extends FormController with LifeCycleLogController {
       if (await canLink(workerToLink)) {
         await _async.perform(
           operationName: 'Link worker',
+          permissionKey: WorkerPermissions.linkKey,
           successMessage: 'Trabajador vinculado',
           inTransaction: true,
           operation: (txn) async {
@@ -60,11 +62,6 @@ class LinkWorkerController extends FormController with LifeCycleLogController {
   }
 
   Future<bool> canLink(WorkerModel? worker) async {
-    // if (!_session.worker!.hasPermissionToLinkWorker()) {
-    //   _snackbar.error('Usted no tiene permiso para vincular trabajadores');
-    //   return false;
-    // }
-
     if (worker == null) {
       _snackbar.error('No se encontro trabajador con el código ingresado');
       return false;

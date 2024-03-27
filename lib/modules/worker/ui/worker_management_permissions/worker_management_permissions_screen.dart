@@ -7,7 +7,7 @@ import 'worker_management_permissions_controller.dart';
 class WorkerManagementScreen extends GetView<WorkerManagementPermissionsController> {
   const WorkerManagementScreen({super.key});
 
-  get _title => 'Gestión de Permisos';
+  get _title => 'Gestión de Permisos'; // TODO agregar nombre del trabajador
 
   @override
   Widget build(BuildContext context) {

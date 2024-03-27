@@ -1,6 +1,7 @@
 import 'package:botanico/modules/worker/models/linked_worker_model.dart';
 import 'package:botanico/auxiliaries/life_cycle_log.dart';
 import 'package:botanico/auxiliaries/services/snackbar_service.dart';
+import 'package:botanico/modules/worker/worker_permission.dart';
 import 'package:get/get.dart';
 import '../../../authentication/services/session_service.dart';
 import '../../services/linked_worker_service.dart';
@@ -19,12 +20,12 @@ class LinkedWorkersController extends GetxController with LifeCycleLogController
 
   RxList<LinkedWorkerModel> get list$ => _linkedWorkerService.list$;
 
-  // get hasPermissionToLinkWorker => _session.companyIsLoaded && _session.worker!.hasPermissionToLinkWorker();
-  // get hasPermissionToUnlinkWorker => _session.companyIsLoaded && _session.worker!.hasPermissionToUnlinkWorker();
-
   @override
   Future<void> onInit() async {
     await super.onInit();
+
+    // Mover la lista del servicio a este controlador, envolver en async.Perform incluyendo el permissionKey
+    // Que no se pueda cambiar permisos a si mismo el usuario... 
 
     _linkedWorkerService.fetchAll(_session.companyId);
   }
@@ -33,6 +34,7 @@ class LinkedWorkersController extends GetxController with LifeCycleLogController
     if (_canUnlink(linkedWorker)) {
       await _async.perform(
         operationName: 'Unlink worker',
+        permissionKey: WorkerPermissions.unlinkKey,
         successMessage: 'Trabajador desvinculado',
         inTransaction: true,
         operation: (txn) async {
@@ -45,11 +47,6 @@ class LinkedWorkersController extends GetxController with LifeCycleLogController
   }
 
   bool _canUnlink(LinkedWorkerModel linkedWorker) {
-    // if (!_session.worker!.hasPermissionToUnlinkWorker()) {
-    //   _snackbar.error('Usted no tiene permiso para desvincular un trabajador');
-    //   return false;
-    // }
-
     if (linkedWorker.uid == _session.worker!.uid) {
       _snackbar.error('No es posible desvincularse a si mismo');
       return false;

@@ -1,8 +1,11 @@
 import 'package:botanico/auxiliaries/services/navigation_service.dart';
+import 'package:botanico/modules/worker/worker_permission.dart';
 import 'package:botanico/ui/widgets/confirmation_dialog.dart';
+import 'package:botanico/ui/widgets/permission_protected.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../ui/widgets/custom_scaffold.dart';
+import '../../models/linked_worker_model.dart';
 import 'linked_workers_controller.dart';
 
 class LinkedWorkersPage extends GetView<LinkedWorkersController> {
@@ -18,43 +21,56 @@ class LinkedWorkersPage extends GetView<LinkedWorkersController> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-        title: _title,
-        body: Obx(
-          () => ListView.builder(
-            itemCount: _list.length,
-            itemBuilder: (context, index) {
-              final linkedWorker = _list[index];
+      title: _title,
+      body: Obx(
+        () => ListView.builder(
+          itemCount: _list.length,
+          itemBuilder: (context, index) {
+            final LinkedWorkerModel linkedWorker = _list[index];
 
-              return ListTile(
-                title: Text(linkedWorker.name),
-                subtitle: Text(linkedWorker.email),
-                trailing: _buildUnlinkIconButton(linkedWorker, context),
-                onTap: () => _navigate.toPermissions(linkedWorker.uid, canPop: true),
-              );
-            },
-          ),
+            return ListTile(
+              title: Text(linkedWorker.name),
+              subtitle: Text(linkedWorker.email),
+              trailing: _buildTrailingIconButtons(linkedWorker, context),
+              // onTap: () => {}, // TODO agregar una pantalla para ver el detalle del trabajador
+            );
+          },
         ),
-        // TODO refactor con widget de segurida
-        floatingActionButton:
-            FloatingActionButton(onPressed: () => _navigate.toLinkWorker(canPop: true), child: const Icon(Icons.add))
-        // Obx(
-        //   () => controller.hasPermissionToLinkWorker
-        //       ? FloatingActionButton(onPressed: () => _navigate.toLinkWorker(canPop: true), child: const Icon(Icons.add))
-        //       : Container(),
-        // ),
-        );
+      ),
+      floatingActionButton: PermissionProtected(
+        permission: WorkerPermissions.linkKey,
+        child: FloatingActionButton(
+          onPressed: () => _navigate.toLinkWorker(canPop: true),
+          child: const Icon(Icons.add),
+        ),
+      ),
+    );
   }
 
-// TODO refactor con widget de segurida
-  IconButton? _buildUnlinkIconButton(linkedWorker, BuildContext context) {
-    return true //linkedWorker.isNotOwner && controller.hasPermissionToUnlinkWorker
-        ? IconButton(
-            icon: const Icon(Icons.person_off),
-            onPressed: () => ConfirmationDialog.show(
-              context,
-              content: _contentDialogText,
-              onConfirm: () => controller.unlinkWorker(linkedWorker),
-            ),
+  Widget? _buildTrailingIconButtons(LinkedWorkerModel linkedWorker, BuildContext context) {
+    return linkedWorker.isNotOwner
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              PermissionProtected(
+                permission: WorkerPermissions.unlinkKey,
+                child: IconButton(
+                  icon: const Icon(Icons.person_off),
+                  onPressed: () => ConfirmationDialog.show(
+                    context,
+                    content: _contentDialogText,
+                    onConfirm: () => controller.unlinkWorker(linkedWorker),
+                  ),
+                ),
+              ),
+              PermissionProtected(
+                permission: WorkerPermissions.managePermissionsKey,
+                child: IconButton(
+                  icon: const Icon(Icons.security),
+                  onPressed: () => _navigate.toPermissions(linkedWorker.uid, canPop: true),
+                ),
+              ),
+            ],
           )
         : null;
   }
