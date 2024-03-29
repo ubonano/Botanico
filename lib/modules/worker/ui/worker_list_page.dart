@@ -11,7 +11,7 @@ class WorkerListPage extends GetView<WorkerListController> {
     return CustomScaffold(
       title: 'Trabajadores Vinculados',
       body: Obx(
-        () => WorkerList(list: controller.linkedWorkerList$.toList()),
+        () => WorkerList(list: controller.workerList$.toList()),
       ),
       floatingActionButton: WorkerLinkingFAB(),
     );

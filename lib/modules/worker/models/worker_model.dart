@@ -87,19 +87,4 @@ class WorkerModel {
         role: workerRoleFromString(map['role']),
         permissions: Map<String, bool>.from(map['permissions'] ?? {}),
       );
-
-  static WorkerModel fromSnapshotLinkedWorker(DocumentSnapshot snapshot) =>
-      WorkerModel.fromMapLinkedWorker(snapshot.data() as Map<String, dynamic>);
-
-  factory WorkerModel.fromMapLinkedWorker(Map<String, dynamic> map) => WorkerModel(
-        uid: map['uid'] ?? '',
-        email: map['email'] ?? '',
-        name: map['name'] ?? '',
-        birthDate: '',
-        phone: '',
-        dni: '',
-        companyId: '',
-        role: workerRoleFromString(map['role']),
-        permissions: const {},
-      );
 }

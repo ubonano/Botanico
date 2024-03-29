@@ -1,10 +1,9 @@
 import 'package:botanico/auxiliaries/auxiliaries.dart';
 import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/ui/custom_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/worker/module.dart';
-import 'package:botanico/ui/widgets/permission_protected.dart';
-import 'package:botanico/ui/widgets/confirmation_dialog.dart';
 
 class WorkerList extends StatelessWidget {
   WorkerList({Key? key, required this.list}) : super(key: key);
@@ -12,27 +11,27 @@ class WorkerList extends StatelessWidget {
   final WorkerUnlinkingController _unlinkingController = Get.find();
   final SessionService _session = Get.find();
   final NavigationService _navigate = Get.find();
-  final List<LinkedWorkerModel> list;
+  final List<WorkerModel> list;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: list.length,
       itemBuilder: (context, index) {
-        final LinkedWorkerModel linkedWorker = list[index];
+        final WorkerModel worker = list[index];
 
         return ListTile(
-          title: Text(linkedWorker.name),
-          subtitle: Text(linkedWorker.email),
-          trailing: linkedWorker.isNotOwner && linkedWorker.uid != _session.worker!.uid
-              ? _buildTrailingIconButtons(linkedWorker, context)
+          title: Text(worker.name),
+          subtitle: Text(worker.email),
+          trailing: worker.isNotOwner && worker.uid != _session.worker!.uid
+              ? _buildTrailingIconButtons(worker, context)
               : null,
         );
       },
     );
   }
 
-  Widget? _buildTrailingIconButtons(LinkedWorkerModel linkedWorker, BuildContext context) {
+  Widget? _buildTrailingIconButtons(WorkerModel worker, BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -43,7 +42,7 @@ class WorkerList extends StatelessWidget {
             onPressed: () => ConfirmationDialog.show(
               context,
               content: '¿Estás seguro de que quieres desvincular a este trabajador?',
-              onConfirm: () => _unlinkingController.unlinkWorker(linkedWorker),
+              onConfirm: () => _unlinkingController.unlinkWorker(worker),
             ),
           ),
         ),
@@ -51,7 +50,7 @@ class WorkerList extends StatelessWidget {
           permission: WorkerPermissions.managePermissionsKey,
           child: IconButton(
             icon: const Icon(Icons.security),
-            onPressed: () => _navigate.toPermissions(linkedWorker.uid, canPop: true),
+            onPressed: () => _navigate.toPermissions(worker.uid, canPop: true),
           ),
         ),
       ],

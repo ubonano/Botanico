@@ -1,5 +1,4 @@
 export 'models/enums/worker_role.dart';
-export 'models/linked_worker_model.dart';
 export 'models/worker_model.dart';
 
 export 'services/worker_service.dart';

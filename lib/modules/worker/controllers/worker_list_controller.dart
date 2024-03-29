@@ -7,23 +7,22 @@ class WorkerListController extends GetxController with ContextController {
   String get logTag => 'WorkerListController';
 
   late final WorkerService _workerService = Get.find();
-  final linkedWorkerList$ = RxList<LinkedWorkerModel>();
+  final workerList$ = RxList<WorkerModel>();
 
   @override
   void onInit() {
     super.onInit();
 
-    fetchAllLinkedWorkers();
+    fetchAllWorkers();
   }
 
-  Future<void> fetchAllLinkedWorkers() async => linkedWorkerList$.value = await _workerService.getAllLinkedWorkers();
+  Future<void> fetchAllWorkers() async => workerList$.value = await _workerService.getAllLinkedWorkers();
 
-  void removeLinkedWorker(LinkedWorkerModel linkedWorker) =>
-      linkedWorkerList$.removeWhere((lw) => lw.uid == linkedWorker.uid);
+  void removeWorker(WorkerModel worker) => workerList$.removeWhere((lw) => lw.uid == worker.uid);
 
   @override
   void onClose() {
-    linkedWorkerList$.clear();
+    workerList$.clear();
 
     super.onClose();
   }

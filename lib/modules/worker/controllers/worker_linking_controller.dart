@@ -27,7 +27,7 @@ class WorkerLinkingController extends FormController with ContextController {
         operation: (txn) async =>
             await _workerService.linkWorker(worker!, session.companyId, WorkerRole.employee, txn: txn),
         onSuccess: () {
-          _workerListController.fetchAllLinkedWorkers();
+          _workerListController.fetchAllWorkers();
           navigate.toWorkerList();
         },
       );
