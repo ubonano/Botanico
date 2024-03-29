@@ -15,30 +15,18 @@ class WorkerLinkingController extends FormController with LifeCycleLogController
 
   @override
   Future<void> submit() async {
-    final workerToLink = await _workerService.getWorker(getFieldValue('uid'));
+    final worker = await _workerService.getWorker(getFieldValue('uid'));
 
-    if (await canLink(workerToLink)) {
+    if (await canLink(worker)) {
       await operationManager.perform(
         operationName: 'Link worker',
         permissionKey: WorkerPermissions.linkKey,
         successMessage: 'Trabajador vinculado',
         inTransaction: true,
-        operation: (txn) async {
-          await _workerService.linkWorkerToCompany(
-            workerToLink!,
-            session.companyId,
-            role: WorkerRole.employee,
-            txn: txn,
-          );
-          await _workerService.updateWorkerCompanyAndRole(
-            workerToLink,
-            session.companyId,
-            WorkerRole.employee,
-            txn: txn,
-          );
-        },
+        operation: (txn) async =>
+            await _workerService.linkWorker(worker!, session.companyId, WorkerRole.employee, txn: txn),
         onSuccess: () {
-          _workerService.fetchAllLinkedWorkers(session.companyId);
+          _workerService.fetchAllLinkedWorkers();
           navigate.toLinkedWorkers();
         },
       );

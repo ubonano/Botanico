@@ -18,8 +18,8 @@ class WorkerService extends GetxService with LifeCycleLogService, ContextService
   void removeFromLocalLinkedWorker(LinkedWorkerModel linkedWorker) =>
       linkedWorkerList$.removeWhere((lw) => lw.uid == linkedWorker.uid);
 
-  Future<void> fetchAllLinkedWorkers(String companyId) async {
-    final workers = await _linkedWorkerRepository.getAll(companyId);
+  Future<void> fetchAllLinkedWorkers() async {
+    final workers = await _linkedWorkerRepository.getAll(session.companyId);
 
     linkedWorkerList$.assignAll(workers);
   }
@@ -28,19 +28,14 @@ class WorkerService extends GetxService with LifeCycleLogService, ContextService
 
   Future<void> createWorker(WorkerModel worker) async => await _workerRepository.create(worker);
 
-  Future<void> updateWorkerCompanyAndRole(WorkerModel worker, String companyId, WorkerRole role,
-      {Transaction? txn}) async {
+  Future<void> linkWorker(WorkerModel worker, String companyId, WorkerRole role, {Transaction? txn}) async {
+    await _addLinkedWorker(worker, companyId, role, txn: txn);
+
     final updatedWorker = worker.copyWith(companyId: companyId, role: role);
-    await _workerRepository.update(updatedWorker, txn: txn);
-    await linkWorkerToCompany(worker, companyId, role: role, txn: txn);
+    await updateWorker(updatedWorker, txn: txn);
   }
 
-  Future<void> linkWorkerToCompany(
-    WorkerModel worker,
-    String companyId, {
-    WorkerRole role = WorkerRole.undefined,
-    Transaction? txn,
-  }) async {
+  Future<void> _addLinkedWorker(WorkerModel worker, String companyId, WorkerRole role, {Transaction? txn}) async {
     final linkedWorker = LinkedWorkerModel.fromWorkerModel(worker, role);
     await _linkedWorkerRepository.create(companyId, linkedWorker, txn: txn);
   }
@@ -54,9 +49,8 @@ class WorkerService extends GetxService with LifeCycleLogService, ContextService
     await _workerRepository.update(worker.copyWith(companyId: '', role: WorkerRole.undefined), txn: txn);
   }
 
-  Future<void> deleteLinkedWorker(String companyId, String workerId, {Transaction? txn}) async {
-    await _linkedWorkerRepository.delete(companyId, workerId, txn: txn);
-  }
+  Future<void> deleteLinkedWorker(String companyId, String workerId, {Transaction? txn}) async =>
+      await _linkedWorkerRepository.delete(companyId, workerId, txn: txn);
 
   Future<bool> isWorkerAlreadyLinked(String companyId, String workerId) async =>
       (await _linkedWorkerRepository.get(companyId, workerId)) != null;

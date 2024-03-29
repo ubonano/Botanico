@@ -8,7 +8,7 @@ class Routes {
   static const LOBBY = '/lobby';
   static const COMPANY_CREATE = '/company-create';
   static const HOME = '/home';
-  static const LINKED_WORKERS = '/linked-workers';
+  static const WORKER_LIST = '/worker-list';
   static const WORKER_LINKING = '/worker-linking';
   static const WORKER_MANAGEMENT_PERMISSIONS = '/worker-management-permissions';
 }

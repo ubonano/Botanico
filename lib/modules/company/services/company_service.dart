@@ -8,6 +8,7 @@ import '../module.dart';
 class CompanyService extends GetxService with LifeCycleLogService, ContextService {
   @override
   String get logTag => 'CompanyService';
+
   late final CompanyRepository _companyRepository = Get.find();
   late final WorkerService _workerService = Get.find();
 
@@ -16,16 +17,9 @@ class CompanyService extends GetxService with LifeCycleLogService, ContextServic
   Future<CompanyModel?> get(String id) async => await _companyRepository.get(id);
 
   Future<void> create(CompanyModel company, {Transaction? txn}) async {
-    CompanyModel newCompany = company.copyWith(uid: _generateId, ownerUid: session.userUID);
-
+    final newCompany = company.copyWith(uid: _generateId, ownerUid: session.userUID);
     await _companyRepository.create(newCompany, txn: txn);
-
-    await _workerService.updateWorkerCompanyAndRole(
-      session.worker!,
-      newCompany.uid,
-      WorkerRole.owner,
-      txn: txn,
-    );
+    await _workerService.linkWorker(session.worker!, newCompany.uid, WorkerRole.owner, txn: txn);
   }
 
   Future<void> update(CompanyModel company, {Transaction? txn}) async =>

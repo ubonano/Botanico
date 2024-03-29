@@ -57,6 +57,8 @@ class AppBindings extends Bindings {
     Get.lazyPut<WorkerCreateController>(() => WorkerCreateController(), fenix: true);
     Get.lazyPut<LinkedWorkersController>(() => LinkedWorkersController(), fenix: true);
     Get.lazyPut<WorkerLinkingController>(() => WorkerLinkingController(), fenix: true);
+    Get.lazyPut<WorkerLinkingController>(() => WorkerLinkingController(), fenix: true);
+    Get.lazyPut<WorkerUnlinkingController>(() => WorkerUnlinkingController(), fenix: true);
     Get.lazyPut<WorkerManagementPermissionsController>(() => WorkerManagementPermissionsController(), fenix: true);
   }
 }

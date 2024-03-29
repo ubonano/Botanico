@@ -38,8 +38,8 @@ class Pages {
       page: () => const HomePage(),
     ),
     GetPage(
-      name: Routes.LINKED_WORKERS,
-      page: () => const LinkedWorkersPage(),
+      name: Routes.WORKER_LIST,
+      page: () => const WorkerListPage(),
     ),
     GetPage(
       name: Routes.WORKER_LINKING,
