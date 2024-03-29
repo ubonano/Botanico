@@ -30,7 +30,7 @@ class WorkerManagementPermissionsController extends GetxController with LifeCycl
   Future<void> _fetchWorker() async {
     await operationManager.perform(
       operationName: 'Get worker $_workerIdParm',
-      operation: (_) async => worker$.value = await _workerService.get(_workerIdParm),
+      operation: (_) async => worker$.value = await _workerService.getWorker(_workerIdParm),
     );
   }
 
@@ -42,7 +42,7 @@ class WorkerManagementPermissionsController extends GetxController with LifeCycl
       await operationManager.perform(
         operationName: 'Toggle permission $permissionId',
         permissionKey: WorkerPermissions.managePermissionsKey,
-        operation: (_) async => await _workerService.update(modifiedWorker),
+        operation: (_) async => await _workerService.updateWorker(modifiedWorker),
         onSuccess: () => worker$.value = modifiedWorker,
       );
     }

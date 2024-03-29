@@ -16,7 +16,7 @@ class WorkerCreateController extends FormController with LifeCycleLogController,
     await operationManager.perform(
       operationName: 'Create worker',
       successMessage: 'Trabajador creado',
-      operation: (_) async => await _workerService.create(newWorker),
+      operation: (_) async => await _workerService.createWorker(newWorker),
       onSuccess: () async {
         await session.fetchWorker();
         navigate.toLobby();

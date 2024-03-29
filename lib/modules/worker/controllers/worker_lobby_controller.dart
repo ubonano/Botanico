@@ -2,9 +2,9 @@ import 'package:botanico/auxiliaries/auxiliaries.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class LobbyController extends GetxController with LifeCycleLogController, ContextController {
+class WorkerLobbyController extends GetxController with LifeCycleLogController, ContextController {
   @override
-  String get logTag => 'LobbyController';
+  String get logTag => 'WorkerLobbyController';
 
   final RxString uid = ''.obs;
 

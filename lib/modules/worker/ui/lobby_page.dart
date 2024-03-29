@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class LobbyPage extends GetView<LobbyController> {
+class LobbyPage extends GetView<WorkerLobbyController> {
   const LobbyPage({super.key});
 
   @override

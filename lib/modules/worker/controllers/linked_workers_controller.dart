@@ -7,9 +7,8 @@ class LinkedWorkersController extends GetxController with LifeCycleLogController
   String get logTag => 'LinkedWorkersController';
 
   late final WorkerService _workerService = Get.find();
-  late final LinkedWorkerService _linkedWorkerService = Get.find();
 
-  RxList<LinkedWorkerModel> get list$ => _linkedWorkerService.list$;
+  RxList<LinkedWorkerModel> get list$ => _workerService.linkedWorkerList$;
 
   @override
   Future<void> onInit() async {
@@ -17,7 +16,7 @@ class LinkedWorkersController extends GetxController with LifeCycleLogController
 
     // Que no se pueda cambiar permisos a si mismo el usuario...
 
-    _linkedWorkerService.fetchAll(session.companyId);
+    _workerService.fetchAllLinkedWorkers(session.companyId);
   }
 
   Future<void> unlinkWorker(LinkedWorkerModel linkedWorker) async {
@@ -29,10 +28,10 @@ class LinkedWorkersController extends GetxController with LifeCycleLogController
         inTransaction: true,
         operation: (txn) async {
           //Refactor
-          await _linkedWorkerService.delete(session.companyId, linkedWorker.uid, txn: txn);
+          await _workerService.deleteLinkedWorker(session.companyId, linkedWorker.uid, txn: txn);
           await _workerService.cleanWorkerCompanyIdAndRole(linkedWorker.uid, txn: txn);
         },
-        onSuccess: () => _linkedWorkerService.removeFromLocal(linkedWorker),
+        onSuccess: () => _workerService.removeFromLocalLinkedWorker(linkedWorker),
       );
     }
   }
@@ -53,7 +52,7 @@ class LinkedWorkersController extends GetxController with LifeCycleLogController
 
   @override
   void onClose() {
-    _linkedWorkerService.clean();
+    _workerService.cleanLinkedWorkerList();
 
     super.onClose();
   }

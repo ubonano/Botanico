@@ -6,7 +6,6 @@ import '../module.dart';
 
 class CompanyRepository {
   final FirebaseFirestore _firestore = Get.find();
-  late final CollectionReference _collectionRef = _firestore.collection(FirestoreCollections.companies);
 
   Future<CompanyModel?> get(String id) async {
     if (id.isEmpty) return null;
@@ -28,4 +27,6 @@ class CompanyRepository {
     DocumentReference docRef = _collectionRef.doc(company.uid);
     txn != null ? txn.update(docRef, company.toMap()) : await docRef.update(company.toMap());
   }
+
+  CollectionReference<Map<String, dynamic>> get _collectionRef => _firestore.collection(FirestoreCollections.companies);
 }

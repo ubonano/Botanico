@@ -42,8 +42,8 @@ class Pages {
       page: () => const LinkedWorkersPage(),
     ),
     GetPage(
-      name: Routes.LINK_WORKER,
-      page: () => const LinkWorkerPage(),
+      name: Routes.WORKER_LINKING,
+      page: () => const WorkerLinkingPage(),
     ),
     GetPage(
       name: Routes.WORKER_MANAGEMENT_PERMISSIONS,

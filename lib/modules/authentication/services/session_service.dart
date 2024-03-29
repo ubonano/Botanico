@@ -60,7 +60,7 @@ class SessionService extends GetxService with LifeCycleLogService {
   Future<void> fetchWorker() async => await _fetchWorker(userUID);
 
   Future<void> _fetchWorker(String userId) async {
-    final worker = await _workerService.get(userId);
+    final worker = await _workerService.getWorker(userId);
     _worker.value = worker;
     if (worker != null && worker.companyId.isNotEmpty) {
       await _fetchCompany(worker.companyId);

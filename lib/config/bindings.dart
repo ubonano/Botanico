@@ -39,13 +39,12 @@ class AppBindings extends Bindings {
     Get.lazyPut<AuthService>(() => AuthService(), fenix: true);
     Get.lazyPut<WorkerService>(() => WorkerService(), fenix: true);
     Get.lazyPut<CompanyService>(() => CompanyService(), fenix: true);
-    Get.lazyPut<LinkedWorkerService>(() => LinkedWorkerService(), fenix: true);
     Get.lazyPut<PermissionModuleService>(() => PermissionModuleService(), fenix: true);
   }
 
   void _setupControllers() {
     Get.lazyPut<CustomDrawerController>(() => CustomDrawerController(), fenix: true);
-    Get.lazyPut<LobbyController>(() => LobbyController(), fenix: true);
+    Get.lazyPut<WorkerLobbyController>(() => WorkerLobbyController(), fenix: true);
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
 
     Get.lazyPut<SessionService>(() => SessionService(), fenix: true);
@@ -57,7 +56,7 @@ class AppBindings extends Bindings {
     Get.lazyPut<CompanyCreateController>(() => CompanyCreateController(), fenix: true);
     Get.lazyPut<WorkerCreateController>(() => WorkerCreateController(), fenix: true);
     Get.lazyPut<LinkedWorkersController>(() => LinkedWorkersController(), fenix: true);
-    Get.lazyPut<LinkWorkerController>(() => LinkWorkerController(), fenix: true);
+    Get.lazyPut<WorkerLinkingController>(() => WorkerLinkingController(), fenix: true);
     Get.lazyPut<WorkerManagementPermissionsController>(() => WorkerManagementPermissionsController(), fenix: true);
   }
 }

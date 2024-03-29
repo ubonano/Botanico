@@ -3,8 +3,8 @@ import 'package:botanico/ui/custom_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LinkWorkerPage extends GetView<LinkWorkerController> {
-  const LinkWorkerPage({Key? key}) : super(key: key);
+class WorkerLinkingPage extends GetView<WorkerLinkingController> {
+  const WorkerLinkingPage({Key? key}) : super(key: key);
 
   get _title => 'Vincular Trabajador';
   get _linkWorkerButtonText => 'Vincular Trabajador';

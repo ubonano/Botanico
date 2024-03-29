@@ -9,6 +9,6 @@ class Routes {
   static const COMPANY_CREATE = '/company-create';
   static const HOME = '/home';
   static const LINKED_WORKERS = '/linked-workers';
-  static const LINK_WORKER = '/link-worker';
+  static const WORKER_LINKING = '/worker-linking';
   static const WORKER_MANAGEMENT_PERMISSIONS = '/worker-management-permissions';
 }
