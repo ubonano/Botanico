@@ -6,12 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-import '../life_cycle_log.dart';
-
-class OperationManagerService extends GetxService with LifeCycleLogService {
-  @override
-  String get logTag => 'OperationManagerService';
-
+class OperationManagerService extends GetxService {
   late final LogService _logService = Get.find();
   late final SnackbarService _snackbar = Get.find();
   late final SessionService _session = Get.find();

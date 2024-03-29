@@ -6,14 +6,10 @@ import 'package:get/get.dart';
 class WorkerLinkingPage extends GetView<WorkerLinkingController> {
   const WorkerLinkingPage({Key? key}) : super(key: key);
 
-  get _title => 'Vincular Trabajador';
-  get _linkWorkerButtonText => 'Vincular Trabajador';
-  get _scanQrCodeButtonText => 'Escanear Código QR';
-
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: _title,
+      title: 'Vincular Trabajador',
       drawer: null,
       body: Center(
         child: SingleChildScrollView(
@@ -35,8 +31,8 @@ class WorkerLinkingPage extends GetView<WorkerLinkingController> {
                     IconButton(icon: const Icon(Icons.paste), onPressed: controller.pasteWorkerId),
                   ],
                 ),
-                CustomButton(text: _linkWorkerButtonText, onPressed: controller.secureSubmit),
-                CustomButton(text: _scanQrCodeButtonText, onPressed: controller.scanQrCode)
+                CustomButton(text: 'Vincular Trabajador', onPressed: controller.secureSubmit),
+                CustomButton(text: 'Escanear Código QR', onPressed: controller.scanQrCode)
               ],
             ),
           ),

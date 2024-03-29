@@ -2,15 +2,15 @@ import 'package:botanico/auxiliaries/auxiliaries.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class WorkerLobbyController extends GetxController with LifeCycleLogController, ContextController {
+class WorkerLobbyController extends GetxController with ContextController {
   @override
   String get logTag => 'WorkerLobbyController';
 
   final RxString uid = ''.obs;
 
   @override
-  Future<void> onInit() async {
-    await super.onInit();
+  void onInit() async {
+    super.onInit();
 
     uid.value = session.userUID;
   }

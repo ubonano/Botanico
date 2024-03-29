@@ -25,7 +25,6 @@ class AppBindings extends Bindings {
   void _setupRepositories() {
     Get.lazyPut<CompanyRepository>(() => CompanyRepository(), fenix: true);
     Get.lazyPut<WorkerRepository>(() => WorkerRepository(), fenix: true);
-    Get.lazyPut<LinkedWorkerRepository>(() => LinkedWorkerRepository(), fenix: true);
   }
 
   void _setupCommonServices() {
@@ -55,7 +54,7 @@ class AppBindings extends Bindings {
 
     Get.lazyPut<CompanyCreateController>(() => CompanyCreateController(), fenix: true);
     Get.lazyPut<WorkerCreateController>(() => WorkerCreateController(), fenix: true);
-    Get.lazyPut<LinkedWorkersController>(() => LinkedWorkersController(), fenix: true);
+    Get.lazyPut<WorkerListController>(() => WorkerListController(), fenix: true);
     Get.lazyPut<WorkerLinkingController>(() => WorkerLinkingController(), fenix: true);
     Get.lazyPut<WorkerLinkingController>(() => WorkerLinkingController(), fenix: true);
     Get.lazyPut<WorkerUnlinkingController>(() => WorkerUnlinkingController(), fenix: true);

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:botanico/auxiliaries/auxiliaries.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -7,10 +6,7 @@ import 'package:get/get.dart';
 ///
 /// This class provides methods to handle signing in, signing up, signing out,
 /// and password recovery using Firebase Authentication.
-class AuthService extends GetxService with LifeCycleLogService {
-  @override
-  String get logTag => 'AuthService';
-
+class AuthService extends GetxService {
   final FirebaseAuth _auth = Get.find();
 
   /// Stream of authentication state changes.

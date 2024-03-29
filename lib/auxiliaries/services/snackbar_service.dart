@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../life_cycle_log.dart';
-
 /// A service for displaying snackbars within the application using the GetX framework.
 ///
 /// This service extends `GetxService` and provides a unified approach to show snackbars
 /// for different types of messages such as success, error, warning, and informational messages.
 /// It utilizes the `Get.snackbar` method from the GetX package to display these messages.
-class SnackbarService extends GetxService with LifeCycleLogService {
-  @override
-  String get logTag => 'SnackbarService';
-
+class SnackbarService extends GetxService {
   /// Displays a success message snackbar.
   ///
   /// [message] - The success message to be shown.

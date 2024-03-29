@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../module.dart';
 
-class WorkerLinkingController extends FormController with LifeCycleLogController, ContextController {
+class WorkerLinkingController extends FormController with ContextController {
   @override
   String get logTag => 'WorkerLinkingController';
 
@@ -12,6 +12,7 @@ class WorkerLinkingController extends FormController with LifeCycleLogController
   List<String> formFields = ['uid'];
 
   late final WorkerService _workerService = Get.find();
+  late final WorkerListController _workerListController = Get.find();
 
   @override
   Future<void> submit() async {
@@ -26,8 +27,8 @@ class WorkerLinkingController extends FormController with LifeCycleLogController
         operation: (txn) async =>
             await _workerService.linkWorker(worker!, session.companyId, WorkerRole.employee, txn: txn),
         onSuccess: () {
-          _workerService.fetchAllLinkedWorkers();
-          navigate.toLinkedWorkers();
+          _workerListController.fetchAllLinkedWorkers();
+          navigate.toWorkerList();
         },
       );
     }
@@ -41,11 +42,6 @@ class WorkerLinkingController extends FormController with LifeCycleLogController
 
     if (worker.companyId.isNotEmpty && worker.companyId != session.companyId) {
       snackbar.error('El trabajador ya se encuentra vinculado a otra empresa');
-      return false;
-    }
-
-    if (await _workerService.isWorkerAlreadyLinked(session.companyId, worker.uid)) {
-      snackbar.warning('El trabajador ya se encuentra vinculado');
       return false;
     }
 

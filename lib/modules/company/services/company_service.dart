@@ -5,10 +5,7 @@ import 'package:get/get.dart';
 
 import '../module.dart';
 
-class CompanyService extends GetxService with LifeCycleLogService, ContextService {
-  @override
-  String get logTag => 'CompanyService';
-
+class CompanyService extends GetxService with ContextService {
   late final CompanyRepository _companyRepository = Get.find();
   late final WorkerService _workerService = Get.find();
 

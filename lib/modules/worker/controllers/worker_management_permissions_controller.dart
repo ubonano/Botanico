@@ -2,7 +2,7 @@ import 'package:botanico/auxiliaries/auxiliaries.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
-class WorkerManagementPermissionsController extends GetxController with LifeCycleLogController, ContextController {
+class WorkerManagementPermissionsController extends GetxController with ContextController {
   @override
   String get logTag => 'WorkerManagementPermissionsController';
 

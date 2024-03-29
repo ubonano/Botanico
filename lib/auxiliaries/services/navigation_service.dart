@@ -1,12 +1,8 @@
 import 'package:botanico/config/routes.dart';
 import 'package:get/get.dart';
-import '../life_cycle_log.dart';
 import 'log_service.dart';
 
-class NavigationService extends GetxService with LifeCycleLogService {
-  @override
-  String get logTag => 'NavigationService';
-
+class NavigationService extends GetxService {
   final LogService _log = Get.find();
 
   void toHome({bool canPop = false}) => to(Routes.HOME, canPop: canPop);
@@ -15,8 +11,8 @@ class NavigationService extends GetxService with LifeCycleLogService {
   void toSignUp({bool canPop = false}) => to(Routes.SIGN_UP, canPop: canPop);
   void toWorkerCreate({bool canPop = false}) => to(Routes.WORKER_CREATE, canPop: canPop);
   void toCompany({bool canPop = false}) => to(Routes.COMPANY_CREATE, canPop: canPop);
-  void toLinkedWorkers({bool canPop = false}) => to(Routes.WORKER_LIST, canPop: canPop);
-  void toLinkWorker({bool canPop = false}) => to(Routes.WORKER_LINKING, canPop: canPop);
+  void toWorkerList({bool canPop = false}) => to(Routes.WORKER_LIST, canPop: canPop);
+  void toLinkingWorker({bool canPop = false}) => to(Routes.WORKER_LINKING, canPop: canPop);
   void toPermissions(String workerUid, {bool canPop = false}) =>
       to(Routes.WORKER_MANAGEMENT_PERMISSIONS, arguments: workerUid, canPop: canPop);
 

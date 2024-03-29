@@ -3,7 +3,7 @@ import 'package:botanico/ui/custom_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class WorkerListPage extends GetView<LinkedWorkersController> {
+class WorkerListPage extends GetView<WorkerListController> {
   const WorkerListPage({super.key});
 
   @override
@@ -11,15 +11,9 @@ class WorkerListPage extends GetView<LinkedWorkersController> {
     return CustomScaffold(
       title: 'Trabajadores Vinculados',
       body: Obx(
-        () => LinkedWorkersList(linkedWorkers: controller.list$.toList()),
+        () => WorkerList(list: controller.linkedWorkerList$.toList()),
       ),
-      floatingActionButton: PermissionProtected(
-        permission: WorkerPermissions.linkKey,
-        child: FloatingActionButton(
-          onPressed: () => controller.navigate.toLinkWorker(canPop: true),
-          child: const Icon(Icons.add),
-        ),
-      ),
+      floatingActionButton: WorkerLinkingFAB(),
     );
   }
 }

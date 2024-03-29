@@ -47,7 +47,7 @@ abstract class FormController extends GetxController {
   Future<void> submit();
 
   @override
-  Future<void> onInit() async {
+  void onInit() async {
     super.onInit();
     // Initializes text editing controllers for each form field.
     if (formFields.isNotEmpty) _initializeTextControllers();

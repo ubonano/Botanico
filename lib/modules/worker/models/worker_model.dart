@@ -41,49 +41,65 @@ class WorkerModel {
     String? companyId,
     WorkerRole? role,
     Map<String, bool>? permissions,
-  }) {
-    return WorkerModel(
-      uid: uid ?? this.uid,
-      email: email ?? this.email,
-      name: name ?? this.name,
-      birthDate: birthDate ?? this.birthDate,
-      phone: phone ?? this.phone,
-      dni: dni ?? this.dni,
-      companyId: companyId ?? this.companyId,
-      role: role ?? this.role,
-      permissions: permissions ?? this.permissions,
-    );
-  }
+  }) =>
+      WorkerModel(
+        uid: uid ?? this.uid,
+        email: email ?? this.email,
+        name: name ?? this.name,
+        birthDate: birthDate ?? this.birthDate,
+        phone: phone ?? this.phone,
+        dni: dni ?? this.dni,
+        companyId: companyId ?? this.companyId,
+        role: role ?? this.role,
+        permissions: permissions ?? this.permissions,
+      );
 
-  Map<String, dynamic> toMap() {
-    return {
-      'uid': uid,
-      'email': email,
-      'name': name,
-      'birthDate': birthDate,
-      'phone': phone,
-      'dni': dni,
-      'companyId': companyId,
-      'role': workerRoleToString(role),
-      'permissions': permissions,
-    };
-  }
+  Map<String, dynamic> toMap() => {
+        'uid': uid,
+        'email': email,
+        'name': name,
+        'birthDate': birthDate,
+        'phone': phone,
+        'dni': dni,
+        'companyId': companyId,
+        'role': workerRoleToString(role),
+        'permissions': permissions,
+      };
 
-  static WorkerModel fromSnapshot(DocumentSnapshot snapshot) {
-    return WorkerModel.fromMap(snapshot.data() as Map<String, dynamic>);
-  }
+  Map<String, dynamic> toLinkedWorkerMap() => {
+        'uid': uid,
+        'email': email,
+        'name': name,
+        'role': workerRoleToString(role),
+      };
 
-  factory WorkerModel.fromMap(Map<String, dynamic> map) {
-    return WorkerModel(
-      uid: map['uid'] ?? '',
-      email: map['email'] ?? '',
-      name: map['name'] ?? '',
-      birthDate: map['birthDate'] ?? '',
-      phone: map['phone'] ?? '',
-      dni: map['dni'] ?? '',
-      companyId: map['companyId'] ?? '',
-      role: workerRoleFromString(map['role']),
-      permissions: Map<String, bool>.from(map['permissions'] ?? {}),
-    );
-  }
+  static WorkerModel fromSnapshot(DocumentSnapshot snapshot) =>
+      WorkerModel.fromMap(snapshot.data() as Map<String, dynamic>);
+
+  factory WorkerModel.fromMap(Map<String, dynamic> map) => WorkerModel(
+        uid: map['uid'] ?? '',
+        email: map['email'] ?? '',
+        name: map['name'] ?? '',
+        birthDate: map['birthDate'] ?? '',
+        phone: map['phone'] ?? '',
+        dni: map['dni'] ?? '',
+        companyId: map['companyId'] ?? '',
+        role: workerRoleFromString(map['role']),
+        permissions: Map<String, bool>.from(map['permissions'] ?? {}),
+      );
+
+  static WorkerModel fromSnapshotLinkedWorker(DocumentSnapshot snapshot) =>
+      WorkerModel.fromMapLinkedWorker(snapshot.data() as Map<String, dynamic>);
+
+  factory WorkerModel.fromMapLinkedWorker(Map<String, dynamic> map) => WorkerModel(
+        uid: map['uid'] ?? '',
+        email: map['email'] ?? '',
+        name: map['name'] ?? '',
+        birthDate: '',
+        phone: '',
+        dni: '',
+        companyId: '',
+        role: workerRoleFromString(map['role']),
+        permissions: const {},
+      );
 }

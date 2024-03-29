@@ -6,12 +6,10 @@ import 'package:get/get.dart';
 class WorkerManagementPage extends GetView<WorkerManagementPermissionsController> {
   const WorkerManagementPage({super.key});
 
-  get _title => 'Gestión de Permisos'; // TODO agregar nombre del trabajador
-
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: _title,
+      title: 'Gestión de Permisos', // TODO agregar nombre del trabajador
       drawer: null,
       body: Obx(
         () {

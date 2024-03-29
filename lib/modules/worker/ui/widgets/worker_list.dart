@@ -1,28 +1,32 @@
 import 'package:botanico/auxiliaries/auxiliaries.dart';
+import 'package:botanico/modules/authentication/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:botanico/ui/widgets/permission_protected.dart';
 import 'package:botanico/ui/widgets/confirmation_dialog.dart';
 
-class LinkedWorkersList extends StatelessWidget {
-  LinkedWorkersList({Key? key, required this.linkedWorkers}) : super(key: key);
+class WorkerList extends StatelessWidget {
+  WorkerList({Key? key, required this.list}) : super(key: key);
 
-  final List<LinkedWorkerModel> linkedWorkers;
-  final WorkerUnlinkingController unlinkingController = Get.find();
-  final NavigationService navigate = Get.find();
+  final WorkerUnlinkingController _unlinkingController = Get.find();
+  final SessionService _session = Get.find();
+  final NavigationService _navigate = Get.find();
+  final List<LinkedWorkerModel> list;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: linkedWorkers.length,
+      itemCount: list.length,
       itemBuilder: (context, index) {
-        final LinkedWorkerModel linkedWorker = linkedWorkers[index];
+        final LinkedWorkerModel linkedWorker = list[index];
 
         return ListTile(
           title: Text(linkedWorker.name),
           subtitle: Text(linkedWorker.email),
-          trailing: linkedWorker.isNotOwner ? _buildTrailingIconButtons(linkedWorker, context) : null,
+          trailing: linkedWorker.isNotOwner && linkedWorker.uid != _session.worker!.uid
+              ? _buildTrailingIconButtons(linkedWorker, context)
+              : null,
         );
       },
     );
@@ -39,7 +43,7 @@ class LinkedWorkersList extends StatelessWidget {
             onPressed: () => ConfirmationDialog.show(
               context,
               content: '¿Estás seguro de que quieres desvincular a este trabajador?',
-              onConfirm: () => unlinkingController.unlinkWorker(linkedWorker),
+              onConfirm: () => _unlinkingController.unlinkWorker(linkedWorker),
             ),
           ),
         ),
@@ -47,7 +51,7 @@ class LinkedWorkersList extends StatelessWidget {
           permission: WorkerPermissions.managePermissionsKey,
           child: IconButton(
             icon: const Icon(Icons.security),
-            onPressed: () => navigate.toPermissions(linkedWorker.uid, canPop: true),
+            onPressed: () => _navigate.toPermissions(linkedWorker.uid, canPop: true),
           ),
         ),
       ],

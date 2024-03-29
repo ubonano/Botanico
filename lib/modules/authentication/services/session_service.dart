@@ -1,14 +1,10 @@
-import 'package:botanico/auxiliaries/auxiliaries.dart';
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 
 import 'package:get/get.dart';
 
-class SessionService extends GetxService with LifeCycleLogService {
-  @override
-  String get logTag => 'SessionService';
-
+class SessionService extends GetxService {
   late final AuthService _authService = Get.find();
   late final WorkerService _workerService = Get.find();
   late final CompanyService _companyService = Get.find();
