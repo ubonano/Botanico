@@ -16,10 +16,10 @@ class WorkerService extends GetxService with ContextService {
 
   Future<void> createWorker(WorkerModel worker) async => await _workerRepository.create(worker);
 
-  Future<void> linkWorker(WorkerModel worker, String companyId, WorkerRole role, {Transaction? txn}) async {
-    final updatedWorker = worker.copyWith(companyId: companyId, role: role);
+  Future<void> linkWorker(WorkerModel worker, {Transaction? txn}) async {
+    final updatedWorker = worker.copyWith(companyId: session.companyId, role: WorkerRole.employee);
 
-    await _workerRepository.link(companyId, updatedWorker, txn: txn);
+    await _workerRepository.link(session.companyId, updatedWorker, txn: txn);
     await updateWorker(updatedWorker, txn: txn);
   }
 
@@ -29,6 +29,22 @@ class WorkerService extends GetxService with ContextService {
     final changes = {'companyId': '', 'role': workerRoleToString(WorkerRole.undefined)};
 
     await _workerRepository.updatePartial(workerId, changes, txn: txn);
+  }
+
+  Future<void> togglePermission(WorkerModel worker, String permissionId) async {
+    final updatedPermissions = _togglePermissionInMap(worker.permissions, permissionId);
+    final modifiedWorker = worker.copyWith(permissions: updatedPermissions);
+
+    await updateWorker(modifiedWorker);
+  }
+
+  Map<String, bool> _togglePermissionInMap(Map<String, bool> permissions, String permissionId) {
+    if (permissions.containsKey(permissionId) && permissions[permissionId] == true) {
+      permissions.remove(permissionId);
+    } else {
+      permissions[permissionId] = true;
+    }
+    return permissions;
   }
 
   Future<void> updateWorker(WorkerModel worker, {Transaction? txn}) async =>

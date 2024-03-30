@@ -1,6 +1,7 @@
 import 'package:botanico/auxiliaries/auxiliaries.dart';
+import 'package:get/get.dart';
 
-class SignInController extends FormController with ContextController {
+class SignInController extends GetxController with FormController, ContextController {
   @override
   String get logTag => 'SignInController';
 

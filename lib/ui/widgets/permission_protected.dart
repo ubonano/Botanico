@@ -12,8 +12,6 @@ class PermissionProtected extends StatelessWidget {
   Widget build(BuildContext context) {
     final sessionController = Get.find<SessionService>();
 
-    final hasPermission = sessionController.worker?.hasPermission(permission) ?? false;
-
-    return hasPermission ? child : const SizedBox.shrink();
+    return Obx(() => sessionController.worker?.hasPermission(permission) ?? false ? child : const SizedBox.shrink());
   }
 }

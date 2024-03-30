@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../module.dart';
 
-class WorkerLinkingController extends FormController with ContextController {
+class WorkerLinkingController extends GetxController with FormController, ContextController {
   @override
   String get logTag => 'WorkerLinkingController';
 
@@ -24,8 +24,7 @@ class WorkerLinkingController extends FormController with ContextController {
         permissionKey: WorkerPermissions.linkKey,
         successMessage: 'Trabajador vinculado',
         inTransaction: true,
-        operation: (txn) async =>
-            await _workerService.linkWorker(worker!, session.companyId, WorkerRole.employee, txn: txn),
+        operation: (txn) async => await _workerService.linkWorker(worker!, txn: txn),
         onSuccess: () {
           _workerListController.fetchAllWorkers();
           navigate.toWorkerList();
@@ -37,11 +36,6 @@ class WorkerLinkingController extends FormController with ContextController {
   Future<bool> canLink(WorkerModel? worker) async {
     if (worker == null) {
       snackbar.error('No se encontro trabajador con el código ingresado');
-      return false;
-    }
-
-    if (worker.companyId.isNotEmpty && worker.companyId != session.companyId) {
-      snackbar.error('El trabajador ya se encuentra vinculado a otra empresa');
       return false;
     }
 

@@ -1,6 +1,7 @@
 import 'package:botanico/auxiliaries/auxiliaries.dart';
+import 'package:get/get.dart';
 
-class RecoverPasswordController extends FormController with ContextController {
+class RecoverPasswordController extends GetxController with FormController, ContextController {
   @override
   String get logTag => 'RecoverPasswordController';
 

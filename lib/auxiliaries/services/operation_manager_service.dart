@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class OperationManagerService extends GetxService {
+  late final FirebaseFirestore _firestore = Get.find();
   late final LogService _logService = Get.find();
   late final SnackbarService _snackbar = Get.find();
   late final SessionService _session = Get.find();
@@ -47,7 +48,8 @@ class OperationManagerService extends GetxService {
 
   Future<T> _executeOperation<T>(Future<T> Function(Transaction? txn) operation, bool inTransaction) async {
     if (inTransaction) {
-      return FirebaseFirestore.instance.runTransaction<T>((Transaction txn) async => await operation(txn));
+      return _firestore.runTransaction<T>((Transaction txn) async => await operation(txn));
+      // .catchError((e) => throw Exception('aaaaa'));
     } else {
       return await operation(null);
     }
