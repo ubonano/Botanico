@@ -7,22 +7,17 @@ import '../module.dart';
 class CompanyRepository {
   final FirebaseFirestore _firestore = Get.find();
 
-  String generateId() => _companyRef.doc().id;
+  String get generateId => _companyRef.doc().id;
 
   Future<CompanyModel?> get(String id) async {
     final docSnapshot = await _companyRef.doc(id).get();
     return docSnapshot.exists ? CompanyModel.fromSnapshot(docSnapshot) : null;
   }
 
-  Future<void> create(CompanyModel company, {Transaction? txn}) async {
+  Future<void> create(CompanyModel company) async {
     DocumentReference docRef = _companyRef.doc(company.uid);
 
-    txn != null ? txn.set(docRef, company.toMap()) : await docRef.set(company.toMap());
-  }
-
-  Future<void> update(CompanyModel company, {Transaction? txn}) async {
-    DocumentReference docRef = _companyRef.doc(company.uid);
-    txn != null ? txn.update(docRef, company.toMap()) : await docRef.update(company.toMap());
+    await docRef.set(company.toMap());
   }
 
   CollectionReference<Map<String, dynamic>> get _companyRef => _firestore.collection(FirestoreCollections.companies);

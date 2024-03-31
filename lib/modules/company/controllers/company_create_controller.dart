@@ -14,19 +14,14 @@ class CompanyCreateController extends GetxController with FormController, Contex
 
   @override
   Future<void> submit() async {
-    await operationManager.perform(
-      operationName: 'Create company',
-      successMessage: 'Empresa creada',
-      inTransaction: true,
-      operation: (txn) async => await _companyService.create(_newCompany, txn: txn),
-      onSuccess: () async {
-        await session.fetchWorker();
-        navigate.toHome();
-      },
+    await _companyService.create(
+      company: _newCompany,
+      onSuccess: navigate.toHome,
     );
   }
 
   CompanyModel get _newCompany => CompanyModel(
+        ownerUid: auth.user!.uid,
         name: getFieldValue('name'),
         address: getFieldValue('address'),
         city: getFieldValue('city'),

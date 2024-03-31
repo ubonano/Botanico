@@ -12,7 +12,7 @@ class WorkerLobbyController extends GetxController with ContextController {
   void onInit() async {
     super.onInit();
 
-    uid.value = session.user?.uid ?? '';
+    uid.value = auth.user?.uid ?? '';
   }
 
   void copyToClipboard() {

@@ -18,7 +18,7 @@ class WorkerCreateController extends GetxController with FormController, Context
       successMessage: 'Trabajador creado',
       operation: (_) async => await _workerService.createWorker(newWorker),
       onSuccess: () async {
-        await session.fetchWorker();
+        await auth.fetchWorker();
         navigate.toLobby();
       },
     );

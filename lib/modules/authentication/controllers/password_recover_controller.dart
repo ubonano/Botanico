@@ -10,7 +10,7 @@ class PasswordRecoverController extends GetxController with FormController, Cont
 
   @override
   Future<void> submit() async {
-    await session.passwordRecover(
+    await auth.passwordRecover(
       email: getFieldValue('email'),
       onSuccess: navigate.back,
     );

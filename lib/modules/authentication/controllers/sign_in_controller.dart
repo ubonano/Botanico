@@ -10,7 +10,7 @@ class SignInController extends GetxController with FormController, ContextContro
 
   @override
   Future<void> submit() async {
-    await session.signIn(
+    await auth.signIn(
       email: getFieldValue('email'),
       password: getFieldValue('password'),
       onWorkerLinkedToCompany: navigate.toHome,
