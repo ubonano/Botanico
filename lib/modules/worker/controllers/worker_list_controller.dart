@@ -1,4 +1,4 @@
-import 'package:botanico/auxiliaries/auxiliaries.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +19,7 @@ class WorkerListController extends GetxController with ContextController {
   Future<void> fetchAllWorkers() async {
     await operationManager.perform(
       operationName: 'Fetch workers',
-      permissionKey: WorkerPermissions.viewKey,
+      permissionKey: WorkerModulePermissions.viewKey,
       operation: (_) async => workerList$.value = await _workerService.getAllLinkedWorkers(),
     );
   }

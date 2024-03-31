@@ -1,4 +1,4 @@
-import 'package:botanico/auxiliaries/auxiliaries.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +21,7 @@ class WorkerLinkingController extends GetxController with FormController, Contex
     if (validate(worker)) {
       await operationManager.perform(
         operationName: 'Link worker',
-        permissionKey: WorkerPermissions.linkKey,
+        permissionKey: WorkerModulePermissions.linkKey,
         successMessage: 'Trabajador vinculado',
         inTransaction: true,
         operation: (txn) async => await _workerService.linkWorker(worker!, txn: txn),

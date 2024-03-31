@@ -20,4 +20,6 @@ export 'ui/worker_lobby_page.dart';
 export 'ui/widgets/worker_list.dart';
 export 'ui/widgets/worker_linking_fab.dart';
 
-export 'worker_permission.dart';
+export 'exceptions/worker_not_found_exception.dart';
+
+export 'worker_module_permission.dart';

@@ -1,6 +1,5 @@
-import 'package:botanico/auxiliaries/auxiliaries.dart';
 import 'package:botanico/modules/authentication/module.dart';
-import 'package:botanico/ui/custom_ui.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/worker/module.dart';
@@ -36,7 +35,7 @@ class WorkerList extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         PermissionProtected(
-          permission: WorkerPermissions.unlinkKey,
+          permission: WorkerModulePermissions.unlinkKey,
           child: IconButton(
             icon: const Icon(Icons.person_off),
             onPressed: () => ConfirmationDialog.show(
@@ -47,7 +46,7 @@ class WorkerList extends StatelessWidget {
           ),
         ),
         PermissionProtected(
-          permission: WorkerPermissions.managePermissionsKey,
+          permission: WorkerModulePermissions.managePermissionsKey,
           child: IconButton(
             icon: const Icon(Icons.security),
             onPressed: () => _navigate.toPermissions(worker.uid, canPop: true),

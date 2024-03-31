@@ -1,4 +1,4 @@
-import 'package:botanico/auxiliaries/auxiliaries.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +12,7 @@ class WorkerUnlinkingController extends GetxController with ContextController {
   Future<void> unlinkWorker(WorkerModel worker) async {
     await operationManager.perform(
       operationName: 'Unlink worker',
-      permissionKey: WorkerPermissions.unlinkKey,
+      permissionKey: WorkerModulePermissions.unlinkKey,
       successMessage: 'Trabajador desvinculado',
       inTransaction: true,
       operation: (txn) async => await _workerService.unlinkWorker(worker.uid, txn: txn),
