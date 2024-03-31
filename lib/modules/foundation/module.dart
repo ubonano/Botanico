@@ -1,4 +1,3 @@
-export 'services/context_service.dart';
 export 'services/snackbar_service.dart';
 export 'services/permission_module_service.dart';
 export 'services/operation_manager_service.dart';

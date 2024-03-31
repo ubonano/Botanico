@@ -1,11 +1,12 @@
 import 'dart:async';
 
-import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-class WorkerService extends GetxService with ContextService {
+class WorkerService extends GetxService {
+  late final AuthService auth = Get.find();
   final WorkerRepository _workerRepository = Get.find();
 
   Future<List<WorkerModel>> getAllLinkedWorkers() async {
