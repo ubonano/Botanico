@@ -10,7 +10,7 @@ mixin ContextController on GetxController {
   late final OperationManagerService operationManager = Get.find();
   late final SessionService session = Get.find();
   late final SnackbarService snackbar = Get.find();
-  late final NavigationService navigate = Get.find();
+  late final NavigationController navigate = Get.find();
 
   @override
   void onInit() {

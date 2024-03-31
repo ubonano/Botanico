@@ -31,7 +31,6 @@ class AppBindings extends Bindings {
     Get.put(LogService(), permanent: true);
     Get.put(SnackbarService(), permanent: true);
     Get.put(OperationManagerService(), permanent: true);
-    Get.put(NavigationService(), permanent: true);
   }
 
   void _setupBusinessServices() {
@@ -42,6 +41,7 @@ class AppBindings extends Bindings {
   }
 
   void _setupControllers() {
+    Get.put(NavigationController(), permanent: true);
     Get.lazyPut<CustomDrawerController>(() => CustomDrawerController(), fenix: true);
     Get.lazyPut<WorkerLobbyController>(() => WorkerLobbyController(), fenix: true);
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);

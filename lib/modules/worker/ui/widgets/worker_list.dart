@@ -9,7 +9,7 @@ class WorkerList extends StatelessWidget {
 
   final WorkerUnlinkingController _unlinkingController = Get.find();
   final SessionService _session = Get.find();
-  final NavigationService _navigate = Get.find();
+  final NavigationController _navigate = Get.find();
   final List<WorkerModel> list;
 
   @override

@@ -7,7 +7,7 @@ import '../../module.dart';
 class WorkerLinkingFAB extends StatelessWidget {
   WorkerLinkingFAB({super.key});
 
-  final NavigationService navigate = Get.find();
+  final NavigationController navigate = Get.find();
 
   @override
   Widget build(BuildContext context) {

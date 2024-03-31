@@ -2,7 +2,7 @@ export 'services/context_service.dart';
 export 'services/snackbar_service.dart';
 export 'services/permission_module_service.dart';
 export 'services/operation_manager_service.dart';
-export 'services/navigation_service.dart';
+export 'controllers/navigation_controller.dart';
 export 'services/log_service.dart';
 
 export 'controllers/context_controller.dart';
