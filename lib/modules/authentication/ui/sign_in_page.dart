@@ -7,15 +7,10 @@ import '../module.dart';
 class SignInPage extends GetView<SignInController> {
   const SignInPage({super.key});
 
-  get _title => 'Iniciar Sesión';
-  get _signInButtonText => 'Iniciar Sesión';
-  get _forgotPasswordButtonText => '¿Olvidaste tu contraseña';
-  get _toSignUpButtonText => '¿No tenes cuenta? Crear nueva cuenta';
-
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: _title,
+      title: 'Iniciar Sesión',
       drawer: null,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -29,14 +24,14 @@ class SignInPage extends GetView<SignInController> {
                 controller: controller.getFieldController('password')!,
                 onFieldSubmitted: controller.secureSubmit,
               ),
-              CustomButton(text: _signInButtonText, onPressed: controller.secureSubmit),
+              CustomButton(text: 'Iniciar Sesión', onPressed: controller.secureSubmit),
               CustomTextButton(
-                text: _forgotPasswordButtonText,
+                text: '¿Olvidaste tu contraseña',
                 onPressed: () => Get.dialog(
                   const RecoverPasswordDialog(),
                 ),
               ),
-              CustomTextButton(text: _toSignUpButtonText, onPressed: controller.navigate.toSignUp),
+              CustomTextButton(text: '¿No tenes cuenta? Crear nueva cuenta', onPressed: controller.navigate.toSignUp),
             ],
           ),
         ),

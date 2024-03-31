@@ -5,7 +5,7 @@ import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
 class SessionService extends GetxService {
-  late final AuthService _authService = Get.find();
+  late final AuthRepository _authService = Get.find();
   late final WorkerService _workerService = Get.find();
   late final CompanyService _companyService = Get.find();
 

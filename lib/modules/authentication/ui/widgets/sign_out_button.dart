@@ -26,7 +26,7 @@ class _SignOutIconButtonState extends State<SignOutIconButton> {
 
   @override
   Widget build(BuildContext context) {
-    final signOutController = Get.find<SignOutController>();
+    late final SignOutController signOutController = Get.find();
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovering = true),

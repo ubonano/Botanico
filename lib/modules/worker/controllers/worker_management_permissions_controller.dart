@@ -26,6 +26,7 @@ class WorkerManagementPermissionsController extends GetxController with ContextC
   Future<void> fetchWorker() async {
     await operationManager.perform(
       operationName: 'Get worker $_workerIdParm',
+      permissionKey: WorkerPermissions.viewKey,
       operation: (_) async => worker$.value = await _workerService.getWorker(_workerIdParm),
       onError: (error) => navigate.toHome(),
     );

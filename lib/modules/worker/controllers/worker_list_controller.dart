@@ -16,7 +16,13 @@ class WorkerListController extends GetxController with ContextController {
     fetchAllWorkers();
   }
 
-  Future<void> fetchAllWorkers() async => workerList$.value = await _workerService.getAllLinkedWorkers();
+  Future<void> fetchAllWorkers() async {
+    await operationManager.perform(
+      operationName: 'Fetch workers',
+      permissionKey: WorkerPermissions.viewKey,
+      operation: (_) async => workerList$.value = await _workerService.getAllLinkedWorkers(),
+    );
+  }
 
   void removeWorker(WorkerModel worker) => workerList$.removeWhere((lw) => lw.uid == worker.uid);
 

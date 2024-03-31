@@ -18,7 +18,7 @@ class WorkerLinkingController extends GetxController with FormController, Contex
   Future<void> submit() async {
     final worker = await _workerService.getWorker(getFieldValue('uid'));
 
-    if (await canLink(worker)) {
+    if (validate(worker)) {
       await operationManager.perform(
         operationName: 'Link worker',
         permissionKey: WorkerPermissions.linkKey,
@@ -33,7 +33,7 @@ class WorkerLinkingController extends GetxController with FormController, Contex
     }
   }
 
-  Future<bool> canLink(WorkerModel? worker) async {
+  bool validate(WorkerModel? worker) {
     if (worker == null) {
       snackbar.error('No se encontro trabajador con el código ingresado');
       return false;

@@ -2,19 +2,15 @@ import 'package:botanico/ui/custom_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/sign_up_controller.dart';
+import '../module.dart';
 
 class SignUpPage extends GetView<SignUpController> {
   const SignUpPage({super.key});
 
-  get _title => 'Registro';
-  get _signUpButtonText => 'Registrar';
-  get _toSignInButtonText => '¿Ya tenes cuenta? Inicia sesión';
-
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: _title,
+      title: 'Registro',
       drawer: null,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -30,8 +26,8 @@ class SignUpPage extends GetView<SignUpController> {
                 passwordController: controller.getFieldController('password')!,
                 onFieldSubmitted: controller.secureSubmit,
               ),
-              CustomButton(text: _signUpButtonText, onPressed: controller.secureSubmit),
-              CustomTextButton(text: _toSignInButtonText, onPressed: controller.navigate.toSignIn),
+              CustomButton(text: 'Registrar', onPressed: controller.secureSubmit),
+              CustomTextButton(text: '¿Ya tenes cuenta? Inicia sesión', onPressed: controller.navigate.toSignIn),
             ],
           ),
         ),

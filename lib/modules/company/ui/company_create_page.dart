@@ -7,13 +7,10 @@ import '../module.dart';
 class CompanyCreatePage extends GetView<CompanyCreateController> {
   const CompanyCreatePage({super.key});
 
-  get _title => 'Crear empresa';
-  get _labelButton => 'Guardar empresa';
-
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: _title,
+      title: 'Crear empresa',
       drawer: null,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -27,7 +24,7 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
               ProvinceInputField(controller: controller.getFieldController('province')!),
               CountryInputField(controller: controller.getFieldController('country')!),
               PhoneInputField(controller: controller.getFieldController('phone')!),
-              CustomButton(text: _labelButton, onPressed: controller.secureSubmit),
+              CustomButton(text: 'Guardar empresa', onPressed: controller.secureSubmit),
             ],
           ),
         ),

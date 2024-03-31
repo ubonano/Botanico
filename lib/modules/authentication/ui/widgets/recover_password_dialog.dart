@@ -6,14 +6,10 @@ import 'package:get/get.dart';
 class RecoverPasswordDialog extends GetView<RecoverPasswordController> {
   const RecoverPasswordDialog({Key? key}) : super(key: key);
 
-  get _title => 'Recuperar contraseña';
-  get _cancelButtonText => 'Cancelar';
-  get _confirmButtonText => 'Enviar';
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(_title),
+      title: const Text('Recuperar contraseña'),
       content: Form(
         key: controller.formKey,
         child: EmailInputField(
@@ -22,10 +18,10 @@ class RecoverPasswordDialog extends GetView<RecoverPasswordController> {
         ),
       ),
       actions: [
-        TextButton(onPressed: controller.navigate.back, child: Text(_cancelButtonText)),
+        TextButton(onPressed: controller.navigate.back, child: const Text('Cancelar')),
         TextButton(
           onPressed: controller.secureSubmit,
-          child: Text(_confirmButtonText),
+          child: const Text('Enviar'),
         ),
       ],
     );

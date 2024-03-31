@@ -12,8 +12,8 @@ class OperationManagerService extends GetxService {
   late final SnackbarService _snackbar = Get.find();
   late final SessionService _session = Get.find();
 
-  Future<T?> perform<T>({
-    required Future<T> Function(Transaction? txn) operation,
+  Future<void> perform({
+    required Future Function(Transaction? txn) operation,
     String operationName = "Operation",
     String permissionKey = '',
     String successMessage = '',
@@ -24,34 +24,33 @@ class OperationManagerService extends GetxService {
     bool inTransaction = false,
   }) async {
     try {
-      if (permissionKey.isNotEmpty && !_session.worker!.hasPermission(permissionKey)) {
-        throw Exception('permission-denied');
-      }
+      if (_hasPermission(permissionKey)) throw Exception('permission-denied');
 
-      T result = await _executeOperation(operation, inTransaction);
+      await _executeOperation(operation, inTransaction);
 
       if (successMessage.isNotEmpty) _snackbar.success(successMessage);
       _logService.info("$operationName exitosa.");
 
       onSuccess?.call();
-      return result;
     } catch (e) {
       if (showErrorMessageBySnackbar) _snackbar.error(_getErrorMessage(e));
       _logService.error("$operationName fallida: ${_getErrorMessage(e)}", e);
 
       onError?.call(e);
-      return null;
     } finally {
       onFinalize?.call();
     }
   }
 
-  Future<T> _executeOperation<T>(Future<T> Function(Transaction? txn) operation, bool inTransaction) async {
+  bool _hasPermission(String permissionKey) =>
+      permissionKey.isNotEmpty && !_session.worker!.hasPermission(permissionKey);
+
+  Future<void> _executeOperation<T>(Future<T> Function(Transaction? txn) operation, bool inTransaction) async {
     if (inTransaction) {
-      return _firestore.runTransaction<T>((Transaction txn) async => await operation(txn));
+      _firestore.runTransaction((Transaction txn) async => await operation(txn));
       // .catchError((e) => throw Exception('aaaaa'));
     } else {
-      return await operation(null);
+      await operation(null);
     }
   }
 }

@@ -1,4 +1,4 @@
-export 'services/auth_service.dart';
+export 'repositories/auth_repository.dart';
 export 'services/session_service.dart';
 
 export 'controllers/recover_password_controller.dart';

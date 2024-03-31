@@ -6,7 +6,7 @@ class SignOutController extends GetxController with ContextController {
   String get logTag => 'SignOutController';
 
   Future<void> signOut() async {
-    return operationManager.perform(
+    await operationManager.perform(
       operationName: 'Sign out',
       operation: (_) async => await session.signOut(),
       onSuccess: navigate.toSignIn,

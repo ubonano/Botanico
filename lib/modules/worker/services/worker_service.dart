@@ -14,7 +14,10 @@ class WorkerService extends GetxService with ContextService {
 
   Future<WorkerModel?> getWorker(String id) async => await _workerRepository.get(id);
 
-  Future<void> createWorker(WorkerModel worker) async => await _workerRepository.create(worker);
+  Future<void> createWorker(WorkerModel worker) async {
+    final workerUpdated = worker.copyWith(uid: session.userUID, email: session.userEmail);
+    await _workerRepository.create(workerUpdated);
+  }
 
   Future<void> linkWorker(WorkerModel worker, {Transaction? txn}) async {
     final updatedWorker = worker.copyWith(companyId: session.companyId, role: WorkerRole.employee);

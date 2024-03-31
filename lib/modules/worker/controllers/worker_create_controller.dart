@@ -25,8 +25,6 @@ class WorkerCreateController extends GetxController with FormController, Context
   }
 
   WorkerModel get newWorker => WorkerModel(
-        uid: session.userUID,
-        email: session.userEmail,
         name: getFieldValue('name'),
         birthDate: getFieldValue('birthDate'),
         phone: getFieldValue('phone'),
