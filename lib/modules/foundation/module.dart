@@ -35,6 +35,7 @@ export 'ui/widgets/permission_protected.dart';
 
 export 'ui/home/home_controller.dart';
 export 'ui/home/home_page.dart';
+export 'ui/app.dart';
 
 export 'aux/firestore_collections.dart';
 export 'aux/validator.dart';
