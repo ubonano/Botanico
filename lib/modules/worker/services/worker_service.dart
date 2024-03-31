@@ -9,26 +9,26 @@ class WorkerService extends GetxService with ContextService {
   final WorkerRepository _workerRepository = Get.find();
 
   Future<List<WorkerModel>> getAllLinkedWorkers() async {
-    if (!session.workerIsLoaded) await session.fetchWorker();
-    return await _workerRepository.getAllLinkedWorkers(session.companyId);
+    if (!auth.workerIsLoaded) await auth.fetchWorker();
+    return await _workerRepository.getAllLinkedWorkers(auth.company!.uid);
   }
 
   Future<WorkerModel?> getWorker(String id) async => await _workerRepository.get(id);
 
   Future<void> createWorker(WorkerModel worker) async {
-    final workerUpdated = worker.copyWith(uid: session.userUID, email: session.userEmail);
+    final workerUpdated = worker.copyWith(uid: auth.user!.uid, email: auth.user!.email);
     await _workerRepository.create(workerUpdated);
   }
 
   Future<void> linkWorker(WorkerModel worker, {Transaction? txn}) async {
-    final updatedWorker = worker.copyWith(companyId: session.companyId, role: WorkerRole.employee);
+    final updatedWorker = worker.copyWith(companyId: auth.company!.uid, role: WorkerRole.employee);
 
-    await _workerRepository.link(session.companyId, updatedWorker, txn: txn);
+    await _workerRepository.link(auth.company!.uid, updatedWorker, txn: txn);
     await updateWorker(updatedWorker, txn: txn);
   }
 
   Future<void> unlinkWorker(String workerId, {Transaction? txn}) async {
-    await _workerRepository.unlink(session.companyId, workerId, txn: txn);
+    await _workerRepository.unlink(auth.company!.uid, workerId, txn: txn);
 
     final changes = {'companyId': '', 'role': workerRoleToString(WorkerRole.undefined)};
 

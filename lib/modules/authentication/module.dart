@@ -1,7 +1,7 @@
 export 'repositories/auth_repository.dart';
-export 'services/session_service.dart';
+export 'services/auth_service.dart';
 
-export 'controllers/recover_password_controller.dart';
+export 'controllers/password_recover_controller.dart';
 export 'ui/widgets/recover_password_dialog.dart';
 
 export 'controllers/sign_in_controller.dart';

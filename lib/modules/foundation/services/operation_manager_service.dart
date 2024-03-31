@@ -1,6 +1,6 @@
 import 'package:botanico/modules/foundation/services/log_service.dart';
 import 'package:botanico/modules/foundation/services/snackbar_service.dart';
-import 'package:botanico/modules/authentication/services/session_service.dart';
+import 'package:botanico/modules/authentication/services/auth_service.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,7 +10,7 @@ class OperationManagerService extends GetxService {
   late final FirebaseFirestore _firestore = Get.find();
   late final LogService _logService = Get.find();
   late final SnackbarService _snackbar = Get.find();
-  late final SessionService _session = Get.find();
+  late final AuthService _session = Get.find();
 
   Future<void> perform({
     required Future Function(Transaction? txn) operation,

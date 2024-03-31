@@ -4,7 +4,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RecoverPasswordDialog extends GetView<RecoverPasswordController> {
+class RecoverPasswordDialog extends GetView<PasswordRecoverController> {
   const RecoverPasswordDialog({Key? key}) : super(key: key);
 
   @override

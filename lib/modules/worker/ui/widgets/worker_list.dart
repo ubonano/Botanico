@@ -8,7 +8,7 @@ class WorkerList extends StatelessWidget {
   WorkerList({Key? key, required this.list}) : super(key: key);
 
   final WorkerUnlinkingController _unlinkingController = Get.find();
-  final SessionService _session = Get.find();
+  final AuthService _session = Get.find();
   final NavigationController _navigate = Get.find();
   final List<WorkerModel> list;
 

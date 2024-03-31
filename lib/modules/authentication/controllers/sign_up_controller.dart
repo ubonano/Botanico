@@ -10,12 +10,9 @@ class SignUpController extends GetxController with FormController, ContextContro
 
   @override
   Future<void> submit() async {
-    await operationManager.perform(
-      operationName: 'Sign up',
-      operation: (_) async => await session.signUp(
-        getFieldValue('email'),
-        getFieldValue('password'),
-      ),
+    await session.signUp(
+      email: getFieldValue('email'),
+      password: getFieldValue('password'),
       onSuccess: navigate.toWorkerCreate,
     );
   }

@@ -12,7 +12,7 @@ class CompanyService extends GetxService with ContextService {
   Future<CompanyModel?> get(String id) async => await _companyRepository.get(id);
 
   Future<void> create(CompanyModel company, {Transaction? txn}) async {
-    final newCompany = company.copyWith(uid: _generateId, ownerUid: session.userUID);
+    final newCompany = company.copyWith(uid: _generateId, ownerUid: auth.user!.uid);
     await _companyRepository.create(newCompany, txn: txn);
   }
 

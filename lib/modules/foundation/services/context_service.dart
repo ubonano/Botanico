@@ -5,6 +5,6 @@ import 'package:get/get.dart';
 
 mixin ContextService on GetxService {
   late final FirebaseFirestore firestore = Get.find();
-  late final SessionService session = Get.find();
+  late final AuthService auth = Get.find();
   late final OperationManagerService operationManager = Get.find();
 }

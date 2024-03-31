@@ -9,13 +9,11 @@ class AuthRepository {
 
   User? get user => _auth.currentUser;
 
-  Future<User?> signIn(String email, String password) async {
-    return (await _auth.signInWithEmailAndPassword(email: email, password: password)).user;
-  }
+  Future<User?> signIn(String email, String password) async =>
+      (await _auth.signInWithEmailAndPassword(email: email, password: password)).user;
 
-  Future<User?> signUp(String email, String password) async {
-    return (await _auth.createUserWithEmailAndPassword(email: email, password: password)).user;
-  }
+  Future<User?> signUp(String email, String password) async =>
+      (await _auth.createUserWithEmailAndPassword(email: email, password: password)).user;
 
   Future<void> signOut() async => await _auth.signOut();
 

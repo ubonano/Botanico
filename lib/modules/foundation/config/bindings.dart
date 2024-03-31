@@ -34,7 +34,7 @@ class AppBindings extends Bindings {
   }
 
   void _setupBusinessServices() {
-    Get.lazyPut<SessionService>(() => SessionService(), fenix: true);
+    Get.lazyPut<AuthService>(() => AuthService(), fenix: true);
     Get.lazyPut<WorkerService>(() => WorkerService(), fenix: true);
     Get.lazyPut<CompanyService>(() => CompanyService(), fenix: true);
     Get.lazyPut<PermissionModuleService>(() => PermissionModuleService(), fenix: true);
@@ -49,7 +49,7 @@ class AppBindings extends Bindings {
     Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
     Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true);
     Get.lazyPut<SignOutController>(() => SignOutController(), fenix: true);
-    Get.lazyPut<RecoverPasswordController>(() => RecoverPasswordController(), fenix: true);
+    Get.lazyPut<PasswordRecoverController>(() => PasswordRecoverController(), fenix: true);
 
     Get.lazyPut<CompanyCreateController>(() => CompanyCreateController(), fenix: true);
     Get.lazyPut<WorkerCreateController>(() => WorkerCreateController(), fenix: true);
