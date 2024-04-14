@@ -14,7 +14,7 @@ class RecoverPasswordDialog extends GetView<PasswordRecoverController> {
       content: Form(
         key: controller.formKey,
         child: EmailInputField(
-          controller: controller.getFieldController('email')!,
+          controller,
           onFieldSubmitted: controller.secureSubmit,
         ),
       ),

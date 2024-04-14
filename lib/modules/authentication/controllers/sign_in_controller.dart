@@ -1,3 +1,4 @@
+import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 
@@ -5,17 +6,29 @@ class SignInController extends GetxController with FormController, ContextContro
   @override
   String get logTag => 'SignInController';
 
-  @override
-  List<String> formFields = ['email', 'password'];
+  late final PostSignInService _postSignInService = Get.find();
 
   @override
-  Future<void> submit() async {
-    await auth.signIn(
-      email: getFieldValue('email'),
-      password: getFieldValue('password'),
-      onWorkerLinkedToCompany: navigate.toHome,
-      onWorkerNotLinkedToCompany: navigate.toLobby,
-      onUserWithoutWorker: navigate.toWorkerCreate,
+  List<String> formFields = [FieldKeys.email, FieldKeys.password];
+
+  @override
+  Future<void> submit() async => await _signIn(
+        getFieldValue(FieldKeys.email),
+        getFieldValue(FieldKeys.password),
+      );
+
+  Future<void> _signIn(String email, String password) async {
+    await oprManager.perform(
+      operationName: 'Sign in',
+      operation: (_) async => await authRepo.signIn(email, password),
+      onSuccess: _postSignInService.handlePostSignIn,
     );
+  }
+
+  @override
+  void dispose() {
+    Get.delete<PostSignInService>();
+
+    super.dispose();
   }
 }

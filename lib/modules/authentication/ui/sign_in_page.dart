@@ -10,6 +10,7 @@ class SignInPage extends GetView<SignInController> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      key: key ?? const Key('SignInPage'),
       title: 'Iniciar Sesión',
       drawer: null,
       body: Padding(
@@ -19,19 +20,11 @@ class SignInPage extends GetView<SignInController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              EmailInputField(controller: controller.getFieldController('email')!),
-              PasswordInputField(
-                controller: controller.getFieldController('password')!,
-                onFieldSubmitted: controller.secureSubmit,
-              ),
-              CustomButton(text: 'Iniciar Sesión', onPressed: controller.secureSubmit),
-              CustomTextButton(
-                text: '¿Olvidaste tu contraseña',
-                onPressed: () => Get.dialog(
-                  const RecoverPasswordDialog(),
-                ),
-              ),
-              CustomTextButton(text: '¿No tenes cuenta? Crear nueva cuenta', onPressed: controller.navigate.toSignUp),
+              EmailInputField(controller),
+              PasswordInputField(controller, onFieldSubmitted: controller.secureSubmit),
+              const SignInButton(),
+              const ForgotPasswordButton(),
+              const ToSignUpButton(),
             ],
           ),
         ),

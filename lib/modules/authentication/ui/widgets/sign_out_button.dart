@@ -7,11 +7,13 @@ import 'package:get/get.dart';
 class SignOutButton extends GetView<SignOutController> {
   const SignOutButton({super.key});
 
-  void _submit() => controller.signOut();
-
   @override
   Widget build(BuildContext context) {
-    return CustomButton(text: 'Cerrar sesión', onPressed: _submit);
+    return CustomButton(
+      key: key ?? const Key('signOutButton'),
+      text: 'Cerrar sesión',
+      onPressed: controller.submit,
+    );
   }
 }
 
@@ -30,6 +32,7 @@ class _SignOutIconButtonState extends State<SignOutIconButton> {
     late final SignOutController signOutController = Get.find();
 
     return MouseRegion(
+      key: widget.key ?? const Key('signOutButton'),
       onEnter: (_) => setState(() => _isHovering = true),
       onExit: (_) => setState(() => _isHovering = false),
       child: IconButton(
@@ -37,7 +40,7 @@ class _SignOutIconButtonState extends State<SignOutIconButton> {
           Icons.exit_to_app,
           color: _isHovering ? Colors.grey : Colors.white,
         ),
-        onPressed: signOutController.signOut,
+        onPressed: signOutController.submit,
         tooltip: 'Cerrar sesión',
       ),
     );

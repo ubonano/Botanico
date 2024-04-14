@@ -9,6 +9,8 @@ class AuthRepository {
 
   User? get user => _auth.currentUser;
 
+  bool get isLoggedInUser => user != null;
+
   Future<User?> signIn(String email, String password) async =>
       (await _auth.signInWithEmailAndPassword(email: email, password: password)).user;
 
