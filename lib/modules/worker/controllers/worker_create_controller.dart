@@ -6,28 +6,28 @@ class WorkerCreateController extends GetxController with FormController, Context
   @override
   String get logTag => 'WorkerCreateController';
 
-  late final WorkerService _workerService = Get.find();
+  late final WorkerRepository _workerRepo = Get.find();
 
   @override
-  List<String> formFields = ['name', 'birthDate', 'phone', 'dni'];
+  List<String> formFields = [FieldKeys.fullname, FieldKeys.birthDate, FieldKeys.phone, FieldKeys.dni];
 
   @override
-  Future<void> submit() async {
-    await operationManager.perform(
+  Future<void> submit() async => await _createWorker(_newWorker);
+
+  Future<void> _createWorker(WorkerModel worker) async {
+    await oprManager.perform(
       operationName: 'Create worker',
-      successMessage: 'Trabajador creado',
-      operation: (_) async => await _workerService.createWorker(newWorker),
-      onSuccess: () async {
-        await auth.fetchWorker();
-        navigate.toLobby();
-      },
+      operation: (_) async => await _workerRepo.createWorker(worker),
+      onSuccess: navigate.toLobby,
     );
   }
 
-  WorkerModel get newWorker => WorkerModel(
-        name: getFieldValue('name'),
-        birthDate: getFieldValue('birthDate'),
-        phone: getFieldValue('phone'),
-        dni: getFieldValue('dni'),
+  WorkerModel get _newWorker => WorkerModel(
+        uid: authRepo.user?.uid ?? '',
+        email: authRepo.user?.email ?? '',
+        name: getFieldValue(FieldKeys.fullname),
+        birthDate: getFieldValue(FieldKeys.birthDate),
+        phone: getFieldValue(FieldKeys.phone),
+        dni: getFieldValue(FieldKeys.dni),
       );
 }
