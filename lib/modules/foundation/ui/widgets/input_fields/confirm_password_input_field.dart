@@ -1,17 +1,18 @@
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
-import '../../../aux/validator.dart';
-import 'custom_input_field.dart';
 
 class ConfirmPasswordInputField extends StatelessWidget {
-  final TextEditingController controller;
-  final TextEditingController passwordController;
+  final FormController pageController;
+  final String fieldName;
+  final String passwordFieldName;
   final Function? onFieldSubmitted;
   final bool required;
 
-  const ConfirmPasswordInputField({
+  const ConfirmPasswordInputField(
+    this.pageController, {
     Key? key,
-    required this.controller,
-    required this.passwordController,
+    this.fieldName = FieldKeys.passwordConfirm,
+    this.passwordFieldName = FieldKeys.password,
     this.onFieldSubmitted,
     this.required = true,
   }) : super(key: key);
@@ -19,10 +20,15 @@ class ConfirmPasswordInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomInputField(
+      key: key ?? const Key('confirmPasswordField'),
       label: 'Confirmar Contraseña',
-      controller: controller,
+      controller: pageController.getFieldController(fieldName)!,
       obscureText: true,
-      validator: (value) => Validator.confirmPassword(value, passwordController.text, required: required),
+      validator: (value) => Validator.confirmPassword(
+        value,
+        pageController.getFieldController(passwordFieldName)!.text,
+        required: required,
+      ),
       textInputAction: TextInputAction.go,
       onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );

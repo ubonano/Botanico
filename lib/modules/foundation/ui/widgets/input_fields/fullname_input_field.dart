@@ -1,15 +1,16 @@
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
-import '../../../aux/validator.dart';
-import 'custom_input_field.dart';
 
 class FullnameInputField extends StatelessWidget {
-  final TextEditingController controller;
+  final FormController pageController;
+  final String fieldName;
   final Function? onFieldSubmitted;
   final bool required;
 
-  const FullnameInputField({
+  const FullnameInputField(
+    this.pageController, {
     Key? key,
-    required this.controller,
+    this.fieldName = FieldKeys.fullname,
     this.onFieldSubmitted,
     this.required = true,
   }) : super(key: key);
@@ -17,8 +18,9 @@ class FullnameInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomInputField(
+      key: key ?? const Key('fullnameField'),
       label: 'Nombre completo',
-      controller: controller,
+      controller: pageController.getFieldController(fieldName)!,
       validator: required ? (value) => Validator.required(value) : null,
       onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );

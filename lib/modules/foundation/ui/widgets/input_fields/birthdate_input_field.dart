@@ -1,15 +1,16 @@
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
-import '../../../aux/validator.dart';
-import 'custom_input_field.dart';
 
 class BirthdateInputField extends StatelessWidget {
-  final TextEditingController controller;
+  final FormController pageController;
+  final String fieldName;
   final Function? onFieldSubmitted;
   final bool required;
 
-  const BirthdateInputField({
+  const BirthdateInputField(
+    this.pageController, {
     Key? key,
-    required this.controller,
+    this.fieldName = FieldKeys.birthDate,
     this.onFieldSubmitted,
     this.required = true,
   }) : super(key: key);
@@ -17,8 +18,9 @@ class BirthdateInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomInputField(
+      key: key ?? const Key('birthdateField'),
       label: 'Fecha de Nacimiento',
-      controller: controller,
+      controller: pageController.getFieldController(fieldName)!,
       keyboardType: TextInputType.datetime,
       validator: (value) => Validator.date(value, required: required),
       onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,

@@ -1,15 +1,16 @@
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
-import '../../../aux/validator.dart';
-import 'custom_input_field.dart';
 
 class EmailInputField extends StatelessWidget {
-  final TextEditingController controller;
+  final FormController pageController;
+  final String fieldName;
   final Function? onFieldSubmitted;
   final bool required;
 
-  const EmailInputField({
+  const EmailInputField(
+    this.pageController, {
     Key? key,
-    required this.controller,
+    this.fieldName = FieldKeys.email,
     this.onFieldSubmitted,
     this.required = true,
   }) : super(key: key);
@@ -17,8 +18,9 @@ class EmailInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomInputField(
+      key: key ?? const Key('emailField'),
       label: 'Email',
-      controller: controller,
+      controller: pageController.getFieldController(fieldName)!,
       keyboardType: TextInputType.emailAddress,
       validator: (value) => Validator.email(value, required: required),
       onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
