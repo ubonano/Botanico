@@ -9,22 +9,26 @@ void main(List<String> args) {
     app.main();
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
-    final Finder toSignUpButton = find.byKey(const Key('toSignUpButton'));
-    await tester.tap(toSignUpButton);
-    await tester.pumpAndSettle();
-
-    final Finder emailField = find.byKey(const Key('emailField'));
-    final Finder passwordField = find.byKey(const Key('passwordField'));
-    final Finder confirmPasswordField = find.byKey(const Key('confirmPasswordField'));
-    final Finder signUpButton = find.byKey(const Key('signUpButton'));
-
-    await tester.enterText(emailField, args[0]);
-    await tester.enterText(passwordField, args[1]);
-    await tester.enterText(confirmPasswordField, args[1]);
-
-    await tester.tap(signUpButton);
-    await tester.pumpAndSettle();
-
-    expect(find.byKey(const Key('WorkerCreatePage')), findsOneWidget);
+    await signUpUser(tester, args[0], args[1]);
   });
+}
+
+Future<void> signUpUser(WidgetTester tester, String email, String password) async {
+  final Finder toSignUpButton = find.byKey(const Key('toSignUpButton'));
+  await tester.tap(toSignUpButton);
+  await tester.pumpAndSettle();
+
+  final Finder emailField = find.byKey(const Key('emailField'));
+  final Finder passwordField = find.byKey(const Key('passwordField'));
+  final Finder confirmPasswordField = find.byKey(const Key('confirmPasswordField'));
+  final Finder signUpButton = find.byKey(const Key('signUpButton'));
+
+  await tester.enterText(emailField, email);
+  await tester.enterText(passwordField, password);
+  await tester.enterText(confirmPasswordField, password);
+
+  await tester.tap(signUpButton);
+  await tester.pumpAndSettle();
+
+  expect(find.byKey(const Key('WorkerCreatePage')), findsOneWidget);
 }
