@@ -7,7 +7,7 @@ class ToCreateCompanyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NavigationController navigate = Get.find();
+    final NavigationService navigate = Get.find();
 
     return CustomButton(
       key: key ?? const Key('ToCreateCompany'),
