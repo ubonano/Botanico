@@ -7,18 +7,32 @@ import '../module.dart';
 class CompanyRepository {
   final FirebaseFirestore _firestore = Get.find();
 
+  final Rx<CompanyModel?> _currentCompany$ = Rx<CompanyModel?>(null);
+  CompanyModel? get currentCompany$ => _currentCompany$.value;
+
   String get generateId => _companyRef.doc().id;
 
-  Future<CompanyModel?> get(String id) async {
-    final docSnapshot = await _companyRef.doc(id).get();
-    return docSnapshot.exists ? CompanyModel.fromSnapshot(docSnapshot) : null;
+  Future<CompanyModel?> fetch(String id) async {
+    _currentCompany$.value ??= await get(id);
+    return _currentCompany$.value;
   }
 
-  Future<void> create(CompanyModel company) async {
+  Future<CompanyModel?> get(String id) async {
+    if (_currentCompany$.value != null) return currentCompany$;
+
+    final docSnapshot = await _companyRef.doc(id).get();
+    _currentCompany$.value = docSnapshot.exists ? CompanyModel.fromSnapshot(docSnapshot) : null;
+
+    return _currentCompany$.value;
+  }
+
+  Future<void> create(CompanyModel company, {Transaction? txn}) async {
     DocumentReference docRef = _companyRef.doc(company.uid);
 
-    await docRef.set(company.toMap());
+    txn != null ? txn.set(docRef, company.toMap()) : await docRef.set(company.toMap());
   }
 
   CollectionReference<Map<String, dynamic>> get _companyRef => _firestore.collection(FirestoreCollections.companies);
+
+  void clearCurrentCompany() => _currentCompany$.value = null;
 }

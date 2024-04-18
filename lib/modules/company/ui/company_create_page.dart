@@ -1,3 +1,4 @@
+import 'package:botanico/modules/company/ui/widgets/save_company_button.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      key: key ?? const Key('CompanyCreatePage'),
       title: 'Crear empresa',
       drawer: null,
       body: SingleChildScrollView(
@@ -18,13 +20,13 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
           key: controller.formKey,
           child: Column(
             children: [
-              NameInputField(controller: controller.getFieldController('name')!),
-              AddressInputField(controller: controller.getFieldController('address')!),
-              CityInputField(controller: controller.getFieldController('city')!),
-              ProvinceInputField(controller: controller.getFieldController('province')!),
-              CountryInputField(controller: controller.getFieldController('country')!),
-              PhoneInputField(controller: controller.getFieldController('phone')!),
-              CustomButton(text: 'Guardar empresa', onPressed: controller.secureSubmit),
+              NameInputField(controller),
+              AddressInputField(controller),
+              CityInputField(controller),
+              ProvinceInputField(controller),
+              CountryInputField(controller),
+              PhoneInputField(controller),
+              const SaveCompanyButton(),
             ],
           ),
         ),

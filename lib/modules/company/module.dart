@@ -2,7 +2,7 @@ export 'models/company_model.dart';
 
 export 'controllers/company_create_controller.dart';
 
-export 'services/company_service.dart';
+export 'exceptions/company_not_found_exception.dart';
 
 export 'repositories/company_repository.dart';
 
