@@ -8,7 +8,7 @@ class PostSignInService extends GetxService {
   late final AuthRepository _authRepo = Get.find();
   late final WorkerRepository _workerRepo = Get.find();
   late final CompanyRepository _companyRepo = Get.find();
-  late final NavigationController _navigate = Get.find();
+  late final NavigationService _navigate = Get.find();
 
   Future<void> handlePostSignIn() async {
     await fetchCompany(await getWorker());
