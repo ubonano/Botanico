@@ -5,8 +5,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../authentication_module.dart';
 
+void signUpWithInvalidEmailTest() => main();
+
 void main() {
-  testWidgets('Sign in with invalid email', (WidgetTester tester) async {
+  testWidgets('Sign up with invalid email', (WidgetTester tester) async {
     await appInitFlow(tester);
 
     await signUpFlow(tester, 'invalid-email', '', '');

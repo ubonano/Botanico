@@ -5,6 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../authentication_module.dart';
 
+void signInWithInvalidPasswordTest() => main();
+
 void main() {
   testWidgets('Sign in with invalid password', (WidgetTester tester) async {
     await appInitFlow(tester);

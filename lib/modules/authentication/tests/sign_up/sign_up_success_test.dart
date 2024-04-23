@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../authentication_module.dart';
 
+void signUpSuccessTest(String email, String password) => main([email, password]);
+
 void main(List<String> args) {
   testWidgets('Sign up success', (WidgetTester tester) async {
     await appInitFlow(tester);

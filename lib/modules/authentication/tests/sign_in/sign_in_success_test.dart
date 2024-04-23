@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../authentication_module.dart';
 
+void signInSuccessByNewUserTest(String email, String password) => main([email, password]);
+
 void main(List<String> args) {
   testWidgets('Sign in success by new user', (WidgetTester tester) async {
     await appInitFlow(tester);

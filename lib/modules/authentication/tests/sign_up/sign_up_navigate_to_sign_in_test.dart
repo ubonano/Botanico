@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../authentication_module.dart';
 
+void signUpNavigateToSignInTest() => main();
+
 void main() {
   testWidgets('Navigate to sign in from sign up', (WidgetTester tester) async {
     await appInitFlow(tester);

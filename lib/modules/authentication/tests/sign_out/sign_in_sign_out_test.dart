@@ -1,9 +1,12 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import '../../authentication_module.dart';
+
+void signOutFromWorkerCreatePageTest(String email, String password) => main([email, password]);
 
 void main(List<String> args) {
   testWidgets('Sign out from worker create page', (WidgetTester tester) async {

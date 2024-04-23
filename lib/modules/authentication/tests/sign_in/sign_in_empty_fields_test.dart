@@ -5,6 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../authentication_module.dart';
 
+void signInWithEmptyFieldsTest() => main();
+
 void main() {
   testWidgets('Sign in with empty fields', (WidgetTester tester) async {
     await appInitFlow(tester);

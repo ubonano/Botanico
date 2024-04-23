@@ -1,7 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:integration_test/integration_test.dart';
-import '../../foundation/aux/utils.dart';
 import 'worker_create/worker_create_empty_fields_test.dart' as worker_create_empty_fields_test;
 import 'worker_create/worker_create_success_test.dart' as worker_create_success_test;
 import 'worker_create/worker_create_wrong_birthdate_format_test.dart' as worker_create_wrong_birthdate_format_test;
@@ -18,6 +18,7 @@ flutter drive \
 
 */
 
+//Probar test y hacer refactor de los mismos
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
