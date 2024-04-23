@@ -3,7 +3,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../module.dart';
+import '../company_module.dart';
 
 class CompanyCreatePage extends GetView<CompanyCreateController> {
   const CompanyCreatePage({super.key});

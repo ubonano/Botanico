@@ -1,14 +1,13 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:botanico/modules/company/company_module.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:integration_test/integration_test.dart';
-import '../../foundation/aux/utils.dart';
-import 'company_create/company_create_empty_fields_test.dart' as company_create_empty_fields_test;
-import 'company_create/company_create_wrong_phone_format_test.dart' as company_create_wrong_phone_format_test;
-import 'company_create/company_create_success_test.dart' as company_create_success_test;
 
 /* 
 
-Tu run execute:
+-To run execute:
+
 flutter drive \
   --driver=test_driver/integration_test.dart \
   --target=lib/modules/company/tests/company_test.dart \
@@ -19,7 +18,12 @@ flutter drive \
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  company_create_empty_fields_test.main([generateRandomEmail(), 'password123']);
-  company_create_wrong_phone_format_test.main([generateRandomEmail(), 'password123']);
-  company_create_success_test.main([generateRandomEmail(), 'password123']);
+  _createCompanyFromSignUp();
+}
+
+// Crear test para crear company desde sign in
+void _createCompanyFromSignUp() {
+  createCompanyWithEmptyFieldsFromSignUpTest(generateRandomEmail(), 'password123');
+  createCompanyWithInvalidPhoneFromSignUpTest(generateRandomEmail(), 'password123');
+  createCompanySuccessFromSignUpTest(generateRandomEmail(), 'password123');
 }

@@ -2,7 +2,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
-import '../module.dart';
+import '../company_module.dart';
 
 class CompanyCreateController extends GetxController with FormController, ContextController {
   @override
