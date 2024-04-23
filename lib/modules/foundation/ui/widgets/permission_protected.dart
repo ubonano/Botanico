@@ -1,4 +1,4 @@
-import 'package:botanico/modules/authentication/services/auth_service.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,8 +10,8 @@ class PermissionProtected extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sessionController = Get.find<AuthService>();
+    final WorkerRepository workerRepo = Get.find();
 
-    return Obx(() => sessionController.worker?.hasPermission(permission) ?? false ? child : const SizedBox.shrink());
+    return Obx(() => workerRepo.currentWorker$?.hasPermission(permission) ?? false ? child : const SizedBox.shrink());
   }
 }

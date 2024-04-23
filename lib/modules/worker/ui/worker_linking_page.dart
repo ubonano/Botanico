@@ -2,6 +2,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class WorkerLinkingPage extends GetView<WorkerLinkingController> {
@@ -29,11 +30,11 @@ class WorkerLinkingPage extends GetView<WorkerLinkingController> {
                         onFieldSubmitted: controller.secureSubmit,
                       ),
                     ),
-                    IconButton(icon: const Icon(Icons.paste), onPressed: controller.pasteWorkerId),
+                    IconButton(icon: const Icon(Icons.paste), onPressed: pasteWorkerId),
                   ],
                 ),
                 CustomButton(text: 'Vincular Trabajador', onPressed: controller.secureSubmit),
-                CustomButton(text: 'Escanear Código QR', onPressed: controller.scanQrCode)
+                CustomButton(text: 'Escanear Código QR', onPressed: scanQrCode)
               ],
             ),
           ),
@@ -41,4 +42,11 @@ class WorkerLinkingPage extends GetView<WorkerLinkingController> {
       ),
     );
   }
+
+  void pasteWorkerId() async {
+    final ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);
+    controller.setFieldValue('uid', data?.text ?? '');
+  }
+
+  Future<void> scanQrCode() async {}
 }

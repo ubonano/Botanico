@@ -9,9 +9,9 @@ class WorkerModel {
   final String birthDate;
   final String phone;
   final String dni;
-  final String companyId;
-  final WorkerRole role;
-  final Map<String, bool> permissions;
+  String companyId;
+  WorkerRole role;
+  Map<String, bool> permissions;
 
   bool get isOwner => role == WorkerRole.owner;
   bool get isNotOwner => role != WorkerRole.owner;
@@ -30,6 +30,14 @@ class WorkerModel {
   });
 
   bool hasPermission(String permissionId) => isOwner || permissions.containsKey(permissionId);
+
+  void togglePermission(String permissionId) {
+    if (permissions.containsKey(permissionId) && permissions[permissionId] == true) {
+      permissions.remove(permissionId);
+    } else {
+      permissions[permissionId] = true;
+    }
+  }
 
   WorkerModel copyWith({
     String? uid,

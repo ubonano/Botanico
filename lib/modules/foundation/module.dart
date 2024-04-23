@@ -1,9 +1,9 @@
 export 'services/snackbar_service.dart';
 export 'services/permission_module_service.dart';
 export 'services/operation_manager_service.dart';
-export 'controllers/navigation_controller.dart';
 export 'services/log_service.dart';
 
+export 'services/navigation_service.dart';
 export 'controllers/context_controller.dart';
 export 'controllers/form_controller.dart';
 
@@ -38,12 +38,16 @@ export 'ui/app.dart';
 
 export 'aux/firestore_collections.dart';
 export 'aux/validator.dart';
+export 'aux/module_structure.dart';
+export 'aux/fields_key.dart';
+export 'aux/utils.dart';
 
 export 'models/module_model.dart';
 export 'models/permission_model.dart';
-export 'aux/module_structure.dart';
 
 export 'config/bindings.dart';
 export 'config/firebase_options.dart';
 export 'config/pages.dart';
 export 'config/routes.dart';
+
+export 'tests/flows/app_init_flow.dart';

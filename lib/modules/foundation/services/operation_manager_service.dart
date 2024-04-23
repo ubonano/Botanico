@@ -1,6 +1,6 @@
+import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/foundation/services/log_service.dart';
 import 'package:botanico/modules/foundation/services/snackbar_service.dart';
-import 'package:botanico/modules/authentication/services/auth_service.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,9 +8,12 @@ import 'package:get/get.dart';
 
 class OperationManagerService extends GetxService {
   late final FirebaseFirestore _firestore = Get.find();
+
   late final LogService _logService = Get.find();
   late final SnackbarService _snackbar = Get.find();
-  late final AuthService _session = Get.find();
+
+  late final AuthRepository _authRepo = Get.find();
+  late final WorkerRepository _workerRepo = Get.find();
 
   Future<void> perform({
     required Future Function(Transaction? txn) operation,
@@ -20,13 +23,48 @@ class OperationManagerService extends GetxService {
     bool showErrorMessageBySnackbar = true,
     Function()? onSuccess,
     Function(Object error)? onError,
-    Function()? onFinalize,
     bool inTransaction = false,
   }) async {
-    try {
-      if (_hasPermission(permissionKey)) throw Exception('permission-denied');
+    if (inTransaction) {
+      await _firestore.runTransaction(
+        (Transaction txn) async {
+          await _executeWithHandling(
+            operation: () async => await operation(txn),
+            operationName: operationName,
+            permissionKey: permissionKey,
+            successMessage: successMessage,
+            showErrorMessageBySnackbar: showErrorMessageBySnackbar,
+            onSuccess: onSuccess,
+            onError: onError,
+          );
+        },
+      );
+    } else {
+      await _executeWithHandling(
+        operation: () async => await operation(null),
+        operationName: operationName,
+        permissionKey: permissionKey,
+        successMessage: successMessage,
+        showErrorMessageBySnackbar: showErrorMessageBySnackbar,
+        onSuccess: onSuccess,
+        onError: onError,
+      );
+    }
+  }
 
-      await _executeOperation(operation, inTransaction);
+  Future<void> _executeWithHandling({
+    required Future Function() operation,
+    String operationName = "Operation",
+    String permissionKey = '',
+    String successMessage = '',
+    bool showErrorMessageBySnackbar = true,
+    Function()? onSuccess,
+    Function(Object error)? onError,
+  }) async {
+    try {
+      if (permissionKey.isNotEmpty && await _hasPermission(permissionKey)) throw Exception('permission-denied');
+
+      await operation();
 
       if (successMessage.isNotEmpty) _snackbar.success(successMessage);
       _logService.info("$operationName exitosa.");
@@ -37,21 +75,15 @@ class OperationManagerService extends GetxService {
       _logService.error("$operationName fallida: ${_getErrorMessage(e)}", e);
 
       onError?.call(e);
-    } finally {
-      onFinalize?.call();
     }
   }
 
-  bool _hasPermission(String permissionKey) =>
-      permissionKey.isNotEmpty && !_session.worker!.hasPermission(permissionKey);
+  Future<bool> _hasPermission(String permissionKey) async {
+    final worker = await _workerRepo.get(_authRepo.user!.uid);
 
-  Future<void> _executeOperation<T>(Future<T> Function(Transaction? txn) operation, bool inTransaction) async {
-    if (inTransaction) {
-      _firestore.runTransaction((Transaction txn) async => await operation(txn));
-      // .catchError((e) => throw Exception('aaaaa'));
-    } else {
-      await operation(null);
-    }
+    if (worker == null) throw WorkerNotFoundException();
+
+    return permissionKey.isNotEmpty && !worker.hasPermission(permissionKey);
   }
 }
 

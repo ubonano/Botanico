@@ -1,9 +1,10 @@
 import 'package:botanico/modules/foundation/config/routes.dart';
 import 'package:get/get.dart';
-import '../services/log_service.dart';
+import 'log_service.dart';
 
-class NavigationController {
-  final LogService _log = Get.find();
+// Cambiar por servicio
+class NavigationService {
+  late final LogService _log = Get.find();
 
   void toHome({bool canPop = false}) => to(Routes.HOME, canPop: canPop);
   void toLobby({bool canPop = false}) => to(Routes.LOBBY, canPop: canPop);

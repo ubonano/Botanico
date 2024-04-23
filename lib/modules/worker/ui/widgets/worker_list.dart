@@ -1,4 +1,3 @@
-import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,8 +7,10 @@ class WorkerList extends StatelessWidget {
   WorkerList({Key? key, required this.list}) : super(key: key);
 
   final WorkerUnlinkingController _unlinkingController = Get.find();
-  final AuthService _session = Get.find();
-  final NavigationController _navigate = Get.find();
+
+  late final NavigationService _navigate = Get.find();
+  late final WorkerRepository _workerRepo = Get.find();
+
   final List<WorkerModel> list;
 
   @override
@@ -22,7 +23,7 @@ class WorkerList extends StatelessWidget {
         return ListTile(
           title: Text(worker.name),
           subtitle: Text(worker.email),
-          trailing: worker.isNotOwner && worker.uid != _session.worker!.uid
+          trailing: worker.isNotOwner && worker.uid != _workerRepo.currentWorker$?.uid
               ? _buildTrailingIconButtons(worker, context)
               : null,
         );
@@ -41,7 +42,7 @@ class WorkerList extends StatelessWidget {
             onPressed: () => ConfirmationDialog.show(
               context,
               content: '¿Estás seguro de que quieres desvincular a este trabajador?',
-              onConfirm: () => _unlinkingController.unlinkWorker(worker),
+              onConfirm: () => _unlinkingController.submit(worker),
             ),
           ),
         ),

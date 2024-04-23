@@ -1,4 +1,5 @@
 import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/company/ui/widgets/to_create_company_button.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
 import 'package:botanico/modules/worker/module.dart';
@@ -12,6 +13,7 @@ class LobbyPage extends GetView<WorkerLobbyController> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      key: key ?? const Key('lobbyPage'),
       title: 'Lobby',
       drawer: null,
       body: Center(
@@ -29,7 +31,7 @@ class LobbyPage extends GetView<WorkerLobbyController> {
             const Text('Mostrale este código a tu empleador para vincularte a la empresa.'),
             const SizedBox(height: 20),
             CustomTextButton(text: 'Copiar código de vinculación', onPressed: controller.copyToClipboard),
-            CustomButton(text: '¿Necesitas registrar una empresa?', onPressed: controller.navigate.toCompany),
+            const ToCreateCompanyButton(),
             const SignOutButton(),
           ],
         ),

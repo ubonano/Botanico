@@ -6,17 +6,27 @@ class WorkerUnlinkingController extends GetxController with ContextController {
   @override
   String get logTag => 'WorkerUnlinkingController';
 
-  late final WorkerService _workerService = Get.find();
-  late final WorkerListController _workerListController = Get.find();
+  late final WorkerRepository _workerRepo = Get.find();
 
-  Future<void> unlinkWorker(WorkerModel worker) async {
-    await operationManager.perform(
+  WorkerModel? get currentWorker => _workerRepo.currentWorker$;
+
+  Future<void> submit(WorkerModel worker) async => await unlinkWorker(worker.uid);
+
+  Future<void> unlinkWorker(String workerId) async {
+    await oprManager.perform(
       operationName: 'Unlink worker',
       permissionKey: WorkerModulePermissions.unlinkKey,
       successMessage: 'Trabajador desvinculado',
       inTransaction: true,
-      operation: (txn) async => await _workerService.unlinkWorker(worker.uid, txn: txn),
-      onSuccess: () => _workerListController.removeWorker(worker),
+      operation: (txn) async {
+        final WorkerModel? currentWorker = await _workerRepo.get(authRepo.user!.uid);
+
+        await _workerRepo.deleteLinkedWorker(currentWorker!.companyId, workerId, txn: txn);
+
+        final changes = {'companyId': '', 'role': workerRoleToString(WorkerRole.undefined), 'permissions': {}};
+
+        await _workerRepo.updatePartialWorker(workerId, changes, txn: txn);
+      },
     );
   }
 }

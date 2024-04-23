@@ -19,6 +19,7 @@ class CustomScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // key: key,
       appBar: AppBar(title: Text(title)),
       drawer: drawer,
       body: body,

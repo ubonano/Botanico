@@ -1,16 +1,16 @@
 import 'package:botanico/modules/authentication/ui/widgets/sign_out_button.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/worker/worker_module_permission.dart';
-import 'package:botanico/modules/foundation/ui/widgets/permission_protected.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'custom_drawer_controller.dart';
 
 class CustomDrawer extends GetView<CustomDrawerController> {
   const CustomDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    NavigationService navigate = Get.find();
+
     return Drawer(
       child: Obx(
         () => ListView(
@@ -18,12 +18,12 @@ class CustomDrawer extends GetView<CustomDrawerController> {
           children: [
             UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-              accountName: Text(controller.workerName, style: const TextStyle(fontSize: 20)),
-              accountEmail: Text(controller.workerEmail, style: const TextStyle(fontSize: 14)),
+              accountName: Text(controller.currentWorker$?.name ?? '', style: const TextStyle(fontSize: 20)),
+              accountEmail: Text(controller.currentWorker$?.email ?? '', style: const TextStyle(fontSize: 14)),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: Text(
-                  controller.workerName.isNotEmpty ? controller.workerName[0] : 'X',
+                  controller.currentWorker$!.name.isNotEmpty ? controller.currentWorker$!.name[0] : 'X',
                   style: TextStyle(fontSize: 40.0, color: Theme.of(context).primaryColor),
                 ),
               ),
@@ -33,19 +33,19 @@ class CustomDrawer extends GetView<CustomDrawerController> {
             ),
             ListTile(
               leading: const Icon(Icons.business),
-              title: Text(controller.companyName),
+              title: Text(controller.currentCompany$!.name),
             ),
             ListTile(
               leading: const Icon(Icons.home),
               title: const Text('Inicio'),
-              onTap: controller.navigateToHome,
+              onTap: navigate.toHome,
             ),
             PermissionProtected(
               permission: WorkerModulePermissions.viewKey,
               child: ListTile(
                 leading: const Icon(Icons.work),
                 title: const Text('Trabajadores'),
-                onTap: controller.navigateToLinkedWorkers,
+                onTap: navigate.toWorkerList,
               ),
             ),
           ],

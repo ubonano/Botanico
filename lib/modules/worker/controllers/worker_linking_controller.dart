@@ -1,5 +1,5 @@
+import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../module.dart';
@@ -11,41 +11,33 @@ class WorkerLinkingController extends GetxController with FormController, Contex
   @override
   List<String> formFields = ['uid'];
 
-  late final WorkerService _workerService = Get.find();
-  late final WorkerListController _workerListController = Get.find();
+  late final WorkerRepository _workerRepo = Get.find();
+  late final CompanyRepository _companyRepo = Get.find();
 
   @override
-  Future<void> submit() async {
-    final worker = await _workerService.getWorker(getFieldValue('uid'));
+  Future<void> submit() async => await _linkWorker(getFieldValue('uid'));
 
-    if (validate(worker)) {
-      await operationManager.perform(
-        operationName: 'Link worker',
-        permissionKey: WorkerModulePermissions.linkKey,
-        successMessage: 'Trabajador vinculado',
-        inTransaction: true,
-        operation: (txn) async => await _workerService.linkWorker(worker!, txn: txn),
-        onSuccess: () {
-          _workerListController.fetchAllWorkers();
-          navigate.toWorkerList();
-        },
-      );
-    }
+  Future<void> _linkWorker(String workerId) async {
+    await oprManager.perform(
+      operationName: 'Link worker',
+      permissionKey: WorkerModulePermissions.linkKey,
+      successMessage: 'Trabajador vinculado',
+      inTransaction: true,
+      operation: (txn) async {
+        final currentWorker = await _workerRepo.fetch(authRepo.user!.uid);
+
+        final worker = await _workerRepo.get(workerId);
+        final company = await _companyRepo.get(currentWorker!.companyId);
+
+        if (worker == null) throw WorkerNotFoundException();
+        if (company == null) throw CompanyNotFoundException();
+
+        final updatedWorker = worker.copyWith(companyId: company.uid, role: WorkerRole.employee);
+
+        await _workerRepo.updateWorker(updatedWorker, txn: txn);
+        await _workerRepo.createLinkedWorker(company.uid, updatedWorker, txn: txn);
+      },
+      onSuccess: navigate.toWorkerList,
+    );
   }
-
-  bool validate(WorkerModel? worker) {
-    if (worker == null) {
-      snackbar.error('No se encontro trabajador con el código ingresado');
-      return false;
-    }
-
-    return true;
-  }
-
-  void pasteWorkerId() async {
-    final ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);
-    setFieldValue('uid', data?.text ?? '');
-  }
-
-  Future<void> scanQrCode() async {}
 }

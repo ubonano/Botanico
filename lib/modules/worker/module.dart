@@ -1,8 +1,6 @@
 export 'models/enums/worker_role.dart';
 export 'models/worker_model.dart';
 
-export 'services/worker_service.dart';
-
 export 'repositories/worker_repository.dart';
 
 export 'controllers/worker_linking_controller.dart';
@@ -19,6 +17,7 @@ export 'ui/worker_management_permissions_page.dart';
 export 'ui/worker_lobby_page.dart';
 export 'ui/widgets/worker_list.dart';
 export 'ui/widgets/worker_linking_fab.dart';
+export 'ui/widgets/save_worker_button.dart';
 
 export 'exceptions/worker_not_found_exception.dart';
 

@@ -6,11 +6,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
+// TODO refactorizar para que se instancie cada una en su modulo y aca se llame esa instanciacion
 class AppBindings extends Bindings {
   @override
   void dependencies() {
     _setupFirebaseInstances();
     _setupRepositories();
+    _setupServices();
     _setupCommonServices();
     _setupBusinessServices();
     _setupControllers();
@@ -27,21 +29,23 @@ class AppBindings extends Bindings {
     Get.lazyPut<WorkerRepository>(() => WorkerRepository(), fenix: true);
   }
 
+  void _setupServices() {
+    Get.lazyPut<PostSignInService>(() => PostSignInService(), fenix: true);
+    Get.lazyPut<PostSignOutService>(() => PostSignOutService(), fenix: true);
+  }
+
   void _setupCommonServices() {
+    Get.put(NavigationService(), permanent: true);
     Get.put(LogService(), permanent: true);
     Get.put(SnackbarService(), permanent: true);
     Get.put(OperationManagerService(), permanent: true);
   }
 
   void _setupBusinessServices() {
-    Get.lazyPut<AuthService>(() => AuthService(), fenix: true);
-    Get.lazyPut<WorkerService>(() => WorkerService(), fenix: true);
-    Get.lazyPut<CompanyService>(() => CompanyService(), fenix: true);
     Get.lazyPut<PermissionModuleService>(() => PermissionModuleService(), fenix: true);
   }
 
   void _setupControllers() {
-    Get.put(NavigationController(), permanent: true);
     Get.lazyPut<CustomDrawerController>(() => CustomDrawerController(), fenix: true);
     Get.lazyPut<WorkerLobbyController>(() => WorkerLobbyController(), fenix: true);
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);

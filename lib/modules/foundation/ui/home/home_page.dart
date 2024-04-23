@@ -13,6 +13,7 @@ class HomePage extends GetView<HomeController> {
     controller.logTag;
 
     return CustomScaffold(
+      key: key ?? const Key('HomePage'),
       title: _title,
       body: const Center(
         child: Column(

@@ -7,14 +7,14 @@ import '../../module.dart';
 class WorkerLinkingFAB extends StatelessWidget {
   WorkerLinkingFAB({super.key});
 
-  final NavigationController navigate = Get.find();
+  final NavigationService _navigate = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return PermissionProtected(
       permission: WorkerModulePermissions.linkKey,
       child: FloatingActionButton(
-        onPressed: () => navigate.toLinkingWorker(canPop: true),
+        onPressed: () => _navigate.toLinkingWorker(canPop: true),
         child: const Icon(Icons.add),
       ),
     );

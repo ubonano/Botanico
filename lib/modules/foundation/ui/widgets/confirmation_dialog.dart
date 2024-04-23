@@ -1,4 +1,4 @@
-import 'package:botanico/modules/foundation/controllers/navigation_controller.dart';
+import 'package:botanico/modules/foundation/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +20,7 @@ class ConfirmationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final navigationService = Get.find<NavigationController>();
+    final navigationService = Get.find<NavigationService>();
 
     return AlertDialog(
       title: Text(title),
