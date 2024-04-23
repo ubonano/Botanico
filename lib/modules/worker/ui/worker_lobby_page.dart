@@ -2,7 +2,7 @@ import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:botanico/modules/company/ui/widgets/to_create_company_button.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
-import 'package:botanico/modules/worker/module.dart';
+import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';

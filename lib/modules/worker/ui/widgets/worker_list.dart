@@ -1,7 +1,7 @@
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/worker/module.dart';
+import 'package:botanico/modules/worker/worker_module.dart';
 
 class WorkerList extends StatelessWidget {
   WorkerList({Key? key, required this.list}) : super(key: key);

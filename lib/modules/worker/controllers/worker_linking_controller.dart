@@ -2,7 +2,7 @@ import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 
-import '../module.dart';
+import '../worker_module.dart';
 
 class WorkerLinkingController extends GetxController with FormController, ContextController {
   @override

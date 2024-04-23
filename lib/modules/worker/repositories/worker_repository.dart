@@ -2,7 +2,7 @@ import 'package:botanico/modules/foundation/aux/firestore_collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../module.dart';
+import '../worker_module.dart';
 
 class WorkerRepository {
   late final FirebaseFirestore _firestore = Get.find();

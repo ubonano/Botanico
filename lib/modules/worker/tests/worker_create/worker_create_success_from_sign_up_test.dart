@@ -3,16 +3,17 @@
 import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void createWorkerWithInvalidDNITest(String email, String password) => main([email, password]);
+void createWorkerSuccessFromSignUpTest(String email, String password) => main([email, password]);
 
 void main(List<String> args) {
-  testWidgets('Create worker with invalid dni', (WidgetTester tester) async {
+  testWidgets('Create worker success from sign up', (WidgetTester tester) async {
     await appInitFlow(tester);
 
     await signUpFlow(tester, args[0], args[1], args[1]);
-    await workerCreateFlow(tester, dni: 'ABC1234');
-    expect(find.text('Este campo debe ser numérico'), findsOneWidget);
+    await workerCreateFlow(tester);
+    expect(find.byKey(const Key('lobbyPage')), findsOneWidget);
   });
 }

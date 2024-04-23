@@ -1,7 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:botanico/main.dart' as app;
-import 'package:botanico/modules/worker/tests/worker_create/worker_create_success_test.dart';
+import 'package:botanico/modules/worker/tests/worker_create/worker_create_success_from_sign_up_test.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/worker/module.dart';
+import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
 class WorkerListController extends GetxController with ContextController {
