@@ -18,3 +18,9 @@ export 'ui/widgets/to_sign_up_button.dart';
 
 export 'ui/sign_in_page.dart';
 export 'ui/sign_up_page.dart';
+
+export 'tests/flows/navigate_to_sign_in_flow.dart';
+export 'tests/flows/navigate_to_sign_up_flow.dart';
+export 'tests/flows/sign_out_from_worker_create_flow.dart';
+export 'tests/flows/sign_in_flow.dart';
+export 'tests/flows/sign_up_flow.dart';

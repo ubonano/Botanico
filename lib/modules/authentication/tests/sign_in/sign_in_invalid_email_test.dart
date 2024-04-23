@@ -1,16 +1,15 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:botanico/modules/foundation/module.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../module.dart';
 
 void main() {
-  testWidgets('Navigate to sign up from sign in', (WidgetTester tester) async {
+  testWidgets('Sign in with invalid email', (WidgetTester tester) async {
     await appInitFlow(tester);
 
-    await navigateToSignUpFlow(tester);
-    expect(find.byKey(const Key('SignUpPage')), findsOneWidget);
+    await signInFlow(tester, 'invalid-email', 'Password123');
+    expect(find.text('Ingresa un email válido'), findsOneWidget);
   });
 }
