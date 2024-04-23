@@ -26,3 +26,4 @@ export 'tests/flows/sign_in_flow.dart';
 export 'tests/flows/sign_up_flow.dart';
 
 export 'tests/authentication_test.dart';
+export 'authentication_dependencies.dart';

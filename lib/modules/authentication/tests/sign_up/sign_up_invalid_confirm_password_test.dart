@@ -3,7 +3,7 @@
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../module.dart';
+import '../../authentication_module.dart';
 
 void main() {
   testWidgets('Sign up with wrong password confirm', (WidgetTester tester) async {

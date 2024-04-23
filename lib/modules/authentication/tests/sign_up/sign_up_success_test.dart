@@ -4,7 +4,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../module.dart';
+import '../../authentication_module.dart';
 
 void main(List<String> args) {
   testWidgets('Sign up success', (WidgetTester tester) async {

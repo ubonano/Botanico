@@ -1,4 +1,4 @@
-import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:botanico/modules/foundation/services/log_service.dart';
 import 'package:botanico/modules/foundation/services/snackbar_service.dart';
 import 'package:botanico/modules/worker/module.dart';
