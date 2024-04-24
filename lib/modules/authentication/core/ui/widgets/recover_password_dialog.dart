@@ -9,6 +9,8 @@ class RecoverPasswordDialog extends GetView<PasswordRecoverController> {
 
   @override
   Widget build(BuildContext context) {
+    late final NavigationService navigate = Get.find();
+
     return AlertDialog(
       title: const Text('Recuperar contraseña'),
       content: Form(
@@ -19,7 +21,7 @@ class RecoverPasswordDialog extends GetView<PasswordRecoverController> {
         ),
       ),
       actions: [
-        TextButton(onPressed: controller.navigate.back, child: const Text('Cancelar')),
+        TextButton(onPressed: navigate.back, child: const Text('Cancelar')),
         TextButton(
           onPressed: controller.secureSubmit,
           child: const Text('Enviar'),

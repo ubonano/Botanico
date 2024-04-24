@@ -1,9 +1,14 @@
+import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:get/get.dart';
 
-class SignUpController extends GetxController with FormController, ContextController {
+class SignUpController extends GetxController with UIFormController, LifeCycleLogging {
   @override
   String get logTag => 'SignUpController';
+
+  late final OperationManagerService _oprManager = Get.find();
+  late final AuthRepository _authRepo = Get.find();
+  late final NavigationService _navigate = Get.find();
 
   @override
   List<String> formFields = [FieldKeys.email, FieldKeys.password, FieldKeys.passwordConfirm];
@@ -15,13 +20,13 @@ class SignUpController extends GetxController with FormController, ContextContro
       );
 
   Future<void> _signUp(String email, String password) async {
-    await oprManager.perform(
+    await _oprManager.perform(
       operationName: 'Sign up',
-      operation: (_) async => await authRepo.signUp(
+      operation: (_) async => await _authRepo.signUp(
         getFieldValue(FieldKeys.email),
         getFieldValue(FieldKeys.password),
       ),
-      onSuccess: navigate.toWorkerCreate,
+      onSuccess: _navigate.toWorkerCreate,
     );
   }
 }

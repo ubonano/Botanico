@@ -1,12 +1,14 @@
+import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:botanico/modules/company/company_module.dart';
 import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
-class CustomDrawerController extends GetxController with ContextController {
+class CustomDrawerController extends GetxController with LifeCycleLogging {
   @override
   String get logTag => 'CustomDrawerController';
 
+  late final AuthRepository authRepo = Get.find();
   final WorkerRepository _workerRepo = Get.find();
   final CompanyRepository _companyRepo = Get.find();
 

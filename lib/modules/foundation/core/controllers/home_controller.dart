@@ -1,7 +1,7 @@
+import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:get/get.dart';
-import 'context_controller.dart';
 
-class HomeController extends GetxController with ContextController {
+class HomeController extends GetxController with LifeCycleLogging {
   @override
   String get logTag => 'HomeController';
 }

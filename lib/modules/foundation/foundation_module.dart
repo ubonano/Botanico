@@ -14,8 +14,8 @@ export 'core/services/operation_manager_service.dart';
 export 'core/services/log_service.dart';
 
 export 'core/services/navigation_service.dart';
-export 'core/controllers/context_controller.dart';
-export 'core/controllers/form_controller.dart';
+export 'core/mixins/life_cycle_logging.dart';
+export 'core/mixins/ui_form_controller.dart';
 
 export 'core/ui/widgets/buttons/custom_button.dart';
 export 'core/ui/widgets/buttons/custom_text_button.dart';

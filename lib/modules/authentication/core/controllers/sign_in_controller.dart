@@ -2,10 +2,12 @@ import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:get/get.dart';
 
-class SignInController extends GetxController with FormController, ContextController {
+class SignInController extends GetxController with UIFormController, LifeCycleLogging {
   @override
   String get logTag => 'SignInController';
 
+  late final OperationManagerService _oprManager = Get.find();
+  late final AuthRepository _authRepo = Get.find();
   late final PostSignInService _postSignInService = Get.find();
 
   @override
@@ -18,9 +20,9 @@ class SignInController extends GetxController with FormController, ContextContro
       );
 
   Future<void> _signIn(String email, String password) async {
-    await oprManager.perform(
+    await _oprManager.perform(
       operationName: 'Sign in',
-      operation: (_) async => await authRepo.signIn(email, password),
+      operation: (_) async => await _authRepo.signIn(email, password),
       onSuccess: _postSignInService.handlePostSignIn,
     );
   }

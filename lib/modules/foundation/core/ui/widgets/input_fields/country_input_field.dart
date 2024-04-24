@@ -2,7 +2,7 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:flutter/material.dart';
 
 class CountryInputField extends StatelessWidget {
-  final FormController pageController;
+  final UIFormController pageController;
   final String fieldName;
   final Function? onFieldSubmitted;
   final bool required;
