@@ -1,13 +1,10 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../authentication_module.dart';
-
-void signUpWithInvalidEmailTest() => main();
-
-void main() {
+void signUpWithInvalidEmailTest() {
   testWidgets('Sign up with invalid email', (WidgetTester tester) async {
     await appInitFlow(tester);
 
