@@ -2,11 +2,11 @@
 
 import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:botanico/modules/company/company_module.dart';
-import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void createCompanyWithEmptyFieldsFromSignUpTest(String email, String password) {
+void createCompanyWithEmptyFieldsTest(String email, String password) {
   testWidgets('Create company with empty fields from sign up', (WidgetTester tester) async {
     await appInitFlow(tester);
 

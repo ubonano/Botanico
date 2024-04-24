@@ -1,3 +1,13 @@
+import 'package:get/get.dart';
+
+import 'services/log_service.dart';
+import 'services/navigation_service.dart';
+import 'services/operation_manager_service.dart';
+import 'services/permission_module_service.dart';
+import 'services/snackbar_service.dart';
+import 'ui/home/home_controller.dart';
+import 'ui/widgets/custom_drawer/custom_drawer_controller.dart';
+
 export 'services/snackbar_service.dart';
 export 'services/permission_module_service.dart';
 export 'services/operation_manager_service.dart';
@@ -51,3 +61,15 @@ export 'config/pages.dart';
 export 'config/routes.dart';
 
 export 'tests/flows/app_init_flow.dart';
+
+void foundationDependencies() {
+  Get.put(NavigationService(), permanent: true);
+  Get.put(LogService(), permanent: true);
+  Get.put(SnackbarService(), permanent: true);
+  Get.put(OperationManagerService(), permanent: true);
+
+  Get.lazyPut<PermissionModuleService>(() => PermissionModuleService(), fenix: true);
+
+  Get.lazyPut<CustomDrawerController>(() => CustomDrawerController(), fenix: true);
+  Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
+}

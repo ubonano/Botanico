@@ -1,12 +1,17 @@
-export 'controllers/password_recover_controller.dart';
-export 'controllers/sign_in_controller.dart';
-export 'controllers/sign_out_controller.dart';
-export 'controllers/sign_up_controller.dart';
+import 'package:botanico/modules/authentication/authentication_module.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 
-export 'repositories/auth_repository.dart';
+export 'core/controllers/password_recover_controller.dart';
+export 'core/controllers/sign_in_controller.dart';
+export 'core/controllers/sign_out_controller.dart';
+export 'core/controllers/sign_up_controller.dart';
 
-export 'services/post_sign_in_service.dart';
-export 'services/post_sign_out_service.dart';
+export 'core/repositories/auth_repository.dart';
+
+export 'core/services/post_sign_in_service.dart';
+export 'core/services/post_sign_out_service.dart';
 
 export 'ui/widgets/recover_password_dialog.dart';
 export 'ui/widgets/sign_out_button.dart';
@@ -44,4 +49,17 @@ export 'tests/sign_up/sign_up_used_email_test.dart';
 
 export 'tests/authentication_test.dart';
 
-export 'authentication_dependencies.dart';
+void authenticationDependencies() {
+  Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
+  Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);
+
+  Get.lazyPut<AuthRepository>(() => AuthRepository(), fenix: true);
+
+  Get.lazyPut<PostSignInService>(() => PostSignInService(), fenix: true);
+  Get.lazyPut<PostSignOutService>(() => PostSignOutService(), fenix: true);
+
+  Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
+  Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true);
+  Get.lazyPut<SignOutController>(() => SignOutController(), fenix: true);
+  Get.lazyPut<PasswordRecoverController>(() => PasswordRecoverController(), fenix: true);
+}

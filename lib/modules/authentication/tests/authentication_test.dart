@@ -1,7 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:botanico/modules/authentication/authentication_module.dart';
-import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:integration_test/integration_test.dart';
 
 /* 
@@ -14,6 +14,8 @@ flutter drive \
   -d chrome
 
 */
+
+void authenticationTests() => main();
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

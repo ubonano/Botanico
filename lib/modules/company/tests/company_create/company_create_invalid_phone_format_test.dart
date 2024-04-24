@@ -2,12 +2,12 @@
 
 import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:botanico/modules/company/company_module.dart';
-import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 
-void createCompanyWithInvalidPhoneFromSignUpTest(String email, String password) {
+void createCompanyWithInvalidPhoneTest(String email, String password) {
   testWidgets('Create company with invalid phone from sign up', (WidgetTester tester) async {
     await appInitFlow(tester);
 

@@ -1,7 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:botanico/modules/company/company_module.dart';
-import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:integration_test/integration_test.dart';
 
 /* 
@@ -15,15 +15,17 @@ flutter drive \
 
 */
 
+void companyTests() => main();
+
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   _createCompanyFromSignUp();
 }
 
-// Crear test para crear company desde sign in
 void _createCompanyFromSignUp() {
-  createCompanyWithEmptyFieldsFromSignUpTest(generateRandomEmail(), 'password123');
-  createCompanyWithInvalidPhoneFromSignUpTest(generateRandomEmail(), 'password123');
+  createCompanyWithEmptyFieldsTest(generateRandomEmail(), 'password123');
+  createCompanyWithInvalidPhoneTest(generateRandomEmail(), 'password123');
   createCompanySuccessFromSignUpTest(generateRandomEmail(), 'password123');
+  createCompanySuccessFromSignInTest(generateRandomEmail(), 'password123');
 }
