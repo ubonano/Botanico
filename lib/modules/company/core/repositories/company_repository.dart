@@ -2,7 +2,7 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../company_module.dart';
+import '../../company_module.dart';
 
 class CompanyRepository {
   final FirebaseFirestore _firestore = Get.find();

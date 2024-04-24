@@ -2,7 +2,7 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../authentication_module.dart';
+import '../../authentication_module.dart';
 
 class SignUpPage extends GetView<SignUpController> {
   const SignUpPage({super.key});

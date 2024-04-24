@@ -1,4 +1,4 @@
-import 'package:botanico/modules/authentication/ui/widgets/sign_out_button.dart';
+import 'package:botanico/modules/authentication/core/ui/widgets/sign_out_button.dart';
 import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module_permission.dart';
 import 'package:flutter/material.dart';

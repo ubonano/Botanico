@@ -1,6 +1,6 @@
 import 'package:botanico/modules/authentication/authentication_module.dart';
-import 'package:botanico/modules/foundation/services/log_service.dart';
-import 'package:botanico/modules/foundation/services/snackbar_service.dart';
+import 'package:botanico/modules/foundation/core/services/log_service.dart';
+import 'package:botanico/modules/foundation/core/services/snackbar_service.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

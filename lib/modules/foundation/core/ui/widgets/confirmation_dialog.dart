@@ -1,4 +1,4 @@
-import 'package:botanico/modules/foundation/services/navigation_service.dart';
+import 'package:botanico/modules/foundation/core/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

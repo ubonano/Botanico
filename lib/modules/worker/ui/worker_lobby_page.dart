@@ -1,5 +1,5 @@
 import 'package:botanico/modules/authentication/authentication_module.dart';
-import 'package:botanico/modules/company/ui/widgets/to_create_company_button.dart';
+import 'package:botanico/modules/company/core/ui/widgets/to_create_company_button.dart';
 import 'package:botanico/modules/foundation/foundation_module.dart';
 
 import 'package:botanico/modules/worker/worker_module.dart';
