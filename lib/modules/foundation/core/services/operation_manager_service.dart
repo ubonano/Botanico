@@ -1,18 +1,13 @@
 import 'package:botanico/modules/authentication/authentication_module.dart';
-import 'package:botanico/modules/foundation/core/services/log_service.dart';
-import 'package:botanico/modules/foundation/core/services/snackbar_service.dart';
+import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-class OperationManagerService extends GetxService {
+class OperationManagerService extends GetxService with GlobalServices, AuthContext {
   late final FirebaseFirestore _firestore = Get.find();
 
-  late final LogService _logService = Get.find();
-  late final SnackbarService _snackbar = Get.find();
-
-  late final AuthRepository _authRepo = Get.find();
   late final WorkerRepository _workerRepo = Get.find();
 
   Future<void> perform({
@@ -66,20 +61,20 @@ class OperationManagerService extends GetxService {
 
       await operation();
 
-      if (successMessage.isNotEmpty) _snackbar.success(successMessage);
-      _logService.info("$operationName exitosa.");
+      if (successMessage.isNotEmpty) snackbar.success(successMessage);
+      log.info("$operationName exitosa.");
 
       onSuccess?.call();
     } catch (e) {
-      if (showErrorMessageBySnackbar) _snackbar.error(_getErrorMessage(e));
-      _logService.error("$operationName fallida: ${_getErrorMessage(e)}", e);
+      if (showErrorMessageBySnackbar) snackbar.error(_getErrorMessage(e));
+      log.error("$operationName fallida: ${_getErrorMessage(e)}", e);
 
       onError?.call(e);
     }
   }
 
   Future<bool> _hasPermission(String permissionKey) async {
-    final worker = await _workerRepo.get(_authRepo.user!.uid);
+    final worker = await _workerRepo.get(authRepo.user!.uid);
 
     if (worker == null) throw WorkerNotFoundException();
 

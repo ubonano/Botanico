@@ -15,7 +15,8 @@ export 'core/services/log_service.dart';
 
 export 'core/services/navigation_service.dart';
 export 'core/mixins/life_cycle_logging.dart';
-export 'core/mixins/ui_form_controller.dart';
+export 'core/mixins/form_controller.dart';
+export 'core/mixins/global_services.dart';
 
 export 'core/ui/widgets/buttons/custom_button.dart';
 export 'core/ui/widgets/buttons/custom_text_button.dart';

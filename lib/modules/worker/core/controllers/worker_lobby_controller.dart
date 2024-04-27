@@ -3,12 +3,9 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class WorkerLobbyController extends GetxController with LifeCycleLogging {
+class WorkerLobbyController extends GetxController with LifeCycleLogging, GlobalServices, AuthContext {
   @override
   String get logTag => 'WorkerLobbyController';
-
-  late final SnackbarService snackbar = Get.find();
-  late final AuthRepository authRepo = Get.find();
 
   final RxString uid = ''.obs;
 

@@ -49,6 +49,8 @@ export 'tests/sign_up/sign_up_used_email_test.dart';
 
 export 'tests/authentication_test.dart';
 
+export 'core/auth_context.dart';
+
 void authenticationDependencies() {
   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
   Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);

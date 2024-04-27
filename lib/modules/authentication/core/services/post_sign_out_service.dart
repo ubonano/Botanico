@@ -3,9 +3,7 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
-class PostSignOutService extends GetxService {
-  late final NavigationService _navigate = Get.find();
-
+class PostSignOutService extends GetxService with GlobalServices {
   late final WorkerRepository _workerRepo = Get.find();
   late final CompanyRepository _companyRepo = Get.find();
 
@@ -13,6 +11,6 @@ class PostSignOutService extends GetxService {
     _workerRepo.clearCurrentWorker();
     _companyRepo.clearCurrentCompany();
 
-    _navigate.toSignIn();
+    navigate.toSignIn();
   }
 }

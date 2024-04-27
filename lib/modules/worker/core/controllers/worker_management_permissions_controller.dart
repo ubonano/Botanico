@@ -2,11 +2,10 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
-class WorkerManagementPermissionsController extends GetxController with LifeCycleLogging {
+class WorkerManagementPermissionsController extends GetxController with LifeCycleLogging, GlobalServices {
   @override
   String get logTag => 'WorkerManagementPermissionsController';
 
-  late final OperationManagerService _oprManager = Get.find();
   late final PermissionModuleService _moduleService = Get.find();
   late final WorkerRepository _workerRepository = Get.find();
 
@@ -37,7 +36,7 @@ class WorkerManagementPermissionsController extends GetxController with LifeCycl
     required WorkerModel worker,
     required String permissionId,
   }) async {
-    await _oprManager.perform(
+    await oprManager.perform(
       operationName: 'Toggle permission $permissionId',
       permissionKey: WorkerModulePermissions.managePermissionsKey,
       operation: (_) async {

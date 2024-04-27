@@ -5,13 +5,11 @@ import 'package:get/get.dart';
 
 import '../../company_module.dart';
 
-class CompanyCreateController extends GetxController with FormController, LifeCycleLogging {
+class CompanyCreateController extends GetxController
+    with FormController, LifeCycleLogging, GlobalServices, AuthContext {
   @override
   String get logTag => 'CompanyCreateController';
 
-  late final OperationManagerService _oprManager = Get.find();
-  late final NavigationService _navigate = Get.find();
-  late final AuthRepository _authRepo = Get.find();
   late final CompanyRepository _companyRepository = Get.find();
   late final WorkerRepository _workerRepository = Get.find();
 
@@ -29,7 +27,7 @@ class CompanyCreateController extends GetxController with FormController, LifeCy
   Future<void> submit() async => await createCompany(_newCompany);
 
   Future<void> createCompany(CompanyModel company) async {
-    await _oprManager.perform(
+    await oprManager.perform(
       operationName: 'Create company',
       inTransaction: true,
       operation: (txn) async {
@@ -38,13 +36,13 @@ class CompanyCreateController extends GetxController with FormController, LifeCy
         final worker = await _getWorkerModified(company.uid);
         await _workerRepository.updateWorker(worker, txn: txn);
       },
-      onSuccess: _navigate.toHome,
+      onSuccess: navigate.toHome,
     );
   }
 
   CompanyModel get _newCompany => CompanyModel(
         uid: _companyRepository.generateId,
-        ownerUid: _authRepo.user!.uid,
+        ownerUid: authRepo.user!.uid,
         name: getFieldValue(FieldKeys.name),
         address: getFieldValue(FieldKeys.address),
         city: getFieldValue(FieldKeys.city),
@@ -54,7 +52,7 @@ class CompanyCreateController extends GetxController with FormController, LifeCy
       );
 
   Future<WorkerModel> _getWorkerModified(String companyId) async {
-    final WorkerModel? worker = await _workerRepository.get(_authRepo.user!.uid);
+    final WorkerModel? worker = await _workerRepository.get(authRepo.user!.uid);
 
     if (worker == null) throw WorkerNotFoundException();
 
