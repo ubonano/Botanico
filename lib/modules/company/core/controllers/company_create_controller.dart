@@ -6,12 +6,9 @@ import 'package:get/get.dart';
 import '../../company_module.dart';
 
 class CompanyCreateController extends GetxController
-    with FormController, LifeCycleLogging, GlobalServices, AuthContext {
+    with FormController, LifeCycleLogging, GlobalServices, AuthContext, WorkerContext, CompanyContext {
   @override
   String get logTag => 'CompanyCreateController';
-
-  late final CompanyRepository _companyRepository = Get.find();
-  late final WorkerRepository _workerRepository = Get.find();
 
   @override
   List<String> formFields = [
@@ -31,17 +28,17 @@ class CompanyCreateController extends GetxController
       operationName: 'Create company',
       inTransaction: true,
       operation: (txn) async {
-        await _companyRepository.create(company, txn: txn);
+        await companyRepo.create(company, txn: txn);
 
         final worker = await _getWorkerModified(company.uid);
-        await _workerRepository.updateWorker(worker, txn: txn);
+        await workerRepo.updateWorker(worker, txn: txn);
       },
       onSuccess: navigate.toHome,
     );
   }
 
   CompanyModel get _newCompany => CompanyModel(
-        uid: _companyRepository.generateId,
+        uid: companyRepo.generateId,
         ownerUid: authRepo.user!.uid,
         name: getFieldValue(FieldKeys.name),
         address: getFieldValue(FieldKeys.address),
@@ -52,7 +49,7 @@ class CompanyCreateController extends GetxController
       );
 
   Future<WorkerModel> _getWorkerModified(String companyId) async {
-    final WorkerModel? worker = await _workerRepository.get(authRepo.user!.uid);
+    final WorkerModel? worker = await workerRepo.get(authRepo.user!.uid);
 
     if (worker == null) throw WorkerNotFoundException();
 

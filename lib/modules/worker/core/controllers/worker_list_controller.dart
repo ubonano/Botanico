@@ -5,11 +5,10 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
-class WorkerListController extends GetxController with LifeCycleLogging, GlobalServices, AuthContext {
+class WorkerListController extends GetxController with LifeCycleLogging, GlobalServices, AuthContext, WorkerContext {
   @override
   String get logTag => 'WorkerListController';
 
-  late final WorkerRepository _workerRepository = Get.find();
   StreamSubscription<List<WorkerModel>>? _workerListSubscription;
 
   final workerList$ = RxList<WorkerModel>();
@@ -26,11 +25,10 @@ class WorkerListController extends GetxController with LifeCycleLogging, GlobalS
       operationName: 'Fetch workers',
       permissionKey: WorkerModulePermissions.viewKey,
       operation: (_) async {
-        final WorkerModel? worker = await _workerRepository.fetch(authRepo.user!.uid);
+        final WorkerModel? worker = await workerRepo.fetch(authRepo.user!.uid);
 
-        _workerListSubscription = _workerRepository
-            .linkedWorkersStream(worker!.companyId)
-            .listen((workerList) => workerList$.value = workerList);
+        _workerListSubscription =
+            workerRepo.linkedWorkersStream(worker!.companyId).listen((workerList) => workerList$.value = workerList);
       },
     );
   }

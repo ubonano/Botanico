@@ -6,15 +6,12 @@ import 'package:get/get.dart';
 import '../../worker_module.dart';
 
 class WorkerLinkingController extends GetxController
-    with FormController, LifeCycleLogging, GlobalServices, AuthContext {
+    with FormController, LifeCycleLogging, GlobalServices, AuthContext, WorkerContext, CompanyContext {
   @override
   String get logTag => 'WorkerLinkingController';
 
   @override
   List<String> formFields = ['uid'];
-
-  late final WorkerRepository _workerRepo = Get.find();
-  late final CompanyRepository _companyRepo = Get.find();
 
   @override
   Future<void> submit() async => await _linkWorker(getFieldValue('uid'));
@@ -26,18 +23,18 @@ class WorkerLinkingController extends GetxController
       successMessage: 'Trabajador vinculado',
       inTransaction: true,
       operation: (txn) async {
-        final currentWorker = await _workerRepo.fetch(authRepo.user!.uid);
+        final currentWorker = await workerRepo.fetch(authRepo.user!.uid);
 
-        final worker = await _workerRepo.get(workerId);
-        final company = await _companyRepo.get(currentWorker!.companyId);
+        final worker = await workerRepo.get(workerId);
+        final company = await companyRepo.get(currentWorker!.companyId);
 
         if (worker == null) throw WorkerNotFoundException();
         if (company == null) throw CompanyNotFoundException();
 
         final updatedWorker = worker.copyWith(companyId: company.uid, role: WorkerRole.employee);
 
-        await _workerRepo.updateWorker(updatedWorker, txn: txn);
-        await _workerRepo.createLinkedWorker(company.uid, updatedWorker, txn: txn);
+        await workerRepo.updateWorker(updatedWorker, txn: txn);
+        await workerRepo.createLinkedWorker(company.uid, updatedWorker, txn: txn);
       },
       onSuccess: navigate.toWorkerList,
     );

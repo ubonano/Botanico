@@ -6,8 +6,6 @@ class SignUpController extends GetxController with FormController, LifeCycleLogg
   @override
   String get logTag => 'SignUpController';
 
-  late final NavigationService _navigate = Get.find();
-
   @override
   List<String> formFields = [FieldKeys.email, FieldKeys.password, FieldKeys.passwordConfirm];
 
@@ -24,7 +22,7 @@ class SignUpController extends GetxController with FormController, LifeCycleLogg
         getFieldValue(FieldKeys.email),
         getFieldValue(FieldKeys.password),
       ),
-      onSuccess: _navigate.toWorkerCreate,
+      onSuccess: navigate.toWorkerCreate,
     );
   }
 }

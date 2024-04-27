@@ -21,6 +21,8 @@ export 'tests/company_create/company_create_success_from_sign_in_test.dart';
 
 export 'core/ui/company_create_page.dart';
 
+export 'core/company_context.dart';
+
 void companyDependencies() {
   Get.lazyPut<CompanyRepository>(() => CompanyRepository(), fenix: true);
   Get.lazyPut<CompanyCreateController>(() => CompanyCreateController(), fenix: true);

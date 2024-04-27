@@ -3,13 +3,12 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
-class WorkerUnlinkingController extends GetxController with LifeCycleLogging, GlobalServices, AuthContext {
+class WorkerUnlinkingController extends GetxController
+    with LifeCycleLogging, GlobalServices, AuthContext, WorkerContext {
   @override
   String get logTag => 'WorkerUnlinkingController';
 
-  late final WorkerRepository _workerRepo = Get.find();
-
-  WorkerModel? get currentWorker => _workerRepo.currentWorker$;
+  WorkerModel? get currentWorker => workerRepo.currentWorker$;
 
   Future<void> submit(WorkerModel worker) async => await _unlinkWorker(worker.uid);
 
@@ -20,13 +19,13 @@ class WorkerUnlinkingController extends GetxController with LifeCycleLogging, Gl
       successMessage: 'Trabajador desvinculado',
       inTransaction: true,
       operation: (txn) async {
-        final WorkerModel? currentWorker = await _workerRepo.get(authRepo.user!.uid);
+        final WorkerModel? currentWorker = await workerRepo.get(authRepo.user!.uid);
 
-        await _workerRepo.deleteLinkedWorker(currentWorker!.companyId, workerId, txn: txn);
+        await workerRepo.deleteLinkedWorker(currentWorker!.companyId, workerId, txn: txn);
 
         final changes = {'companyId': '', 'role': workerRoleToString(WorkerRole.undefined), 'permissions': {}};
 
-        await _workerRepo.updatePartialWorker(workerId, changes, txn: txn);
+        await workerRepo.updatePartialWorker(workerId, changes, txn: txn);
       },
     );
   }

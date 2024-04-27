@@ -4,8 +4,7 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
-class PostSignInService extends GetxService with GlobalServices, AuthContext {
-  late final WorkerRepository _workerRepo = Get.find();
+class PostSignInService extends GetxService with GlobalServices, AuthContext, WorkerContext {
   late final CompanyRepository _companyRepo = Get.find();
 
   Future<void> handlePostSignIn() async {
@@ -16,13 +15,13 @@ class PostSignInService extends GetxService with GlobalServices, AuthContext {
     if (isUserWithoutWorker()) navigate.toWorkerCreate();
   }
 
-  Future<WorkerModel?> getWorker() async => await _workerRepo.fetch(authRepo.user!.uid);
+  Future<WorkerModel?> getWorker() async => await workerRepo.fetch(authRepo.user!.uid);
 
   Future<void> fetchCompany(WorkerModel? worker) async {
     if (worker != null && worker.companyId.isNotEmpty) await _companyRepo.fetch(worker.companyId);
   }
 
-  bool isWorkerLinkedToCompany() => _workerRepo.currentWorker$ != null && _companyRepo.currentCompany$ != null;
-  bool isWorkerNotLinkedToCompany() => _workerRepo.currentWorker$ != null && _companyRepo.currentCompany$ == null;
-  bool isUserWithoutWorker() => _workerRepo.currentWorker$ == null;
+  bool isWorkerLinkedToCompany() => workerRepo.currentWorker$ != null && _companyRepo.currentCompany$ != null;
+  bool isWorkerNotLinkedToCompany() => workerRepo.currentWorker$ != null && _companyRepo.currentCompany$ == null;
+  bool isUserWithoutWorker() => workerRepo.currentWorker$ == null;
 }

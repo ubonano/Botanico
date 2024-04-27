@@ -3,11 +3,10 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
-class WorkerCreateController extends GetxController with FormController, LifeCycleLogging, GlobalServices, AuthContext {
+class WorkerCreateController extends GetxController
+    with FormController, LifeCycleLogging, GlobalServices, AuthContext, WorkerContext {
   @override
   String get logTag => 'WorkerCreateController';
-
-  late final WorkerRepository _workerRepo = Get.find();
 
   @override
   List<String> formFields = [FieldKeys.fullname, FieldKeys.birthDate, FieldKeys.phone, FieldKeys.dni];
@@ -18,7 +17,7 @@ class WorkerCreateController extends GetxController with FormController, LifeCyc
   Future<void> _createWorker(WorkerModel worker) async {
     await oprManager.perform(
       operationName: 'Create worker',
-      operation: (_) async => await _workerRepo.createWorker(worker),
+      operation: (_) async => await workerRepo.createWorker(worker),
       onSuccess: navigate.toLobby,
     );
   }

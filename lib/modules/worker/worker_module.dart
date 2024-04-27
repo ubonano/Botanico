@@ -33,6 +33,8 @@ export 'core/ui/widgets/worker_list.dart';
 export 'core/ui/widgets/worker_linking_fab.dart';
 export 'core/ui/widgets/save_worker_button.dart';
 
+export 'core/worker_context.dart';
+
 export 'worker_module_permission.dart';
 
 void workerDependencies() {
