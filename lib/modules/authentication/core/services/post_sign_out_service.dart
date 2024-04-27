@@ -4,9 +4,10 @@ import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
 class PostSignOutService extends GetxService {
+  late final NavigationService _navigate = Get.find();
+
   late final WorkerRepository _workerRepo = Get.find();
   late final CompanyRepository _companyRepo = Get.find();
-  late final NavigationService _navigate = Get.find();
 
   Future<void> handlePostSignOut() async {
     _workerRepo.clearCurrentWorker();
