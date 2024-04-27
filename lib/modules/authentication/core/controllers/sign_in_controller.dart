@@ -12,15 +12,10 @@ class SignInController extends GetxController with FormController, LifeCycleLogg
   List<String> formFields = [FieldKeys.email, FieldKeys.password];
 
   @override
-  Future<void> submit() async => await _signIn(
-        getFieldValue(FieldKeys.email),
-        getFieldValue(FieldKeys.password),
-      );
-
-  Future<void> _signIn(String email, String password) async {
-    await oprManager.perform(
-      operationName: 'Sign in',
-      operation: (_) async => await authRepo.signIn(email, password),
+  Future<void> submit() async {
+    await signIn(
+      email: getFieldValue(FieldKeys.email),
+      password: getFieldValue(FieldKeys.password),
       onSuccess: _postSignInService.handlePostSignIn,
     );
   }

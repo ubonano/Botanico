@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 
 class PostSignOutService extends GetxService with GlobalServices, WorkerContext, CompanyContext {
   Future<void> handlePostSignOut() async {
-    workerRepo.clearCurrentWorker();
-    companyRepo.clearCurrentCompany();
+    cleanCurrentWorker();
+    cleanCurrentCompany();
 
     navigate.toSignIn();
   }

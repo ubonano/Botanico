@@ -8,15 +8,7 @@ class SignOutController extends GetxController with LifeCycleLogging, GlobalServ
 
   late final PostSignOutService _postSignOutService = Get.find();
 
-  Future<void> submit() async => await _signOut();
-
-  Future<void> _signOut() async {
-    await oprManager.perform(
-      operationName: 'Sign out',
-      operation: (_) async => await authRepo.signOut(),
-      onSuccess: _postSignOutService.handlePostSignOut,
-    );
-  }
+  Future<void> submit() async => await signOut(onSuccess: _postSignOutService.handlePostSignOut);
 
   @override
   void dispose() {
