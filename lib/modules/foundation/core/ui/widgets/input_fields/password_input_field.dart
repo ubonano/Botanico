@@ -2,7 +2,7 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:flutter/material.dart';
 
 class PasswordInputField extends StatelessWidget {
-  final UIFormController pageController;
+  final FormController pageController;
   final String fieldName;
   final bool obscureText;
   final bool required;

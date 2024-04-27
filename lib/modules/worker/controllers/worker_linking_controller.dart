@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../worker_module.dart';
 
-class WorkerLinkingController extends GetxController with UIFormController, LifeCycleLogging {
+class WorkerLinkingController extends GetxController with FormController, LifeCycleLogging {
   @override
   String get logTag => 'WorkerLinkingController';
 

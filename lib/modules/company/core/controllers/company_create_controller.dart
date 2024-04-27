@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../company_module.dart';
 
-class CompanyCreateController extends GetxController with UIFormController, LifeCycleLogging {
+class CompanyCreateController extends GetxController with FormController, LifeCycleLogging {
   @override
   String get logTag => 'CompanyCreateController';
 

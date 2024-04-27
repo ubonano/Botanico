@@ -2,7 +2,7 @@ import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:get/get.dart';
 
-class SignUpController extends GetxController with UIFormController, LifeCycleLogging {
+class SignUpController extends GetxController with FormController, LifeCycleLogging {
   @override
   String get logTag => 'SignUpController';
 
