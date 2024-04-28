@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-class AuthRepository {
+class AuthenticationRepository {
   final FirebaseAuth _auth = Get.find();
 
   Stream<User?> get userChanges => _auth.authStateChanges();

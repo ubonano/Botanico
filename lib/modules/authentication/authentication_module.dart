@@ -10,8 +10,8 @@ export 'core/controllers/sign_up_controller.dart';
 
 export 'core/repositories/auth_repository.dart';
 
-export 'core/services/post_sign_in_service.dart';
-export 'core/services/post_sign_out_service.dart';
+export 'core/services/authentication_service.dart';
+export 'core/helpers/authentication_handler.dart';
 
 export 'core/ui/widgets/recover_password_dialog.dart';
 export 'core/ui/widgets/sign_out_button.dart';
@@ -49,16 +49,15 @@ export 'tests/sign_up/sign_up_used_email_test.dart';
 
 export 'tests/authentication_test.dart';
 
-export 'core/auth_context.dart';
+export 'core/helpers/authentication_context.dart';
 
 void authenticationDependencies() {
   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
   Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);
 
-  Get.lazyPut<AuthRepository>(() => AuthRepository(), fenix: true);
+  Get.lazyPut<AuthenticationRepository>(() => AuthenticationRepository(), fenix: true);
 
-  Get.lazyPut<PostSignInService>(() => PostSignInService(), fenix: true);
-  Get.lazyPut<PostSignOutService>(() => PostSignOutService(), fenix: true);
+  Get.lazyPut<AuthenticationService>(() => AuthenticationService(), fenix: true);
 
   Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
   Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true);
