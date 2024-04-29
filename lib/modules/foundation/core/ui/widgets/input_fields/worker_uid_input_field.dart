@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../aux/validator.dart';
+import '../../../helpers/validator.dart';
 import 'custom_input_field.dart';
 
 class WorkerUidInputField extends StatelessWidget {

@@ -4,7 +4,7 @@ import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
 class WorkerUnlinkingController extends GetxController
-    with LifeCycleLogging, GlobalServices, AuthContext, WorkerContext {
+    with LifeCycleLogging, GlobalServices, AuthenticationContext, WorkerContext {
   @override
   String get logTag => 'WorkerUnlinkingController';
 
@@ -19,7 +19,7 @@ class WorkerUnlinkingController extends GetxController
       successMessage: 'Trabajador desvinculado',
       inTransaction: true,
       operation: (txn) async {
-        final WorkerModel? currentWorker = await workerRepo.get(authRepo.user!.uid);
+        final WorkerModel? currentWorker = await workerRepo.get(currentUser!.uid);
 
         await workerRepo.deleteLinkedWorker(currentWorker!.companyId, workerId, txn: txn);
 

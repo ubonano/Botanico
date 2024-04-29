@@ -8,9 +8,9 @@ class CustomDrawerController extends GetxController with LifeCycleLogging {
   @override
   String get logTag => 'CustomDrawerController';
 
-  late final AuthRepository authRepo = Get.find();
-  final WorkerRepository _workerRepo = Get.find();
-  final CompanyRepository _companyRepo = Get.find();
+  late final AuthenticationRepository authRepo = Get.find();
+  late final WorkerRepository _workerRepo = Get.find();
+  late final CompanyRepository _companyRepo = Get.find();
 
   WorkerModel? get currentWorker$ => _workerRepo.currentWorker$;
   CompanyModel? get currentCompany$ => _companyRepo.currentCompany$;
@@ -19,7 +19,7 @@ class CustomDrawerController extends GetxController with LifeCycleLogging {
   Future<void> onInit() async {
     super.onInit();
 
-    await _workerRepo.fetch(authRepo.user!.uid);
-    await _companyRepo.get(_workerRepo.currentWorker$!.companyId);
+    // await _workerRepo.fetch(authRepo.user!.uid);
+    // await _companyRepo.get(_workerRepo.currentWorker$!.companyId);
   }
 }

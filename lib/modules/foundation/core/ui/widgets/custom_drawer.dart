@@ -23,7 +23,9 @@ class CustomDrawer extends GetView<CustomDrawerController> {
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: Text(
-                  controller.currentWorker$!.name.isNotEmpty ? controller.currentWorker$!.name[0] : 'X',
+                  controller.currentWorker$ != null && controller.currentWorker$!.name.isNotEmpty
+                      ? controller.currentWorker$!.name[0]
+                      : 'X',
                   style: TextStyle(fontSize: 40.0, color: Theme.of(context).primaryColor),
                 ),
               ),
@@ -33,7 +35,7 @@ class CustomDrawer extends GetView<CustomDrawerController> {
             ),
             ListTile(
               leading: const Icon(Icons.business),
-              title: Text(controller.currentCompany$!.name),
+              title: Text(controller.currentCompany$?.name ?? ''),
             ),
             ListTile(
               leading: const Icon(Icons.home),

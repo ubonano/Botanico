@@ -9,11 +9,13 @@ export 'core/controllers/worker_create_controller.dart';
 export 'core/controllers/worker_management_permissions_controller.dart';
 
 export 'core/exceptions/worker_not_found_exception.dart';
+export 'core/handlers/worker_handler.dart';
 
 export 'core/models/enums/worker_role.dart';
 export 'core/models/worker_model.dart';
 
 export 'core/repositories/worker_repository.dart';
+export 'core/services/worker_service.dart';
 
 export 'tests/flows/worker_create_from_sign_up_flow.dart';
 
@@ -39,6 +41,8 @@ export 'worker_module_permission.dart';
 
 void workerDependencies() {
   Get.lazyPut<WorkerRepository>(() => WorkerRepository(), fenix: true);
+  Get.lazyPut<WorkerHandler>(() => WorkerHandler(), fenix: true);
+  Get.lazyPut<WorkerService>(() => WorkerService(), fenix: true);
 
   Get.lazyPut<WorkerLobbyController>(() => WorkerLobbyController(), fenix: true);
 

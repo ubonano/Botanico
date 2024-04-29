@@ -6,7 +6,7 @@ import 'core/services/operation_manager_service.dart';
 import 'core/services/permission_module_service.dart';
 import 'core/services/snackbar_service.dart';
 import 'core/controllers/home_controller.dart';
-import 'core/ui/widgets/custom_drawer/custom_drawer_controller.dart';
+import 'core/controllers/custom_drawer_controller.dart';
 
 export 'core/services/snackbar_service.dart';
 export 'core/services/permission_module_service.dart';
@@ -36,8 +36,8 @@ export 'core/ui/widgets/input_fields/phone_input_field.dart';
 export 'core/ui/widgets/input_fields/province_input_field.dart';
 export 'core/ui/widgets/input_fields/worker_uid_input_field.dart';
 
-export 'core/ui/widgets/custom_drawer/custom_drawer.dart';
-export 'core/ui/widgets/custom_drawer/custom_drawer_controller.dart';
+export 'core/ui/widgets/custom_drawer.dart';
+export 'core/controllers/custom_drawer_controller.dart';
 
 export 'core/ui/widgets/confirmation_dialog.dart';
 export 'core/ui/widgets/custom_scaffold.dart';
@@ -48,10 +48,10 @@ export 'core/ui/home_page.dart';
 export '../../app.dart';
 
 export '../../setup/firestore_collections.dart';
-export 'core/aux/validator.dart';
-export 'core/aux/module_structure.dart';
+export 'core/helpers/validator.dart';
+export 'core/helpers/module_structure.dart';
 export '../../setup/fields_key.dart';
-export 'core/aux/utils.dart';
+export 'core/helpers/utils.dart';
 
 export 'core/models/module_model.dart';
 export 'core/models/permission_model.dart';

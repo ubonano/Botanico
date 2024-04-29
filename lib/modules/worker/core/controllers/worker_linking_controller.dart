@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../worker_module.dart';
 
 class WorkerLinkingController extends GetxController
-    with FormController, LifeCycleLogging, GlobalServices, AuthContext, WorkerContext, CompanyContext {
+    with FormController, LifeCycleLogging, GlobalServices, AuthenticationContext, WorkerContext, CompanyContext {
   @override
   String get logTag => 'WorkerLinkingController';
 
@@ -23,7 +23,7 @@ class WorkerLinkingController extends GetxController
       successMessage: 'Trabajador vinculado',
       inTransaction: true,
       operation: (txn) async {
-        final currentWorker = await workerRepo.fetch(authRepo.user!.uid);
+        final currentWorker = await workerRepo.fetch(currentUser!.uid);
 
         final worker = await workerRepo.get(workerId);
         final company = await companyRepo.get(currentWorker!.companyId);

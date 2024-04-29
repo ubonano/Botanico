@@ -5,11 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-class OperationManagerService extends GetxService with GlobalServices, AuthContext {
+class OperationManagerService extends GetxService with GlobalServices, AuthenticationContext, WorkerContext {
   late final FirebaseFirestore _firestore = Get.find();
 
-  late final WorkerRepository _workerRepo = Get.find();
-
+  // TODO No esta funcionando la transaccion como deberia... Si falla no hace el rollback de lo que ya ejecuto previamente
   Future<void> perform({
     required Future Function(Transaction? txn) operation,
     String operationName = "Operation",
@@ -74,7 +73,7 @@ class OperationManagerService extends GetxService with GlobalServices, AuthConte
   }
 
   Future<bool> _hasPermission(String permissionKey) async {
-    final worker = await _workerRepo.get(authRepo.user!.uid);
+    final worker = await workerRepo.get(currentUser!.uid);
 
     if (worker == null) throw WorkerNotFoundException();
 

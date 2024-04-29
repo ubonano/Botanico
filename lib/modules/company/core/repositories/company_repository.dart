@@ -13,6 +13,7 @@ class CompanyRepository {
   String get generateId => _companyRef.doc().id;
 
   Future<CompanyModel?> fetch(String id) async {
+    if (id.isEmpty) return null;
     _currentCompany$.value ??= await get(id);
     return _currentCompany$.value;
   }

@@ -20,10 +20,6 @@ void companyTests() => main();
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  _createCompanyFromSignUp();
-}
-
-void _createCompanyFromSignUp() {
   createCompanyWithEmptyFieldsTest(generateRandomEmail(), 'password123');
   createCompanyWithInvalidPhoneTest(generateRandomEmail(), 'password123');
   createCompanySuccessFromSignUpTest(generateRandomEmail(), 'password123');

@@ -3,7 +3,7 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class WorkerLobbyController extends GetxController with LifeCycleLogging, GlobalServices, AuthContext {
+class WorkerLobbyController extends GetxController with LifeCycleLogging, GlobalServices, AuthenticationContext {
   @override
   String get logTag => 'WorkerLobbyController';
 
@@ -13,7 +13,7 @@ class WorkerLobbyController extends GetxController with LifeCycleLogging, Global
   void onInit() async {
     super.onInit();
 
-    uid.value = authRepo.user?.uid ?? '';
+    uid.value = currentUser?.uid ?? '';
   }
 
   void copyToClipboard() {
