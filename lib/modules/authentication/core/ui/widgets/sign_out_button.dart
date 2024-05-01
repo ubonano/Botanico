@@ -18,7 +18,7 @@ class SignOutButton extends GetView<SignOutController> {
 }
 
 class SignOutIconButton extends StatefulWidget {
-  const SignOutIconButton({Key? key}) : super(key: key);
+  const SignOutIconButton({super.key});
 
   @override
   State<SignOutIconButton> createState() => _SignOutIconButtonState();

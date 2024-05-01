@@ -5,11 +5,9 @@ import 'package:get/get.dart';
 class AuthenticationRepository {
   final FirebaseAuth _auth = Get.find();
 
-  Stream<User?> get userChanges => _auth.authStateChanges();
+  User? get currentUser => _auth.currentUser;
 
-  User? get user => _auth.currentUser;
-
-  bool get isLoggedInUser => user != null;
+  bool get isLoggedInUser => currentUser != null;
 
   Future<User?> signIn(String email, String password) async =>
       (await _auth.signInWithEmailAndPassword(email: email, password: password)).user;

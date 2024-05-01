@@ -7,12 +7,10 @@ class ToSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NavigationService navigate = Get.find();
-
     return CustomTextButton(
       key: key ?? const Key('toSignInButton'),
       text: '¿Ya tenes cuenta? Inicia sesión',
-      onPressed: navigate.toSignIn,
+      onPressed: Get.find<NavigationService>().toSignIn,
     );
   }
 }

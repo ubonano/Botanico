@@ -8,7 +8,7 @@ export 'core/controllers/sign_in_controller.dart';
 export 'core/controllers/sign_out_controller.dart';
 export 'core/controllers/sign_up_controller.dart';
 
-export 'core/repositories/auth_repository.dart';
+import 'core/repositories/auth_repository.dart';
 
 export 'core/services/authentication_service.dart';
 export 'core/helpers/authentication_handler.dart';
@@ -48,8 +48,6 @@ export 'tests/sign_up/sign_up_success_test.dart';
 export 'tests/sign_up/sign_up_used_email_test.dart';
 
 export 'authentication_test.dart';
-
-export 'core/helpers/authentication_context.dart';
 
 void authenticationDependencies() {
   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
