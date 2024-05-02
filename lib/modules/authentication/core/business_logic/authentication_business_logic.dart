@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import '../../authentication_module.dart';
 
 class AuthenticationBusinessLogic extends GetxService with GlobalServices implements IAuthenticationBusinessLogic {
-  late final AuthenticationRepository _authRepo = Get.find();
+  late final IAuthenticationRepository _authRepo = Get.find();
 
-  late final CompanyHandler _companyHandler = Get.find();
+  late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
   late final WorkerHandler _workerHandler = Get.find();
 
   @override
@@ -32,7 +32,7 @@ class AuthenticationBusinessLogic extends GetxService with GlobalServices implem
       return;
     }
 
-    CompanyModel? company = await _companyHandler.fetch(worker.companyId);
+    CompanyModel? company = await _companyBusinessLogic.fetch(worker.companyId);
     if (company != null) {
       navigate.toHome();
     } else {
@@ -46,7 +46,7 @@ class AuthenticationBusinessLogic extends GetxService with GlobalServices implem
   @override
   void postSignOut() async {
     _workerHandler.clearCurrentWorker();
-    _companyHandler.clearCurrentCompany();
+    _companyBusinessLogic.clearCurrentCompany();
 
     navigate.toSignIn();
   }

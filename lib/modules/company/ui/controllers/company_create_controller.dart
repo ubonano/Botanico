@@ -7,7 +7,7 @@ class CompanyCreateController extends GetxController with FormController, LifeCy
   @override
   String get logTag => 'CompanyCreateController';
 
-  late final CompanyService _companyService = Get.find();
+  late final ICompanyService _companyService = Get.find();
 
   @override
   List<String> formFields = [

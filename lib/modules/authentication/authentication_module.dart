@@ -11,9 +11,9 @@ export 'ui/controllers/sign_in_controller.dart';
 export 'ui/controllers/sign_out_controller.dart';
 export 'ui/controllers/sign_up_controller.dart';
 
-export 'core/interfaces/i_authenticatin_business_logic.dart';
-export 'core/interfaces/i_authentication_service.dart';
-export 'core/interfaces/i_authentication_repository.dart';
+export 'core/helpers/interfaces/i_authenticatin_business_logic.dart';
+export 'core/helpers/interfaces/i_authentication_service.dart';
+export 'core/helpers/interfaces/i_authentication_repository.dart';
 
 export 'core/repositories/auth_repository.dart';
 
