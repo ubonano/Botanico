@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 import '../../authentication_module.dart';
 
-class AuthenticationHandler with GlobalServices {
+class AuthenticationBussinesLogic with GlobalServices {
   late final AuthenticationRepository _authRepo = Get.find();
 
   late final CompanyHandler _companyHandler = Get.find();

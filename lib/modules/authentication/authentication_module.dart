@@ -8,7 +8,7 @@ export 'core/controllers/sign_in_controller.dart';
 export 'core/controllers/sign_out_controller.dart';
 export 'core/controllers/sign_up_controller.dart';
 
-export 'core/helpers/authentication_handler.dart';
+export 'core/business_logic/authentication_business_logic.dart';
 
 export 'core/repositories/auth_repository.dart';
 
@@ -57,7 +57,7 @@ void authenticationDependencies() {
   Get.lazyPut<AuthenticationRepository>(() => AuthenticationRepository(), fenix: true);
 
   Get.lazyPut<AuthenticationService>(() => AuthenticationService(), fenix: true);
-  Get.lazyPut<AuthenticationHandler>(() => AuthenticationHandler(), fenix: true);
+  Get.lazyPut<AuthenticationBussinesLogic>(() => AuthenticationBussinesLogic(), fenix: true);
 
   Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
   Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true);
