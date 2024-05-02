@@ -5,7 +5,7 @@ import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-class CompanyBusinessLogic extends GetxService with GlobalServices implements ICompanyBusinessLogic {
+class CompanyBusinessLogic extends GetxService with GlobalHelper implements ICompanyBusinessLogic {
   late final ICompanyRepository _companyRepo = Get.find();
 
   late final IAuthenticationBusinessLogic _authBusinessLogic = Get.find();

@@ -10,7 +10,7 @@ class ToSignUpButton extends StatelessWidget {
     return CustomTextButton(
       key: key ?? const Key('toSignUpButton'),
       text: '¿No tenes cuenta? Crear nueva cuenta',
-      onPressed: Get.find<NavigationService>().toSignUp,
+      onPressed: Get.find<NavigationHelper>().toSignUp,
     );
   }
 }

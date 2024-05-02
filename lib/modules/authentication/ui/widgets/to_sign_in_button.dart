@@ -10,7 +10,7 @@ class ToSignInButton extends StatelessWidget {
     return CustomTextButton(
       key: key ?? const Key('toSignInButton'),
       text: '¿Ya tenes cuenta? Inicia sesión',
-      onPressed: Get.find<NavigationService>().toSignIn,
+      onPressed: Get.find<NavigationHelper>().toSignIn,
     );
   }
 }

@@ -9,7 +9,7 @@ class RecoverPasswordDialog extends GetView<PasswordRecoverController> {
 
   @override
   Widget build(BuildContext context) {
-    late final NavigationService navigate = Get.find();
+    late final NavigationHelper navigate = Get.find();
 
     return AlertDialog(
       title: const Text('Recuperar contraseña'),

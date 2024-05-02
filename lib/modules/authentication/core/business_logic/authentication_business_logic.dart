@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../authentication_module.dart';
 
-class AuthenticationBusinessLogic extends GetxService with GlobalServices implements IAuthenticationBusinessLogic {
+class AuthenticationBusinessLogic extends GetxService with GlobalHelper implements IAuthenticationBusinessLogic {
   late final IAuthenticationRepository _authRepo = Get.find();
 
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
