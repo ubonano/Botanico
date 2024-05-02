@@ -1,29 +1,34 @@
 import 'package:botanico/modules/authentication/authentication_module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-export 'core/controllers/password_recover_controller.dart';
-export 'core/controllers/sign_in_controller.dart';
-export 'core/controllers/sign_out_controller.dart';
-export 'core/controllers/sign_up_controller.dart';
+export 'package:firebase_auth/firebase_auth.dart';
 
 export 'core/business_logic/authentication_business_logic.dart';
+
+export 'ui/controllers/password_recover_controller.dart';
+export 'ui/controllers/sign_in_controller.dart';
+export 'ui/controllers/sign_out_controller.dart';
+export 'ui/controllers/sign_up_controller.dart';
+
+export 'core/interfaces/i_authenticatin_business_logic.dart';
+export 'core/interfaces/i_authentication_service.dart';
+export 'core/interfaces/i_authentication_repository.dart';
 
 export 'core/repositories/auth_repository.dart';
 
 export 'core/services/authentication_service.dart';
 
-export 'core/ui/widgets/recover_password_dialog.dart';
-export 'core/ui/widgets/sign_out_button.dart';
-export 'core/ui/widgets/sign_in_button.dart';
-export 'core/ui/widgets/forgot_password_button.dart';
-export 'core/ui/widgets/sign_up_button.dart';
-export 'core/ui/widgets/to_sign_in_button.dart';
-export 'core/ui/widgets/to_sign_up_button.dart';
+export 'ui/widgets/recover_password_dialog.dart';
+export 'ui/widgets/sign_out_button.dart';
+export 'ui/widgets/sign_in_button.dart';
+export 'ui/widgets/forgot_password_button.dart';
+export 'ui/widgets/sign_up_button.dart';
+export 'ui/widgets/to_sign_in_button.dart';
+export 'ui/widgets/to_sign_up_button.dart';
 
-export 'core/ui/sign_in_page.dart';
-export 'core/ui/sign_up_page.dart';
+export 'ui/sign_in_page.dart';
+export 'ui/sign_up_page.dart';
 
 export 'tests/flows/navigate_to_sign_in_flow.dart';
 export 'tests/flows/navigate_to_sign_up_flow.dart';
@@ -54,10 +59,11 @@ void authenticationDependencies() {
   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
   Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);
 
-  Get.lazyPut<AuthenticationRepository>(() => AuthenticationRepository(), fenix: true);
+  Get.lazyPut<IAuthenticationRepository>(() => AuthenticationRepository(), fenix: true);
 
-  Get.lazyPut<AuthenticationService>(() => AuthenticationService(), fenix: true);
-  Get.lazyPut<AuthenticationBussinesLogic>(() => AuthenticationBussinesLogic(), fenix: true);
+  Get.lazyPut<IAuthenticationBusinessLogic>(() => AuthenticationBusinessLogic(), fenix: true);
+
+  Get.lazyPut<IAuthenticationService>(() => AuthenticationService(), fenix: true);
 
   Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
   Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true);
