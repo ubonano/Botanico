@@ -13,7 +13,8 @@ class CompanyHandler with GlobalServices {
   late final AuthenticationHandler _authHandler = Get.find();
   late final WorkerHandler _workerHandler = Get.find();
 
-  CompanyModel? get currentCompany$ => _companyRepo.currentCompany$;
+  final Rx<CompanyModel?> _currentCompany$ = Rx<CompanyModel?>(null);
+  CompanyModel? get currentCompany$ => _currentCompany$.value;
 
   Future<void> createCompany(CompanyModel company, Transaction? txn) async {
     String newCompanyId = _companyRepo.generateId;
@@ -31,7 +32,11 @@ class CompanyHandler with GlobalServices {
 
   Future<CompanyModel?> get(String id) async => _companyRepo.get(id);
 
-  Future<CompanyModel?> fetch(String id) async => _companyRepo.fetch(id);
+  Future<CompanyModel?> fetch(String id) async {
+    if (id.isEmpty) return null;
+    _currentCompany$.value = await get(id);
+    return _currentCompany$.value;
+  }
 
-  void clearCurrentCompany() => _companyRepo.clearCurrentCompany();
+  void clearCurrentCompany() => _currentCompany$.value = null;
 }
