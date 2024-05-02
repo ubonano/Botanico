@@ -3,15 +3,13 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SaveCompanyButton extends StatelessWidget {
-  const SaveCompanyButton({super.key});
+class CompanySaveButton extends GetView<CompanyCreateController> {
+  const CompanySaveButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final CompanyCreateController controller = Get.find();
-
     return CustomButton(
-      key: key ?? const Key('saveCompanyButton'),
+      key: key ?? const Key('CompanySaveButton'),
       text: 'Guardar empresa',
       onPressed: controller.secureSubmit,
     );

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Future<void> createCompanyFlow(
+Future<void> companyCreateFlow(
   WidgetTester tester, {
   String name = 'Tech Solutions',
   String address = '123 Tech Street',
@@ -18,7 +18,7 @@ Future<void> createCompanyFlow(
   final provinceField = find.byKey(const Key('provinceField'));
   final countryField = find.byKey(const Key('countryField'));
   final phoneField = find.byKey(const Key('phoneField'));
-  final saveCompanyButton = find.byKey(const Key('saveCompanyButton'));
+  final companySaveButton = find.byKey(const Key('CompanySaveButton'));
 
   await tester.enterText(nameField, name);
   await tester.enterText(addressField, address);
@@ -27,6 +27,6 @@ Future<void> createCompanyFlow(
   await tester.enterText(countryField, country);
   await tester.enterText(phoneField, phone);
 
-  await tester.tap(saveCompanyButton);
+  await tester.tap(companySaveButton);
   await tester.pumpAndSettle();
 }

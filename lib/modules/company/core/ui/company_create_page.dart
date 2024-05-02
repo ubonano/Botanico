@@ -1,4 +1,4 @@
-import 'package:botanico/modules/company/core/ui/widgets/save_company_button.dart';
+import 'package:botanico/modules/company/core/ui/widgets/company_save_button.dart';
 import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +26,7 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
               ProvinceInputField(controller),
               CountryInputField(controller),
               PhoneInputField(controller),
-              const SaveCompanyButton(),
+              const CompanySaveButton(),
             ],
           ),
         ),

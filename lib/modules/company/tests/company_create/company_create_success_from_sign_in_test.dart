@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 
-void createCompanySuccessFromSignInTest(String email, String password) {
+void companyCreateSuccessFromSignInTest(String email, String password) {
   testWidgets('Create company success from sign in', (WidgetTester tester) async {
     await appInitFlow(tester);
 
@@ -16,8 +16,8 @@ void createCompanySuccessFromSignInTest(String email, String password) {
     await signOutFromWorkerCreateFlow(tester);
     await signInFlow(tester, email, password);
     await workerCreateFlow(tester);
-    await navigateToCreateCompanyFlow(tester);
-    await createCompanyFlow(tester);
+    await companyCreateNavigateFlow(tester);
+    await companyCreateFlow(tester);
     expect(find.byKey(const Key('HomePage')), findsOneWidget);
   });
 }

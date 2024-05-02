@@ -5,8 +5,6 @@ import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../repositories/company_repository.dart';
-
 class CompanyHandler with GlobalServices {
   late final CompanyRepository _companyRepo = Get.find();
 
