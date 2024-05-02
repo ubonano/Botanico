@@ -10,7 +10,7 @@ import 'package:integration_test/integration_test.dart';
 
 flutter drive \
   --driver=test_driver/integration_test.dart \
-  --target=lib/modules/company/tests/company_test.dart \
+  --target=lib/modules/company/company_test.dart \
   -d chrome
 
 */

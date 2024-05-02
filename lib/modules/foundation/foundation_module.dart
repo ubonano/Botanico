@@ -1,12 +1,28 @@
 import 'package:get/get.dart';
+import 'core/controllers/module_list_controller.dart';
+import 'core/controllers/home_controller.dart';
+import 'core/controllers/custom_drawer_controller.dart';
+
+export 'core/controllers/custom_drawer_controller.dart';
+export 'core/controllers/home_controller.dart';
+export 'core/controllers/module_list_controller.dart';
+
+export 'core/helpers/validator.dart';
+export 'core/helpers/module_structure.dart';
+export 'core/helpers/utils.dart';
+
+export 'core/mixins/life_cycle_logging.dart';
+export 'core/mixins/form_controller.dart';
+export 'core/mixins/global_services.dart';
+
+export 'core/models/module_model.dart';
+export 'core/models/permission_model.dart';
 
 import 'core/services/log_service.dart';
 import 'core/services/navigation_service.dart';
 import 'core/services/operation_manager_service.dart';
 import 'core/services/permission_module_service.dart';
 import 'core/services/snackbar_service.dart';
-import 'core/controllers/home_controller.dart';
-import 'core/controllers/custom_drawer_controller.dart';
 
 export 'core/services/snackbar_service.dart';
 export 'core/services/permission_module_service.dart';
@@ -14,9 +30,8 @@ export 'core/services/operation_manager_service.dart';
 export 'core/services/log_service.dart';
 
 export 'core/services/navigation_service.dart';
-export 'core/mixins/life_cycle_logging.dart';
-export 'core/mixins/form_controller.dart';
-export 'core/mixins/global_services.dart';
+
+export 'core/ui/module_list_page.dart';
 
 export 'core/ui/widgets/buttons/custom_button.dart';
 export 'core/ui/widgets/buttons/custom_text_button.dart';
@@ -35,32 +50,22 @@ export 'core/ui/widgets/input_fields/password_input_field.dart';
 export 'core/ui/widgets/input_fields/phone_input_field.dart';
 export 'core/ui/widgets/input_fields/province_input_field.dart';
 export 'core/ui/widgets/input_fields/worker_uid_input_field.dart';
+export 'core/ui/widgets/module_expansion_tile.dart';
 
 export 'core/ui/widgets/custom_drawer.dart';
-export 'core/controllers/custom_drawer_controller.dart';
 
 export 'core/ui/widgets/confirmation_dialog.dart';
 export 'core/ui/widgets/custom_scaffold.dart';
 export 'core/ui/widgets/permission_protected.dart';
-
-export 'core/controllers/home_controller.dart';
 export 'core/ui/home_page.dart';
+
 export '../../app.dart';
-
 export '../../setup/firestore_collections.dart';
-export 'core/helpers/validator.dart';
-export 'core/helpers/module_structure.dart';
 export '../../setup/fields_key.dart';
-export 'core/helpers/utils.dart';
-
-export 'core/models/module_model.dart';
-export 'core/models/permission_model.dart';
-
 export '../../setup/bindings.dart';
 export '../../setup/firebase_options.dart';
 export '../../setup/pages.dart';
 export '../../setup/routes.dart';
-
 export '../../tests/flows/app_init_flow.dart';
 
 void foundationDependencies() {
@@ -70,6 +75,7 @@ void foundationDependencies() {
   Get.put(OperationManagerService(), permanent: true);
 
   Get.lazyPut<PermissionModuleService>(() => PermissionModuleService(), fenix: true);
+  Get.lazyPut<ModuleListController>(() => ModuleListController(), fenix: true);
 
   Get.lazyPut<CustomDrawerController>(() => CustomDrawerController(), fenix: true);
   Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
