@@ -8,10 +8,11 @@ export 'core/controllers/sign_in_controller.dart';
 export 'core/controllers/sign_out_controller.dart';
 export 'core/controllers/sign_up_controller.dart';
 
-import 'core/repositories/auth_repository.dart';
+export 'core/helpers/authentication_handler.dart';
+
+export 'core/repositories/auth_repository.dart';
 
 export 'core/services/authentication_service.dart';
-export 'core/helpers/authentication_handler.dart';
 
 export 'core/ui/widgets/recover_password_dialog.dart';
 export 'core/ui/widgets/sign_out_button.dart';

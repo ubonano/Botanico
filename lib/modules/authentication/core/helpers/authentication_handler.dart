@@ -1,9 +1,10 @@
-import 'package:botanico/modules/authentication/core/repositories/auth_repository.dart';
 import 'package:botanico/modules/company/company_module.dart';
 import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+
+import '../../authentication_module.dart';
 
 class AuthenticationHandler with GlobalServices {
   late final AuthenticationRepository _authRepo = Get.find();
