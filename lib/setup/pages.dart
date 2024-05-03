@@ -40,11 +40,11 @@ class Pages {
     ),
     GetPage(
       name: Routes.WORKER_LINKING,
-      page: () => const WorkerLinkingPage(),
+      page: () => const WorkerLinkPage(),
     ),
     GetPage(
       name: Routes.WORKER_MANAGEMENT_PERMISSIONS,
-      page: () => const WorkerManagementPage(),
+      page: () => const ModuleListPage(),
     ),
   ];
 }

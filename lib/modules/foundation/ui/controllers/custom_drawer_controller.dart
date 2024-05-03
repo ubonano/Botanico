@@ -7,10 +7,10 @@ class CustomDrawerController extends GetxController with LifeCycleLoggingControl
   @override
   String get logTag => 'CustomDrawerController';
 
-  late final WorkerHandler _workerHandler = Get.find();
+  late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
 
-  WorkerModel? get currentWorker$ => _workerHandler.loggedWorker$;
+  WorkerModel? get currentWorker$ => _workerBusinessLogic.loggedWorker$;
   CompanyModel? get currentCompany$ => _companyBusinessLogic.currentCompany$;
 
   @override
@@ -18,7 +18,7 @@ class CustomDrawerController extends GetxController with LifeCycleLoggingControl
     super.onInit();
 
     // TODO ver que si no se hace aca, no se muestra... cuando en el signIn o signUp ya se hace un fetch...
-    await _workerHandler.fetchLoggedWorker();
-    await _companyBusinessLogic.get(_workerHandler.loggedWorker$!.companyId);
+    await _workerBusinessLogic.fetchLoggedWorker();
+    await _companyBusinessLogic.get(_workerBusinessLogic.loggedWorker$!.companyId);
   }
 }

@@ -2,7 +2,7 @@ import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:get/get.dart';
 
-class WorkerCreateController extends GetxController with FormController, LifeCycleLogging {
+class WorkerCreateController extends GetxController with FormHelper, LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'WorkerCreateController';
 

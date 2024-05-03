@@ -11,8 +11,9 @@ class PermissionProtected extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO refactor... no debe acceder directo al handler
-    late final WorkerHandler workerHandler = Get.find();
+    late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
-    return Obx(() => workerHandler.loggedWorker$?.hasPermission(permission) ?? false ? child : const SizedBox.shrink());
+    return Obx(
+        () => _workerBusinessLogic.loggedWorker$?.hasPermission(permission) ?? false ? child : const SizedBox.shrink());
   }
 }

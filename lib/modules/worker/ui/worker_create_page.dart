@@ -1,9 +1,10 @@
-import 'package:botanico/modules/authentication/core/ui/widgets/sign_out_button.dart';
+import 'package:botanico/modules/authentication/ui/widgets/sign_out_button.dart';
+import 'package:botanico/modules/company/company_module.dart';
 import 'package:botanico/modules/foundation/foundation_module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../worker_module.dart';
+import '../worker_module.dart';
 
 class WorkerCreatePage extends GetView<WorkerCreateController> {
   const WorkerCreatePage({super.key});
@@ -24,7 +25,7 @@ class WorkerCreatePage extends GetView<WorkerCreateController> {
               BirthdateInputField(controller),
               PhoneInputField(controller),
               DNIInputField(controller),
-              const SaveWorkerButton(),
+              const WorkerSaveButton(),
               const SignOutButton(),
             ],
           ),

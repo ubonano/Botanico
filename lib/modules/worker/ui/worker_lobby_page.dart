@@ -1,11 +1,9 @@
 import 'package:botanico/modules/authentication/authentication_module.dart';
-import 'package:botanico/modules/company/core/ui/widgets/to_create_company_button.dart';
+import 'package:botanico/modules/company/ui/widgets/company_create_navigate_button.dart';
 import 'package:botanico/modules/foundation/foundation_module.dart';
-
 import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 class LobbyPage extends GetView<WorkerLobbyController> {
   const LobbyPage({super.key});
@@ -20,18 +18,12 @@ class LobbyPage extends GetView<WorkerLobbyController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Obx(
-              () => QrImageView(
-                data: controller.uid.value,
-                version: QrVersions.auto,
-                size: 200.0,
-              ),
-            ),
+            const WorkerUidQrCode(),
             const SizedBox(height: 20),
             const Text('Mostrale este código a tu empleador para vincularte a la empresa.'),
             const SizedBox(height: 20),
-            CustomTextButton(text: 'Copiar código de vinculación', onPressed: controller.copyToClipboard),
-            const ToCreateCompanyButton(),
+            WorkerCopyUidButton(),
+            const CompanyCreateNavigateButton(),
             const SignOutButton(),
           ],
         ),

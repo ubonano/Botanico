@@ -3,16 +3,15 @@ import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SaveWorkerButton extends StatelessWidget {
-  const SaveWorkerButton({super.key});
+class WorkerLinkButton extends StatelessWidget {
+  const WorkerLinkButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final WorkerCreateController controller = Get.find();
-
+    late final WorkerLinkController controller = Get.find();
     return CustomButton(
-      key: key ?? const Key('saveWorkerButton'),
-      text: 'Guardar Perfil',
+      key: key ?? const Key('WorkerLinkButton'),
+      text: 'Vincular Trabajador',
       onPressed: controller.secureSubmit,
     );
   }

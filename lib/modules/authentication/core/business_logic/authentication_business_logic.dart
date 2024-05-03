@@ -9,7 +9,7 @@ class AuthenticationBusinessLogic extends GetxService with GlobalHelper implemen
   late final IAuthenticationRepository _authRepo = Get.find();
 
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
-  late final WorkerHandler _workerHandler = Get.find();
+  late final WorkerBuisinessLogic _workerBusinessLogic = Get.find();
 
   @override
   User? get currentUser => _authRepo.currentUser;
@@ -25,7 +25,7 @@ class AuthenticationBusinessLogic extends GetxService with GlobalHelper implemen
 
   @override
   Future<void> postSignIn() async {
-    WorkerModel? worker = await _workerHandler.fetchLoggedWorker();
+    WorkerModel? worker = await _workerBusinessLogic.fetchLoggedWorker();
 
     if (worker == null) {
       navigate.toWorkerCreate();
@@ -45,7 +45,7 @@ class AuthenticationBusinessLogic extends GetxService with GlobalHelper implemen
 
   @override
   void postSignOut() async {
-    _workerHandler.clearCurrentWorker();
+    _workerBusinessLogic.clearCurrentWorker();
     _companyBusinessLogic.clearCurrentCompany();
 
     navigate.toSignIn();

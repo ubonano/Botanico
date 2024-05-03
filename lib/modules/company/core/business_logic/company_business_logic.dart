@@ -9,7 +9,7 @@ class CompanyBusinessLogic extends GetxService with GlobalHelper implements ICom
   late final ICompanyRepository _companyRepo = Get.find();
 
   late final IAuthenticationBusinessLogic _authBusinessLogic = Get.find();
-  late final WorkerHandler _workerHandler = Get.find();
+  late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   final Rx<CompanyModel?> _currentCompany$ = Rx<CompanyModel?>(null);
   @override
@@ -22,12 +22,12 @@ class CompanyBusinessLogic extends GetxService with GlobalHelper implements ICom
 
     await _companyRepo.create(company.copyWith(uid: newCompanyId, ownerUid: ownerUid), txn: txn);
 
-    await _workerHandler.updateWorkerAsOwner(newCompanyId, txn);
+    await _workerBusinessLogic.updateWorkerAsOwner(newCompanyId, txn);
   }
 
   @override
   Future<void> postCreateCompany() async {
-    await _workerHandler.fetchLoggedWorker();
+    await _workerBusinessLogic.fetchLoggedWorker();
     navigate.toHome();
   }
 

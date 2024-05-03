@@ -4,5 +4,5 @@ import 'package:flutter_test/flutter_test.dart';
 
 Future<void> appInitFlow(WidgetTester tester) async {
   app.main();
-  await tester.pumpAndSettle(const Duration(seconds: 2));
+  await tester.pumpAndSettle(const Duration(seconds: 3));
 }

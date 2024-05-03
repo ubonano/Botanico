@@ -14,13 +14,13 @@ Future<void> workerCreateFlow(
   final Finder birthdateField = find.byKey(const Key('birthdateField'));
   final Finder phoneField = find.byKey(const Key('phoneField'));
   final Finder dniField = find.byKey(const Key('dniField'));
-  final Finder saveWorkerButton = find.byKey(const Key('saveWorkerButton'));
+  final Finder workerSaveButton = find.byKey(const Key('WorkerSaveButton'));
 
   await tester.enterText(nameField, name);
   await tester.enterText(birthdateField, birthdate);
   await tester.enterText(phoneField, phone);
   await tester.enterText(dniField, dni);
 
-  await tester.tap(saveWorkerButton);
+  await tester.tap(workerSaveButton);
   await tester.pumpAndSettle();
 }
