@@ -28,6 +28,13 @@ export 'tests/company_create/company_create_success_from_sign_in_test.dart';
 export 'tests/flows/company_create_navigate_flow.dart';
 export 'tests/flows/company_create_flow.dart';
 
+export 'ui/widgets/fields/address_input_field.dart';
+export 'ui/widgets/fields/city_input_field.dart';
+export 'ui/widgets/fields/country_input_field.dart';
+export 'ui/widgets/fields/name_input_field.dart';
+export 'ui/widgets/fields/phone_input_field.dart';
+export 'ui/widgets/fields/province_input_field.dart';
+
 export 'ui/company_create_page.dart';
 
 void companyDependencies() {
