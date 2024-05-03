@@ -19,6 +19,10 @@ export 'core/repositories/auth_repository.dart';
 
 export 'core/services/authentication_service.dart';
 
+export 'ui/widgets/fields/confirm_password_input_field.dart';
+export 'ui/widgets/fields/email_input_field.dart';
+export 'ui/widgets/fields/password_input_field.dart';
+
 export 'ui/widgets/recover_password_dialog.dart';
 export 'ui/widgets/sign_out_button.dart';
 export 'ui/widgets/sign_in_button.dart';
