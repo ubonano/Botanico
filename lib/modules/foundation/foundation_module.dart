@@ -53,7 +53,7 @@ export '../../setup/pages.dart';
 export '../../setup/routes.dart';
 export '../../tests/flows/app_init_flow.dart';
 
-void foundationDependencies() {
+void dependencies() {
   Get.put(NavigationHelper(), permanent: true);
   Get.put(LogHelper(), permanent: true);
   Get.put(SnackbarHelper(), permanent: true);

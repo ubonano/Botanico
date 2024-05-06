@@ -54,7 +54,7 @@ export 'ui/widgets/worker_permission_toggle.dart';
 
 export 'worker_module_permission.dart';
 
-void workerDependencies() {
+void dependencies() {
   Get.lazyPut<IWorkerRepository>(() => WorkerRepository(), fenix: true);
   Get.lazyPut<IWorkerBusinessLogic>(() => WorkerBusinessLogic(), fenix: true);
   Get.lazyPut<IWorkerService>(() => WorkerService(), fenix: true);

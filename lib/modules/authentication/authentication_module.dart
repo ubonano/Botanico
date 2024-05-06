@@ -59,14 +59,12 @@ export 'tests/sign_up/sign_up_used_email_test.dart';
 
 export 'authentication_test.dart';
 
-void authenticationDependencies() {
+void dependencies() {
   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
   Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);
 
   Get.lazyPut<IAuthenticationRepository>(() => AuthenticationRepository(), fenix: true);
-
   Get.lazyPut<IAuthenticationBusinessLogic>(() => AuthenticationBusinessLogic(), fenix: true);
-
   Get.lazyPut<IAuthenticationService>(() => AuthenticationService(), fenix: true);
 
   Get.lazyPut<SignInController>(() => SignInController(), fenix: true);
