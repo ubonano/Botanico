@@ -1,8 +1,8 @@
-import 'package:botanico/modules/foundation/foundation_module.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../authentication_module.dart';
+import '../module.dart';
 
 class SignInPage extends GetView<SignInController> {
   const SignInPage({super.key});
@@ -24,7 +24,7 @@ class SignInPage extends GetView<SignInController> {
               PasswordInputField(controller, onFieldSubmitted: controller.secureSubmit),
               const SignInButton(),
               const ForgotPasswordButton(),
-              const ToSignUpButton(),
+              SignUpNavigateButton(),
             ],
           ),
         ),

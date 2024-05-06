@@ -1,4 +1,4 @@
-import 'package:botanico/modules/foundation/foundation_module.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialBinding: AppBindings(),
       title: 'Botanico',
-      initialRoute: Routes.SIGN_IN,
+      initialRoute: NavigationHelper.INIT_PAGE,
       getPages: Pages.pages,
     );
   }

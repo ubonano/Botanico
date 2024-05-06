@@ -1,4 +1,4 @@
-import '../../../authentication_module.dart';
+import '../../../module.dart';
 
 abstract class IAuthenticationRepository {
   User? get currentUser;

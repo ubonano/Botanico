@@ -1,15 +1,14 @@
 import 'package:botanico/modules/foundation/core/helpers/navigation_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class ConfirmationDialog extends StatelessWidget {
+class ConfirmationDialog extends StatelessWidget with NavigationHelperInstance {
   final String title;
   final String content;
   final String cancelButtonText;
   final String confirmButtonText;
   final VoidCallback onConfirm;
 
-  const ConfirmationDialog({
+  ConfirmationDialog({
     Key? key,
     required this.title,
     required this.content,
@@ -20,8 +19,6 @@ class ConfirmationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final navigate = Get.find<NavigationHelper>();
-
     return AlertDialog(
       title: Text(title),
       content: Text(content),

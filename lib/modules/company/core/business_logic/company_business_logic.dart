@@ -1,7 +1,7 @@
-import 'package:botanico/modules/authentication/authentication_module.dart';
-import 'package:botanico/modules/company/company_module.dart';
-import 'package:botanico/modules/foundation/foundation_module.dart';
-import 'package:botanico/modules/worker/worker_module.dart';
+import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/company/module.dart';
+import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 

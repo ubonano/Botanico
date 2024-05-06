@@ -11,6 +11,7 @@ export 'core/helpers/exceptions/company_not_found_exception.dart';
 export 'core/helpers/interfaces/i_company_business_logic.dart';
 export 'core/helpers/interfaces/i_company_repository.dart';
 export 'core/helpers/interfaces/i_company_service.dart';
+export 'core/helpers/company_navigation_helper.dart';
 
 import 'core/business_logic/company_business_logic.dart';
 

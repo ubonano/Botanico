@@ -1,5 +1,5 @@
-import 'package:botanico/modules/authentication/authentication_module.dart';
-import 'package:botanico/modules/foundation/foundation_module.dart';
+import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +11,7 @@ class ForgotPasswordButton extends StatelessWidget {
     return CustomTextButton(
       key: key ?? const Key('forgotPasswordButton'),
       text: '¿Olvidaste tu contraseña?',
-      onPressed: () => Get.dialog(const RecoverPasswordDialog()),
+      onPressed: () => Get.dialog(RecoverPasswordDialog()),
     );
   }
 }

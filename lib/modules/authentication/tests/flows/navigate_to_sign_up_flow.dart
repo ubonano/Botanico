@@ -6,8 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 // Aparrentemente esta fallando aca, no encuentra el boton
 
 Future<void> navigateToSignUpFlow(WidgetTester tester) async {
-  final Finder toSignUpButton = find.byKey(const Key('toSignUpButton'));
+  final Finder signUpNavigateButton = find.byKey(const Key('SignUpNavigateButton'));
 
-  await tester.tap(toSignUpButton);
+  await tester.tap(signUpNavigateButton);
   await tester.pumpAndSettle();
 }

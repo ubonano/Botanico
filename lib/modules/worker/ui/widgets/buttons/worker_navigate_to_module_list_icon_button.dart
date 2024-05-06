@@ -1,12 +1,11 @@
-import 'package:botanico/modules/foundation/foundation_module.dart';
-import 'package:botanico/modules/worker/worker_module.dart';
+import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class WorkerNavigateToModuleListIconButton extends StatelessWidget {
+class WorkerNavigateToModuleListIconButton extends StatelessWidget with NavigationHelperInstance {
   final WorkerModel worker;
 
-  const WorkerNavigateToModuleListIconButton(this.worker, {super.key});
+  WorkerNavigateToModuleListIconButton(this.worker, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class WorkerNavigateToModuleListIconButton extends StatelessWidget {
       child: IconButton(
         key: key ?? const Key('WorkerNavigateToModuleListIconButton'),
         icon: const Icon(Icons.security),
-        onPressed: () => Get.find<NavigationHelper>().toPermissions(worker.uid, canPop: true),
+        onPressed: () => navigate.toPermissions(worker.uid, canPop: true),
       ),
     );
   }

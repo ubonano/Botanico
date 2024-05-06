@@ -1,9 +1,9 @@
 import 'package:botanico/modules/company/ui/widgets/company_save_button.dart';
-import 'package:botanico/modules/foundation/foundation_module.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../company_module.dart';
+import '../module.dart';
 
 class CompanyCreatePage extends GetView<CompanyCreateController> {
   const CompanyCreatePage({super.key});

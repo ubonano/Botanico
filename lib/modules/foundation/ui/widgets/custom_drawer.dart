@@ -1,16 +1,14 @@
 import 'package:botanico/modules/authentication/ui/widgets/sign_out_button.dart';
-import 'package:botanico/modules/foundation/foundation_module.dart';
-import 'package:botanico/modules/worker/worker_module_permission.dart';
+import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomDrawer extends GetView<CustomDrawerController> {
-  const CustomDrawer({Key? key}) : super(key: key);
+class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelperInstance {
+  CustomDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    NavigationHelper navigate = Get.find();
-
     return Drawer(
       child: Obx(
         () => ListView(

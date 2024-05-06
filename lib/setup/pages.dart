@@ -1,7 +1,7 @@
-import 'package:botanico/modules/authentication/authentication_module.dart';
-import 'package:botanico/modules/company/company_module.dart';
-import 'package:botanico/modules/foundation/foundation_module.dart';
-import 'package:botanico/modules/worker/worker_module.dart';
+import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/company/module.dart';
+import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
 class Pages {
@@ -11,23 +11,7 @@ class Pages {
       page: () => const HomePage(),
     ),
     GetPage(
-      name: Routes.SIGN_IN,
-      page: () => const SignInPage(),
-    ),
-    GetPage(
-      name: Routes.SIGN_UP,
-      page: () => const SignUpPage(),
-    ),
-    GetPage(
-      name: Routes.WORKER_CREATE,
-      page: () => const WorkerCreatePage(),
-    ),
-    GetPage(
-      name: Routes.LOBBY,
-      page: () => const LobbyPage(),
-    ),
-    GetPage(
-      name: Routes.COMPANY_CREATE,
+      name: CompanyNavigationHelper.COMPANY_CREATE,
       page: () => const CompanyCreatePage(),
     ),
     GetPage(
@@ -35,16 +19,32 @@ class Pages {
       page: () => const HomePage(),
     ),
     GetPage(
-      name: Routes.WORKER_LIST,
+      name: AuthenticationNavigationHelper.SIGN_IN,
+      page: () => const SignInPage(),
+    ),
+    GetPage(
+      name: AuthenticationNavigationHelper.SIGN_UP,
+      page: () => const SignUpPage(),
+    ),
+    GetPage(
+      name: WorkerNavigationHelper.WORKER_CREATE,
+      page: () => const WorkerCreatePage(),
+    ),
+    GetPage(
+      name: WorkerNavigationHelper.WORKER_LIST,
       page: () => const WorkerListPage(),
     ),
     GetPage(
-      name: Routes.WORKER_LINKING,
+      name: WorkerNavigationHelper.WORKER_LINKING,
       page: () => const WorkerLinkPage(),
     ),
     GetPage(
-      name: Routes.WORKER_MANAGEMENT_PERMISSIONS,
+      name: WorkerNavigationHelper.WORKER_PERMISSIONS,
       page: () => const ModuleListPage(),
+    ),
+    GetPage(
+      name: WorkerNavigationHelper.LOBBY,
+      page: () => const LobbyPage(),
     ),
   ];
 }

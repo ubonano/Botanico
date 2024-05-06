@@ -13,7 +13,7 @@ class CustomScaffold extends StatelessWidget {
     required this.title,
     required this.body,
     this.floatingActionButton,
-    this.drawer = const CustomDrawer(),
+    this.drawer,
   }) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class CustomScaffold extends StatelessWidget {
     return Scaffold(
       // key: key,
       appBar: AppBar(title: Text(title)),
-      drawer: drawer,
+      drawer: drawer ?? CustomDrawer(),
       body: body,
       floatingActionButton: floatingActionButton,
     );

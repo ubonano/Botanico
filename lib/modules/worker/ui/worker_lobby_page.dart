@@ -1,7 +1,7 @@
-import 'package:botanico/modules/authentication/authentication_module.dart';
+import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/company/ui/widgets/company_create_navigate_button.dart';
-import 'package:botanico/modules/foundation/foundation_module.dart';
-import 'package:botanico/modules/worker/worker_module.dart';
+import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +23,7 @@ class LobbyPage extends GetView<WorkerLobbyController> {
             const Text('Mostrale este código a tu empleador para vincularte a la empresa.'),
             const SizedBox(height: 20),
             WorkerCopyUidButton(),
-            const CompanyCreateNavigateButton(),
+            CompanyCreateNavigateButton(),
             const SignOutButton(),
           ],
         ),

@@ -1,9 +1,9 @@
-import 'package:botanico/modules/company/company_module.dart';
-import 'package:botanico/modules/foundation/foundation_module.dart';
-import 'package:botanico/modules/worker/worker_module.dart';
+import 'package:botanico/modules/company/module.dart';
+import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
-import '../../authentication_module.dart';
+import '../../module.dart';
 
 class AuthenticationBusinessLogic extends GetxService with GlobalHelper implements IAuthenticationBusinessLogic {
   late final IAuthenticationRepository _authRepo = Get.find();

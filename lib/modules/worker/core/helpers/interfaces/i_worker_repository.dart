@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../worker_module.dart';
+import '../../../module.dart';
 
 abstract class IWorkerRepository {
   Future<WorkerModel?> get(String id);

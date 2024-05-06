@@ -1,5 +1,5 @@
-import 'package:botanico/modules/company/company_module.dart';
-import 'package:botanico/modules/foundation/foundation_module.dart';
+import 'package:botanico/modules/company/module.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 
 class CompanyService extends GetxService with GlobalHelper implements ICompanyService {

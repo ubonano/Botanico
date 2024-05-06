@@ -1,5 +1,6 @@
-import 'package:botanico/modules/worker/worker_module.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
 export 'ui/controllers/worker_link_controller.dart';
 export 'ui/controllers/worker_list_controller.dart';
@@ -8,8 +9,10 @@ export 'ui/controllers/worker_lobby_controller.dart';
 export 'ui/controllers/worker_create_controller.dart';
 export 'ui/controllers/worker_permission_toggle_controller.dart';
 
-export 'core/helpers/exceptions/worker_not_found_exception.dart';
 export 'core/business_logic/worker_business_logic.dart';
+
+export 'core/helpers/exceptions/worker_not_found_exception.dart';
+export 'core/helpers/worker_navigation_helper.dart';
 
 export 'core/helpers/interfaces/i_worker_business_logic.dart';
 export 'core/helpers/interfaces/i_worker_repository.dart';
@@ -52,8 +55,6 @@ export 'ui/widgets/buttons/worker_list_tile_trailing_icon_buttons.dart';
 export 'ui/widgets/worker_uid_qr_code.dart';
 export 'ui/widgets/worker_permission_toggle.dart';
 
-export 'worker_module_permission.dart';
-
 void dependencies() {
   Get.lazyPut<IWorkerRepository>(() => WorkerRepository(), fenix: true);
   Get.lazyPut<IWorkerBusinessLogic>(() => WorkerBusinessLogic(), fenix: true);
@@ -65,4 +66,28 @@ void dependencies() {
   Get.lazyPut<WorkerLinkController>(() => WorkerLinkController(), fenix: true);
   Get.lazyPut<WorkerLinkController>(() => WorkerLinkController(), fenix: true);
   Get.lazyPut<WorkerUnlinkingController>(() => WorkerUnlinkingController(), fenix: true);
+}
+
+class WorkerModulePermissions implements ModuleStructure {
+  @override
+  String get moduleId => 'worker';
+
+  @override
+  String get moduleName => 'Trabajadores';
+
+  static const viewKey = 'worker.view';
+  static const linkKey = 'worker.link';
+  static const unlinkKey = 'worker.unlink';
+  static const managePermissionsKey = 'worker.managePermissions';
+
+  @override
+  List<PermissionModel> get permissions => [
+        PermissionModel(id: viewKey, name: 'Ver'),
+        PermissionModel(id: linkKey, name: 'Vincular'),
+        PermissionModel(id: unlinkKey, name: 'Desvincular'),
+        PermissionModel(id: managePermissionsKey, name: 'Gestionar permisos'),
+      ];
+
+  @override
+  ModuleModel toModel() => ModuleModel(name: 'Trabajadores', permissions: permissions);
 }

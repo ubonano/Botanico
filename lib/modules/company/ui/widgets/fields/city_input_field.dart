@@ -1,4 +1,4 @@
-import 'package:botanico/modules/foundation/foundation_module.dart';
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 
 class CityInputField extends StatelessWidget {
