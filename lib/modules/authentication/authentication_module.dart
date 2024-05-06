@@ -57,7 +57,7 @@ export 'tests/sign_up/sign_up_invalid_confirm_password_test.dart';
 export 'tests/sign_up/sign_up_success_test.dart';
 export 'tests/sign_up/sign_up_used_email_test.dart';
 
-export 'authentication_test.dart';
+export 'tests/authentication_test.dart';
 
 void dependencies() {
   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
