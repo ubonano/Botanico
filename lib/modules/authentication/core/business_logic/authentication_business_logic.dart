@@ -9,7 +9,7 @@ class AuthenticationBusinessLogic extends GetxService with GlobalHelper implemen
   late final IAuthenticationRepository _authRepo = Get.find();
 
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
-  late final WorkerBuisinessLogic _workerBusinessLogic = Get.find();
+  late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   @override
   User? get currentUser => _authRepo.currentUser;

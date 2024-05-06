@@ -6,7 +6,7 @@ class WorkerPermissionToggleController extends GetxController with LifeCycleLogg
   @override
   String get logTag => 'PermissionToggleController';
 
-  late final WorkerService _workerService = Get.find();
+  late final IWorkerService _workerService = Get.find();
 
   WorkerModel? get curWorkerForUpdate => _workerService.curWorkerForUpdate$;
 

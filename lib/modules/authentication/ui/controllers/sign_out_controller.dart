@@ -6,7 +6,7 @@ class SignOutController extends GetxController with LifeCycleLoggingControllerHe
   @override
   String get logTag => 'SignOutController';
 
-  late final AuthenticationService _authService = Get.find();
+  late final IAuthenticationService _authService = Get.find();
 
   Future<void> submit() async => await _authService.signOut();
 }

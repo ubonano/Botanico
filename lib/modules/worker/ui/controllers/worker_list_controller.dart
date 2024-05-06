@@ -6,7 +6,7 @@ class WorkerListController extends GetxController with LifeCycleLoggingControlle
   @override
   String get logTag => 'WorkerListController';
 
-  late final WorkerService _workerService = Get.find();
+  late final IWorkerService _workerService = Get.find();
 
   WorkerModel? get currentWorker => _workerService.loggedWorker$;
   List<WorkerModel> get linkedWorkerList$ => _workerService.linkedWorkerList$;

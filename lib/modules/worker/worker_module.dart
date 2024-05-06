@@ -57,10 +57,9 @@ export 'worker_module_permission.dart';
 void workerDependencies() {
   Get.lazyPut<IWorkerRepository>(() => WorkerRepository(), fenix: true);
   Get.lazyPut<IWorkerBusinessLogic>(() => WorkerBusinessLogic(), fenix: true);
-  Get.lazyPut<WorkerService>(() => WorkerService(), fenix: true);
+  Get.lazyPut<IWorkerService>(() => WorkerService(), fenix: true);
 
   Get.lazyPut<WorkerLobbyController>(() => WorkerLobbyController(), fenix: true);
-
   Get.lazyPut<WorkerCreateController>(() => WorkerCreateController(), fenix: true);
   Get.lazyPut<WorkerListController>(() => WorkerListController(), fenix: true);
   Get.lazyPut<WorkerLinkController>(() => WorkerLinkController(), fenix: true);

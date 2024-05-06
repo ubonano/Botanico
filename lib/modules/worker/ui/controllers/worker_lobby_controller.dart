@@ -6,7 +6,7 @@ class WorkerLobbyController extends GetxController with LifeCycleLoggingControll
   @override
   String get logTag => 'WorkerLobbyController';
 
-  late final WorkerService _workerService = Get.find();
+  late final IWorkerService _workerService = Get.find();
 
   String get uid => _workerService.loggedWorker$?.uid ?? '';
 }

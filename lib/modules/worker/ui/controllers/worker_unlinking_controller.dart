@@ -6,7 +6,7 @@ class WorkerUnlinkingController extends GetxController with LifeCycleLoggingCont
   @override
   String get logTag => 'WorkerUnlinkingController';
 
-  late final WorkerService _workerService = Get.find();
+  late final IWorkerService _workerService = Get.find();
 
   Future<void> submit(WorkerModel worker) async => await _workerService.unlinkWorker(worker.uid);
 }

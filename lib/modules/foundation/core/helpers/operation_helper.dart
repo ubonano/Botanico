@@ -4,9 +4,9 @@ import 'package:botanico/modules/worker/worker_module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-class OperationHelper with GlobalHelper, WorkerContext {
+class OperationHelper with GlobalHelper {
   late final FirebaseFirestore _firestore = Get.find();
-  late final IAuthenticationBusinessLogic _authBusinessLogic = Get.find();
+  late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   // TODO No esta funcionando la transaccion como deberia... Si falla no hace el rollback de lo que ya ejecuto previamente
   Future<void> perform({
@@ -75,7 +75,7 @@ class OperationHelper with GlobalHelper, WorkerContext {
 
   // TODO refactorizar para que no busque siempre el trabajador en la base de datos
   Future<bool> _hasPermission(String permissionKey) async {
-    final worker = await workerRepo.get(_authBusinessLogic.currentUser!.uid);
+    final worker = await _workerBusinessLogic.fetchLoggedWorker();
 
     if (worker == null) throw WorkerNotFoundException();
 

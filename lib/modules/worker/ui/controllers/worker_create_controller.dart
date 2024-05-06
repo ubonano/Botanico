@@ -6,7 +6,7 @@ class WorkerCreateController extends GetxController with FormHelper, LifeCycleLo
   @override
   String get logTag => 'WorkerCreateController';
 
-  late final WorkerService _workerService = Get.find();
+  late final IWorkerService _workerService = Get.find();
 
   @override
   List<String> formFields = [FieldKeys.fullname, FieldKeys.birthDate, FieldKeys.phone, FieldKeys.dni];

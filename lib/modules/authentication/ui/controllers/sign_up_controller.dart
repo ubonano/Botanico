@@ -6,7 +6,7 @@ class SignUpController extends GetxController with FormHelper, LifeCycleLoggingC
   @override
   String get logTag => 'SignUpController';
 
-  late final AuthenticationService _authService = Get.find();
+  late final IAuthenticationService _authService = Get.find();
 
   @override
   List<String> formFields = [FieldKeys.email, FieldKeys.password, FieldKeys.passwordConfirm];
