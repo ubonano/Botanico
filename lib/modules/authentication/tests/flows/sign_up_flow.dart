@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../module.dart';
 
 Future<void> signUpFlow(WidgetTester tester, String email, String password, String confirmPassword) async {
-  await navigateToSignUpFlow(tester);
+  await signUpNavigateFlow(tester);
 
   final Finder emailField = find.byKey(const Key('emailField'));
   final Finder passwordField = find.byKey(const Key('passwordField'));

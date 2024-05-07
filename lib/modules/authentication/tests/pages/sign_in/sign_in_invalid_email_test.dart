@@ -4,11 +4,11 @@ import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void signInWithInvalidPasswordTest() {
-  testWidgets('Sign in with invalid password', (WidgetTester tester) async {
+void signInInvalidEmailTest() {
+  testWidgets('Sign in with invalid email', (WidgetTester tester) async {
     await appInitFlow(tester);
 
-    await signInFlow(tester, '', '123');
-    expect(find.text('La contraseña debe tener al menos 6 caracteres'), findsOneWidget);
+    await signInFlow(tester, 'invalid-email', 'Password123');
+    expect(find.text('Ingresa un email válido'), findsOneWidget);
   });
 }

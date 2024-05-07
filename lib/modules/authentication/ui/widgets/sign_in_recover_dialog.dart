@@ -4,8 +4,8 @@ import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RecoverPasswordDialog extends GetView<PasswordRecoverController> with NavigationHelperInstance {
-  RecoverPasswordDialog({super.key});
+class SignInRecoverDialog extends GetView<SignInRecoverController> with NavigationHelperInstance {
+  SignInRecoverDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -4,11 +4,11 @@ import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void signUpWithInvalidPasswordTest() {
-  testWidgets('Sign up with invalid password', (WidgetTester tester) async {
+void signUpEmtyFieldsTest() {
+  testWidgets('Sing up with empty fields', (WidgetTester tester) async {
     await appInitFlow(tester);
 
-    await signUpFlow(tester, '', '123', '');
-    expect(find.text('La contraseña debe tener al menos 6 caracteres'), findsOneWidget);
+    await signUpFlow(tester, '', '', '');
+    expect(find.text('Este campo es obligatorio'), findsNWidgets(3));
   });
 }

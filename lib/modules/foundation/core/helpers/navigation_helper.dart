@@ -7,10 +7,10 @@ import 'package:botanico/setup/routes.dart';
 import 'package:get/get.dart';
 import 'log_helper.dart';
 
-class NavigationHelper with AuthenticationNavigationHelper, CompanyNavigationHelper, WorkerNavigationHelper {
+class NavigationHelper with AuthenticationNavigateHelper, CompanyNavigationHelper, WorkerNavigationHelper {
   late final LogHelper _log = Get.find();
 
-  static const INIT_PAGE = AuthenticationNavigationHelper.SIGN_IN;
+  static const INIT_PAGE = AuthenticationNavigateHelper.SIGN_IN;
 
   void toHome({bool canPop = false}) => to(Routes.HOME, canPop: canPop);
 

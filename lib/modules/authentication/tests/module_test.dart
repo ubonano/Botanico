@@ -10,12 +10,12 @@ import 'package:integration_test/integration_test.dart';
 
 flutter drive \
   --driver=test_driver/integration_test.dart \
-  --target=lib/modules/authentication/authentication_test.dart \
+  --target=lib/modules/authentication/module_test.dart \
   -d chrome
 
 */
 
-void authenticationTests() => main();
+void runTests() => main();
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -28,21 +28,21 @@ void main() {
 }
 
 void _signUpTesting(String email, String password) {
-  signUpNavigateToSignInTest();
-  signUpWithEmtyFieldsTest();
-  signUpWithInvalidEmailTest();
-  signUpWithInvalidPasswordTest();
-  signUpWithWrongPasswordConfirmTest();
+  signUpNavigateSignInTest();
+  signUpEmtyFieldsTest();
+  signUpInvalidEmailTest();
+  signUpInvalidPasswordTest();
+  signUpWrongPasswordConfirmTest();
   signUpSuccessTest(email, password);
-  signUpWithEmailAlreadyUsedTest(email, password);
+  signUpEmailAlreadyUsedTest(email, password);
 }
 
 void _signInTesting(String email, String password) {
-  signInNavigateToSignUpTest();
-  signInWithEmptyFieldsTest();
-  signInWithInvalidEmailTest();
-  signInWithInvalidPasswordTest();
+  signInNavigateSignUpTest();
+  signInEmptyFieldsTest();
+  signInInvalidEmailTest();
+  signInInvalidPasswordTest();
   signInSuccessByNewUserTest(email, password);
-  signInWithWrongPassowrdTest(email);
+  signInWrongPassowrdTest(email);
   signOutFromWorkerCreatePageTest(email, password);
 }

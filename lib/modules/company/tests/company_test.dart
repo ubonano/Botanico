@@ -15,7 +15,7 @@ flutter drive \
 
 */
 
-void companyTests() => main();
+void runTests() => main();
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

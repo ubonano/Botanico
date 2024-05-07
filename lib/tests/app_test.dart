@@ -1,9 +1,9 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:botanico/modules/authentication/module.dart';
-import 'package:botanico/modules/company/tests/company_test.dart';
-import 'package:botanico/modules/worker/tests/worker_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:botanico/modules/authentication/module.dart' as authentication;
+import 'package:botanico/modules/company/tests/company_test.dart' as company;
+import 'package:botanico/modules/worker/tests/worker_test.dart' as worker;
 
 /* 
 
@@ -19,7 +19,7 @@ flutter drive \
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  authenticationTests();
-  workerTests();
-  companyTests();
+  authentication.runTests();
+  company.runTests();
+  worker.runTests();
 }

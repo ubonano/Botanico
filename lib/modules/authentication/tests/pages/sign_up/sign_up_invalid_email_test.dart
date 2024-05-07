@@ -4,11 +4,11 @@ import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void signInWithInvalidEmailTest() {
-  testWidgets('Sign in with invalid email', (WidgetTester tester) async {
+void signUpInvalidEmailTest() {
+  testWidgets('Sign up with invalid email', (WidgetTester tester) async {
     await appInitFlow(tester);
 
-    await signInFlow(tester, 'invalid-email', 'Password123');
+    await signUpFlow(tester, 'invalid-email', '', '');
     expect(find.text('Ingresa un email válido'), findsOneWidget);
   });
 }

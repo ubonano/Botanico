@@ -4,11 +4,11 @@ import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void signUpWithWrongPasswordConfirmTest() {
-  testWidgets('Sign up with wrong password confirm', (WidgetTester tester) async {
+void signUpInvalidPasswordTest() {
+  testWidgets('Sign up with invalid password', (WidgetTester tester) async {
     await appInitFlow(tester);
 
-    await signUpFlow(tester, '', 'password123', 'password');
-    expect(find.text('Las contraseñas no coinciden'), findsOneWidget);
+    await signUpFlow(tester, '', '123', '');
+    expect(find.text('La contraseña debe tener al menos 6 caracteres'), findsOneWidget);
   });
 }

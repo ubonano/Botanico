@@ -2,14 +2,13 @@
 
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void signInNavigateToSignUpTest() {
-  testWidgets('Navigate to sign up from sign in', (WidgetTester tester) async {
+void signInInvalidPasswordTest() {
+  testWidgets('Sign in with invalid password', (WidgetTester tester) async {
     await appInitFlow(tester);
 
-    await navigateToSignUpFlow(tester);
-    expect(find.byKey(const Key('SignUpPage')), findsOneWidget);
+    await signInFlow(tester, '', '123');
+    expect(find.text('La contraseña debe tener al menos 6 caracteres'), findsOneWidget);
   });
 }

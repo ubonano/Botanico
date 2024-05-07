@@ -19,11 +19,11 @@ class Pages {
       page: () => const HomePage(),
     ),
     GetPage(
-      name: AuthenticationNavigationHelper.SIGN_IN,
+      name: AuthenticationNavigateHelper.SIGN_IN,
       page: () => const SignInPage(),
     ),
     GetPage(
-      name: AuthenticationNavigationHelper.SIGN_UP,
+      name: AuthenticationNavigateHelper.SIGN_UP,
       page: () => const SignUpPage(),
     ),
     GetPage(

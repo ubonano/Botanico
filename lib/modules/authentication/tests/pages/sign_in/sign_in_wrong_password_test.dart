@@ -4,11 +4,11 @@ import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void signUpWithEmtyFieldsTest() {
-  testWidgets('Sing up with empty fields', (WidgetTester tester) async {
+void signInWrongPassowrdTest(String email) {
+  testWidgets('Sign in with wrong password', (WidgetTester tester) async {
     await appInitFlow(tester);
 
-    await signUpFlow(tester, '', '', '');
-    expect(find.text('Este campo es obligatorio'), findsNWidgets(3));
+    await signInFlow(tester, email, 'wrongPassword');
+    expect(find.text('La contraseña es incorrecta.'), findsOneWidget);
   });
 }

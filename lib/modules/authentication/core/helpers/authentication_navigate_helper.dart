@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-mixin AuthenticationNavigationHelper {
+mixin AuthenticationNavigateHelper {
   static const SIGN_IN = '/sign-in';
   static const SIGN_UP = '/sign-up';
 

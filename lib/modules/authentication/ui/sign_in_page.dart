@@ -23,7 +23,7 @@ class SignInPage extends GetView<SignInController> {
               EmailInputField(controller),
               PasswordInputField(controller, onFieldSubmitted: controller.secureSubmit),
               const SignInButton(),
-              const ForgotPasswordButton(),
+              const SignInRecoverButton(),
               SignUpNavigateButton(),
             ],
           ),
