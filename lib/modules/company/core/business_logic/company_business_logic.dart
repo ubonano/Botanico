@@ -12,14 +12,14 @@ class CompanyBusinessLogic extends GetxService with GlobalHelper implements ICom
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   final Rx<CompanyModel?> _currentCompany$ = Rx<CompanyModel?>(null);
-  
+
   @override
   CompanyModel? get currentCompany$ => _currentCompany$.value;
 
   @override
   Future<void> createCompany(CompanyModel company, Transaction? txn) async {
     String newCompanyId = _companyRepo.generateId;
-    String ownerUid = _authBusinessLogic.currentUser!.uid;
+    String ownerUid = _authBusinessLogic.currentUserId;
 
     await _companyRepo.create(company.copyWith(uid: newCompanyId, ownerUid: ownerUid), txn: txn);
 

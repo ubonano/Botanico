@@ -15,6 +15,12 @@ class AuthenticationBusinessLogic extends GetxService with GlobalHelper implemen
   User? get currentUser => _authRepo.currentUser;
 
   @override
+  String get currentUserId => currentUser != null ? currentUser!.uid : '';
+
+  @override
+  String get currentUserEmail => currentUser != null ? currentUser!.email! : '';
+
+  @override
   Future<User?> signUp(String email, String password) async => await _authRepo.signUp(email, password);
 
   @override

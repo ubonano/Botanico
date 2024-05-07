@@ -28,7 +28,7 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
 
   @override
   Future<WorkerModel?> fetchLoggedWorker() async {
-    _loggedWorker.value = await _workerRepo.get(_authBusinessLogic.currentUser!.uid);
+    _loggedWorker.value = await _workerRepo.get(_authBusinessLogic.currentUserId);
     return _loggedWorker.value;
   }
 
@@ -41,15 +41,15 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
 
   @override
   Future<void> updateWorkerAsOwner(String companyId, Transaction? txn) async {
-    final userId = _authBusinessLogic.currentUser!.uid;
+    final userId = _authBusinessLogic.currentUserId;
     await _workerRepo
         .updatePartialWorker(userId, {'companyId': companyId, 'role': workerRoleToString(WorkerRole.owner)}, txn: txn);
     await fetchLoggedWorker();
   }
 
   @override
-  Future<void> createWorker(WorkerModel worker) async => await _workerRepo.createWorker(
-      worker.copyWith(uid: _authBusinessLogic.currentUser!.uid, email: _authBusinessLogic.currentUser!.email));
+  Future<void> createWorker(WorkerModel worker) async => await _workerRepo
+      .createWorker(worker.copyWith(uid: _authBusinessLogic.currentUserId, email: _authBusinessLogic.currentUserEmail));
 
   @override
   Future<void> postCreateWorker() async {
@@ -59,7 +59,7 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
 
   @override
   Future<void> linkWorker(String workerId, Transaction? txn) async {
-    final currentWorker = await _workerRepo.get(_authBusinessLogic.currentUser!.uid);
+    final currentWorker = await _workerRepo.get(_authBusinessLogic.currentUserId);
     final worker = await _workerRepo.get(workerId);
     final company = await _companyBusinessLogic.get(currentWorker!.companyId);
     if (worker == null) throw WorkerNotFoundException();
@@ -74,7 +74,7 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
 
   @override
   Future<void> unlinkWorker(String workerId, Transaction? txn) async {
-    final WorkerModel? currentWorker = await _workerRepo.get(_authBusinessLogic.currentUser!.uid);
+    final WorkerModel? currentWorker = await _workerRepo.get(_authBusinessLogic.currentUserId);
     await _workerRepo.deleteLinkedWorker(currentWorker!.companyId, workerId, txn: txn);
     final changes = {'companyId': '', 'role': workerRoleToString(WorkerRole.undefined), 'permissions': {}};
     await _workerRepo.updatePartialWorker(workerId, changes, txn: txn);

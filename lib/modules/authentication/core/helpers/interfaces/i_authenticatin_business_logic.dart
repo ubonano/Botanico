@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class IAuthenticationBusinessLogic {
   User? get currentUser;
+  String get currentUserId;
+  String get currentUserEmail;
 
   Future<User?> signUp(String email, String password);
   void postSignUp();
