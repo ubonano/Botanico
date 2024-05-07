@@ -10,7 +10,7 @@ import 'package:integration_test/integration_test.dart';
 
 flutter drive \
   --driver=test_driver/integration_test.dart \
-  --target=lib/modules/company/company_test.dart \
+  --target=lib/modules/company/module_test.dart \
   -d chrome
 
 */
@@ -20,8 +20,8 @@ void runTests() => main();
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  companyCreateWithEmptyFieldsTest(generateRandomEmail(), 'password123');
-  companyCreateWithInvalidPhoneTest(generateRandomEmail(), 'password123');
+  companyCreateEmptyFieldsTest(generateRandomEmail(), 'password123');
+  companyCreateInvalidPhoneTest(generateRandomEmail(), 'password123');
   companyCreateSuccessFromSignUpTest(generateRandomEmail(), 'password123');
   companyCreateSuccessFromSignInTest(generateRandomEmail(), 'password123');
 }

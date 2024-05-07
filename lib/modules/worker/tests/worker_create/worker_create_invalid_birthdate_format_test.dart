@@ -5,7 +5,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void createWorkerWithInvalidBirthdateTest(String email, String password) {
+void createWorkerInvalidBirthdateTest(String email, String password) {
   testWidgets('Create worker with invalid birthdate', (WidgetTester tester) async {
     await appInitFlow(tester);
 

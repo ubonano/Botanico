@@ -27,7 +27,8 @@ export 'tests/company_create/company_create_success_from_sign_up_test.dart';
 export 'tests/company_create/company_create_success_from_sign_in_test.dart';
 
 export 'tests/flows/company_create_navigate_flow.dart';
-export 'tests/flows/company_create_flow.dart';
+export 'tests/flows/company_create_fill_data_flow.dart';
+export 'tests/flows/company_create_press_save_button_flow.dart';
 
 export 'ui/widgets/fields/address_input_field.dart';
 export 'ui/widgets/fields/city_input_field.dart';

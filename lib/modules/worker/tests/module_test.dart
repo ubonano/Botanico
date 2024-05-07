@@ -9,7 +9,7 @@ import 'package:integration_test/integration_test.dart';
 
 flutter drive \
   --driver=test_driver/integration_test.dart \
-  --target=lib/modules/worker/worker_test.dart \
+  --target=lib/modules/worker/module_test.dart \
   -d chrome
 
 */
@@ -23,10 +23,10 @@ void main() {
 }
 
 void _workerCreateTesting() {
-  createWorkerWithEmptyFieldsTest(generateRandomEmail(), 'password123');
-  createWorkerWithInvalidBirthdateTest(generateRandomEmail(), 'password123');
-  createWorkerWithInvalidPhoneTest(generateRandomEmail(), 'password123');
-  createWorkerWithInvalidDNITest(generateRandomEmail(), 'password123');
+  createWorkerEmptyFieldsTest(generateRandomEmail(), 'password123');
+  createWorkerInvalidBirthdateTest(generateRandomEmail(), 'password123');
+  createWorkerInvalidPhoneTest(generateRandomEmail(), 'password123');
+  createWorkerInvalidDNITest(generateRandomEmail(), 'password123');
   createWorkerSuccessFromSignUpTest(generateRandomEmail(), 'password123');
   createWorkerSuccessFromSignInTest(generateRandomEmail(), 'password123');
 }

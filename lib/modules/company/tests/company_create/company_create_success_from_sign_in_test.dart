@@ -17,7 +17,8 @@ void companyCreateSuccessFromSignInTest(String email, String password) {
     await signInFlow(tester, email, password);
     await workerCreateFlow(tester);
     await companyCreateNavigateFlow(tester);
-    await companyCreateFlow(tester);
+    await companyCreateFillDataFlow(tester);
+    await companyCreatePressSaveButtonFlow(tester);
     expect(find.byKey(const Key('HomePage')), findsOneWidget);
   });
 }

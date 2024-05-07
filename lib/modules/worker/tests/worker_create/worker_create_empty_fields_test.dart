@@ -5,7 +5,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void createWorkerWithEmptyFieldsTest(String email, String password) {
+void createWorkerEmptyFieldsTest(String email, String password) {
   testWidgets('Create worker with empty fields', (WidgetTester tester) async {
     await appInitFlow(tester);
 

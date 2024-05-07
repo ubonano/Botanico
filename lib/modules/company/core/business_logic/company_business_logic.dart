@@ -12,6 +12,7 @@ class CompanyBusinessLogic extends GetxService with GlobalHelper implements ICom
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   final Rx<CompanyModel?> _currentCompany$ = Rx<CompanyModel?>(null);
+  
   @override
   CompanyModel? get currentCompany$ => _currentCompany$.value;
 
