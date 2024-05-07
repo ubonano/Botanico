@@ -11,6 +11,7 @@ abstract class IWorkerBusinessLogic {
 
   Future<WorkerModel?> fetchLoggedWorker();
   Future<WorkerModel?> fetchCurWorkerForUpdate();
+  Future<WorkerModel?> get(String id);
   Future<void> updateWorkerAsOwner(String companyId, Transaction? txn);
   Future<void> createWorker(WorkerModel worker);
   Future<void> postCreateWorker();

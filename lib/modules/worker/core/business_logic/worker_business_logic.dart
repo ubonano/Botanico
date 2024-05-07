@@ -6,8 +6,10 @@ import 'package:botanico/modules/worker/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+// TODO Refactor
 class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
   late final IWorkerRepository _workerRepo = Get.find();
+
   late final IAuthenticationBusinessLogic _authBusinessLogic = Get.find();
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
 
@@ -28,28 +30,34 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
 
   @override
   Future<WorkerModel?> fetchLoggedWorker() async {
-    _loggedWorker.value = await _workerRepo.get(_authBusinessLogic.currentUserId);
+    _loggedWorker.value = await get(_authBusinessLogic.currentUserId);
     return _loggedWorker.value;
   }
 
   @override
   Future<WorkerModel?> fetchCurWorkerForUpdate() async {
     if (workerIdParmForUpdate.isBlank) throw Exception('Cur worker id Parameter not found');
-    _curWorkerForUpdate.value = await _workerRepo.get(workerIdParmForUpdate);
+    _curWorkerForUpdate.value = await get(workerIdParmForUpdate);
     return _curWorkerForUpdate.value;
   }
 
   @override
+  Future<WorkerModel?> get(String id) async => _workerRepo.get(id);
+
+  @override
   Future<void> updateWorkerAsOwner(String companyId, Transaction? txn) async {
-    final userId = _authBusinessLogic.currentUserId;
-    await _workerRepo
-        .updatePartialWorker(userId, {'companyId': companyId, 'role': workerRoleToString(WorkerRole.owner)}, txn: txn);
+    await _workerRepo.updatePartialWorker(
+      _authBusinessLogic.currentUserId,
+      {'companyId': companyId, 'role': workerRoleToString(WorkerRole.owner)},
+      txn: txn,
+    );
     await fetchLoggedWorker();
   }
 
   @override
-  Future<void> createWorker(WorkerModel worker) async => await _workerRepo
-      .createWorker(worker.copyWith(uid: _authBusinessLogic.currentUserId, email: _authBusinessLogic.currentUserEmail));
+  Future<void> createWorker(WorkerModel worker) async => await _workerRepo.createWorker(
+        worker.copyWith(uid: _authBusinessLogic.currentUserId, email: _authBusinessLogic.currentUserEmail),
+      );
 
   @override
   Future<void> postCreateWorker() async {
@@ -59,12 +67,15 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
 
   @override
   Future<void> linkWorker(String workerId, Transaction? txn) async {
-    final currentWorker = await _workerRepo.get(_authBusinessLogic.currentUserId);
-    final worker = await _workerRepo.get(workerId);
+    final currentWorker = await get(_authBusinessLogic.currentUserId);
+    final worker = await get(workerId);
     final company = await _companyBusinessLogic.get(currentWorker!.companyId);
+
     if (worker == null) throw WorkerNotFoundException();
     if (company == null) throw CompanyNotFoundException();
+
     final updatedWorker = worker.copyWith(companyId: company.uid, role: WorkerRole.employee);
+
     await _workerRepo.updateWorker(updatedWorker, txn: txn);
     await _workerRepo.createLinkedWorker(company.uid, updatedWorker, txn: txn);
   }
@@ -74,7 +85,7 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
 
   @override
   Future<void> unlinkWorker(String workerId, Transaction? txn) async {
-    final WorkerModel? currentWorker = await _workerRepo.get(_authBusinessLogic.currentUserId);
+    final WorkerModel? currentWorker = await get(_authBusinessLogic.currentUserId);
     await _workerRepo.deleteLinkedWorker(currentWorker!.companyId, workerId, txn: txn);
     final changes = {'companyId': '', 'role': workerRoleToString(WorkerRole.undefined), 'permissions': {}};
     await _workerRepo.updatePartialWorker(workerId, changes, txn: txn);
