@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'ui/controllers/module_list_controller.dart';
-import 'ui/controllers/home_controller.dart';
-import 'ui/controllers/custom_drawer_controller.dart';
+import 'core/controllers/module_list_controller.dart';
+import 'core/controllers/home_controller.dart';
+import 'core/controllers/custom_drawer_controller.dart';
 
-export 'ui/controllers/custom_drawer_controller.dart';
-export 'ui/controllers/home_controller.dart';
-export 'ui/controllers/module_list_controller.dart';
+export 'core/controllers/custom_drawer_controller.dart';
+export 'core/controllers/home_controller.dart';
+export 'core/controllers/module_list_controller.dart';
 
 export 'core/helpers/validator_helper.dart';
 export 'core/helpers/module_structure.dart';
@@ -21,11 +21,11 @@ export 'core/models/permission_model.dart';
 import 'core/helpers/log_helper.dart';
 import 'core/helpers/navigation_helper.dart';
 import 'core/helpers/operation_helper.dart';
-import 'core/repositories/module_repository.dart';
+import 'core/module_repository.dart';
 import 'core/helpers/snackbar_helper.dart';
 
 export 'core/helpers/snackbar_helper.dart';
-export 'core/repositories/module_repository.dart';
+export 'core/module_repository.dart';
 export 'core/helpers/operation_helper.dart';
 export 'core/helpers/log_helper.dart';
 export 'core/helpers/navigation_helper.dart';

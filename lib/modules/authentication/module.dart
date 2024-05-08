@@ -3,21 +3,21 @@ export 'package:firebase_auth/firebase_auth.dart';
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:get/get.dart';
 
-export 'core/business_logic/authentication_business_logic.dart';
+export 'core/authentication_business_logic.dart';
 
-export 'ui/controllers/sign_in_recover_controller.dart';
-export 'ui/controllers/sign_in_controller.dart';
-export 'ui/controllers/sign_out_controller.dart';
-export 'ui/controllers/sign_up_controller.dart';
+export 'core/controllers/sign_in_recover_controller.dart';
+export 'core/controllers/sign_in_controller.dart';
+export 'core/controllers/sign_out_controller.dart';
+export 'core/controllers/sign_up_controller.dart';
 
 export 'core/helpers/interfaces/i_authenticatin_business_logic.dart';
 export 'core/helpers/interfaces/i_authentication_service.dart';
 export 'core/helpers/interfaces/i_authentication_repository.dart';
 export 'core/helpers/authentication_navigate_helper.dart';
 
-export 'core/repositories/authentication_repository.dart';
+export 'core/authentication_repository.dart';
 
-export 'core/services/authentication_service.dart';
+export 'core/authentication_service.dart';
 
 export 'ui/widgets/fields/confirm_password_input_field.dart';
 export 'ui/widgets/fields/email_input_field.dart';

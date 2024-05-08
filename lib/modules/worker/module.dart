@@ -2,14 +2,14 @@ import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
-export 'ui/controllers/worker_link_controller.dart';
-export 'ui/controllers/worker_list_controller.dart';
-export 'ui/controllers/worker_unlinking_controller.dart';
-export 'ui/controllers/worker_lobby_controller.dart';
-export 'ui/controllers/worker_create_controller.dart';
-export 'ui/controllers/worker_permission_toggle_controller.dart';
+export 'core/controllers/worker_link_controller.dart';
+export 'core/controllers/worker_list_controller.dart';
+export 'core/controllers/worker_unlinking_controller.dart';
+export 'core/controllers/worker_lobby_controller.dart';
+export 'core/controllers/worker_create_controller.dart';
+export 'core/controllers/worker_permission_toggle_controller.dart';
 
-export 'core/business_logic/worker_business_logic.dart';
+export 'core/worker_business_logic.dart';
 
 export 'core/helpers/exceptions/worker_not_found_exception.dart';
 export 'core/helpers/worker_navigation_helper.dart';
@@ -18,11 +18,11 @@ export 'core/helpers/interfaces/i_worker_business_logic.dart';
 export 'core/helpers/interfaces/i_worker_repository.dart';
 export 'core/helpers/interfaces/i_worker_service.dart';
 
-export 'core/models/enums/worker_role.dart';
-export 'core/models/worker_model.dart';
+export 'core/helpers/enums/worker_role.dart';
+export 'core/worker_model.dart';
 
-export 'core/repositories/worker_repository.dart';
-export 'core/services/worker_service.dart';
+export 'core/worker_repository.dart';
+export 'core/worker_service.dart';
 
 export 'tests/flows/worker_create_from_sign_up_flow.dart';
 

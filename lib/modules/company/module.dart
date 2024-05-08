@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'core/helpers/interfaces/i_company_business_logic.dart';
 import 'core/helpers/interfaces/i_company_repository.dart';
 import 'core/helpers/interfaces/i_company_service.dart';
-import 'ui/controllers/company_create_controller.dart';
-export 'ui/controllers/company_create_controller.dart';
+import 'core/controllers/company_create_controller.dart';
+export 'core/controllers/company_create_controller.dart';
 
 export 'core/helpers/exceptions/company_not_found_exception.dart';
 
@@ -13,13 +13,13 @@ export 'core/helpers/interfaces/i_company_repository.dart';
 export 'core/helpers/interfaces/i_company_service.dart';
 export 'core/helpers/company_navigation_helper.dart';
 
-import 'core/business_logic/company_business_logic.dart';
+import 'core/company_business_logic.dart';
 
-export 'core/models/company_model.dart';
+export 'core/company_model.dart';
 
-import 'core/repositories/company_repository.dart';
+import 'core/company_repository.dart';
 
-import 'core/services/company_service.dart';
+import 'core/company_service.dart';
 
 export 'tests/company_create/company_create_empty_fields_test.dart';
 export 'tests/company_create/company_create_invalid_phone_format_test.dart';
