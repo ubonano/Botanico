@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class ICompanyBusinessLogic {
   CompanyModel? get currentCompany$;
+  String get currentCompanyId;
 
   Future<void> createCompany(CompanyModel company, Transaction? txn);
   Future<void> postCreateCompany();

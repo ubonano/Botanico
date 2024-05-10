@@ -15,6 +15,8 @@ class CompanyBusinessLogic extends GetxService with GlobalHelper implements ICom
 
   @override
   CompanyModel? get currentCompany$ => _currentCompany$.value;
+  @override
+  String get currentCompanyId => _currentCompany$.value?.uid ?? '';
 
   @override
   Future<void> createCompany(CompanyModel company, Transaction? txn) async {

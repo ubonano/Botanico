@@ -1,5 +1,6 @@
 import 'package:botanico/modules/authentication/ui/widgets/sign_out_button.dart';
 import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,6 +47,14 @@ class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelper
                 leading: const Icon(Icons.work),
                 title: const Text('Trabajadores'),
                 onTap: navigate.toWorkerList,
+              ),
+            ),
+            PermissionProtected(
+              permission: VendorModulePermissions.viewKey,
+              child: ListTile(
+                leading: const Icon(Icons.local_shipping),
+                title: const Text('Proveedores'),
+                onTap: navigate.toVendorList,
               ),
             ),
           ],

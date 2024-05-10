@@ -2,12 +2,14 @@
 
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/company/module.dart';
+import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:botanico/setup/routes.dart';
 import 'package:get/get.dart';
 import 'log_helper.dart';
 
-class NavigationHelper with AuthenticationNavigateHelper, CompanyNavigationHelper, WorkerNavigationHelper {
+class NavigationHelper
+    with AuthenticationNavigateHelper, CompanyNavigationHelper, WorkerNavigationHelper, VendorNavigationHelper {
   late final LogHelper _log = Get.find();
 
   static const INIT_PAGE = AuthenticationNavigateHelper.SIGN_IN;

@@ -63,8 +63,9 @@ void dependencies() {
   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
   Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);
 
+  Get.put<IAuthenticationBusinessLogic>(AuthenticationBusinessLogic(), permanent: true);
+
   Get.lazyPut<IAuthenticationRepository>(() => AuthenticationRepository(), fenix: true);
-  Get.lazyPut<IAuthenticationBusinessLogic>(() => AuthenticationBusinessLogic(), fenix: true);
   Get.lazyPut<IAuthenticationService>(() => AuthenticationService(), fenix: true);
 
   Get.lazyPut<SignInController>(() => SignInController(), fenix: true);

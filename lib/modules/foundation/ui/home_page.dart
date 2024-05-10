@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'widgets/custom_scaffold.dart';
-import '../core/controllers/home_controller.dart';
+import '../module.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
@@ -13,6 +12,7 @@ class HomePage extends GetView<HomeController> {
     return CustomScaffold(
       key: key ?? const Key('HomePage'),
       title: 'Home',
+      drawer: CustomDrawer(),
       body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -40,8 +40,9 @@ export 'ui/widgets/fields/province_input_field.dart';
 export 'ui/company_create_page.dart';
 
 void dependencies() {
+  Get.put<ICompanyBusinessLogic>(CompanyBusinessLogic(), permanent: true);
+
   Get.lazyPut<ICompanyRepository>(() => CompanyRepository(), fenix: true);
-  Get.lazyPut<ICompanyBusinessLogic>(() => CompanyBusinessLogic(), fenix: true);
   Get.lazyPut<ICompanyService>(() => CompanyService(), fenix: true);
 
   Get.lazyPut<CompanyCreateController>(() => CompanyCreateController(), fenix: true);

@@ -56,8 +56,9 @@ export 'ui/widgets/worker_uid_qr_code.dart';
 export 'ui/widgets/worker_permission_toggle.dart';
 
 void dependencies() {
+  Get.put<IWorkerBusinessLogic>(WorkerBusinessLogic(), permanent: true);
+
   Get.lazyPut<IWorkerRepository>(() => WorkerRepository(), fenix: true);
-  Get.lazyPut<IWorkerBusinessLogic>(() => WorkerBusinessLogic(), fenix: true);
   Get.lazyPut<IWorkerService>(() => WorkerService(), fenix: true);
 
   Get.lazyPut<WorkerLobbyController>(() => WorkerLobbyController(), fenix: true);

@@ -1,1 +1,10 @@
-abstract class IVendorRepository {}
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../../../module.dart';
+
+abstract class IVendorRepository {
+  String get generateId;
+  Future<VendorModel?> get(String id);
+  Future<void> create(VendorModel vendor, {Transaction? txn});
+  Stream<List<VendorModel>> vendorListStream(String companyId);
+}
