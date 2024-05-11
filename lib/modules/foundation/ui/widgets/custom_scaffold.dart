@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'custom_drawer.dart';
-
 class CustomScaffold extends StatelessWidget {
   final String title;
   final Widget body;

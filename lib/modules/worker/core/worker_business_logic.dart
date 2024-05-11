@@ -1,10 +1,11 @@
 import 'dart:async';
+import 'package:botanico/modules/foundation/module.dart';
+import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/foundation/core/helpers/global_helper.dart';
-import 'package:botanico/modules/worker/module.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
+
+import '../module.dart';
 
 // TODO Refactor
 class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {

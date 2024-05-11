@@ -1,6 +1,6 @@
-import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/worker/module.dart';
 
 class PermissionProtected extends StatelessWidget {
   final Widget child;

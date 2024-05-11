@@ -1,6 +1,6 @@
-import 'package:botanico/setup/firestore_collections.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:botanico/setup/firestore_collections.dart';
 
 import '../module.dart';
 

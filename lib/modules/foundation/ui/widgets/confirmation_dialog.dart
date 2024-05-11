@@ -1,5 +1,6 @@
-import 'package:botanico/modules/foundation/core/helpers/navigation_helper.dart';
 import 'package:flutter/material.dart';
+
+import '../../module.dart';
 
 class ConfirmationDialog extends StatelessWidget with NavigationHelperInstance {
   final String title;

@@ -1,9 +1,10 @@
-import 'package:botanico/modules/authentication/module.dart';
-import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/worker/module.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/worker/module.dart';
+
+import '../module.dart';
 
 class CompanyBusinessLogic extends GetxService with GlobalHelper implements ICompanyBusinessLogic {
   late final ICompanyRepository _companyRepo = Get.find();
@@ -38,8 +39,8 @@ class CompanyBusinessLogic extends GetxService with GlobalHelper implements ICom
   Future<CompanyModel?> get(String id) async => _companyRepo.get(id);
 
   @override
-  Future<CompanyModel?> fetch(String id) async {
-    if (id.isEmpty) return null;
+  Future<CompanyModel?> fetchLoggedCompany() async {
+    String id = _workerBusinessLogic.loggedWorker$!.companyId;
     _currentCompany$.value = await get(id);
     return _currentCompany$.value;
   }

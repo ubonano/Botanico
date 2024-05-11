@@ -1,4 +1,4 @@
-import '../../vendor_model.dart';
+import '../../../module.dart';
 
 abstract class IVendorService {
   List<VendorModel> get vendorList$;

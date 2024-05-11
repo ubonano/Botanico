@@ -1,7 +1,7 @@
-import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/company/module.dart';
+import 'package:botanico/modules/worker/module.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
 class CustomDrawerController extends GetxController with LifeCycleLoggingControllerHelper {
   @override
@@ -17,8 +17,7 @@ class CustomDrawerController extends GetxController with LifeCycleLoggingControl
   Future<void> onInit() async {
     super.onInit();
 
-    // TODO ver que si no se hace aca, no se muestra... cuando en el signIn o signUp ya se hace un fetch...
     await _workerBusinessLogic.fetchLoggedWorker();
-    await _companyBusinessLogic.get(_workerBusinessLogic.loggedWorker$!.companyId);
+    await _companyBusinessLogic.fetchLoggedCompany();
   }
 }

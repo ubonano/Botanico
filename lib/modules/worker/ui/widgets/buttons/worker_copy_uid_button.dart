@@ -1,8 +1,9 @@
-import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/worker/module.dart';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+import 'package:botanico/modules/foundation/module.dart';
+
+import '../../../module.dart';
 
 class WorkerCopyUidButton extends GetView<WorkerLobbyController> with GlobalHelper {
   WorkerCopyUidButton({super.key});

@@ -1,6 +1,7 @@
 import 'dart:async';
-import 'package:botanico/modules/authentication/module.dart';
 import 'package:get/get.dart';
+
+import '../module.dart';
 
 class AuthenticationRepository implements IAuthenticationRepository {
   final FirebaseAuth _auth = Get.find();

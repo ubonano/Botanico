@@ -1,6 +1,7 @@
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:botanico/modules/foundation/module.dart';
 
 class ModuleListPage extends GetView<ModuleListController> {
   const ModuleListPage({super.key});

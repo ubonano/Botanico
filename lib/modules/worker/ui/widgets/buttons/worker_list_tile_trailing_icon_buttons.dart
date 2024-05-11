@@ -1,5 +1,6 @@
-import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
+
+import '../../../module.dart';
 
 class WorkerListTileTrailingIconButtons extends StatelessWidget {
   final WorkerModel worker;

@@ -1,5 +1,4 @@
-import '../models/module_model.dart';
-import '../models/permission_model.dart';
+import '../../module.dart';
 
 abstract class ModuleStructure {
   String get moduleId;

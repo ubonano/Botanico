@@ -1,9 +1,10 @@
-import 'package:botanico/modules/authentication/ui/widgets/sign_out_button.dart';
-import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/vendor/module.dart';
-import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/vendor/module.dart';
+import 'package:botanico/modules/worker/module.dart';
+
+import '../../module.dart';
 
 class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelperInstance {
   CustomDrawer({Key? key}) : super(key: key);

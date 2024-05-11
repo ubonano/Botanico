@@ -1,7 +1,8 @@
-import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/foundation/module.dart';
+
+import '../module.dart';
 
 class WorkerLinkPage extends GetView<WorkerLinkController> {
   const WorkerLinkPage({super.key});
@@ -24,7 +25,7 @@ class WorkerLinkPage extends GetView<WorkerLinkController> {
                 Row(
                   children: [
                     Expanded(child: WorkerUidInputField(controller, onFieldSubmitted: controller.secureSubmit)),
-                    WorkerPasteUidButton(),
+                    const WorkerPasteUidButton(),
                   ],
                 ),
                 const WorkerLinkButton(),

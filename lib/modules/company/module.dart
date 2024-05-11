@@ -37,6 +37,9 @@ export 'ui/widgets/fields/name_input_field.dart';
 export 'ui/widgets/fields/phone_input_field.dart';
 export 'ui/widgets/fields/province_input_field.dart';
 
+export 'ui/widgets/buttons/company_save_button.dart';
+export 'ui/widgets/buttons/company_create_navigate_button.dart';
+
 export 'ui/company_create_page.dart';
 
 void dependencies() {

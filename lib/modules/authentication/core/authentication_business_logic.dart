@@ -38,7 +38,7 @@ class AuthenticationBusinessLogic extends GetxService with GlobalHelper implemen
       return;
     }
 
-    CompanyModel? company = await _companyBusinessLogic.fetch(worker.companyId);
+    CompanyModel? company = await _companyBusinessLogic.fetchLoggedCompany();
     if (company != null) {
       navigate.toHome();
     } else {

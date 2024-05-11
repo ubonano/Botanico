@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'helpers/enums/worker_role.dart';
+import '../module.dart';
 
 class WorkerModel {
   final String uid;

@@ -1,10 +1,11 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:flutter_test/flutter_test.dart';
 import 'package:botanico/modules/authentication/module.dart';
-import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/worker/module.dart';
-import 'package:flutter_test/flutter_test.dart';
+
+import '../../module.dart';
 
 void companyCreateInvalidPhoneTest(String email, String password) {
   testWidgets('Create company with invalid phone from sign up', (WidgetTester tester) async {

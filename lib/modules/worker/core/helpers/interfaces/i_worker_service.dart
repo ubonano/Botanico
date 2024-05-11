@@ -1,4 +1,4 @@
-import '../../worker_model.dart';
+import '../../../module.dart';
 
 abstract class IWorkerService {
   WorkerModel? get curWorkerForUpdate$;

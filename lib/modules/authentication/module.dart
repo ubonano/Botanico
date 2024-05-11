@@ -24,12 +24,12 @@ export 'ui/widgets/fields/email_input_field.dart';
 export 'ui/widgets/fields/password_input_field.dart';
 
 export 'ui/widgets/sign_in_recover_dialog.dart';
-export 'ui/widgets/sign_out_button.dart';
-export 'ui/widgets/sign_in_button.dart';
-export 'ui/widgets/sign_in_recover_button.dart';
-export 'ui/widgets/sign_up_button.dart';
-export 'ui/widgets/sign_in_navigate_button.dart';
-export 'ui/widgets/sign_up_navigate_button.dart';
+export 'ui/widgets/buttons/sign_out_button.dart';
+export 'ui/widgets/buttons/sign_in_button.dart';
+export 'ui/widgets/buttons/sign_in_recover_button.dart';
+export 'ui/widgets/buttons/sign_up_button.dart';
+export 'ui/widgets/buttons/sign_in_navigate_button.dart';
+export 'ui/widgets/buttons/sign_up_navigate_button.dart';
 
 export 'ui/sign_in_page.dart';
 export 'ui/sign_up_page.dart';
