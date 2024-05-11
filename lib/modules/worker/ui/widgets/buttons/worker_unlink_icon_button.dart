@@ -11,7 +11,7 @@ class WorkerUnlinkIconButton extends GetView<WorkerUnlinkingController> {
 
   @override
   Widget build(BuildContext context) {
-    return PermissionProtected(
+    return ProtectedWidget(
       permission: WorkerModulePermissions.unlinkKey,
       child: IconButton(
         key: key ?? const Key('WorkerUnlinkIconButton'),

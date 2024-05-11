@@ -32,13 +32,14 @@ export 'core/helpers/navigation_helper.dart';
 
 export 'ui/widgets/buttons/custom_button.dart';
 export 'ui/widgets/buttons/custom_text_button.dart';
+export 'ui/widgets/buttons/home_page_tile_button.dart';
 export 'ui/widgets/custom_input_field.dart';
 
 export 'ui/widgets/module_expansion_tile.dart';
 export 'ui/widgets/custom_drawer.dart';
 export 'ui/widgets/confirmation_dialog.dart';
 export 'ui/widgets/custom_scaffold.dart';
-export 'ui/widgets/permission_protected.dart';
+export 'ui/widgets/protected_widget.dart';
 
 export 'ui/module_list_page.dart';
 

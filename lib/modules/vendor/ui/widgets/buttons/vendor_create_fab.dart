@@ -8,7 +8,7 @@ class VendorCreateFAB extends StatelessWidget with NavigationHelperInstance {
 
   @override
   Widget build(BuildContext context) {
-    return PermissionProtected(
+    return ProtectedWidget(
       permission: VendorModulePermissions.createKey,
       child: FloatingActionButton(
         key: key ?? const Key('VendorCreateFAB'),

@@ -43,6 +43,8 @@ export 'ui/widgets/fields/dni_input_field.dart';
 export 'ui/widgets/fields/fullname_input_field.dart';
 export 'ui/widgets/fields/worker_uid_input_field.dart';
 export 'ui/widgets/worker_list.dart';
+
+export 'ui/widgets/buttons/worker_list_page_tile_button.dart';
 export 'ui/widgets/buttons/worker_link_fab.dart';
 export 'ui/widgets/buttons/worker_save_button.dart';
 export 'ui/widgets/buttons/worker_copy_uid_button.dart';
@@ -52,6 +54,7 @@ export 'ui/widgets/buttons/worker_scan_qr_button.dart';
 export 'ui/widgets/buttons/worker_navigate_to_module_list_icon_button.dart';
 export 'ui/widgets/buttons/worker_unlink_icon_button.dart';
 export 'ui/widgets/buttons/worker_list_tile_trailing_icon_buttons.dart';
+
 export 'ui/widgets/worker_uid_qr_code.dart';
 export 'ui/widgets/worker_permission_toggle.dart';
 

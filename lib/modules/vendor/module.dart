@@ -28,6 +28,7 @@ export 'core/vendor_repository.dart';
 export 'core/vendor_service.dart';
 
 export 'ui/widgets/buttons/vendor_create_fab.dart';
+export 'ui/widgets/buttons/vendor_list_page_tile_button.dart';
 export 'ui/widgets/vendor_save_button.dart';
 export 'ui/widgets/observations_input_field.dart';
 export 'ui/widgets/vendor_list.dart';
