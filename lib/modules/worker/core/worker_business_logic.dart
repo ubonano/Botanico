@@ -37,7 +37,7 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
 
   @override
   Future<WorkerModel?> fetchCurWorkerForUpdate() async {
-    if (workerIdParmForUpdate.isBlank) throw Exception('Cur worker id Parameter not found');
+    if (workerIdParmForUpdate == null) throw Exception('Cur worker id Parameter not found');
     _curWorkerForUpdate.value = await get(workerIdParmForUpdate);
     return _curWorkerForUpdate.value;
   }

@@ -26,6 +26,12 @@ class VendorRepository implements IVendorRepository {
   }
 
   @override
+  Future<void> delete(String id, {Transaction? txn}) async {
+    final docRef = _vendorsRef(_companyId).doc(id);
+    txn != null ? txn.delete(docRef) : await docRef.delete();
+  }
+
+  @override
   Stream<List<VendorModel>> vendorListStream(String companyId) =>
       _vendorsRef(companyId).snapshots().map((snapshot) => snapshot.docs.map(VendorModel.fromSnapshot).toList());
 

@@ -9,6 +9,7 @@ class WorkerListPageTileButton extends StatelessWidget with NavigationHelperInst
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
+      key: key ?? const Key('WorkerListPageTileButton'),
       permission: WorkerModulePermissions.viewKey,
       child: ListTile(
         leading: const Icon(Icons.work),

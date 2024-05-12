@@ -19,9 +19,20 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   }
 
   @override
+  Future<void> deleteVendor(String id) async {
+    await operation.perform(
+      operationName: 'Delete vendor',
+      permissionKey: VendorModulePermissions.deleteKey,
+      successMessage: 'Proveedor eliminado',
+      inTransaction: true,
+      operation: (_) async => await _vendorBusinessLogic.deleteVendor(id),
+    );
+  }
+
+  @override
   Future<void> initializeVendorStream() async {
     await operation.perform(
-      operationName: 'Fetch workers',
+      operationName: 'Fetch vendor',
       permissionKey: VendorModulePermissions.viewKey,
       operation: (_) async => await _vendorBusinessLogic.initializeVendorStream(),
     );

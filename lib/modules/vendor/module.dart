@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 import 'core/controllers/vendor_create_controller.dart';
 import 'core/controllers/vendor_list_controller.dart';
+import 'core/controllers/vendor_delete_controller.dart';
+
 import 'core/helpers/interfaces/i_vendor_business_logic.dart';
 import 'core/helpers/interfaces/i_vendor_repository.dart';
 import 'core/helpers/interfaces/i_vendor_service.dart';
@@ -12,6 +14,7 @@ import 'core/vendor_service.dart';
 
 export 'core/controllers/vendor_create_controller.dart';
 export 'core/controllers/vendor_list_controller.dart';
+export 'core/controllers/vendor_delete_controller.dart';
 
 export 'core/vendor_business_logic.dart';
 
@@ -29,6 +32,7 @@ export 'core/vendor_service.dart';
 
 export 'ui/widgets/buttons/vendor_create_fab.dart';
 export 'ui/widgets/buttons/vendor_list_page_tile_button.dart';
+export 'ui/widgets/buttons/vendor_delete_icon_button.dart';
 export 'ui/widgets/vendor_save_button.dart';
 export 'ui/widgets/observations_input_field.dart';
 export 'ui/widgets/vendor_list.dart';
@@ -44,6 +48,7 @@ void dependencies() {
 
   Get.lazyPut<VendorCreateController>(() => VendorCreateController(), fenix: true);
   Get.lazyPut<VendorListController>(() => VendorListController(), fenix: true);
+  Get.lazyPut<VendorDeleteController>(() => VendorDeleteController(), fenix: true);
 }
 
 class VendorModulePermissions implements ModuleStructure {

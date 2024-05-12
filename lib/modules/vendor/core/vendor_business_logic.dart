@@ -20,6 +20,9 @@ class VendorBusinessLogic extends GetxService with GlobalHelper implements IVend
       await _vendorRepo.create(vendor.copyWith(uid: _vendorRepo.generateId));
 
   @override
+  Future<void> deleteVendor(String id) async => await _vendorRepo.delete(id);
+
+  @override
   Future<void> postCreateVendor() async => navigate.toVendorList();
 
   @override

@@ -6,5 +6,6 @@ abstract class IVendorRepository {
   String get generateId;
   Future<VendorModel?> get(String id);
   Future<void> create(VendorModel vendor, {Transaction? txn});
+  Future<void> delete(String id, {Transaction? txn});
   Stream<List<VendorModel>> vendorListStream(String companyId);
 }

@@ -3,9 +3,9 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../module.dart';
 
-class WorkerUnlinkingController extends GetxController with LifeCycleLoggingControllerHelper {
+class WorkerUnlinkController extends GetxController with LifeCycleLoggingControllerHelper {
   @override
-  String get logTag => 'WorkerUnlinkingController';
+  String get logTag => 'WorkerUnlinkController';
 
   late final IWorkerService _workerService = Get.find();
 
