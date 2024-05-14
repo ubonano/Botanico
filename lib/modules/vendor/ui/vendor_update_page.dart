@@ -5,16 +5,14 @@ import 'package:botanico/modules/company/module.dart';
 
 import '../module.dart';
 
-class VendorCreatePage extends GetView<VendorCreateController> {
-  const VendorCreatePage({super.key});
-
-  // TODO agregar campos faltantes... tipo de proveedor, tipo de inscripcion
+class VendorUpdatePage extends GetView<VendorUpdateController> {
+  const VendorUpdatePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      key: key ?? const Key('VendorCreatePage'),
-      title: 'Crear proveedor',
+      key: key ?? const Key('VendorUpdatePage'),
+      title: 'Proveedor',
       drawer: null,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

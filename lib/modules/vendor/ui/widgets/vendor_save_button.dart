@@ -5,14 +5,16 @@ import 'package:botanico/modules/foundation/module.dart';
 import '../../module.dart';
 
 class VendorSaveButton extends GetView<VendorCreateController> {
-  const VendorSaveButton({super.key});
+  final FormHelper pageController;
+
+  const VendorSaveButton(this.pageController, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return CustomButton(
       key: key ?? const Key('VendorSaveButton'),
       text: 'Guardar proveedor',
-      onPressed: controller.secureSubmit,
+      onPressed: pageController.secureSubmit,
     );
   }
 }

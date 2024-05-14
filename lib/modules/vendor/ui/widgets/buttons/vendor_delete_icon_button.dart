@@ -14,7 +14,7 @@ class VendorDeleteIconButton extends GetView<VendorDeleteController> {
     return ProtectedWidget(
       permission: VendorModulePermissions.deleteKey,
       child: IconButton(
-        key: key ?? const Key('WorkerUnlinkIconButton'),
+        key: key ?? const Key('VendorDeleteIconButton'),
         icon: const Icon(Icons.delete),
         onPressed: () => ConfirmationDialog.show(
           context,

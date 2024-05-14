@@ -58,6 +58,10 @@ class Pages {
       name: VendorNavigationHelper.VENDOR_LIST,
       page: () => const VendorListPage(),
     ),
+    GetPage(
+      name: VendorNavigationHelper.VENDOR_UPDATE,
+      page: () => const VendorUpdatePage(),
+    ),
     // - Vendor
   ];
 }

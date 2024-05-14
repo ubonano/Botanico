@@ -15,7 +15,10 @@ class VendorList extends GetView<VendorListController> {
       itemBuilder: (context, index) {
         final VendorModel vendor = list[index];
 
-        return ListTile(title: Text(vendor.name), trailing: VendorDeleteIconButton(vendor));
+        return ListTile(
+          title: Text(vendor.name),
+          trailing: VendorListTileTrailingIconButtons(vendor),
+        );
       },
     );
   }

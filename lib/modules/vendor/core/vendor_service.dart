@@ -10,11 +10,23 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   List<VendorModel> get vendorList$ => _vendorBusinessLogic.vendorList$;
 
   @override
+  Future<VendorModel?> get(String id) async => await _vendorBusinessLogic.get(id);
+
+  @override
   Future<void> createVendor(VendorModel vendor) async {
     await operation.perform(
       operationName: 'Create vendor',
       operation: (_) async => await _vendorBusinessLogic.createVendor(vendor),
       onSuccess: _vendorBusinessLogic.postCreateVendor,
+    );
+  }
+
+  @override
+  Future<void> updateVendor(VendorModel vendor) async {
+    await operation.perform(
+      operationName: 'Update vendor',
+      operation: (_) async => await _vendorBusinessLogic.updateVendor(vendor),
+      onSuccess: _vendorBusinessLogic.postUpdateVendor,
     );
   }
 

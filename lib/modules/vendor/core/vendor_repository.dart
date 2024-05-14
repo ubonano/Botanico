@@ -26,6 +26,12 @@ class VendorRepository implements IVendorRepository {
   }
 
   @override
+  Future<void> update(VendorModel vendor, {Transaction? txn}) async {
+    final docRef = _vendorsRef(_companyId).doc(vendor.uid);
+    txn != null ? txn.update(docRef, vendor.toMap()) : await docRef.update(vendor.toMap());
+  }
+
+  @override
   Future<void> delete(String id, {Transaction? txn}) async {
     final docRef = _vendorsRef(_companyId).doc(id);
     txn != null ? txn.delete(docRef) : await docRef.delete();
