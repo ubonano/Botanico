@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class VendorModel {
   final String uid;
   final String name;
+  final String cuit;
   final String address;
   final String phone;
   final String observations;
@@ -10,6 +11,7 @@ class VendorModel {
   VendorModel({
     this.uid = '',
     this.name = '',
+    this.cuit = '',
     this.address = '',
     this.phone = '',
     this.observations = '',
@@ -19,6 +21,7 @@ class VendorModel {
     return {
       'uid': uid,
       'name': name,
+      'cuit': cuit,
       'address': address,
       'phone': phone,
       'observations': observations,
@@ -29,6 +32,7 @@ class VendorModel {
     return VendorModel(
       uid: documentId,
       name: map['name'],
+      cuit: map['cuit'],
       address: map['address'],
       phone: map['phone'],
       observations: map['observations'],
@@ -42,6 +46,7 @@ class VendorModel {
   VendorModel copyWith({
     String? uid,
     String? name,
+    String? cuit,
     String? address,
     String? phone,
     String? observations,
@@ -49,6 +54,7 @@ class VendorModel {
     return VendorModel(
       uid: uid ?? this.uid,
       name: name ?? this.name,
+      cuit: cuit ?? this.cuit,
       address: address ?? this.address,
       phone: phone ?? this.phone,
       observations: observations ?? this.observations,

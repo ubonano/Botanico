@@ -36,7 +36,8 @@ export 'ui/widgets/buttons/vendor_delete_icon_button.dart';
 export 'ui/widgets/buttons/vendor_update_icon_button.dart';
 export 'ui/widgets/buttons/vendor_list_tile_trailing_icon_buttons.dart';
 export 'ui/widgets/vendor_save_button.dart';
-export 'ui/widgets/observations_input_field.dart';
+export 'ui/widgets/fields/observations_input_field.dart';
+export 'ui/widgets/fields/cuit_input_field.dart';
 export 'ui/widgets/vendor_list.dart';
 
 export 'ui/vendor_form_page.dart';

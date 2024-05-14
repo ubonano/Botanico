@@ -21,6 +21,7 @@ class VendorFormPage extends GetView<VendorFormController> {
           child: Column(
             children: [
               NameInputField(controller),
+              CuitInputField(controller),
               AddressInputField(controller),
               PhoneInputField(controller),
               ObservationsInputField(controller),

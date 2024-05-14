@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
-class DNIInputField extends StatelessWidget {
+class CuitInputField extends StatelessWidget {
   final FormHelper pageController;
   final String fieldName;
   final Function? onFieldSubmitted;
   final bool required;
 
-  const DNIInputField(
+  const CuitInputField(
     this.pageController, {
     Key? key,
-    this.fieldName = FieldKeys.dni,
+    this.fieldName = FieldKeys.cuit,
     this.onFieldSubmitted,
     this.required = true,
   }) : super(key: key);
@@ -18,11 +18,11 @@ class DNIInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomInputField(
-      key: key ?? const Key('dniField'),
-      label: 'DNI',
+      key: key ?? const Key('cuitField'),
+      label: 'CUIT',
       controller: pageController.getFieldController(fieldName)!,
       keyboardType: TextInputType.number,
-      validator: (value) => ValidatorHelper.number(value, required: required),
+      validator: required ? (value) => ValidatorHelper.number(value) : null,
       onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );
   }

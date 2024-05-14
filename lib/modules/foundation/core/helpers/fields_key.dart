@@ -13,4 +13,5 @@ class FieldKeys {
   static const String dni = 'dni';
   static const String uid = 'uid';
   static const String observations = 'observations';
+  static const String cuit = 'cuit';
 }

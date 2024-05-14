@@ -21,6 +21,7 @@ class CityInputField extends StatelessWidget {
       key: key ?? const Key('cityField'),
       label: 'Ciudad',
       controller: pageController.getFieldController(fieldName)!,
+      keyboardType: TextInputType.text,
       validator: required ? (value) => ValidatorHelper.required(value) : null,
       onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
     );

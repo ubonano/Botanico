@@ -12,6 +12,7 @@ class VendorFormController extends GetxController with FormHelper<VendorModel>, 
   @override
   List<String> formFields = [
     FieldKeys.name,
+    FieldKeys.cuit,
     FieldKeys.address,
     FieldKeys.phone,
     FieldKeys.observations,
@@ -23,6 +24,7 @@ class VendorFormController extends GetxController with FormHelper<VendorModel>, 
 
     if (modelForUpdate != null) {
       setFieldValue(FieldKeys.name, modelForUpdate!.name);
+      setFieldValue(FieldKeys.cuit, modelForUpdate!.cuit);
       setFieldValue(FieldKeys.address, modelForUpdate!.address);
       setFieldValue(FieldKeys.phone, modelForUpdate!.phone);
       setFieldValue(FieldKeys.observations, modelForUpdate!.observations);
@@ -38,6 +40,7 @@ class VendorFormController extends GetxController with FormHelper<VendorModel>, 
     return VendorModel(
       uid: isUpdateMode ? modelForUpdate!.uid : '',
       name: getFieldValue(FieldKeys.name),
+      cuit: getFieldValue(FieldKeys.cuit),
       address: getFieldValue(FieldKeys.address),
       phone: getFieldValue(FieldKeys.phone),
       observations: getFieldValue(FieldKeys.observations),
