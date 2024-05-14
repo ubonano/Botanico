@@ -6,7 +6,7 @@ export 'core/controllers/worker_link_controller.dart';
 export 'core/controllers/worker_list_controller.dart';
 export 'core/controllers/worker_unlink_controller.dart';
 export 'core/controllers/worker_lobby_controller.dart';
-export 'core/controllers/worker_create_controller.dart';
+export 'core/controllers/worker_form_controller.dart';
 export 'core/controllers/worker_permission_toggle_controller.dart';
 
 export 'core/worker_business_logic.dart';
@@ -35,7 +35,7 @@ export 'tests/worker_create/worker_create_success_from_sign_in_test.dart';
 
 export 'ui/worker_link_page.dart';
 export 'ui/worker_list_page.dart';
-export 'ui/worker_create_page.dart';
+export 'ui/worker_form_page.dart';
 
 export 'ui/worker_lobby_page.dart';
 export 'ui/widgets/fields/birthdate_input_field.dart';
@@ -65,7 +65,7 @@ void dependencies() {
   Get.lazyPut<IWorkerService>(() => WorkerService(), fenix: true);
 
   Get.lazyPut<WorkerLobbyController>(() => WorkerLobbyController(), fenix: true);
-  Get.lazyPut<WorkerCreateController>(() => WorkerCreateController(), fenix: true);
+  Get.lazyPut<WorkerFormController>(() => WorkerFormController(), fenix: true);
   Get.lazyPut<WorkerListController>(() => WorkerListController(), fenix: true);
   Get.lazyPut<WorkerLinkController>(() => WorkerLinkController(), fenix: true);
   Get.lazyPut<WorkerLinkController>(() => WorkerLinkController(), fenix: true);

@@ -3,9 +3,9 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../module.dart';
 
-class CompanyCreateController extends GetxController with FormHelper, LifeCycleLoggingControllerHelper {
+class CompanyFormController extends GetxController with FormHelper<CompanyModel>, LifeCycleLoggingControllerHelper {
   @override
-  String get logTag => 'CompanyCreateController';
+  String get logTag => 'CompanyFormController';
 
   late final ICompanyService _companyService = Get.find();
 
@@ -20,9 +20,10 @@ class CompanyCreateController extends GetxController with FormHelper, LifeCycleL
   ];
 
   @override
-  Future<void> submit() async => await _companyService.createCompany(_company);
+  Future<void> submit() async => await _companyService.createCompany(buildModel());
 
-  CompanyModel get _company => CompanyModel(
+  @override
+  CompanyModel buildModel() => CompanyModel(
         name: getFieldValue(FieldKeys.name),
         address: getFieldValue(FieldKeys.address),
         city: getFieldValue(FieldKeys.city),

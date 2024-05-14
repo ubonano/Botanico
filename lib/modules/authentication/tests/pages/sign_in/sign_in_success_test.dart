@@ -11,6 +11,6 @@ void signInSuccessByNewUserTest(String email, String password) {
     await appInitFlow(tester);
 
     await signInFlow(tester, email, password);
-    expect(find.byKey(const Key('WorkerCreatePage')), findsOneWidget);
+    expect(find.byKey(const Key('WorkerFormPage')), findsOneWidget);
   });
 }

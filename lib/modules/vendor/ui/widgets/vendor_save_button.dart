@@ -4,7 +4,7 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../module.dart';
 
-class VendorSaveButton extends GetView<VendorCreateController> {
+class VendorSaveButton extends GetView<VendorFormController> {
   final FormHelper pageController;
 
   const VendorSaveButton(this.pageController, {super.key});

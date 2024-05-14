@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/company/module.dart';
 
 import '../module.dart';
 
-class CompanyCreatePage extends GetView<CompanyCreateController> {
-  const CompanyCreatePage({super.key});
+class WorkerFormPage extends GetView<WorkerFormController> {
+  const WorkerFormPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      key: key ?? const Key('CompanyCreatePage'),
-      title: 'Crear empresa',
+      key: key ?? const Key('WorkerFormPage'),
+      title: controller.isUpdateMode ? 'Perfil' : 'Crea tu perfil',
       drawer: null,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -19,13 +21,12 @@ class CompanyCreatePage extends GetView<CompanyCreateController> {
           key: controller.formKey,
           child: Column(
             children: [
-              NameInputField(controller),
-              AddressInputField(controller),
-              CityInputField(controller),
-              ProvinceInputField(controller),
-              CountryInputField(controller),
+              FullnameInputField(controller),
+              BirthdateInputField(controller),
               PhoneInputField(controller),
-              const CompanySaveButton(),
+              DNIInputField(controller),
+              const WorkerSaveButton(),
+              const SignOutButton(),
             ],
           ),
         ),

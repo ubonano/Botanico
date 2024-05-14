@@ -11,6 +11,6 @@ void signUpSuccessTest(String email, String password) {
     await appInitFlow(tester);
 
     await signUpFlow(tester, email, password, password);
-    expect(find.byKey(const Key('WorkerCreatePage')), findsOneWidget);
+    expect(find.byKey(const Key('WorkerFormPage')), findsOneWidget);
   });
 }

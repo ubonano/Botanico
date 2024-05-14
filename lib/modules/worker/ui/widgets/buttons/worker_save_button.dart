@@ -4,7 +4,7 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../../module.dart';
 
-class WorkerSaveButton extends GetView<WorkerCreateController> {
+class WorkerSaveButton extends GetView<WorkerFormController> {
   const WorkerSaveButton({super.key});
 
   @override

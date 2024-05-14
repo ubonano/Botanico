@@ -3,9 +3,9 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../module.dart';
 
-class WorkerCreateController extends GetxController with FormHelper, LifeCycleLoggingControllerHelper {
+class WorkerFormController extends GetxController with FormHelper<WorkerModel>, LifeCycleLoggingControllerHelper {
   @override
-  String get logTag => 'WorkerCreateController';
+  String get logTag => 'WorkerFormController';
 
   late final IWorkerService _workerService = Get.find();
 
@@ -13,9 +13,10 @@ class WorkerCreateController extends GetxController with FormHelper, LifeCycleLo
   List<String> formFields = [FieldKeys.fullname, FieldKeys.birthDate, FieldKeys.phone, FieldKeys.dni];
 
   @override
-  Future<void> submit() async => await _workerService.createWorker(_worker);
+  Future<void> submit() async => await _workerService.createWorker(buildModel());
 
-  WorkerModel get _worker => WorkerModel(
+  @override
+  WorkerModel buildModel() => WorkerModel(
         name: getFieldValue(FieldKeys.fullname),
         birthDate: getFieldValue(FieldKeys.birthDate),
         phone: getFieldValue(FieldKeys.phone),

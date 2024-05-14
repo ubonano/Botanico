@@ -1,11 +1,10 @@
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 
-import 'core/controllers/vendor_create_controller.dart';
+import 'core/controllers/vendor_form_controller.dart';
 import 'core/controllers/vendor_list_controller.dart';
 import 'core/controllers/vendor_delete_controller.dart';
 
-import 'core/controllers/vendor_update_controller.dart';
 import 'core/helpers/interfaces/i_vendor_business_logic.dart';
 import 'core/helpers/interfaces/i_vendor_repository.dart';
 import 'core/helpers/interfaces/i_vendor_service.dart';
@@ -13,10 +12,9 @@ import 'core/vendor_business_logic.dart';
 import 'core/vendor_repository.dart';
 import 'core/vendor_service.dart';
 
-export 'core/controllers/vendor_create_controller.dart';
+export 'core/controllers/vendor_form_controller.dart';
 export 'core/controllers/vendor_list_controller.dart';
 export 'core/controllers/vendor_delete_controller.dart';
-export 'core/controllers/vendor_update_controller.dart';
 
 export 'core/vendor_business_logic.dart';
 
@@ -41,8 +39,7 @@ export 'ui/widgets/vendor_save_button.dart';
 export 'ui/widgets/observations_input_field.dart';
 export 'ui/widgets/vendor_list.dart';
 
-export 'ui/vendor_create_page.dart';
-export 'ui/vendor_update_page.dart';
+export 'ui/vendor_form_page.dart';
 export 'ui/vendor_list_page.dart';
 
 void dependencies() {
@@ -51,8 +48,7 @@ void dependencies() {
   Get.lazyPut<IVendorRepository>(() => VendorRepository(), fenix: true);
   Get.lazyPut<IVendorService>(() => VendorService(), fenix: true);
 
-  Get.lazyPut<VendorCreateController>(() => VendorCreateController(), fenix: true);
-  Get.lazyPut<VendorUpdateController>(() => VendorUpdateController(), fenix: true);
+  Get.lazyPut<VendorFormController>(() => VendorFormController(), fenix: true);
   Get.lazyPut<VendorListController>(() => VendorListController(), fenix: true);
   Get.lazyPut<VendorDeleteController>(() => VendorDeleteController(), fenix: true);
 }

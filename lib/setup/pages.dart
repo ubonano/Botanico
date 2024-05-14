@@ -13,7 +13,7 @@ class Pages {
     ),
     GetPage(
       name: CompanyNavigationHelper.COMPANY_CREATE,
-      page: () => const CompanyCreatePage(),
+      page: () => const CompanyFormPage(),
     ),
     GetPage(
       name: Routes.HOME,
@@ -30,7 +30,7 @@ class Pages {
     // + Worker
     GetPage(
       name: WorkerNavigationHelper.WORKER_CREATE,
-      page: () => const WorkerCreatePage(),
+      page: () => const WorkerFormPage(),
     ),
     GetPage(
       name: WorkerNavigationHelper.WORKER_LIST,
@@ -51,16 +51,12 @@ class Pages {
     // - Worker
     // + Vendor
     GetPage(
-      name: VendorNavigationHelper.VENDOR_CREATE,
-      page: () => const VendorCreatePage(),
+      name: VendorNavigationHelper.VENDOR_FORM,
+      page: () => const VendorFormPage(),
     ),
     GetPage(
       name: VendorNavigationHelper.VENDOR_LIST,
       page: () => const VendorListPage(),
-    ),
-    GetPage(
-      name: VendorNavigationHelper.VENDOR_UPDATE,
-      page: () => const VendorUpdatePage(),
     ),
     // - Vendor
   ];

@@ -4,7 +4,7 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../../module.dart';
 
-class CompanySaveButton extends GetView<CompanyCreateController> {
+class CompanySaveButton extends GetView<CompanyFormController> {
   const CompanySaveButton({super.key});
 
   @override

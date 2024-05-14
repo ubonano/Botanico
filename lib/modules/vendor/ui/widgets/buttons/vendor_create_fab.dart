@@ -12,7 +12,7 @@ class VendorCreateFAB extends StatelessWidget with NavigationHelperInstance {
       permission: VendorModulePermissions.createKey,
       child: FloatingActionButton(
         key: key ?? const Key('VendorCreateFAB'),
-        onPressed: () => navigate.toVendorCreate(canPop: true),
+        onPressed: () => navigate.toVendorForm(canPop: true),
         child: const Icon(Icons.add),
       ),
     );
