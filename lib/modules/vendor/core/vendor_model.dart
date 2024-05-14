@@ -7,6 +7,7 @@ class VendorModel {
   final String address;
   final String phone;
   final String observations;
+  final String registrationType;
 
   VendorModel({
     this.uid = '',
@@ -15,6 +16,7 @@ class VendorModel {
     this.address = '',
     this.phone = '',
     this.observations = '',
+    this.registrationType = '',
   });
 
   Map<String, dynamic> toMap() {
@@ -25,6 +27,7 @@ class VendorModel {
       'address': address,
       'phone': phone,
       'observations': observations,
+      'registrationType': registrationType,
     };
   }
 
@@ -36,6 +39,7 @@ class VendorModel {
       address: map['address'],
       phone: map['phone'],
       observations: map['observations'],
+      registrationType: map['registrationType'] ?? '',
     );
   }
 
@@ -50,6 +54,7 @@ class VendorModel {
     String? address,
     String? phone,
     String? observations,
+    String? registrationType,
   }) {
     return VendorModel(
       uid: uid ?? this.uid,
@@ -58,6 +63,7 @@ class VendorModel {
       address: address ?? this.address,
       phone: phone ?? this.phone,
       observations: observations ?? this.observations,
+      registrationType: registrationType ?? this.registrationType,
     );
   }
 }

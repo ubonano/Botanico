@@ -16,6 +16,7 @@ class VendorFormController extends GetxController with FormHelper<VendorModel>, 
     FieldKeys.address,
     FieldKeys.phone,
     FieldKeys.observations,
+    FieldKeys.registrationType,
   ];
 
   @override
@@ -28,6 +29,7 @@ class VendorFormController extends GetxController with FormHelper<VendorModel>, 
       setFieldValue(FieldKeys.address, modelForUpdate!.address);
       setFieldValue(FieldKeys.phone, modelForUpdate!.phone);
       setFieldValue(FieldKeys.observations, modelForUpdate!.observations);
+      setFieldValue(FieldKeys.registrationType, modelForUpdate!.registrationType);
     }
   }
 
@@ -44,6 +46,7 @@ class VendorFormController extends GetxController with FormHelper<VendorModel>, 
       address: getFieldValue(FieldKeys.address),
       phone: getFieldValue(FieldKeys.phone),
       observations: getFieldValue(FieldKeys.observations),
+      registrationType: getFieldValue(FieldKeys.registrationType),
     );
   }
 }

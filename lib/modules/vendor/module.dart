@@ -8,6 +8,7 @@ import 'core/controllers/vendor_delete_controller.dart';
 import 'core/helpers/interfaces/i_vendor_business_logic.dart';
 import 'core/helpers/interfaces/i_vendor_repository.dart';
 import 'core/helpers/interfaces/i_vendor_service.dart';
+
 import 'core/vendor_business_logic.dart';
 import 'core/vendor_repository.dart';
 import 'core/vendor_service.dart';
@@ -21,6 +22,8 @@ export 'core/vendor_business_logic.dart';
 export 'core/helpers/interfaces/i_vendor_business_logic.dart';
 export 'core/helpers/interfaces/i_vendor_repository.dart';
 export 'core/helpers/interfaces/i_vendor_service.dart';
+
+export 'core/helpers/enums/vendor_registration_type.dart';
 
 export 'core/helpers/vendor_navigation_helper.dart';
 
@@ -38,6 +41,7 @@ export 'ui/widgets/buttons/vendor_list_tile_trailing_icon_buttons.dart';
 export 'ui/widgets/vendor_save_button.dart';
 export 'ui/widgets/fields/observations_input_field.dart';
 export 'ui/widgets/fields/cuit_input_field.dart';
+export 'ui/widgets/fields/registration_type_input_field.dart';
 export 'ui/widgets/vendor_list.dart';
 
 export 'ui/vendor_form_page.dart';

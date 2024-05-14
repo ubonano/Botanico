@@ -22,6 +22,7 @@ class VendorFormPage extends GetView<VendorFormController> {
             children: [
               NameInputField(controller),
               CuitInputField(controller),
+              RegistrationTypeInputField(controller),
               AddressInputField(controller),
               PhoneInputField(controller),
               ObservationsInputField(controller),
