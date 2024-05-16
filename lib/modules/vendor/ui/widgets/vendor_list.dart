@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
 import '../../module.dart';
 
-class VendorList extends GetView<VendorListController> {
+class VendorList extends GetView<VendorListController> with NavigationHelperInstance {
   final List<VendorModel> list;
 
-  const VendorList(this.list, {super.key});
+  VendorList(this.list, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,7 @@ class VendorList extends GetView<VendorListController> {
         return ListTile(
           title: Text(vendor.name),
           trailing: VendorListTileTrailingIconButtons(vendor),
+          onTap: () => navigate.toVendorForm(id: vendor.uid, canPop: true),
         );
       },
     );

@@ -13,6 +13,7 @@ class VendorFormPage extends GetView<VendorFormController> {
     return CustomScaffold(
       key: key ?? const Key('VendorFormPage'),
       title: controller.isUpdateMode ? 'Proveedor' : 'Crear proveedor',
+      actionButtons: controller.isUpdateMode ? const [VendorEnabledFormFields()] : [],
       drawer: null,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -26,7 +27,7 @@ class VendorFormPage extends GetView<VendorFormController> {
               AddressInputField(controller),
               PhoneInputField(controller),
               ObservationsInputField(controller),
-              VendorSaveButton(controller),
+              const VendorSaveButton(),
             ],
           ),
         ),

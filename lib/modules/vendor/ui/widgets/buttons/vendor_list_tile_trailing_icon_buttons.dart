@@ -13,7 +13,6 @@ class VendorListTileTrailingIconButtons extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         VendorDeleteIconButton(vendor),
-        VendorUpdateIconButton(vendor),
       ],
     );
   }

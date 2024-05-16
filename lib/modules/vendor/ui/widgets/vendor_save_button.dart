@@ -5,16 +5,17 @@ import 'package:botanico/modules/foundation/module.dart';
 import '../../module.dart';
 
 class VendorSaveButton extends GetView<VendorFormController> {
-  final FormHelper pageController;
-
-  const VendorSaveButton(this.pageController, {super.key});
+  const VendorSaveButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return CustomButton(
-      key: key ?? const Key('VendorSaveButton'),
-      text: 'Guardar proveedor',
-      onPressed: pageController.secureSubmit,
+    return Obx(
+      () => CustomButton(
+        key: key ?? const Key('VendorSaveButton'),
+        text: 'Guardar proveedor',
+        onPressed: controller.secureSubmit,
+        enabled: controller.isUpdateModeRx.value ? controller.isFieldsEnabled.value : true,
+      ),
     );
   }
 }

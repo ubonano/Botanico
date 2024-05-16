@@ -6,6 +6,7 @@ class CustomInputField extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
+  final bool enabled;
   final String? hintText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -20,6 +21,7 @@ class CustomInputField extends StatelessWidget {
     this.obscureText = false,
     required this.controller,
     this.keyboardType = TextInputType.text,
+    this.enabled = true,
     this.validator,
     this.hintText,
     this.prefixIcon,
@@ -39,6 +41,7 @@ class CustomInputField extends StatelessWidget {
           obscureText: obscureText,
           keyboardType: keyboardType,
           validator: validator,
+          enabled: enabled,
           decoration: InputDecoration(
             labelText: label,
             hintText: hintText,
@@ -62,6 +65,7 @@ class CustomInputFieldArea extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
+  final bool enabled;
   final int? maxLines;
   final int? minLines;
   final String? hintText;
@@ -79,6 +83,7 @@ class CustomInputFieldArea extends StatelessWidget {
     required this.controller,
     this.keyboardType = TextInputType.text,
     this.validator,
+    this.enabled = true,
     this.maxLines,
     this.minLines,
     this.hintText,
@@ -99,6 +104,7 @@ class CustomInputFieldArea extends StatelessWidget {
           obscureText: obscureText,
           keyboardType: keyboardType,
           validator: validator,
+          enabled: enabled,
           maxLines: maxLines,
           minLines: minLines,
           decoration: InputDecoration(

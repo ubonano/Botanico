@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:botanico/modules/foundation/module.dart';
+import 'package:get/get.dart';
 
 class ObservationsInputField extends StatelessWidget {
   final FormHelper pageController;
@@ -17,14 +18,19 @@ class ObservationsInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomInputFieldArea(
-      key: key ?? const Key('observationsField'),
-      label: 'Observaciones',
-      minLines: 5,
-      maxLines: 5,
-      controller: pageController.getFieldController(fieldName)!,
-      validator: required ? (value) => ValidatorHelper.required(value) : null,
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+    return Obx(
+      () {
+        return CustomInputFieldArea(
+          key: key ?? const Key('observationsField'),
+          label: 'Observaciones',
+          minLines: 5,
+          maxLines: 5,
+          controller: pageController.getFieldController(fieldName)!,
+          validator: required ? (value) => ValidatorHelper.required(value) : null,
+          onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+          enabled: pageController.isUpdateModeRx.value ? pageController.isFieldsEnabled.value : true,
+        );
+      },
     );
   }
 }

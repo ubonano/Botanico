@@ -11,36 +11,40 @@ class RegistrationTypeInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final value = pageController.registrationType.value; // Use the observable variable
+    return Obx(
+      () {
+        final value = pageController.registrationType.value;
 
-      return Column(
-        children: [
-          DropdownButtonFormField<String>(
-            value: value.isNotEmpty ? value : null,
-            onChanged: (newValue) {
-              if (newValue != null) {
-                pageController.registrationType.value = newValue; // Update the observable variable
-                pageController.setFieldValue(FieldKeys.registrationType, newValue);
-              }
-            },
-            items: VendorRegistrationType.values.map(
-              (VendorRegistrationType type) {
-                return DropdownMenuItem<String>(
-                  value: vendorRegistrationTypeToString(type),
-                  child: Text(vendorRegistrationTypeLabels[type]!),
-                );
-              },
-            ).toList(),
-            decoration: const InputDecoration(
-              labelText: 'Tipo de inscripción',
-              border: OutlineInputBorder(),
+        return Column(
+          children: [
+            DropdownButtonFormField<String>(
+              value: value.isNotEmpty ? value : null,
+              onChanged: pageController.isFieldsEnabled.value || !pageController.isUpdateModeRx.value
+                  ? (newValue) {
+                      if (newValue != null) {
+                        pageController.registrationType.value = newValue;
+                      }
+                    }
+                  : null,
+              items: VendorRegistrationType.values.map(
+                (VendorRegistrationType type) {
+                  return DropdownMenuItem<String>(
+                    value: vendorRegistrationTypeToString(type),
+                    child: Text(vendorRegistrationTypeLabels[type]!),
+                  );
+                },
+              ).toList(),
+              decoration: InputDecoration(
+                labelText: 'Tipo de inscripción',
+                border: const OutlineInputBorder(),
+                enabled: pageController.isUpdateModeRx.value ? pageController.isFieldsEnabled.value : true,
+              ),
+              validator: ValidatorHelper.required,
             ),
-            validator: ValidatorHelper.required,
-          ),
-          const SizedBox(height: 10),
-        ],
-      );
-    });
+            const SizedBox(height: 10),
+          ],
+        );
+      },
+    );
   }
 }

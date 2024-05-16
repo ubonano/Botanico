@@ -10,8 +10,11 @@ mixin FormHelper<T> on GetxController {
 
   T? modelForUpdate;
 
+  var isFieldsEnabled = false.obs;
+
   dynamic get modelId => Get.arguments;
-  bool get isUpdateMode => modelId != null && modelId != '';
+  bool get isUpdateMode => (modelId != null && modelId != '');
+  RxBool get isUpdateModeRx => isUpdateMode.obs;
 
   String getFieldValue(String field) => _textControllers[field]!.text.trim();
 
