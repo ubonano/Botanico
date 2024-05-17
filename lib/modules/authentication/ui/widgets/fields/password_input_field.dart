@@ -22,10 +22,11 @@ class PasswordInputField extends StatelessWidget {
     return CustomInputField(
       key: key ?? const Key('passwordField'),
       label: 'Contraseña',
-      controller: pageController.getFieldController(fieldName)!,
+      pageController: pageController,
+      fieldName: fieldName,
       obscureText: obscureText,
       validator: (value) => ValidatorHelper.password(value, required: required),
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

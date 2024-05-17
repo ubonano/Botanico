@@ -9,6 +9,7 @@ class OperationHelper with GlobalHelper {
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   // TODO No esta funcionando la transaccion como deberia... Si falla no hace el rollback de lo que ya ejecuto previamente
+  // TODO que devuelva lo que devuelve la funcion
   Future<void> perform({
     required Future Function(Transaction? txn) operation,
     String operationName = "Operation",

@@ -20,10 +20,11 @@ class ProvinceInputField extends StatelessWidget {
     return CustomInputField(
       key: key ?? const Key('provinceField'),
       label: 'Provincia',
-      controller: pageController.getFieldController(fieldName)!,
+      pageController: pageController,
+      fieldName: fieldName,
       keyboardType: TextInputType.text,
       validator: required ? (value) => ValidatorHelper.required(value) : null,
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

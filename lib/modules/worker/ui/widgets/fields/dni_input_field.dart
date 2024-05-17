@@ -20,10 +20,11 @@ class DNIInputField extends StatelessWidget {
     return CustomInputField(
       key: key ?? const Key('dniField'),
       label: 'DNI',
-      controller: pageController.getFieldController(fieldName)!,
+      pageController: pageController,
+      fieldName: fieldName,
       keyboardType: TextInputType.number,
       validator: (value) => ValidatorHelper.number(value, required: required),
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

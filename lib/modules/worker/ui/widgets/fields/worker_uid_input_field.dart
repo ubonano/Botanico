@@ -20,9 +20,10 @@ class WorkerUidInputField extends StatelessWidget {
     return CustomInputField(
       key: key ?? const Key('uidField'),
       label: 'Código del Trabajador',
-      controller: pageController.getFieldController(fieldName)!,
+      pageController: pageController,
+      fieldName: fieldName,
       validator: required ? (value) => ValidatorHelper.required(value) : null,
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

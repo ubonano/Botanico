@@ -16,6 +16,7 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   Future<void> createVendor(VendorModel vendor) async {
     await operation.perform(
       operationName: 'Create vendor',
+      permissionKey: VendorModulePermissions.createKey,
       operation: (_) async => await _vendorBusinessLogic.createVendor(vendor),
       onSuccess: _vendorBusinessLogic.postCreateVendor,
     );
@@ -25,6 +26,7 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   Future<void> updateVendor(VendorModel vendor) async {
     await operation.perform(
       operationName: 'Update vendor',
+      permissionKey: VendorModulePermissions.updateKey,
       operation: (_) async => await _vendorBusinessLogic.updateVendor(vendor),
       onSuccess: _vendorBusinessLogic.postUpdateVendor,
     );

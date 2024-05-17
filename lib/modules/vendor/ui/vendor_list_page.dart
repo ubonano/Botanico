@@ -13,7 +13,7 @@ class VendorListPage extends GetView<VendorListController> {
       key: key ?? const Key('VendorListPage'),
       drawer: CustomDrawer(),
       title: 'Proveedores',
-      body: Obx(() => VendorList(controller.vendorList$.toList())),
+      body: VendorList(),
       floatingActionButton: VendorCreateFAB(),
     );
   }
