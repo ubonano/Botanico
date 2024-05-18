@@ -33,6 +33,20 @@ export 'core/vendor_repository.dart';
 
 export 'core/vendor_service.dart';
 
+export 'tests/flows/vendor_list_navigate_flow.dart';
+export 'tests/flows/vendor_create_navigate_flow.dart';
+export 'tests/flows/vendor_save_flow.dart';
+export 'tests/flows/vendor_fill_data_flow.dart';
+
+export 'tests/vendor_create/vendor_empty_fields_test.dart';
+export 'tests/vendor_create/vendor_invalid_cuit_test.dart';
+export 'tests/vendor_create/vendor_invalid_phone_test.dart';
+export 'tests/vendor_create/vendor_create_success_test.dart';
+export 'tests/vendor_list/vendor_list_find_by_name_test.dart';
+export 'tests/vendor_list/vendor_list_find_enter_validate_all_fields_test.dart';
+export 'tests/vendor_update/vendor_update_success_test.dart';
+export 'tests/vendor_delete/vendor_delete_test.dart';
+
 export 'ui/widgets/buttons/vendor_create_fab.dart';
 export 'ui/widgets/buttons/vendor_list_page_tile_button.dart';
 export 'ui/widgets/buttons/vendor_delete_icon_button.dart';
@@ -40,7 +54,7 @@ export 'ui/widgets/buttons/vendor_update_icon_button.dart';
 export 'ui/widgets/buttons/vendor_list_tile_trailing_icon_buttons.dart';
 export 'ui/widgets/buttons/vendor_enabled_form_fields.dart';
 
-export 'ui/widgets/vendor_save_button.dart';
+export 'ui/widgets/buttons/vendor_save_button.dart';
 export 'ui/widgets/fields/observations_input_field.dart';
 export 'ui/widgets/fields/cuit_input_field.dart';
 export 'ui/widgets/fields/registration_type_input_field.dart';

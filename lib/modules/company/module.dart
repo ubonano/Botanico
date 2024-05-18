@@ -26,6 +26,7 @@ export 'tests/company_create/company_create_invalid_phone_format_test.dart';
 export 'tests/company_create/company_create_success_from_sign_up_test.dart';
 export 'tests/company_create/company_create_success_from_sign_in_test.dart';
 
+export 'tests/flows/company_create_from_sign_up_flow.dart';
 export 'tests/flows/company_create_navigate_flow.dart';
 export 'tests/flows/company_create_fill_data_flow.dart';
 export 'tests/flows/company_create_press_save_button_flow.dart';

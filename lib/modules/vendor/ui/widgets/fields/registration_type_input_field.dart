@@ -18,6 +18,7 @@ class RegistrationTypeInputField extends StatelessWidget {
         return Column(
           children: [
             DropdownButtonFormField<String>(
+              key: const Key('registrationTypeField'),
               value: value.isNotEmpty ? value : null,
               onChanged: pageController.isFieldsEnabled.value || !pageController.isUpdateModeRx.value
                   ? (newValue) {

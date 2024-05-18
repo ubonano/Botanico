@@ -4,6 +4,7 @@ import 'package:integration_test/integration_test.dart';
 import 'package:botanico/modules/authentication/module.dart' as authentication;
 import 'package:botanico/modules/company/tests/module_test.dart' as company;
 import 'package:botanico/modules/worker/tests/module_test.dart' as worker;
+import 'package:botanico/modules/vendor/tests/module_test.dart' as vendor;
 
 /* 
 
@@ -22,4 +23,5 @@ void main() {
   authentication.runTests();
   company.runTests();
   worker.runTests();
+  vendor.runTests();
 }

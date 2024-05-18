@@ -12,6 +12,7 @@ class VendorEnabledFormFields extends GetView<VendorFormController> {
     return ProtectedWidget(
       permission: VendorModulePermissions.updateKey,
       child: IconButton(
+        key: key ?? const Key('VendorEnabledFormFields'),
         icon: const Icon(Icons.edit),
         onPressed: () => controller.isFieldsEnabled.value = !controller.isFieldsEnabled.value,
       ),

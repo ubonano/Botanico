@@ -31,6 +31,8 @@ export 'core/helpers/navigation_helper.dart';
 export 'core/helpers/fields_key.dart';
 export 'core/module_repository.dart';
 
+export 'tests/flows/open_drawer_flow.dart';
+
 export 'ui/widgets/buttons/custom_button.dart';
 export 'ui/widgets/buttons/custom_text_button.dart';
 export 'ui/widgets/buttons/home_page_tile_button.dart';

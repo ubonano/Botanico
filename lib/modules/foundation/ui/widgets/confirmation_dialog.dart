@@ -41,7 +41,7 @@ class ConfirmationDialog extends StatelessWidget with NavigationHelperInstance {
 
   static void show(
     BuildContext context, {
-    String title = 'Confirmar',
+    String title = 'Confirmación',
     required String content,
     String cancelButtonText = 'Cancelar',
     String confirmButtonText = 'Confirmar',
