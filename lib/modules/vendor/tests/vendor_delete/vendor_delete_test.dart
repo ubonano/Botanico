@@ -19,8 +19,6 @@ void vendorDeleteTest(String email, String password) {
     await vendorSaveFlow(tester);
     await tester.pumpAndSettle();
 
-    // await tester.tap(find.text(vendorName));
-    // await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('VendorDeleteIconButton')));
     await tester.pumpAndSettle();
 
