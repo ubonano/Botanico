@@ -1,5 +1,5 @@
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
 class PasswordInputField extends StatelessWidget {
   final FormHelper pageController;
@@ -22,10 +22,11 @@ class PasswordInputField extends StatelessWidget {
     return CustomInputField(
       key: key ?? const Key('passwordField'),
       label: 'Contraseña',
-      controller: pageController.getFieldController(fieldName)!,
+      pageController: pageController,
+      fieldName: fieldName,
       obscureText: obscureText,
       validator: (value) => ValidatorHelper.password(value, required: required),
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

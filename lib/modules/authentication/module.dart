@@ -3,33 +3,33 @@ export 'package:firebase_auth/firebase_auth.dart';
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:get/get.dart';
 
-export 'core/business_logic/authentication_business_logic.dart';
+export 'core/authentication_business_logic.dart';
 
-export 'ui/controllers/sign_in_recover_controller.dart';
-export 'ui/controllers/sign_in_controller.dart';
-export 'ui/controllers/sign_out_controller.dart';
-export 'ui/controllers/sign_up_controller.dart';
+export 'core/controllers/sign_in_recover_controller.dart';
+export 'core/controllers/sign_in_controller.dart';
+export 'core/controllers/sign_out_controller.dart';
+export 'core/controllers/sign_up_controller.dart';
 
 export 'core/helpers/interfaces/i_authenticatin_business_logic.dart';
 export 'core/helpers/interfaces/i_authentication_service.dart';
 export 'core/helpers/interfaces/i_authentication_repository.dart';
 export 'core/helpers/authentication_navigate_helper.dart';
 
-export 'core/repositories/authentication_repository.dart';
+export 'core/authentication_repository.dart';
 
-export 'core/services/authentication_service.dart';
+export 'core/authentication_service.dart';
 
 export 'ui/widgets/fields/confirm_password_input_field.dart';
 export 'ui/widgets/fields/email_input_field.dart';
 export 'ui/widgets/fields/password_input_field.dart';
 
 export 'ui/widgets/sign_in_recover_dialog.dart';
-export 'ui/widgets/sign_out_button.dart';
-export 'ui/widgets/sign_in_button.dart';
-export 'ui/widgets/sign_in_recover_button.dart';
-export 'ui/widgets/sign_up_button.dart';
-export 'ui/widgets/sign_in_navigate_button.dart';
-export 'ui/widgets/sign_up_navigate_button.dart';
+export 'ui/widgets/buttons/sign_out_button.dart';
+export 'ui/widgets/buttons/sign_in_button.dart';
+export 'ui/widgets/buttons/sign_in_recover_button.dart';
+export 'ui/widgets/buttons/sign_up_button.dart';
+export 'ui/widgets/buttons/sign_in_navigate_button.dart';
+export 'ui/widgets/buttons/sign_up_navigate_button.dart';
 
 export 'ui/sign_in_page.dart';
 export 'ui/sign_up_page.dart';
@@ -63,8 +63,9 @@ void dependencies() {
   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
   Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);
 
+  Get.put<IAuthenticationBusinessLogic>(AuthenticationBusinessLogic(), permanent: true);
+
   Get.lazyPut<IAuthenticationRepository>(() => AuthenticationRepository(), fenix: true);
-  Get.lazyPut<IAuthenticationBusinessLogic>(() => AuthenticationBusinessLogic(), fenix: true);
   Get.lazyPut<IAuthenticationService>(() => AuthenticationService(), fenix: true);
 
   Get.lazyPut<SignInController>(() => SignInController(), fenix: true);

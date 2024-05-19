@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
+
+import '../../module.dart';
 
 class WorkerList extends GetView<WorkerListController> {
   final List<WorkerModel> list;

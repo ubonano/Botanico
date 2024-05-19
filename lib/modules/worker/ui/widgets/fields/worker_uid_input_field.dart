@@ -1,5 +1,5 @@
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
 class WorkerUidInputField extends StatelessWidget {
   final FormHelper pageController;
@@ -20,9 +20,10 @@ class WorkerUidInputField extends StatelessWidget {
     return CustomInputField(
       key: key ?? const Key('uidField'),
       label: 'Código del Trabajador',
-      controller: pageController.getFieldController(fieldName)!,
+      pageController: pageController,
+      fieldName: fieldName,
       validator: required ? (value) => ValidatorHelper.required(value) : null,
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

@@ -1,16 +1,17 @@
-import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
-class WorkerUnlinkIconButton extends GetView<WorkerUnlinkingController> {
+import '../../../module.dart';
+
+class WorkerUnlinkIconButton extends GetView<WorkerUnlinkController> {
   final WorkerModel worker;
 
   const WorkerUnlinkIconButton(this.worker, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return PermissionProtected(
+    return ProtectedWidget(
       permission: WorkerModulePermissions.unlinkKey,
       child: IconButton(
         key: key ?? const Key('WorkerUnlinkIconButton'),

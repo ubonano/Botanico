@@ -1,5 +1,5 @@
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
 import '../../../module.dart';
 
@@ -8,7 +8,7 @@ class WorkerLinkFAB extends StatelessWidget with NavigationHelperInstance {
 
   @override
   Widget build(BuildContext context) {
-    return PermissionProtected(
+    return ProtectedWidget(
       permission: WorkerModulePermissions.linkKey,
       child: FloatingActionButton(
         key: key ?? const Key('WorkerLinkFAB'),

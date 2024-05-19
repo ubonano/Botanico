@@ -1,5 +1,5 @@
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
 class BirthdateInputField extends StatelessWidget {
   final FormHelper pageController;
@@ -20,10 +20,11 @@ class BirthdateInputField extends StatelessWidget {
     return CustomInputField(
       key: key ?? const Key('birthdateField'),
       label: 'Fecha de Nacimiento',
-      controller: pageController.getFieldController(fieldName)!,
+      pageController: pageController,
+      fieldName: fieldName,
       keyboardType: TextInputType.datetime,
       validator: (value) => ValidatorHelper.date(value, required: required),
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

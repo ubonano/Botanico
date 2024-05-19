@@ -1,11 +1,13 @@
-import 'package:botanico/modules/authentication/ui/widgets/sign_out_button.dart';
-import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/vendor/module.dart';
+import 'package:botanico/modules/worker/module.dart';
+
+import '../../module.dart';
 
 class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelperInstance {
-  CustomDrawer({Key? key}) : super(key: key);
+  CustomDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,27 +29,15 @@ class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelper
                   style: TextStyle(fontSize: 40.0, color: Theme.of(context).primaryColor),
                 ),
               ),
-              otherAccountsPictures: const [
-                SignOutIconButton(),
-              ],
+              otherAccountsPictures: const [SignOutIconButton()],
             ),
             ListTile(
               leading: const Icon(Icons.business),
               title: Text(controller.currentCompany$?.name ?? ''),
             ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Inicio'),
-              onTap: navigate.toHome,
-            ),
-            PermissionProtected(
-              permission: WorkerModulePermissions.viewKey,
-              child: ListTile(
-                leading: const Icon(Icons.work),
-                title: const Text('Trabajadores'),
-                onTap: navigate.toWorkerList,
-              ),
-            ),
+            HomePageTileButton(),
+            WorkerListPageTileButton(),
+            VendorListPageTileButton(),
           ],
         ),
       ),

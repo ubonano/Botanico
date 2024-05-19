@@ -1,5 +1,5 @@
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
 class DNIInputField extends StatelessWidget {
   final FormHelper pageController;
@@ -20,10 +20,11 @@ class DNIInputField extends StatelessWidget {
     return CustomInputField(
       key: key ?? const Key('dniField'),
       label: 'DNI',
-      controller: pageController.getFieldController(fieldName)!,
-      keyboardType: TextInputType.phone,
+      pageController: pageController,
+      fieldName: fieldName,
+      keyboardType: TextInputType.number,
       validator: (value) => ValidatorHelper.number(value, required: required),
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

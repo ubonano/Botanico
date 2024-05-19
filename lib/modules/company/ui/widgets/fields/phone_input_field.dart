@@ -1,5 +1,5 @@
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
 class PhoneInputField extends StatelessWidget {
   final FormHelper pageController;
@@ -20,10 +20,11 @@ class PhoneInputField extends StatelessWidget {
     return CustomInputField(
       key: key ?? const Key('phoneField'),
       label: 'Teléfono',
-      controller: pageController.getFieldController(fieldName)!,
+      pageController: pageController,
+      fieldName: fieldName,
       keyboardType: TextInputType.phone,
       validator: (value) => ValidatorHelper.number(value, required: required),
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

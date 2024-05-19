@@ -1,9 +1,10 @@
-import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/worker/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
-class WorkerSaveButton extends GetView<WorkerCreateController> {
+import '../../../module.dart';
+
+class WorkerSaveButton extends GetView<WorkerFormController> {
   const WorkerSaveButton({super.key});
 
   @override

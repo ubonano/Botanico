@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../models/worker_model.dart';
+import '../../worker_model.dart';
 
 abstract class IWorkerBusinessLogic {
   WorkerModel? get loggedWorker$;

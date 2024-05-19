@@ -1,6 +1,7 @@
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,7 @@ class Pages {
     ),
     GetPage(
       name: CompanyNavigationHelper.COMPANY_CREATE,
-      page: () => const CompanyCreatePage(),
+      page: () => const CompanyFormPage(),
     ),
     GetPage(
       name: Routes.HOME,
@@ -26,9 +27,10 @@ class Pages {
       name: AuthenticationNavigateHelper.SIGN_UP,
       page: () => const SignUpPage(),
     ),
+    // + Worker
     GetPage(
       name: WorkerNavigationHelper.WORKER_CREATE,
-      page: () => const WorkerCreatePage(),
+      page: () => const WorkerFormPage(),
     ),
     GetPage(
       name: WorkerNavigationHelper.WORKER_LIST,
@@ -46,5 +48,16 @@ class Pages {
       name: WorkerNavigationHelper.LOBBY,
       page: () => const LobbyPage(),
     ),
+    // - Worker
+    // + Vendor
+    GetPage(
+      name: VendorNavigationHelper.VENDOR_FORM,
+      page: () => const VendorFormPage(),
+    ),
+    GetPage(
+      name: VendorNavigationHelper.VENDOR_LIST,
+      page: () => const VendorListPage(),
+    ),
+    // - Vendor
   ];
 }

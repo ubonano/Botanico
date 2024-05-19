@@ -1,5 +1,5 @@
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
 class EmailInputField extends StatelessWidget {
   final FormHelper pageController;
@@ -20,10 +20,11 @@ class EmailInputField extends StatelessWidget {
     return CustomInputField(
       key: key ?? const Key('emailField'),
       label: 'Email',
-      controller: pageController.getFieldController(fieldName)!,
+      pageController: pageController,
+      fieldName: fieldName,
       keyboardType: TextInputType.emailAddress,
       validator: (value) => ValidatorHelper.email(value, required: required),
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

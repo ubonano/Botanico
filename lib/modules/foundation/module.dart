@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'ui/controllers/module_list_controller.dart';
-import 'ui/controllers/home_controller.dart';
-import 'ui/controllers/custom_drawer_controller.dart';
+import 'core/controllers/module_list_controller.dart';
+import 'core/controllers/home_controller.dart';
+import 'core/controllers/custom_drawer_controller.dart';
 
-export 'ui/controllers/custom_drawer_controller.dart';
-export 'ui/controllers/home_controller.dart';
-export 'ui/controllers/module_list_controller.dart';
+export 'core/controllers/custom_drawer_controller.dart';
+export 'core/controllers/home_controller.dart';
+export 'core/controllers/module_list_controller.dart';
 
 export 'core/helpers/validator_helper.dart';
 export 'core/helpers/module_structure.dart';
@@ -21,24 +21,28 @@ export 'core/models/permission_model.dart';
 import 'core/helpers/log_helper.dart';
 import 'core/helpers/navigation_helper.dart';
 import 'core/helpers/operation_helper.dart';
-import 'core/repositories/module_repository.dart';
+import 'core/module_repository.dart';
 import 'core/helpers/snackbar_helper.dart';
 
 export 'core/helpers/snackbar_helper.dart';
-export 'core/repositories/module_repository.dart';
 export 'core/helpers/operation_helper.dart';
 export 'core/helpers/log_helper.dart';
 export 'core/helpers/navigation_helper.dart';
+export 'core/helpers/fields_key.dart';
+export 'core/module_repository.dart';
+
+export 'tests/flows/open_drawer_flow.dart';
 
 export 'ui/widgets/buttons/custom_button.dart';
 export 'ui/widgets/buttons/custom_text_button.dart';
-export 'ui/widgets/custom_input_field.dart';
+export 'ui/widgets/buttons/home_page_tile_button.dart';
 
+export 'ui/widgets/custom_input_field.dart';
 export 'ui/widgets/module_expansion_tile.dart';
 export 'ui/widgets/custom_drawer.dart';
 export 'ui/widgets/confirmation_dialog.dart';
 export 'ui/widgets/custom_scaffold.dart';
-export 'ui/widgets/permission_protected.dart';
+export 'ui/widgets/protected_widget.dart';
 
 export 'ui/module_list_page.dart';
 
@@ -46,7 +50,6 @@ export 'ui/home_page.dart';
 
 export '../../app.dart';
 export '../../setup/firestore_collections.dart';
-export 'core/helpers/fields_key.dart';
 export '../../setup/bindings.dart';
 export '../../setup/firebase_options.dart';
 export '../../setup/pages.dart';

@@ -1,5 +1,5 @@
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:flutter/material.dart';
+import 'package:botanico/modules/foundation/module.dart';
 
 class ConfirmPasswordInputField extends StatelessWidget {
   final FormHelper pageController;
@@ -22,7 +22,8 @@ class ConfirmPasswordInputField extends StatelessWidget {
     return CustomInputField(
       key: key ?? const Key('confirmPasswordField'),
       label: 'Confirmar Contraseña',
-      controller: pageController.getFieldController(fieldName)!,
+      pageController: pageController,
+      fieldName: fieldName,
       obscureText: true,
       validator: (value) => ValidatorHelper.confirmPassword(
         value,
@@ -30,7 +31,7 @@ class ConfirmPasswordInputField extends StatelessWidget {
         required: required,
       ),
       textInputAction: TextInputAction.go,
-      onFieldSubmitted: (_) => onFieldSubmitted != null ? onFieldSubmitted!() : null,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }
