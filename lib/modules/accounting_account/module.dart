@@ -23,8 +23,6 @@ export 'core/helpers/interfaces/i_accounting_account_business_logic.dart';
 export 'core/helpers/interfaces/i_accounting_account_repository.dart';
 export 'core/helpers/interfaces/i_accounting_account_service.dart';
 
-export 'core/helpers/enums/accounting_account_registration_type.dart';
-
 export 'core/helpers/accounting_account_navigation_helper.dart';
 
 export 'core/accounting_account_model.dart';
@@ -47,11 +45,10 @@ export 'tests/accounting_account_delete/accounting_account_delete_test.dart';
 export 'ui/widgets/buttons/accounting_account_create_fab.dart';
 export 'ui/widgets/buttons/accounting_account_list_page_tile_button.dart';
 export 'ui/widgets/buttons/accounting_account_delete_icon_button.dart';
-export 'ui/widgets/buttons/accounting_account_update_icon_button.dart';
+export 'ui/widgets/buttons/accounting_account_list_tile_trailing_icon_buttons.dart';
 export 'ui/widgets/buttons/accounting_account_enabled_form_fields.dart';
 
 export 'ui/widgets/buttons/accounting_account_save_button.dart';
-export 'ui/widgets/fields/observations_input_field.dart';
 export 'ui/widgets/fields/name_input_field.dart';
 export 'ui/widgets/accounting_account_list.dart';
 
@@ -92,4 +89,3 @@ class AccountingAccountModulePermissions implements ModuleStructure {
   @override
   ModuleModel toModel() => ModuleModel(name: 'Cuentas Contables', permissions: permissions);
 }
-
