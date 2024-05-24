@@ -9,6 +9,7 @@ class CustomInputField extends StatelessWidget {
   final bool obscureText;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
+  final bool isEnabled;
   final String? hintText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -25,6 +26,7 @@ class CustomInputField extends StatelessWidget {
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.validator,
+    this.isEnabled = true,
     this.hintText,
     this.prefixIcon,
     this.suffixIcon,
@@ -44,7 +46,7 @@ class CustomInputField extends StatelessWidget {
             obscureText: obscureText,
             keyboardType: keyboardType,
             validator: validator,
-            enabled: pageController.isUpdateModeRx.value ? pageController.isFieldsEnabled.value : true,
+            enabled: pageController.isUpdateModeRx.value ? pageController.isFieldsEnabled.value : true && isEnabled,
             decoration: InputDecoration(
               labelText: label,
               hintText: hintText,

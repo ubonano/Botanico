@@ -15,4 +15,14 @@ class FieldKeys {
   static const String observations = 'observations';
   static const String cuit = 'cuit';
   static const String registrationType = 'registrationType';
+  static const String shipmentId = 'shipmentId';
+  static const String type = 'type';
+  static const String client = 'client';
+  static const String package = 'package';
+  static const String weight = 'weight';
+  static const String description = 'description';
+  static const String state = 'state';
+  static const String isInvoiced = 'isInvoiced';
+  static const String createdDateTime = 'createdDateTime';
+  static const String deliveryPlace = 'deliveryPlace';
 }
