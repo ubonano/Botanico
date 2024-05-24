@@ -20,9 +20,9 @@ void runTests() => main();
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  // _vendorCreateTesting();
-  // _vendorListTesting();
-  // _vendorUpdateTesting();
+  _vendorCreateTesting();
+  _vendorListTesting();
+  _vendorUpdateTesting();
   _vendorDeleteTesting();
 }
 

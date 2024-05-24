@@ -1,3 +1,4 @@
+import 'package:botanico/modules/accounting_account/module.dart';
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
@@ -59,5 +60,13 @@ class Pages {
       page: () => const VendorListPage(),
     ),
     // - Vendor
+    GetPage(
+      name: AccountingAccountNavigationHelper.ACCOUNTING_ACCOUNT_FORM,
+      page: () => const AccountingAccountFormPage(),
+    ),
+    GetPage(
+      name: AccountingAccountNavigationHelper.ACCOUNTING_ACCOUNT_LIST,
+      page: () => const AccountingAccountListPage(),
+    ),
   ];
 }
