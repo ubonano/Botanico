@@ -58,6 +58,8 @@ export 'ui/widgets/fields/weight_input_field.dart';
 export 'ui/widgets/fields/description_input_field.dart';
 
 export 'ui/widgets/buttons/via_shipment_save_button.dart';
+export 'ui/widgets/via_shipment_list_tile_trailing.dart';
+export 'ui/widgets/via_shipment_list_tile_title.dart';
 export 'ui/widgets/via_shipment_list.dart';
 
 export 'ui/via_shipment_form_page.dart';
