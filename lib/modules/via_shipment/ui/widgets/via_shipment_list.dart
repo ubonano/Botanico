@@ -14,6 +14,7 @@ class ViaShipmentList extends GetView<ViaShipmentListController> with Navigation
         var list = controller.viaShipmentList$.toList();
 
         return ListView.builder(
+          controller: controller.scrollController,
           itemCount: list.length,
           itemBuilder: (_, index) {
             final ViaShipmentModel viaShipment = list[index];

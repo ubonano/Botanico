@@ -18,4 +18,3 @@ class ViaShipmentListPage extends GetView<ViaShipmentListController> {
     );
   }
 }
-
