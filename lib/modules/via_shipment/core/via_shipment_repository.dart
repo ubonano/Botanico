@@ -16,7 +16,7 @@ class ViaShipmentRepository implements IViaShipmentRepository {
   @override
   Future<ViaShipmentModel?> get(String id) async {
     final docSnapshot = await _viaShipmentsRef(_companyId).doc(id).get();
-    return docSnapshot.exists ? ViaShipmentModel.fromSnapshot(docSnapshot) : null;
+    return docSnapshot.exists ? ViaShipmentModel.fromSnapshot(docSnapshot as DocumentSnapshot<ViaShipmentModel>) : null;
   }
 
   @override
@@ -39,9 +39,28 @@ class ViaShipmentRepository implements IViaShipmentRepository {
 
   @override
   Stream<List<ViaShipmentModel>> viaShipmentListStream(String companyId) =>
-      _viaShipmentsRef(companyId).snapshots().map((snapshot) => snapshot.docs.map(ViaShipmentModel.fromSnapshot).toList());
+      _viaShipmentsRef(companyId).snapshots().map((snapshot) => snapshot.docs
+          .map((doc) => ViaShipmentModel.fromSnapshot(doc as DocumentSnapshot<ViaShipmentModel>))
+          .toList()
+          .cast<ViaShipmentModel>());
 
-  CollectionReference<Map<String, dynamic>> _viaShipmentsRef(String companyId) =>
-      _firestore.collection(FirestoreCollections.companies).doc(companyId).collection(FirestoreCollections.viaShipments);
+  @override
+  Stream<List<ViaShipmentModel>> viaShipmentListPaginatedStream(
+    String companyId, {
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+  }) {
+    var query = _viaShipmentsRef(companyId).orderBy(FieldKeys.createdDateTime).limit(limit);
+
+    if (startAfter != null) {
+      query = query.startAfterDocument(startAfter);
+    }
+
+    return query.snapshots().map((snapshot) => snapshot.docs.map(ViaShipmentModel.fromSnapshot).toList());
+  }
+
+  CollectionReference<Map<String, dynamic>> _viaShipmentsRef(String companyId) => _firestore
+      .collection(FirestoreCollections.companies)
+      .doc(companyId)
+      .collection(FirestoreCollections.viaShipments);
 }
-

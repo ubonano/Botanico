@@ -13,6 +13,8 @@ class ViaShipmentModel {
   final DateTime createdDateTime;
   final String deliveryPlace;
 
+  final DocumentSnapshot? documentSnapshot;
+
   ViaShipmentModel({
     this.id = '',
     this.shipmentId = '',
@@ -25,6 +27,7 @@ class ViaShipmentModel {
     this.isInvoiced = false,
     DateTime? createdDateTime,
     this.deliveryPlace = '',
+    this.documentSnapshot,
   }) : createdDateTime = createdDateTime ?? DateTime.now();
 
   Map<String, dynamic> toMap() {
@@ -43,7 +46,11 @@ class ViaShipmentModel {
     };
   }
 
-  factory ViaShipmentModel.fromMap(Map<String, dynamic> map, String documentId) {
+  factory ViaShipmentModel.fromMap(
+    Map<String, dynamic> map,
+    String documentId, [
+    DocumentSnapshot? snapshot,
+  ]) {
     return ViaShipmentModel(
       id: documentId,
       shipmentId: map['shipmentId'],
@@ -56,12 +63,12 @@ class ViaShipmentModel {
       isInvoiced: map['isInvoiced'],
       createdDateTime: (map['createdDateTime'] as Timestamp).toDate(),
       deliveryPlace: map['deliveryPlace'],
+      documentSnapshot: snapshot,
     );
   }
 
-  static ViaShipmentModel fromSnapshot(DocumentSnapshot snapshot) {
-    return ViaShipmentModel.fromMap(snapshot.data() as Map<String, dynamic>, snapshot.id);
-  }
+  static ViaShipmentModel fromSnapshot(DocumentSnapshot snapshot) =>
+      ViaShipmentModel.fromMap(snapshot.data() as Map<String, dynamic>, snapshot.id, snapshot);
 
   ViaShipmentModel copyWith({
     String? id,

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
@@ -49,6 +50,19 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
       operationName: 'Fetch via shipment',
       permissionKey: ViaShipmentModulePermissions.viewKey,
       operation: (_) async => await _viaShipmentBusinessLogic.initializeViaShipmentStream(),
+    );
+  }
+
+  @override
+  Future<void> initializePaginatedViaShipmentStream({
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+  }) async {
+    await operation.perform(
+      operationName: 'Fetch paginated via shipment',
+      permissionKey: ViaShipmentModulePermissions.viewKey,
+      operation: (_) async =>
+          await _viaShipmentBusinessLogic.initializePaginatedViaShipmentStream(startAfter: startAfter, limit: limit),
     );
   }
 

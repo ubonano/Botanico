@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
@@ -40,9 +41,28 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
       .listen((viaShipmentList) => _viaShipmentList$.value = viaShipmentList);
 
   @override
+  Future<void> initializePaginatedViaShipmentStream({
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+  }) async {
+    _viaShipmentListSubscription?.cancel();
+
+    _viaShipmentListSubscription = _viaShipmentRepo
+        .viaShipmentListPaginatedStream(_companyBusinessLogic.currentCompanyId, startAfter: startAfter, limit: limit)
+        .listen(
+      (viaShipmentList) {
+        if (startAfter == null) {
+          _viaShipmentList$.value = viaShipmentList;
+        } else {
+          _viaShipmentList$.addAll(viaShipmentList);
+        }
+      },
+    );
+  }
+
+  @override
   void cancelViaShipmentStream() {
     _viaShipmentListSubscription?.cancel();
     _viaShipmentList$.clear();
   }
 }
-

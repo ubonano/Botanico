@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../../module.dart';
 
 abstract class IViaShipmentService {
@@ -8,6 +10,6 @@ abstract class IViaShipmentService {
   Future<void> updateViaShipment(ViaShipmentModel viaShipment);
   Future<void> deleteViaShipment(String id);
   Future<void> initializeViaShipmentStream();
+  Future<void> initializePaginatedViaShipmentStream({DocumentSnapshot? startAfter, int limit = 20});
   void cancelViaShipmentStream();
 }
-
