@@ -19,10 +19,10 @@ class ShipmentIdInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomInputField(
       key: key ?? const Key('shipmentIdField'),
-      label: 'Nmero de envío',
+      label: 'Número de envío',
       pageController: pageController,
       fieldName: fieldName,
-      validator: required ? (value) => ValidatorHelper.required(value) : null,
+      validator: required ? (value) => ValidatorHelper.number(value) : null,
       onFieldSubmitted: onFieldSubmitted,
     );
   }

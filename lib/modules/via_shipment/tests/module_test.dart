@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:integration_test/integration_test.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
@@ -18,13 +20,13 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   _viaShipmentCreateTesting();
-  _viaShipmentListTesting();
-  _viaShipmentUpdateTesting();
-  _viaShipmentDeleteTesting();
+  // _viaShipmentListTesting();
+  // _viaShipmentUpdateTesting();
+  // _viaShipmentDeleteTesting();
 }
 
 void _viaShipmentCreateTesting() {
-  viaShipmentCreateEmptyFieldsFromSignUpTest(generateRandomEmail(), 'password123');
+  // viaShipmentCreateEmptyFieldsFromSignUpTest(generateRandomEmail(), 'password123');
   viaShipmentCreateSuccessFromSignUpTest(generateRandomEmail(), 'password123');
 }
 

@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
@@ -13,8 +15,8 @@ void viaShipmentCreateEmptyFieldsFromSignUpTest(String email, String password) {
     await viaShipmentListNavigateFlow(tester);
 
     await viaShipmentCreateNavigateFlow(tester);
-    await viaShipmentSaveFlow(tester);
 
-    expect(find.text('This field is required'), findsNWidgets(10));
+    await viaShipmentSaveFlow(tester);
+    expect(find.text('Este campo es obligatorio'), findsNWidgets(6));
   });
 }

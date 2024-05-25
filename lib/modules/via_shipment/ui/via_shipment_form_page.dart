@@ -20,16 +20,36 @@ class ViaShipmentFormPage extends GetView<ViaShipmentFormController> {
           key: controller.formKey,
           child: Column(
             children: [
-              ShipmentIdInputField(controller),
-              TypeInputField(controller),
-              ClientInputField(controller),
-              PackageInputField(controller),
-              WeightInputField(controller),
-              DescriptionInputField(controller),
-              StateInputField(controller),
-              IsInvoicedInputField(controller),
+              Row(
+                children: [
+                  Expanded(child: ShipmentIdInputField(controller)),
+                  const SizedBox(width: 16.0),
+                  Expanded(child: IsInvoicedInputField(controller)),
+                ],
+              ),
               CreatedDateTimeInputField(controller),
-              DeliveryPlaceInputField(controller),
+              Row(
+                children: [
+                  Expanded(child: StateInputField(controller)),
+                  const SizedBox(width: 16.0),
+                  Expanded(child: TypeInputField(controller)),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(child: ClientInputField(controller)),
+                  const SizedBox(width: 16.0),
+                  Expanded(child: DeliveryPlaceInputField(controller)),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(child: PackageInputField(controller)),
+                  const SizedBox(width: 16.0),
+                  Expanded(child: WeightInputField(controller)),
+                ],
+              ),
+              DescriptionInputField(controller),
               const ViaShipmentSaveButton(),
             ],
           ),

@@ -68,7 +68,7 @@ class ViaShipmentFormController extends GetxController
       package: getFieldValue(FieldKeys.package),
       weight: double.parse(getFieldValue(FieldKeys.weight)),
       description: getFieldValue(FieldKeys.description),
-      createdDateTime: DateTime.now(),
+      createdDateTime: isUpdateMode ? modelForUpdate!.createdDateTime : DateTime.now(),
     );
   }
 }

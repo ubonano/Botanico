@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
@@ -8,12 +10,15 @@ void viaShipmentCreateSuccessFromSignUpTest(String email, String password) {
     await appInitFlow(tester);
 
     await companyCreateFromSignUpFlow(tester, email, password);
-
+  
     await openDrawerFlow(tester);
+
     await viaShipmentListNavigateFlow(tester);
 
     await viaShipmentCreateNavigateFlow(tester);
+
     await viaShipmentFillDataFlow(tester);
+    
     await viaShipmentSaveFlow(tester);
 
     expect(find.text('Via Shipments'), findsOneWidget);

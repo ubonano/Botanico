@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum ViaShipmentState {
   pendiente,
   procesando,
@@ -24,3 +26,19 @@ final Map<ViaShipmentState, String> viaShipmentStateLabels = {
   ViaShipmentState.archivada: 'Archivada',
 };
 
+Color viaShipmentStateToColor(ViaShipmentState state) {
+  switch (state) {
+    case ViaShipmentState.pendiente:
+      return Colors.orange; // Color óptimo para pendiente
+    case ViaShipmentState.procesando:
+      return Colors.blue; // Color óptimo para procesando
+    case ViaShipmentState.lista:
+      return Colors.yellow; // Color óptimo para lista
+    case ViaShipmentState.entregada:
+      return Colors.green; // Color óptimo para entregada
+    case ViaShipmentState.archivada:
+      return Colors.grey; // Color óptimo para archivada
+    default:
+      return Colors.black; // Color por defecto
+  }
+}
