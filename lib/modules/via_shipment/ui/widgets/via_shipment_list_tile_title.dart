@@ -9,7 +9,7 @@ class ViaShipmentListTileTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
         _buildIconWithText(Icons.numbers, viaShipment.shipmentId),
         const SizedBox(width: 8),

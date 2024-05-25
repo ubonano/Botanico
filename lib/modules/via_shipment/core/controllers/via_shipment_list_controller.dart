@@ -16,7 +16,8 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
 
   DocumentSnapshot? _lastDocumentSnapshot;
 
-  double _scrollPosition = 0;
+  final int _paginationLimit = 20;
+  bool _isLoading = false;
 
   @override
   void onInit() {
@@ -26,32 +27,31 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
   }
 
   void _initializeViaShipmentStream() {
-    _viaShipmentBusinessLogic.initializePaginatedViaShipmentStream(startAfter: null, limit: 20).then((_) {
+    _isLoading = true;
+    _viaShipmentBusinessLogic.initializePaginatedViaShipmentStream(startAfter: null, limit: _paginationLimit).then((_) {
       if (viaShipmentList$.isNotEmpty) {
         _lastDocumentSnapshot = viaShipmentList$.last.documentSnapshot;
       }
+      _isLoading = false;
     });
   }
 
   void _scrollListener() {
-    if (scrollController.position.extentAfter < 5) {
-      _scrollPosition = scrollController.position.pixels;
-
+    if (!_isLoading && scrollController.position.extentAfter < 300) {
+      _isLoading = true;
       loadNextPage();
     }
   }
 
   void loadNextPage() {
-    _viaShipmentBusinessLogic.initializePaginatedViaShipmentStream(startAfter: _lastDocumentSnapshot, limit: 20).then(
-      (_) {
-        if (viaShipmentList$.isNotEmpty) {
-          _lastDocumentSnapshot = viaShipmentList$.last.documentSnapshot;
-          Future.delayed(const Duration(milliseconds: 100), () {
-            scrollController.jumpTo(_scrollPosition);
-          });
-        }
-      },
-    );
+    _viaShipmentBusinessLogic
+        .initializePaginatedViaShipmentStream(startAfter: _lastDocumentSnapshot, limit: _paginationLimit)
+        .then((_) {
+      if (viaShipmentList$.isNotEmpty) {
+        _lastDocumentSnapshot = viaShipmentList$.last.documentSnapshot;
+      }
+      _isLoading = false;
+    });
   }
 
   @override

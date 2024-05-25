@@ -3,12 +3,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
+import 'package:botanico/modules/worker/module.dart';
 
 import '../module.dart';
 
 class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusinessLogic {
   late final IViaShipmentRepository _viaShipmentRepo = Get.find();
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
+  late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   final _viaShipmentList$ = RxList<ViaShipmentModel>();
   StreamSubscription<List<ViaShipmentModel>>? _viaShipmentListSubscription;
@@ -45,6 +47,9 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
     DocumentSnapshot? startAfter,
     int limit = 20,
   }) async {
+    await _workerBusinessLogic.fetchLoggedWorker();
+    await _companyBusinessLogic.fetchLoggedCompany();
+
     _viaShipmentListSubscription?.cancel();
 
     _viaShipmentListSubscription = _viaShipmentRepo
