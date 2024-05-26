@@ -74,16 +74,13 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
       final trackingData = await _viaCargoRepo.getTrackingData(numeroEnvio: shipmentId);
 
       if (trackingData != null) {
-        print('Datos de tracking: $trackingData');
         return trackingData;
       } else {
-        print('Error al obtener los datos de tracking');
-        print(trackingData);
+        throw Exception('Error al obtener los datos de tracking');
       }
     } else {
-      print('Error al obtener el token');
+      throw Exception('Error al obtener el token');
     }
-    return null;
   }
 
   @override
