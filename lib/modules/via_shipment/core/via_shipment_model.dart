@@ -8,7 +8,7 @@ class ViaShipmentModel {
   final String package;
   final double weight;
   final String description;
-  final String state;
+  final int state;
   final bool isInvoiced;
   final DateTime createdDateTime;
   final String deliveryPlace;
@@ -23,7 +23,7 @@ class ViaShipmentModel {
     this.package = '',
     this.weight = 0.0,
     this.description = '',
-    this.state = '',
+    this.state = 0,
     this.isInvoiced = false,
     DateTime? createdDateTime,
     this.deliveryPlace = '',
@@ -78,7 +78,7 @@ class ViaShipmentModel {
     String? package,
     double? weight,
     String? description,
-    String? state,
+    int? state,
     bool? isInvoiced,
     DateTime? createdDateTime,
     String? deliveryPlace,
@@ -91,7 +91,7 @@ class ViaShipmentModel {
       package: package ?? this.package,
       weight: weight ?? this.weight,
       description: description ?? this.description,
-      state: state ?? this.state,
+      state: state ?? this.state, // Changed to int
       isInvoiced: isInvoiced ?? this.isInvoiced,
       createdDateTime: createdDateTime ?? this.createdDateTime,
       deliveryPlace: deliveryPlace ?? this.deliveryPlace,

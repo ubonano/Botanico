@@ -50,7 +50,10 @@ class ViaShipmentRepository implements IViaShipmentRepository {
     DocumentSnapshot? startAfter,
     int limit = 20,
   }) {
-    var query = _viaShipmentsRef(companyId).orderBy(FieldKeys.createdDateTime).limit(limit);
+    var query = _viaShipmentsRef(companyId)
+        .orderBy(FieldKeys.state, descending: false)
+        .orderBy(FieldKeys.createdDateTime, descending: true)
+        .limit(limit);
 
     if (startAfter != null) {
       query = query.startAfterDocument(startAfter);

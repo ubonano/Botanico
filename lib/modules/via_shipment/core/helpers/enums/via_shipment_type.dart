@@ -1,37 +1,32 @@
 import 'package:flutter/material.dart';
 
 enum ViaShipmentType {
-  entrega,
-  despacho,
+  delivery,
+  dispatch,
 }
 
-String viaShipmentTypeToString(ViaShipmentType type) {
-  return type.toString().split('.').last;
-}
+String viaShipmentTypeToString(ViaShipmentType type) => type.toString().split('.').last;
 
-ViaShipmentType viaShipmentTypeFromString(String typeString) {
-  return ViaShipmentType.values.firstWhere(
-    (type) => viaShipmentTypeToString(type) == typeString,
-  );
-}
+ViaShipmentType viaShipmentTypeFromString(String typeString) =>
+    ViaShipmentType.values.firstWhere((type) => viaShipmentTypeToString(type) == typeString);
 
 final Map<ViaShipmentType, String> viaShipmentTypeLabels = {
-  ViaShipmentType.entrega: 'Entrega',
-  ViaShipmentType.despacho: 'Despacho',
+  ViaShipmentType.delivery: 'Entrega',
+  ViaShipmentType.dispatch: 'Despacho',
 };
 
 Color viaShipmentTypeToColor(ViaShipmentType type) {
   switch (type) {
-    case ViaShipmentType.entrega:
-      return Colors.red; // Color óptimo para pendiente
-    case ViaShipmentType.despacho:
-      return Colors.green; // Color óptimo para procesando
+    case ViaShipmentType.delivery:
+      return Colors.red;
+    case ViaShipmentType.dispatch:
+      return Colors.green;
     default:
-      return Colors.black; // Color por defecto
+      return Colors.black;
   }
 }
 
 const Map<ViaShipmentType, IconData> viaShipmentTypeIcons = {
-  ViaShipmentType.entrega: Icons.outbox,
-  ViaShipmentType.despacho: Icons.inbox,
+  ViaShipmentType.delivery: Icons.outbox,
+  ViaShipmentType.dispatch: Icons.inbox,
 };

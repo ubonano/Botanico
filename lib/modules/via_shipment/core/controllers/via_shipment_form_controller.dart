@@ -11,7 +11,7 @@ class ViaShipmentFormController extends GetxController
   late final IViaShipmentService _viaShipmentService = Get.find();
 
   var shipmentType = ''.obs;
-  var shipmentState = ViaShipmentState.pendiente.obs;
+  var shipmentState = ViaShipmentState.pending.obs;
   var deliveryPlace = ''.obs;
   var isInvoiced = false.obs;
 
@@ -36,9 +36,7 @@ class ViaShipmentFormController extends GetxController
     if (modelForUpdate != null) {
       setFieldValue(FieldKeys.shipmentId, modelForUpdate!.shipmentId);
       shipmentType.value = modelForUpdate!.type;
-      shipmentState.value = modelForUpdate!.state.isNotEmpty
-          ? viaShipmentStateFromString(modelForUpdate!.state)
-          : ViaShipmentState.pendiente;
+      shipmentState.value = ViaShipmentState.values[modelForUpdate!.state];
       deliveryPlace.value = modelForUpdate!.deliveryPlace;
       isInvoiced.value = modelForUpdate!.isInvoiced;
       setFieldValue(FieldKeys.client, modelForUpdate!.client);
@@ -61,7 +59,7 @@ class ViaShipmentFormController extends GetxController
       id: isUpdateMode ? modelForUpdate!.id : '',
       shipmentId: getFieldValue(FieldKeys.shipmentId),
       type: shipmentType.value,
-      state: viaShipmentStateToString(shipmentState.value),
+      state: shipmentState.value.index,
       deliveryPlace: deliveryPlace.value,
       isInvoiced: isInvoiced.value,
       client: getFieldValue(FieldKeys.client),

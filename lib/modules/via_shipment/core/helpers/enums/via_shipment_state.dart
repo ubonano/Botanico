@@ -1,44 +1,42 @@
 import 'package:flutter/material.dart';
 
 enum ViaShipmentState {
-  pendiente,
-  procesando,
-  lista,
-  entregada,
-  archivada,
+  pending(1),
+  processing(2),
+  ready(3),
+  delivered(4),
+  archived(5);
+
+  final int value;
+  const ViaShipmentState(this.value);
 }
 
-String viaShipmentStateToString(ViaShipmentState state) {
-  return state.toString().split('.').last;
-}
+String viaShipmentStateToString(ViaShipmentState state) => state.toString().split('.').last;
 
-ViaShipmentState viaShipmentStateFromString(String stateString) {
-  return ViaShipmentState.values.firstWhere(
-    (state) => viaShipmentStateToString(state) == stateString,
-  );
-}
+ViaShipmentState viaShipmentStateFromString(String stateString) =>
+    ViaShipmentState.values.firstWhere((state) => viaShipmentStateToString(state) == stateString);
 
 final Map<ViaShipmentState, String> viaShipmentStateLabels = {
-  ViaShipmentState.pendiente: 'Pendiente',
-  ViaShipmentState.procesando: 'Procesando',
-  ViaShipmentState.lista: 'Lista',
-  ViaShipmentState.entregada: 'Entregada',
-  ViaShipmentState.archivada: 'Archivada',
+  ViaShipmentState.pending: 'Pendiente',
+  ViaShipmentState.processing: 'Procesando',
+  ViaShipmentState.ready: 'Lista',
+  ViaShipmentState.delivered: 'Entregada',
+  ViaShipmentState.archived: 'Archivada',
 };
 
 Color viaShipmentStateToColor(ViaShipmentState state) {
   switch (state) {
-    case ViaShipmentState.pendiente:
-      return Colors.orange; // Color óptimo para pendiente
-    case ViaShipmentState.procesando:
-      return Colors.blue; // Color óptimo para procesando
-    case ViaShipmentState.lista:
-      return Colors.yellow; // Color óptimo para lista
-    case ViaShipmentState.entregada:
-      return Colors.green; // Color óptimo para entregada
-    case ViaShipmentState.archivada:
-      return Colors.grey; // Color óptimo para archivada
+    case ViaShipmentState.pending:
+      return Colors.orange;
+    case ViaShipmentState.processing:
+      return Colors.blue;
+    case ViaShipmentState.ready:
+      return Colors.yellow;
+    case ViaShipmentState.delivered:
+      return Colors.green;
+    case ViaShipmentState.archived:
+      return Colors.grey;
     default:
-      return Colors.black; // Color por defecto
+      return Colors.black;
   }
 }

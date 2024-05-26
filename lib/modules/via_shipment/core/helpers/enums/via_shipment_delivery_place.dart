@@ -1,8 +1,8 @@
 enum DeliveryPlace {
-  aDefinir,
-  mostrador,
-  porton,
-  galpon2,
+  toDefine,
+  counter,
+  gate,
+  warehouse2,
 }
 
 String deliveryPlaceToString(DeliveryPlace place) {
@@ -16,9 +16,9 @@ DeliveryPlace deliveryPlaceFromString(String placeString) {
 }
 
 final Map<DeliveryPlace, String> deliveryPlaceLabels = {
-  DeliveryPlace.aDefinir: 'A definir',
-  DeliveryPlace.mostrador: 'Mostrador',
-  DeliveryPlace.porton: 'Portón',
-  DeliveryPlace.galpon2: 'Galpón 2',
+  DeliveryPlace.toDefine: 'A definir',
+  DeliveryPlace.counter: 'Mostrador',
+  DeliveryPlace.gate: 'Portón',
+  DeliveryPlace.warehouse2: 'Galpón 2',
 };
 
