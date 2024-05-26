@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -13,6 +15,7 @@ class ViaCargoRepository implements IViaCargoRepository {
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
+      // TODO: get the credentials from the config.json file o de la base de datos
       body: jsonEncode({
         'usuario': 'RetiroCharge',
         'usuario_clave': '55446',
@@ -20,19 +23,16 @@ class ViaCargoRepository implements IViaCargoRepository {
       }),
     );
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      if (data['status'] == true && data['error'] == false) {
-        _token = data['key'];
-        return _token;
-      } else {
-        print('Error en la respuesta: ${data['descripcion']}');
-        return null;
-      }
+    if (response.statusCode != 200) {
+      throw Exception('Error: ${response.statusCode}');
+    }
+
+    final data = jsonDecode(response.body);
+    if (data['status'] == true && data['error'] == false) {
+      _token = data['key'];
+      return _token;
     } else {
-      // Manejo de errores según el código de estado
-      print('Error: ${response.statusCode}');
-      return null;
+      throw Exception('Error en la respuesta: ${data['descripcion']}');
     }
   }
 
@@ -44,8 +44,7 @@ class ViaCargoRepository implements IViaCargoRepository {
     String? tokenRecaptcha,
   }) async {
     if (_token == null) {
-      print('Error: Token no disponible. Llama a getToken primero.');
-      return null;
+      throw Exception('Error: Token no disponible. Llama a getToken primero.');
     }
 
     final url = Uri.parse('$_baseUrl/alerce/tracking');
@@ -64,13 +63,11 @@ class ViaCargoRepository implements IViaCargoRepository {
       },
     );
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      return ViaShipmentModel.fromApiResponse(data);
-    } else {
-      // Manejo de errores según el código de estado
-      print('Error: ${response.statusCode}');
-      return null;
+    if (response.statusCode != 200) {
+      throw Exception('Error: ${response.statusCode}');
     }
+
+    final data = jsonDecode(response.body);
+    return ViaShipmentModel.fromApiResponse(data);
   }
 }
