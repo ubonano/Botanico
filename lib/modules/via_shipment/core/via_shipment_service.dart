@@ -38,7 +38,6 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
     await operation.perform(
       operationName: 'Delete via shipment',
       permissionKey: ViaShipmentModulePermissions.deleteKey,
-      successMessage: 'Via shipment deleted',
       inTransaction: true,
       operation: (_) async => await _viaShipmentBusinessLogic.deleteViaShipment(id),
     );
@@ -64,6 +63,11 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
       operation: (_) async =>
           await _viaShipmentBusinessLogic.initializePaginatedViaShipmentStream(startAfter: startAfter, limit: limit),
     );
+  }
+
+  @override
+  Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId) async {
+    return await _viaShipmentBusinessLogic.getShipmentFromExternalAPI(shipmentId);
   }
 
   @override

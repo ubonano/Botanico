@@ -14,5 +14,6 @@ abstract class IViaShipmentBusinessLogic {
   Future<void> postUpdateViaShipment();
   Future<void> initializeViaShipmentStream();
   Future<void> initializePaginatedViaShipmentStream({DocumentSnapshot? startAfter, int limit = 20});
+  Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId);
   void cancelViaShipmentStream();
 }

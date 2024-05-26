@@ -14,7 +14,7 @@ class ViaShipmentFormController extends GetxController
   var shipmentState = ViaShipmentState.pending.obs;
   var deliveryPlace = ''.obs;
   var isInvoiced = false.obs;
-
+  var isLoading = false.obs;
   @override
   List<String> formFields = [
     FieldKeys.shipmentId,
@@ -68,5 +68,18 @@ class ViaShipmentFormController extends GetxController
       description: getFieldValue(FieldKeys.description),
       createdDateTime: isUpdateMode ? modelForUpdate!.createdDateTime : DateTime.now(),
     );
+  }
+
+  Future<void> fetchShipmentDataFromExternalAPI() async {
+    isLoading.value = true;
+    final ViaShipmentModel? shipment =
+        await _viaShipmentService.getShipmentFromExternalAPI(getFieldValue(FieldKeys.shipmentId));
+    isLoading.value = false;
+
+    if (shipment != null) {
+      setFieldValue(FieldKeys.client, shipment.client);
+      setFieldValue(FieldKeys.package, shipment.package);
+      setFieldValue(FieldKeys.weight, shipment.weight.toString());
+    }
   }
 }

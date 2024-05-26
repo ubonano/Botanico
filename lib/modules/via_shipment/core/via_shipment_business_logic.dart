@@ -9,6 +9,7 @@ import '../module.dart';
 
 class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusinessLogic {
   late final IViaShipmentRepository _viaShipmentRepo = Get.find();
+  late final IViaCargoRepository _viaCargoRepo = Get.find();
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
@@ -63,6 +64,26 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
         }
       },
     );
+  }
+
+  @override
+  Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId) async {
+    final token = await _viaCargoRepo.getToken();
+
+    if (token != null) {
+      final trackingData = await _viaCargoRepo.getTrackingData(numeroEnvio: shipmentId);
+
+      if (trackingData != null) {
+        print('Datos de tracking: $trackingData');
+        return trackingData;
+      } else {
+        print('Error al obtener los datos de tracking');
+        print(trackingData);
+      }
+    } else {
+      print('Error al obtener el token');
+    }
+    return null;
   }
 
   @override

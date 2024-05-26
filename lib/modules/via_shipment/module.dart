@@ -4,9 +4,11 @@ import 'core/controllers/via_shipment_form_controller.dart';
 import 'core/controllers/via_shipment_list_controller.dart';
 import 'core/controllers/via_shipment_delete_controller.dart';
 import 'core/via_shipment_business_logic.dart';
+import 'core/via_cargo_repository.dart';
 import 'core/via_shipment_repository.dart';
 import 'core/via_shipment_service.dart';
 import 'core/helpers/interfaces/i_via_shipment_business_logic.dart';
+import 'core/helpers/interfaces/i_via_cargo_repository.dart';
 import 'core/helpers/interfaces/i_via_shipment_repository.dart';
 import 'core/helpers/interfaces/i_via_shipment_service.dart';
 
@@ -17,6 +19,7 @@ export 'core/controllers/via_shipment_delete_controller.dart';
 export 'core/via_shipment_business_logic.dart';
 
 export 'core/helpers/interfaces/i_via_shipment_business_logic.dart';
+export 'core/helpers/interfaces/i_via_cargo_repository.dart';
 export 'core/helpers/interfaces/i_via_shipment_repository.dart';
 export 'core/helpers/interfaces/i_via_shipment_service.dart';
 
@@ -24,6 +27,7 @@ export 'core/helpers/via_shipment_navigation_helper.dart';
 
 export 'core/via_shipment_model.dart';
 
+export 'core/via_cargo_repository.dart';
 export 'core/via_shipment_repository.dart';
 export 'core/via_shipment_service.dart';
 export 'core/via_shipment_permissions.dart';
@@ -45,6 +49,7 @@ export 'ui/widgets/buttons/via_shipment_list_page_tile_button.dart';
 export 'ui/widgets/buttons/via_shipment_delete_icon_button.dart';
 export 'ui/widgets/buttons/via_shipment_list_tile_trailing_icon_buttons.dart';
 export 'ui/widgets/buttons/via_shipment_enabled_form_fields.dart';
+export 'ui/widgets/buttons/shipment_id_search_button.dart';
 
 export 'ui/widgets/fields/state_input_field.dart';
 export 'ui/widgets/fields/is_invoiced_input_field.dart';
@@ -72,6 +77,7 @@ export 'core/helpers/enums/via_shipment_delivery_place.dart';
 void dependencies() {
   Get.put<IViaShipmentBusinessLogic>(ViaShipmentBusinessLogic(), permanent: true);
 
+  Get.lazyPut<IViaCargoRepository>(() => ViaCargoRepository(), fenix: true);
   Get.lazyPut<IViaShipmentRepository>(() => ViaShipmentRepository(), fenix: true);
   Get.lazyPut<IViaShipmentService>(() => ViaShipmentService(), fenix: true);
 

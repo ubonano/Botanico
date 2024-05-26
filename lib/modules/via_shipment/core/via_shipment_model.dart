@@ -91,10 +91,20 @@ class ViaShipmentModel {
       package: package ?? this.package,
       weight: weight ?? this.weight,
       description: description ?? this.description,
-      state: state ?? this.state, // Changed to int
+      state: state ?? this.state,
       isInvoiced: isInvoiced ?? this.isInvoiced,
       createdDateTime: createdDateTime ?? this.createdDateTime,
       deliveryPlace: deliveryPlace ?? this.deliveryPlace,
+    );
+  }
+
+  factory ViaShipmentModel.fromApiResponse(Map<String, dynamic> response) {
+    final objeto = response['ok'][0]['objeto'];
+    return ViaShipmentModel(
+      shipmentId: objeto['numeroEnvio'],
+      client: objeto['nombreRemitente'],
+      weight: (objeto['kilos'] as num).toDouble(),
+      package: objeto['numeroTotalPiezas'].toString(),
     );
   }
 }
