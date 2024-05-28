@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../via_shipment_model.dart';
+import '../../../module.dart';
 
 abstract class IViaShipmentBusinessLogic {
   RxList<ViaShipmentModel> get viaShipmentList$;
@@ -12,8 +12,11 @@ abstract class IViaShipmentBusinessLogic {
   Future<void> deleteViaShipment(String id);
   Future<void> postCreateViaShipment();
   Future<void> postUpdateViaShipment();
-  Future<void> initializeViaShipmentStream();
-  Future<void> initializePaginatedViaShipmentStream({DocumentSnapshot? startAfter, int limit = 20});
+  Future<void> initializePaginatedViaShipmentStream({
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+    List<ViaShipmentState>? states,
+  });
   Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId);
   void cancelViaShipmentStream();
 }

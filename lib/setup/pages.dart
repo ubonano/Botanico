@@ -78,7 +78,10 @@ class Pages {
       name: ViaShipmentNavigationHelper.VIA_SHIPMENT_LIST,
       page: () => const ViaShipmentListPage(),
     ),
+    GetPage(
+      name: ViaShipmentNavigationHelper.VIA_SHIPMENT_DASHBOARD,
+      page: () => const ViaShipmentDashboardPage(),
+    ),
     // - Via Shipment
   ];
 }
-

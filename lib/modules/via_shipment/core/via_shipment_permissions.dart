@@ -11,13 +11,15 @@ class ViaShipmentModulePermissions implements ModuleStructure {
   static const createKey = 'via_shipment.create';
   static const updateKey = 'via_shipment.update';
   static const deleteKey = 'via_shipment.delete';
+  static const dashboardKey = 'via_shipment.dashboard';
 
   @override
   List<PermissionModel> get permissions => [
-        PermissionModel(id: viewKey, name: 'View'),
-        PermissionModel(id: createKey, name: 'Create'),
-        PermissionModel(id: updateKey, name: 'Update'),
-        PermissionModel(id: deleteKey, name: 'Delete'),
+        PermissionModel(id: viewKey, name: 'Ver'),
+        PermissionModel(id: createKey, name: 'Crear'),
+        PermissionModel(id: updateKey, name: 'Actualizar'),
+        PermissionModel(id: deleteKey, name: 'Eliminar'),
+        PermissionModel(id: dashboardKey, name: 'Dashboard'),
       ];
 
   @override

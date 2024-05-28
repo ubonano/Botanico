@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import 'core/controllers/via_shipment_form_controller.dart';
 import 'core/controllers/via_shipment_list_controller.dart';
+import 'core/controllers/via_shipment_dashboard_controller.dart';
 import 'core/controllers/via_shipment_delete_controller.dart';
 import 'core/via_shipment_business_logic.dart';
 import 'core/via_cargo_repository.dart';
@@ -14,6 +15,7 @@ import 'core/helpers/interfaces/i_via_shipment_service.dart';
 
 export 'core/controllers/via_shipment_form_controller.dart';
 export 'core/controllers/via_shipment_list_controller.dart';
+export 'core/controllers/via_shipment_dashboard_controller.dart';
 export 'core/controllers/via_shipment_delete_controller.dart';
 
 export 'core/via_shipment_business_logic.dart';
@@ -65,10 +67,14 @@ export 'ui/widgets/fields/description_input_field.dart';
 export 'ui/widgets/buttons/via_shipment_save_button.dart';
 export 'ui/widgets/via_shipment_list_tile_trailing.dart';
 export 'ui/widgets/via_shipment_list_tile_title.dart';
+export 'ui/widgets/via_shipment_dashboard_tile.dart';
 export 'ui/widgets/via_shipment_list.dart';
+export 'ui/widgets/icon_with_text.dart';
+export 'ui/widgets/state_tag.dart';
 
 export 'ui/via_shipment_form_page.dart';
 export 'ui/via_shipment_list_page.dart';
+export 'ui/via_shipment_dashboard_page.dart';
 
 export 'core/helpers/enums/via_shipment_type.dart';
 export 'core/helpers/enums/via_shipment_state.dart';
@@ -83,5 +89,6 @@ void dependencies() {
 
   Get.lazyPut<ViaShipmentFormController>(() => ViaShipmentFormController(), fenix: true);
   Get.lazyPut<ViaShipmentListController>(() => ViaShipmentListController(), fenix: true);
+  Get.lazyPut<ViaShipmentDashboardController>(() => ViaShipmentDashboardController(), fenix: true);
   Get.lazyPut<ViaShipmentDeleteController>(() => ViaShipmentDeleteController(), fenix: true);
 }

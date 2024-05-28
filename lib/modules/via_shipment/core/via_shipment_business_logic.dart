@@ -39,14 +39,10 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
   Future<void> postUpdateViaShipment() async => navigate.toViaShipmentList();
 
   @override
-  Future<void> initializeViaShipmentStream() async => _viaShipmentListSubscription = _viaShipmentRepo
-      .viaShipmentListStream(_companyBusinessLogic.currentCompanyId)
-      .listen((viaShipmentList) => _viaShipmentList$.value = viaShipmentList);
-
-  @override
   Future<void> initializePaginatedViaShipmentStream({
     DocumentSnapshot? startAfter,
     int limit = 20,
+    List<ViaShipmentState>? states,
   }) async {
     await _workerBusinessLogic.fetchLoggedWorker();
     await _companyBusinessLogic.fetchLoggedCompany();
@@ -54,7 +50,8 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
     _viaShipmentListSubscription?.cancel();
 
     _viaShipmentListSubscription = _viaShipmentRepo
-        .viaShipmentListPaginatedStream(_companyBusinessLogic.currentCompanyId, startAfter: startAfter, limit: limit)
+        .viaShipmentListPaginatedStream(_companyBusinessLogic.currentCompanyId,
+            startAfter: startAfter, limit: limit, states: states)
         .listen(
       (viaShipmentList) {
         if (startAfter == null) {

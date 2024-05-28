@@ -38,22 +38,20 @@ class ViaShipmentRepository implements IViaShipmentRepository {
   }
 
   @override
-  Stream<List<ViaShipmentModel>> viaShipmentListStream(String companyId) =>
-      _viaShipmentsRef(companyId).snapshots().map((snapshot) => snapshot.docs
-          .map((doc) => ViaShipmentModel.fromSnapshot(doc as DocumentSnapshot<ViaShipmentModel>))
-          .toList()
-          .cast<ViaShipmentModel>());
-
-  @override
   Stream<List<ViaShipmentModel>> viaShipmentListPaginatedStream(
     String companyId, {
     DocumentSnapshot? startAfter,
     int limit = 20,
+    List<ViaShipmentState>? states,
   }) {
     var query = _viaShipmentsRef(companyId)
         .orderBy(FieldKeys.state, descending: false)
         .orderBy(FieldKeys.createdDateTime, descending: true)
         .limit(limit);
+
+    if (states != null && states.isNotEmpty) {
+      query = query.where(FieldKeys.state, whereIn: states.map((state) => state.value).toList());
+    }
 
     if (startAfter != null) {
       query = query.startAfterDocument(startAfter);

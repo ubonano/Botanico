@@ -44,24 +44,19 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   }
 
   @override
-  Future<void> initializeViaShipmentStream() async {
-    await operation.perform(
-      operationName: 'Fetch via shipment',
-      permissionKey: ViaShipmentModulePermissions.viewKey,
-      operation: (_) async => await _viaShipmentBusinessLogic.initializeViaShipmentStream(),
-    );
-  }
-
-  @override
   Future<void> initializePaginatedViaShipmentStream({
     DocumentSnapshot? startAfter,
     int limit = 20,
+    List<ViaShipmentState>? states,
   }) async {
     await operation.perform(
       operationName: 'Fetch paginated via shipment',
       permissionKey: ViaShipmentModulePermissions.viewKey,
-      operation: (_) async =>
-          await _viaShipmentBusinessLogic.initializePaginatedViaShipmentStream(startAfter: startAfter, limit: limit),
+      operation: (_) async => await _viaShipmentBusinessLogic.initializePaginatedViaShipmentStream(
+        startAfter: startAfter,
+        limit: limit,
+        states: states,
+      ),
     );
   }
 

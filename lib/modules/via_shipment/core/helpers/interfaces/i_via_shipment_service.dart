@@ -9,8 +9,8 @@ abstract class IViaShipmentService {
   Future<void> createViaShipment(ViaShipmentModel viaShipment);
   Future<void> updateViaShipment(ViaShipmentModel viaShipment);
   Future<void> deleteViaShipment(String id);
-  Future<void> initializeViaShipmentStream();
-  Future<void> initializePaginatedViaShipmentStream({DocumentSnapshot? startAfter, int limit = 20});
+  Future<void> initializePaginatedViaShipmentStream(
+      {DocumentSnapshot? startAfter, int limit = 20, List<ViaShipmentState>? states});
   void cancelViaShipmentStream();
   Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId);
 }

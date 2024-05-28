@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 enum ViaShipmentState {
   pending(1),
-  processing(2),
+  inProcess(2),
   ready(3),
   delivered(4),
   archived(5);
@@ -18,7 +18,7 @@ ViaShipmentState viaShipmentStateFromString(String stateString) =>
 
 final Map<ViaShipmentState, String> viaShipmentStateLabels = {
   ViaShipmentState.pending: 'Pendiente',
-  ViaShipmentState.processing: 'Procesando',
+  ViaShipmentState.inProcess: 'Procesando',
   ViaShipmentState.ready: 'Lista',
   ViaShipmentState.delivered: 'Entregada',
   ViaShipmentState.archived: 'Archivada',
@@ -28,7 +28,7 @@ Color viaShipmentStateToColor(ViaShipmentState state) {
   switch (state) {
     case ViaShipmentState.pending:
       return Colors.orange;
-    case ViaShipmentState.processing:
+    case ViaShipmentState.inProcess:
       return Colors.blue;
     case ViaShipmentState.ready:
       return Colors.yellow;

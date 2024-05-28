@@ -11,12 +11,26 @@ class ViaShipmentListPageTileButton extends StatelessWidget with NavigationHelpe
     return ProtectedWidget(
       key: key ?? const Key('ViaShipmentListPageTileButton'),
       permission: ViaShipmentModulePermissions.viewKey,
-      child: ListTile(
+      child: ExpansionTile(
         leading: const Icon(Icons.local_shipping),
         title: const Text('Via Shipments'),
-        onTap: navigate.toViaShipmentList,
+        children: [
+          ListTile(
+            leading: const Icon(Icons.list),
+            title: const Text('Lista de Envíos'),
+            onTap: navigate.toViaShipmentList,
+          ),
+          ProtectedWidget(
+            key: const Key('ViaShipmentDashboardTileButton'),
+            permission: ViaShipmentModulePermissions.viewKey,
+            child: ListTile(
+              leading: const Icon(Icons.dashboard),
+              title: const Text('Dashboard de Envíos'),
+              onTap: navigate.toViaShipmentDashboard,
+            ),
+          ),
+        ],
       ),
     );
   }
 }
-
