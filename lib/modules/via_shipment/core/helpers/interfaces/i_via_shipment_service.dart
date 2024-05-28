@@ -12,7 +12,7 @@ abstract class IViaShipmentService {
   Future<void> createViaShipment(ViaShipmentModel viaShipment);
   Future<void> updateViaShipment(ViaShipmentModel viaShipment);
   Future<void> deleteViaShipment(String id);
-  Future<void> initializePaginatedViaShipmentStream_V2({
+  Future<void> initializeViaShipmentStream({
     required RxList<ViaShipmentModel> list$,
     required StreamSubscription<List<ViaShipmentModel>>? subscription,
     DocumentSnapshot? startAfter,

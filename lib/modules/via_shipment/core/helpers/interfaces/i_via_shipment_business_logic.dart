@@ -14,7 +14,7 @@ abstract class IViaShipmentBusinessLogic {
   Future<void> deleteViaShipment(String id);
   Future<void> postCreateViaShipment();
   Future<void> postUpdateViaShipment();
-  Future<void> initializePaginatedViaShipmentStream_V2({
+  Future<void> initializeViaShipmentStream({
     required RxList<ViaShipmentModel> list$,
     required StreamSubscription<List<ViaShipmentModel>>? subscription,
     DocumentSnapshot? startAfter,

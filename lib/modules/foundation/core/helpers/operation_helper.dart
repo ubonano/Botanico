@@ -8,26 +8,28 @@ class OperationHelper with GlobalHelper {
   late final FirebaseFirestore _firestore = Get.find();
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
-  // TODO No esta funcionando la transaccion como deberia... Si falla no hace el rollback de lo que ya ejecuto previamente
-  // TODO que devuelva lo que devuelve la funcion
-  Future<void> perform({
-    required Future Function(Transaction? txn) operation,
+  // TODO no funciona la transaccion, si falla la transaccion no hace el rollback
+  Future<T?> perform<T>({
+    required Future<T?> Function(Transaction? txn) operation,
     String operationName = "Operation",
     String permissionKey = '',
     String successMessage = '',
+    String? errorMessage,
     bool showErrorMessageBySnackbar = true,
     Function()? onSuccess,
     Function(Object error)? onError,
     bool inTransaction = false,
   }) async {
+    T? result;
     if (inTransaction) {
-      await _firestore.runTransaction(
+      result = await _firestore.runTransaction(
         (Transaction txn) async {
-          await _executeWithHandling(
+          return await _executeWithHandling(
             operation: () async => await operation(txn),
             operationName: operationName,
             permissionKey: permissionKey,
             successMessage: successMessage,
+            errorMessage: errorMessage,
             showErrorMessageBySnackbar: showErrorMessageBySnackbar,
             onSuccess: onSuccess,
             onError: onError,
@@ -35,23 +37,26 @@ class OperationHelper with GlobalHelper {
         },
       );
     } else {
-      await _executeWithHandling(
+      result = await _executeWithHandling<T>(
         operation: () async => await operation(null),
         operationName: operationName,
         permissionKey: permissionKey,
         successMessage: successMessage,
+        errorMessage: errorMessage,
         showErrorMessageBySnackbar: showErrorMessageBySnackbar,
         onSuccess: onSuccess,
         onError: onError,
       );
     }
+    return result;
   }
 
-  Future<void> _executeWithHandling({
-    required Future Function() operation,
+  Future<T?> _executeWithHandling<T>({
+    required Future<T?> Function() operation,
     String operationName = "Operation",
     String permissionKey = '',
     String successMessage = '',
+    String? errorMessage,
     bool showErrorMessageBySnackbar = true,
     Function()? onSuccess,
     Function(Object error)? onError,
@@ -60,17 +65,20 @@ class OperationHelper with GlobalHelper {
       log.info("Executing $operationName.");
       if (permissionKey.isNotEmpty && await _hasPermission(permissionKey)) throw Exception('permission-denied');
 
-      await operation();
+      T? result = await operation();
 
       if (successMessage.isNotEmpty) snackbar.success(successMessage);
       log.info("$operationName exitosa.");
 
       onSuccess?.call();
+      return result;
     } catch (e) {
-      if (showErrorMessageBySnackbar) snackbar.error(_getErrorMessage(e));
-      log.error("$operationName fallida: ${_getErrorMessage(e)}", e);
+      String finalErrorMessage = errorMessage ?? _getErrorMessage(e); // Usar errorMessage si está disponible
+      if (showErrorMessageBySnackbar) snackbar.error(finalErrorMessage);
+      log.error("$operationName fallida: $finalErrorMessage", e);
 
       onError?.call(e);
+      return null;
     }
   }
 

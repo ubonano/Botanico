@@ -33,7 +33,7 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
   void _initializeViaShipmentStream() {
     _isLoading = true;
     _viaShipmentService
-        .initializePaginatedViaShipmentStream_V2(
+        .initializeViaShipmentStream(
             list$: list$, subscription: _subscription, startAfter: null, limit: _paginationLimit)
         .then((_) {
       if (list$.isNotEmpty) {
@@ -52,7 +52,7 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
 
   void loadNextPage() {
     _viaShipmentService
-        .initializePaginatedViaShipmentStream_V2(
+        .initializeViaShipmentStream(
             list$: list$, subscription: _subscription, startAfter: _lastDocumentSnapshot, limit: _paginationLimit)
         .then((_) {
       if (list$.isNotEmpty) {

@@ -40,7 +40,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
       );
 
   @override
-  Future<void> initializePaginatedViaShipmentStream_V2({
+  Future<void> initializeViaShipmentStream({
     required RxList<ViaShipmentModel> list$,
     required StreamSubscription<List<ViaShipmentModel>>? subscription,
     DocumentSnapshot? startAfter,
@@ -50,13 +50,18 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
       await operation.perform(
         operationName: 'Fetch paginated via shipment',
         permissionKey: ViaShipmentModulePermissions.viewKey,
-        operation: (_) async => await _viaShipmentBusinessLogic.initializePaginatedViaShipmentStream_V2(
+        operation: (_) async => await _viaShipmentBusinessLogic.initializeViaShipmentStream(
             list$: list$, subscription: subscription, startAfter: startAfter, limit: limit, states: states),
       );
 
   @override
-  Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId) async =>
-      await _viaShipmentBusinessLogic.getShipmentFromExternalAPI(shipmentId);
+  Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId) async {
+    return await operation.perform(
+      operationName: 'Get shipment from External API',
+      errorMessage: 'Error al obtener el envío',
+      operation: (_) async => _viaShipmentBusinessLogic.getShipmentFromExternalAPI(shipmentId),
+    );
+  }
 
   @override
   void cancelViaShipmentStream() => _viaShipmentBusinessLogic.cancelViaShipmentStream();
