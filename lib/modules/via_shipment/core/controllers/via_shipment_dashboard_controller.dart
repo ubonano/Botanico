@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 import '../../module.dart';
@@ -6,14 +8,17 @@ class ViaShipmentDashboardController extends GetxController with LifeCycleLoggin
   @override
   String get logTag => 'ViaShipmentDashboardController';
 
-  late final IViaShipmentBusinessLogic _viaShipmentBusinessLogic = Get.find();
+  late final IViaShipmentService _viaShipmentService = Get.find();
 
-  RxList<ViaShipmentModel> get viaShipmentList$ => _viaShipmentBusinessLogic.viaShipmentList$;
+  final list$ = RxList<ViaShipmentModel>();
+  StreamSubscription<List<ViaShipmentModel>>? _subscription;
 
   @override
   void onInit() {
     super.onInit();
-    _viaShipmentBusinessLogic.initializePaginatedViaShipmentStream(
+    _viaShipmentService.initializePaginatedViaShipmentStream_V2(
+      list$: list$,
+      subscription: _subscription,
       limit: 100,
       states: [
         ViaShipmentState.pending,
@@ -26,7 +31,7 @@ class ViaShipmentDashboardController extends GetxController with LifeCycleLoggin
 
   @override
   void onClose() {
-    _viaShipmentBusinessLogic.cancelViaShipmentStream();
+    _subscription?.cancel();
     super.onClose();
   }
 }

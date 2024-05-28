@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +11,11 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
   @override
   String get logTag => 'ViaShipmentListController';
 
-  late final IViaShipmentBusinessLogic _viaShipmentBusinessLogic = Get.find();
+  late final IViaShipmentService _viaShipmentService = Get.find();
   final ScrollController scrollController = ScrollController();
 
-  RxList<ViaShipmentModel> get viaShipmentList$ => _viaShipmentBusinessLogic.viaShipmentList$;
+  final list$ = RxList<ViaShipmentModel>();
+  StreamSubscription<List<ViaShipmentModel>>? _subscription;
 
   DocumentSnapshot? _lastDocumentSnapshot;
 
@@ -22,15 +25,19 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
   @override
   void onInit() {
     super.onInit();
+
     _initializeViaShipmentStream();
     scrollController.addListener(_scrollListener);
   }
 
   void _initializeViaShipmentStream() {
     _isLoading = true;
-    _viaShipmentBusinessLogic.initializePaginatedViaShipmentStream(startAfter: null, limit: _paginationLimit).then((_) {
-      if (viaShipmentList$.isNotEmpty) {
-        _lastDocumentSnapshot = viaShipmentList$.last.documentSnapshot;
+    _viaShipmentService
+        .initializePaginatedViaShipmentStream_V2(
+            list$: list$, subscription: _subscription, startAfter: null, limit: _paginationLimit)
+        .then((_) {
+      if (list$.isNotEmpty) {
+        _lastDocumentSnapshot = list$.last.documentSnapshot;
       }
       _isLoading = false;
     });
@@ -44,11 +51,12 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
   }
 
   void loadNextPage() {
-    _viaShipmentBusinessLogic
-        .initializePaginatedViaShipmentStream(startAfter: _lastDocumentSnapshot, limit: _paginationLimit)
+    _viaShipmentService
+        .initializePaginatedViaShipmentStream_V2(
+            list$: list$, subscription: _subscription, startAfter: _lastDocumentSnapshot, limit: _paginationLimit)
         .then((_) {
-      if (viaShipmentList$.isNotEmpty) {
-        _lastDocumentSnapshot = viaShipmentList$.last.documentSnapshot;
+      if (list$.isNotEmpty) {
+        _lastDocumentSnapshot = list$.last.documentSnapshot;
       }
       _isLoading = false;
     });
@@ -56,7 +64,8 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
 
   @override
   void onClose() {
-    _viaShipmentBusinessLogic.cancelViaShipmentStream();
+    _subscription?.cancel();
+
     scrollController.removeListener(_scrollListener);
     scrollController.dispose();
     super.onClose();

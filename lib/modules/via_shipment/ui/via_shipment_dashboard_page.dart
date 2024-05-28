@@ -15,7 +15,7 @@ class ViaShipmentDashboardPage extends GetView<ViaShipmentDashboardController> {
       drawer: null,
       body: Obx(
         () {
-          var list = controller.viaShipmentList$.toList();
+          var list = controller.list$.toList();
 
           return ListView.builder(
             itemCount: list.length,

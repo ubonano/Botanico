@@ -39,25 +39,27 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
   Future<void> postUpdateViaShipment() async => navigate.toViaShipmentList();
 
   @override
-  Future<void> initializePaginatedViaShipmentStream({
+  Future<void> initializePaginatedViaShipmentStream_V2({
+    required RxList<ViaShipmentModel> list$,
+    required StreamSubscription<List<ViaShipmentModel>>? subscription,
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
   }) async {
+    subscription?.cancel();
+
     await _workerBusinessLogic.fetchLoggedWorker();
     await _companyBusinessLogic.fetchLoggedCompany();
 
-    _viaShipmentListSubscription?.cancel();
-
-    _viaShipmentListSubscription = _viaShipmentRepo
+    subscription = _viaShipmentRepo
         .viaShipmentListPaginatedStream(_companyBusinessLogic.currentCompanyId,
             startAfter: startAfter, limit: limit, states: states)
         .listen(
       (viaShipmentList) {
         if (startAfter == null) {
-          _viaShipmentList$.value = viaShipmentList;
+          list$.value = viaShipmentList;
         } else {
-          _viaShipmentList$.addAll(viaShipmentList);
+          list$.addAll(viaShipmentList);
         }
       },
     );

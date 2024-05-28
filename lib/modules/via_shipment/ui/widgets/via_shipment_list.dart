@@ -11,7 +11,7 @@ class ViaShipmentList extends GetView<ViaShipmentListController> with Navigation
   Widget build(BuildContext context) {
     return Obx(
       () {
-        var list = controller.viaShipmentList$.toList();
+        var list = controller.list$.toList();
 
         return ListView.builder(
           controller: controller.scrollController,

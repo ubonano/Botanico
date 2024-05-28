@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +14,9 @@ abstract class IViaShipmentBusinessLogic {
   Future<void> deleteViaShipment(String id);
   Future<void> postCreateViaShipment();
   Future<void> postUpdateViaShipment();
-  Future<void> initializePaginatedViaShipmentStream({
+  Future<void> initializePaginatedViaShipmentStream_V2({
+    required RxList<ViaShipmentModel> list$,
+    required StreamSubscription<List<ViaShipmentModel>>? subscription,
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
