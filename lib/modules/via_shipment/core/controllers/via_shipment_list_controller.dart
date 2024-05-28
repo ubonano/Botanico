@@ -32,15 +32,31 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
 
   void _initializeViaShipmentStream() {
     _isLoading = true;
-    _viaShipmentService
-        .initializeViaShipmentStream(
-            list$: list$, subscription: _subscription, startAfter: null, limit: _paginationLimit)
-        .then((_) {
-      if (list$.isNotEmpty) {
-        _lastDocumentSnapshot = list$.last.documentSnapshot;
-      }
-      _isLoading = false;
-    });
+
+    _subscription?.cancel();
+
+    _subscription = _viaShipmentService.initializeViaShipmentStream(
+      list$: list$,
+      startAfter: null,
+      limit: _paginationLimit,
+      onNewData: _onNewData,
+    );
+  }
+
+  void loadNextPage() {
+    _subscription = _viaShipmentService.initializeViaShipmentStream(
+      list$: list$,
+      startAfter: _lastDocumentSnapshot,
+      limit: _paginationLimit,
+      onNewData: _onNewData,
+    );
+  }
+
+  _onNewData(viaShipmentList) {
+    if (list$.isNotEmpty) {
+      _lastDocumentSnapshot = list$.last.documentSnapshot;
+    }
+    _isLoading = false;
   }
 
   void _scrollListener() {
@@ -48,18 +64,6 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
       _isLoading = true;
       loadNextPage();
     }
-  }
-
-  void loadNextPage() {
-    _viaShipmentService
-        .initializeViaShipmentStream(
-            list$: list$, subscription: _subscription, startAfter: _lastDocumentSnapshot, limit: _paginationLimit)
-        .then((_) {
-      if (list$.isNotEmpty) {
-        _lastDocumentSnapshot = list$.last.documentSnapshot;
-      }
-      _isLoading = false;
-    });
   }
 
   @override

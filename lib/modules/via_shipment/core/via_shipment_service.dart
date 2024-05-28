@@ -40,28 +40,27 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
       );
 
   @override
-  Future<void> initializeViaShipmentStream({
+  StreamSubscription<List<ViaShipmentModel>>? initializeViaShipmentStream({
     required RxList<ViaShipmentModel> list$,
-    required StreamSubscription<List<ViaShipmentModel>>? subscription,
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
-  }) async =>
-      await operation.perform(
-        operationName: 'Fetch paginated via shipment',
-        permissionKey: ViaShipmentModulePermissions.viewKey,
-        operation: (_) async => await _viaShipmentBusinessLogic.initializeViaShipmentStream(
-            list$: list$, subscription: subscription, startAfter: startAfter, limit: limit, states: states),
+    Function(List<ViaShipmentModel>)? onNewData,
+  }) =>
+      _viaShipmentBusinessLogic.initializeViaShipmentStream(
+        list$: list$,
+        startAfter: startAfter,
+        limit: limit,
+        states: states,
+        onNewData: onNewData,
       );
 
   @override
-  Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId) async {
-    return await operation.perform(
-      operationName: 'Get shipment from External API',
-      errorMessage: 'Error al obtener el envío',
-      operation: (_) async => _viaShipmentBusinessLogic.getShipmentFromExternalAPI(shipmentId),
-    );
-  }
+  Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId) async => await operation.perform(
+        operationName: 'Get shipment from External API',
+        errorMessage: 'Error al obtener el envío',
+        operation: (_) async => _viaShipmentBusinessLogic.getShipmentFromExternalAPI(shipmentId),
+      );
 
   @override
   void cancelViaShipmentStream() => _viaShipmentBusinessLogic.cancelViaShipmentStream();

@@ -14,12 +14,12 @@ abstract class IViaShipmentBusinessLogic {
   Future<void> deleteViaShipment(String id);
   Future<void> postCreateViaShipment();
   Future<void> postUpdateViaShipment();
-  Future<void> initializeViaShipmentStream({
+  StreamSubscription<List<ViaShipmentModel>>? initializeViaShipmentStream({
     required RxList<ViaShipmentModel> list$,
-    required StreamSubscription<List<ViaShipmentModel>>? subscription,
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
+    Function(List<ViaShipmentModel>)? onNewData,
   });
   Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId);
   void cancelViaShipmentStream();

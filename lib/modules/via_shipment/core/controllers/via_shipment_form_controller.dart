@@ -15,6 +15,7 @@ class ViaShipmentFormController extends GetxController
   var deliveryPlace = ''.obs;
   var isInvoiced = false.obs;
   var isLoading = false.obs;
+  
   @override
   List<String> formFields = [
     FieldKeys.shipmentId,

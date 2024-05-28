@@ -39,19 +39,14 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
   Future<void> postUpdateViaShipment() async => navigate.toViaShipmentList();
 
   @override
-  Future<void> initializeViaShipmentStream({
+  StreamSubscription<List<ViaShipmentModel>>? initializeViaShipmentStream({
     required RxList<ViaShipmentModel> list$,
-    required StreamSubscription<List<ViaShipmentModel>>? subscription,
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
-  }) async {
-    subscription?.cancel();
-
-    await _workerBusinessLogic.fetchLoggedWorker();
-    await _companyBusinessLogic.fetchLoggedCompany();
-
-    subscription = _viaShipmentRepo
+    Function(List<ViaShipmentModel>)? onNewData,
+  }) {
+    return _viaShipmentRepo
         .viaShipmentListStream(_companyBusinessLogic.currentCompanyId,
             startAfter: startAfter, limit: limit, states: states)
         .listen(
@@ -61,6 +56,7 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
         } else {
           list$.addAll(viaShipmentList);
         }
+        onNewData?.call(viaShipmentList);
       },
     );
   }

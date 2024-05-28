@@ -16,9 +16,8 @@ class ViaShipmentDashboardController extends GetxController with LifeCycleLoggin
   @override
   void onInit() {
     super.onInit();
-    _viaShipmentService.initializeViaShipmentStream(
+    _subscription = _viaShipmentService.initializeViaShipmentStream(
       list$: list$,
-      subscription: _subscription,
       limit: 100,
       states: [
         ViaShipmentState.pending,

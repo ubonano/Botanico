@@ -12,7 +12,7 @@ class ViaShipmentDashboardPage extends GetView<ViaShipmentDashboardController> {
     return CustomScaffold(
       key: key ?? const Key('ViaShipmentDashboardPage'),
       title: 'Dashboard de Envíos',
-      drawer: null,
+      drawer: CustomDrawer(),
       body: Obx(
         () {
           var list = controller.list$.toList();

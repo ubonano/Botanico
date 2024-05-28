@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 enum ViaShipmentState {
-  pending(1),
-  inProcess(2),
-  ready(3),
-  delivered(4),
-  archived(5);
+  pending(0),
+  inProcess(1),
+  ready(2),
+  delivered(3),
+  archived(4);
 
   final int value;
   const ViaShipmentState(this.value);
