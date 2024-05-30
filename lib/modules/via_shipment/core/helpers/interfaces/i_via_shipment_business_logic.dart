@@ -6,21 +6,18 @@ import 'package:get/get.dart';
 import '../../../module.dart';
 
 abstract class IViaShipmentBusinessLogic {
-  RxList<ViaShipmentModel> get viaShipmentList$;
-
   Future<ViaShipmentModel?> get(String id);
-  Future<void> createViaShipment(ViaShipmentModel viaShipment);
-  Future<void> updateViaShipment(ViaShipmentModel viaShipment);
-  Future<void> deleteViaShipment(String id);
-  Future<void> postCreateViaShipment();
-  Future<void> postUpdateViaShipment();
-  StreamSubscription<List<ViaShipmentModel>>? initializeViaShipmentStream({
+  Future<ViaShipmentModel?> getFromExternalAPI(String id);
+  Future<void> create(ViaShipmentModel shipment);
+  Future<void> update(ViaShipmentModel shipment);
+  Future<void> delete(String id);
+  Future<void> postCreate();
+  Future<void> postUpdate();
+  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
     required RxList<ViaShipmentModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
     Function(List<ViaShipmentModel>)? onNewData,
   });
-  Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId);
-  void cancelViaShipmentStream();
 }

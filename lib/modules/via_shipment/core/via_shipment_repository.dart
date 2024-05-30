@@ -38,7 +38,7 @@ class ViaShipmentRepository implements IViaShipmentRepository {
   }
 
   @override
-  Stream<List<ViaShipmentModel>> viaShipmentListStream(
+  Stream<List<ViaShipmentModel>> listStream(
     String companyId, {
     DocumentSnapshot? startAfter,
     int limit = 20,

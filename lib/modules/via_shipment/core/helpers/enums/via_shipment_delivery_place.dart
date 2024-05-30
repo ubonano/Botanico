@@ -5,15 +5,10 @@ enum DeliveryPlace {
   warehouse2,
 }
 
-String deliveryPlaceToString(DeliveryPlace place) {
-  return place.toString().split('.').last;
-}
+String deliveryPlaceToString(DeliveryPlace place) => place.toString().split('.').last;
 
-DeliveryPlace deliveryPlaceFromString(String placeString) {
-  return DeliveryPlace.values.firstWhere(
-    (place) => deliveryPlaceToString(place) == placeString,
-  );
-}
+DeliveryPlace deliveryPlaceFromString(String placeString) =>
+    DeliveryPlace.values.firstWhere((place) => deliveryPlaceToString(place) == placeString);
 
 final Map<DeliveryPlace, String> deliveryPlaceLabels = {
   DeliveryPlace.toDefine: 'A definir',
@@ -21,4 +16,3 @@ final Map<DeliveryPlace, String> deliveryPlaceLabels = {
   DeliveryPlace.gate: 'Portón',
   DeliveryPlace.warehouse2: 'Galpón 2',
 };
-

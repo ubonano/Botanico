@@ -51,8 +51,8 @@ class ViaShipmentFormController extends GetxController
 
   @override
   Future<void> submit() async => isUpdateMode
-      ? await _viaShipmentService.updateViaShipment(buildModel())
-      : await _viaShipmentService.createViaShipment(buildModel());
+      ? await _viaShipmentService.update(buildModel())
+      : await _viaShipmentService.create(buildModel());
 
   @override
   ViaShipmentModel buildModel() {
@@ -74,7 +74,7 @@ class ViaShipmentFormController extends GetxController
   Future<void> fetchShipmentDataFromExternalAPI() async {
     isLoading.value = true;
     final ViaShipmentModel? shipment =
-        await _viaShipmentService.getShipmentFromExternalAPI(getFieldValue(FieldKeys.shipmentId));
+        await _viaShipmentService.getFromExternalAPI(getFieldValue(FieldKeys.shipmentId));
     isLoading.value = false;
 
     if (shipment != null) {

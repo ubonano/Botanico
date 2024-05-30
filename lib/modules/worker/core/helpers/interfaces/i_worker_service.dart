@@ -12,4 +12,5 @@ abstract class IWorkerService {
   void cancelLinkedWorkerStream();
   Future<void> togglePermissionCurWorkerForUpdate(String permissionId);
   Future<void> fetchCurWorkerForUpdate();
+  Future<void> fetchLoggedWorker();
 }

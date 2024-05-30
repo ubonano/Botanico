@@ -10,58 +10,52 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   late final IViaShipmentBusinessLogic _viaShipmentBusinessLogic = Get.find();
 
   @override
-  List<ViaShipmentModel> get viaShipmentList$ => _viaShipmentBusinessLogic.viaShipmentList$;
-
-  @override
   Future<ViaShipmentModel?> get(String id) async => await _viaShipmentBusinessLogic.get(id);
 
   @override
-  Future<void> createViaShipment(ViaShipmentModel viaShipment) async => await operation.perform(
+  Future<ViaShipmentModel?> getFromExternalAPI(String shipmentId) async => await operation.perform(
+        operationName: 'Get shipment from External API',
+        errorMessage: 'Error al obtener el envío',
+        operation: (_) async => _viaShipmentBusinessLogic.getFromExternalAPI(shipmentId),
+      );
+
+  @override
+  Future<void> create(ViaShipmentModel viaShipment) async => await operation.perform(
         operationName: 'Create via shipment',
         permissionKey: ViaShipmentModulePermissions.createKey,
-        operation: (_) async => await _viaShipmentBusinessLogic.createViaShipment(viaShipment),
-        onSuccess: _viaShipmentBusinessLogic.postCreateViaShipment,
+        operation: (_) async => await _viaShipmentBusinessLogic.create(viaShipment),
+        onSuccess: _viaShipmentBusinessLogic.postCreate,
       );
 
   @override
-  Future<void> updateViaShipment(ViaShipmentModel viaShipment) async => await operation.perform(
+  Future<void> update(ViaShipmentModel viaShipment) async => await operation.perform(
         operationName: 'Update via shipment',
         permissionKey: ViaShipmentModulePermissions.updateKey,
-        operation: (_) async => await _viaShipmentBusinessLogic.updateViaShipment(viaShipment),
-        onSuccess: _viaShipmentBusinessLogic.postUpdateViaShipment,
+        operation: (_) async => await _viaShipmentBusinessLogic.update(viaShipment),
+        onSuccess: _viaShipmentBusinessLogic.postUpdate,
       );
 
   @override
-  Future<void> deleteViaShipment(String id) async => await operation.perform(
+  Future<void> delete(String id) async => await operation.perform(
         operationName: 'Delete via shipment',
         permissionKey: ViaShipmentModulePermissions.deleteKey,
         inTransaction: true,
-        operation: (_) async => await _viaShipmentBusinessLogic.deleteViaShipment(id),
+        operation: (_) async => await _viaShipmentBusinessLogic.delete(id),
       );
 
   @override
-  StreamSubscription<List<ViaShipmentModel>>? initializeViaShipmentStream({
+  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
     required RxList<ViaShipmentModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
     Function(List<ViaShipmentModel>)? onNewData,
   }) =>
-      _viaShipmentBusinessLogic.initializeViaShipmentStream(
+      _viaShipmentBusinessLogic.initializeStream(
         list$: list$,
         startAfter: startAfter,
         limit: limit,
         states: states,
         onNewData: onNewData,
       );
-
-  @override
-  Future<ViaShipmentModel?> getShipmentFromExternalAPI(String shipmentId) async => await operation.perform(
-        operationName: 'Get shipment from External API',
-        errorMessage: 'Error al obtener el envío',
-        operation: (_) async => _viaShipmentBusinessLogic.getShipmentFromExternalAPI(shipmentId),
-      );
-
-  @override
-  void cancelViaShipmentStream() => _viaShipmentBusinessLogic.cancelViaShipmentStream();
 }

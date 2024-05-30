@@ -83,7 +83,9 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
                       icon: widget.viaShipment.isInvoiced ? Icons.check_circle : Icons.cancel,
                       text: widget.viaShipment.isInvoiced ? 'Facturado' : 'No Facturado',
                     ),
-                    IconWithText(icon: Icons.place, text: widget.viaShipment.deliveryPlace),
+                    IconWithText(
+                        icon: Icons.place,
+                        text: deliveryPlaceLabels[deliveryPlaceFromString(widget.viaShipment.deliveryPlace)]!),
                   ],
                 ),
               ],

@@ -9,6 +9,6 @@ class ViaShipmentDeleteController extends GetxController with LifeCycleLoggingCo
 
   late final IViaShipmentService _viaShipmentService = Get.find();
 
-  Future<void> submit(ViaShipmentModel viaShipment) async => await _viaShipmentService.deleteViaShipment(viaShipment.id);
+  Future<void> submit(ViaShipmentModel viaShipment) async => await _viaShipmentService.delete(viaShipment.id);
 }
 

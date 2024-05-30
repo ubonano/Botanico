@@ -4,12 +4,17 @@ import 'package:botanico/modules/foundation/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/worker/module.dart';
+import 'package:botanico/modules/company/module.dart';
 
 import '../../module.dart';
 
 class ViaShipmentListController extends GetxController with LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'ViaShipmentListController';
+
+  late final IWorkerService _workerService = Get.find();
+  late final ICompanyService _companyService = Get.find();
 
   late final IViaShipmentService _viaShipmentService = Get.find();
   final ScrollController scrollController = ScrollController();
@@ -23,8 +28,11 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
   bool _isLoading = false;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
+
+    await _workerService.fetchLoggedWorker();
+    await _companyService.fetchLoggedCompany();
 
     _initializeViaShipmentStream();
     scrollController.addListener(_scrollListener);
@@ -35,7 +43,7 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
 
     _subscription?.cancel();
 
-    _subscription = _viaShipmentService.initializeViaShipmentStream(
+    _subscription = _viaShipmentService.initializeStream(
       list$: list$,
       startAfter: null,
       limit: _paginationLimit,
@@ -44,7 +52,7 @@ class ViaShipmentListController extends GetxController with LifeCycleLoggingCont
   }
 
   void loadNextPage() {
-    _subscription = _viaShipmentService.initializeViaShipmentStream(
+    _subscription = _viaShipmentService.initializeStream(
       list$: list$,
       startAfter: _lastDocumentSnapshot,
       limit: _paginationLimit,

@@ -15,4 +15,7 @@ class CompanyService extends GetxService with GlobalHelper implements ICompanySe
       onSuccess: _companyBusinessLogic.postCreateCompany,
     );
   }
+
+  @override
+  Future<void> fetchLoggedCompany() async => _companyBusinessLogic.fetchLoggedCompany();
 }
