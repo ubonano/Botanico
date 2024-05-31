@@ -15,6 +15,7 @@ class ViaShipmentDashboardTile extends StatefulWidget {
 
 class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> with SingleTickerProviderStateMixin {
   final _invoicedController = Get.find<ViaShipmentToggleInvoicedController>();
+  final _archiveController = Get.find<ViaShipmentArchiveController>();
 
   late AnimationController _controller;
   late Animation<Color?> _colorAnimation;
@@ -51,10 +52,7 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
             ProtectedWidget(
               permission: ViaShipmentModulePermissions.invoiceKey,
               child: SlidableAction(
-                onPressed: (context) async {
-                  await _invoicedController.invoiceShipment(widget.viaShipment);
-                  setState(() {});
-                },
+                onPressed: (context) async => await _invoicedController.invoiceShipment(widget.viaShipment),
                 backgroundColor: Colors.green,
                 foregroundColor: Colors.white,
                 icon: Icons.check_circle,
@@ -65,16 +63,23 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
             ProtectedWidget(
               permission: ViaShipmentModulePermissions.cancelInvoiceKey,
               child: SlidableAction(
-                onPressed: (context) async {
-                  await _invoicedController.cancelInvoiceShipment(widget.viaShipment);
-                  setState(() {});
-                },
+                onPressed: (context) async => await _invoicedController.cancelInvoiceShipment(widget.viaShipment),
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
                 icon: Icons.cancel,
                 label: 'Anular Factura',
               ),
             ),
+          ProtectedWidget(
+            permission: ViaShipmentModulePermissions.archiveKey,
+            child: SlidableAction(
+              onPressed: (context) async => await _archiveController.archiveShipment(widget.viaShipment),
+              backgroundColor: Colors.blue,
+              foregroundColor: Colors.white,
+              icon: Icons.archive,
+              label: 'Archivar',
+            ),
+          ),
         ],
       ),
       child: AnimatedBuilder(

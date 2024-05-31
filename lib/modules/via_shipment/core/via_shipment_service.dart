@@ -61,13 +61,22 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
 
   @override
   Future<void> invoiceShipment(ViaShipmentModel shipment) async => await operation.perform(
+        permissionKey: ViaShipmentModulePermissions.invoiceKey,
         operationName: 'Invoice shipment',
         operation: (_) async => await _viaShipmentBusinessLogic.invoiceShipment(shipment),
       );
 
   @override
   Future<void> cancelInvoiceShipment(ViaShipmentModel shipment) async => await operation.perform(
+        permissionKey: ViaShipmentModulePermissions.cancelInvoiceKey,
         operationName: 'Cancel invoice shipment',
         operation: (_) async => await _viaShipmentBusinessLogic.cancelInvoiceShipment(shipment),
+      );
+
+  @override
+  Future<void> archiveShipment(ViaShipmentModel shipment) async => await operation.perform(
+        permissionKey: ViaShipmentModulePermissions.archiveKey,
+        operationName: 'Archive shipment',
+        operation: (_) async => await _viaShipmentBusinessLogic.archiveShipment(shipment),
       );
 }

@@ -14,6 +14,7 @@ class ViaShipmentModulePermissions implements ModuleStructure {
   static const dashboardKey = 'via_shipment.dashboard';
   static const invoiceKey = 'via_shipment.invoice';
   static const cancelInvoiceKey = 'via_shipment.cancel_invoice';
+  static const archiveKey = 'via_shipment.archive';
 
   @override
   List<PermissionModel> get permissions => [
@@ -24,6 +25,7 @@ class ViaShipmentModulePermissions implements ModuleStructure {
         PermissionModel(id: dashboardKey, name: 'Dashboard'),
         PermissionModel(id: invoiceKey, name: 'Facturar'),
         PermissionModel(id: cancelInvoiceKey, name: 'Anular Factura'),
+        PermissionModel(id: archiveKey, name: 'Archivar'),
       ];
 
   @override

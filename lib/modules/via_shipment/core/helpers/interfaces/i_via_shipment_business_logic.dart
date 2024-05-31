@@ -22,4 +22,5 @@ abstract class IViaShipmentBusinessLogic {
   });
   Future<void> invoiceShipment(ViaShipmentModel shipment);
   Future<void> cancelInvoiceShipment(ViaShipmentModel shipment);
+  Future<void> archiveShipment(ViaShipmentModel shipment);
 }
