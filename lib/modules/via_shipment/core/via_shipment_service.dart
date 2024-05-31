@@ -58,4 +58,16 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
         states: states,
         onNewData: onNewData,
       );
+
+  @override
+  Future<void> invoiceShipment(ViaShipmentModel shipment) async => await operation.perform(
+        operationName: 'Invoice shipment',
+        operation: (_) async => await _viaShipmentBusinessLogic.invoiceShipment(shipment),
+      );
+
+  @override
+  Future<void> cancelInvoiceShipment(ViaShipmentModel shipment) async => await operation.perform(
+        operationName: 'Cancel invoice shipment',
+        operation: (_) async => await _viaShipmentBusinessLogic.cancelInvoiceShipment(shipment),
+      );
 }

@@ -68,4 +68,12 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
       },
     );
   }
+
+  @override
+  Future<void> invoiceShipment(ViaShipmentModel shipment) async =>
+      await _viaShipmentRepo.update(shipment.copyWith(isInvoiced: true));
+
+  @override
+  Future<void> cancelInvoiceShipment(ViaShipmentModel shipment) async =>
+      await _viaShipmentRepo.update(shipment.copyWith(isInvoiced: false));
 }

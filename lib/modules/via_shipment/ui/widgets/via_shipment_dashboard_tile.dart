@@ -1,5 +1,7 @@
+import 'package:botanico/modules/foundation/ui/widgets/protected_widget.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
 import '../../module.dart';
 
 class ViaShipmentDashboardTile extends StatefulWidget {
@@ -12,6 +14,8 @@ class ViaShipmentDashboardTile extends StatefulWidget {
 }
 
 class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> with SingleTickerProviderStateMixin {
+  final _invoicedController = Get.find<ViaShipmentToggleInvoicedController>();
+
   late AnimationController _controller;
   late Animation<Color?> _colorAnimation;
 
@@ -37,62 +41,101 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _colorAnimation,
-      builder: (context, child) {
-        return Container(
-          decoration: BoxDecoration(
-            color:
-                widget.viaShipment.state == ViaShipmentState.pending.index ? _colorAnimation.value : Colors.transparent,
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Table(
-              columnWidths: const {
-                0: FixedColumnWidth(100.0), // shipmentId
-                1: FixedColumnWidth(100.0), // type
-                2: FixedColumnWidth(100.0), // client
-                3: FixedColumnWidth(100.0), // package
-                4: FixedColumnWidth(100.0), // weight
-                5: FixedColumnWidth(100.0), // description
-                6: FixedColumnWidth(100.0), // state
-                7: FixedColumnWidth(100.0), // invoiced
-                8: FixedColumnWidth(100.0), // deliveryPlace
-              },
-              children: [
-                TableRow(
-                  children: [
-                    IconWithText(
-                      icon: Icons.numbers,
-                      text: widget.viaShipment.shipmentId,
-                      boldText: widget.viaShipment.shipmentId.length >= 4
-                          ? widget.viaShipment.shipmentId.substring(widget.viaShipment.shipmentId.length - 4)
-                          : null,
-                    ),
-                    IconWithText(
-                      icon: Icons.local_shipping,
-                      text: viaShipmentTypeLabels[viaShipmentTypeFromString(widget.viaShipment.type)]!,
-                    ),
-                    IconWithText(icon: Icons.person, text: widget.viaShipment.client),
-                    IconWithText(icon: Icons.inventory, text: widget.viaShipment.package),
-                    IconWithText(icon: Icons.line_weight, text: widget.viaShipment.weight.toString()),
-                    IconWithText(icon: Icons.description, text: widget.viaShipment.description),
-                    StateTag(state: widget.viaShipment.state),
-                    IconWithText(
-                      icon: widget.viaShipment.isInvoiced ? Icons.check_circle : Icons.cancel,
-                      text: widget.viaShipment.isInvoiced ? 'Facturado' : 'No Facturado',
-                    ),
-                    IconWithText(
-                        icon: Icons.place,
-                        text: deliveryPlaceLabels[deliveryPlaceFromString(widget.viaShipment.deliveryPlace)]!),
-                  ],
-                ),
-              ],
+    return Slidable(
+      key: Key(widget.viaShipment.shipmentId),
+      startActionPane: ActionPane(
+        motion: const DrawerMotion(),
+        extentRatio: 0.50,
+        children: [
+          if (!widget.viaShipment.isInvoiced)
+            ProtectedWidget(
+              permission: ViaShipmentModulePermissions.invoiceKey,
+              child: SlidableAction(
+                onPressed: (context) async {
+                  await _invoicedController.invoiceShipment(widget.viaShipment);
+                  setState(() {});
+                },
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+                icon: Icons.check_circle,
+                label: 'Facturar',
+              ),
             ),
-          ),
-        );
-      },
+          if (widget.viaShipment.isInvoiced)
+            ProtectedWidget(
+              permission: ViaShipmentModulePermissions.cancelInvoiceKey,
+              child: SlidableAction(
+                onPressed: (context) async {
+                  await _invoicedController.cancelInvoiceShipment(widget.viaShipment);
+                  setState(() {});
+                },
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+                icon: Icons.cancel,
+                label: 'Anular Factura',
+              ),
+            ),
+        ],
+      ),
+      child: AnimatedBuilder(
+        animation: _colorAnimation,
+        builder: (context, child) {
+          return Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              color: widget.viaShipment.state == ViaShipmentState.pending.index
+                  ? _colorAnimation.value
+                  : Colors.transparent,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Table(
+                columnWidths: const {
+                  0: FixedColumnWidth(100.0), // shipmentId
+                  1: FixedColumnWidth(100.0), // type
+                  2: FixedColumnWidth(100.0), // client
+                  3: FixedColumnWidth(100.0), // package
+                  4: FixedColumnWidth(100.0), // weight
+                  5: FixedColumnWidth(100.0), // description
+                  6: FixedColumnWidth(100.0), // state
+                  7: FixedColumnWidth(100.0), // invoiced
+                  8: FixedColumnWidth(100.0), // deliveryPlace
+                },
+                children: [
+                  TableRow(
+                    children: [
+                      IconWithText(
+                        icon: Icons.numbers,
+                        text: widget.viaShipment.shipmentId,
+                        boldText: widget.viaShipment.shipmentId.length >= 4
+                            ? widget.viaShipment.shipmentId.substring(widget.viaShipment.shipmentId.length - 4)
+                            : null,
+                      ),
+                      IconWithText(
+                        icon: Icons.local_shipping,
+                        text: viaShipmentTypeLabels[viaShipmentTypeFromString(widget.viaShipment.type)]!,
+                      ),
+                      IconWithText(icon: Icons.person, text: widget.viaShipment.client),
+                      IconWithText(icon: Icons.inventory, text: widget.viaShipment.package),
+                      IconWithText(icon: Icons.line_weight, text: widget.viaShipment.weight.toString()),
+                      IconWithText(icon: Icons.description, text: widget.viaShipment.description),
+                      StateTag(state: widget.viaShipment.state),
+                      IconWithText(
+                        icon: widget.viaShipment.isInvoiced ? Icons.check_circle : Icons.cancel,
+                        text: widget.viaShipment.isInvoiced ? 'Facturado' : 'No Facturado',
+                      ),
+                      IconWithText(
+                          icon: Icons.place,
+                          text: deliveryPlaceLabels[deliveryPlaceFromString(widget.viaShipment.deliveryPlace)]!),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

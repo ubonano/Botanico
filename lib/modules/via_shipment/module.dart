@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'core/controllers/via_shipment_form_controller.dart';
 import 'core/controllers/via_shipment_list_controller.dart';
 import 'core/controllers/via_shipment_dashboard_controller.dart';
+import 'core/controllers/via_shipment_toggle_invoiced_controller.dart';
 import 'core/controllers/via_shipment_delete_controller.dart';
 import 'core/via_shipment_business_logic.dart';
 import 'core/via_cargo_repository.dart';
@@ -16,6 +17,7 @@ import 'core/helpers/interfaces/i_via_shipment_service.dart';
 export 'core/controllers/via_shipment_form_controller.dart';
 export 'core/controllers/via_shipment_list_controller.dart';
 export 'core/controllers/via_shipment_dashboard_controller.dart';
+export 'core/controllers/via_shipment_toggle_invoiced_controller.dart';
 export 'core/controllers/via_shipment_delete_controller.dart';
 
 export 'core/via_shipment_business_logic.dart';
@@ -90,5 +92,6 @@ void dependencies() {
   Get.lazyPut<ViaShipmentFormController>(() => ViaShipmentFormController(), fenix: true);
   Get.lazyPut<ViaShipmentListController>(() => ViaShipmentListController(), fenix: true);
   Get.lazyPut<ViaShipmentDashboardController>(() => ViaShipmentDashboardController(), fenix: true);
+  Get.lazyPut<ViaShipmentToggleInvoicedController>(() => ViaShipmentToggleInvoicedController(), fenix: true);
   Get.lazyPut<ViaShipmentDeleteController>(() => ViaShipmentDeleteController(), fenix: true);
 }

@@ -15,7 +15,7 @@ class ViaShipmentFormController extends GetxController
   var deliveryPlace = ''.obs;
   var isInvoiced = false.obs;
   var isLoading = false.obs;
-  
+
   @override
   List<String> formFields = [
     FieldKeys.shipmentId,
@@ -50,9 +50,8 @@ class ViaShipmentFormController extends GetxController
   }
 
   @override
-  Future<void> submit() async => isUpdateMode
-      ? await _viaShipmentService.update(buildModel())
-      : await _viaShipmentService.create(buildModel());
+  Future<void> submit() async =>
+      isUpdateMode ? await _viaShipmentService.update(buildModel()) : await _viaShipmentService.create(buildModel());
 
   @override
   ViaShipmentModel buildModel() {
@@ -75,6 +74,7 @@ class ViaShipmentFormController extends GetxController
     isLoading.value = true;
     final ViaShipmentModel? shipment =
         await _viaShipmentService.getFromExternalAPI(getFieldValue(FieldKeys.shipmentId));
+
     isLoading.value = false;
 
     if (shipment != null) {
