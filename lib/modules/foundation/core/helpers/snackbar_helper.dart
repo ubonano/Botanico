@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class SnackbarHelper {
-  void success(String message, {String title = 'Éxito'}) {
+  void success(String message, {String title = 'Éxito', Duration? duration}) {
     Get.snackbar(
       title,
       message,
@@ -12,7 +12,7 @@ class SnackbarHelper {
     );
   }
 
-  void error(String message, {String title = 'Error'}) {
+  void error(String message, {String title = 'Error', Duration? duration}) {
     Get.snackbar(
       title,
       message,
@@ -22,7 +22,7 @@ class SnackbarHelper {
     );
   }
 
-  void warning(String message, {String title = 'Advertencia'}) {
+  void warning(String message, {String title = 'Advertencia', Duration? duration}) {
     Get.snackbar(
       title,
       message,
@@ -32,13 +32,14 @@ class SnackbarHelper {
     );
   }
 
-  void info(String message, {String title = 'Información'}) {
+  void info(String message, {String title = 'Información', Duration? duration}) {
     Get.snackbar(
       title,
       message,
       backgroundColor: Colors.blue,
       colorText: Colors.white,
       snackPosition: SnackPosition.BOTTOM,
+      duration: duration,
     );
   }
 }

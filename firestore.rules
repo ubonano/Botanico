@@ -25,6 +25,10 @@ service cloud.firestore {
         allow read, create, update, delete: if isAuthenticated();
       }
 
+      match /viaShipments/{viaShipmentId} {
+        allow read, create, update, delete: if isAuthenticated();
+      }
+
     }
   }
 }

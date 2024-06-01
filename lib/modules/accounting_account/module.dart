@@ -26,6 +26,7 @@ export 'core/helpers/interfaces/i_accounting_account_service.dart';
 export 'core/helpers/accounting_account_navigation_helper.dart';
 
 export 'core/accounting_account_model.dart';
+export 'core/accounting_account_permissions.dart';
 
 export 'core/accounting_account_repository.dart';
 export 'core/accounting_account_service.dart';

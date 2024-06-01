@@ -6,6 +6,7 @@ import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:botanico/modules/accounting_account/module.dart';
+import 'package:botanico/modules/via_shipment/module.dart';
 
 import '../../module.dart';
 
@@ -15,7 +16,8 @@ class NavigationHelper
         CompanyNavigationHelper,
         WorkerNavigationHelper,
         VendorNavigationHelper,
-        AccountingAccountNavigationHelper {
+        AccountingAccountNavigationHelper,
+        ViaShipmentNavigationHelper {
   late final LogHelper _log = Get.find();
 
   static const INIT_PAGE = AuthenticationNavigateHelper.SIGN_IN;

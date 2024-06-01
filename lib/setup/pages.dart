@@ -4,6 +4,7 @@ import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/worker/module.dart';
+import 'package:botanico/modules/via_shipment/module.dart';
 import 'package:get/get.dart';
 
 class Pages {
@@ -68,5 +69,19 @@ class Pages {
       name: AccountingAccountNavigationHelper.ACCOUNTING_ACCOUNT_LIST,
       page: () => const AccountingAccountListPage(),
     ),
+    // + Via Shipment
+    GetPage(
+      name: ViaShipmentNavigationHelper.VIA_SHIPMENT_FORM,
+      page: () => const ViaShipmentFormPage(),
+    ),
+    GetPage(
+      name: ViaShipmentNavigationHelper.VIA_SHIPMENT_LIST,
+      page: () => const ViaShipmentListPage(),
+    ),
+    GetPage(
+      name: ViaShipmentNavigationHelper.VIA_SHIPMENT_DASHBOARD,
+      page: () => const ViaShipmentDashboardPage(),
+    ),
+    // - Via Shipment
   ];
 }

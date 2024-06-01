@@ -24,25 +24,25 @@ class WorkerService with GlobalHelper implements IWorkerService {
   }
 
   @override
-  Future<void> linkWorker(String workerId) async {
+  Future<void> linkWorker(String id) async {
     await operation.perform(
       operationName: 'Link worker',
       permissionKey: WorkerModulePermissions.linkKey,
       successMessage: 'Trabajador vinculado',
       inTransaction: true,
-      operation: (txn) async => await _workerBusinessLogic.linkWorker(workerId, txn),
+      operation: (txn) async => await _workerBusinessLogic.linkWorker(id, txn),
       onSuccess: _workerBusinessLogic.postLinkWorker,
     );
   }
 
   @override
-  Future<void> unlinkWorker(String workerId) async {
+  Future<void> unlinkWorker(String id) async {
     await operation.perform(
       operationName: 'Unlink worker',
       permissionKey: WorkerModulePermissions.unlinkKey,
       successMessage: 'Trabajador desvinculado',
       inTransaction: true,
-      operation: (txn) async => await _workerBusinessLogic.unlinkWorker(workerId, txn),
+      operation: (txn) async => await _workerBusinessLogic.unlinkWorker(id, txn),
     );
   }
 
@@ -70,4 +70,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
 
   @override
   Future<void> fetchCurWorkerForUpdate() async => _workerBusinessLogic.fetchCurWorkerForUpdate();
+
+  @override
+  Future<void> fetchLoggedWorker() async => _workerBusinessLogic.fetchLoggedWorker();
 }
