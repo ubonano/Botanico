@@ -1,7 +1,6 @@
-import 'package:botanico/modules/foundation/ui/widgets/protected_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:get/get.dart';
+
 import '../../module.dart';
 
 class ViaShipmentDashboardTile extends StatefulWidget {
@@ -14,9 +13,6 @@ class ViaShipmentDashboardTile extends StatefulWidget {
 }
 
 class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> with SingleTickerProviderStateMixin {
-  final _invoicedController = Get.find<ViaShipmentToggleInvoicedController>();
-  final _archiveController = Get.find<ViaShipmentArchiveController>();
-
   late AnimationController _controller;
   late Animation<Color?> _colorAnimation;
 
@@ -48,38 +44,15 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
         motion: const DrawerMotion(),
         extentRatio: 0.50,
         children: [
-          if (!widget.viaShipment.isInvoiced)
-            ProtectedWidget(
-              permission: ViaShipmentModulePermissions.invoiceKey,
-              child: SlidableAction(
-                onPressed: (context) async => await _invoicedController.invoiceShipment(widget.viaShipment),
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
-                icon: Icons.check_circle,
-                label: 'Facturar',
-              ),
-            ),
-          if (widget.viaShipment.isInvoiced)
-            ProtectedWidget(
-              permission: ViaShipmentModulePermissions.cancelInvoiceKey,
-              child: SlidableAction(
-                onPressed: (context) async => await _invoicedController.cancelInvoiceShipment(widget.viaShipment),
-                backgroundColor: Colors.red,
-                foregroundColor: Colors.white,
-                icon: Icons.cancel,
-                label: 'Anular Factura',
-              ),
-            ),
-          ProtectedWidget(
-            permission: ViaShipmentModulePermissions.archiveKey,
-            child: SlidableAction(
-              onPressed: (context) async => await _archiveController.archiveShipment(widget.viaShipment),
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-              icon: Icons.archive,
-              label: 'Archivar',
-            ),
-          ),
+          // TODO refactorizar, que el shipment tenga un metodo para verificar cada estado y la facturacion
+          if (widget.viaShipment.state == ViaShipmentState.pending.index) ProcessSlidableButton(widget.viaShipment),
+          if (widget.viaShipment.state == ViaShipmentState.inProcess.index) PrepareSlidableButton(widget.viaShipment),
+          if (widget.viaShipment.state == ViaShipmentState.ready.index) DeliverSlidableButton(widget.viaShipment),
+          if (widget.viaShipment.state == ViaShipmentState.delivered.index) ArchiveSlidableButton(widget.viaShipment),
+          if (!widget.viaShipment.isInvoiced) InvoiceSlidableButton(widget.viaShipment),
+          if (widget.viaShipment.isInvoiced) CancelInvoiceSlidableButton(widget.viaShipment),
+          EditSlidableButton(widget.viaShipment),
+          DeleteSlidableButton(widget.viaShipment),
         ],
       ),
       child: AnimatedBuilder(

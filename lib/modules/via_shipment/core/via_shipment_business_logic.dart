@@ -54,30 +54,48 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
     int limit = 20,
     List<ViaShipmentState>? states,
     Function(List<ViaShipmentModel>)? onNewData,
-  }) {
-    return _viaShipmentRepo
-        .listStream(_companyBusinessLogic.currentCompanyId, startAfter: startAfter, limit: limit, states: states)
-        .listen(
-      (viaShipmentList) {
-        if (startAfter == null) {
-          list$.value = viaShipmentList;
-        } else {
-          list$.addAll(viaShipmentList);
-        }
-        onNewData?.call(viaShipmentList);
-      },
-    );
-  }
+  }) =>
+      _viaShipmentRepo
+          .listStream(_companyBusinessLogic.currentCompanyId, startAfter: startAfter, limit: limit, states: states)
+          .listen(
+        (viaShipmentList) {
+          if (startAfter == null) {
+            list$.value = viaShipmentList;
+          } else {
+            list$.addAll(viaShipmentList);
+          }
+          onNewData?.call(viaShipmentList);
+        },
+      );
 
   @override
-  Future<void> invoiceShipment(ViaShipmentModel shipment) async =>
+  Future<void> invoice(ViaShipmentModel shipment) async =>
       await _viaShipmentRepo.update(shipment.copyWith(isInvoiced: true));
 
   @override
-  Future<void> cancelInvoiceShipment(ViaShipmentModel shipment) async =>
+  Future<void> cancelInvoice(ViaShipmentModel shipment) async =>
       await _viaShipmentRepo.update(shipment.copyWith(isInvoiced: false));
 
   @override
-  Future<void> archiveShipment(ViaShipmentModel shipment) async =>
-      await _viaShipmentRepo.update(shipment.copyWith(state: ViaShipmentState.archived.index));
+  Future<void> process(ViaShipmentModel shipment) async => await changeState(shipment, ViaShipmentState.inProcess);
+
+  @override
+  Future<void> prepare(ViaShipmentModel shipment) async => await changeState(shipment, ViaShipmentState.ready);
+
+  @override
+  Future<void> deliver(ViaShipmentModel shipment) async => await changeState(shipment, ViaShipmentState.delivered);
+
+  @override
+  Future<void> archive(ViaShipmentModel shipment) async => await changeState(shipment, ViaShipmentState.archived);
+
+  @override
+  Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState) async {
+    if (_canTransition(shipment.state, newState)) {
+      await _viaShipmentRepo.update(shipment.copyWith(state: newState.index));
+    } else {
+      throw Exception('No se puede pasar de ${shipment.state} a $newState');
+    }
+  }
+
+  bool _canTransition(int currentState, ViaShipmentState newState) => newState.index == currentState + 1;
 }

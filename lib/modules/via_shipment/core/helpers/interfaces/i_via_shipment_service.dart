@@ -20,5 +20,9 @@ abstract class IViaShipmentService {
   });
   Future<void> invoiceShipment(ViaShipmentModel shipment);
   Future<void> cancelInvoiceShipment(ViaShipmentModel shipment);
-  Future<void> archiveShipment(ViaShipmentModel shipment);
+  Future<void> process(ViaShipmentModel shipment);
+  Future<void> prepare(ViaShipmentModel shipment);
+  Future<void> deliver(ViaShipmentModel shipment);
+  Future<void> archive(ViaShipmentModel shipment);
+  // Future<void> updateShipmentState(String permissionKey, ViaShipmentModel shipment, ViaShipmentState newState);
 }

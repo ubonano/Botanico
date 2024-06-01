@@ -63,20 +63,49 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   Future<void> invoiceShipment(ViaShipmentModel shipment) async => await operation.perform(
         permissionKey: ViaShipmentModulePermissions.invoiceKey,
         operationName: 'Invoice shipment',
-        operation: (_) async => await _viaShipmentBusinessLogic.invoiceShipment(shipment),
+        operation: (_) async => await _viaShipmentBusinessLogic.invoice(shipment),
       );
 
   @override
   Future<void> cancelInvoiceShipment(ViaShipmentModel shipment) async => await operation.perform(
         permissionKey: ViaShipmentModulePermissions.cancelInvoiceKey,
         operationName: 'Cancel invoice shipment',
-        operation: (_) async => await _viaShipmentBusinessLogic.cancelInvoiceShipment(shipment),
+        operation: (_) async => await _viaShipmentBusinessLogic.cancelInvoice(shipment),
+      );
+
+  // @override
+  // Future<void> updateShipmentState(String permissionKey, ViaShipmentModel shipment, ViaShipmentState newState) async =>
+  //     await operation.perform(
+  //       permissionKey: permissionKey,
+  //       operationName: 'Update shipment state to ${newState.name}',
+  //       operation: (_) async => await _viaShipmentBusinessLogic.changeState(shipment, newState),
+  //     );
+
+  @override
+  Future<void> archive(ViaShipmentModel shipment) async => await operation.perform(
+        permissionKey: ViaShipmentModulePermissions.archiveKey,
+        operationName: 'Archive shipment ${shipment.shipmentId}}',
+        operation: (_) async => await _viaShipmentBusinessLogic.archive(shipment),
       );
 
   @override
-  Future<void> archiveShipment(ViaShipmentModel shipment) async => await operation.perform(
-        permissionKey: ViaShipmentModulePermissions.archiveKey,
-        operationName: 'Archive shipment',
-        operation: (_) async => await _viaShipmentBusinessLogic.archiveShipment(shipment),
+  Future<void> deliver(ViaShipmentModel shipment) async => await operation.perform(
+        permissionKey: ViaShipmentModulePermissions.deliverKey,
+        operationName: 'Deliver shipment ${shipment.shipmentId}}',
+        operation: (_) async => await _viaShipmentBusinessLogic.deliver(shipment),
+      );
+
+  @override
+  Future<void> prepare(ViaShipmentModel shipment) async => await operation.perform(
+        permissionKey: ViaShipmentModulePermissions.prepareKey,
+        operationName: 'Prepare shipment ${shipment.shipmentId}}',
+        operation: (_) async => await _viaShipmentBusinessLogic.prepare(shipment),
+      );
+
+  @override
+  Future<void> process(ViaShipmentModel shipment) async => await operation.perform(
+        permissionKey: ViaShipmentModulePermissions.processKey,
+        operationName: 'Process shipment ${shipment.shipmentId}}',
+        operation: (_) async => await _viaShipmentBusinessLogic.process(shipment),
       );
 }

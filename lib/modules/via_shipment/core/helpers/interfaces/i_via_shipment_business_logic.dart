@@ -20,7 +20,11 @@ abstract class IViaShipmentBusinessLogic {
     List<ViaShipmentState>? states,
     Function(List<ViaShipmentModel>)? onNewData,
   });
-  Future<void> invoiceShipment(ViaShipmentModel shipment);
-  Future<void> cancelInvoiceShipment(ViaShipmentModel shipment);
-  Future<void> archiveShipment(ViaShipmentModel shipment);
+  Future<void> invoice(ViaShipmentModel shipment);
+  Future<void> cancelInvoice(ViaShipmentModel shipment);
+  Future<void> process(ViaShipmentModel shipment);
+  Future<void> prepare(ViaShipmentModel shipment);
+  Future<void> deliver(ViaShipmentModel shipment);
+  Future<void> archive(ViaShipmentModel shipment);
+  Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState);
 }
