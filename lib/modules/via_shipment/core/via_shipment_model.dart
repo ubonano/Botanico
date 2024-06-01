@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../module.dart';
+
 class ViaShipmentModel {
   final String id;
   final String shipmentId;
@@ -107,4 +109,10 @@ class ViaShipmentModel {
       package: objeto['numeroTotalPiezas'].toString(),
     );
   }
+
+  bool get isPending => state == ViaShipmentState.pending.index;
+  bool get isInProcess => state == ViaShipmentState.inProcess.index;
+  bool get isReady => state == ViaShipmentState.ready.index;
+  bool get isDelivered => state == ViaShipmentState.delivered.index;
+  bool get isNotInvoiced => !isInvoiced;
 }
