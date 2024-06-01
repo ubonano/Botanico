@@ -1,18 +1,18 @@
-enum DeliveryPlace {
+enum ViaShipmentDeliveryPlace {
   toDefine,
   counter,
   gate,
   warehouse2,
 }
 
-String deliveryPlaceToString(DeliveryPlace place) => place.toString().split('.').last;
+String deliveryPlaceToString(ViaShipmentDeliveryPlace place) => place.toString().split('.').last;
 
-DeliveryPlace deliveryPlaceFromString(String placeString) =>
-    DeliveryPlace.values.firstWhere((place) => deliveryPlaceToString(place) == placeString);
+ViaShipmentDeliveryPlace deliveryPlaceFromString(String placeString) =>
+    ViaShipmentDeliveryPlace.values.firstWhere((place) => deliveryPlaceToString(place) == placeString);
 
-final Map<DeliveryPlace, String> deliveryPlaceLabels = {
-  DeliveryPlace.toDefine: 'A definir',
-  DeliveryPlace.counter: 'Mostrador',
-  DeliveryPlace.gate: 'Portón',
-  DeliveryPlace.warehouse2: 'Galpón 2',
+final Map<ViaShipmentDeliveryPlace, String> deliveryPlaceLabels = {
+  ViaShipmentDeliveryPlace.toDefine: 'A definir',
+  ViaShipmentDeliveryPlace.counter: 'Mostrador',
+  ViaShipmentDeliveryPlace.gate: 'Portón',
+  ViaShipmentDeliveryPlace.warehouse2: 'Galpón 2',
 };

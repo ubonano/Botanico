@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../module.dart';
 
-class CancelInvoiceSlidableButton extends GetView<ViaShipmentToggleInvoicedController> {
+class CancelInvoiceSlidableButton extends GetView<ViaShipmentCancelInvoiceController> {
   final ViaShipmentModel viaShipment;
 
   const CancelInvoiceSlidableButton(this.viaShipment, {super.key});
@@ -15,7 +15,7 @@ class CancelInvoiceSlidableButton extends GetView<ViaShipmentToggleInvoicedContr
     return ProtectedWidget(
       permission: ViaShipmentModulePermissions.cancelInvoiceKey,
       child: SlidableAction(
-        onPressed: (context) async => await controller.cancelInvoiceShipment(viaShipment),
+        onPressed: (context) async => await controller.submit(viaShipment),
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
         icon: Icons.cancel,

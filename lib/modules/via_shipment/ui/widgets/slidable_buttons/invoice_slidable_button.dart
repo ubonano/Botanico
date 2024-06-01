@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../module.dart';
 
-class InvoiceSlidableButton extends GetView<ViaShipmentToggleInvoicedController> {
+class InvoiceSlidableButton extends GetView<ViaShipmentInvoiceController> {
   final ViaShipmentModel viaShipment;
 
   const InvoiceSlidableButton(this.viaShipment, {super.key});
@@ -15,7 +15,7 @@ class InvoiceSlidableButton extends GetView<ViaShipmentToggleInvoicedController>
     return ProtectedWidget(
       permission: ViaShipmentModulePermissions.invoiceKey,
       child: SlidableAction(
-        onPressed: (context) async => await controller.invoiceShipment(viaShipment),
+        onPressed: (context) async => await controller.submit(viaShipment),
         backgroundColor: Colors.green,
         foregroundColor: Colors.white,
         icon: Icons.receipt,

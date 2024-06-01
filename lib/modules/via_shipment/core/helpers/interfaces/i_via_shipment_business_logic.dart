@@ -27,4 +27,5 @@ abstract class IViaShipmentBusinessLogic {
   Future<void> deliver(ViaShipmentModel shipment);
   Future<void> archive(ViaShipmentModel shipment);
   Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState);
+  Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace);
 }

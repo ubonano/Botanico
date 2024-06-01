@@ -27,8 +27,8 @@ class DeliveryPlaceInputField extends StatelessWidget {
                       }
                     }
                   : null,
-              items: DeliveryPlace.values.map(
-                (DeliveryPlace place) {
+              items: ViaShipmentDeliveryPlace.values.map(
+                (ViaShipmentDeliveryPlace place) {
                   return DropdownMenuItem<String>(
                     value: deliveryPlaceToString(place),
                     child: Text(deliveryPlaceLabels[place]!),

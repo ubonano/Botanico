@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
@@ -52,34 +51,21 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
     Function(List<ViaShipmentModel>)? onNewData,
   }) =>
       _viaShipmentBusinessLogic.initializeStream(
-        list$: list$,
-        startAfter: startAfter,
-        limit: limit,
-        states: states,
-        onNewData: onNewData,
-      );
+          list$: list$, startAfter: startAfter, limit: limit, states: states, onNewData: onNewData);
 
   @override
-  Future<void> invoiceShipment(ViaShipmentModel shipment) async => await operation.perform(
+  Future<void> invoice(ViaShipmentModel shipment) async => await operation.perform(
         permissionKey: ViaShipmentModulePermissions.invoiceKey,
         operationName: 'Invoice shipment',
         operation: (_) async => await _viaShipmentBusinessLogic.invoice(shipment),
       );
 
   @override
-  Future<void> cancelInvoiceShipment(ViaShipmentModel shipment) async => await operation.perform(
+  Future<void> cancelInvoice(ViaShipmentModel shipment) async => await operation.perform(
         permissionKey: ViaShipmentModulePermissions.cancelInvoiceKey,
         operationName: 'Cancel invoice shipment',
         operation: (_) async => await _viaShipmentBusinessLogic.cancelInvoice(shipment),
       );
-
-  // @override
-  // Future<void> updateShipmentState(String permissionKey, ViaShipmentModel shipment, ViaShipmentState newState) async =>
-  //     await operation.perform(
-  //       permissionKey: permissionKey,
-  //       operationName: 'Update shipment state to ${newState.name}',
-  //       operation: (_) async => await _viaShipmentBusinessLogic.changeState(shipment, newState),
-  //     );
 
   @override
   Future<void> archive(ViaShipmentModel shipment) async => await operation.perform(
@@ -107,5 +93,14 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
         permissionKey: ViaShipmentModulePermissions.processKey,
         operationName: 'Process shipment ${shipment.shipmentId}}',
         operation: (_) async => await _viaShipmentBusinessLogic.process(shipment),
+      );
+
+  @override
+  Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace) async =>
+      await operation.perform(
+        permissionKey: ViaShipmentModulePermissions.changeDeliveryPlaceKey,
+        operationName: 'Change delivery place',
+        operation: (_) async => await _viaShipmentBusinessLogic.changeDeliveryPlace(shipment, newPlace),
+        onSuccess: _viaShipmentBusinessLogic.postUpdate,
       );
 }

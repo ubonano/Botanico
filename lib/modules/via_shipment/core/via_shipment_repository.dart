@@ -50,7 +50,6 @@ class ViaShipmentRepository implements IViaShipmentRepository {
         .limit(limit);
 
     if (states != null && states.isNotEmpty) {
-      print(states.map((state) => state.value).toList());
       query = query.where(FieldKeys.state, whereIn: states.map((state) => state.value).toList());
     }
 

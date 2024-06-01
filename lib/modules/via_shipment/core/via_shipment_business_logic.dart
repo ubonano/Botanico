@@ -42,10 +42,10 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
   Future<void> delete(String id) async => await _viaShipmentRepo.delete(id);
 
   @override
-  Future<void> postCreate() async => navigate.toViaShipmentList();
+  Future<void> postCreate() async => navigate.back();
 
   @override
-  Future<void> postUpdate() async => navigate.toViaShipmentList();
+  Future<void> postUpdate() async => navigate.back();
 
   @override
   StreamSubscription<List<ViaShipmentModel>>? initializeStream({
@@ -98,4 +98,8 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
   }
 
   bool _canTransition(int currentState, ViaShipmentState newState) => newState.index == currentState + 1;
+
+  @override
+  Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace) async =>
+      await _viaShipmentRepo.update(shipment.copyWith(deliveryPlace: deliveryPlaceLabels[newPlace]));
 }

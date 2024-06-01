@@ -26,6 +26,7 @@ class ViaShipmentDashboardPage extends GetView<ViaShipmentDashboardController> {
           );
         },
       ),
+      floatingActionButton: ViaShipmentCreateFAB(),
     );
   }
 }

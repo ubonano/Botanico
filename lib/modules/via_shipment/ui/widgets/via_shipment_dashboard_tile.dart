@@ -51,6 +51,7 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
           if (widget.viaShipment.state == ViaShipmentState.delivered.index) ArchiveSlidableButton(widget.viaShipment),
           if (!widget.viaShipment.isInvoiced) InvoiceSlidableButton(widget.viaShipment),
           if (widget.viaShipment.isInvoiced) CancelInvoiceSlidableButton(widget.viaShipment),
+          DeliveryPlaceSlidableButton(widget.viaShipment),
           EditSlidableButton(widget.viaShipment),
           DeleteSlidableButton(widget.viaShipment),
         ],

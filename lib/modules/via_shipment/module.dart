@@ -3,9 +3,12 @@ import 'package:get/get.dart';
 import 'core/controllers/via_shipment_form_controller.dart';
 import 'core/controllers/via_shipment_list_controller.dart';
 import 'core/controllers/via_shipment_dashboard_controller.dart';
-import 'core/controllers/via_shipment_toggle_invoiced_controller.dart';
 import 'core/controllers/via_shipment_delete_controller.dart';
 import 'core/controllers/via_shipment_state_controller.dart';
+import 'core/controllers/via_shipment_invoice_controller.dart';
+import 'core/controllers/via_shipment_cancel_invoice_controller.dart';
+import 'core/controllers/via_shipment_change_delivery_place_controller.dart';
+
 import 'core/via_shipment_business_logic.dart';
 import 'core/via_cargo_repository.dart';
 import 'core/via_shipment_repository.dart';
@@ -18,9 +21,11 @@ import 'core/helpers/interfaces/i_via_shipment_service.dart';
 export 'core/controllers/via_shipment_form_controller.dart';
 export 'core/controllers/via_shipment_list_controller.dart';
 export 'core/controllers/via_shipment_dashboard_controller.dart';
-export 'core/controllers/via_shipment_toggle_invoiced_controller.dart';
 export 'core/controllers/via_shipment_delete_controller.dart';
 export 'core/controllers/via_shipment_state_controller.dart';
+export 'core/controllers/via_shipment_invoice_controller.dart';
+export 'core/controllers/via_shipment_cancel_invoice_controller.dart';
+export 'core/controllers/via_shipment_change_delivery_place_controller.dart';
 
 export 'core/via_shipment_business_logic.dart';
 
@@ -64,6 +69,7 @@ export 'ui/widgets/slidable_buttons/delete_slidable_button.dart';
 export 'ui/widgets/slidable_buttons/edit_slidable_button.dart';
 export 'ui/widgets/slidable_buttons/invoice_slidable_button.dart';
 export 'ui/widgets/slidable_buttons/cancel_invoice_slidable_button.dart';
+export 'ui/widgets/slidable_buttons/delivery_place_slidable_button.dart';
 
 export 'ui/widgets/fields/state_input_field.dart';
 export 'ui/widgets/fields/is_invoiced_input_field.dart';
@@ -102,7 +108,9 @@ void dependencies() {
   Get.lazyPut<ViaShipmentFormController>(() => ViaShipmentFormController(), fenix: true);
   Get.lazyPut<ViaShipmentListController>(() => ViaShipmentListController(), fenix: true);
   Get.lazyPut<ViaShipmentDashboardController>(() => ViaShipmentDashboardController(), fenix: true);
-  Get.lazyPut<ViaShipmentToggleInvoicedController>(() => ViaShipmentToggleInvoicedController(), fenix: true);
   Get.lazyPut<ViaShipmentDeleteController>(() => ViaShipmentDeleteController(), fenix: true);
   Get.lazyPut<ViaShipmentStateController>(() => ViaShipmentStateController(), fenix: true);
+  Get.lazyPut<ViaShipmentInvoiceController>(() => ViaShipmentInvoiceController(), fenix: true);
+  Get.lazyPut<ViaShipmentCancelInvoiceController>(() => ViaShipmentCancelInvoiceController(), fenix: true);
+  Get.lazyPut<ViaShipmentChangeDeliveryPlaceController>(() => ViaShipmentChangeDeliveryPlaceController(), fenix: true);
 }
