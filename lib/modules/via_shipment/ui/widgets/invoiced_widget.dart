@@ -8,6 +8,10 @@ class InvoicedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconWithText(icon: Icons.receipt, text: shipment.isInvoiced ? 'Sí' : 'No');
+    return IconWithText(
+      icon: Icons.receipt,
+      text: shipment.isInvoiced ? 'Facturado' : 'No facturado',
+      iconColor: shipment.isInvoiced ? Colors.green : Colors.red,
+    );
   }
 }

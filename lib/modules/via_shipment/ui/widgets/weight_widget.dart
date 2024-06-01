@@ -8,6 +8,6 @@ class WeightWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconWithText(icon: Icons.line_weight, text: shipment.weight.toString());
+    return IconWithText(icon: Icons.balance, text: shipment.weight.toString());
   }
 }

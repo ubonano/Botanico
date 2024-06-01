@@ -18,6 +18,8 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
 
   ViaShipmentModel get _shipment => widget.shipment;
 
+  bool _isSmallScreen(BoxConstraints constraints) => constraints.maxWidth < 600;
+
   @override
   void initState() {
     super.initState();
@@ -27,63 +29,41 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
 
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-      key: Key(_shipment.shipmentId),
-      startActionPane: ActionPane(
-        motion: const DrawerMotion(),
-        extentRatio: 0.50,
-        children: [
-          if (_shipment.isPending) ProcessSlidableButton(_shipment),
-          if (_shipment.isInProcess) PrepareSlidableButton(_shipment),
-          if (_shipment.isReady) DeliverSlidableButton(_shipment),
-          if (_shipment.isDelivered) ArchiveSlidableButton(_shipment),
-          if (_shipment.isNotInvoiced) InvoiceSlidableButton(_shipment),
-          if (_shipment.isInvoiced) CancelInvoiceSlidableButton(_shipment),
-          DeliveryPlaceSlidableButton(_shipment),
-          EditSlidableButton(_shipment),
-          DeleteSlidableButton(_shipment),
-        ],
-      ),
-      child: AnimatedBuilder(
-        animation: _colorAnimation,
-        builder: (context, child) {
-          return Container(
-            width: double.infinity,
-            decoration: BoxDecoration(color: _shipment.isPending ? _colorAnimation.value : Colors.transparent),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Table(
-                columnWidths: const {
-                  0: FixedColumnWidth(100.0), // shipmentId
-                  1: FixedColumnWidth(100.0), // type
-                  2: FixedColumnWidth(100.0), // client
-                  3: FixedColumnWidth(100.0), // package
-                  4: FixedColumnWidth(100.0), // weight
-                  5: FixedColumnWidth(100.0), // description
-                  6: FixedColumnWidth(100.0), // state
-                  7: FixedColumnWidth(100.0), // invoiced
-                  8: FixedColumnWidth(100.0), // deliveryPlace
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Slidable(
+          key: Key(_shipment.shipmentId),
+          startActionPane: ActionPane(
+            motion: const DrawerMotion(),
+            extentRatio: _isSmallScreen(constraints) ? 1 : 0.50,
+            children: [
+              if (_shipment.isPending) ProcessSlidableButton(_shipment),
+              if (_shipment.isInProcess) PrepareSlidableButton(_shipment),
+              if (_shipment.isReady) DeliverSlidableButton(_shipment),
+              if (_shipment.isDelivered) ArchiveSlidableButton(_shipment),
+              if (_shipment.isNotInvoiced) InvoiceSlidableButton(_shipment),
+              if (_shipment.isInvoiced) CancelInvoiceSlidableButton(_shipment),
+              DeliveryPlaceSlidableButton(_shipment),
+              EditSlidableButton(_shipment),
+              DeleteSlidableButton(_shipment),
+            ],
+          ),
+          child: AnimatedBuilder(
+            animation: _colorAnimation,
+            builder: (context, child) {
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  if (_isSmallScreen(constraints)) {
+                    return ViaShipmentDashboardLayoutSmallTile(_shipment, _colorAnimation);
+                  } else {
+                    return ViaShipmentDashboardLayoutLargeTile(_shipment, _colorAnimation);
+                  }
                 },
-                children: [
-                  TableRow(
-                    children: [
-                      ShipmentIdWidget(_shipment),
-                      ShipmentTypeWidget(_shipment),
-                      ClientWidget(_shipment),
-                      PackageWidget(_shipment),
-                      WeightWidget(_shipment),
-                      DescriptionWidget(_shipment),
-                      StateWidget(_shipment),
-                      InvoicedWidget(_shipment),
-                      DeliveryPlaceWidget(_shipment),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 

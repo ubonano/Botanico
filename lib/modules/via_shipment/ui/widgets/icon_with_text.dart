@@ -4,11 +4,13 @@ class IconWithText extends StatelessWidget {
   final IconData icon;
   final String text;
   final String? boldText;
+  final Color? iconColor;
 
   const IconWithText({
     required this.icon,
     required this.text,
     this.boldText,
+    this.iconColor,
     Key? key,
   }) : super(key: key);
 
@@ -18,7 +20,7 @@ class IconWithText extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Row(
         children: [
-          Icon(icon),
+          Icon(icon, color: iconColor),
           const SizedBox(width: 4),
           Expanded(
             child: Text.rich(
@@ -41,4 +43,3 @@ class IconWithText extends StatelessWidget {
     );
   }
 }
-

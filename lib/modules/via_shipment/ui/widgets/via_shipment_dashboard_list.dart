@@ -15,10 +15,7 @@ class ViaShipmentDashboardList extends GetView<ViaShipmentDashboardController> w
 
         return ListView.builder(
           itemCount: list.length,
-          itemBuilder: (_, index) {
-            final ViaShipmentModel viaShipment = list[index];
-            return Card(child: ViaShipmentDashboardTile(viaShipment));
-          },
+          itemBuilder: (_, index) => Card(child: ViaShipmentDashboardTile(list[index])),
         );
       },
     );

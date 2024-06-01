@@ -9,8 +9,9 @@ class ShipmentTypeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconWithText(
-      icon: Icons.local_shipping,
+      icon: viaShipmentTypeIcons[viaShipmentTypeFromString(shipment.type)]!,
       text: viaShipmentTypeLabels[viaShipmentTypeFromString(shipment.type)]!,
+      iconColor: viaShipmentTypeToColor(viaShipmentTypeFromString(shipment.type)),
     );
   }
 }

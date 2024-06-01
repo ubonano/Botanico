@@ -61,6 +61,7 @@ export 'ui/widgets/buttons/via_shipment_delete_icon_button.dart';
 export 'ui/widgets/buttons/via_shipment_list_tile_trailing_icon_buttons.dart';
 export 'ui/widgets/buttons/via_shipment_enabled_form_fields.dart';
 export 'ui/widgets/buttons/shipment_id_search_button.dart';
+export 'ui/widgets/buttons/via_shipment_save_button.dart';
 export 'ui/widgets/slidable_buttons/archive_slidable_button.dart';
 export 'ui/widgets/slidable_buttons/deliver_slidable_button.dart';
 export 'ui/widgets/slidable_buttons/prepare_slidable_button.dart';
@@ -82,7 +83,9 @@ export 'ui/widgets/fields/package_input_field.dart';
 export 'ui/widgets/fields/weight_input_field.dart';
 export 'ui/widgets/fields/description_input_field.dart';
 
-export 'ui/widgets/buttons/via_shipment_save_button.dart';
+export 'ui/widgets/layuots/via_shipment_dashboard_layout_large_tile.dart';
+export 'ui/widgets/layuots/via_shipment_dashboard_layout_small_tile.dart';
+
 export 'ui/widgets/via_shipment_list_tile_trailing.dart';
 export 'ui/widgets/via_shipment_list_tile_title.dart';
 export 'ui/widgets/via_shipment_dashboard_tile.dart';
