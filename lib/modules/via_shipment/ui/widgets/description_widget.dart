@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:botanico/modules/foundation/module.dart';
+import 'package:get/get.dart';
+
 import '../../module.dart';
 
 class DescriptionWidget extends StatelessWidget {
@@ -8,6 +12,12 @@ class DescriptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconWithText(icon: Icons.description, text: shipment.description);
+    return InkWell(
+      onTap: () {
+        Clipboard.setData(ClipboardData(text: shipment.description));
+        Get.find<SnackbarHelper>().info('Descripcion copiada!', duration: const Duration(seconds: 1));
+      },
+      child: IconWithText(icon: Icons.description, text: shipment.description),
+    );
   }
 }

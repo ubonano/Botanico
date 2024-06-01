@@ -83,7 +83,13 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
   Future<void> prepare(ViaShipmentModel shipment) async => await changeState(shipment, ViaShipmentState.ready);
 
   @override
-  Future<void> deliver(ViaShipmentModel shipment) async => await changeState(shipment, ViaShipmentState.delivered);
+  Future<void> deliver(ViaShipmentModel shipment) async {
+    if (shipment.isInvoiced) {
+      await changeState(shipment, ViaShipmentState.delivered);
+    } else {
+      throw Exception('No es posible entregar un envío que no ha sido facturado.'); // TODO crear un excepcion
+    }
+  }
 
   @override
   Future<void> archive(ViaShipmentModel shipment) async => await changeState(shipment, ViaShipmentState.archived);

@@ -53,11 +53,20 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
             builder: (context, child) {
               return LayoutBuilder(
                 builder: (context, constraints) {
-                  if (_isSmallScreen(constraints)) {
-                    return ViaShipmentDashboardLayoutSmallTile(_shipment, _colorAnimation);
-                  } else {
-                    return ViaShipmentDashboardLayoutLargeTile(_shipment, _colorAnimation);
-                  }
+                  return Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: _shipment.isPending ||
+                                (_shipment.isInvoiced && (!_shipment.isReady && !_shipment.isDelivered))
+                            ? _colorAnimation.value
+                            : Colors.transparent),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: _isSmallScreen(constraints)
+                          ? ViaShipmentDashboardLayoutSmallTile(_shipment, _colorAnimation)
+                          : ViaShipmentDashboardLayoutLargeTile(_shipment, _colorAnimation),
+                    ),
+                  );
                 },
               );
             },
