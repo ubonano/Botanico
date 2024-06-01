@@ -91,6 +91,16 @@ export 'ui/widgets/via_shipment_dashboard_list.dart';
 export 'ui/widgets/icon_with_text.dart';
 export 'ui/widgets/state_tag.dart';
 
+export 'ui/widgets/description_widget.dart';
+export 'ui/widgets/state_widget.dart';
+export 'ui/widgets/invoiced_widget.dart';
+export 'ui/widgets/delivery_place_widget.dart';
+export 'ui/widgets/client_widget.dart';
+export 'ui/widgets/package_widget.dart';
+export 'ui/widgets/weight_widget.dart';
+export 'ui/widgets/shipment_id_widget.dart';
+export 'ui/widgets/shipment_type_widget.dart';
+
 export 'ui/via_shipment_form_page.dart';
 export 'ui/via_shipment_list_page.dart';
 export 'ui/via_shipment_dashboard_page.dart';

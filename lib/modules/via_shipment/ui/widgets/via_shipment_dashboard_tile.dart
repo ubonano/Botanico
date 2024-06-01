@@ -26,12 +26,6 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
   }
 
   @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Slidable(
       key: Key(_shipment.shipmentId),
@@ -55,10 +49,7 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
         builder: (context, child) {
           return Container(
             width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              color: _shipment.state == ViaShipmentState.pending.index ? _colorAnimation.value : Colors.transparent,
-            ),
+            decoration: BoxDecoration(color: _shipment.isPending ? _colorAnimation.value : Colors.transparent),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Table(
@@ -76,29 +67,15 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
                 children: [
                   TableRow(
                     children: [
-                      IconWithText(
-                        icon: Icons.numbers,
-                        text: _shipment.shipmentId,
-                        boldText: _shipment.shipmentId.length >= 4
-                            ? _shipment.shipmentId.substring(_shipment.shipmentId.length - 4)
-                            : null,
-                      ),
-                      IconWithText(
-                        icon: Icons.local_shipping,
-                        text: viaShipmentTypeLabels[viaShipmentTypeFromString(_shipment.type)]!,
-                      ),
-                      IconWithText(icon: Icons.person, text: _shipment.client),
-                      IconWithText(icon: Icons.inventory, text: _shipment.package),
-                      IconWithText(icon: Icons.line_weight, text: _shipment.weight.toString()),
-                      IconWithText(icon: Icons.description, text: _shipment.description),
-                      StateTag(state: _shipment.state),
-                      IconWithText(
-                        icon: _shipment.isInvoiced ? Icons.check_circle : Icons.cancel,
-                        text: _shipment.isInvoiced ? 'Facturado' : 'No Facturado',
-                      ),
-                      IconWithText(
-                          icon: Icons.place,
-                          text: deliveryPlaceLabels[deliveryPlaceFromString(_shipment.deliveryPlace)]!),
+                      ShipmentIdWidget(_shipment),
+                      ShipmentTypeWidget(_shipment),
+                      ClientWidget(_shipment),
+                      PackageWidget(_shipment),
+                      WeightWidget(_shipment),
+                      DescriptionWidget(_shipment),
+                      StateWidget(_shipment),
+                      InvoicedWidget(_shipment),
+                      DeliveryPlaceWidget(_shipment),
                     ],
                   ),
                 ],
@@ -108,5 +85,11 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
