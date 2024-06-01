@@ -11,8 +11,8 @@ class ViaShipmentListPage extends GetView<ViaShipmentListController> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       key: key ?? const Key('ViaShipmentListPage'),
-      drawer: CustomDrawer(),
       title: 'Via Shipments',
+      drawer: CustomDrawer(),
       body: ViaShipmentList(),
       floatingActionButton: ViaShipmentCreateFAB(),
     );

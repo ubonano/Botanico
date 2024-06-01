@@ -87,6 +87,7 @@ export 'ui/widgets/via_shipment_list_tile_trailing.dart';
 export 'ui/widgets/via_shipment_list_tile_title.dart';
 export 'ui/widgets/via_shipment_dashboard_tile.dart';
 export 'ui/widgets/via_shipment_list.dart';
+export 'ui/widgets/via_shipment_dashboard_list.dart';
 export 'ui/widgets/icon_with_text.dart';
 export 'ui/widgets/state_tag.dart';
 

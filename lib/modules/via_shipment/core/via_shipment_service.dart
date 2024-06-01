@@ -13,14 +13,14 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
 
   @override
   Future<ViaShipmentModel?> getFromExternalAPI(String shipmentId) async => await operation.perform(
-        operationName: 'Get shipment from External API',
-        errorMessage: 'Error al obtener el envío',
+        operationName: 'Get shipment from External API $shipmentId',
+        errorMessage: 'Error al obtener el envío $shipmentId',
         operation: (_) async => _viaShipmentBusinessLogic.getFromExternalAPI(shipmentId),
       );
 
   @override
   Future<void> create(ViaShipmentModel viaShipment) async => await operation.perform(
-        operationName: 'Create via shipment',
+        operationName: 'Create via shipment ${viaShipment.shipmentId}',
         permissionKey: ViaShipmentModulePermissions.createKey,
         operation: (_) async => await _viaShipmentBusinessLogic.create(viaShipment),
         onSuccess: _viaShipmentBusinessLogic.postCreate,
@@ -28,7 +28,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
 
   @override
   Future<void> update(ViaShipmentModel viaShipment) async => await operation.perform(
-        operationName: 'Update via shipment',
+        operationName: 'Update via shipment ${viaShipment.shipmentId}',
         permissionKey: ViaShipmentModulePermissions.updateKey,
         operation: (_) async => await _viaShipmentBusinessLogic.update(viaShipment),
         onSuccess: _viaShipmentBusinessLogic.postUpdate,
@@ -36,7 +36,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
 
   @override
   Future<void> delete(String id) async => await operation.perform(
-        operationName: 'Delete via shipment',
+        operationName: 'Delete via shipment $id',
         permissionKey: ViaShipmentModulePermissions.deleteKey,
         inTransaction: true,
         operation: (_) async => await _viaShipmentBusinessLogic.delete(id),
@@ -56,14 +56,14 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   @override
   Future<void> invoice(ViaShipmentModel shipment) async => await operation.perform(
         permissionKey: ViaShipmentModulePermissions.invoiceKey,
-        operationName: 'Invoice shipment',
+        operationName: 'Invoice shipment ${shipment.shipmentId}',
         operation: (_) async => await _viaShipmentBusinessLogic.invoice(shipment),
       );
 
   @override
   Future<void> cancelInvoice(ViaShipmentModel shipment) async => await operation.perform(
         permissionKey: ViaShipmentModulePermissions.cancelInvoiceKey,
-        operationName: 'Cancel invoice shipment',
+        operationName: 'Cancel invoice shipment ${shipment.shipmentId}',
         operation: (_) async => await _viaShipmentBusinessLogic.cancelInvoice(shipment),
       );
 
@@ -99,7 +99,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace) async =>
       await operation.perform(
         permissionKey: ViaShipmentModulePermissions.changeDeliveryPlaceKey,
-        operationName: 'Change delivery place',
+        operationName: 'Change delivery place ${shipment.shipmentId}',
         operation: (_) async => await _viaShipmentBusinessLogic.changeDeliveryPlace(shipment, newPlace),
         onSuccess: _viaShipmentBusinessLogic.postUpdate,
       );
