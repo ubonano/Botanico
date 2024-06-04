@@ -103,6 +103,7 @@ export 'ui/widgets/package_widget.dart';
 export 'ui/widgets/weight_widget.dart';
 export 'ui/widgets/shipment_id_widget.dart';
 export 'ui/widgets/shipment_type_widget.dart';
+export 'ui/widgets/via_shipment_list_tile.dart';
 
 export 'ui/via_shipment_form_page.dart';
 export 'ui/via_shipment_list_page.dart';

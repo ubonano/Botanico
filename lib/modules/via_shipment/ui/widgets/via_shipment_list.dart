@@ -16,17 +16,7 @@ class ViaShipmentList extends GetView<ViaShipmentListController> with Navigation
         return ListView.builder(
           controller: controller.scrollController,
           itemCount: list.length,
-          itemBuilder: (_, index) {
-            final ViaShipmentModel viaShipment = list[index];
-
-            return Card(
-              child: ListTile(
-                title: ViaShipmentListTileTitle(viaShipment),
-                trailing: ViaShipmentListTileTrailing(viaShipment),
-                onTap: () => navigate.toViaShipmentForm(id: viaShipment.id, canPop: true),
-              ),
-            );
-          },
+          itemBuilder: (_, index) => Card(child: ViaShipmentListTile(list[index])),
         );
       },
     );
