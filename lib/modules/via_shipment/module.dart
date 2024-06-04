@@ -71,6 +71,7 @@ export 'ui/widgets/buttons/slidable_buttons/edit_slidable_button.dart';
 export 'ui/widgets/buttons/slidable_buttons/invoice_slidable_button.dart';
 export 'ui/widgets/buttons/slidable_buttons/cancel_invoice_slidable_button.dart';
 export 'ui/widgets/buttons/slidable_buttons/delivery_place_slidable_button.dart';
+export 'ui/widgets/buttons/slidable_buttons/build_slidable_buttons_action_pane.dart';
 
 export 'ui/widgets/fields/state_input_field.dart';
 export 'ui/widgets/fields/is_invoiced_input_field.dart';

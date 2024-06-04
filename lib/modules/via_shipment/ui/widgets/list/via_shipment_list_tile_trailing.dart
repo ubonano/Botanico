@@ -5,22 +5,22 @@ import '../tooltips/via_shipment_invoiced_tooltip.dart';
 import '../../../module.dart';
 
 class ViaShipmentListTileTrailing extends StatelessWidget {
-  final ViaShipmentModel viaShipment;
+  final ViaShipmentModel shipment;
 
-  const ViaShipmentListTileTrailing(this.viaShipment, {super.key});
+  const ViaShipmentListTileTrailing(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        ViaShipmentStateTooltip(viaShipment),
+        ViaShipmentStateTooltip(shipment),
         const SizedBox(width: 10),
-        ViaShipmentTypeTooltip(viaShipment),
+        ViaShipmentTypeTooltip(shipment),
         const SizedBox(width: 10),
-        ViaShipmentInvoicedTooltip(viaShipment),
+        ViaShipmentInvoicedTooltip(shipment),
         const SizedBox(width: 30),
-        ViaShipmentListTileTrailingIconButtons(viaShipment),
+        ViaShipmentListTileTrailingIconButtons(shipment),
       ],
     );
   }
