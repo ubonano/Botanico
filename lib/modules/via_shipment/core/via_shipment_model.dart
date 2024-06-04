@@ -115,4 +115,10 @@ class ViaShipmentModel {
   bool get isReady => state == ViaShipmentState.ready.index;
   bool get isDelivered => state == ViaShipmentState.delivered.index;
   bool get isNotInvoiced => !isInvoiced;
+
+  ViaShipmentModel invoice() => copyWith(isInvoiced: true);
+  ViaShipmentModel cancelInvoice() => copyWith(isInvoiced: false);
+  ViaShipmentModel changeState(ViaShipmentState state) => copyWith(state: state.index);
+  ViaShipmentModel changeDeliveryPlace(ViaShipmentDeliveryPlace deliveryPlace) =>
+      copyWith(deliveryPlace: deliveryPlaceLabels[deliveryPlace]);
 }

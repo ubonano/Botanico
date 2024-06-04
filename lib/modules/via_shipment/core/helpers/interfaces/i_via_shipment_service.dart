@@ -11,13 +11,6 @@ abstract class IViaShipmentService {
   Future<void> create(ViaShipmentModel shipment);
   Future<void> update(ViaShipmentModel shipment);
   Future<void> delete(String id);
-  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
-    required RxList<ViaShipmentModel> list$,
-    DocumentSnapshot? startAfter,
-    int limit = 20,
-    List<ViaShipmentState>? states,
-    Function(List<ViaShipmentModel>)? onNewData,
-  });
   Future<void> invoice(ViaShipmentModel shipment);
   Future<void> cancelInvoice(ViaShipmentModel shipment);
   Future<void> process(ViaShipmentModel shipment);
@@ -25,4 +18,11 @@ abstract class IViaShipmentService {
   Future<void> deliver(ViaShipmentModel shipment);
   Future<void> archive(ViaShipmentModel shipment);
   Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace);
+  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
+    required RxList<ViaShipmentModel> list$,
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+    List<ViaShipmentState>? states,
+    Function(List<ViaShipmentModel>)? onNewData,
+  });
 }

@@ -43,17 +43,6 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
       );
 
   @override
-  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
-    required RxList<ViaShipmentModel> list$,
-    DocumentSnapshot? startAfter,
-    int limit = 20,
-    List<ViaShipmentState>? states,
-    Function(List<ViaShipmentModel>)? onNewData,
-  }) =>
-      _viaShipmentBusinessLogic.initializeStream(
-          list$: list$, startAfter: startAfter, limit: limit, states: states, onNewData: onNewData);
-
-  @override
   Future<void> invoice(ViaShipmentModel shipment) async => await operation.perform(
         permissionKey: ViaShipmentModulePermissions.invoiceKey,
         operationName: 'Invoice shipment ${shipment.shipmentId}',
@@ -103,4 +92,15 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
         operation: (_) async => await _viaShipmentBusinessLogic.changeDeliveryPlace(shipment, newPlace),
         onSuccess: _viaShipmentBusinessLogic.postUpdate,
       );
+
+  @override
+  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
+    required RxList<ViaShipmentModel> list$,
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+    List<ViaShipmentState>? states,
+    Function(List<ViaShipmentModel>)? onNewData,
+  }) =>
+      _viaShipmentBusinessLogic.initializeStream(
+          list$: list$, startAfter: startAfter, limit: limit, states: states, onNewData: onNewData);
 }
