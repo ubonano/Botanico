@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
-import '../../../module.dart';
+import '../../../../module.dart';
 
-class CancelInvoiceSlidableButton extends GetView<ViaShipmentCancelInvoiceController> {
+class InvoiceSlidableButton extends GetView<ViaShipmentInvoiceController> {
   final ViaShipmentModel viaShipment;
 
-  const CancelInvoiceSlidableButton(this.viaShipment, {super.key});
+  const InvoiceSlidableButton(this.viaShipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return SlidableAction(
       onPressed: (context) async => await controller.submit(viaShipment),
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.green,
       foregroundColor: Colors.white,
-      icon: Icons.cancel,
-      label: 'Cancelar Factura',
+      icon: Icons.receipt,
+      label: 'Facturar',
     );
   }
 }

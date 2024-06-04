@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../module.dart';
+import '../../../../module.dart';
 
 class PackageWidget extends StatelessWidget {
   final ViaShipmentModel shipment;

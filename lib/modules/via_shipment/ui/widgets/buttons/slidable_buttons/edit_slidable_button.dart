@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
-import '../../../module.dart';
+import '../../../../module.dart';
 
 class EditSlidableButton extends StatelessWidget with NavigationHelperInstance {
   final ViaShipmentModel viaShipment;
