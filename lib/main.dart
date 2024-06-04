@@ -1,22 +1,24 @@
+import 'package:botanico/modules/foundation/module.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+import 'setup/firebase_service.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Botanico',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Botanico V 0'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
-    );
-  }
+  // firebase deploy --only hosting:qa,firestore,functions,storage --project botanico-qa
+  // firebase deploy --only hosting:prod,firestore,functions,storage --project botanico-82e04
+
+
+  // const String environment = String.fromEnvironment('ENV', defaultValue: 'prod');
+  const String environment = String.fromEnvironment('ENV', defaultValue: 'qa');
+
+  await FirebaseService.initializeFirebase(environment);
+
+  // FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+
+  runApp(const App());
 }

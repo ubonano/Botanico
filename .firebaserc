@@ -1,0 +1,59 @@
+{
+  "projects": {
+    "default": "botanico-qa",
+    "qa": "botanico-qa",
+    "prod": "botanico-prod"
+  },
+  "targets": {
+    "botanico-qa": {
+      "hosting": {
+        "qa": [
+          "botanico-qa"
+        ],
+        "prod": [
+          "botanico-prod"
+        ]
+      },
+      "functions": {
+        "default": [
+          "botanico-qa"
+        ]
+      },
+      "storage": {
+        "qa": [
+          "botanico-qa"
+        ],
+        "prod": [
+          "botanico-prod"
+        ]
+      },
+      "database": {
+        "qa": [
+          "botanico-qa"
+        ],
+        "prod": [
+          "botanico-prod"
+        ]
+      }
+    },
+    "botanico-prod": {
+      "hosting": {
+        "prod": [
+          "botanico-prod"
+        ]
+      },
+      "functions": {
+        "default": [
+          "botanico-prod"
+        ]
+      },
+      "storage": {
+        "default": [
+          "botanico-prod"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
