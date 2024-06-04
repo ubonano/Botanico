@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'tooltips/via_shipment_state_tooltip.dart';
-import 'tooltips/via_shipment_type_tooltip.dart';
-import 'tooltips/via_shipment_invoiced_tooltip.dart';
-import '../../module.dart';
+import '../tooltips/via_shipment_state_tooltip.dart';
+import '../tooltips/via_shipment_type_tooltip.dart';
+import '../tooltips/via_shipment_invoiced_tooltip.dart';
+import '../../../module.dart';
 
 class ViaShipmentListTileTrailing extends StatelessWidget {
   final ViaShipmentModel viaShipment;

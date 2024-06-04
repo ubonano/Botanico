@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
-import '../../module.dart';
+import '../../../module.dart';
 
 class ViaShipmentListTile extends StatelessWidget with NavigationHelperInstance {
   final ViaShipmentModel viaShipment;

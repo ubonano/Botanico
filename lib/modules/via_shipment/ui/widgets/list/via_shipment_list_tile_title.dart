@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../module.dart';
+import '../../../module.dart';
 
 class ViaShipmentListTileTitle extends StatelessWidget {
   final ViaShipmentModel viaShipment;

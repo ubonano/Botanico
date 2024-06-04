@@ -86,11 +86,11 @@ export 'ui/widgets/fields/description_input_field.dart';
 export 'ui/widgets/layuots/via_shipment_dashboard_layout_large_tile.dart';
 export 'ui/widgets/layuots/via_shipment_dashboard_layout_small_tile.dart';
 
-export 'ui/widgets/via_shipment_list_tile_trailing.dart';
-export 'ui/widgets/via_shipment_list_tile_title.dart';
-export 'ui/widgets/via_shipment_dashboard_tile.dart';
-export 'ui/widgets/via_shipment_list.dart';
-export 'ui/widgets/via_shipment_dashboard_list.dart';
+export 'ui/widgets/list/via_shipment_list_tile_trailing.dart';
+export 'ui/widgets/list/via_shipment_list_tile_title.dart';
+export 'ui/widgets/dashboard/via_shipment_dashboard_tile.dart';
+export 'ui/widgets/list/via_shipment_list.dart';
+export 'ui/widgets/dashboard/via_shipment_dashboard_list.dart';
 export 'ui/widgets/layuots/data_widgets/icon_with_text.dart';
 export 'ui/widgets/state_tag.dart';
 
@@ -103,7 +103,7 @@ export 'ui/widgets/layuots/data_widgets/package_widget.dart';
 export 'ui/widgets/layuots/data_widgets/weight_widget.dart';
 export 'ui/widgets/layuots/data_widgets/shipment_id_widget.dart';
 export 'ui/widgets/layuots/data_widgets/shipment_type_widget.dart';
-export 'ui/widgets/via_shipment_list_tile.dart';
+export 'ui/widgets/list/via_shipment_list_tile.dart';
 
 export 'ui/via_shipment_form_page.dart';
 export 'ui/via_shipment_list_page.dart';
