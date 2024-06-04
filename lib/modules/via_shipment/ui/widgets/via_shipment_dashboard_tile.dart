@@ -1,5 +1,7 @@
+import 'package:botanico/modules/worker/core/helpers/interfaces/i_worker_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
 
 import '../../module.dart';
 
@@ -18,8 +20,6 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
 
   ViaShipmentModel get _shipment => widget.shipment;
 
-  bool _isSmallScreen(BoxConstraints constraints) => constraints.maxWidth < 600;
-
   @override
   void initState() {
     super.initState();
@@ -35,18 +35,8 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
           key: Key(_shipment.shipmentId),
           startActionPane: ActionPane(
             motion: const DrawerMotion(),
-            extentRatio: _isSmallScreen(constraints) ? 1 : 0.50,
-            children: [
-              if (_shipment.isPending) ProcessSlidableButton(_shipment),
-              if (_shipment.isInProcess) PrepareSlidableButton(_shipment),
-              if (_shipment.isReady) DeliverSlidableButton(_shipment),
-              if (_shipment.isDelivered) ArchiveSlidableButton(_shipment),
-              if (_shipment.isNotInvoiced) InvoiceSlidableButton(_shipment),
-              if (_shipment.isInvoiced) CancelInvoiceSlidableButton(_shipment),
-              DeliveryPlaceSlidableButton(_shipment),
-              EditSlidableButton(_shipment),
-              DeleteSlidableButton(_shipment),
-            ],
+            extentRatio: _isSmallScreen(constraints) ? 0.80 : 0.50,
+            children: _buildSlidableButtons(),
           ),
           child: AnimatedBuilder(
             animation: _colorAnimation,
@@ -75,6 +65,44 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
       },
     );
   }
+
+  bool _isSmallScreen(BoxConstraints constraints) => constraints.maxWidth < 600;
+
+  List<Widget> _buildSlidableButtons() {
+    List<Widget> buttons = [];
+
+    if (_shipment.isPending && _hasPermission(ViaShipmentModulePermissions.processKey)) {
+      buttons.add(ProcessSlidableButton(_shipment));
+    }
+    if (_shipment.isInProcess && _hasPermission(ViaShipmentModulePermissions.prepareKey)) {
+      buttons.add(PrepareSlidableButton(_shipment));
+    }
+    if (_shipment.isReady && _hasPermission(ViaShipmentModulePermissions.deliverKey)) {
+      buttons.add(DeliverSlidableButton(_shipment));
+    }
+    if (_shipment.isDelivered && _hasPermission(ViaShipmentModulePermissions.archiveKey)) {
+      buttons.add(ArchiveSlidableButton(_shipment));
+    }
+    if (_shipment.isNotInvoiced && _hasPermission(ViaShipmentModulePermissions.invoiceKey)) {
+      buttons.add(InvoiceSlidableButton(_shipment));
+    }
+    if (_shipment.isInvoiced && _hasPermission(ViaShipmentModulePermissions.cancelInvoiceKey)) {
+      buttons.add(CancelInvoiceSlidableButton(_shipment));
+    }
+    if (_hasPermission(ViaShipmentModulePermissions.changeDeliveryPlaceKey)) {
+      buttons.add(DeliveryPlaceSlidableButton(_shipment));
+    }
+    if (_hasPermission(ViaShipmentModulePermissions.updateKey)) {
+      buttons.add(EditSlidableButton(_shipment));
+    }
+    if (_hasPermission(ViaShipmentModulePermissions.deleteKey)) {
+      buttons.add(DeleteSlidableButton(_shipment));
+    }
+    return buttons;
+  }
+
+  bool _hasPermission(String permission) =>
+      Get.find<IWorkerService>().loggedWorker$?.hasPermission(permission) ?? false;
 
   @override
   void dispose() {

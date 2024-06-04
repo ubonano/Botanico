@@ -13,15 +13,12 @@ class DeliveryPlaceSlidableButton extends GetView<ViaShipmentChangeDeliveryPlace
 
   @override
   Widget build(BuildContext context) {
-    return ProtectedWidget(
-      permission: ViaShipmentModulePermissions.changeDeliveryPlaceKey,
-      child: SlidableAction(
-        onPressed: (context) => _showDeliveryPlaceDialog(context),
-        backgroundColor: Colors.purple,
-        foregroundColor: Colors.white,
-        icon: Icons.place,
-        label: 'Lugar de Entrega',
-      ),
+    return SlidableAction(
+      onPressed: (context) => _showDeliveryPlaceDialog(context),
+      backgroundColor: Colors.purple,
+      foregroundColor: Colors.white,
+      icon: Icons.place,
+      label: 'Lugar de Entrega',
     );
   }
 

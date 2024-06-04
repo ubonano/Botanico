@@ -11,15 +11,12 @@ class EditSlidableButton extends StatelessWidget with NavigationHelperInstance {
 
   @override
   Widget build(BuildContext context) {
-    return ProtectedWidget(
-      permission: ViaShipmentModulePermissions.updateKey,
-      child: SlidableAction(
-        onPressed: (context) => navigate.toViaShipmentForm(id: viaShipment.id, canPop: true),
-        backgroundColor: Colors.orange,
-        foregroundColor: Colors.white,
-        icon: Icons.edit,
-        label: 'Editar',
-      ),
+    return SlidableAction(
+      onPressed: (context) => navigate.toViaShipmentForm(id: viaShipment.id, canPop: true),
+      backgroundColor: Colors.orange,
+      foregroundColor: Colors.white,
+      icon: Icons.edit,
+      label: 'Editar',
     );
   }
 }
