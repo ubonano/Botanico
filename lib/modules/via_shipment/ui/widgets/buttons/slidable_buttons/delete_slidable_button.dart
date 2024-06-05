@@ -4,15 +4,17 @@ import 'package:get/get.dart';
 
 import '../../../../module.dart';
 
-class DeleteSlidableButton extends GetView<ViaShipmentDeleteController> {
-  final ViaShipmentModel viaShipment;
+class DeleteSlidableButton extends StatelessWidget {
+  final ViaShipmentModel shipment;
 
-  const DeleteSlidableButton(this.viaShipment, {super.key});
+  const DeleteSlidableButton(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    late final IViaShipmentService service = Get.find();
+
     return SlidableAction(
-      onPressed: (context) async => await controller.submit(viaShipment),
+      onPressed: (context) async => await service.delete(shipment.id),
       backgroundColor: Colors.red,
       foregroundColor: Colors.white,
       icon: Icons.delete,

@@ -4,15 +4,15 @@ import 'package:get/get.dart';
 
 import '../../../../module.dart';
 
-class ProcessSlidableButton extends GetView<ViaShipmentStateController> {
-  final ViaShipmentModel viaShipment;
+class ProcessSlidableButton extends StatelessWidget {
+  final ViaShipmentModel shipment;
 
-  const ProcessSlidableButton(this.viaShipment, {super.key});
+  const ProcessSlidableButton(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return SlidableAction(
-      onPressed: (context) async => await controller.process(viaShipment),
+      onPressed: (context) async => await Get.find<IViaShipmentService>().process(shipment),
       backgroundColor: Colors.blue,
       foregroundColor: Colors.white,
       icon: Icons.engineering,

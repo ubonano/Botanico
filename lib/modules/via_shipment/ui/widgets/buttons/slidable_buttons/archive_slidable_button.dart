@@ -4,15 +4,15 @@ import 'package:get/get.dart';
 
 import '../../../../module.dart';
 
-class ArchiveSlidableButton extends GetView<ViaShipmentStateController> {
-  final ViaShipmentModel viaShipment;
+class ArchiveSlidableButton extends StatelessWidget {
+  final ViaShipmentModel shipment;
 
-  const ArchiveSlidableButton(this.viaShipment, {super.key});
+  const ArchiveSlidableButton(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return SlidableAction(
-      onPressed: (context) async => await controller.archive(viaShipment),
+      onPressed: (context) async => await Get.find<IViaShipmentService>().archive(shipment),
       backgroundColor: Colors.grey,
       foregroundColor: Colors.white,
       icon: Icons.archive,

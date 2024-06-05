@@ -5,11 +5,10 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../../../module.dart';
 
-class DeliveryPlaceSlidableButton extends GetView<ViaShipmentChangeDeliveryPlaceController>
-    with NavigationHelperInstance {
-  final ViaShipmentModel viaShipment;
+class DeliveryPlaceSlidableButton extends StatelessWidget with NavigationHelperInstance {
+  final ViaShipmentModel shipment;
 
-  DeliveryPlaceSlidableButton(this.viaShipment, {super.key});
+  DeliveryPlaceSlidableButton(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,8 @@ class DeliveryPlaceSlidableButton extends GetView<ViaShipmentChangeDeliveryPlace
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        String selectedPlace = viaShipment.deliveryPlace;
+        String selectedPlace = shipment.deliveryPlace;
+
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
@@ -49,7 +49,8 @@ class DeliveryPlaceSlidableButton extends GetView<ViaShipmentChangeDeliveryPlace
               actions: <Widget>[
                 TextButton(
                   child: const Text('Cambiar lugar de entrega'),
-                  onPressed: () => controller.changeDeliveryPlace(viaShipment, selectedPlace),
+                  onPressed: () => Get.find<IViaShipmentService>()
+                      .changeDeliveryPlace(shipment, deliveryPlaceFromString(selectedPlace)),
                 ),
               ],
             );

@@ -120,5 +120,5 @@ class ViaShipmentModel {
   ViaShipmentModel cancelInvoice() => copyWith(isInvoiced: false);
   ViaShipmentModel changeState(ViaShipmentState state) => copyWith(state: state.index);
   ViaShipmentModel changeDeliveryPlace(ViaShipmentDeliveryPlace deliveryPlace) =>
-      copyWith(deliveryPlace: deliveryPlaceLabels[deliveryPlace]);
+      copyWith(deliveryPlace: deliveryPlaceToString(deliveryPlace));
 }

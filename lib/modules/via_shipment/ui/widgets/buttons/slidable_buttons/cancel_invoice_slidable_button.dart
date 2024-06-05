@@ -4,15 +4,15 @@ import 'package:get/get.dart';
 
 import '../../../../module.dart';
 
-class CancelInvoiceSlidableButton extends GetView<ViaShipmentCancelInvoiceController> {
-  final ViaShipmentModel viaShipment;
+class CancelInvoiceSlidableButton extends StatelessWidget {
+  final ViaShipmentModel shipment;
 
-  const CancelInvoiceSlidableButton(this.viaShipment, {super.key});
+  const CancelInvoiceSlidableButton(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return SlidableAction(
-      onPressed: (context) async => await controller.submit(viaShipment),
+      onPressed: (context) async => await Get.find<IViaShipmentService>().cancelInvoice(shipment),
       backgroundColor: Colors.red,
       foregroundColor: Colors.white,
       icon: Icons.cancel,
