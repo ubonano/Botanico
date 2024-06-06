@@ -4,7 +4,7 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../../module.dart';
 
-class AccountingAccountDeleteIconButton extends GetView<AccountingAccountDeleteController> {
+class AccountingAccountDeleteIconButton extends StatelessWidget {
   final AccountingAccountModel accountingAccount;
 
   const AccountingAccountDeleteIconButton(this.accountingAccount, {super.key});
@@ -19,7 +19,7 @@ class AccountingAccountDeleteIconButton extends GetView<AccountingAccountDeleteC
         onPressed: () => ConfirmationDialog.show(
           context,
           content: '¿Estás seguro de que quieres eliminar esta cuenta contable?',
-          onConfirm: () => controller.submit(accountingAccount),
+          onConfirm: () => Get.find<IAccountingAccountService>().deleteAccountingAccount(accountingAccount.uid),
         ),
       ),
     );
