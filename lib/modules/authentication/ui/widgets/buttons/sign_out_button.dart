@@ -4,7 +4,7 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../../module.dart';
 
-class SignOutButton extends GetView<SignOutController> {
+class SignOutButton extends StatelessWidget {
   const SignOutButton({super.key});
 
   @override
@@ -12,7 +12,7 @@ class SignOutButton extends GetView<SignOutController> {
     return CustomButton(
       key: key ?? const Key('signOutButton'),
       text: 'Cerrar sesión',
-      onPressed: controller.submit,
+      onPressed: Get.find<IAuthenticationService>().signOut,
     );
   }
 }
@@ -29,8 +29,6 @@ class _SignOutIconButtonState extends State<SignOutIconButton> {
 
   @override
   Widget build(BuildContext context) {
-    late final SignOutController signOutController = Get.find();
-
     return MouseRegion(
       key: widget.key ?? const Key('signOutButton'),
       onEnter: (_) => setState(() => _isHovering = true),
@@ -40,7 +38,7 @@ class _SignOutIconButtonState extends State<SignOutIconButton> {
           Icons.exit_to_app,
           color: _isHovering ? Colors.grey : Colors.white,
         ),
-        onPressed: signOutController.submit,
+        onPressed: Get.find<IAuthenticationService>().signOut,
         tooltip: 'Cerrar sesión',
       ),
     );
