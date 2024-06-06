@@ -4,7 +4,7 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../../module.dart';
 
-class VendorDeleteIconButton extends GetView<VendorDeleteController> {
+class VendorDeleteIconButton extends StatelessWidget {
   final VendorModel vendor;
 
   const VendorDeleteIconButton(this.vendor, {super.key});
@@ -19,7 +19,7 @@ class VendorDeleteIconButton extends GetView<VendorDeleteController> {
         onPressed: () => ConfirmationDialog.show(
           context,
           content: '¿Estás seguro de que quieres eliminar este proveedor?',
-          onConfirm: () => controller.submit(vendor),
+          onConfirm: () => Get.find<IVendorBusinessLogic>().deleteVendor(vendor.uid),
         ),
       ),
     );
