@@ -38,7 +38,7 @@ class VendorRepository implements IVendorRepository {
   }
 
   @override
-  Stream<List<VendorModel>> vendorListStream(String companyId) =>
+  Stream<List<VendorModel>> initializeStream(String companyId) =>
       _vendorsRef(companyId).snapshots().map((snapshot) => snapshot.docs.map(VendorModel.fromSnapshot).toList());
 
   CollectionReference<Map<String, dynamic>> _vendorsRef(String companyId) =>

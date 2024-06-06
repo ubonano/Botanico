@@ -36,7 +36,7 @@ class VendorFormController extends GetxController with FormHelper<VendorModel>, 
 
   @override
   Future<void> submit() async =>
-      isUpdateMode ? await _vendorService.updateVendor(buildModel()) : await _vendorService.createVendor(buildModel());
+      isUpdateMode ? await _vendorService.update(buildModel()) : await _vendorService.create(buildModel());
 
   @override
   VendorModel buildModel() {

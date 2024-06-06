@@ -19,7 +19,7 @@ class VendorDeleteIconButton extends StatelessWidget {
         onPressed: () => ConfirmationDialog.show(
           context,
           content: '¿Estás seguro de que quieres eliminar este proveedor?',
-          onConfirm: () => Get.find<IVendorBusinessLogic>().deleteVendor(vendor.uid),
+          onConfirm: () => Get.find<IVendorBusinessLogic>().delete(vendor.uid),
         ),
       ),
     );

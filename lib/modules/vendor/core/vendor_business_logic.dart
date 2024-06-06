@@ -21,33 +21,33 @@ class VendorBusinessLogic with GlobalHelper implements IVendorBusinessLogic {
   Future<VendorModel?> get(String id) async => _vendorRepo.get(id);
 
   @override
-  Future<void> createVendor(VendorModel vendor) async =>
+  Future<void> create(VendorModel vendor) async =>
       await _vendorRepo.create(vendor.copyWith(uid: _vendorRepo.generateId));
 
   @override
-  Future<void> updateVendor(VendorModel vendor) async => await _vendorRepo.update(vendor);
+  Future<void> update(VendorModel vendor) async => await _vendorRepo.update(vendor);
 
   @override
-  Future<void> deleteVendor(String id) async => await _vendorRepo.delete(id);
+  Future<void> delete(String id) async => await _vendorRepo.delete(id);
 
   @override
-  Future<void> postCreateVendor() async => navigate.toVendorList();
+  Future<void> postCreate() async => navigate.toVendorList();
 
   @override
-  Future<void> postUpdateVendor() async => navigate.toVendorList();
+  Future<void> postUpdate() async => navigate.toVendorList();
 
   @override
-  Future<void> initializeVendorStream() async {
+  Future<void> initializeStream() async {
     await _workerBusinessLogic.fetchLoggedWorker();
     await _companyBusinessLogic.fetchLoggedCompany();
 
     _vendorListSubscription = _vendorRepo
-        .vendorListStream(_companyBusinessLogic.currentCompanyId)
+        .initializeStream(_companyBusinessLogic.currentCompanyId)
         .listen((workerList) => _vendorList$.value = workerList);
   }
 
   @override
-  void cancelVendorStream() {
+  void cancelStream() {
     _vendorListSubscription?.cancel();
     _vendorList$.clear();
   }

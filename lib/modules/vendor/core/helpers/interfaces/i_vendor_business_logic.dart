@@ -6,11 +6,11 @@ abstract class IVendorBusinessLogic {
   RxList<VendorModel> get vendorList$;
 
   Future<VendorModel?> get(String id);
-  Future<void> createVendor(VendorModel vendor);
-  Future<void> updateVendor(VendorModel vendor);
-  Future<void> deleteVendor(String id);
-  Future<void> postCreateVendor();
-  Future<void> postUpdateVendor();
-  Future<void> initializeVendorStream();
-  void cancelVendorStream();
+  Future<void> create(VendorModel vendor);
+  Future<void> update(VendorModel vendor);
+  Future<void> delete(String id);
+  Future<void> postCreate();
+  Future<void> postUpdate();
+  Future<void> initializeStream();
+  void cancelStream();
 }

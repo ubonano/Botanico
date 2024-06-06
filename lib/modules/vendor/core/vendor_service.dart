@@ -13,45 +13,45 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   Future<VendorModel?> get(String id) async => await _vendorBusinessLogic.get(id);
 
   @override
-  Future<void> createVendor(VendorModel vendor) async {
+  Future<void> create(VendorModel vendor) async {
     await operation.perform(
       operationName: 'Create vendor',
       permissionKey: VendorModulePermissions.createKey,
-      operation: (_) async => await _vendorBusinessLogic.createVendor(vendor),
-      onSuccess: _vendorBusinessLogic.postCreateVendor,
+      operation: (_) async => await _vendorBusinessLogic.create(vendor),
+      onSuccess: _vendorBusinessLogic.postCreate,
     );
   }
 
   @override
-  Future<void> updateVendor(VendorModel vendor) async {
+  Future<void> update(VendorModel vendor) async {
     await operation.perform(
       operationName: 'Update vendor',
       permissionKey: VendorModulePermissions.updateKey,
-      operation: (_) async => await _vendorBusinessLogic.updateVendor(vendor),
-      onSuccess: _vendorBusinessLogic.postUpdateVendor,
+      operation: (_) async => await _vendorBusinessLogic.update(vendor),
+      onSuccess: _vendorBusinessLogic.postUpdate,
     );
   }
 
   @override
-  Future<void> deleteVendor(String id) async {
+  Future<void> delete(String id) async {
     await operation.perform(
       operationName: 'Delete vendor',
       permissionKey: VendorModulePermissions.deleteKey,
       successMessage: 'Proveedor eliminado',
       inTransaction: true,
-      operation: (_) async => await _vendorBusinessLogic.deleteVendor(id),
+      operation: (_) async => await _vendorBusinessLogic.delete(id),
     );
   }
 
   @override
-  Future<void> initializeVendorStream() async {
+  Future<void> initializeStream() async {
     await operation.perform(
       operationName: 'Fetch vendor',
       permissionKey: VendorModulePermissions.viewKey,
-      operation: (_) async => await _vendorBusinessLogic.initializeVendorStream(),
+      operation: (_) async => await _vendorBusinessLogic.initializeStream(),
     );
   }
 
   @override
-  void cancelVendorStream() => _vendorBusinessLogic.cancelVendorStream();
+  void cancelStream() => _vendorBusinessLogic.cancelStream();
 }

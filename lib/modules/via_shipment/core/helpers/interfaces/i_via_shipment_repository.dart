@@ -9,7 +9,7 @@ abstract class IViaShipmentRepository {
   Future<void> create(ViaShipmentModel shipment, {Transaction? txn});
   Future<void> update(ViaShipmentModel shipment, {Transaction? txn});
   Future<void> delete(String id, {Transaction? txn});
-  Stream<List<ViaShipmentModel>> listStream(
+  Stream<List<ViaShipmentModel>> initializeStream(
     String companyId, {
     DocumentSnapshot? startAfter,
     int limit = 20,

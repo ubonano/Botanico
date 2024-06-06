@@ -14,12 +14,12 @@ class VendorListController extends GetxController with LifeCycleLoggingControlle
   @override
   void onInit() {
     super.onInit();
-    _vendorService.initializeVendorStream();
+    _vendorService.initializeStream();
   }
 
   @override
   void onClose() {
-    _vendorService.cancelVendorStream();
+    _vendorService.cancelStream();
     super.onClose();
   }
 }
