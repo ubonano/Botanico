@@ -102,5 +102,10 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
     Function(List<ViaShipmentModel>)? onNewData,
   }) =>
       _viaShipmentBusinessLogic.initializeStream(
-          list$: list$, startAfter: startAfter, limit: limit, states: states, onNewData: onNewData);
+        list$: list$,
+        startAfter: startAfter,
+        limit: limit,
+        states: states,
+        onNewData: onNewData,
+      );
 }

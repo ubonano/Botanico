@@ -11,7 +11,7 @@ class VendorList extends GetView<VendorListController> with NavigationHelperInst
   Widget build(BuildContext context) {
     return Obx(
       () {
-        var list = controller.vendorList$.toList();
+        var list = controller.list$.toList();
 
         return ListView.builder(
           itemCount: list.length,

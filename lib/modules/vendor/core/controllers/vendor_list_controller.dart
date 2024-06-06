@@ -1,25 +1,41 @@
-import 'package:botanico/modules/foundation/module.dart';
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/company/module.dart';
+import 'package:botanico/modules/worker/module.dart';
 
 import '../../module.dart';
 
-class VendorListController extends GetxController with LifeCycleLoggingControllerHelper {
+class VendorListController extends GetxController
+    with PaginatedListHelper<VendorModel>, LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'VendorListController';
 
   late final IVendorService _vendorService = Get.find();
 
-  List<VendorModel> get vendorList$ => _vendorService.vendorList$;
+  late final IWorkerService _workerService = Get.find();
+  late final ICompanyService _companyService = Get.find();
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
+    await _workerService.fetchLoggedWorker();
+    await _companyService.fetchLoggedCompany();
+
     super.onInit();
-    _vendorService.initializeStream();
   }
 
   @override
-  void onClose() {
-    _vendorService.cancelStream();
-    super.onClose();
-  }
+  StreamSubscription<List<VendorModel>>? initializeStream({
+    required RxList<VendorModel> list$,
+    DocumentSnapshot? startAfter,
+    required int limit,
+    required Function(List<VendorModel>) onNewData,
+  }) =>
+      _vendorService.initializeStream(
+        list$: list$,
+        startAfter: startAfter,
+        limit: limit,
+        onNewData: onNewData,
+      );
 }

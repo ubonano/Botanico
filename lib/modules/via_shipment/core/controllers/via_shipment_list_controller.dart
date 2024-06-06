@@ -9,7 +9,7 @@ import 'package:botanico/modules/worker/module.dart';
 import '../../module.dart';
 
 class ViaShipmentListController extends GetxController
-    with LifeCycleLoggingControllerHelper, PaginatedListHelper<ViaShipmentModel> {
+    with PaginatedListHelper<ViaShipmentModel>, LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'ViaShipmentListController';
 
@@ -20,7 +20,6 @@ class ViaShipmentListController extends GetxController
 
   @override
   Future<void> onInit() async {
-    super.onInit();
     await _workerService.fetchLoggedWorker();
     await _companyService.fetchLoggedCompany();
 

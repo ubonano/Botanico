@@ -38,8 +38,19 @@ class VendorRepository implements IVendorRepository {
   }
 
   @override
-  Stream<List<VendorModel>> initializeStream(String companyId) =>
-      _vendorsRef(companyId).snapshots().map((snapshot) => snapshot.docs.map(VendorModel.fromSnapshot).toList());
+  Stream<List<VendorModel>> initializeStream(
+    String companyId, {
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+  }) {
+    var query = _vendorsRef(companyId).limit(limit);
+
+    if (startAfter != null) {
+      query = query.startAfterDocument(startAfter);
+    }
+
+    return query.snapshots().map((snapshot) => snapshot.docs.map(VendorModel.fromSnapshot).toList());
+  }
 
   CollectionReference<Map<String, dynamic>> _vendorsRef(String companyId) =>
       _firestore.collection(FirestoreCollections.companies).doc(companyId).collection(FirestoreCollections.vendors);

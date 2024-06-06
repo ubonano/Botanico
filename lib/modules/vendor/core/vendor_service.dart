@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
@@ -5,9 +7,6 @@ import '../module.dart';
 
 class VendorService extends GetxService with GlobalHelper implements IVendorService {
   late final IVendorBusinessLogic _vendorBusinessLogic = Get.find();
-
-  @override
-  List<VendorModel> get vendorList$ => _vendorBusinessLogic.vendorList$;
 
   @override
   Future<VendorModel?> get(String id) async => await _vendorBusinessLogic.get(id);
@@ -44,14 +43,17 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   }
 
   @override
-  Future<void> initializeStream() async {
-    await operation.perform(
-      operationName: 'Fetch vendor',
-      permissionKey: VendorModulePermissions.viewKey,
-      operation: (_) async => await _vendorBusinessLogic.initializeStream(),
-    );
-  }
-
-  @override
-  void cancelStream() => _vendorBusinessLogic.cancelStream();
+  StreamSubscription<List<VendorModel>> initializeStream({
+    required RxList<VendorModel> list$,
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+    List<VendorModel>? states,
+    Function(List<VendorModel>)? onNewData,
+  }) =>
+      _vendorBusinessLogic.initializeStream(
+        list$: list$,
+        startAfter: startAfter,
+        limit: limit,
+        onNewData: onNewData,
+      );
 }

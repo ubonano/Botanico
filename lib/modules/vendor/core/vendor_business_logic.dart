@@ -1,21 +1,14 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/worker/module.dart';
 
 import '../module.dart';
 
 class VendorBusinessLogic with GlobalHelper implements IVendorBusinessLogic {
   late final IVendorRepository _vendorRepo = Get.find();
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
-  late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
-
-  final _vendorList$ = RxList<VendorModel>();
-  StreamSubscription<List<VendorModel>>? _vendorListSubscription;
-
-  @override
-  RxList<VendorModel> get vendorList$ => _vendorList$;
 
   @override
   Future<VendorModel?> get(String id) async => _vendorRepo.get(id);
@@ -37,18 +30,16 @@ class VendorBusinessLogic with GlobalHelper implements IVendorBusinessLogic {
   Future<void> postUpdate() async => navigate.toVendorList();
 
   @override
-  Future<void> initializeStream() async {
-    await _workerBusinessLogic.fetchLoggedWorker();
-    await _companyBusinessLogic.fetchLoggedCompany();
-
-    _vendorListSubscription = _vendorRepo
-        .initializeStream(_companyBusinessLogic.currentCompanyId)
-        .listen((workerList) => _vendorList$.value = workerList);
-  }
-
-  @override
-  void cancelStream() {
-    _vendorListSubscription?.cancel();
-    _vendorList$.clear();
-  }
+  StreamSubscription<List<VendorModel>> initializeStream({
+    required RxList<VendorModel> list$,
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+    Function(List<VendorModel>)? onNewData,
+  }) =>
+      _vendorRepo.initializeStream(_companyBusinessLogic.currentCompanyId, startAfter: startAfter, limit: limit).listen(
+        (vendorList) {
+          startAfter == null ? list$.value = vendorList : list$.addAll(vendorList);
+          onNewData?.call(vendorList);
+        },
+      );
 }
