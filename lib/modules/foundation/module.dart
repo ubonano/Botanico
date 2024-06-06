@@ -13,6 +13,7 @@ export 'core/helpers/function_helper.dart';
 
 export 'core/helpers/life_cycle_logging_controller_helper.dart';
 export 'core/helpers/form_helper.dart';
+export 'core/helpers/paginated_list_helper.dart';
 export 'core/helpers/global_helper.dart';
 
 export 'core/models/module_model.dart';
