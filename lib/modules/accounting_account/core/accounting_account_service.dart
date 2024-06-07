@@ -12,35 +12,27 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   Future<AccountingAccountModel?> get(String id) async => await _accountingAccountBusinessLogic.get(id);
 
   @override
-  Future<void> create(AccountingAccountModel accountingAccount) async {
-    await operation.perform(
-      operationName: 'Create accounting account',
-      permissionKey: AccountingAccountModulePermissions.createKey,
-      operation: (_) async => await _accountingAccountBusinessLogic.create(accountingAccount),
-      onSuccess: _accountingAccountBusinessLogic.postCreate,
-    );
-  }
+  Future<void> create(AccountingAccountModel accountingAccount) async => await operation.perform(
+        operationName: 'Create accounting account ${accountingAccount.uid}',
+        permissionKey: AccountingAccountModulePermissions.createKey,
+        operation: (_) async => await _accountingAccountBusinessLogic.create(accountingAccount),
+        onSuccess: _accountingAccountBusinessLogic.postCreate,
+      );
 
   @override
-  Future<void> update(AccountingAccountModel accountingAccount) async {
-    await operation.perform(
-      operationName: 'Update accounting account',
-      permissionKey: AccountingAccountModulePermissions.updateKey,
-      operation: (_) async => await _accountingAccountBusinessLogic.update(accountingAccount),
-      onSuccess: _accountingAccountBusinessLogic.postUpdate,
-    );
-  }
+  Future<void> update(AccountingAccountModel accountingAccount) async => await operation.perform(
+        operationName: 'Update accounting account ${accountingAccount.uid}',
+        permissionKey: AccountingAccountModulePermissions.updateKey,
+        operation: (_) async => await _accountingAccountBusinessLogic.update(accountingAccount),
+        onSuccess: _accountingAccountBusinessLogic.postUpdate,
+      );
 
   @override
-  Future<void> delete(String id) async {
-    await operation.perform(
-      operationName: 'Delete accounting account',
-      permissionKey: AccountingAccountModulePermissions.deleteKey,
-      successMessage: 'Cuenta contable eliminada',
-      inTransaction: true,
-      operation: (_) async => await _accountingAccountBusinessLogic.delete(id),
-    );
-  }
+  Future<void> delete(String id) async => await operation.perform(
+        operationName: 'Delete accounting account $id',
+        permissionKey: AccountingAccountModulePermissions.deleteKey,
+        operation: (_) async => await _accountingAccountBusinessLogic.delete(id),
+      );
 
   @override
   StreamSubscription<List<AccountingAccountModel>>? initializeStream({

@@ -38,7 +38,6 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   Future<void> delete(String id) async => await operation.perform(
         operationName: 'Delete via shipment $id',
         permissionKey: ViaShipmentModulePermissions.deleteKey,
-        inTransaction: true,
         operation: (_) async => await _viaShipmentBusinessLogic.delete(id),
       );
 
