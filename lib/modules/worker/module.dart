@@ -4,7 +4,6 @@ import 'package:botanico/modules/foundation/module.dart';
 
 export 'core/controllers/worker_link_controller.dart';
 export 'core/controllers/worker_list_controller.dart';
-export 'core/controllers/worker_unlink_controller.dart';
 export 'core/controllers/worker_lobby_controller.dart';
 export 'core/controllers/worker_form_controller.dart';
 export 'core/controllers/worker_permission_toggle_controller.dart';
@@ -69,7 +68,6 @@ void dependencies() {
   Get.lazyPut<WorkerListController>(() => WorkerListController(), fenix: true);
   Get.lazyPut<WorkerLinkController>(() => WorkerLinkController(), fenix: true);
   Get.lazyPut<WorkerLinkController>(() => WorkerLinkController(), fenix: true);
-  Get.lazyPut<WorkerUnlinkController>(() => WorkerUnlinkController(), fenix: true);
   Get.lazyPut<WorkerPermissionToggleController>(() => WorkerPermissionToggleController(), fenix: true);
 }
 
