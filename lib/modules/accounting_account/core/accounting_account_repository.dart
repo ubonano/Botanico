@@ -32,8 +32,8 @@ class AccountingAccountRepository implements IAccountingAccountRepository {
   }
 
   @override
-  Future<void> delete(String id, {Transaction? txn}) async {
-    final docRef = _accountingAccountsRef(_companyId).doc(id);
+  Future<void> delete(AccountingAccountModel accountingAccount, {Transaction? txn}) async {
+    final docRef = _accountingAccountsRef(_companyId).doc(accountingAccount.uid);
     txn != null ? txn.delete(docRef) : await docRef.delete();
   }
 

@@ -19,7 +19,7 @@ class AccountingAccountDeleteIconButton extends StatelessWidget {
         onPressed: () => ConfirmationDialog.show(
           context,
           content: '¿Estás seguro de que quieres eliminar esta cuenta contable?',
-          onConfirm: () => Get.find<IAccountingAccountService>().delete(accountingAccount.uid),
+          onConfirm: () => Get.find<IAccountingAccountService>().delete(accountingAccount),
         ),
       ),
     );

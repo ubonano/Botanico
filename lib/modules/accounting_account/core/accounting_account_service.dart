@@ -26,10 +26,10 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
       );
 
   @override
-  Future<void> delete(String id) async => await operation.perform(
-        operationName: 'Delete accounting account $id',
+  Future<void> delete(AccountingAccountModel accountingAccount) async => await operation.perform(
+        operationName: 'Delete accounting account ${accountingAccount.uid}',
         permissionKey: AccountingAccountModulePermissions.deleteKey,
-        operation: (_) async => await _accountingAccountBusinessLogic.delete(id),
+        operation: (_) async => await _accountingAccountBusinessLogic.delete(accountingAccount),
       );
 
   @override

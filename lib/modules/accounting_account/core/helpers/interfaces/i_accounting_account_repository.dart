@@ -8,7 +8,7 @@ abstract class IAccountingAccountRepository {
   Future<AccountingAccountModel?> get(String id);
   Future<void> create(AccountingAccountModel accountingAccount, {Transaction? txn});
   Future<void> update(AccountingAccountModel accountingAccount, {Transaction? txn});
-  Future<void> delete(String id, {Transaction? txn});
+  Future<void> delete(AccountingAccountModel accountingAccount, {Transaction? txn});
   Stream<List<AccountingAccountModel>> initializeStream(
     String companyId, {
     DocumentSnapshot? startAfter,
