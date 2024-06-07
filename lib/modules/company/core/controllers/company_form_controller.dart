@@ -1,13 +1,16 @@
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/worker/module.dart';
 
 import '../../module.dart';
 
-class CompanyFormController extends GetxController with FormHelper<CompanyModel>, LifeCycleLoggingControllerHelper {
+class CompanyFormController extends GetxController
+    with FormHelper<CompanyModel>, GlobalHelper, LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'CompanyFormController';
 
   late final ICompanyService _companyService = Get.find();
+  late final IWorkerService _workerService = Get.find();
 
   @override
   List<String> formFields = [
@@ -20,7 +23,17 @@ class CompanyFormController extends GetxController with FormHelper<CompanyModel>
   ];
 
   @override
-  Future<void> submit() async => await _companyService.createCompany(buildModel());
+  Future<void> submit() async {
+    try {
+      await _companyService.createCompany(buildModel());
+
+      await _workerService.fetchLoggedWorker();
+
+      navigate.toHome();
+    } catch (e) {
+      logTag;
+    }
+  }
 
   @override
   CompanyModel buildModel() => CompanyModel(
