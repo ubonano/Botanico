@@ -30,7 +30,7 @@ class VendorBusinessLogic with GlobalHelper implements IVendorBusinessLogic {
   Future<void> postUpdate() async => navigate.toVendorList();
 
   @override
-  StreamSubscription<List<VendorModel>> initializeStream({
+  StreamSubscription<List<VendorModel>>? initializeStream({
     required RxList<VendorModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,

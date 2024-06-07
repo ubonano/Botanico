@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
@@ -7,52 +9,50 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   late final IAccountingAccountBusinessLogic _accountingAccountBusinessLogic = Get.find();
 
   @override
-  List<AccountingAccountModel> get accountingAccountList$ => _accountingAccountBusinessLogic.accountingAccountList$;
-
-  @override
   Future<AccountingAccountModel?> get(String id) async => await _accountingAccountBusinessLogic.get(id);
 
   @override
-  Future<void> createAccountingAccount(AccountingAccountModel accountingAccount) async {
+  Future<void> create(AccountingAccountModel accountingAccount) async {
     await operation.perform(
       operationName: 'Create accounting account',
       permissionKey: AccountingAccountModulePermissions.createKey,
-      operation: (_) async => await _accountingAccountBusinessLogic.createAccountingAccount(accountingAccount),
-      onSuccess: _accountingAccountBusinessLogic.postCreateAccountingAccount,
+      operation: (_) async => await _accountingAccountBusinessLogic.create(accountingAccount),
+      onSuccess: _accountingAccountBusinessLogic.postCreate,
     );
   }
 
   @override
-  Future<void> updateAccountingAccount(AccountingAccountModel accountingAccount) async {
+  Future<void> update(AccountingAccountModel accountingAccount) async {
     await operation.perform(
       operationName: 'Update accounting account',
       permissionKey: AccountingAccountModulePermissions.updateKey,
-      operation: (_) async => await _accountingAccountBusinessLogic.updateAccountingAccount(accountingAccount),
-      onSuccess: _accountingAccountBusinessLogic.postUpdateAccountingAccount,
+      operation: (_) async => await _accountingAccountBusinessLogic.update(accountingAccount),
+      onSuccess: _accountingAccountBusinessLogic.postUpdate,
     );
   }
 
   @override
-  Future<void> deleteAccountingAccount(String id) async {
+  Future<void> delete(String id) async {
     await operation.perform(
       operationName: 'Delete accounting account',
       permissionKey: AccountingAccountModulePermissions.deleteKey,
       successMessage: 'Cuenta contable eliminada',
       inTransaction: true,
-      operation: (_) async => await _accountingAccountBusinessLogic.deleteAccountingAccount(id),
+      operation: (_) async => await _accountingAccountBusinessLogic.delete(id),
     );
   }
 
   @override
-  Future<void> initializeAccountingAccountStream() async {
-    await operation.perform(
-      operationName: 'Fetch accounting account',
-      permissionKey: AccountingAccountModulePermissions.viewKey,
-      operation: (_) async => await _accountingAccountBusinessLogic.initializeAccountingAccountStream(),
-    );
-  }
-
-  @override
-  void cancelAccountingAccountStream() => _accountingAccountBusinessLogic.cancelAccountingAccountStream();
+  StreamSubscription<List<AccountingAccountModel>>? initializeStream({
+    required RxList<AccountingAccountModel> list$,
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+    Function(List<AccountingAccountModel>)? onNewData,
+  }) =>
+      _accountingAccountBusinessLogic.initializeStream(
+        list$: list$,
+        startAfter: startAfter,
+        limit: limit,
+        onNewData: onNewData,
+      );
 }
-

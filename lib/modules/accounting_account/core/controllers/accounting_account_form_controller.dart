@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 
 import '../../module.dart';
 
-class AccountingAccountFormController extends GetxController with FormHelper<AccountingAccountModel>, LifeCycleLoggingControllerHelper {
+class AccountingAccountFormController extends GetxController
+    with FormHelper<AccountingAccountModel>, LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'AccountingAccountFormController';
 
@@ -26,8 +27,9 @@ class AccountingAccountFormController extends GetxController with FormHelper<Acc
   }
 
   @override
-  Future<void> submit() async =>
-      isUpdateMode ? await _accountingAccountService.updateAccountingAccount(buildModel()) : await _accountingAccountService.createAccountingAccount(buildModel());
+  Future<void> submit() async => isUpdateMode
+      ? await _accountingAccountService.update(buildModel())
+      : await _accountingAccountService.create(buildModel());
 
   @override
   AccountingAccountModel buildModel() {
@@ -38,4 +40,3 @@ class AccountingAccountFormController extends GetxController with FormHelper<Acc
     );
   }
 }
-

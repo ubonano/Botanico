@@ -43,7 +43,7 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   }
 
   @override
-  StreamSubscription<List<VendorModel>> initializeStream({
+  StreamSubscription<List<VendorModel>>? initializeStream({
     required RxList<VendorModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,

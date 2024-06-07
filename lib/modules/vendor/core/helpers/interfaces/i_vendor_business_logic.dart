@@ -11,7 +11,7 @@ abstract class IVendorBusinessLogic {
   Future<void> delete(String id);
   Future<void> postCreate();
   Future<void> postUpdate();
-  StreamSubscription<List<VendorModel>> initializeStream({
+  StreamSubscription<List<VendorModel>>? initializeStream({
     required RxList<VendorModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,

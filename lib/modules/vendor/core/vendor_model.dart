@@ -9,6 +9,8 @@ class VendorModel {
   final String phone;
   final String observations;
 
+  final DocumentSnapshot? documentSnapshot;
+
   VendorModel({
     this.uid = '',
     this.name = '',
@@ -17,34 +19,32 @@ class VendorModel {
     this.address = '',
     this.phone = '',
     this.observations = '',
+    this.documentSnapshot,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'uid': uid,
-      'name': name,
-      'cuit': cuit,
-      'registrationType': registrationType,
-      'address': address,
-      'phone': phone,
-      'observations': observations,
-    };
-  }
-
-  factory VendorModel.fromMap(Map<String, dynamic> map, String documentId) {
-    return VendorModel(
-      uid: documentId,
-      name: map['name'],
-      cuit: map['cuit'],
-      registrationType: map['registrationType'] ?? '',
-      address: map['address'],
-      phone: map['phone'],
-      observations: map['observations'],
-    );
-  }
+  Map<String, dynamic> toMap() => {
+        'uid': uid,
+        'name': name,
+        'cuit': cuit,
+        'registrationType': registrationType,
+        'address': address,
+        'phone': phone,
+        'observations': observations,
+      };
 
   static VendorModel fromSnapshot(DocumentSnapshot snapshot) {
-    return VendorModel.fromMap(snapshot.data() as Map<String, dynamic>, snapshot.id);
+    final data = snapshot.data() as Map<String, dynamic>;
+
+    return VendorModel(
+      uid: snapshot.id,
+      name: data['name'],
+      cuit: data['cuit'],
+      registrationType: data['registrationType'] ?? '',
+      address: data['address'],
+      phone: data['phone'],
+      observations: data['observations'],
+      documentSnapshot: snapshot,
+    );
   }
 
   VendorModel copyWith({
@@ -55,15 +55,14 @@ class VendorModel {
     String? address,
     String? phone,
     String? observations,
-  }) {
-    return VendorModel(
-      uid: uid ?? this.uid,
-      name: name ?? this.name,
-      cuit: cuit ?? this.cuit,
-      registrationType: registrationType ?? this.registrationType,
-      address: address ?? this.address,
-      phone: phone ?? this.phone,
-      observations: observations ?? this.observations,
-    );
-  }
+  }) =>
+      VendorModel(
+        uid: uid ?? this.uid,
+        name: name ?? this.name,
+        cuit: cuit ?? this.cuit,
+        registrationType: registrationType ?? this.registrationType,
+        address: address ?? this.address,
+        phone: phone ?? this.phone,
+        observations: observations ?? this.observations,
+      );
 }

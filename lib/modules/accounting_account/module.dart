@@ -55,7 +55,7 @@ export 'ui/accounting_account_form_page.dart';
 export 'ui/accounting_account_list_page.dart';
 
 void dependencies() {
-  Get.put<IAccountingAccountBusinessLogic>(AccountingAccountBusinessLogic(), permanent: true);
+  Get.lazyPut<IAccountingAccountBusinessLogic>(() => AccountingAccountBusinessLogic(), fenix: true);
 
   Get.lazyPut<IAccountingAccountRepository>(() => AccountingAccountRepository(), fenix: true);
   Get.lazyPut<IAccountingAccountService>(() => AccountingAccountService(), fenix: true);

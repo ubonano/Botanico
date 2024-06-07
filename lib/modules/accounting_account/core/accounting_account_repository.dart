@@ -38,10 +38,22 @@ class AccountingAccountRepository implements IAccountingAccountRepository {
   }
 
   @override
-  Stream<List<AccountingAccountModel>> accountingAccountListStream(String companyId) =>
-      _accountingAccountsRef(companyId).snapshots().map((snapshot) => snapshot.docs.map(AccountingAccountModel.fromSnapshot).toList());
+  Stream<List<AccountingAccountModel>> initializeStream(
+    String companyId, {
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+  }) {
+    var query = _accountingAccountsRef(companyId).limit(limit);
 
-  CollectionReference<Map<String, dynamic>> _accountingAccountsRef(String companyId) =>
-      _firestore.collection(FirestoreCollections.companies).doc(companyId).collection(FirestoreCollections.accountingAccounts);
+    if (startAfter != null) {
+      query = query.startAfterDocument(startAfter);
+    }
+
+    return query.snapshots().map((snapshot) => snapshot.docs.map(AccountingAccountModel.fromSnapshot).toList());
+  }
+
+  CollectionReference<Map<String, dynamic>> _accountingAccountsRef(String companyId) => _firestore
+      .collection(FirestoreCollections.companies)
+      .doc(companyId)
+      .collection(FirestoreCollections.accountingAccounts);
 }
-
