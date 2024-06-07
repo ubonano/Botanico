@@ -25,12 +25,6 @@ class AccountingAccountBusinessLogic with GlobalHelper implements IAccountingAcc
   Future<void> delete(String id) async => await _accountingAccountRepo.delete(id);
 
   @override
-  Future<void> postCreate() async => navigate.toAccountingAccountList();
-
-  @override
-  Future<void> postUpdate() async => navigate.toAccountingAccountList();
-
-  @override
   StreamSubscription<List<AccountingAccountModel>>? initializeStream({
     required RxList<AccountingAccountModel> list$,
     DocumentSnapshot? startAfter,

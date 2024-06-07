@@ -9,8 +9,6 @@ abstract class IAccountingAccountBusinessLogic {
   Future<void> create(AccountingAccountModel accountingAccount);
   Future<void> update(AccountingAccountModel accountingAccount);
   Future<void> delete(String id);
-  Future<void> postCreate();
-  Future<void> postUpdate();
   StreamSubscription<List<AccountingAccountModel>>? initializeStream({
     required RxList<AccountingAccountModel> list$,
     DocumentSnapshot? startAfter,

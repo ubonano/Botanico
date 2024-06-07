@@ -16,7 +16,6 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
         operationName: 'Create accounting account ${accountingAccount.uid}',
         permissionKey: AccountingAccountModulePermissions.createKey,
         operation: (_) async => await _accountingAccountBusinessLogic.create(accountingAccount),
-        onSuccess: _accountingAccountBusinessLogic.postCreate,
       );
 
   @override
@@ -24,7 +23,6 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
         operationName: 'Update accounting account ${accountingAccount.uid}',
         permissionKey: AccountingAccountModulePermissions.updateKey,
         operation: (_) async => await _accountingAccountBusinessLogic.update(accountingAccount),
-        onSuccess: _accountingAccountBusinessLogic.postUpdate,
       );
 
   @override
