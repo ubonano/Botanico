@@ -19,7 +19,7 @@ class ViaShipmentDeleteIconButton extends StatelessWidget {
         onPressed: () => ConfirmationDialog.show(
           context,
           content: '¿Estás seguro de que deseas eliminar este envío?',
-          onConfirm: () => Get.find<IViaShipmentService>().delete(shipment.id),
+          onConfirm: () => Get.find<IViaShipmentService>().delete(shipment),
         ),
       ),
     );

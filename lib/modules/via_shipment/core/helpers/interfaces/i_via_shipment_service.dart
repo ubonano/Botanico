@@ -9,7 +9,7 @@ abstract class IViaShipmentService {
   Future<ViaShipmentModel?> getFromExternalAPI(String id);
   Future<void> create(ViaShipmentModel shipment);
   Future<void> update(ViaShipmentModel shipment);
-  Future<void> delete(String id);
+  Future<void> delete(ViaShipmentModel shipment);
   Future<void> invoice(ViaShipmentModel shipment);
   Future<void> cancelInvoice(ViaShipmentModel shipment);
   Future<void> process(ViaShipmentModel shipment);

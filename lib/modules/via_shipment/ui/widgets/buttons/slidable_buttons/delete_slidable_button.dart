@@ -11,10 +11,8 @@ class DeleteSlidableButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late final IViaShipmentService service = Get.find();
-
     return SlidableAction(
-      onPressed: (context) async => await service.delete(shipment.id),
+      onPressed: (context) async => await Get.find<IViaShipmentService>().delete(shipment),
       backgroundColor: Colors.red,
       foregroundColor: Colors.white,
       icon: Icons.delete,

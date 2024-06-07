@@ -23,7 +23,6 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
         operationName: 'Create via shipment ${viaShipment.shipmentId}',
         permissionKey: ViaShipmentModulePermissions.createKey,
         operation: (_) async => await _viaShipmentBusinessLogic.create(viaShipment),
-        onSuccess: _viaShipmentBusinessLogic.postCreate,
       );
 
   @override
@@ -31,14 +30,13 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
         operationName: 'Update via shipment ${viaShipment.shipmentId}',
         permissionKey: ViaShipmentModulePermissions.updateKey,
         operation: (_) async => await _viaShipmentBusinessLogic.update(viaShipment),
-        onSuccess: _viaShipmentBusinessLogic.postUpdate,
       );
 
   @override
-  Future<void> delete(String id) async => await operation.perform(
-        operationName: 'Delete via shipment $id',
+  Future<void> delete(ViaShipmentModel shipment) async => await operation.perform(
+        operationName: 'Delete via shipment ${shipment.shipmentId}',
         permissionKey: ViaShipmentModulePermissions.deleteKey,
-        operation: (_) async => await _viaShipmentBusinessLogic.delete(id),
+        operation: (_) async => await _viaShipmentBusinessLogic.delete(shipment),
       );
 
   @override
@@ -89,7 +87,6 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
         permissionKey: ViaShipmentModulePermissions.changeDeliveryPlaceKey,
         operationName: 'Change delivery place ${shipment.shipmentId}',
         operation: (_) async => await _viaShipmentBusinessLogic.changeDeliveryPlace(shipment, newPlace),
-        onSuccess: _viaShipmentBusinessLogic.postUpdate,
       );
 
   @override

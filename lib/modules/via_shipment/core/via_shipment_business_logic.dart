@@ -39,13 +39,7 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
   Future<void> update(ViaShipmentModel viaShipment) async => await _viaShipmentRepo.update(viaShipment);
 
   @override
-  Future<void> delete(String id) async => await _viaShipmentRepo.delete(id);
-
-  @override
-  Future<void> postCreate() async => navigate.back();
-
-  @override
-  Future<void> postUpdate() async => navigate.back();
+  Future<void> delete(ViaShipmentModel shipment) async => await _viaShipmentRepo.delete(shipment);
 
   @override
   Future<void> invoice(ViaShipmentModel shipment) async => await _viaShipmentRepo.update(shipment.invoice());

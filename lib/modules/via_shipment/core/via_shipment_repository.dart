@@ -20,20 +20,20 @@ class ViaShipmentRepository implements IViaShipmentRepository {
   }
 
   @override
-  Future<void> create(ViaShipmentModel viaShipment, {Transaction? txn}) async {
-    DocumentReference docRef = _viaShipmentsRef(_companyId).doc(viaShipment.id);
-    txn != null ? txn.set(docRef, viaShipment.toMap()) : await docRef.set(viaShipment.toMap());
+  Future<void> create(ViaShipmentModel shipment, {Transaction? txn}) async {
+    DocumentReference docRef = _viaShipmentsRef(_companyId).doc(shipment.id);
+    txn != null ? txn.set(docRef, shipment.toMap()) : await docRef.set(shipment.toMap());
   }
 
   @override
-  Future<void> update(ViaShipmentModel viaShipment, {Transaction? txn}) async {
-    final docRef = _viaShipmentsRef(_companyId).doc(viaShipment.id);
-    txn != null ? txn.update(docRef, viaShipment.toMap()) : await docRef.update(viaShipment.toMap());
+  Future<void> update(ViaShipmentModel shipment, {Transaction? txn}) async {
+    final docRef = _viaShipmentsRef(_companyId).doc(shipment.id);
+    txn != null ? txn.update(docRef, shipment.toMap()) : await docRef.update(shipment.toMap());
   }
 
   @override
-  Future<void> delete(String id, {Transaction? txn}) async {
-    final docRef = _viaShipmentsRef(_companyId).doc(id);
+  Future<void> delete(ViaShipmentModel shipment, {Transaction? txn}) async {
+    final docRef = _viaShipmentsRef(_companyId).doc(shipment.id);
     txn != null ? txn.delete(docRef) : await docRef.delete();
   }
 
