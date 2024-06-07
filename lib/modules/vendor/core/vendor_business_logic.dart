@@ -21,13 +21,7 @@ class VendorBusinessLogic with GlobalHelper implements IVendorBusinessLogic {
   Future<void> update(VendorModel vendor) async => await _vendorRepo.update(vendor);
 
   @override
-  Future<void> delete(String id) async => await _vendorRepo.delete(id);
-
-  @override
-  Future<void> postCreate() async => navigate.toVendorList();
-
-  @override
-  Future<void> postUpdate() async => navigate.toVendorList();
+  Future<void> delete(VendorModel vendor) async => await _vendorRepo.delete(vendor);
 
   @override
   StreamSubscription<List<VendorModel>>? initializeStream({
