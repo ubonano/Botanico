@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
 
 import '../module.dart';
 
-class AccountingAccountBusinessLogic with GlobalHelper implements IAccountingAccountBusinessLogic {
+class AccountingAccountBusinessLogic implements IAccountingAccountBusinessLogic {
   late final IAccountingAccountRepository _accountingAccountRepo = Get.find();
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
 
