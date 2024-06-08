@@ -1,3 +1,7 @@
+// CREa modulo de COMPRAS! Finaliza el feature y comenza uno nuevo
+
+
+
 
  // TODO no funciona la transaccion en operation_helper, si falla la transaccion no hace el rollback
  // TODO Cambiar que en la logica de negocio no se navegue... Eso se tiene que hacer en los controllers es parte de la interfaz grafica
@@ -6,3 +10,4 @@
  // TODO Agregar al globalHelper las instancias de worker and company service y sacar el operation helper, tal vez instanciarlo diretamente en los servicios
 // TODO Extraer el cambio de estado de los via_shipment en un servicio aparte
 // TODO refactorizar modulo de WORKER (en general) Inclusive hay que agregar el paginationHelper
+

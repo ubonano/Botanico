@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../module.dart';
 
-class SignUpController extends GetxController with FormHelper, LifeCycleLoggingControllerHelper {
+class SignUpController extends GetxController with GlobalHelper, FormHelper, LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'SignUpController';
 
@@ -14,9 +14,15 @@ class SignUpController extends GetxController with FormHelper, LifeCycleLoggingC
 
   @override
   Future<void> submit() async {
-    await _authService.signUp(
-      getFieldValue(FieldKeys.email),
-      getFieldValue(FieldKeys.password),
-    );
+    try {
+      await _authService.signUp(
+        getFieldValue(FieldKeys.email),
+        getFieldValue(FieldKeys.password),
+      );
+
+      navigate.toWorkerCreate();
+    } catch (e) {
+      logTag;
+    }
   }
 }

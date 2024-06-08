@@ -15,6 +15,15 @@ class WorkerService with GlobalHelper implements IWorkerService {
   List<WorkerModel> get linkedWorkerList$ => _workerBusinessLogic.linkedWorkerList$;
 
   @override
+  Future<WorkerModel?> fetchCurWorkerForUpdate() async => _workerBusinessLogic.fetchCurWorkerForUpdate();
+
+  @override
+  Future<WorkerModel?> fetchLoggedWorker() async => _workerBusinessLogic.fetchLoggedWorker();
+
+  @override
+  void clearCurrentWorker() => _workerBusinessLogic.clearCurrentWorker();
+
+  @override
   Future<void> createWorker(WorkerModel worker) async => await operation.perform(
         operationName: 'Create worker',
         operation: (_) async => await _workerBusinessLogic.createWorker(worker),
@@ -55,10 +64,4 @@ class WorkerService with GlobalHelper implements IWorkerService {
         operation: (_) async => await _workerBusinessLogic.togglePermissionCurWorkerForUpdate(permissionId),
         onSuccess: _workerBusinessLogic.fetchCurWorkerForUpdate,
       );
-
-  @override
-  Future<void> fetchCurWorkerForUpdate() async => _workerBusinessLogic.fetchCurWorkerForUpdate();
-
-  @override
-  Future<void> fetchLoggedWorker() async => _workerBusinessLogic.fetchLoggedWorker();
 }

@@ -14,14 +14,14 @@ class CompanyBusinessLogic extends GetxService implements ICompanyBusinessLogic 
   final Rx<CompanyModel?> _currentCompany$ = Rx<CompanyModel?>(null);
 
   @override
-  CompanyModel? get currentCompany$ => _currentCompany$.value;
+  CompanyModel? get loggedCompany$ => _currentCompany$.value;
   @override
   String get currentCompanyId => _currentCompany$.value?.uid ?? '';
 
   @override
   Future<void> createCompany(CompanyModel company, Transaction? txn) async {
     String newCompanyId = _companyRepo.generateId;
-    String ownerUid = _authBusinessLogic.currentUserId;
+    String ownerUid = _authBusinessLogic.currentUser!.uid;
 
     await _companyRepo.create(company.copyWith(uid: newCompanyId, ownerUid: ownerUid), txn: txn);
 

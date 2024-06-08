@@ -5,12 +5,13 @@ abstract class IWorkerService {
   WorkerModel? get loggedWorker$;
   List<WorkerModel> get linkedWorkerList$;
 
+  Future<WorkerModel?> fetchCurWorkerForUpdate();
+  Future<WorkerModel?> fetchLoggedWorker();
+  void clearCurrentWorker();
   Future<void> createWorker(WorkerModel worker);
   Future<void> linkWorker(String workerId);
   Future<void> unlinkWorker(String workerId);
   Future<void> initializeLinkedWorkerStream();
   void cancelLinkedWorkerStream();
   Future<void> togglePermissionCurWorkerForUpdate(String permissionId);
-  Future<void> fetchCurWorkerForUpdate();
-  Future<void> fetchLoggedWorker();
 }

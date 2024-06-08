@@ -7,6 +7,9 @@ class CompanyService extends GetxService with GlobalHelper implements ICompanySe
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
 
   @override
+  CompanyModel? get loggedCompany$ => _companyBusinessLogic.loggedCompany$;
+
+  @override
   Future<void> createCompany(CompanyModel company) async => await operation.perform(
         operationName: 'Create company',
         inTransaction: true,
@@ -14,5 +17,8 @@ class CompanyService extends GetxService with GlobalHelper implements ICompanySe
       );
 
   @override
-  Future<void> fetchLoggedCompany() async => _companyBusinessLogic.fetchLoggedCompany();
+  Future<CompanyModel?> fetchLoggedCompany() async => _companyBusinessLogic.fetchLoggedCompany();
+
+  @override
+  void clearCurrentCompany() => _companyBusinessLogic.clearCurrentCompany();
 }

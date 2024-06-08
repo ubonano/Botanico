@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../module.dart';
 
 abstract class ICompanyBusinessLogic {
-  CompanyModel? get currentCompany$;
+  CompanyModel? get loggedCompany$;
   String get currentCompanyId;
 
   Future<void> createCompany(CompanyModel company, Transaction? txn);
