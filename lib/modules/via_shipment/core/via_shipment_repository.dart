@@ -8,7 +8,7 @@ import '../module.dart';
 class ViaShipmentRepository implements IViaShipmentRepository {
   late final FirebaseFirestore _firestore = Get.find();
 
-  String get _companyId => Get.find<ICompanyBusinessLogic>().currentCompanyId;
+  String get _companyId => Get.find<ICompanyBusinessLogic>().currentCompany$!.uid;
 
   @override
   String get generateId => _viaShipmentsRef(_companyId).doc().id;

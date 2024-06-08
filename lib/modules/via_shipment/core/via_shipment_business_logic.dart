@@ -83,7 +83,7 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
     Function(List<ViaShipmentModel>)? onNewData,
   }) =>
       _viaShipmentRepo
-          .initializeStream(_companyBusinessLogic.currentCompanyId,
+          .initializeStream(_companyBusinessLogic.currentCompany$!.uid,
               startAfter: startAfter, limit: limit, states: states)
           .listen(
         (viaShipmentList) {

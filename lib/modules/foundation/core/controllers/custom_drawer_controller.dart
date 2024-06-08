@@ -11,7 +11,7 @@ class CustomDrawerController extends GetxController with LifeCycleLoggingControl
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
 
   WorkerModel? get currentWorker$ => _workerBusinessLogic.loggedWorker$;
-  CompanyModel? get currentCompany$ => _companyBusinessLogic.loggedCompany$;
+  CompanyModel? get currentCompany$ => _companyBusinessLogic.currentCompany$;
 
   @override
   Future<void> onInit() async {

@@ -5,7 +5,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import '../module.dart';
 
 class CompanyRepository implements ICompanyRepository {
-  final FirebaseFirestore _firestore = Get.find();
+  late final FirebaseFirestore _firestore = Get.find();
 
   @override
   String get generateId => _companyRef.doc().id;

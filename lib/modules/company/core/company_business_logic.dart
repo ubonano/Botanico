@@ -14,9 +14,7 @@ class CompanyBusinessLogic extends GetxService implements ICompanyBusinessLogic 
   final Rx<CompanyModel?> _currentCompany$ = Rx<CompanyModel?>(null);
 
   @override
-  CompanyModel? get loggedCompany$ => _currentCompany$.value;
-  @override
-  String get currentCompanyId => _currentCompany$.value?.uid ?? '';
+  CompanyModel? get currentCompany$ => _currentCompany$.value;
 
   @override
   Future<void> createCompany(CompanyModel company, Transaction? txn) async {

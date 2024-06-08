@@ -30,7 +30,9 @@ class VendorBusinessLogic with GlobalHelper implements IVendorBusinessLogic {
     int limit = 20,
     Function(List<VendorModel>)? onNewData,
   }) =>
-      _vendorRepo.initializeStream(_companyBusinessLogic.currentCompanyId, startAfter: startAfter, limit: limit).listen(
+      _vendorRepo
+          .initializeStream(_companyBusinessLogic.currentCompany$!.uid, startAfter: startAfter, limit: limit)
+          .listen(
         (vendorList) {
           startAfter == null ? list$.value = vendorList : list$.addAll(vendorList);
           onNewData?.call(vendorList);

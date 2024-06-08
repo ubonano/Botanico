@@ -8,7 +8,7 @@ import '../module.dart';
 class VendorRepository implements IVendorRepository {
   late final FirebaseFirestore _firestore = Get.find();
 
-  String get _companyId => Get.find<ICompanyBusinessLogic>().currentCompanyId;
+  String get _companyId => Get.find<ICompanyBusinessLogic>().currentCompany$!.uid;
 
   @override
   String get generateId => _vendorsRef(_companyId).doc().id;

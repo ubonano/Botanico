@@ -8,7 +8,7 @@ import '../module.dart';
 class AccountingAccountRepository implements IAccountingAccountRepository {
   late final FirebaseFirestore _firestore = Get.find();
 
-  String get _companyId => Get.find<ICompanyBusinessLogic>().currentCompanyId;
+  String get _companyId => Get.find<ICompanyBusinessLogic>().currentCompany$!.uid;
 
   @override
   String get generateId => _accountingAccountsRef(_companyId).doc().id;

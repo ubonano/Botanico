@@ -33,7 +33,7 @@ class AccountingAccountBusinessLogic with GlobalHelper implements IAccountingAcc
     Function(List<AccountingAccountModel>)? onNewData,
   }) =>
       _accountingAccountRepo
-          .initializeStream(_companyBusinessLogic.currentCompanyId, startAfter: startAfter, limit: limit)
+          .initializeStream(_companyBusinessLogic.currentCompany$!.uid, startAfter: startAfter, limit: limit)
           .listen(
         (accountingAccountList) {
           startAfter == null ? list$.value = accountingAccountList : list$.addAll(accountingAccountList);
