@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
 
 import '../module.dart';
 
-class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusinessLogic {
+class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
   late final IViaShipmentRepository _viaShipmentRepo = Get.find();
   late final IViaCargoRepository _viaCargoRepo = Get.find();
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
@@ -32,11 +31,11 @@ class ViaShipmentBusinessLogic with GlobalHelper implements IViaShipmentBusiness
   }
 
   @override
-  Future<void> create(ViaShipmentModel viaShipment) async =>
-      await _viaShipmentRepo.create(viaShipment.copyWith(id: _viaShipmentRepo.generateId));
+  Future<void> create(ViaShipmentModel shipment) async =>
+      await _viaShipmentRepo.create(shipment.copyWith(id: _viaShipmentRepo.generateId));
 
   @override
-  Future<void> update(ViaShipmentModel viaShipment) async => await _viaShipmentRepo.update(viaShipment);
+  Future<void> update(ViaShipmentModel shipment) async => await _viaShipmentRepo.update(shipment);
 
   @override
   Future<void> delete(ViaShipmentModel shipment) async => await _viaShipmentRepo.delete(shipment);

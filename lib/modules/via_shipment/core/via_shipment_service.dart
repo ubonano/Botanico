@@ -12,24 +12,24 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   Future<ViaShipmentModel?> get(String id) async => await _viaShipmentBusinessLogic.get(id);
 
   @override
-  Future<ViaShipmentModel?> getFromExternalAPI(String shipmentId) async => await operation.perform(
-        operationName: 'Get shipment from External API $shipmentId',
-        errorMessage: 'Error al obtener el envío $shipmentId',
-        operation: (_) async => _viaShipmentBusinessLogic.getFromExternalAPI(shipmentId),
+  Future<ViaShipmentModel?> getFromExternalAPI(String id) async => await operation.perform(
+        operationName: 'Get shipment from External API $id',
+        errorMessage: 'Error al obtener el envío $id',
+        operation: (_) async => _viaShipmentBusinessLogic.getFromExternalAPI(id),
       );
 
   @override
-  Future<void> create(ViaShipmentModel viaShipment) async => await operation.perform(
-        operationName: 'Create via shipment ${viaShipment.shipmentId}',
+  Future<void> create(ViaShipmentModel shipment) async => await operation.perform(
+        operationName: 'Create via shipment ${shipment.shipmentId}',
         permissionKey: ViaShipmentModulePermissions.createKey,
-        operation: (_) async => await _viaShipmentBusinessLogic.create(viaShipment),
+        operation: (_) async => await _viaShipmentBusinessLogic.create(shipment),
       );
 
   @override
-  Future<void> update(ViaShipmentModel viaShipment) async => await operation.perform(
-        operationName: 'Update via shipment ${viaShipment.shipmentId}',
+  Future<void> update(ViaShipmentModel shipment) async => await operation.perform(
+        operationName: 'Update via shipment ${shipment.shipmentId}',
         permissionKey: ViaShipmentModulePermissions.updateKey,
-        operation: (_) async => await _viaShipmentBusinessLogic.update(viaShipment),
+        operation: (_) async => await _viaShipmentBusinessLogic.update(shipment),
       );
 
   @override
