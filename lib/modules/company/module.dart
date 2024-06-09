@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:botanico/modules/foundation/module.dart';
+
 import 'core/helpers/interfaces/i_company_business_logic.dart';
 import 'core/helpers/interfaces/i_company_repository.dart';
 import 'core/helpers/interfaces/i_company_service.dart';
@@ -40,6 +42,8 @@ export 'ui/widgets/fields/province_input_field.dart';
 
 export 'ui/widgets/buttons/company_save_button.dart';
 export 'ui/widgets/buttons/company_create_navigate_button.dart';
+export 'ui/widgets/buttons/company_enabled_form_fields.dart';
+export 'ui/widgets/buttons/company_form_page_tile_button.dart';
 
 export 'ui/company_form_page.dart';
 
@@ -50,4 +54,22 @@ void dependencies() {
   Get.lazyPut<ICompanyService>(() => CompanyService(), fenix: true);
 
   Get.lazyPut<CompanyFormController>(() => CompanyFormController(), fenix: true);
+}
+
+class CompanyModulePermissions implements ModuleStructure {
+  @override
+  String get moduleId => 'company';
+
+  @override
+  String get moduleName => 'Empresa';
+
+  static const updateKey = 'company.update';
+
+  @override
+  List<PermissionModel> get permissions => [
+        PermissionModel(id: updateKey, name: 'Actualizar'),
+      ];
+
+  @override
+  ModuleModel toModel() => ModuleModel(name: 'Empresa', permissions: permissions);
 }

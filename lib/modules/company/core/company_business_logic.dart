@@ -17,7 +17,10 @@ class CompanyBusinessLogic extends GetxService implements ICompanyBusinessLogic 
   CompanyModel? get currentCompany$ => _currentCompany$.value;
 
   @override
-  Future<void> createCompany(CompanyModel company, Transaction? txn) async {
+  Future<CompanyModel?> get(String id) async => _companyRepo.get(id);
+
+  @override
+  Future<void> create(CompanyModel company, {Transaction? txn}) async {
     String newCompanyId = _companyRepo.generateId;
     String ownerUid = _authBusinessLogic.currentUser!.uid;
 
@@ -27,7 +30,7 @@ class CompanyBusinessLogic extends GetxService implements ICompanyBusinessLogic 
   }
 
   @override
-  Future<CompanyModel?> get(String id) async => _companyRepo.get(id);
+  Future<void> update(CompanyModel company, {Transaction? txn}) async => await _companyRepo.update(company, txn: txn);
 
   @override
   Future<CompanyModel?> fetchLoggedCompany() async {

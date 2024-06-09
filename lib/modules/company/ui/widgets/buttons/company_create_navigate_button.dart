@@ -9,7 +9,7 @@ class CompanyCreateNavigateButton extends StatelessWidget with NavigationHelperI
     return CustomButton(
       key: key ?? const Key('CompanyCreateNavigateButton'),
       text: '¿Necesitas registrar una empresa?',
-      onPressed: navigate.toCompany,
+      onPressed: navigate.toCompanyForm,
     );
   }
 }

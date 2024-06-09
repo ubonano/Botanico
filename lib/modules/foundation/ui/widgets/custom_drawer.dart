@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/authentication/module.dart';
-import 'package:botanico/modules/vendor/module.dart';
+import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
+import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/accounting_account/module.dart';
 import 'package:botanico/modules/via_shipment/module.dart';
 
@@ -33,10 +34,7 @@ class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelper
               ),
               otherAccountsPictures: const [SignOutIconButton()],
             ),
-            ListTile(
-              leading: const Icon(Icons.business),
-              title: Text(controller.currentCompany$?.name ?? ''),
-            ),
+            CompanyFormPageTileButton(),
             HomePageTileButton(),
             WorkerListPageTileButton(),
             VendorListPageTileButton(),

@@ -14,7 +14,7 @@ class Pages {
       page: () => const HomePage(),
     ),
     GetPage(
-      name: CompanyNavigationHelper.COMPANY_CREATE,
+      name: CompanyNavigationHelper.COMPANY_FORM,
       page: () => const CompanyFormPage(),
     ),
     GetPage(

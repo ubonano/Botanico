@@ -17,8 +17,14 @@ class CompanyRepository implements ICompanyRepository {
 
   @override
   Future<void> create(CompanyModel company, {Transaction? txn}) async {
-    DocumentReference docRef = _companyRef.doc(company.uid);
+    final docRef = _companyRef.doc(company.uid);
     txn != null ? txn.set(docRef, company.toMap()) : await docRef.set(company.toMap());
+  }
+
+  @override
+  Future<void> update(CompanyModel company, {Transaction? txn}) async {
+    final docRef = _companyRef.doc(company.uid);
+    txn != null ? txn.update(docRef, company.toMap()) : await docRef.update(company.toMap());
   }
 
   CollectionReference<Map<String, dynamic>> get _companyRef => _firestore.collection(CompanyModel.collectionName);

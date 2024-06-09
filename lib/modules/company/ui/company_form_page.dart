@@ -12,6 +12,7 @@ class CompanyFormPage extends GetView<CompanyFormController> {
     return CustomScaffold(
       key: key ?? const Key('CompanyFormPage'),
       title: controller.isUpdateMode ? 'Empresa' : 'Crear empresa',
+      actionButtons: controller.isUpdateMode ? const [CompanyEnabledFormFields()] : [],
       drawer: null,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
