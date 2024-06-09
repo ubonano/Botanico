@@ -9,7 +9,11 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   late final IAccountingAccountBusinessLogic _accountingAccountBusinessLogic = Get.find();
 
   @override
-  Future<AccountingAccountModel?> get(String id) async => await _accountingAccountBusinessLogic.get(id);
+  Future<AccountingAccountModel?> get(String id) async => await operation.perform(
+        operationName: 'Get accounting account $id',
+        permissionKey: AccountingAccountModulePermissions.viewKey,
+        operation: (_) async => await _accountingAccountBusinessLogic.get(id),
+      );
 
   @override
   Future<void> create(AccountingAccountModel accountingAccount) async => await operation.perform(

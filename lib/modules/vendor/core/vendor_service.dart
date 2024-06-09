@@ -9,7 +9,11 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   late final IVendorBusinessLogic _vendorBusinessLogic = Get.find();
 
   @override
-  Future<VendorModel?> get(String id) async => await _vendorBusinessLogic.get(id);
+  Future<VendorModel?> get(String id) async => await operation.perform(
+        operationName: 'Get vendor $id',
+        permissionKey: VendorModulePermissions.viewKey,
+        operation: (_) async => await _vendorBusinessLogic.get(id),
+      );
 
   @override
   Future<void> create(VendorModel vendor) async => await operation.perform(

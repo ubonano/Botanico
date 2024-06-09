@@ -9,7 +9,11 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   late final IViaShipmentBusinessLogic _viaShipmentBusinessLogic = Get.find();
 
   @override
-  Future<ViaShipmentModel?> get(String id) async => await _viaShipmentBusinessLogic.get(id);
+  Future<ViaShipmentModel?> get(String id) async => await operation.perform(
+        operationName: 'Get shipment $id',
+        permissionKey: ViaShipmentModulePermissions.viewKey,
+        operation: (_) async => await _viaShipmentBusinessLogic.get(id),
+      );
 
   @override
   Future<ViaShipmentModel?> getFromExternalAPI(String id) async => await operation.perform(
