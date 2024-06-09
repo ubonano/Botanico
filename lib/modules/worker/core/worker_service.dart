@@ -24,25 +24,25 @@ class WorkerService with GlobalHelper implements IWorkerService {
   void clearCurrentWorker() => _workerBusinessLogic.clearCurrentWorker();
 
   @override
-  Future<void> createWorker(WorkerModel worker) async => await operation.perform(
+  Future<void> create(WorkerModel worker) async => await operation.perform(
         operationName: 'Create worker ${worker.uid}',
-        operation: (_) async => await _workerBusinessLogic.createWorker(worker),
+        operation: (_) async => await _workerBusinessLogic.create(worker),
       );
 
   @override
-  Future<void> linkWorker(String id) async => await operation.perform(
+  Future<void> link(String id) async => await operation.perform(
         operationName: 'Link worker $id',
         permissionKey: WorkerModulePermissions.linkKey,
         inTransaction: true,
-        operation: (txn) async => await _workerBusinessLogic.linkWorker(id, txn),
+        operation: (txn) async => await _workerBusinessLogic.link(id, txn),
       );
 
   @override
-  Future<void> unlinkWorker(String id) async => await operation.perform(
+  Future<void> unlink(String id) async => await operation.perform(
         operationName: 'Unlink worker $id',
         permissionKey: WorkerModulePermissions.unlinkKey,
         inTransaction: true,
-        operation: (txn) async => await _workerBusinessLogic.unlinkWorker(id, txn),
+        operation: (txn) async => await _workerBusinessLogic.unlink(id, txn),
       );
 
   @override

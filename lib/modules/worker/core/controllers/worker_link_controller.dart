@@ -15,7 +15,7 @@ class WorkerLinkController extends GetxController with GlobalHelper, FormHelper,
   @override
   Future<void> submit() async {
     try {
-      await _workerService.linkWorker(getFieldValue(FieldKeys.uid));
+      await _workerService.link(getFieldValue(FieldKeys.uid));
 
       navigate.back();
     } catch (e) {

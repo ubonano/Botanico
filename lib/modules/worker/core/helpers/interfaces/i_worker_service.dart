@@ -8,9 +8,9 @@ abstract class IWorkerService {
   Future<WorkerModel?> fetchCurWorkerForUpdate();
   Future<WorkerModel?> fetchLoggedWorker();
   void clearCurrentWorker();
-  Future<void> createWorker(WorkerModel worker);
-  Future<void> linkWorker(String workerId);
-  Future<void> unlinkWorker(String workerId);
+  Future<void> create(WorkerModel worker);
+  Future<void> link(String workerId);
+  Future<void> unlink(String workerId);
   Future<void> initializeLinkedWorkerStream();
   void cancelLinkedWorkerStream();
   Future<void> togglePermissionCurWorkerForUpdate(String permissionId);

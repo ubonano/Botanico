@@ -56,12 +56,12 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
   }
 
   @override
-  Future<void> createWorker(WorkerModel worker) async => await _workerRepo.createWorker(
+  Future<void> create(WorkerModel worker) async => await _workerRepo.createWorker(
         worker.copyWith(uid: _authBusinessLogic.currentUser!.uid, email: _authBusinessLogic.currentUser!.email),
       );
 
   @override
-  Future<void> linkWorker(String workerId, Transaction? txn) async {
+  Future<void> link(String workerId, Transaction? txn) async {
     final currentWorker = await get(_authBusinessLogic.currentUser!.uid);
     final worker = await get(workerId);
     final company = await _companyBusinessLogic.get(currentWorker!.companyId);
@@ -76,7 +76,7 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
   }
 
   @override
-  Future<void> unlinkWorker(String workerId, Transaction? txn) async {
+  Future<void> unlink(String workerId, Transaction? txn) async {
     await _workerRepo.deleteLinkedWorker(workerId, txn: txn);
     final changes = {'companyId': '', 'role': workerRoleToString(WorkerRole.undefined), 'permissions': {}};
     await _workerRepo.updatePartialWorker(workerId, changes, txn: txn);

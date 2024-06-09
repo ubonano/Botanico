@@ -19,7 +19,7 @@ class WorkerUnlinkIconButton extends StatelessWidget {
         onPressed: () => ConfirmationDialog.show(
           context,
           content: '¿Estás seguro de que quieres desvincular a este trabajador?',
-          onConfirm: () => Get.find<IWorkerService>().unlinkWorker(worker.uid),
+          onConfirm: () => Get.find<IWorkerService>().unlink(worker.uid),
         ),
       ),
     );

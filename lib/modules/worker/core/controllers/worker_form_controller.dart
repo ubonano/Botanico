@@ -16,7 +16,7 @@ class WorkerFormController extends GetxController
   @override
   Future<void> submit() async {
     try {
-      await _workerService.createWorker(buildModel());
+      await _workerService.create(buildModel());
       await _workerService.fetchLoggedWorker();
       navigate.toLobby();
     } catch (e) {
