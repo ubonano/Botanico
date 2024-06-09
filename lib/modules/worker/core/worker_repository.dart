@@ -48,7 +48,7 @@ class WorkerRepository implements IWorkerRepository {
   }
 
   @override
-  Stream<List<WorkerModel>> linkedWorkersStream() =>
+  Stream<List<WorkerModel>> initializeStream() =>
       _linkedWorkersRef().snapshots().map((snapshot) => snapshot.docs.map(WorkerModel.fromSnapshot).toList());
 
   CollectionReference<Map<String, dynamic>> get _workerRef => _firestore.collection(FirestoreCollections.workers);

@@ -85,7 +85,7 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
   @override
   Future<void> initializeLinkedWorkerStream() async {
     _workerListSubscription =
-        _workerRepo.linkedWorkersStream().listen((workerList) => linkedWorkerList$.value = workerList);
+        _workerRepo.initializeStream().listen((workerList) => linkedWorkerList$.value = workerList);
   }
 
   @override

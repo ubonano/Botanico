@@ -9,5 +9,5 @@ abstract class IWorkerRepository {
   Future<void> updateWorker(WorkerModel worker, {Transaction? txn});
   Future<void> updatePartialWorker(String workerId, Map<String, dynamic> changes, {Transaction? txn});
   Future<void> deleteLinkedWorker(String workerId, {Transaction? txn});
-  Stream<List<WorkerModel>> linkedWorkersStream();
+  Stream<List<WorkerModel>> initializeStream();
 }
