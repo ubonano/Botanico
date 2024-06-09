@@ -3,7 +3,7 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../module.dart';
 
-class WorkerLinkController extends GetxController with FormHelper, LifeCycleLoggingControllerHelper {
+class WorkerLinkController extends GetxController with GlobalHelper, FormHelper, LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'WorkerLinkController';
 
@@ -13,5 +13,13 @@ class WorkerLinkController extends GetxController with FormHelper, LifeCycleLogg
   List<String> formFields = [FieldKeys.uid];
 
   @override
-  Future<void> submit() async => await _workerService.linkWorker(getFieldValue(FieldKeys.uid));
+  Future<void> submit() async {
+    try {
+      await _workerService.linkWorker(getFieldValue(FieldKeys.uid));
+
+      navigate.back();
+    } catch (e) {
+      logTag;
+    }
+  }
 }

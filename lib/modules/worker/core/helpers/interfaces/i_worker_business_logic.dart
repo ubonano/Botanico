@@ -14,9 +14,7 @@ abstract class IWorkerBusinessLogic {
   Future<WorkerModel?> get(String id);
   Future<void> updateWorkerAsOwner(String companyId, Transaction? txn);
   Future<void> createWorker(WorkerModel worker);
-  Future<void> postCreateWorker();
   Future<void> linkWorker(String workerId, Transaction? txn);
-  Future<void> postLinkWorker();
   Future<void> unlinkWorker(String workerId, Transaction? txn);
   Future<void> initializeLinkedWorkerStream();
   void cancelLinkedWorkerStream();

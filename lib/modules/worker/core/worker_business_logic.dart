@@ -61,12 +61,6 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
       );
 
   @override
-  Future<void> postCreateWorker() async {
-    await fetchLoggedWorker();
-    navigate.toLobby();
-  }
-
-  @override
   Future<void> linkWorker(String workerId, Transaction? txn) async {
     final currentWorker = await get(_authBusinessLogic.currentUser!.uid);
     final worker = await get(workerId);
@@ -78,25 +72,20 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
     final updatedWorker = worker.copyWith(companyId: company.uid, role: WorkerRole.employee);
 
     await _workerRepo.updateWorker(updatedWorker, txn: txn);
-    await _workerRepo.createLinkedWorker(company.uid, updatedWorker, txn: txn);
+    await _workerRepo.createLinkedWorker(updatedWorker, txn: txn);
   }
 
   @override
-  Future<void> postLinkWorker() async => navigate.toWorkerList();
-
-  @override
   Future<void> unlinkWorker(String workerId, Transaction? txn) async {
-    final WorkerModel? currentWorker = await get(_authBusinessLogic.currentUser!.uid);
-    await _workerRepo.deleteLinkedWorker(currentWorker!.companyId, workerId, txn: txn);
+    await _workerRepo.deleteLinkedWorker(workerId, txn: txn);
     final changes = {'companyId': '', 'role': workerRoleToString(WorkerRole.undefined), 'permissions': {}};
     await _workerRepo.updatePartialWorker(workerId, changes, txn: txn);
   }
 
   @override
   Future<void> initializeLinkedWorkerStream() async {
-    final WorkerModel? worker = await fetchLoggedWorker();
     _workerListSubscription =
-        _workerRepo.linkedWorkersStream(worker!.companyId).listen((workerList) => linkedWorkerList$.value = workerList);
+        _workerRepo.linkedWorkersStream().listen((workerList) => linkedWorkerList$.value = workerList);
   }
 
   @override
