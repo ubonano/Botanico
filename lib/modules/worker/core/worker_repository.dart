@@ -18,38 +18,45 @@ class WorkerRepository implements IWorkerRepository {
   }
 
   @override
-  Future<void> createWorker(WorkerModel worker, {Transaction? txn}) async {
+  Future<void> create(WorkerModel worker, {Transaction? txn}) async {
     final docRef = _workerRef.doc(worker.uid);
     txn != null ? txn.set(docRef, worker.toMap()) : await docRef.set(worker.toMap());
   }
 
   @override
-  Future<void> createLinkedWorker(WorkerModel worker, {Transaction? txn}) async {
+  Future<void> link(WorkerModel worker, {Transaction? txn}) async {
     final docRef = _linkedWorkersRef().doc(worker.uid);
     txn != null ? txn.set(docRef, worker.toLinkedWorkerMap()) : await docRef.set(worker.toLinkedWorkerMap());
   }
 
   @override
-  Future<void> updateWorker(WorkerModel worker, {Transaction? txn}) async {
+  Future<void> update(WorkerModel worker, {Transaction? txn}) async {
     final docRef = _workerRef.doc(worker.uid);
     txn != null ? txn.update(docRef, worker.toMap()) : await docRef.update(worker.toMap());
   }
 
   @override
-  Future<void> updatePartialWorker(String workerId, Map<String, dynamic> changes, {Transaction? txn}) async {
+  Future<void> updatePartial(String workerId, Map<String, dynamic> changes, {Transaction? txn}) async {
     final docRef = _workerRef.doc(workerId);
     txn != null ? txn.update(docRef, changes) : await docRef.update(changes);
   }
 
   @override
-  Future<void> deleteLinkedWorker(String workerId, {Transaction? txn}) async {
+  Future<void> unlink(String workerId, {Transaction? txn}) async {
     final docRef = _linkedWorkersRef().doc(workerId);
     txn != null ? txn.delete(docRef) : await docRef.delete();
   }
 
   @override
-  Stream<List<WorkerModel>> initializeStream() =>
-      _linkedWorkersRef().snapshots().map((snapshot) => snapshot.docs.map(WorkerModel.fromSnapshot).toList());
+  Stream<List<WorkerModel>> initializeStream({DocumentSnapshot? startAfter, int limit = 20}) {
+    var query = _linkedWorkersRef().limit(limit);
+
+    if (startAfter != null) {
+      query = query.startAfterDocument(startAfter);
+    }
+
+    return query.snapshots().map((snapshot) => snapshot.docs.map(WorkerModel.fromSnapshot).toList());
+  }
 
   CollectionReference<Map<String, dynamic>> get _workerRef => _firestore.collection(FirestoreCollections.workers);
   CollectionReference<Map<String, dynamic>> _linkedWorkersRef() =>

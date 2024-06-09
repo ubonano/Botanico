@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
@@ -11,8 +12,6 @@ class WorkerService with GlobalHelper implements IWorkerService {
   WorkerModel? get curWorkerForUpdate$ => _workerBusinessLogic.curWorkerForUpdate$;
   @override
   WorkerModel? get loggedWorker$ => _workerBusinessLogic.loggedWorker$;
-  @override
-  List<WorkerModel> get linkedWorkerList$ => _workerBusinessLogic.linkedWorkerList$;
 
   @override
   Future<WorkerModel?> fetchCurWorkerForUpdate() async => _workerBusinessLogic.fetchCurWorkerForUpdate();
@@ -21,7 +20,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   Future<WorkerModel?> fetchLoggedWorker() async => _workerBusinessLogic.fetchLoggedWorker();
 
   @override
-  void clearCurrentWorker() => _workerBusinessLogic.clearCurrentWorker();
+  void clearCurrentWorker() => _workerBusinessLogic.clearLoggedWorker();
 
   @override
   Future<void> create(WorkerModel worker) async => await operation.perform(
@@ -46,20 +45,19 @@ class WorkerService with GlobalHelper implements IWorkerService {
       );
 
   @override
-  Future<void> initializeLinkedWorkerStream() async => await operation.perform(
-        operationName: 'Fetch workers',
-        permissionKey: WorkerModulePermissions.viewKey,
-        operation: (_) async => await _workerBusinessLogic.initializeLinkedWorkerStream(),
-      );
-
-  @override
-  void cancelLinkedWorkerStream() => _workerBusinessLogic.cancelLinkedWorkerStream();
-
-  @override
   Future<void> togglePermissionCurWorkerForUpdate(String permissionId) async => await operation.perform(
         operationName: 'Toggle permission $permissionId',
         permissionKey: WorkerModulePermissions.managePermissionsKey,
         operation: (_) async => await _workerBusinessLogic.togglePermissionCurWorkerForUpdate(permissionId),
         onSuccess: _workerBusinessLogic.fetchCurWorkerForUpdate,
       );
+
+  @override
+  StreamSubscription<List<WorkerModel>>? initializeStream({
+    required RxList<WorkerModel> list$,
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+    Function(List<WorkerModel>)? onNewData,
+  }) =>
+      _workerBusinessLogic.initializeStream(list$: list$, startAfter: startAfter, limit: limit, onNewData: onNewData);
 }

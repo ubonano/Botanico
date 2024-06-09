@@ -13,7 +13,7 @@ class WorkerListPage extends GetView<WorkerListController> {
       key: key ?? const Key('workerListPage'),
       title: 'Trabajadores Vinculados',
       drawer: CustomDrawer(),
-      body: Obx(() => WorkerList(controller.linkedWorkerList$.toList())),
+      body: Obx(() => WorkerList(controller.list$.toList())),
       floatingActionButton: WorkerLinkFAB(),
     );
   }
