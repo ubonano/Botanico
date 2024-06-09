@@ -2,6 +2,7 @@
 
 
 // TODO, hacer que los initializeStream no tengan como parametro el company, ya que dentro del repo se obtiene del busines logic de company
+
 // TODO no funciona la transaccion en operation_helper, si falla la transaccion no hace el rollback
 // TODO Cambiar que en la logica de negocio no se navegue... Eso se tiene que hacer en los controllers es parte de la interfaz grafica
 // TODO los gets de lo servicios tienen que pasar por perform... hacer que el perform devuelva el resultado de la operacion

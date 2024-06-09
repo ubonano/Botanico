@@ -9,7 +9,7 @@ abstract class IVendorBusinessLogic {
   Future<void> create(VendorModel vendor);
   Future<void> update(VendorModel vendor);
   Future<void> delete(VendorModel vendor);
-  StreamSubscription<List<VendorModel>>? initializeStream({
+  StreamSubscription<List<VendorModel>>? initStream({
     required RxList<VendorModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,

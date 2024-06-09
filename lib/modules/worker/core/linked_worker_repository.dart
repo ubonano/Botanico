@@ -22,7 +22,7 @@ class LinkedWorkerRepository implements ILinkedWorkerRepository {
   }
 
   @override
-  Stream<List<WorkerModel>> initializeStream({DocumentSnapshot? startAfter, int limit = 20}) {
+  Stream<List<WorkerModel>> initStream({DocumentSnapshot? startAfter, int limit = 20}) {
     var query = _linkedWorkersRef().limit(limit);
 
     if (startAfter != null) {

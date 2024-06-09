@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
 
 import '../module.dart';
 
 class VendorBusinessLogic implements IVendorBusinessLogic {
   late final IVendorRepository _vendorRepo = Get.find();
-  late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
 
   @override
   Future<VendorModel?> get(String id) async => _vendorRepo.get(id);
@@ -23,15 +21,13 @@ class VendorBusinessLogic implements IVendorBusinessLogic {
   Future<void> delete(VendorModel vendor) async => await _vendorRepo.delete(vendor);
 
   @override
-  StreamSubscription<List<VendorModel>>? initializeStream({
+  StreamSubscription<List<VendorModel>>? initStream({
     required RxList<VendorModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,
     Function(List<VendorModel>)? onNewData,
   }) =>
-      _vendorRepo
-          .initializeStream(_companyBusinessLogic.currentCompany$!.uid, startAfter: startAfter, limit: limit)
-          .listen(
+      _vendorRepo.initStream(startAfter: startAfter, limit: limit).listen(
         (vendorList) {
           startAfter == null ? list$.value = vendorList : list$.addAll(vendorList);
           onNewData?.call(vendorList);

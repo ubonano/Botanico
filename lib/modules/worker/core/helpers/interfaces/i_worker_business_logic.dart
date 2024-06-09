@@ -15,7 +15,7 @@ abstract class IWorkerBusinessLogic {
   Future<void> create(WorkerModel worker);
   Future<void> link(String workerId, Transaction? txn);
   Future<void> unlink(String workerId, Transaction? txn);
-  StreamSubscription<List<WorkerModel>>? initializeStream({
+  StreamSubscription<List<WorkerModel>>? initStream({
     required RxList<WorkerModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,

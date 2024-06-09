@@ -26,13 +26,13 @@ class VendorListController extends GetxController
   }
 
   @override
-  StreamSubscription<List<VendorModel>>? initializeStream({
+  StreamSubscription<List<VendorModel>>? initStream({
     required RxList<VendorModel> list$,
     DocumentSnapshot? startAfter,
     required int limit,
     required Function(List<VendorModel>) onNewData,
   }) =>
-      _vendorService.initializeStream(
+      _vendorService.initStream(
         list$: list$,
         startAfter: startAfter,
         limit: limit,

@@ -14,7 +14,7 @@ abstract class IWorkerService {
   Future<void> update(WorkerModel worker);
   Future<void> link(String workerId);
   Future<void> unlink(String workerId);
-  StreamSubscription<List<WorkerModel>>? initializeStream({
+  StreamSubscription<List<WorkerModel>>? initStream({
     required RxList<WorkerModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,

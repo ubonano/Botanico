@@ -19,7 +19,7 @@ abstract class IViaShipmentBusinessLogic {
   Future<void> archive(ViaShipmentModel shipment);
   Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState);
   Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace);
-  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
+  StreamSubscription<List<ViaShipmentModel>>? initStream({
     required RxList<ViaShipmentModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,

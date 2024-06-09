@@ -16,7 +16,7 @@ mixin PaginatedListHelper<T> on GetxController {
 
   bool isLoading = false;
 
-  StreamSubscription<List<T>>? initializeStream({
+  StreamSubscription<List<T>>? initStream({
     required RxList<T> list$,
     DocumentSnapshot? startAfter,
     required int limit,
@@ -28,7 +28,7 @@ mixin PaginatedListHelper<T> on GetxController {
 
     _subscription?.cancel();
 
-    _subscription = initializeStream(
+    _subscription = initStream(
       list$: list$,
       startAfter: null,
       limit: paginationLimit,
@@ -37,7 +37,7 @@ mixin PaginatedListHelper<T> on GetxController {
   }
 
   void loadNextPage() {
-    _subscription = initializeStream(
+    _subscription = initStream(
       list$: list$,
       startAfter: _lastDocumentSnapshot,
       limit: paginationLimit,

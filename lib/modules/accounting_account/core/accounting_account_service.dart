@@ -33,13 +33,13 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
       );
 
   @override
-  StreamSubscription<List<AccountingAccountModel>>? initializeStream({
+  StreamSubscription<List<AccountingAccountModel>>? initStream({
     required RxList<AccountingAccountModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,
     Function(List<AccountingAccountModel>)? onNewData,
   }) =>
-      _accountingAccountBusinessLogic.initializeStream(
+      _accountingAccountBusinessLogic.initStream(
         list$: list$,
         startAfter: startAfter,
         limit: limit,

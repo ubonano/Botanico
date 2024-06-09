@@ -26,7 +26,7 @@ class ViaShipmentListController extends GetxController
   }
 
   @override
-  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
+  StreamSubscription<List<ViaShipmentModel>>? initStream({
     required RxList<ViaShipmentModel> list$,
     DocumentSnapshot? startAfter,
     required int limit,

@@ -51,11 +51,11 @@ class WorkerService with GlobalHelper implements IWorkerService {
       );
 
   @override
-  StreamSubscription<List<WorkerModel>>? initializeStream({
+  StreamSubscription<List<WorkerModel>>? initStream({
     required RxList<WorkerModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,
     Function(List<WorkerModel>)? onNewData,
   }) =>
-      _workerBusinessLogic.initializeStream(list$: list$, startAfter: startAfter, limit: limit, onNewData: onNewData);
+      _workerBusinessLogic.initStream(list$: list$, startAfter: startAfter, limit: limit, onNewData: onNewData);
 }

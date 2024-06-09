@@ -26,13 +26,13 @@ class AccountingAccountListController extends GetxController
   }
 
   @override
-  StreamSubscription<List<AccountingAccountModel>>? initializeStream({
+  StreamSubscription<List<AccountingAccountModel>>? initStream({
     required RxList<AccountingAccountModel> list$,
     DocumentSnapshot? startAfter,
     required int limit,
     required Function(List<AccountingAccountModel>) onNewData,
   }) =>
-      _accountingAccountService.initializeStream(
+      _accountingAccountService.initStream(
         list$: list$,
         startAfter: startAfter,
         limit: limit,

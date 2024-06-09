@@ -5,5 +5,5 @@ import '../../../module.dart';
 abstract class ILinkedWorkerRepository {
   Future<void> link(WorkerModel worker, {Transaction? txn});
   Future<void> unlink(String id, {Transaction? txn});
-  Stream<List<WorkerModel>> initializeStream({DocumentSnapshot? startAfter, int limit = 20});
+  Stream<List<WorkerModel>> initStream({DocumentSnapshot? startAfter, int limit = 20});
 }

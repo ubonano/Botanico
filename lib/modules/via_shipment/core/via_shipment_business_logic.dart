@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
 
 import '../module.dart';
 
 class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
   late final IViaShipmentRepository _viaShipmentRepo = Get.find();
   late final IViaCargoRepository _viaCargoRepo = Get.find();
-  late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
 
   @override
   Future<ViaShipmentModel?> get(String id) async => _viaShipmentRepo.get(id);
@@ -74,17 +72,14 @@ class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
       await _viaShipmentRepo.update(shipment.changeDeliveryPlace(newPlace));
 
   @override
-  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
+  StreamSubscription<List<ViaShipmentModel>>? initStream({
     required RxList<ViaShipmentModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
     Function(List<ViaShipmentModel>)? onNewData,
   }) =>
-      _viaShipmentRepo
-          .initializeStream(_companyBusinessLogic.currentCompany$!.uid,
-              startAfter: startAfter, limit: limit, states: states)
-          .listen(
+      _viaShipmentRepo.iniStream(startAfter: startAfter, limit: limit, states: states).listen(
         (viaShipmentList) {
           startAfter == null ? list$.value = viaShipmentList : list$.addAll(viaShipmentList);
           onNewData?.call(viaShipmentList);

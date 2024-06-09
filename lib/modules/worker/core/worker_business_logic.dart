@@ -71,13 +71,13 @@ class WorkerBusinessLogic implements IWorkerBusinessLogic {
   }
 
   @override
-  StreamSubscription<List<WorkerModel>>? initializeStream({
+  StreamSubscription<List<WorkerModel>>? initStream({
     required RxList<WorkerModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,
     Function(List<WorkerModel>)? onNewData,
   }) =>
-      _linkedWorkerRepo.initializeStream(startAfter: startAfter, limit: limit).listen(
+      _linkedWorkerRepo.initStream(startAfter: startAfter, limit: limit).listen(
         (workerList) {
           startAfter == null ? list$.value = workerList : list$.addAll(workerList);
           onNewData?.call(workerList);

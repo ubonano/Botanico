@@ -10,39 +10,35 @@ class VendorRepository implements IVendorRepository {
   String get _companyId => Get.find<ICompanyBusinessLogic>().currentCompany$!.uid;
 
   @override
-  String get generateId => _vendorsRef(_companyId).doc().id;
+  String get generateId => _vendorsRef().doc().id;
 
   @override
   Future<VendorModel?> get(String id) async {
-    final docSnapshot = await _vendorsRef(_companyId).doc(id).get();
+    final docSnapshot = await _vendorsRef().doc(id).get();
     return docSnapshot.exists ? VendorModel.fromSnapshot(docSnapshot) : null;
   }
 
   @override
   Future<void> create(VendorModel vendor, {Transaction? txn}) async {
-    DocumentReference docRef = _vendorsRef(_companyId).doc(vendor.uid);
+    DocumentReference docRef = _vendorsRef().doc(vendor.uid);
     txn != null ? txn.set(docRef, vendor.toMap()) : await docRef.set(vendor.toMap());
   }
 
   @override
   Future<void> update(VendorModel vendor, {Transaction? txn}) async {
-    final docRef = _vendorsRef(_companyId).doc(vendor.uid);
+    final docRef = _vendorsRef().doc(vendor.uid);
     txn != null ? txn.update(docRef, vendor.toMap()) : await docRef.update(vendor.toMap());
   }
 
   @override
   Future<void> delete(VendorModel vendor, {Transaction? txn}) async {
-    final docRef = _vendorsRef(_companyId).doc(vendor.uid);
+    final docRef = _vendorsRef().doc(vendor.uid);
     txn != null ? txn.delete(docRef) : await docRef.delete();
   }
 
   @override
-  Stream<List<VendorModel>> initializeStream(
-    String companyId, {
-    DocumentSnapshot? startAfter,
-    int limit = 20,
-  }) {
-    var query = _vendorsRef(companyId).limit(limit);
+  Stream<List<VendorModel>> initStream({DocumentSnapshot? startAfter, int limit = 20}) {
+    var query = _vendorsRef().limit(limit);
 
     if (startAfter != null) {
       query = query.startAfterDocument(startAfter);
@@ -51,6 +47,6 @@ class VendorRepository implements IVendorRepository {
     return query.snapshots().map((snapshot) => snapshot.docs.map(VendorModel.fromSnapshot).toList());
   }
 
-  CollectionReference<Map<String, dynamic>> _vendorsRef(String companyId) =>
-      _firestore.collection(CompanyModel.collectionName).doc(companyId).collection(VendorModel.collectionName);
+  CollectionReference<Map<String, dynamic>> _vendorsRef() =>
+      _firestore.collection(CompanyModel.collectionName).doc(_companyId).collection(VendorModel.collectionName);
 }

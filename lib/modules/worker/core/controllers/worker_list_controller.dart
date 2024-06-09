@@ -25,13 +25,13 @@ class WorkerListController extends GetxController
   }
 
   @override
-  StreamSubscription<List<WorkerModel>>? initializeStream({
+  StreamSubscription<List<WorkerModel>>? initStream({
     required RxList<WorkerModel> list$,
     DocumentSnapshot? startAfter,
     required int limit,
     required Function(List<WorkerModel>) onNewData,
   }) =>
-      _workerService.initializeStream(
+      _workerService.initStream(
         list$: list$,
         startAfter: startAfter,
         limit: limit,
