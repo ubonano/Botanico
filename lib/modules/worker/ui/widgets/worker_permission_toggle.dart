@@ -12,11 +12,13 @@ class WorkerPermissionToggle extends GetView<WorkerPermissionToggleController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => CheckboxListTile(
-        title: Text(permission.name),
-        value: controller.curWorkerForUpdate?.permissions[permission.id] ?? false,
-        onChanged: (bool? value) => controller.togglePermission(permission.id),
-      ),
+      () {
+        return CheckboxListTile(
+          title: Text(permission.name),
+          value: controller.worker$?.permissions[permission.id] ?? false,
+          onChanged: (bool? value) => controller.togglePermission(permission.id),
+        );
+      },
     );
   }
 }

@@ -6,14 +6,12 @@ import '../../worker_model.dart';
 
 abstract class IWorkerBusinessLogic {
   WorkerModel? get loggedWorker$;
-  WorkerModel? get curWorkerForUpdate$;
-  dynamic get workerIdParmForUpdate;
 
   Future<WorkerModel?> fetchLoggedWorker();
   void clearLoggedWorker();
-  Future<WorkerModel?> fetchCurWorkerForUpdate();
   Future<WorkerModel?> get(String id);
   Future<void> updateWorkerAsOwner(String companyId, Transaction? txn);
+  Future<void> update(WorkerModel worker);
   Future<void> create(WorkerModel worker);
   Future<void> link(String workerId, Transaction? txn);
   Future<void> unlink(String workerId, Transaction? txn);
@@ -23,5 +21,4 @@ abstract class IWorkerBusinessLogic {
     int limit = 20,
     Function(List<WorkerModel>)? onNewData,
   });
-  Future<void> togglePermissionCurWorkerForUpdate(String permissionId);
 }

@@ -9,12 +9,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   @override
-  WorkerModel? get curWorkerForUpdate$ => _workerBusinessLogic.curWorkerForUpdate$;
-  @override
   WorkerModel? get loggedWorker$ => _workerBusinessLogic.loggedWorker$;
-
-  @override
-  Future<WorkerModel?> fetchCurWorkerForUpdate() async => _workerBusinessLogic.fetchCurWorkerForUpdate();
 
   @override
   Future<WorkerModel?> fetchLoggedWorker() async => _workerBusinessLogic.fetchLoggedWorker();
@@ -23,10 +18,21 @@ class WorkerService with GlobalHelper implements IWorkerService {
   void clearCurrentWorker() => _workerBusinessLogic.clearLoggedWorker();
 
   @override
+  Future<WorkerModel?> get(String id) async => _workerBusinessLogic.get(id);
+
+  @override
   Future<void> create(WorkerModel worker) async => await operation.perform(
         operationName: 'Create worker ${worker.uid}',
         operation: (_) async => await _workerBusinessLogic.create(worker),
       );
+
+  @override
+  Future<void> update(WorkerModel worker) async {
+    await operation.perform(
+      operationName: 'Update worker ${worker.uid}',
+      operation: (_) async => await _workerBusinessLogic.update(worker),
+    );
+  }
 
   @override
   Future<void> link(String id) async => await operation.perform(
@@ -42,14 +48,6 @@ class WorkerService with GlobalHelper implements IWorkerService {
         permissionKey: WorkerModulePermissions.unlinkKey,
         inTransaction: true,
         operation: (txn) async => await _workerBusinessLogic.unlink(id, txn),
-      );
-
-  @override
-  Future<void> togglePermissionCurWorkerForUpdate(String permissionId) async => await operation.perform(
-        operationName: 'Toggle permission $permissionId',
-        permissionKey: WorkerModulePermissions.managePermissionsKey,
-        operation: (_) async => await _workerBusinessLogic.togglePermissionCurWorkerForUpdate(permissionId),
-        onSuccess: _workerBusinessLogic.fetchCurWorkerForUpdate,
       );
 
   @override

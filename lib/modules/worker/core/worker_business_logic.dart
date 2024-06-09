@@ -16,14 +16,9 @@ class WorkerBusinessLogic implements IWorkerBusinessLogic {
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
 
   final _loggedWorker = Rx<WorkerModel?>(null);
-  final _curWorkerForUpdate = Rx<WorkerModel?>(null);
 
   @override
-  dynamic get workerIdParmForUpdate => Get.arguments;
-  @override
   WorkerModel? get loggedWorker$ => _loggedWorker.value;
-  @override
-  WorkerModel? get curWorkerForUpdate$ => _curWorkerForUpdate.value;
 
   @override
   Future<WorkerModel?> fetchLoggedWorker() async {
@@ -33,13 +28,6 @@ class WorkerBusinessLogic implements IWorkerBusinessLogic {
 
   @override
   void clearLoggedWorker() => _loggedWorker.value = null;
-
-  @override
-  Future<WorkerModel?> fetchCurWorkerForUpdate() async {
-    if (workerIdParmForUpdate == null) throw Exception('Cur worker id Parameter not found');
-    _curWorkerForUpdate.value = await get(workerIdParmForUpdate);
-    return _curWorkerForUpdate.value;
-  }
 
   @override
   Future<WorkerModel?> get(String id) async => _workerRepo.get(id);
@@ -53,6 +41,9 @@ class WorkerBusinessLogic implements IWorkerBusinessLogic {
     );
     await fetchLoggedWorker();
   }
+
+  @override
+  Future<void> update(WorkerModel worker) async => await _workerRepo.update(worker);
 
   @override
   Future<void> create(WorkerModel worker) async =>
@@ -92,11 +83,4 @@ class WorkerBusinessLogic implements IWorkerBusinessLogic {
           onNewData?.call(workerList);
         },
       );
-
-  @override
-  Future<void> togglePermissionCurWorkerForUpdate(String permissionId) async {
-    WorkerModel? worker = curWorkerForUpdate$;
-    worker!.togglePermission(permissionId);
-    await _workerRepo.update(worker);
-  }
 }
