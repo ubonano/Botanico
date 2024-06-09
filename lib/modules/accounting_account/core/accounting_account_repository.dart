@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
 
 import '../module.dart';
@@ -53,7 +52,7 @@ class AccountingAccountRepository implements IAccountingAccountRepository {
   }
 
   CollectionReference<Map<String, dynamic>> _accountingAccountsRef(String companyId) => _firestore
-      .collection(FirestoreCollections.companies)
+      .collection(CompanyModel.collectionName)
       .doc(companyId)
-      .collection(FirestoreCollections.accountingAccounts);
+      .collection(AccountingAccountModel.collectionName);
 }

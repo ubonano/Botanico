@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:botanico/setup/firestore_collections.dart';
 import 'package:botanico/modules/company/module.dart';
 
 import '../module.dart';
@@ -34,5 +33,5 @@ class LinkedWorkerRepository implements ILinkedWorkerRepository {
   }
 
   CollectionReference<Map<String, dynamic>> _linkedWorkersRef() =>
-      _firestore.collection(FirestoreCollections.companies).doc(_companyId).collection(FirestoreCollections.workers);
+      _firestore.collection(CompanyModel.collectionName).doc(_companyId).collection(WorkerModel.collectionName);
 }

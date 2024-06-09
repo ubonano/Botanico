@@ -60,8 +60,6 @@ class ViaShipmentRepository implements IViaShipmentRepository {
     return query.snapshots().map((snapshot) => snapshot.docs.map(ViaShipmentModel.fromSnapshot).toList());
   }
 
-  CollectionReference<Map<String, dynamic>> _viaShipmentsRef(String companyId) => _firestore
-      .collection(FirestoreCollections.companies)
-      .doc(companyId)
-      .collection(FirestoreCollections.viaShipments);
+  CollectionReference<Map<String, dynamic>> _viaShipmentsRef(String companyId) =>
+      _firestore.collection(CompanyModel.collectionName).doc(companyId).collection(ViaShipmentModel.collectionName);
 }

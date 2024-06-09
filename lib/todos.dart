@@ -1,7 +1,6 @@
 // CREa modulo de COMPRAS! Finaliza el feature y comenza uno nuevo
 
 
-// TODO ver de agregar el collectionName en el modelo como valor static
 // TODO, hacer que los initializeStream no tengan como parametro el company, ya que dentro del repo se obtiene del busines logic de company
 // TODO no funciona la transaccion en operation_helper, si falla la transaccion no hace el rollback
 // TODO Cambiar que en la logica de negocio no se navegue... Eso se tiene que hacer en los controllers es parte de la interfaz grafica

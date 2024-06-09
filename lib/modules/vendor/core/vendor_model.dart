@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class VendorModel {
+  static const String collectionName = 'vendors';
+
   final String uid;
   final String name;
   final String cuit;

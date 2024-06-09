@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../module.dart';
 
 class ViaShipmentModel {
+  static const String collectionName = 'viaShipments';
+
   final String id;
   final String shipmentId;
   final String type;

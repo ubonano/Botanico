@@ -50,7 +50,6 @@ export 'ui/module_list_page.dart';
 export 'ui/home_page.dart';
 
 export '../../app.dart';
-export '../../setup/firestore_collections.dart';
 export '../../setup/bindings.dart';
 export '../../setup/firebase_options.dart';
 export '../../setup/pages.dart';

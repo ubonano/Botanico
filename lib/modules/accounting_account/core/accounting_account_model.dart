@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AccountingAccountModel {
+  static const String collectionName = 'accountingAccounts';
+
   final String uid;
   final String name;
   final String observations;

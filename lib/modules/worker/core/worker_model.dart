@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../module.dart';
 
 class WorkerModel {
+  static const String collectionName = 'workers';
+
   final String uid;
   final String email;
   final String name;

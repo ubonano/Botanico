@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:botanico/setup/firestore_collections.dart';
 
 import '../module.dart';
 
@@ -32,5 +31,5 @@ class WorkerRepository implements IWorkerRepository {
     txn != null ? txn.update(docRef, changes) : await docRef.update(changes);
   }
 
-  CollectionReference<Map<String, dynamic>> get _workerRef => _firestore.collection(FirestoreCollections.workers);
+  CollectionReference<Map<String, dynamic>> get _workerRef => _firestore.collection(WorkerModel.collectionName);
 }

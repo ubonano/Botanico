@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:botanico/modules/foundation/module.dart';
 
 import '../module.dart';
 
@@ -22,5 +21,5 @@ class CompanyRepository implements ICompanyRepository {
     txn != null ? txn.set(docRef, company.toMap()) : await docRef.set(company.toMap());
   }
 
-  CollectionReference<Map<String, dynamic>> get _companyRef => _firestore.collection(FirestoreCollections.companies);
+  CollectionReference<Map<String, dynamic>> get _companyRef => _firestore.collection(CompanyModel.collectionName);
 }
