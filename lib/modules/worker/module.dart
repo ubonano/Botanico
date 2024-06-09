@@ -15,12 +15,14 @@ export 'core/helpers/worker_navigation_helper.dart';
 
 export 'core/helpers/interfaces/i_worker_business_logic.dart';
 export 'core/helpers/interfaces/i_worker_repository.dart';
+export 'core/helpers/interfaces/i_linked_worker_repository.dart';
 export 'core/helpers/interfaces/i_worker_service.dart';
 
 export 'core/helpers/enums/worker_role.dart';
 export 'core/worker_model.dart';
 
 export 'core/worker_repository.dart';
+export 'core/linked_worker_repository.dart';
 export 'core/worker_service.dart';
 
 export 'tests/flows/worker_create_from_sign_up_flow.dart';
@@ -61,6 +63,7 @@ void dependencies() {
   Get.put<IWorkerBusinessLogic>(WorkerBusinessLogic(), permanent: true);
 
   Get.lazyPut<IWorkerRepository>(() => WorkerRepository(), fenix: true);
+  Get.lazyPut<ILinkedWorkerRepository>(() => LinkedWorkerRepository(), fenix: true);
   Get.lazyPut<IWorkerService>(() => WorkerService(), fenix: true);
 
   Get.lazyPut<WorkerLobbyController>(() => WorkerLobbyController(), fenix: true);

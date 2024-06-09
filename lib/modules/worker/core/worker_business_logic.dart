@@ -8,6 +8,7 @@ import '../module.dart';
 
 class WorkerBusinessLogic implements IWorkerBusinessLogic {
   late final IWorkerRepository _workerRepo = Get.find();
+  late final ILinkedWorkerRepository _linkedWorkerRepo = Get.find();
 
   String get _currentUserId => Get.find<IAuthenticationBusinessLogic>().currentUser?.uid ?? '';
   String get _currentUserEmail => Get.find<IAuthenticationBusinessLogic>().currentUser?.email ?? '';
@@ -68,12 +69,12 @@ class WorkerBusinessLogic implements IWorkerBusinessLogic {
     final updatedWorker = worker.copyWith(companyId: company.uid, role: WorkerRole.employee);
 
     await _workerRepo.update(updatedWorker, txn: txn);
-    await _workerRepo.link(updatedWorker, txn: txn);
+    await _linkedWorkerRepo.link(updatedWorker, txn: txn);
   }
 
   @override
   Future<void> unlink(String workerId, Transaction? txn) async {
-    await _workerRepo.unlink(workerId, txn: txn);
+    await _linkedWorkerRepo.unlink(workerId, txn: txn);
     final changes = {'companyId': '', 'role': workerRoleToString(WorkerRole.undefined), 'permissions': {}};
     await _workerRepo.updatePartial(workerId, changes, txn: txn);
   }
@@ -85,7 +86,7 @@ class WorkerBusinessLogic implements IWorkerBusinessLogic {
     int limit = 20,
     Function(List<WorkerModel>)? onNewData,
   }) =>
-      _workerRepo.initializeStream(startAfter: startAfter, limit: limit).listen(
+      _linkedWorkerRepo.initializeStream(startAfter: startAfter, limit: limit).listen(
         (workerList) {
           startAfter == null ? list$.value = workerList : list$.addAll(workerList);
           onNewData?.call(workerList);
