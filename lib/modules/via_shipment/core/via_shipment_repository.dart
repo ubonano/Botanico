@@ -8,43 +8,42 @@ import '../module.dart';
 class ViaShipmentRepository implements IViaShipmentRepository {
   late final FirebaseFirestore _firestore = Get.find();
 
-  String get _companyId => Get.find<ICompanyBusinessLogic>().currentCompanyId;
+  String get _companyId => Get.find<ICompanyBusinessLogic>().currentCompany$!.uid;
 
   @override
-  String get generateId => _viaShipmentsRef(_companyId).doc().id;
+  String get generateId => _viaShipmentsRef().doc().id;
 
   @override
   Future<ViaShipmentModel?> get(String id) async {
-    final docSnapshot = await _viaShipmentsRef(_companyId).doc(id).get();
+    final docSnapshot = await _viaShipmentsRef().doc(id).get();
     return docSnapshot.exists ? ViaShipmentModel.fromSnapshot(docSnapshot) : null;
   }
 
   @override
-  Future<void> create(ViaShipmentModel viaShipment, {Transaction? txn}) async {
-    DocumentReference docRef = _viaShipmentsRef(_companyId).doc(viaShipment.id);
-    txn != null ? txn.set(docRef, viaShipment.toMap()) : await docRef.set(viaShipment.toMap());
+  Future<void> create(ViaShipmentModel shipment, {Transaction? txn}) async {
+    DocumentReference docRef = _viaShipmentsRef().doc(shipment.id);
+    txn != null ? txn.set(docRef, shipment.toMap()) : await docRef.set(shipment.toMap());
   }
 
   @override
-  Future<void> update(ViaShipmentModel viaShipment, {Transaction? txn}) async {
-    final docRef = _viaShipmentsRef(_companyId).doc(viaShipment.id);
-    txn != null ? txn.update(docRef, viaShipment.toMap()) : await docRef.update(viaShipment.toMap());
+  Future<void> update(ViaShipmentModel shipment, {Transaction? txn}) async {
+    final docRef = _viaShipmentsRef().doc(shipment.id);
+    txn != null ? txn.update(docRef, shipment.toMap()) : await docRef.update(shipment.toMap());
   }
 
   @override
-  Future<void> delete(String id, {Transaction? txn}) async {
-    final docRef = _viaShipmentsRef(_companyId).doc(id);
+  Future<void> delete(ViaShipmentModel shipment, {Transaction? txn}) async {
+    final docRef = _viaShipmentsRef().doc(shipment.id);
     txn != null ? txn.delete(docRef) : await docRef.delete();
   }
 
   @override
-  Stream<List<ViaShipmentModel>> listStream(
-    String companyId, {
+  Stream<List<ViaShipmentModel>> iniStream({
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
   }) {
-    var query = _viaShipmentsRef(companyId)
+    var query = _viaShipmentsRef()
         .orderBy(FieldKeys.state, descending: false)
         .orderBy(FieldKeys.createdDateTime, descending: true)
         .limit(limit);
@@ -60,8 +59,6 @@ class ViaShipmentRepository implements IViaShipmentRepository {
     return query.snapshots().map((snapshot) => snapshot.docs.map(ViaShipmentModel.fromSnapshot).toList());
   }
 
-  CollectionReference<Map<String, dynamic>> _viaShipmentsRef(String companyId) => _firestore
-      .collection(FirestoreCollections.companies)
-      .doc(companyId)
-      .collection(FirestoreCollections.viaShipments);
+  CollectionReference<Map<String, dynamic>> _viaShipmentsRef() =>
+      _firestore.collection(CompanyModel.collectionName).doc(_companyId).collection(ViaShipmentModel.collectionName);
 }

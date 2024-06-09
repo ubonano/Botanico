@@ -11,7 +11,7 @@ import '../module.dart';
 
 flutter drive \
   --driver=test_driver/integration_test.dart \
-  --target=lib/modules/authentication/module_test.dart \
+  --target=lib/modules/authentication/tests/module_test.dart \
   -d chrome
 
 */

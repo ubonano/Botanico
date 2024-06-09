@@ -1,16 +1,23 @@
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
+
 import '../../../module.dart';
 
 abstract class IWorkerService {
-  WorkerModel? get curWorkerForUpdate$;
   WorkerModel? get loggedWorker$;
-  List<WorkerModel> get linkedWorkerList$;
 
-  Future<void> createWorker(WorkerModel worker);
-  Future<void> linkWorker(String workerId);
-  Future<void> unlinkWorker(String workerId);
-  Future<void> initializeLinkedWorkerStream();
-  void cancelLinkedWorkerStream();
-  Future<void> togglePermissionCurWorkerForUpdate(String permissionId);
-  Future<void> fetchCurWorkerForUpdate();
-  Future<void> fetchLoggedWorker();
+  Future<WorkerModel?> fetchLoggedWorker();
+  void clearCurrentWorker();
+  Future<WorkerModel?> get(String id);
+  Future<void> create(WorkerModel worker);
+  Future<void> update(WorkerModel worker);
+  Future<void> link(String workerId);
+  Future<void> unlink(String workerId);
+  StreamSubscription<List<WorkerModel>>? initStream({
+    required RxList<WorkerModel> list$,
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+    Function(List<WorkerModel>)? onNewData,
+  });
 }

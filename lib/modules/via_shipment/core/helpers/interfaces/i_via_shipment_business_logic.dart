@@ -10,16 +10,7 @@ abstract class IViaShipmentBusinessLogic {
   Future<ViaShipmentModel?> getFromExternalAPI(String id);
   Future<void> create(ViaShipmentModel shipment);
   Future<void> update(ViaShipmentModel shipment);
-  Future<void> delete(String id);
-  Future<void> postCreate();
-  Future<void> postUpdate();
-  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
-    required RxList<ViaShipmentModel> list$,
-    DocumentSnapshot? startAfter,
-    int limit = 20,
-    List<ViaShipmentState>? states,
-    Function(List<ViaShipmentModel>)? onNewData,
-  });
+  Future<void> delete(ViaShipmentModel shipment);
   Future<void> invoice(ViaShipmentModel shipment);
   Future<void> cancelInvoice(ViaShipmentModel shipment);
   Future<void> process(ViaShipmentModel shipment);
@@ -28,4 +19,11 @@ abstract class IViaShipmentBusinessLogic {
   Future<void> archive(ViaShipmentModel shipment);
   Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState);
   Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace);
+  StreamSubscription<List<ViaShipmentModel>>? initStream({
+    required RxList<ViaShipmentModel> list$,
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+    List<ViaShipmentState>? states,
+    Function(List<ViaShipmentModel>)? onNewData,
+  });
 }

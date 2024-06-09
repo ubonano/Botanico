@@ -8,7 +8,6 @@ class OperationHelper with GlobalHelper {
   late final FirebaseFirestore _firestore = Get.find();
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
-  // TODO no funciona la transaccion, si falla la transaccion no hace el rollback
   Future<T?> perform<T>({
     required Future<T?> Function(Transaction? txn) operation,
     String operationName = "Operation",
@@ -78,7 +77,8 @@ class OperationHelper with GlobalHelper {
       log.error("$operationName fallida: $finalErrorMessage", e);
 
       onError?.call(e);
-      return null;
+
+      rethrow;
     }
   }
 

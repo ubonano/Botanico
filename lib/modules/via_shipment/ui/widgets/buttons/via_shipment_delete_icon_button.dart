@@ -4,10 +4,10 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../../module.dart';
 
-class ViaShipmentDeleteIconButton extends GetView<ViaShipmentDeleteController> {
-  final ViaShipmentModel viaShipment;
+class ViaShipmentDeleteIconButton extends StatelessWidget {
+  final ViaShipmentModel shipment;
 
-  const ViaShipmentDeleteIconButton(this.viaShipment, {super.key});
+  const ViaShipmentDeleteIconButton(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class ViaShipmentDeleteIconButton extends GetView<ViaShipmentDeleteController> {
         icon: const Icon(Icons.delete),
         onPressed: () => ConfirmationDialog.show(
           context,
-          content: 'Are you sure you want to delete this via shipment?',
-          onConfirm: () => controller.submit(viaShipment),
+          content: '¿Estás seguro de que deseas eliminar este envío?',
+          onConfirm: () => Get.find<IViaShipmentService>().delete(shipment),
         ),
       ),
     );

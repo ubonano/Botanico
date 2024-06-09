@@ -11,7 +11,7 @@ class AccountingAccountList extends GetView<AccountingAccountListController> wit
   Widget build(BuildContext context) {
     return Obx(
       () {
-        var list = controller.accountingAccountList$.toList();
+        var list = controller.list$.toList();
 
         return ListView.builder(
           itemCount: list.length,

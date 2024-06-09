@@ -1,4 +1,6 @@
 import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
@@ -6,39 +8,44 @@ import 'package:botanico/modules/worker/module.dart';
 
 import '../../module.dart';
 
-class ViaShipmentDashboardController extends GetxController with LifeCycleLoggingControllerHelper {
+class ViaShipmentDashboardController extends GetxController
+    with PaginatedListHelper<ViaShipmentModel>, LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'ViaShipmentDashboardController';
 
-  late final IWorkerService _workerService = Get.find();
-  late final ICompanyService _companyService = Get.find();
+  @override
+  int get paginationLimit => 100;
+
   late final IViaShipmentService _viaShipmentService = Get.find();
 
-  final list$ = RxList<ViaShipmentModel>();
-  StreamSubscription<List<ViaShipmentModel>>? _subscription;
+  late final IWorkerService _workerService = Get.find();
+  late final ICompanyService _companyService = Get.find();
 
   @override
   Future<void> onInit() async {
-    super.onInit();
-
     await _workerService.fetchLoggedWorker();
     await _companyService.fetchLoggedCompany();
 
-    _subscription = _viaShipmentService.initializeStream(
-      list$: list$,
-      limit: 100,
-      states: [
-        ViaShipmentState.pending,
-        ViaShipmentState.inProcess,
-        ViaShipmentState.ready,
-        ViaShipmentState.delivered
-      ],
-    );
+    super.onInit();
   }
 
   @override
-  void onClose() {
-    _subscription?.cancel();
-    super.onClose();
-  }
+  StreamSubscription<List<ViaShipmentModel>>? initStream({
+    required RxList<ViaShipmentModel> list$,
+    DocumentSnapshot? startAfter,
+    required int limit,
+    required Function(List<ViaShipmentModel>) onNewData,
+  }) =>
+      _viaShipmentService.initializeStream(
+        list$: list$,
+        startAfter: startAfter,
+        limit: limit,
+        states: [
+          ViaShipmentState.pending,
+          ViaShipmentState.inProcess,
+          ViaShipmentState.ready,
+          ViaShipmentState.delivered
+        ],
+        onNewData: onNewData,
+      );
 }

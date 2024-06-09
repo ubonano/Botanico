@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../module.dart';
 
 class ViaShipmentFormController extends GetxController
-    with FormHelper<ViaShipmentModel>, LifeCycleLoggingControllerHelper {
+    with FormHelper<ViaShipmentModel>, GlobalHelper, LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'ViaShipmentFormController';
 
@@ -50,8 +50,15 @@ class ViaShipmentFormController extends GetxController
   }
 
   @override
-  Future<void> submit() async =>
+  Future<void> submit() async {
+    try {
       isUpdateMode ? await _viaShipmentService.update(buildModel()) : await _viaShipmentService.create(buildModel());
+
+      navigate.back();
+    } catch (e) {
+      logTag;
+    }
+  }
 
   @override
   ViaShipmentModel buildModel() {

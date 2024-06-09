@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CompanyModel {
+  static const String collectionName = 'companies';
+
   final String uid;
   final String ownerUid;
   final String name;

@@ -1,6 +1,8 @@
 import '../../../module.dart';
 
 abstract class ICompanyService {
+  CompanyModel? get loggedCompany$;
   Future<void> createCompany(CompanyModel company);
-  Future<void> fetchLoggedCompany();
+  Future<CompanyModel?> fetchLoggedCompany();
+  void clearCurrentCompany();
 }

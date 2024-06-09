@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 
 import '../../module.dart';
 
-class VendorFormController extends GetxController with FormHelper<VendorModel>, LifeCycleLoggingControllerHelper {
+class VendorFormController extends GetxController
+    with FormHelper<VendorModel>, GlobalHelper, LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'VendorFormController';
 
@@ -35,19 +36,23 @@ class VendorFormController extends GetxController with FormHelper<VendorModel>, 
   }
 
   @override
-  Future<void> submit() async =>
-      isUpdateMode ? await _vendorService.updateVendor(buildModel()) : await _vendorService.createVendor(buildModel());
+  Future<void> submit() async {
+    try {
+      isUpdateMode ? await _vendorService.update(buildModel()) : await _vendorService.create(buildModel());
+      navigate.back();
+    } catch (e) {
+      logTag;
+    }
+  }
 
   @override
-  VendorModel buildModel() {
-    return VendorModel(
-      uid: isUpdateMode ? modelForUpdate!.uid : '',
-      name: getFieldValue(FieldKeys.name),
-      cuit: getFieldValue(FieldKeys.cuit),
-      registrationType: registrationType.value,
-      address: getFieldValue(FieldKeys.address),
-      phone: getFieldValue(FieldKeys.phone),
-      observations: getFieldValue(FieldKeys.observations),
-    );
-  }
+  VendorModel buildModel() => VendorModel(
+        uid: isUpdateMode ? modelForUpdate!.uid : '',
+        name: getFieldValue(FieldKeys.name),
+        cuit: getFieldValue(FieldKeys.cuit),
+        registrationType: registrationType.value,
+        address: getFieldValue(FieldKeys.address),
+        phone: getFieldValue(FieldKeys.phone),
+        observations: getFieldValue(FieldKeys.observations),
+      );
 }
