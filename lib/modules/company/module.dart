@@ -71,5 +71,5 @@ class CompanyModulePermissions implements ModuleStructure {
       ];
 
   @override
-  ModuleModel toModel() => ModuleModel(name: 'Empresa', permissions: permissions);
+  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

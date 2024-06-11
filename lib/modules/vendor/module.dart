@@ -92,5 +92,5 @@ class VendorModulePermissions implements ModuleStructure {
       ];
 
   @override
-  ModuleModel toModel() => ModuleModel(name: 'Proveedores', permissions: permissions);
+  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

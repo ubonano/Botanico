@@ -13,6 +13,7 @@ class CompanyFormPageTileButton extends StatelessWidget with NavigationHelperIns
 
     return ProtectedWidget(
       key: key ?? const Key('CompanyFormPageTileButton'),
+      module: CompanyModulePermissions().toModel(),
       permission: CompanyModulePermissions.updateKey,
       child: ListTile(
         leading: const Icon(Icons.business),

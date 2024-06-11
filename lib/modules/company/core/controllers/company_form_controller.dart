@@ -60,4 +60,13 @@ class CompanyFormController extends GetxController
         country: getFieldValue(FieldKeys.country),
         phone: getFieldValue(FieldKeys.phone),
       );
+
+  Future<void> toggleModule(ModuleModel module) async {
+    if (modelForUpdate != null) {
+      modelForUpdate!.toggleModule(module);
+      await _companyService.update(modelForUpdate!);
+
+      await _companyService.fetchLoggedCompany();
+    }
+  }
 }

@@ -10,6 +10,7 @@ class ViaShipmentListPageTileButton extends StatelessWidget with NavigationHelpe
   Widget build(BuildContext context) {
     return ProtectedWidget(
       key: key ?? const Key('ViaShipmentListPageTileButton'),
+      module: ViaShipmentModulePermissions().toModel(),
       permission: ViaShipmentModulePermissions.viewKey,
       child: ExpansionTile(
         leading: const Icon(Icons.local_shipping),
@@ -22,6 +23,7 @@ class ViaShipmentListPageTileButton extends StatelessWidget with NavigationHelpe
           ),
           ProtectedWidget(
             key: const Key('ViaShipmentDashboardTileButton'),
+            module: ViaShipmentModulePermissions().toModel(),
             permission: ViaShipmentModulePermissions.viewKey,
             child: ListTile(
               leading: const Icon(Icons.dashboard),

@@ -10,6 +10,7 @@ class CompanyEnabledFormFields extends GetView<CompanyFormController> {
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
+      module: CompanyModulePermissions().toModel(),
       permission: CompanyModulePermissions.updateKey,
       child: IconButton(
         key: key ?? const Key('CompanyEnabledFormFields'),

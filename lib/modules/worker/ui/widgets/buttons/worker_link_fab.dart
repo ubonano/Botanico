@@ -9,6 +9,7 @@ class WorkerLinkFAB extends StatelessWidget with NavigationHelperInstance {
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
+      module: WorkerModulePermissions().toModel(),
       permission: WorkerModulePermissions.linkKey,
       child: FloatingActionButton(
         key: key ?? const Key('WorkerLinkFAB'),

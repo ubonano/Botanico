@@ -11,6 +11,7 @@ class VendorUpdateIconButton extends StatelessWidget with NavigationHelperInstan
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
+      module: VendorModulePermissions().toModel(),
       permission: VendorModulePermissions.updateKey,
       child: IconButton(
         key: key ?? const Key('VendorUpdateIconButton'),
