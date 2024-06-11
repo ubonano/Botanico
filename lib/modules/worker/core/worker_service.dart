@@ -6,6 +6,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import '../module.dart';
 
 class WorkerService with GlobalHelper implements IWorkerService {
+  late final ModuleModel _module = WorkerModulePermissions().toModel();
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   @override
@@ -20,6 +21,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   @override
   Future<WorkerModel?> get(String id) async => await operation.perform(
         operationName: 'Get worker $id',
+        module: _module,
         permissionKey: WorkerModulePermissions.viewKey,
         operation: (_) async => await _workerBusinessLogic.get(id),
       );
@@ -41,6 +43,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   @override
   Future<void> link(String id) async => await operation.perform(
         operationName: 'Link worker $id',
+        module: _module,
         permissionKey: WorkerModulePermissions.linkKey,
         inTransaction: true,
         operation: (txn) async => await _workerBusinessLogic.link(id, txn),
@@ -49,6 +52,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   @override
   Future<void> unlink(String id) async => await operation.perform(
         operationName: 'Unlink worker $id',
+        module: _module,
         permissionKey: WorkerModulePermissions.unlinkKey,
         inTransaction: true,
         operation: (txn) async => await _workerBusinessLogic.unlink(id, txn),
