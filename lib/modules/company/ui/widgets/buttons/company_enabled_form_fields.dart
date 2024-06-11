@@ -4,16 +4,16 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../../module.dart';
 
-class AccountingAccountEnabledFormFields extends GetView<AccountingAccountFormController> {
-  const AccountingAccountEnabledFormFields({super.key});
+class CompanyEnabledFormFields extends GetView<CompanyFormController> {
+  const CompanyEnabledFormFields({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
-      module: AccountingAccountModulePermissions().toModel(),
-      permission: AccountingAccountModulePermissions.updateKey,
+      module: CompanyModulePermissions().toModel(),
+      permission: CompanyModulePermissions.updateKey,
       child: IconButton(
-        key: key ?? const Key('AccountingAccountEnabledFormFields'),
+        key: key ?? const Key('CompanyEnabledFormFields'),
         icon: const Icon(Icons.edit),
         onPressed: () => controller.isFieldsEnabled.value = !controller.isFieldsEnabled.value,
       ),

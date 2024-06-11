@@ -9,6 +9,7 @@ class AccountingAccountCreateFAB extends StatelessWidget with NavigationHelperIn
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
+      module: AccountingAccountModulePermissions().toModel(),
       permission: AccountingAccountModulePermissions.createKey,
       child: FloatingActionButton(
         key: key ?? const Key('AccountingAccountCreateFAB'),
@@ -18,4 +19,3 @@ class AccountingAccountCreateFAB extends StatelessWidget with NavigationHelperIn
     );
   }
 }
-

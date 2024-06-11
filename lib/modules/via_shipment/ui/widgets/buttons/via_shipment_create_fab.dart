@@ -9,6 +9,7 @@ class ViaShipmentCreateFAB extends StatelessWidget with NavigationHelperInstance
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
+      module: ViaShipmentModulePermissions().toModel(),
       permission: ViaShipmentModulePermissions.createKey,
       child: FloatingActionButton(
         key: key ?? const Key('ViaShipmentCreateFAB'),

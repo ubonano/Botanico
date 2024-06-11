@@ -12,22 +12,39 @@ class CompanyFormPage extends GetView<CompanyFormController> {
     return CustomScaffold(
       key: key ?? const Key('CompanyFormPage'),
       title: controller.isUpdateMode ? 'Empresa' : 'Crear empresa',
+      actionButtons: controller.isUpdateMode ? const [CompanyEnabledFormFields()] : [],
       drawer: null,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: controller.formKey,
-          child: Column(
-            children: [
-              NameInputField(controller),
-              AddressInputField(controller),
-              CityInputField(controller),
-              ProvinceInputField(controller),
-              CountryInputField(controller),
-              PhoneInputField(controller),
-              const CompanySaveButton(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Form(
+              key: controller.formKey,
+              child: Column(
+                children: [
+                  NameInputField(controller),
+                  AddressInputField(controller),
+                  CityInputField(controller),
+                  ProvinceInputField(controller),
+                  CountryInputField(controller),
+                  PhoneInputField(controller),
+                  const CompanySaveButton(),
+                ],
+              ),
+            ),
+            if (controller.isUpdateMode) ...[
+              Obx(
+                () => Flexible(
+                  child: ListView(
+                    shrinkWrap: true,
+                    children:
+                        Get.find<ModuleListController>().modules$.map((module) => ModuleActiveToggle(module)).toList(),
+                  ),
+                ),
+              ),
             ],
-          ),
+          ],
         ),
       ),
     );

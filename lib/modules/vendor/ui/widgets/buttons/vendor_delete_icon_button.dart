@@ -12,6 +12,7 @@ class VendorDeleteIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
+      module: VendorModulePermissions().toModel(),
       permission: VendorModulePermissions.deleteKey,
       child: IconButton(
         key: key ?? const Key('VendorDeleteIconButton'),

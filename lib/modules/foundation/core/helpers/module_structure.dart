@@ -5,5 +5,5 @@ abstract class ModuleStructure {
   String get moduleName;
   List<PermissionModel> get permissions;
 
-  ModuleModel toModel() => ModuleModel(name: moduleName, permissions: permissions);
+  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

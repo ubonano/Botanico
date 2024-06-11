@@ -44,6 +44,7 @@ export 'ui/widgets/custom_drawer.dart';
 export 'ui/widgets/confirmation_dialog.dart';
 export 'ui/widgets/custom_scaffold.dart';
 export 'ui/widgets/protected_widget.dart';
+export 'ui/widgets/module_active_toggle.dart';
 
 export 'ui/module_list_page.dart';
 

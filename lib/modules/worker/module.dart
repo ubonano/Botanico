@@ -95,5 +95,5 @@ class WorkerModulePermissions implements ModuleStructure {
       ];
 
   @override
-  ModuleModel toModel() => ModuleModel(name: 'Trabajadores', permissions: permissions);
+  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

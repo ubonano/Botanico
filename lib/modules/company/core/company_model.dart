@@ -1,3 +1,4 @@
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CompanyModel {
@@ -11,6 +12,7 @@ class CompanyModel {
   final String province;
   final String country;
   final String phone;
+  Map<String, bool> activeModules;
 
   CompanyModel({
     this.uid = '',
@@ -21,37 +23,45 @@ class CompanyModel {
     required this.province,
     required this.country,
     required this.phone,
+    this.activeModules = const {},
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'uid': uid,
-      'ownerUid': ownerUid,
-      'name': name,
-      'address': address,
-      'city': city,
-      'province': province,
-      'country': country,
-      'phone': phone,
-    };
+  bool hasModuleActive(ModuleModel module) => activeModules.containsKey(module.id) && activeModules[module.id] == true;
+
+  void toggleModule(ModuleModel module) {
+    if (activeModules.containsKey(module.id) && activeModules[module.id] == true) {
+      activeModules.remove(module.id);
+    } else {
+      activeModules[module.id] = true;
+    }
   }
 
-  factory CompanyModel.fromMap(Map<String, dynamic> map, String documentId) {
-    return CompanyModel(
-      uid: documentId,
-      ownerUid: map['ownerUid'],
-      name: map['name'],
-      address: map['address'],
-      city: map['city'],
-      province: map['province'],
-      country: map['country'],
-      phone: map['phone'],
-    );
-  }
+  Map<String, dynamic> toMap() => {
+        'uid': uid,
+        'ownerUid': ownerUid,
+        'name': name,
+        'address': address,
+        'city': city,
+        'province': province,
+        'country': country,
+        'phone': phone,
+        'activeModules': activeModules,
+      };
 
-  static CompanyModel fromSnapshot(DocumentSnapshot snapshot) {
-    return CompanyModel.fromMap(snapshot.data() as Map<String, dynamic>, snapshot.id);
-  }
+  factory CompanyModel.fromMap(Map<String, dynamic> map, String documentId) => CompanyModel(
+        uid: documentId,
+        ownerUid: map['ownerUid'],
+        name: map['name'],
+        address: map['address'],
+        city: map['city'],
+        province: map['province'],
+        country: map['country'],
+        phone: map['phone'],
+        activeModules: Map<String, bool>.from(map['activeModules'] ?? {}),
+      );
+
+  static CompanyModel fromSnapshot(DocumentSnapshot snapshot) =>
+      CompanyModel.fromMap(snapshot.data() as Map<String, dynamic>, snapshot.id);
 
   CompanyModel copyWith({
     String? uid,
@@ -62,16 +72,17 @@ class CompanyModel {
     String? province,
     String? country,
     String? phone,
-  }) {
-    return CompanyModel(
-      uid: uid ?? this.uid,
-      ownerUid: ownerUid ?? this.ownerUid,
-      name: name ?? this.name,
-      address: address ?? this.address,
-      city: city ?? this.city,
-      province: province ?? this.province,
-      country: country ?? this.country,
-      phone: phone ?? this.phone,
-    );
-  }
+    Map<String, bool>? activeModules,
+  }) =>
+      CompanyModel(
+        uid: uid ?? this.uid,
+        ownerUid: ownerUid ?? this.ownerUid,
+        name: name ?? this.name,
+        address: address ?? this.address,
+        city: city ?? this.city,
+        province: province ?? this.province,
+        country: country ?? this.country,
+        phone: phone ?? this.phone,
+        activeModules: activeModules ?? this.activeModules,
+      );
 }
