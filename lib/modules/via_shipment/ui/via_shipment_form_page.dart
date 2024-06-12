@@ -52,6 +52,7 @@ class ViaShipmentFormPage extends GetView<ViaShipmentFormController> {
               ),
               DescriptionInputField(controller),
               const ViaShipmentSaveButton(),
+              if (controller.isUpdateMode) ActionLogsList(controller: controller),
             ],
           ),
         ),

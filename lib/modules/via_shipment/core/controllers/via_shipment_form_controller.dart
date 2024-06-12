@@ -16,6 +16,8 @@ class ViaShipmentFormController extends GetxController
   var isInvoiced = false.obs;
   var isLoading = false.obs;
 
+  var actionLogs = <ActionLogModel>[].obs;
+
   @override
   List<String> formFields = [
     FieldKeys.shipmentId,
@@ -46,6 +48,7 @@ class ViaShipmentFormController extends GetxController
       setFieldValue(FieldKeys.description, modelForUpdate!.description);
       setFieldValue(FieldKeys.isInvoiced, modelForUpdate!.isInvoiced.toString());
       setFieldValue(FieldKeys.createdDateTime, modelForUpdate!.createdDateTime.toString());
+      actionLogs.value = modelForUpdate!.actionLogs;
     }
   }
 
