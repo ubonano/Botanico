@@ -16,6 +16,7 @@ class ViaShipmentModel {
   final bool isInvoiced;
   final DateTime createdDateTime;
   final String deliveryPlace;
+  final List<ActionLogModel> actionLogs;
 
   final DocumentSnapshot? documentSnapshot;
 
@@ -31,6 +32,7 @@ class ViaShipmentModel {
     this.isInvoiced = false,
     DateTime? createdDateTime,
     this.deliveryPlace = '',
+    this.actionLogs = const [],
     this.documentSnapshot,
   }) : createdDateTime = createdDateTime ?? DateTime.now();
 
@@ -46,6 +48,7 @@ class ViaShipmentModel {
         'isInvoiced': isInvoiced,
         'createdDateTime': createdDateTime,
         'deliveryPlace': deliveryPlace,
+        'actionLogs': actionLogs.map((e) => e.toMap()).toList(),
       };
 
   static ViaShipmentModel fromSnapshot(DocumentSnapshot snapshot) {
@@ -63,6 +66,7 @@ class ViaShipmentModel {
       isInvoiced: data['isInvoiced'],
       createdDateTime: (data['createdDateTime'] as Timestamp).toDate(),
       deliveryPlace: data['deliveryPlace'],
+      actionLogs: (data['actionLogs'] as List).map((e) => ActionLogModel.fromMap(e as Map<String, dynamic>)).toList(),
       documentSnapshot: snapshot,
     );
   }
@@ -79,6 +83,7 @@ class ViaShipmentModel {
     bool? isInvoiced,
     DateTime? createdDateTime,
     String? deliveryPlace,
+    List<ActionLogModel>? actionLogs,
   }) =>
       ViaShipmentModel(
         id: id ?? this.id,
@@ -92,6 +97,7 @@ class ViaShipmentModel {
         isInvoiced: isInvoiced ?? this.isInvoiced,
         createdDateTime: createdDateTime ?? this.createdDateTime,
         deliveryPlace: deliveryPlace ?? this.deliveryPlace,
+        actionLogs: actionLogs ?? this.actionLogs,
       );
 
   factory ViaShipmentModel.fromApiResponse(Map<String, dynamic> response) {

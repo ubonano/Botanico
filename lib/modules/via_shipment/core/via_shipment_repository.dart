@@ -43,10 +43,7 @@ class ViaShipmentRepository implements IViaShipmentRepository {
     int limit = 20,
     List<ViaShipmentState>? states,
   }) {
-    var query = _viaShipmentsRef()
-        .orderBy(FieldKeys.state, descending: false)
-        .orderBy(FieldKeys.createdDateTime, descending: true)
-        .limit(limit);
+    var query = _viaShipmentsRef().orderBy(FieldKeys.createdDateTime, descending: true).limit(limit);
 
     if (states != null && states.isNotEmpty) {
       query = query.where(FieldKeys.state, whereIn: states.map((state) => state.value).toList());

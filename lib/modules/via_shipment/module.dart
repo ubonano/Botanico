@@ -27,6 +27,7 @@ export 'core/helpers/interfaces/i_via_shipment_service.dart';
 export 'core/helpers/via_shipment_navigation_helper.dart';
 
 export 'core/via_shipment_model.dart';
+export 'core/models/action_log_model.dart';
 
 export 'core/via_cargo_repository.dart';
 export 'core/via_shipment_repository.dart';

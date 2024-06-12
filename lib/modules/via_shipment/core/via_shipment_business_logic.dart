@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:botanico/modules/worker/module.dart';
 
 import '../module.dart';
 
@@ -38,12 +39,25 @@ class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
   @override
   Future<void> delete(ViaShipmentModel shipment) async => await _viaShipmentRepo.delete(shipment);
 
-  @override
-  Future<void> invoice(ViaShipmentModel shipment) async => await _viaShipmentRepo.update(shipment.invoice());
+  Future<ViaShipmentModel> _logAction(ViaShipmentModel shipment, String action) async {
+    final loggedWorker = Get.find<IWorkerService>().loggedWorker$;
+
+    final newLog = ActionLogModel(action: action, timestamp: DateTime.now(), user: loggedWorker!.name);
+    final updatedLogs = List<ActionLogModel>.from(shipment.actionLogs)..add(newLog);
+    return shipment.copyWith(actionLogs: updatedLogs);
+  }
 
   @override
-  Future<void> cancelInvoice(ViaShipmentModel shipment) async =>
-      await _viaShipmentRepo.update(shipment.cancelInvoice());
+  Future<void> invoice(ViaShipmentModel shipment) async {
+    final updatedShipment = await _logAction(shipment.invoice(), 'Facturación');
+    await _viaShipmentRepo.update(updatedShipment);
+  }
+
+  @override
+  Future<void> cancelInvoice(ViaShipmentModel shipment) async {
+    final updatedShipment = await _logAction(shipment.cancelInvoice(), 'Cancelación de facturación');
+    await _viaShipmentRepo.update(updatedShipment);
+  }
 
   @override
   Future<void> process(ViaShipmentModel shipment) async => await changeState(shipment, ViaShipmentState.inProcess);
@@ -60,16 +74,24 @@ class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
   Future<void> archive(ViaShipmentModel shipment) async => await changeState(shipment, ViaShipmentState.archived);
 
   @override
-  Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState) async =>
-      _canTransition(shipment.state, newState)
-          ? await _viaShipmentRepo.update(shipment.changeState(newState))
-          : throw Exception('No se puede pasar de ${shipment.state} a $newState');
+  Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState) async {
+    if (_canTransition(shipment.state, newState)) {
+      final updatedShipment =
+          await _logAction(shipment.changeState(newState), 'Cambio de estado a ${viaShipmentStateLabels[newState]}');
+      await _viaShipmentRepo.update(updatedShipment);
+    } else {
+      throw Exception('No se puede pasar de ${shipment.state} a $newState');
+    }
+  }
 
   bool _canTransition(int currentState, ViaShipmentState newState) => newState.index == currentState + 1;
 
   @override
-  Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace) async =>
-      await _viaShipmentRepo.update(shipment.changeDeliveryPlace(newPlace));
+  Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace) async {
+    final updatedShipment = await _logAction(
+        shipment.changeDeliveryPlace(newPlace), 'Cambio de lugar de entrega a ${deliveryPlaceToString(newPlace)}');
+    await _viaShipmentRepo.update(updatedShipment);
+  }
 
   @override
   StreamSubscription<List<ViaShipmentModel>>? initStream({
