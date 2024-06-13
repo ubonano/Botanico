@@ -34,7 +34,12 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
           startActionPane: ActionPane(
             motion: const DrawerMotion(),
             extentRatio: _isSmallScreen(constraints) ? 0.80 : 0.50,
-            children: buildSlidableButtonsActionPane(_shipment),
+            children: buildSlidableLeftButtonsActionPane(_shipment),
+          ),
+          endActionPane: ActionPane(
+            motion: const DrawerMotion(),
+            extentRatio: _isSmallScreen(constraints) ? 0.80 : 0.50,
+            children: buildSlidableRightButtonsActionPane(_shipment), // Puedes personalizar los botones aquí
           ),
           child: AnimatedBuilder(
             animation: _colorAnimation,
