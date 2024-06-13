@@ -17,7 +17,7 @@ abstract class IViaShipmentBusinessLogic {
   Future<void> prepare(ViaShipmentModel shipment);
   Future<void> deliver(ViaShipmentModel shipment);
   Future<void> archive(ViaShipmentModel shipment);
-  Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState);
+  Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState, {bool validateTransition = true});
   Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace);
   StreamSubscription<List<ViaShipmentModel>>? initStream({
     required RxList<ViaShipmentModel> list$,

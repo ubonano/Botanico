@@ -14,7 +14,7 @@ List<Widget> buildSlidableLeftButtonsActionPane(ViaShipmentModel shipment) {
     buttons.add(CancelInvoiceSlidableButton(shipment));
   }
   if (_hasPermission(ViaShipmentModulePermissions.changeDeliveryPlaceKey)) {
-    buttons.add(DeliveryPlaceSlidableButton(shipment));
+    buttons.add(ChangeDeliveryPlaceSlidableButton(shipment));
   }
   if (_hasPermission(ViaShipmentModulePermissions.updateKey)) {
     buttons.add(EditSlidableButton(shipment));
@@ -27,6 +27,10 @@ List<Widget> buildSlidableLeftButtonsActionPane(ViaShipmentModel shipment) {
 
 List<Widget> buildSlidableRightButtonsActionPane(ViaShipmentModel shipment) {
   List<Widget> buttons = [];
+
+  if (_hasPermission(ViaShipmentModulePermissions.changeStateKey)) {
+    buttons.add(ChangeStateSlidableButton(shipment));
+  }
 
   if (shipment.isPending && _hasPermission(ViaShipmentModulePermissions.processKey)) {
     buttons.add(ProcessSlidableButton(shipment));

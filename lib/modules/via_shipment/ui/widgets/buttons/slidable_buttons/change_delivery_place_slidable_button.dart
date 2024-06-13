@@ -5,10 +5,10 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../../../module.dart';
 
-class DeliveryPlaceSlidableButton extends StatelessWidget with NavigationHelperInstance {
+class ChangeDeliveryPlaceSlidableButton extends StatelessWidget with NavigationHelperInstance {
   final ViaShipmentModel shipment;
 
-  DeliveryPlaceSlidableButton(this.shipment, {super.key});
+  ChangeDeliveryPlaceSlidableButton(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class DeliveryPlaceSlidableButton extends StatelessWidget with NavigationHelperI
       backgroundColor: Colors.purple,
       foregroundColor: Colors.white,
       icon: Icons.place,
-      label: 'Lugar de Entrega',
+      label: 'Cambiar lugar de entrega',
     );
   }
 
@@ -49,8 +49,11 @@ class DeliveryPlaceSlidableButton extends StatelessWidget with NavigationHelperI
               actions: <Widget>[
                 TextButton(
                   child: const Text('Cambiar lugar de entrega'),
-                  onPressed: () => Get.find<IViaShipmentService>()
-                      .changeDeliveryPlace(shipment, deliveryPlaceFromString(selectedPlace)),
+                  onPressed: () {
+                    Get.find<IViaShipmentService>()
+                        .changeDeliveryPlace(shipment, deliveryPlaceFromString(selectedPlace));
+                    Get.back();
+                  },
                 ),
               ],
             );

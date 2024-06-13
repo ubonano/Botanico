@@ -74,10 +74,11 @@ class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
   Future<void> archive(ViaShipmentModel shipment) async => await changeState(shipment, ViaShipmentState.archived);
 
   @override
-  Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState) async {
-    if (_canTransition(shipment.state, newState)) {
-      final updatedShipment =
-          await _logAction(shipment.changeState(newState), 'Cambio de estado a ${viaShipmentStateLabels[newState]}');
+  Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState,
+      {bool validateTransition = true}) async {
+    if (!validateTransition || _canTransition(shipment.state, newState)) {
+      final updatedShipment = await _logAction(shipment.changeState(newState),
+          'Cambio de estado: ${viaShipmentStateLabels[shipment.state]} a ${viaShipmentStateLabels[newState]}');
       await _viaShipmentRepo.update(updatedShipment);
     } else {
       throw Exception('No se puede pasar de ${shipment.state} a $newState');

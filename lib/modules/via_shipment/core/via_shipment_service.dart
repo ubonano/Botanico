@@ -98,6 +98,20 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
       );
 
   @override
+  Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState,
+          {bool validateTransition = true}) async =>
+      await operation.perform(
+        permissionKey: ViaShipmentModulePermissions.changeStateKey,
+        module: _module,
+        operationName: 'Change state of shipment ${shipment.shipmentId} to $newState',
+        operation: (_) async => await _viaShipmentBusinessLogic.changeState(
+          shipment,
+          newState,
+          validateTransition: validateTransition,
+        ),
+      );
+
+  @override
   Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace) async =>
       await operation.perform(
         permissionKey: ViaShipmentModulePermissions.changeDeliveryPlaceKey,

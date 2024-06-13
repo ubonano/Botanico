@@ -21,6 +21,7 @@ class ViaShipmentModulePermissions implements ModuleStructure {
   static const archiveKey = 'via_shipment.archive';
 
   static const changeDeliveryPlaceKey = 'via_shipment.change_delivery_place';
+  static const changeStateKey = 'via_shipment.change_state';
 
   @override
   List<PermissionModel> get permissions => [
@@ -35,6 +36,7 @@ class ViaShipmentModulePermissions implements ModuleStructure {
         PermissionModel(id: prepareKey, name: 'Alistar envío'),
         PermissionModel(id: deliverKey, name: 'Entregar envío'),
         PermissionModel(id: archiveKey, name: 'Archivar envío'),
+        PermissionModel(id: changeStateKey, name: 'Cambiar estado'),
         PermissionModel(id: changeDeliveryPlaceKey, name: 'Cambiar lugar de entrega'),
       ];
 
