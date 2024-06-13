@@ -19,21 +19,21 @@ class ViaShipmentDashboardLayoutSmallTile extends StatelessWidget {
           children: [
             Flexible(child: ShipmentIdWidget(shipment)),
             Flexible(child: ShipmentTypeWidget(shipment)),
-            Flexible(child: InvoicedWidget(shipment)),
           ],
         ),
+        ClientWidget(shipment),
+        DescriptionWidget(shipment),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: [
+            Flexible(child: InvoicedWidget(shipment)),
             Flexible(child: PackageWidget(shipment)),
             Flexible(child: WeightWidget(shipment)),
             Flexible(child: DeliveryPlaceWidget(shipment)),
           ],
         ),
-        DescriptionWidget(shipment),
-        ClientWidget(shipment),
-        StateWidget(shipment)
+        StateWidget(shipment),
       ],
     );
   }
