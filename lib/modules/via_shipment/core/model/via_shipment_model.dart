@@ -12,7 +12,7 @@ class ViaShipmentModel {
   final String package;
   final double weight;
   final String description;
-  final int state;
+  final ViaShipmentState state;
   final bool isInvoiced;
   final DateTime createdDateTime;
   final String deliveryPlace;
@@ -28,7 +28,7 @@ class ViaShipmentModel {
     this.package = '',
     this.weight = 0.0,
     this.description = '',
-    this.state = 0,
+    this.state = ViaShipmentState.pending,
     this.isInvoiced = false,
     DateTime? createdDateTime,
     this.deliveryPlace = '',
@@ -44,7 +44,7 @@ class ViaShipmentModel {
         'package': package,
         'weight': weight,
         'description': description,
-        'state': state,
+        'state': state.index,
         'isInvoiced': isInvoiced,
         'createdDateTime': createdDateTime,
         'deliveryPlace': deliveryPlace,
@@ -62,11 +62,13 @@ class ViaShipmentModel {
       package: data['package'],
       weight: data['weight'],
       description: data['description'],
-      state: data['state'],
+      state: ViaShipmentState.values[data['state']],
       isInvoiced: data['isInvoiced'],
       createdDateTime: (data['createdDateTime'] as Timestamp).toDate(),
       deliveryPlace: data['deliveryPlace'],
-      actionLogs: (data['actionLogs'] as List).map((e) => ViaShipmentActionLogModel.fromMap(e as Map<String, dynamic>)).toList(),
+      actionLogs: (data['actionLogs'] as List)
+          .map((e) => ViaShipmentActionLogModel.fromMap(e as Map<String, dynamic>))
+          .toList(),
       documentSnapshot: snapshot,
     );
   }
@@ -79,7 +81,7 @@ class ViaShipmentModel {
     String? package,
     double? weight,
     String? description,
-    int? state,
+    ViaShipmentState? state,
     bool? isInvoiced,
     DateTime? createdDateTime,
     String? deliveryPlace,
@@ -111,15 +113,15 @@ class ViaShipmentModel {
     );
   }
 
-  bool get isPending => state == ViaShipmentState.pending.index;
-  bool get isInProcess => state == ViaShipmentState.inProcess.index;
-  bool get isReady => state == ViaShipmentState.ready.index;
-  bool get isDelivered => state == ViaShipmentState.delivered.index;
+  bool get isPending => state == ViaShipmentState.pending;
+  bool get isInProcess => state == ViaShipmentState.inProcess;
+  bool get isReady => state == ViaShipmentState.ready;
+  bool get isDelivered => state == ViaShipmentState.delivered;
   bool get isNotInvoiced => !isInvoiced;
 
   ViaShipmentModel invoice() => copyWith(isInvoiced: true);
   ViaShipmentModel cancelInvoice() => copyWith(isInvoiced: false);
-  ViaShipmentModel changeState(ViaShipmentState state) => copyWith(state: state.index);
+  ViaShipmentModel changeState(ViaShipmentState state) => copyWith(state: state);
   ViaShipmentModel changeDeliveryPlace(ViaShipmentDeliveryPlace deliveryPlace) =>
       copyWith(deliveryPlace: deliveryPlaceToString(deliveryPlace));
 }

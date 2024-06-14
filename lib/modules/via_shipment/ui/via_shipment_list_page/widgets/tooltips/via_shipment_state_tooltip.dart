@@ -9,14 +9,13 @@ class ViaShipmentStateTooltip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = ViaShipmentState.values[viaShipment.state];
     return Tooltip(
-      message: viaShipmentStateLabels[state]!,
+      message: viaShipmentStateLabels[viaShipment.state]!,
       child: Container(
         width: 16,
         height: 16,
         decoration: BoxDecoration(
-          color: viaShipmentStateToColor(state),
+          color: viaShipmentStateToColor(viaShipment.state),
           shape: BoxShape.circle,
         ),
       ),

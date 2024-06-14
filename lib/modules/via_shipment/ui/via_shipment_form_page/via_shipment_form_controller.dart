@@ -39,7 +39,7 @@ class ViaShipmentFormController extends GetxController
     if (modelForUpdate != null) {
       setFieldValue(FieldKeys.shipmentId, modelForUpdate!.shipmentId);
       shipmentType.value = modelForUpdate!.type;
-      shipmentState.value = ViaShipmentState.values[modelForUpdate!.state];
+      shipmentState.value = modelForUpdate!.state;
       deliveryPlace.value = modelForUpdate!.deliveryPlace;
       isInvoiced.value = modelForUpdate!.isInvoiced;
       setFieldValue(FieldKeys.client, modelForUpdate!.client);
@@ -69,7 +69,7 @@ class ViaShipmentFormController extends GetxController
       id: isUpdateMode ? modelForUpdate!.id : '',
       shipmentId: getFieldValue(FieldKeys.shipmentId),
       type: shipmentType.value,
-      state: shipmentState.value.index,
+      state: shipmentState.value,
       deliveryPlace: deliveryPlace.value,
       isInvoiced: isInvoiced.value,
       client: getFieldValue(FieldKeys.client),

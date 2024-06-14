@@ -53,12 +53,16 @@ class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
   Future<void> archive(ViaShipmentModel shipment) async => await changeState(shipment, ViaShipmentState.archived);
 
   @override
-  Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState,
-      {bool validateTransition = true}) async {
+  Future<void> changeState(
+    ViaShipmentModel shipment,
+    ViaShipmentState newState, {
+    bool validateTransition = true,
+  }) async {
     if (!validateTransition || _canTransition(shipment.state, newState)) {
+      var oldState = shipment.state;
       final updatedShipment = await _logAction(
         shipment.changeState(newState),
-        'Cambio de estado: ${viaShipmentStateLabels[shipment.state]} a ${viaShipmentStateLabels[newState]}',
+        'Cambio de estado: ${viaShipmentStateLabels[oldState]} a ${viaShipmentStateLabels[newState]}',
       );
       await _viaShipmentRepo.update(updatedShipment);
     } else {
@@ -66,7 +70,8 @@ class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
     }
   }
 
-  bool _canTransition(int currentState, ViaShipmentState newState) => newState.index == currentState + 1;
+  bool _canTransition(ViaShipmentState currentState, ViaShipmentState newState) =>
+      newState.index == currentState.index + 1;
 
   @override
   Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace) async {

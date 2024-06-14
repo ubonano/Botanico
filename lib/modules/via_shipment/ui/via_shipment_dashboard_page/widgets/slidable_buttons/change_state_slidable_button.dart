@@ -25,8 +25,7 @@ class ChangeStateSlidableButton extends StatelessWidget with NavigationHelperIns
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        ViaShipmentState selectedState =
-            ViaShipmentState.values.firstWhere((element) => element.index == shipment.state);
+        ViaShipmentState selectedState = shipment.state;
 
         return StatefulBuilder(
           builder: (context, setState) {
