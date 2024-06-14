@@ -3,14 +3,14 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../module.dart';
+import '../../module.dart';
 
-class ViaCargoRepository implements IViaCargoRepository {
+class ViaCargoApiRepository implements IViaCargoApiRepository {
   final String _baseUrl = 'https://api.viatesting.com.ar';
   String? _token;
 
   @override
-  Future<String?> getToken() async {
+  Future<String?> fetchToken() async {
     final url = Uri.parse('$_baseUrl/sesion');
     final response = await http.post(
       url,
@@ -28,6 +28,7 @@ class ViaCargoRepository implements IViaCargoRepository {
     }
 
     final data = jsonDecode(response.body);
+
     if (data['status'] == true && data['error'] == false) {
       _token = data['key'];
       return _token;
@@ -43,11 +44,10 @@ class ViaCargoRepository implements IViaCargoRepository {
     int? interfaz,
     String? tokenRecaptcha,
   }) async {
-    if (_token == null) {
-      throw Exception('Error: Token no disponible. Llama a getToken primero.');
-    }
+    if (_token == null) await fetchToken();
 
     final url = Uri.parse('$_baseUrl/alerce/tracking');
+
     final queryParams = {
       if (idEnvio != null) 'IdEnvio': idEnvio,
       if (numeroEnvio != null) 'NumeroEnvio': numeroEnvio,

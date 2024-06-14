@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../../module.dart';
+import '../../module.dart';
 
 abstract class IViaShipmentBusinessLogic {
   Future<ViaShipmentModel?> get(String id);

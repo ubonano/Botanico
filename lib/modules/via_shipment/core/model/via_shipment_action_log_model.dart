@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ActionLogModel {
+class ViaShipmentActionLogModel {
   final String action;
   final DateTime timestamp;
   final String user;
 
-  ActionLogModel({
+  ViaShipmentActionLogModel({
     required this.action,
     required this.timestamp,
     required this.user,
@@ -17,7 +17,7 @@ class ActionLogModel {
         'user': user,
       };
 
-  factory ActionLogModel.fromMap(Map<String, dynamic> map) => ActionLogModel(
+  factory ViaShipmentActionLogModel.fromMap(Map<String, dynamic> map) => ViaShipmentActionLogModel(
         action: map['action'],
         timestamp: (map['timestamp'] as Timestamp).toDate(),
         user: map['user'],

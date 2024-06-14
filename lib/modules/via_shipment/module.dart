@@ -1,3 +1,4 @@
+import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 
 import 'ui/via_shipment_form_page/via_shipment_form_controller.dart';
@@ -5,13 +6,13 @@ import 'ui/via_shipment_list_page/via_shipment_list_controller.dart';
 import 'ui/via_shipment_dashboard_page/via_shipment_dashboard_controller.dart';
 
 import 'core/via_shipment_business_logic.dart';
-import 'core/via_cargo_repository.dart';
-import 'core/via_shipment_repository.dart';
+import 'core/model/via_cargo_api_repository.dart';
+import 'core/model/via_shipment_repository.dart';
 import 'core/via_shipment_service.dart';
-import 'core/helpers/interfaces/i_via_shipment_business_logic.dart';
-import 'core/helpers/interfaces/i_via_cargo_repository.dart';
-import 'core/helpers/interfaces/i_via_shipment_repository.dart';
-import 'core/helpers/interfaces/i_via_shipment_service.dart';
+import 'core/interfaces/i_via_shipment_business_logic.dart';
+import 'core/interfaces/i_via_cargo_api_repository.dart';
+import 'core/interfaces/i_via_shipment_repository.dart';
+import 'core/interfaces/i_via_shipment_service.dart';
 
 export 'ui/via_shipment_form_page/via_shipment_form_controller.dart';
 export 'ui/via_shipment_list_page/via_shipment_list_controller.dart';
@@ -19,20 +20,19 @@ export 'ui/via_shipment_dashboard_page/via_shipment_dashboard_controller.dart';
 
 export 'core/via_shipment_business_logic.dart';
 
-export 'core/helpers/interfaces/i_via_shipment_business_logic.dart';
-export 'core/helpers/interfaces/i_via_cargo_repository.dart';
-export 'core/helpers/interfaces/i_via_shipment_repository.dart';
-export 'core/helpers/interfaces/i_via_shipment_service.dart';
+export 'core/interfaces/i_via_shipment_business_logic.dart';
+export 'core/interfaces/i_via_cargo_api_repository.dart';
+export 'core/interfaces/i_via_shipment_repository.dart';
+export 'core/interfaces/i_via_shipment_service.dart';
 
-export 'core/helpers/via_shipment_navigation_helper.dart';
+export 'via_shipment_navigation_helper.dart';
 
-export 'core/via_shipment_model.dart';
-export 'core/models/action_log_model.dart';
+export 'core/model/via_shipment_model.dart';
+export 'core/model/via_shipment_action_log_model.dart';
 
-export 'core/via_cargo_repository.dart';
-export 'core/via_shipment_repository.dart';
+export 'core/model/via_cargo_api_repository.dart';
+export 'core/model/via_shipment_repository.dart';
 export 'core/via_shipment_service.dart';
-export 'core/via_shipment_permissions.dart';
 
 export 'tests/flows/via_shipment_list_navigate_flow.dart';
 export 'tests/flows/via_shipment_create_navigate_flow.dart';
@@ -103,18 +103,62 @@ export 'ui/via_shipment_form_page/via_shipment_form_page.dart';
 export 'ui/via_shipment_list_page/via_shipment_list_page.dart';
 export 'ui/via_shipment_dashboard_page/via_shipment_dashboard_page.dart';
 
-export 'core/helpers/enums/via_shipment_type.dart';
-export 'core/helpers/enums/via_shipment_state.dart';
-export 'core/helpers/enums/via_shipment_delivery_place.dart';
+export 'core/enums/via_shipment_type.dart';
+export 'core/enums/via_shipment_state.dart';
+export 'core/enums/via_shipment_delivery_place.dart';
 
 void dependencies() {
   Get.lazyPut<IViaShipmentBusinessLogic>(() => ViaShipmentBusinessLogic(), fenix: true);
 
-  Get.lazyPut<IViaCargoRepository>(() => ViaCargoRepository(), fenix: true);
+  Get.lazyPut<IViaCargoApiRepository>(() => ViaCargoApiRepository(), fenix: true);
   Get.lazyPut<IViaShipmentRepository>(() => ViaShipmentRepository(), fenix: true);
   Get.lazyPut<IViaShipmentService>(() => ViaShipmentService(), fenix: true);
 
   Get.lazyPut<ViaShipmentFormController>(() => ViaShipmentFormController(), fenix: true);
   Get.lazyPut<ViaShipmentListController>(() => ViaShipmentListController(), fenix: true);
   Get.lazyPut<ViaShipmentDashboardController>(() => ViaShipmentDashboardController(), fenix: true);
+}
+
+class ViaShipmentModulePermissions implements ModuleStructure {
+  @override
+  String get moduleId => 'via_shipment';
+
+  @override
+  String get moduleName => 'Envíos Via';
+
+  static const viewKey = 'via_shipment.view';
+  static const createKey = 'via_shipment.create';
+  static const updateKey = 'via_shipment.update';
+  static const deleteKey = 'via_shipment.delete';
+  static const dashboardKey = 'via_shipment.dashboard';
+  static const invoiceKey = 'via_shipment.invoice';
+  static const cancelInvoiceKey = 'via_shipment.cancel_invoice';
+
+  static const processKey = 'via_shipment.process';
+  static const prepareKey = 'via_shipment.preper';
+  static const deliverKey = 'via_shipment.deliver';
+  static const archiveKey = 'via_shipment.archive';
+
+  static const changeDeliveryPlaceKey = 'via_shipment.change_delivery_place';
+  static const changeStateKey = 'via_shipment.change_state';
+
+  @override
+  List<PermissionModel> get permissions => [
+        PermissionModel(id: viewKey, name: 'Ver'),
+        PermissionModel(id: createKey, name: 'Crear'),
+        PermissionModel(id: updateKey, name: 'Actualizar'),
+        PermissionModel(id: deleteKey, name: 'Eliminar'),
+        PermissionModel(id: dashboardKey, name: 'Dashboard'),
+        PermissionModel(id: invoiceKey, name: 'Facturar'),
+        PermissionModel(id: cancelInvoiceKey, name: 'Anular Factura'),
+        PermissionModel(id: processKey, name: 'Processar envío'),
+        PermissionModel(id: prepareKey, name: 'Alistar envío'),
+        PermissionModel(id: deliverKey, name: 'Entregar envío'),
+        PermissionModel(id: archiveKey, name: 'Archivar envío'),
+        PermissionModel(id: changeStateKey, name: 'Cambiar estado'),
+        PermissionModel(id: changeDeliveryPlaceKey, name: 'Cambiar lugar de entrega'),
+      ];
+
+  @override
+  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

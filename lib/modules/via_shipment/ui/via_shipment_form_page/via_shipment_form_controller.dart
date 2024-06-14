@@ -16,7 +16,7 @@ class ViaShipmentFormController extends GetxController
   var isInvoiced = false.obs;
   var isLoading = false.obs;
 
-  var actionLogs = <ActionLogModel>[].obs;
+  var actionLogs = <ViaShipmentActionLogModel>[].obs;
 
   @override
   List<String> formFields = [

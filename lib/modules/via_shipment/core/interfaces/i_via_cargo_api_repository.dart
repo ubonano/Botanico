@@ -1,7 +1,7 @@
-import '../../../module.dart';
+import '../../module.dart';
 
-abstract class IViaCargoRepository {
-  Future<String?> getToken();
+abstract class IViaCargoApiRepository {
+  Future<String?> fetchToken();
   Future<ViaShipmentModel?> getTrackingData({
     String? idEnvio,
     String? numeroEnvio,

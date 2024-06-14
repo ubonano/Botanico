@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../module.dart';
+import '../../module.dart';
 
 class ViaShipmentModel {
   static const String collectionName = 'viaShipments';
@@ -16,7 +16,7 @@ class ViaShipmentModel {
   final bool isInvoiced;
   final DateTime createdDateTime;
   final String deliveryPlace;
-  final List<ActionLogModel> actionLogs;
+  final List<ViaShipmentActionLogModel> actionLogs;
 
   final DocumentSnapshot? documentSnapshot;
 
@@ -66,7 +66,7 @@ class ViaShipmentModel {
       isInvoiced: data['isInvoiced'],
       createdDateTime: (data['createdDateTime'] as Timestamp).toDate(),
       deliveryPlace: data['deliveryPlace'],
-      actionLogs: (data['actionLogs'] as List).map((e) => ActionLogModel.fromMap(e as Map<String, dynamic>)).toList(),
+      actionLogs: (data['actionLogs'] as List).map((e) => ViaShipmentActionLogModel.fromMap(e as Map<String, dynamic>)).toList(),
       documentSnapshot: snapshot,
     );
   }
@@ -83,7 +83,7 @@ class ViaShipmentModel {
     bool? isInvoiced,
     DateTime? createdDateTime,
     String? deliveryPlace,
-    List<ActionLogModel>? actionLogs,
+    List<ViaShipmentActionLogModel>? actionLogs,
   }) =>
       ViaShipmentModel(
         id: id ?? this.id,
