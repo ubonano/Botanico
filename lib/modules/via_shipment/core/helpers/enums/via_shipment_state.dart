@@ -31,11 +31,11 @@ Color viaShipmentStateToColor(ViaShipmentState state) {
     case ViaShipmentState.inProcess:
       return Colors.blue;
     case ViaShipmentState.ready:
-      return Colors.yellow;
-    case ViaShipmentState.delivered:
       return Colors.green;
-    case ViaShipmentState.archived:
+    case ViaShipmentState.delivered:
       return Colors.grey;
+    case ViaShipmentState.archived:
+      return Colors.red;
     default:
       return Colors.black;
   }
