@@ -44,6 +44,7 @@ class ViaShipmentRepository implements IViaShipmentRepository {
     List<ViaShipmentState>? states,
     DateTime? fromDate,
     DateTime? toDate,
+    String? shipmentId,
   }) {
     var query = _viaShipmentsRef().orderBy(FieldKeys.createdDateTime, descending: true).limit(limit);
 
@@ -56,6 +57,8 @@ class ViaShipmentRepository implements IViaShipmentRepository {
     if (fromDate != null) query = query.where(FieldKeys.createdDateTime, isGreaterThanOrEqualTo: fromDate);
 
     if (toDate != null) query = query.where(FieldKeys.createdDateTime, isLessThanOrEqualTo: toDate);
+
+    if (shipmentId != null) query = query.where(FieldKeys.shipmentId, isEqualTo: shipmentId);
 
     return query.snapshots().map((snapshot) => snapshot.docs.map(ViaShipmentModel.fromSnapshot).toList());
   }

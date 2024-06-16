@@ -15,7 +15,7 @@ class ViaShipmentListPage extends GetView<ViaShipmentListController> {
       drawer: CustomDrawer(),
       body: Column(
         children: [
-          const DateFilterFields(),
+          const ViaShipmentFilters(),
           Expanded(child: ViaShipmentList()),
         ],
       ),

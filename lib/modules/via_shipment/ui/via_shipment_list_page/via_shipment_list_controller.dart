@@ -18,8 +18,9 @@ class ViaShipmentListController extends GetxController
   late final IWorkerService _workerService = Get.find();
   late final ICompanyService _companyService = Get.find();
 
-  late final TextEditingController startDateController = TextEditingController();
-  late final TextEditingController endDateController = TextEditingController();
+  final TextEditingController startDateController = TextEditingController();
+  final TextEditingController endDateController = TextEditingController();
+  final TextEditingController shipmentIdController = TextEditingController();
 
   @override
   Future<void> onInit() async {
@@ -48,11 +49,13 @@ class ViaShipmentListController extends GetxController
                 .toLocal()
                 .copyWith(hour: 23, minute: 59, second: 59, millisecond: 999)
             : null,
+        shipmentId: shipmentIdController.text != '' ? shipmentIdController.text : null,
         onNewData: onNewData,
       );
 
   void cleanFilters() {
     startDateController.clear();
     endDateController.clear();
+    shipmentIdController.clear();
   }
 }

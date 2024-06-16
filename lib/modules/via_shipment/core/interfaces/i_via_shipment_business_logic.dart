@@ -26,6 +26,7 @@ abstract class IViaShipmentBusinessLogic {
     List<ViaShipmentState>? states,
     DateTime? fromDate,
     DateTime? toDate,
+    String? shipmentId,
     Function(List<ViaShipmentModel>)? onNewData,
   });
 }

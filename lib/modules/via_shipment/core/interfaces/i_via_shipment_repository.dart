@@ -15,5 +15,6 @@ abstract class IViaShipmentRepository {
     List<ViaShipmentState>? states,
     DateTime? fromDate,
     DateTime? toDate,
+    String? shipmentId,
   });
 }

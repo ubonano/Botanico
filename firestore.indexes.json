@@ -1,4 +1,61 @@
 {
-  "indexes": [],
+  "indexes": [
+    {
+      "collectionGroup": "viaShipments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "createdDateTime",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "state",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "viaShipments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "createdDateTime",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "shipmentId",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "viaShipments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "createdDateTime",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "fromDate",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "viaShipments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "createdDateTime",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "toDate",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
   "fieldOverrides": []
 }

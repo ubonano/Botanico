@@ -98,10 +98,17 @@ class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
     List<ViaShipmentState>? states,
     DateTime? fromDate,
     DateTime? toDate,
+    String? shipmentId,
     Function(List<ViaShipmentModel>)? onNewData,
   }) =>
       _viaShipmentRepo
-          .iniStream(startAfter: startAfter, limit: limit, states: states, fromDate: fromDate, toDate: toDate)
+          .iniStream(
+              startAfter: startAfter,
+              limit: limit,
+              states: states,
+              fromDate: fromDate,
+              toDate: toDate,
+              shipmentId: shipmentId)
           .listen(
         (viaShipmentList) {
           startAfter == null ? list$.value = viaShipmentList : list$.addAll(viaShipmentList);
