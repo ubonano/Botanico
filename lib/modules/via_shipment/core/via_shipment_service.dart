@@ -121,11 +121,13 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
       );
 
   @override
-  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
+  StreamSubscription<List<ViaShipmentModel>>? initStream({
     required RxList<ViaShipmentModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
+    DateTime? fromDate,
+    DateTime? toDate,
     Function(List<ViaShipmentModel>)? onNewData,
   }) =>
       _viaShipmentBusinessLogic.initStream(
@@ -133,6 +135,8 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
         startAfter: startAfter,
         limit: limit,
         states: states,
+        fromDate: fromDate,
+        toDate: toDate,
         onNewData: onNewData,
       );
 }

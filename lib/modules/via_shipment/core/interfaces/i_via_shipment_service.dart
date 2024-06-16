@@ -18,11 +18,13 @@ abstract class IViaShipmentService {
   Future<void> archive(ViaShipmentModel shipment);
   Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState, {bool validateTransition = true});
   Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace);
-  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
+  StreamSubscription<List<ViaShipmentModel>>? initStream({
     required RxList<ViaShipmentModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
+    DateTime? fromDate,
+    DateTime? toDate,
     Function(List<ViaShipmentModel>)? onNewData,
   });
 }

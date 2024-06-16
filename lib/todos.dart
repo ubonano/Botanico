@@ -1,5 +1,7 @@
 // CREa modulo de COMPRAS! Finaliza el feature y comenza uno nuevo
 
+// finalizar feature, hacer release a QA, deployar en QA
+// TODO Crear ABM de lugares de entrega
 
 // TODO no funciona la transaccion en operation_helper, si falla la transaccion no hace el rollback
 // TODO, resolver que en los navigation helpers, en todos se agrega el metodo TO... no tienen que aclarase en todos, ver como resolverlo

@@ -13,5 +13,7 @@ abstract class IViaShipmentRepository {
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
+    DateTime? fromDate,
+    DateTime? toDate,
   });
 }

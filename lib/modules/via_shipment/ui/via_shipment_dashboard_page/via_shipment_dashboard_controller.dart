@@ -36,7 +36,7 @@ class ViaShipmentDashboardController extends GetxController
     required int limit,
     required Function(List<ViaShipmentModel>) onNewData,
   }) =>
-      _viaShipmentService.initializeStream(
+      _viaShipmentService.initStream(
         list$: list$,
         startAfter: startAfter,
         limit: limit,

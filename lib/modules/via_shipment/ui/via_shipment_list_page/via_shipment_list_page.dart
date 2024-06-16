@@ -13,7 +13,12 @@ class ViaShipmentListPage extends GetView<ViaShipmentListController> {
       key: key ?? const Key('ViaShipmentListPage'),
       title: 'Via Shipments',
       drawer: CustomDrawer(),
-      body: ViaShipmentList(),
+      body: Column(
+        children: [
+          const DateFilterFields(),
+          Expanded(child: ViaShipmentList()),
+        ],
+      ),
       floatingActionButton: ViaShipmentCreateFAB(),
     );
   }

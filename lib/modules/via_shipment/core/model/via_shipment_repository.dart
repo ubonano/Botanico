@@ -42,6 +42,8 @@ class ViaShipmentRepository implements IViaShipmentRepository {
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
+    DateTime? fromDate,
+    DateTime? toDate,
   }) {
     var query = _viaShipmentsRef().orderBy(FieldKeys.createdDateTime, descending: true).limit(limit);
 
@@ -49,9 +51,11 @@ class ViaShipmentRepository implements IViaShipmentRepository {
       query = query.where(FieldKeys.state, whereIn: states.map((state) => state.value).toList());
     }
 
-    if (startAfter != null) {
-      query = query.startAfterDocument(startAfter);
-    }
+    if (startAfter != null) query = query.startAfterDocument(startAfter);
+
+    if (fromDate != null) query = query.where(FieldKeys.createdDateTime, isGreaterThanOrEqualTo: fromDate);
+
+    if (toDate != null) query = query.where(FieldKeys.createdDateTime, isLessThanOrEqualTo: toDate);
 
     return query.snapshots().map((snapshot) => snapshot.docs.map(ViaShipmentModel.fromSnapshot).toList());
   }

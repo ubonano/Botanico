@@ -25,7 +25,7 @@ export 'core/interfaces/i_via_cargo_api_repository.dart';
 export 'core/interfaces/i_via_shipment_repository.dart';
 export 'core/interfaces/i_via_shipment_service.dart';
 
-export 'via_shipment_navigation_helper.dart';
+export 'navigation_helper.dart';
 
 export 'core/model/via_shipment_model.dart';
 export 'core/model/via_shipment_action_log_model.dart';
@@ -87,6 +87,7 @@ export 'ui/via_shipment_dashboard_page/widgets/via_shipment_dashboard_list.dart'
 export 'ui/via_shipment_dashboard_page/widgets/layuots/data_widgets/icon_with_text.dart';
 export 'ui/via_shipment_dashboard_page/widgets/state_tag.dart';
 export 'ui/via_shipment_form_page/widgets/action_logs_list.dart';
+export 'ui/via_shipment_list_page/widgets/via_shipment_date_filter_fields.dart';
 
 export 'ui/via_shipment_dashboard_page/widgets/layuots/data_widgets/description_widget.dart';
 export 'ui/via_shipment_dashboard_page/widgets/layuots/data_widgets/state_widget.dart';
