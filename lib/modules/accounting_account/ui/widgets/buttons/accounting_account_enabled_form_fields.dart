@@ -10,6 +10,7 @@ class AccountingAccountEnabledFormFields extends GetView<AccountingAccountFormCo
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
+      module: AccountingAccountModulePermissions().toModel(),
       permission: AccountingAccountModulePermissions.updateKey,
       child: IconButton(
         key: key ?? const Key('AccountingAccountEnabledFormFields'),
@@ -19,4 +20,3 @@ class AccountingAccountEnabledFormFields extends GetView<AccountingAccountFormCo
     );
   }
 }
-

@@ -8,6 +8,6 @@ abstract class IVendorRepository {
   Future<VendorModel?> get(String id);
   Future<void> create(VendorModel vendor, {Transaction? txn});
   Future<void> update(VendorModel vendor, {Transaction? txn});
-  Future<void> delete(String id, {Transaction? txn});
-  Stream<List<VendorModel>> vendorListStream(String companyId);
+  Future<void> delete(VendorModel vendor, {Transaction? txn});
+  Stream<List<VendorModel>> initStream({DocumentSnapshot? startAfter, int limit = 20});
 }

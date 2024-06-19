@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:botanico/modules/authentication/module.dart';
@@ -7,48 +6,36 @@ import 'package:botanico/modules/company/module.dart';
 
 import '../module.dart';
 
-// TODO Refactor
-class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
+class WorkerBusinessLogic implements IWorkerBusinessLogic {
   late final IWorkerRepository _workerRepo = Get.find();
+  late final ILinkedWorkerRepository _linkedWorkerRepo = Get.find();
 
-  late final IAuthenticationBusinessLogic _authBusinessLogic = Get.find();
+  String get _currentUserId => Get.find<IAuthenticationBusinessLogic>().currentUser?.uid ?? '';
+  String get _currentUserEmail => Get.find<IAuthenticationBusinessLogic>().currentUser?.email ?? '';
+
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
 
   final _loggedWorker = Rx<WorkerModel?>(null);
-  final _curWorkerForUpdate = Rx<WorkerModel?>(null);
-  final _linkedWorkerList$ = RxList<WorkerModel>();
 
-  StreamSubscription<List<WorkerModel>>? _workerListSubscription;
-
-  @override
-  dynamic get workerIdParmForUpdate => Get.arguments;
   @override
   WorkerModel? get loggedWorker$ => _loggedWorker.value;
-  @override
-  WorkerModel? get curWorkerForUpdate$ => _curWorkerForUpdate.value;
-  @override
-  RxList<WorkerModel> get linkedWorkerList$ => _linkedWorkerList$;
 
   @override
   Future<WorkerModel?> fetchLoggedWorker() async {
-    _loggedWorker.value = await get(_authBusinessLogic.currentUserId);
+    _loggedWorker.value = await get(_currentUserId);
     return _loggedWorker.value;
   }
 
   @override
-  Future<WorkerModel?> fetchCurWorkerForUpdate() async {
-    if (workerIdParmForUpdate == null) throw Exception('Cur worker id Parameter not found');
-    _curWorkerForUpdate.value = await get(workerIdParmForUpdate);
-    return _curWorkerForUpdate.value;
-  }
+  void clearLoggedWorker() => _loggedWorker.value = null;
 
   @override
   Future<WorkerModel?> get(String id) async => _workerRepo.get(id);
 
   @override
   Future<void> updateWorkerAsOwner(String companyId, Transaction? txn) async {
-    await _workerRepo.updatePartialWorker(
-      _authBusinessLogic.currentUserId,
+    await _workerRepo.updatePartial(
+      _currentUserId,
       {'companyId': companyId, 'role': workerRoleToString(WorkerRole.owner)},
       txn: txn,
     );
@@ -56,62 +43,44 @@ class WorkerBusinessLogic with GlobalHelper implements IWorkerBusinessLogic {
   }
 
   @override
-  Future<void> createWorker(WorkerModel worker) async => await _workerRepo.createWorker(
-        worker.copyWith(uid: _authBusinessLogic.currentUserId, email: _authBusinessLogic.currentUserEmail),
-      );
+  Future<void> update(WorkerModel worker) async => await _workerRepo.update(worker);
 
   @override
-  Future<void> postCreateWorker() async {
-    await fetchLoggedWorker();
-    navigate.toLobby();
-  }
+  Future<void> create(WorkerModel worker) async =>
+      await _workerRepo.create(worker.copyWith(uid: _currentUserId, email: _currentUserEmail));
 
   @override
-  Future<void> linkWorker(String workerId, Transaction? txn) async {
-    final currentWorker = await get(_authBusinessLogic.currentUserId);
+  Future<void> link(String workerId, Transaction? txn) async {
     final worker = await get(workerId);
-    final company = await _companyBusinessLogic.get(currentWorker!.companyId);
+    final company = _companyBusinessLogic.currentCompany$;
 
     if (worker == null) throw WorkerNotFoundException();
     if (company == null) throw CompanyNotFoundException();
 
     final updatedWorker = worker.copyWith(companyId: company.uid, role: WorkerRole.employee);
 
-    await _workerRepo.updateWorker(updatedWorker, txn: txn);
-    await _workerRepo.createLinkedWorker(company.uid, updatedWorker, txn: txn);
+    await _workerRepo.update(updatedWorker, txn: txn);
+    await _linkedWorkerRepo.link(updatedWorker, txn: txn);
   }
 
   @override
-  Future<void> postLinkWorker() async => navigate.toWorkerList();
-
-  @override
-  Future<void> unlinkWorker(String workerId, Transaction? txn) async {
-    final WorkerModel? currentWorker = await get(_authBusinessLogic.currentUserId);
-    await _workerRepo.deleteLinkedWorker(currentWorker!.companyId, workerId, txn: txn);
+  Future<void> unlink(String workerId, Transaction? txn) async {
+    await _linkedWorkerRepo.unlink(workerId, txn: txn);
     final changes = {'companyId': '', 'role': workerRoleToString(WorkerRole.undefined), 'permissions': {}};
-    await _workerRepo.updatePartialWorker(workerId, changes, txn: txn);
+    await _workerRepo.updatePartial(workerId, changes, txn: txn);
   }
 
   @override
-  Future<void> initializeLinkedWorkerStream() async {
-    final WorkerModel? worker = await fetchLoggedWorker();
-    _workerListSubscription =
-        _workerRepo.linkedWorkersStream(worker!.companyId).listen((workerList) => linkedWorkerList$.value = workerList);
-  }
-
-  @override
-  void cancelLinkedWorkerStream() {
-    _workerListSubscription?.cancel();
-    linkedWorkerList$.clear();
-  }
-
-  @override
-  Future<void> togglePermissionCurWorkerForUpdate(String permissionId) async {
-    WorkerModel? worker = curWorkerForUpdate$;
-    worker!.togglePermission(permissionId);
-    await _workerRepo.updateWorker(worker);
-  }
-
-  @override
-  void clearCurrentWorker() => _loggedWorker.value = null;
+  StreamSubscription<List<WorkerModel>>? initStream({
+    required RxList<WorkerModel> list$,
+    DocumentSnapshot? startAfter,
+    int limit = 20,
+    Function(List<WorkerModel>)? onNewData,
+  }) =>
+      _linkedWorkerRepo.initStream(startAfter: startAfter, limit: limit).listen(
+        (workerList) {
+          startAfter == null ? list$.value = workerList : list$.addAll(workerList);
+          onNewData?.call(workerList);
+        },
+      );
 }

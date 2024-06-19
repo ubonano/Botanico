@@ -10,6 +10,7 @@ class VendorListPageTileButton extends StatelessWidget with NavigationHelperInst
   Widget build(BuildContext context) {
     return ProtectedWidget(
       key: key ?? const Key('VendorListPageTileButton'),
+      module: VendorModulePermissions().toModel(),
       permission: VendorModulePermissions.viewKey,
       child: ListTile(
         leading: const Icon(Icons.local_shipping),

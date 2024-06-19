@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
 
 import '../module.dart';
@@ -8,39 +7,46 @@ import '../module.dart';
 class VendorRepository implements IVendorRepository {
   late final FirebaseFirestore _firestore = Get.find();
 
-  String get _companyId => Get.find<ICompanyBusinessLogic>().currentCompanyId;
+  String get _companyId => Get.find<ICompanyBusinessLogic>().currentCompany$!.uid;
 
   @override
-  String get generateId => _vendorsRef(_companyId).doc().id;
+  String get generateId => _vendorsRef().doc().id;
 
   @override
   Future<VendorModel?> get(String id) async {
-    final docSnapshot = await _vendorsRef(_companyId).doc(id).get();
+    final docSnapshot = await _vendorsRef().doc(id).get();
     return docSnapshot.exists ? VendorModel.fromSnapshot(docSnapshot) : null;
   }
 
   @override
   Future<void> create(VendorModel vendor, {Transaction? txn}) async {
-    DocumentReference docRef = _vendorsRef(_companyId).doc(vendor.uid);
+    DocumentReference docRef = _vendorsRef().doc(vendor.uid);
     txn != null ? txn.set(docRef, vendor.toMap()) : await docRef.set(vendor.toMap());
   }
 
   @override
   Future<void> update(VendorModel vendor, {Transaction? txn}) async {
-    final docRef = _vendorsRef(_companyId).doc(vendor.uid);
+    final docRef = _vendorsRef().doc(vendor.uid);
     txn != null ? txn.update(docRef, vendor.toMap()) : await docRef.update(vendor.toMap());
   }
 
   @override
-  Future<void> delete(String id, {Transaction? txn}) async {
-    final docRef = _vendorsRef(_companyId).doc(id);
+  Future<void> delete(VendorModel vendor, {Transaction? txn}) async {
+    final docRef = _vendorsRef().doc(vendor.uid);
     txn != null ? txn.delete(docRef) : await docRef.delete();
   }
 
   @override
-  Stream<List<VendorModel>> vendorListStream(String companyId) =>
-      _vendorsRef(companyId).snapshots().map((snapshot) => snapshot.docs.map(VendorModel.fromSnapshot).toList());
+  Stream<List<VendorModel>> initStream({DocumentSnapshot? startAfter, int limit = 20}) {
+    var query = _vendorsRef().limit(limit);
 
-  CollectionReference<Map<String, dynamic>> _vendorsRef(String companyId) =>
-      _firestore.collection(FirestoreCollections.companies).doc(companyId).collection(FirestoreCollections.vendors);
+    if (startAfter != null) {
+      query = query.startAfterDocument(startAfter);
+    }
+
+    return query.snapshots().map((snapshot) => snapshot.docs.map(VendorModel.fromSnapshot).toList());
+  }
+
+  CollectionReference<Map<String, dynamic>> _vendorsRef() =>
+      _firestore.collection(CompanyModel.collectionName).doc(_companyId).collection(VendorModel.collectionName);
 }

@@ -4,7 +4,7 @@ import 'package:botanico/modules/foundation/module.dart';
 
 import '../../../module.dart';
 
-class WorkerUnlinkIconButton extends GetView<WorkerUnlinkController> {
+class WorkerUnlinkIconButton extends StatelessWidget {
   final WorkerModel worker;
 
   const WorkerUnlinkIconButton(this.worker, {super.key});
@@ -12,6 +12,7 @@ class WorkerUnlinkIconButton extends GetView<WorkerUnlinkController> {
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
+      module: WorkerModulePermissions().toModel(),
       permission: WorkerModulePermissions.unlinkKey,
       child: IconButton(
         key: key ?? const Key('WorkerUnlinkIconButton'),
@@ -19,7 +20,7 @@ class WorkerUnlinkIconButton extends GetView<WorkerUnlinkController> {
         onPressed: () => ConfirmationDialog.show(
           context,
           content: '¿Estás seguro de que quieres desvincular a este trabajador?',
-          onConfirm: () => controller.submit(worker),
+          onConfirm: () => Get.find<IWorkerService>().unlink(worker.uid),
         ),
       ),
     );

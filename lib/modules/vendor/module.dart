@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import 'core/controllers/vendor_form_controller.dart';
 import 'core/controllers/vendor_list_controller.dart';
-import 'core/controllers/vendor_delete_controller.dart';
 
 import 'core/helpers/interfaces/i_vendor_business_logic.dart';
 import 'core/helpers/interfaces/i_vendor_repository.dart';
@@ -15,7 +14,6 @@ import 'core/vendor_service.dart';
 
 export 'core/controllers/vendor_form_controller.dart';
 export 'core/controllers/vendor_list_controller.dart';
-export 'core/controllers/vendor_delete_controller.dart';
 
 export 'core/vendor_business_logic.dart';
 
@@ -64,14 +62,13 @@ export 'ui/vendor_form_page.dart';
 export 'ui/vendor_list_page.dart';
 
 void dependencies() {
-  Get.put<IVendorBusinessLogic>(VendorBusinessLogic(), permanent: true);
+  Get.lazyPut<IVendorBusinessLogic>(() => VendorBusinessLogic(), fenix: true);
 
   Get.lazyPut<IVendorRepository>(() => VendorRepository(), fenix: true);
   Get.lazyPut<IVendorService>(() => VendorService(), fenix: true);
 
   Get.lazyPut<VendorFormController>(() => VendorFormController(), fenix: true);
   Get.lazyPut<VendorListController>(() => VendorListController(), fenix: true);
-  Get.lazyPut<VendorDeleteController>(() => VendorDeleteController(), fenix: true);
 }
 
 class VendorModulePermissions implements ModuleStructure {
@@ -95,5 +92,5 @@ class VendorModulePermissions implements ModuleStructure {
       ];
 
   @override
-  ModuleModel toModel() => ModuleModel(name: 'Proveedores', permissions: permissions);
+  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

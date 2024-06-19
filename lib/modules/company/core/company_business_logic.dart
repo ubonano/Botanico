@@ -1,12 +1,11 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 
 import '../module.dart';
 
-class CompanyBusinessLogic extends GetxService with GlobalHelper implements ICompanyBusinessLogic {
+class CompanyBusinessLogic extends GetxService implements ICompanyBusinessLogic {
   late final ICompanyRepository _companyRepo = Get.find();
 
   late final IAuthenticationBusinessLogic _authBusinessLogic = Get.find();
@@ -16,13 +15,14 @@ class CompanyBusinessLogic extends GetxService with GlobalHelper implements ICom
 
   @override
   CompanyModel? get currentCompany$ => _currentCompany$.value;
-  @override
-  String get currentCompanyId => _currentCompany$.value?.uid ?? '';
 
   @override
-  Future<void> createCompany(CompanyModel company, Transaction? txn) async {
+  Future<CompanyModel?> get(String id) async => _companyRepo.get(id);
+
+  @override
+  Future<void> create(CompanyModel company, {Transaction? txn}) async {
     String newCompanyId = _companyRepo.generateId;
-    String ownerUid = _authBusinessLogic.currentUserId;
+    String ownerUid = _authBusinessLogic.currentUser!.uid;
 
     await _companyRepo.create(company.copyWith(uid: newCompanyId, ownerUid: ownerUid), txn: txn);
 
@@ -30,13 +30,7 @@ class CompanyBusinessLogic extends GetxService with GlobalHelper implements ICom
   }
 
   @override
-  Future<void> postCreateCompany() async {
-    await _workerBusinessLogic.fetchLoggedWorker();
-    navigate.toHome();
-  }
-
-  @override
-  Future<CompanyModel?> get(String id) async => _companyRepo.get(id);
+  Future<void> update(CompanyModel company, {Transaction? txn}) async => await _companyRepo.update(company, txn: txn);
 
   @override
   Future<CompanyModel?> fetchLoggedCompany() async {

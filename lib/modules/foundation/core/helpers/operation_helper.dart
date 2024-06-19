@@ -2,17 +2,19 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 
 class OperationHelper with GlobalHelper {
   late final FirebaseFirestore _firestore = Get.find();
-  late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
+  late final IWorkerService _workerService = Get.find();
+  late final ICompanyService _companyService = Get.find();
 
-  // TODO no funciona la transaccion, si falla la transaccion no hace el rollback
   Future<T?> perform<T>({
     required Future<T?> Function(Transaction? txn) operation,
     String operationName = "Operation",
     String permissionKey = '',
+    ModuleModel? module,
     String successMessage = '',
     String? errorMessage,
     bool showErrorMessageBySnackbar = true,
@@ -21,6 +23,10 @@ class OperationHelper with GlobalHelper {
     bool inTransaction = false,
   }) async {
     T? result;
+    if (module != null && !await _hasModuleActive(module)) {
+      throw Exception('module-not-active');
+    }
+
     if (inTransaction) {
       result = await _firestore.runTransaction(
         (Transaction txn) async {
@@ -78,13 +84,19 @@ class OperationHelper with GlobalHelper {
       log.error("$operationName fallida: $finalErrorMessage", e);
 
       onError?.call(e);
-      return null;
+
+      rethrow;
     }
   }
 
-  // TODO refactorizar para que no busque siempre el trabajador en la base de datos
+  Future<bool> _hasModuleActive(ModuleModel module) async {
+    final company = await _companyService.fetchLoggedCompany();
+    if (company == null) throw CompanyNotFoundException();
+    return company.hasModuleActive(module);
+  }
+
   Future<bool> _hasPermission(String permissionKey) async {
-    final worker = await _workerBusinessLogic.fetchLoggedWorker();
+    final worker = await _workerService.fetchLoggedWorker();
 
     if (worker == null) throw WorkerNotFoundException();
 

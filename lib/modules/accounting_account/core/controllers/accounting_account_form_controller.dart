@@ -3,17 +3,15 @@ import 'package:get/get.dart';
 
 import '../../module.dart';
 
-class AccountingAccountFormController extends GetxController with FormHelper<AccountingAccountModel>, LifeCycleLoggingControllerHelper {
+class AccountingAccountFormController extends GetxController
+    with FormHelper<AccountingAccountModel>, GlobalHelper, LifeCycleLoggingControllerHelper {
   @override
   String get logTag => 'AccountingAccountFormController';
 
   late final IAccountingAccountService _accountingAccountService = Get.find();
 
   @override
-  List<String> formFields = [
-    FieldKeys.name,
-    FieldKeys.observations,
-  ];
+  List<String> formFields = [FieldKeys.name, FieldKeys.observations];
 
   @override
   Future<void> populateFormFields() async {
@@ -26,16 +24,22 @@ class AccountingAccountFormController extends GetxController with FormHelper<Acc
   }
 
   @override
-  Future<void> submit() async =>
-      isUpdateMode ? await _accountingAccountService.updateAccountingAccount(buildModel()) : await _accountingAccountService.createAccountingAccount(buildModel());
+  Future<void> submit() async {
+    try {
+      isUpdateMode
+          ? await _accountingAccountService.update(buildModel())
+          : await _accountingAccountService.create(buildModel());
+
+      navigate.back();
+    } catch (e) {
+      isUpdateMode;
+    }
+  }
 
   @override
-  AccountingAccountModel buildModel() {
-    return AccountingAccountModel(
-      uid: isUpdateMode ? modelForUpdate!.uid : '',
-      name: getFieldValue(FieldKeys.name),
-      observations: getFieldValue(FieldKeys.observations),
-    );
-  }
+  AccountingAccountModel buildModel() => AccountingAccountModel(
+        uid: isUpdateMode ? modelForUpdate!.uid : '',
+        name: getFieldValue(FieldKeys.name),
+        observations: getFieldValue(FieldKeys.observations),
+      );
 }
-

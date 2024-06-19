@@ -4,7 +4,6 @@ import 'package:botanico/modules/foundation/module.dart';
 
 export 'core/controllers/worker_link_controller.dart';
 export 'core/controllers/worker_list_controller.dart';
-export 'core/controllers/worker_unlink_controller.dart';
 export 'core/controllers/worker_lobby_controller.dart';
 export 'core/controllers/worker_form_controller.dart';
 export 'core/controllers/worker_permission_toggle_controller.dart';
@@ -16,12 +15,14 @@ export 'core/helpers/worker_navigation_helper.dart';
 
 export 'core/helpers/interfaces/i_worker_business_logic.dart';
 export 'core/helpers/interfaces/i_worker_repository.dart';
+export 'core/helpers/interfaces/i_linked_worker_repository.dart';
 export 'core/helpers/interfaces/i_worker_service.dart';
 
 export 'core/helpers/enums/worker_role.dart';
 export 'core/worker_model.dart';
 
 export 'core/worker_repository.dart';
+export 'core/linked_worker_repository.dart';
 export 'core/worker_service.dart';
 
 export 'tests/flows/worker_create_from_sign_up_flow.dart';
@@ -62,6 +63,7 @@ void dependencies() {
   Get.put<IWorkerBusinessLogic>(WorkerBusinessLogic(), permanent: true);
 
   Get.lazyPut<IWorkerRepository>(() => WorkerRepository(), fenix: true);
+  Get.lazyPut<ILinkedWorkerRepository>(() => LinkedWorkerRepository(), fenix: true);
   Get.lazyPut<IWorkerService>(() => WorkerService(), fenix: true);
 
   Get.lazyPut<WorkerLobbyController>(() => WorkerLobbyController(), fenix: true);
@@ -69,7 +71,6 @@ void dependencies() {
   Get.lazyPut<WorkerListController>(() => WorkerListController(), fenix: true);
   Get.lazyPut<WorkerLinkController>(() => WorkerLinkController(), fenix: true);
   Get.lazyPut<WorkerLinkController>(() => WorkerLinkController(), fenix: true);
-  Get.lazyPut<WorkerUnlinkController>(() => WorkerUnlinkController(), fenix: true);
   Get.lazyPut<WorkerPermissionToggleController>(() => WorkerPermissionToggleController(), fenix: true);
 }
 
@@ -94,5 +95,5 @@ class WorkerModulePermissions implements ModuleStructure {
       ];
 
   @override
-  ModuleModel toModel() => ModuleModel(name: 'Trabajadores', permissions: permissions);
+  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

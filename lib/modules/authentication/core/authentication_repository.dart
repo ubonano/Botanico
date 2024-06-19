@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../module.dart';
 
 class AuthenticationRepository implements IAuthenticationRepository {
-  final FirebaseAuth _auth = Get.find();
+  late final FirebaseAuth _auth = Get.find();
 
   @override
   User? get currentUser => _auth.currentUser;

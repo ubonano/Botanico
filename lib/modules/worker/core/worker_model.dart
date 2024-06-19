@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../module.dart';
 
 class WorkerModel {
+  static const String collectionName = 'workers';
+
   final String uid;
   final String email;
   final String name;
@@ -12,6 +14,8 @@ class WorkerModel {
   String companyId;
   WorkerRole role;
   Map<String, bool> permissions;
+
+  final DocumentSnapshot? documentSnapshot;
 
   bool get isOwner => role == WorkerRole.owner;
   bool get isNotOwner => role != WorkerRole.owner;
@@ -27,6 +31,7 @@ class WorkerModel {
     this.role = WorkerRole.undefined,
     this.companyId = '',
     this.permissions = const {},
+    this.documentSnapshot,
   });
 
   bool hasPermission(String permissionId) => isOwner || permissions.containsKey(permissionId);
@@ -81,18 +86,20 @@ class WorkerModel {
         'role': workerRoleToString(role),
       };
 
-  static WorkerModel fromSnapshot(DocumentSnapshot snapshot) =>
-      WorkerModel.fromMap(snapshot.data() as Map<String, dynamic>);
+  static WorkerModel fromSnapshot(DocumentSnapshot snapshot) {
+    final data = snapshot.data() as Map<String, dynamic>;
 
-  factory WorkerModel.fromMap(Map<String, dynamic> map) => WorkerModel(
-        uid: map['uid'] ?? '',
-        email: map['email'] ?? '',
-        name: map['name'] ?? '',
-        birthDate: map['birthDate'] ?? '',
-        phone: map['phone'] ?? '',
-        dni: map['dni'] ?? '',
-        companyId: map['companyId'] ?? '',
-        role: workerRoleFromString(map['role']),
-        permissions: Map<String, bool>.from(map['permissions'] ?? {}),
-      );
+    return WorkerModel(
+      uid: data['uid'] ?? '',
+      email: data['email'] ?? '',
+      name: data['name'] ?? '',
+      birthDate: data['birthDate'] ?? '',
+      phone: data['phone'] ?? '',
+      dni: data['dni'] ?? '',
+      companyId: data['companyId'] ?? '',
+      role: workerRoleFromString(data['role']),
+      permissions: Map<String, bool>.from(data['permissions'] ?? {}),
+      documentSnapshot: snapshot,
+    );
+  }
 }

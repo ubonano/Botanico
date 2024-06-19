@@ -13,6 +13,7 @@ export 'core/helpers/function_helper.dart';
 
 export 'core/helpers/life_cycle_logging_controller_helper.dart';
 export 'core/helpers/form_helper.dart';
+export 'core/helpers/paginated_list_helper.dart';
 export 'core/helpers/global_helper.dart';
 
 export 'core/models/module_model.dart';
@@ -43,13 +44,13 @@ export 'ui/widgets/custom_drawer.dart';
 export 'ui/widgets/confirmation_dialog.dart';
 export 'ui/widgets/custom_scaffold.dart';
 export 'ui/widgets/protected_widget.dart';
+export 'ui/widgets/module_active_toggle.dart';
 
 export 'ui/module_list_page.dart';
 
 export 'ui/home_page.dart';
 
 export '../../app.dart';
-export '../../setup/firestore_collections.dart';
 export '../../setup/bindings.dart';
 export '../../setup/firebase_options.dart';
 export '../../setup/pages.dart';

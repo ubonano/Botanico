@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import 'core/controllers/accounting_account_form_controller.dart';
 import 'core/controllers/accounting_account_list_controller.dart';
-import 'core/controllers/accounting_account_delete_controller.dart';
 
 import 'core/helpers/interfaces/i_accounting_account_business_logic.dart';
 import 'core/helpers/interfaces/i_accounting_account_repository.dart';
@@ -15,7 +14,6 @@ import 'core/accounting_account_service.dart';
 
 export 'core/controllers/accounting_account_form_controller.dart';
 export 'core/controllers/accounting_account_list_controller.dart';
-export 'core/controllers/accounting_account_delete_controller.dart';
 
 export 'core/accounting_account_business_logic.dart';
 
@@ -26,7 +24,6 @@ export 'core/helpers/interfaces/i_accounting_account_service.dart';
 export 'core/helpers/accounting_account_navigation_helper.dart';
 
 export 'core/accounting_account_model.dart';
-export 'core/accounting_account_permissions.dart';
 
 export 'core/accounting_account_repository.dart';
 export 'core/accounting_account_service.dart';
@@ -57,14 +54,13 @@ export 'ui/accounting_account_form_page.dart';
 export 'ui/accounting_account_list_page.dart';
 
 void dependencies() {
-  Get.put<IAccountingAccountBusinessLogic>(AccountingAccountBusinessLogic(), permanent: true);
+  Get.lazyPut<IAccountingAccountBusinessLogic>(() => AccountingAccountBusinessLogic(), fenix: true);
 
   Get.lazyPut<IAccountingAccountRepository>(() => AccountingAccountRepository(), fenix: true);
   Get.lazyPut<IAccountingAccountService>(() => AccountingAccountService(), fenix: true);
 
   Get.lazyPut<AccountingAccountFormController>(() => AccountingAccountFormController(), fenix: true);
   Get.lazyPut<AccountingAccountListController>(() => AccountingAccountListController(), fenix: true);
-  Get.lazyPut<AccountingAccountDeleteController>(() => AccountingAccountDeleteController(), fenix: true);
 }
 
 class AccountingAccountModulePermissions implements ModuleStructure {
@@ -88,5 +84,5 @@ class AccountingAccountModulePermissions implements ModuleStructure {
       ];
 
   @override
-  ModuleModel toModel() => ModuleModel(name: 'Cuentas Contables', permissions: permissions);
+  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }
