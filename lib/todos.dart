@@ -1,5 +1,6 @@
 // CREa modulo de COMPRAS! Finaliza el feature y comenza uno nuevo
 
+// TODO Ver como hacer para que luego de 5 minutos de que una orden en estado entregada se archive sola
 // finalizar feature, hacer release a QA, deployar en QA
 // TODO Crear ABM de lugares de entrega
 
