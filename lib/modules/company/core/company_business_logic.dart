@@ -24,7 +24,17 @@ class CompanyBusinessLogic extends GetxService implements ICompanyBusinessLogic 
     String newCompanyId = _companyRepo.generateId;
     String ownerUid = _authBusinessLogic.currentUser!.uid;
 
-    await _companyRepo.create(company.copyWith(uid: newCompanyId, ownerUid: ownerUid), txn: txn);
+    await _companyRepo.create(
+      company.copyWith(
+        uid: newCompanyId,
+        ownerUid: ownerUid,
+        activeModules: {
+          'company': true,
+          'worker': true,
+        },
+      ),
+      txn: txn,
+    );
 
     await _workerBusinessLogic.updateWorkerAsOwner(newCompanyId, txn);
   }
