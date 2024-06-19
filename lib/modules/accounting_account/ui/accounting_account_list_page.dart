@@ -18,4 +18,3 @@ class AccountingAccountListPage extends GetView<AccountingAccountListController>
     );
   }
 }
-

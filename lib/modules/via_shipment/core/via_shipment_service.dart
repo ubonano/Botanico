@@ -98,6 +98,20 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
       );
 
   @override
+  Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState,
+          {bool validateTransition = true}) async =>
+      await operation.perform(
+        permissionKey: ViaShipmentModulePermissions.changeStateKey,
+        module: _module,
+        operationName: 'Change state of shipment ${shipment.shipmentId} to $newState',
+        operation: (_) async => await _viaShipmentBusinessLogic.changeState(
+          shipment,
+          newState,
+          validateTransition: validateTransition,
+        ),
+      );
+
+  @override
   Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace) async =>
       await operation.perform(
         permissionKey: ViaShipmentModulePermissions.changeDeliveryPlaceKey,
@@ -107,11 +121,14 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
       );
 
   @override
-  StreamSubscription<List<ViaShipmentModel>>? initializeStream({
+  StreamSubscription<List<ViaShipmentModel>>? initStream({
     required RxList<ViaShipmentModel> list$,
     DocumentSnapshot? startAfter,
     int limit = 20,
     List<ViaShipmentState>? states,
+    DateTime? fromDate,
+    DateTime? toDate,
+    String? shipmentId,
     Function(List<ViaShipmentModel>)? onNewData,
   }) =>
       _viaShipmentBusinessLogic.initStream(
@@ -119,6 +136,9 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
         startAfter: startAfter,
         limit: limit,
         states: states,
+        fromDate: fromDate,
+        toDate: toDate,
+        shipmentId: shipmentId,
         onNewData: onNewData,
       );
 }

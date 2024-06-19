@@ -23,6 +23,11 @@ mixin PaginatedListHelper<T> on GetxController {
     required Function(List<T>) onNewData,
   });
 
+  void restartStream() {
+    _subscription?.cancel();
+    _initializeStream();
+  }
+
   void _initializeStream() {
     isLoading = true;
 
