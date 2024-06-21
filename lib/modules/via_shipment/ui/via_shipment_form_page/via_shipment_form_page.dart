@@ -24,32 +24,16 @@ class ViaShipmentFormPage extends GetView<ViaShipmentFormController> {
                 children: [
                   Expanded(child: ShipmentIdInputField(controller)),
                   const ShipmentIdSearchButton(),
-                  const SizedBox(width: 16.0),
-                  Expanded(child: IsInvoicedInputField(controller)),
                 ],
               ),
+              // IsInvoicedInputField(controller),
               CreatedDateTimeInputField(controller),
-              Row(
-                children: [
-                  Expanded(child: StateInputField(controller)),
-                  const SizedBox(width: 16.0),
-                  Expanded(child: TypeInputField(controller)),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(child: ClientInputField(controller)),
-                  const SizedBox(width: 16.0),
-                  Expanded(child: DeliveryPlaceInputField(controller)),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(child: PackageInputField(controller)),
-                  const SizedBox(width: 16.0),
-                  Expanded(child: WeightInputField(controller)),
-                ],
-              ),
+              // StateInputField(controller),
+              TypeInputField(controller),
+              ClientInputField(controller),
+              // DeliveryPlaceInputField(controller),
+              PackageInputField(controller),
+              WeightInputField(controller),
               DescriptionInputField(controller),
               const ViaShipmentSaveButton(),
               if (controller.isUpdateMode) ActionLogsList(controller: controller),

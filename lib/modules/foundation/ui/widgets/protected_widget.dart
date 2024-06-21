@@ -14,9 +14,8 @@ class ProtectedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Get.find<ICompanyService>().loggedCompany$?.hasModuleActive(module) ??
-              Get.find<IWorkerService>().loggedWorker$?.hasPermission(permission) ??
-              false
+      () => Get.find<ICompanyService>().loggedCompany$?.hasModuleActive(module) == true &&
+              Get.find<IWorkerService>().loggedWorker$?.hasPermission(permission) == true
           ? child
           : const SizedBox.shrink(),
     );

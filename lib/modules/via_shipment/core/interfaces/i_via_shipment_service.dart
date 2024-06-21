@@ -26,6 +26,7 @@ abstract class IViaShipmentService {
     DateTime? fromDate,
     DateTime? toDate,
     String? shipmentId,
+    bool descending = true,
     Function(List<ViaShipmentModel>)? onNewData,
   });
 }

@@ -19,7 +19,7 @@ class DeliveryPlaceInputField extends StatelessWidget {
           children: [
             DropdownButtonFormField<String>(
               key: const Key('deliveryPlaceField'),
-              value: value.isNotEmpty ? value : null,
+              value: value.isNotEmpty ? value : deliveryPlaceToString(ViaShipmentDeliveryPlace.toDefine),
               onChanged: pageController.isFieldsEnabled.value || !pageController.isUpdateModeRx.value
                   ? (newValue) {
                       if (newValue != null) {

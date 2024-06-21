@@ -46,6 +46,7 @@ class ViaShipmentDashboardController extends GetxController
           ViaShipmentState.ready,
           ViaShipmentState.delivered
         ],
+        descending: false,
         onNewData: onNewData,
       );
 }

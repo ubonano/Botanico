@@ -13,7 +13,7 @@ class DeliverSlidableButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlidableAction(
       onPressed: (context) async => await Get.find<IViaShipmentService>().deliver(shipment),
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.grey,
       foregroundColor: Colors.white,
       icon: Icons.check_circle,
       label: 'Entregar',

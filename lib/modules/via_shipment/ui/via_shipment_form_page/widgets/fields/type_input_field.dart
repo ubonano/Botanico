@@ -19,7 +19,7 @@ class TypeInputField extends StatelessWidget {
           children: [
             DropdownButtonFormField<String>(
               key: const Key('typeField'),
-              value: value.isNotEmpty ? value : null,
+              value: value.isNotEmpty ? value : viaShipmentTypeToString(ViaShipmentType.delivery),
               onChanged: pageController.isFieldsEnabled.value || !pageController.isUpdateModeRx.value
                   ? (newValue) {
                       if (newValue != null) {

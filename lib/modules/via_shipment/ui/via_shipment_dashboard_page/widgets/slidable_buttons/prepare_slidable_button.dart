@@ -13,7 +13,7 @@ class PrepareSlidableButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlidableAction(
       onPressed: (context) async => await Get.find<IViaShipmentService>().prepare(shipment),
-      backgroundColor: Colors.yellow,
+      backgroundColor: Colors.green,
       foregroundColor: Colors.white,
       icon: Icons.check_circle,
       label: 'Lista',

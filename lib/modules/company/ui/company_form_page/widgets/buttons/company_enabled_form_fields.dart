@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
-import '../../../module.dart';
+import '../../../../module.dart';
 
 class CompanyEnabledFormFields extends GetView<CompanyFormController> {
   const CompanyEnabledFormFields({super.key});
