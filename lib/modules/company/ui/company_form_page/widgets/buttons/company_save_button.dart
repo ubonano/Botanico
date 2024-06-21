@@ -9,10 +9,13 @@ class CompanySaveButton extends GetView<CompanyFormController> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomButton(
-      key: key ?? const Key('CompanySaveButton'),
-      text: 'Guardar empresa',
-      onPressed: controller.secureSubmit,
+    return Obx(
+      () => CustomButton(
+        key: key ?? const Key('CompanySaveButton'),
+        text: 'Guardar empresa',
+        onPressed: controller.secureSubmit,
+        enabled: controller.isUpdateModeRx.value ? controller.isFieldsEnabled.value : true,
+      ),
     );
   }
 }

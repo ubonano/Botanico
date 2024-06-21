@@ -48,7 +48,7 @@ class ViaShipmentModel {
         'isInvoiced': isInvoiced,
         'createdDateTime': createdDateTime,
         'deliveryPlace': deliveryPlace,
-        'actionLogs': actionLogs.map((e) => e.toMap()).toList(),
+        if (actionLogs.isNotEmpty) 'actionLogs': actionLogs.map((e) => e.toMap()).toList(),
       };
 
   static ViaShipmentModel fromSnapshot(DocumentSnapshot snapshot) {

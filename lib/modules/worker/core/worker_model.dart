@@ -76,7 +76,7 @@ class WorkerModel {
         'dni': dni,
         'companyId': companyId,
         'role': workerRoleToString(role),
-        'permissions': permissions,
+        if (permissions.isNotEmpty) 'permissions': permissions,
       };
 
   Map<String, dynamic> toLinkedWorkerMap() => {
