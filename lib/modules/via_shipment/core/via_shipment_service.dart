@@ -129,6 +129,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
     DateTime? fromDate,
     DateTime? toDate,
     String? shipmentId,
+    bool descending = true,
     Function(List<ViaShipmentModel>)? onNewData,
   }) =>
       _viaShipmentBusinessLogic.initStream(
@@ -139,6 +140,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
         fromDate: fromDate,
         toDate: toDate,
         shipmentId: shipmentId,
+        descending: descending,
         onNewData: onNewData,
       );
 }

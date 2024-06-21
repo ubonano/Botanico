@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 
-import '../../../module.dart';
+import '../../../../module.dart';
 
 class CompanyFormPageTileButton extends StatelessWidget with NavigationHelperInstance {
   CompanyFormPageTileButton({super.key});

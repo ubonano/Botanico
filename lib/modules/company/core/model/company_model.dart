@@ -45,7 +45,7 @@ class CompanyModel {
         'province': province,
         'country': country,
         'phone': phone,
-        'activeModules': activeModules,
+        if (activeModules.isNotEmpty) 'activeModules': activeModules,
       };
 
   factory CompanyModel.fromMap(Map<String, dynamic> map, String documentId) => CompanyModel(

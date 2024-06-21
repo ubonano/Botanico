@@ -11,7 +11,6 @@ Future<void> main() async {
   // firebase deploy --only hosting:qa,firestore,functions,storage --project botanico-qa
   // firebase deploy --only hosting:prod,firestore,functions,storage --project botanico-82e04
 
-
   // const String environment = String.fromEnvironment('ENV', defaultValue: 'prod');
   const String environment = String.fromEnvironment('ENV', defaultValue: 'qa');
 

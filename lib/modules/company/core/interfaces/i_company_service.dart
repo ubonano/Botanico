@@ -1,4 +1,4 @@
-import '../../../module.dart';
+import '../../module.dart';
 
 abstract class ICompanyService {
   CompanyModel? get loggedCompany$;

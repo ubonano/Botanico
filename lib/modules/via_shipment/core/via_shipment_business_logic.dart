@@ -99,6 +99,7 @@ class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
     DateTime? fromDate,
     DateTime? toDate,
     String? shipmentId,
+    bool descending = true,
     Function(List<ViaShipmentModel>)? onNewData,
   }) =>
       _viaShipmentRepo
@@ -108,7 +109,8 @@ class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
               states: states,
               fromDate: fromDate,
               toDate: toDate,
-              shipmentId: shipmentId)
+              shipmentId: shipmentId,
+              descending: descending)
           .listen(
         (viaShipmentList) {
           startAfter == null ? list$.value = viaShipmentList : list$.addAll(viaShipmentList);

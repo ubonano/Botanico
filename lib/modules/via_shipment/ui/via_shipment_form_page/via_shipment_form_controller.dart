@@ -10,9 +10,10 @@ class ViaShipmentFormController extends GetxController
 
   late final IViaShipmentService _viaShipmentService = Get.find();
 
-  var shipmentType = ''.obs;
+  var shipmentType = viaShipmentTypeToString(ViaShipmentType.delivery).obs;
+  // var shipmentType = ''.obs;
   var shipmentState = ViaShipmentState.pending.obs;
-  var deliveryPlace = ''.obs;
+  var deliveryPlace = deliveryPlaceToString(ViaShipmentDeliveryPlace.toDefine).obs;
   var isInvoiced = false.obs;
   var isLoading = false.obs;
 
@@ -82,15 +83,19 @@ class ViaShipmentFormController extends GetxController
 
   Future<void> fetchShipmentDataFromExternalAPI() async {
     isLoading.value = true;
-    final ViaShipmentModel? shipment =
-        await _viaShipmentService.getFromExternalAPI(getFieldValue(FieldKeys.shipmentId));
+    try {
+      final ViaShipmentModel? shipment =
+          await _viaShipmentService.getFromExternalAPI(getFieldValue(FieldKeys.shipmentId));
 
-    isLoading.value = false;
-
-    if (shipment != null) {
-      setFieldValue(FieldKeys.client, shipment.client);
-      setFieldValue(FieldKeys.package, shipment.package);
-      setFieldValue(FieldKeys.weight, shipment.weight.toString());
+      if (shipment != null) {
+        setFieldValue(FieldKeys.client, shipment.client);
+        setFieldValue(FieldKeys.package, shipment.package);
+        setFieldValue(FieldKeys.weight, shipment.weight.toString());
+      }
+    } catch (e) {
+      logTag;
+    } finally {
+      isLoading.value = false;
     }
   }
 }

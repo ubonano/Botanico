@@ -45,8 +45,9 @@ class ViaShipmentRepository implements IViaShipmentRepository {
     DateTime? fromDate,
     DateTime? toDate,
     String? shipmentId,
+    bool descending = true,
   }) {
-    var query = _viaShipmentsRef().orderBy(FieldKeys.createdDateTime, descending: true).limit(limit);
+    var query = _viaShipmentsRef().orderBy(FieldKeys.createdDateTime, descending: descending).limit(limit);
 
     if (states != null && states.isNotEmpty) {
       query = query.where(FieldKeys.state, whereIn: states.map((state) => state.value).toList());
