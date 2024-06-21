@@ -7,11 +7,11 @@
 
 
 
-
+// Bloquear la odificacion del la activacion del modulo Empresa
 
 // Revisar que la sesion se mantenga activa siempre
-
 // Crear proceso programaado para que elimine todos los dias los envios archivados de dos meses hacia atras
+// Crear los middlewares
 
 
 
@@ -26,3 +26,19 @@
 // TODO refactorizar modulo de WORKER (en general) Inclusive hay que agregar el paginationHelper
 
 // TODO crear un servicio para el porta papeles y que dentro tambien tenga la posiblidad de mostrr snackbakrs si uno quisiera advertir al usuario que se copio algo, por ejemplo
+
+
+
+
+/**
+ * 
+ * Se modifco:
+ *  Colores de los botones.
+ *  Modulos protegidos, los usuarios no deben ver los modulos que no estan activados, y los que no tiene permisos.
+ *  Formulario de creacion/actualizacion en formato columna
+ *  Copiar numero de guia al precionar sobre el mismo
+ *  Alerta de pendiente en color naranja. (Se mantiene en rojo las que fueron facturadas y no estan listas/entregadas)
+ *  Cambio de orden de las guias, Ahora se muestran las mas nuevas ultimas.
+ *  Se quito del formulario el campo estado, lugar de entrega y facturado.
+ *   
+ */
