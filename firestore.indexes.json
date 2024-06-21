@@ -55,6 +55,62 @@
           "order": "DESCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "viaShipments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "createdDateTime",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "state",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "viaShipments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "createdDateTime",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "shipmentId",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "viaShipments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "createdDateTime",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fromDate",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "viaShipments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "createdDateTime",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "toDate",
+          "order": "ASCENDING"
+        }
+      ]
     }
   ],
   "fieldOverrides": []
