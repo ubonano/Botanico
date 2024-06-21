@@ -22,7 +22,10 @@ class _ViaShipmentDashboardTileState extends State<ViaShipmentDashboardTile> wit
   void initState() {
     super.initState();
     _controller = AnimationController(duration: const Duration(seconds: 1), vsync: this)..repeat(reverse: true);
-    _colorAnimation = ColorTween(begin: Colors.transparent, end: Colors.redAccent).animate(_controller);
+    _colorAnimation = ColorTween(
+      begin: Colors.transparent,
+      end: _shipment.isPending ? Colors.orangeAccent : Colors.redAccent,
+    ).animate(_controller);
   }
 
   @override
