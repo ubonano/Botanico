@@ -1,14 +1,20 @@
 // CREa modulo de COMPRAS! Finaliza el feature y comenza uno nuevo
 
+
+
 // TODO Fixear problema al buscar envio por ID, si falla queda el loading del boton
-
-// lo mismo con el tipo: por defecto ENTREGA
-
 // al actualizar la empreda, esta pisando la lista de modulos
+
+
+
+
 
 // Revisar que la sesion se mantenga activa siempre
 
 // Crear proceso programaado para que elimine todos los dias los envios archivados de dos meses hacia atras
+
+
+
 // Refactor de modulos
 // TODO Crear ABM de lugares de entrega
 // TODO Bloquear modulo de trabajadores y empresa
