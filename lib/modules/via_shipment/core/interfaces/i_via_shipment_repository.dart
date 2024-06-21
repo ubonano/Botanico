@@ -16,5 +16,6 @@ abstract class IViaShipmentRepository {
     DateTime? fromDate,
     DateTime? toDate,
     String? shipmentId,
+    bool descending = true,
   });
 }
