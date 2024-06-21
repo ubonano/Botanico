@@ -54,6 +54,13 @@ class ViaShipmentModel {
   static ViaShipmentModel fromSnapshot(DocumentSnapshot snapshot) {
     final data = snapshot.data() as Map<String, dynamic>;
 
+    List<ViaShipmentActionLogModel> actionLogs = [];
+    if (data['actionLogs'] != null) {
+      actionLogs = (data['actionLogs'] as List)
+          .map((e) => ViaShipmentActionLogModel.fromMap(e as Map<String, dynamic>))
+          .toList();
+    }
+
     return ViaShipmentModel(
       id: snapshot.id,
       shipmentId: data['shipmentId'],
@@ -66,9 +73,7 @@ class ViaShipmentModel {
       isInvoiced: data['isInvoiced'],
       createdDateTime: (data['createdDateTime'] as Timestamp).toDate(),
       deliveryPlace: data['deliveryPlace'],
-      actionLogs: (data['actionLogs'] as List)
-          .map((e) => ViaShipmentActionLogModel.fromMap(e as Map<String, dynamic>))
-          .toList(),
+      actionLogs: actionLogs,
       documentSnapshot: snapshot,
     );
   }

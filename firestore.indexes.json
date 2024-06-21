@@ -5,12 +5,26 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
+          "fieldPath": "state",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "createdDateTime",
           "order": "DESCENDING"
-        },
+        }
+      ]
+    },
+    {
+      "collectionGroup": "viaShipments",
+      "queryScope": "COLLECTION",
+      "fields": [
         {
           "fieldPath": "state",
           "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdDateTime",
+          "order": "ASCENDING"
         }
       ]
     },
@@ -18,26 +32,12 @@
       "collectionGroup": "viaShipments",
       "queryScope": "COLLECTION",
       "fields": [
-        {
-          "fieldPath": "createdDateTime",
-          "order": "DESCENDING"
-        },
         {
           "fieldPath": "shipmentId",
           "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "viaShipments",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "createdDateTime",
-          "order": "DESCENDING"
         },
         {
-          "fieldPath": "fromDate",
+          "fieldPath": "createdDateTime",
           "order": "ASCENDING"
         }
       ]
@@ -46,69 +46,13 @@
       "collectionGroup": "viaShipments",
       "queryScope": "COLLECTION",
       "fields": [
-        {
-          "fieldPath": "createdDateTime",
-          "order": "DESCENDING"
-        },
-        {
-          "fieldPath": "toDate",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "viaShipments",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "createdDateTime",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "state",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "viaShipments",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "createdDateTime",
-          "order": "ASCENDING"
-        },
         {
           "fieldPath": "shipmentId",
           "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "viaShipments",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "createdDateTime",
-          "order": "ASCENDING"
         },
         {
-          "fieldPath": "fromDate",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "viaShipments",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
           "fieldPath": "createdDateTime",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "toDate",
-          "order": "ASCENDING"
+          "order": "DESCENDING"
         }
       ]
     }
