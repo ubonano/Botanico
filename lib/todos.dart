@@ -2,7 +2,6 @@
 
 // TODO Fixear problema al buscar envio por ID, si falla queda el loading del boton
 
-// y el campo lugar de entrega esta como obligatorio, tiene que ser opcional, mayormente eso se decide despues de crear el item
 // lo mismo con el tipo: por defecto ENTREGA
 
 // al actualizar la empreda, esta pisando la lista de modulos

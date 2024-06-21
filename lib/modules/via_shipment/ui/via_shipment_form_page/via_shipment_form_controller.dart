@@ -10,7 +10,8 @@ class ViaShipmentFormController extends GetxController
 
   late final IViaShipmentService _viaShipmentService = Get.find();
 
-  var shipmentType = ''.obs;
+  var shipmentType = viaShipmentTypeToString(ViaShipmentType.delivery).obs;
+  // var shipmentType = ''.obs;
   var shipmentState = ViaShipmentState.pending.obs;
   var deliveryPlace = deliveryPlaceToString(ViaShipmentDeliveryPlace.toDefine).obs;
   var isInvoiced = false.obs;
