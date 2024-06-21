@@ -40,5 +40,6 @@
  *  Alerta de pendiente en color naranja. (Se mantiene en rojo las que fueron facturadas y no estan listas/entregadas)
  *  Cambio de orden de las guias, Ahora se muestran las mas nuevas ultimas.
  *  Se quito del formulario el campo estado, lugar de entrega y facturado.
+ *  Se arreglo el problema de que al intentar buscar un envio mediante la api, en el caso de que fallara, el boton quedaba inaccesible (quedaba el loading eternamente)
  *   
  */

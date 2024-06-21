@@ -83,15 +83,19 @@ class ViaShipmentFormController extends GetxController
 
   Future<void> fetchShipmentDataFromExternalAPI() async {
     isLoading.value = true;
-    final ViaShipmentModel? shipment =
-        await _viaShipmentService.getFromExternalAPI(getFieldValue(FieldKeys.shipmentId));
+    try {
+      final ViaShipmentModel? shipment =
+          await _viaShipmentService.getFromExternalAPI(getFieldValue(FieldKeys.shipmentId));
 
-    isLoading.value = false;
-
-    if (shipment != null) {
-      setFieldValue(FieldKeys.client, shipment.client);
-      setFieldValue(FieldKeys.package, shipment.package);
-      setFieldValue(FieldKeys.weight, shipment.weight.toString());
+      if (shipment != null) {
+        setFieldValue(FieldKeys.client, shipment.client);
+        setFieldValue(FieldKeys.package, shipment.package);
+        setFieldValue(FieldKeys.weight, shipment.weight.toString());
+      }
+    } catch (e) {
+      logTag;
+    } finally {
+      isLoading.value = false;
     }
   }
 }
