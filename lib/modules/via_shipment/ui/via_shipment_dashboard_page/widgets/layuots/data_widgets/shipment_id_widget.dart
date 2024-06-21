@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:botanico/modules/foundation/module.dart';
+
 import '../../../../../module.dart';
 
 class ShipmentIdWidget extends StatelessWidget {
@@ -8,10 +12,17 @@ class ShipmentIdWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconWithText(
-      icon: Icons.numbers,
-      text: shipment.shipmentId,
-      boldText: shipment.shipmentId.length >= 4 ? shipment.shipmentId.substring(shipment.shipmentId.length - 4) : null,
+    return InkWell(
+      onTap: () {
+        Clipboard.setData(ClipboardData(text: shipment.shipmentId));
+        Get.find<SnackbarHelper>().info('Guia copiada!', duration: const Duration(seconds: 1));
+      },
+      child: IconWithText(
+        icon: Icons.numbers,
+        text: shipment.shipmentId,
+        boldText:
+            shipment.shipmentId.length >= 4 ? shipment.shipmentId.substring(shipment.shipmentId.length - 4) : null,
+      ),
     );
   }
 }

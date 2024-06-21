@@ -2,7 +2,6 @@
 
 // TODO Fixear problema al buscar envio por ID, si falla queda el loading del boton
 
-// cambiar orden en el dashboard, al revez
 //Que se copie el nro de guia al presionar en el
 // El campo ESTADO no es necesario acá en este form, por defecto tiene que ser pendiente siempre (creacion y actualizcion de envios)
 // y el campo lugar de entrega esta como obligatorio, tiene que ser opcional, mayormente eso se decide despues de crear el item
@@ -23,3 +22,4 @@
 // TODO Extraer el cambio de estado de los via_shipment en un servicio aparte
 // TODO refactorizar modulo de WORKER (en general) Inclusive hay que agregar el paginationHelper
 
+// TODO crear un servicio para el porta papeles y que dentro tambien tenga la posiblidad de mostrr snackbakrs si uno quisiera advertir al usuario que se copio algo, por ejemplo
