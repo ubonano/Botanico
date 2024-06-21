@@ -12,7 +12,7 @@ class ViaShipmentFormController extends GetxController
 
   var shipmentType = ''.obs;
   var shipmentState = ViaShipmentState.pending.obs;
-  var deliveryPlace = ''.obs;
+  var deliveryPlace = deliveryPlaceToString(ViaShipmentDeliveryPlace.toDefine).obs;
   var isInvoiced = false.obs;
   var isLoading = false.obs;
 
