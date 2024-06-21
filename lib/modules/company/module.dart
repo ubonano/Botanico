@@ -2,24 +2,24 @@ import 'package:get/get.dart';
 
 import 'package:botanico/modules/foundation/module.dart';
 
-import 'core/helpers/interfaces/i_company_business_logic.dart';
-import 'core/helpers/interfaces/i_company_repository.dart';
-import 'core/helpers/interfaces/i_company_service.dart';
-import 'ui/company_form/company_form_controller.dart';
-export 'ui/company_form/company_form_controller.dart';
+import 'core/interfaces/i_company_business_logic.dart';
+import 'core/interfaces/i_company_repository.dart';
+import 'core/interfaces/i_company_service.dart';
+import 'ui/company_form_page/company_form_controller.dart';
+export 'ui/company_form_page/company_form_controller.dart';
 
-export 'core/helpers/exceptions/company_not_found_exception.dart';
+export 'core/exceptions/company_not_found_exception.dart';
 
-export 'core/helpers/interfaces/i_company_business_logic.dart';
-export 'core/helpers/interfaces/i_company_repository.dart';
-export 'core/helpers/interfaces/i_company_service.dart';
-export 'core/helpers/company_navigation_helper.dart';
+export 'core/interfaces/i_company_business_logic.dart';
+export 'core/interfaces/i_company_repository.dart';
+export 'core/interfaces/i_company_service.dart';
+export 'navigation_helper.dart';
 
 import 'core/company_business_logic.dart';
 
-export 'core/company_model.dart';
+export 'core/model/company_model.dart';
 
-import 'core/company_repository.dart';
+import 'core/model/company_repository.dart';
 
 import 'core/company_service.dart';
 
@@ -33,19 +33,19 @@ export 'tests/flows/company_create_navigate_flow.dart';
 export 'tests/flows/company_create_fill_data_flow.dart';
 export 'tests/flows/company_create_press_save_button_flow.dart';
 
-export 'ui/company_form/widgets/fields/address_input_field.dart';
-export 'ui/company_form/widgets/fields/city_input_field.dart';
-export 'ui/company_form/widgets/fields/country_input_field.dart';
-export 'ui/company_form/widgets/fields/name_input_field.dart';
-export 'ui/company_form/widgets/fields/phone_input_field.dart';
-export 'ui/company_form/widgets/fields/province_input_field.dart';
+export 'ui/company_form_page/widgets/fields/address_input_field.dart';
+export 'ui/company_form_page/widgets/fields/city_input_field.dart';
+export 'ui/company_form_page/widgets/fields/country_input_field.dart';
+export 'ui/company_form_page/widgets/fields/name_input_field.dart';
+export 'ui/company_form_page/widgets/fields/phone_input_field.dart';
+export 'ui/company_form_page/widgets/fields/province_input_field.dart';
 
-export 'ui/company_form/widgets/buttons/company_save_button.dart';
-export 'ui/company_form/widgets/buttons/company_create_navigate_button.dart';
-export 'ui/company_form/widgets/buttons/company_enabled_form_fields.dart';
-export 'ui/company_form/widgets/buttons/company_form_page_tile_button.dart';
+export 'ui/company_form_page/widgets/buttons/company_save_button.dart';
+export 'ui/company_form_page/widgets/buttons/company_create_navigate_button.dart';
+export 'ui/company_form_page/widgets/buttons/company_enabled_form_fields.dart';
+export 'ui/company_form_page/widgets/buttons/company_form_page_tile_button.dart';
 
-export 'ui/company_form/company_form_page.dart';
+export 'ui/company_form_page/company_form_page.dart';
 
 void dependencies() {
   Get.put<ICompanyBusinessLogic>(CompanyBusinessLogic(), permanent: true);
