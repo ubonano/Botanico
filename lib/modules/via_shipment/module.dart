@@ -1,4 +1,5 @@
 import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
 import 'ui/via_shipment_form_page/via_shipment_form_controller.dart';
@@ -144,20 +145,20 @@ class ViaShipmentModulePermissions implements ModuleStructure {
   static const changeStateKey = 'via_shipment.change_state';
 
   @override
-  List<WorkerPermissionModel> get permissions => [
-        WorkerPermissionModel(id: viewKey, name: 'Ver'),
-        WorkerPermissionModel(id: createKey, name: 'Crear'),
-        WorkerPermissionModel(id: updateKey, name: 'Actualizar'),
-        WorkerPermissionModel(id: deleteKey, name: 'Eliminar'),
-        WorkerPermissionModel(id: dashboardKey, name: 'Dashboard'),
-        WorkerPermissionModel(id: invoiceKey, name: 'Facturar'),
-        WorkerPermissionModel(id: cancelInvoiceKey, name: 'Anular Factura'),
-        WorkerPermissionModel(id: processKey, name: 'Processar envío'),
-        WorkerPermissionModel(id: prepareKey, name: 'Alistar envío'),
-        WorkerPermissionModel(id: deliverKey, name: 'Entregar envío'),
-        WorkerPermissionModel(id: archiveKey, name: 'Archivar envío'),
-        WorkerPermissionModel(id: changeStateKey, name: 'Cambiar estado'),
-        WorkerPermissionModel(id: changeDeliveryPlaceKey, name: 'Cambiar lugar de entrega'),
+  List<PermissionModel> get permissions => [
+        PermissionModel(id: viewKey, name: 'Ver'),
+        PermissionModel(id: createKey, name: 'Crear'),
+        PermissionModel(id: updateKey, name: 'Actualizar'),
+        PermissionModel(id: deleteKey, name: 'Eliminar'),
+        PermissionModel(id: dashboardKey, name: 'Dashboard'),
+        PermissionModel(id: invoiceKey, name: 'Facturar'),
+        PermissionModel(id: cancelInvoiceKey, name: 'Anular Factura'),
+        PermissionModel(id: processKey, name: 'Processar envío'),
+        PermissionModel(id: prepareKey, name: 'Alistar envío'),
+        PermissionModel(id: deliverKey, name: 'Entregar envío'),
+        PermissionModel(id: archiveKey, name: 'Archivar envío'),
+        PermissionModel(id: changeStateKey, name: 'Cambiar estado'),
+        PermissionModel(id: changeDeliveryPlaceKey, name: 'Cambiar lugar de entrega'),
       ];
 
   @override

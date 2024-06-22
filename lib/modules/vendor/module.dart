@@ -1,4 +1,5 @@
 import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
 import 'ui/vendor_form_page/vendor_form_controller.dart';
@@ -84,11 +85,11 @@ class VendorModulePermissions implements ModuleStructure {
   static const deleteKey = 'vendor.delete';
 
   @override
-  List<WorkerPermissionModel> get permissions => [
-        WorkerPermissionModel(id: viewKey, name: 'Ver'),
-        WorkerPermissionModel(id: createKey, name: 'Crear'),
-        WorkerPermissionModel(id: updateKey, name: 'Actualizar'),
-        WorkerPermissionModel(id: deleteKey, name: 'Eliminar'),
+  List<PermissionModel> get permissions => [
+        PermissionModel(id: viewKey, name: 'Ver'),
+        PermissionModel(id: createKey, name: 'Crear'),
+        PermissionModel(id: updateKey, name: 'Actualizar'),
+        PermissionModel(id: deleteKey, name: 'Eliminar'),
       ];
 
   @override

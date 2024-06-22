@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
-class ModuleListController extends GetxController with LifeCycleLoggingControllerHelper {
+class WorkerPermissionManagementController extends GetxController with LifeCycleLoggingControllerHelper {
   @override
-  String get logTag => 'ModuleListController';
+  String get logTag => 'WorkerPermissionManagementController';
 
   late final ModuleRepository _moduleRepo = Get.find();
 

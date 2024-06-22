@@ -1,3 +1,4 @@
+import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
 import 'package:botanico/modules/foundation/module.dart';
@@ -66,8 +67,8 @@ class CompanyModulePermissions implements ModuleStructure {
   static const updateKey = 'company.update';
 
   @override
-  List<WorkerPermissionModel> get permissions => [
-        WorkerPermissionModel(id: updateKey, name: 'Actualizar'),
+  List<PermissionModel> get permissions => [
+        PermissionModel(id: updateKey, name: 'Actualizar'),
       ];
 
   @override

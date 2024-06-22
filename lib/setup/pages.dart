@@ -44,7 +44,7 @@ class Pages {
     ),
     GetPage(
       name: WorkerNavigationHelper.WORKER_PERMISSIONS,
-      page: () => const ModuleListPage(),
+      page: () => const WorkerPermissionManagementPage(),
     ),
     GetPage(
       name: WorkerNavigationHelper.LOBBY,

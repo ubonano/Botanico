@@ -6,7 +6,7 @@ export 'ui/worker_link_page/worker_link_controller.dart';
 export 'ui/worker_list_page/worker_list_controller.dart';
 export 'ui/worker_lobby_page/worker_lobby_controller.dart';
 export 'ui/worker_form_page/worker_form_controller.dart';
-export 'ui/worker_permission_toggle/worker_permission_toggle_controller.dart';
+export 'ui/worker_permission_management_page/widgets/worker_permission_toggle/worker_permission_toggle_controller.dart';
 
 export 'core/worker_business_logic.dart';
 
@@ -57,7 +57,12 @@ export 'ui/worker_list_page/widgets/worker_unlink_icon_button.dart';
 export 'ui/worker_list_page/widgets/worker_list_tile_trailing_icon_buttons.dart';
 
 export 'ui/worker_lobby_page/widgets/worker_uid_qr_code.dart';
-export 'ui/worker_permission_toggle/worker_permission_toggle.dart';
+export 'ui/worker_permission_management_page/widgets/worker_permission_toggle/worker_permission_toggle.dart';
+
+export 'ui/worker_permission_management_page/widgets/module_expansion_tile.dart';
+export 'ui/worker_permission_management_page/worker_permission_management_page.dart';
+export 'core/model/permission_model.dart';
+export 'ui/worker_permission_management_page/worker_permission_management_controller.dart';
 
 void dependencies() {
   Get.put<IWorkerBusinessLogic>(WorkerBusinessLogic(), permanent: true);
@@ -66,6 +71,7 @@ void dependencies() {
   Get.lazyPut<ILinkedWorkerRepository>(() => LinkedWorkerRepository(), fenix: true);
   Get.lazyPut<IWorkerService>(() => WorkerService(), fenix: true);
 
+  Get.lazyPut<WorkerPermissionManagementController>(() => WorkerPermissionManagementController(), fenix: true);
   Get.lazyPut<WorkerLobbyController>(() => WorkerLobbyController(), fenix: true);
   Get.lazyPut<WorkerFormController>(() => WorkerFormController(), fenix: true);
   Get.lazyPut<WorkerListController>(() => WorkerListController(), fenix: true);
@@ -87,11 +93,11 @@ class WorkerModulePermissions implements ModuleStructure {
   static const managePermissionsKey = 'worker.managePermissions';
 
   @override
-  List<WorkerPermissionModel> get permissions => [
-        WorkerPermissionModel(id: viewKey, name: 'Ver'),
-        WorkerPermissionModel(id: linkKey, name: 'Vincular'),
-        WorkerPermissionModel(id: unlinkKey, name: 'Desvincular'),
-        WorkerPermissionModel(id: managePermissionsKey, name: 'Gestionar permisos'),
+  List<PermissionModel> get permissions => [
+        PermissionModel(id: viewKey, name: 'Ver'),
+        PermissionModel(id: linkKey, name: 'Vincular'),
+        PermissionModel(id: unlinkKey, name: 'Desvincular'),
+        PermissionModel(id: managePermissionsKey, name: 'Gestionar permisos'),
       ];
 
   @override
