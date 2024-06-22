@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../module.dart';
+import '../../module.dart';
 
 class VendorFormPage extends GetView<VendorFormController> {
   const VendorFormPage({super.key});

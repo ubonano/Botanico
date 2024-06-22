@@ -1,33 +1,33 @@
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 
-import 'core/controllers/vendor_form_controller.dart';
-import 'core/controllers/vendor_list_controller.dart';
+import 'ui/vendor_form_page/vendor_form_controller.dart';
+import 'ui/vendor_list_page/vendor_list_controller.dart';
 
-import 'core/helpers/interfaces/i_vendor_business_logic.dart';
-import 'core/helpers/interfaces/i_vendor_repository.dart';
-import 'core/helpers/interfaces/i_vendor_service.dart';
+import 'core/interfaces/i_vendor_business_logic.dart';
+import 'core/interfaces/i_vendor_repository.dart';
+import 'core/interfaces/i_vendor_service.dart';
 
 import 'core/vendor_business_logic.dart';
-import 'core/vendor_repository.dart';
+import 'core/model/vendor_repository.dart';
 import 'core/vendor_service.dart';
 
-export 'core/controllers/vendor_form_controller.dart';
-export 'core/controllers/vendor_list_controller.dart';
+export 'ui/vendor_form_page/vendor_form_controller.dart';
+export 'ui/vendor_list_page/vendor_list_controller.dart';
 
 export 'core/vendor_business_logic.dart';
 
-export 'core/helpers/interfaces/i_vendor_business_logic.dart';
-export 'core/helpers/interfaces/i_vendor_repository.dart';
-export 'core/helpers/interfaces/i_vendor_service.dart';
+export 'core/interfaces/i_vendor_business_logic.dart';
+export 'core/interfaces/i_vendor_repository.dart';
+export 'core/interfaces/i_vendor_service.dart';
 
-export 'core/helpers/enums/vendor_registration_type.dart';
+export 'core/model/enums/vendor_registration_type.dart';
 
-export 'core/helpers/vendor_navigation_helper.dart';
+export 'navigation_helper.dart';
 
-export 'core/vendor_model.dart';
+export 'core/model/vendor_model.dart';
 
-export 'core/vendor_repository.dart';
+export 'core/model/vendor_repository.dart';
 
 export 'core/vendor_service.dart';
 
@@ -45,21 +45,21 @@ export 'tests/vendor_list/vendor_list_find_enter_validate_all_fields_test.dart';
 export 'tests/vendor_update/vendor_update_success_test.dart';
 export 'tests/vendor_delete/vendor_delete_test.dart';
 
-export 'ui/widgets/buttons/vendor_create_fab.dart';
-export 'ui/widgets/buttons/vendor_list_page_tile_button.dart';
-export 'ui/widgets/buttons/vendor_delete_icon_button.dart';
-export 'ui/widgets/buttons/vendor_update_icon_button.dart';
-export 'ui/widgets/buttons/vendor_list_tile_trailing_icon_buttons.dart';
-export 'ui/widgets/buttons/vendor_enabled_form_fields.dart';
+export 'ui/vendor_list_page/widgets/vendor_create_fab.dart';
+export 'ui/vendor_list_page/widgets/vendor_list_page_tile_button.dart';
+export 'ui/vendor_list_page/widgets/vendor_delete_icon_button.dart';
+export 'ui/vendor_list_page/widgets/vendor_update_icon_button.dart';
+export 'ui/vendor_list_page/widgets/vendor_list_tile_trailing_icon_buttons.dart';
+export 'ui/vendor_form_page/widgets/vendor_enabled_form_fields.dart';
 
-export 'ui/widgets/buttons/vendor_save_button.dart';
-export 'ui/widgets/fields/observations_input_field.dart';
-export 'ui/widgets/fields/cuit_input_field.dart';
-export 'ui/widgets/fields/registration_type_input_field.dart';
-export 'ui/widgets/vendor_list.dart';
+export 'ui/vendor_form_page/widgets/vendor_save_button.dart';
+export 'ui/vendor_form_page/widgets/fields/observations_input_field.dart';
+export 'ui/vendor_form_page/widgets/fields/cuit_input_field.dart';
+export 'ui/vendor_form_page/widgets/fields/registration_type_input_field.dart';
+export 'ui/vendor_list_page/widgets/vendor_list.dart';
 
-export 'ui/vendor_form_page.dart';
-export 'ui/vendor_list_page.dart';
+export 'ui/vendor_form_page/vendor_form_page.dart';
+export 'ui/vendor_list_page/vendor_list_page.dart';
 
 void dependencies() {
   Get.lazyPut<IVendorBusinessLogic>(() => VendorBusinessLogic(), fenix: true);

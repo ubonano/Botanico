@@ -104,9 +104,9 @@ export 'ui/via_shipment_form_page/via_shipment_form_page.dart';
 export 'ui/via_shipment_list_page/via_shipment_list_page.dart';
 export 'ui/via_shipment_dashboard_page/via_shipment_dashboard_page.dart';
 
-export 'core/enums/via_shipment_type.dart';
-export 'core/enums/via_shipment_state.dart';
-export 'core/enums/via_shipment_delivery_place.dart';
+export 'core/model/enums/via_shipment_type.dart';
+export 'core/model/enums/via_shipment_state.dart';
+export 'core/model/enums/via_shipment_delivery_place.dart';
 
 void dependencies() {
   Get.lazyPut<IViaShipmentBusinessLogic>(() => ViaShipmentBusinessLogic(), fenix: true);
