@@ -7,19 +7,19 @@ import '../../../../module.dart';
 List<Widget> buildSlidableLeftButtonsActionPane(ViaShipmentModel shipment) {
   List<Widget> buttons = [];
 
-  if (shipment.isNotInvoiced && _hasPermission(ViaShipmentModulePermissions.invoiceKey)) {
+  if (shipment.isNotInvoiced && _hasPermission(ViaShipmentModule.invoiceKey)) {
     buttons.add(InvoiceSlidableButton(shipment));
   }
-  if (shipment.isInvoiced && _hasPermission(ViaShipmentModulePermissions.cancelInvoiceKey)) {
+  if (shipment.isInvoiced && _hasPermission(ViaShipmentModule.cancelInvoiceKey)) {
     buttons.add(CancelInvoiceSlidableButton(shipment));
   }
-  if (_hasPermission(ViaShipmentModulePermissions.changeDeliveryPlaceKey)) {
+  if (_hasPermission(ViaShipmentModule.changeDeliveryPlaceKey)) {
     buttons.add(ChangeDeliveryPlaceSlidableButton(shipment));
   }
-  if (_hasPermission(ViaShipmentModulePermissions.updateKey)) {
+  if (_hasPermission(ViaShipmentModule.updateKey)) {
     buttons.add(EditSlidableButton(shipment));
   }
-  if (_hasPermission(ViaShipmentModulePermissions.deleteKey)) {
+  if (_hasPermission(ViaShipmentModule.deleteKey)) {
     buttons.add(DeleteSlidableButton(shipment));
   }
   return buttons;
@@ -28,20 +28,20 @@ List<Widget> buildSlidableLeftButtonsActionPane(ViaShipmentModel shipment) {
 List<Widget> buildSlidableRightButtonsActionPane(ViaShipmentModel shipment) {
   List<Widget> buttons = [];
 
-  if (_hasPermission(ViaShipmentModulePermissions.changeStateKey)) {
+  if (_hasPermission(ViaShipmentModule.changeStateKey)) {
     buttons.add(ChangeStateSlidableButton(shipment));
   }
 
-  if (shipment.isPending && _hasPermission(ViaShipmentModulePermissions.processKey)) {
+  if (shipment.isPending && _hasPermission(ViaShipmentModule.processKey)) {
     buttons.add(ProcessSlidableButton(shipment));
   }
-  if (shipment.isInProcess && _hasPermission(ViaShipmentModulePermissions.prepareKey)) {
+  if (shipment.isInProcess && _hasPermission(ViaShipmentModule.prepareKey)) {
     buttons.add(PrepareSlidableButton(shipment));
   }
-  if (shipment.isReady && _hasPermission(ViaShipmentModulePermissions.deliverKey)) {
+  if (shipment.isReady && _hasPermission(ViaShipmentModule.deliverKey)) {
     buttons.add(DeliverSlidableButton(shipment));
   }
-  if (shipment.isDelivered && _hasPermission(ViaShipmentModulePermissions.archiveKey)) {
+  if (shipment.isDelivered && _hasPermission(ViaShipmentModule.archiveKey)) {
     buttons.add(ArchiveSlidableButton(shipment));
   }
 

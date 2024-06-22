@@ -10,8 +10,8 @@ class ViaShipmentEnabledFormFields extends GetView<ViaShipmentFormController> {
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
-      module: ViaShipmentModulePermissions().toModel(),
-      permission: ViaShipmentModulePermissions.updateKey,
+      module: ViaShipmentModule(),
+      permission: ViaShipmentModule.updateKey,
       child: IconButton(
         key: key ?? const Key('ViaShipmentEnabledFormFields'),
         icon: const Icon(Icons.edit),

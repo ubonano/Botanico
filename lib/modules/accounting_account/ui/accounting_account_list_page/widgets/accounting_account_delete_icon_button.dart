@@ -12,8 +12,8 @@ class AccountingAccountDeleteIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
-      module: AccountingAccountModulePermissions().toModel(),
-      permission: AccountingAccountModulePermissions.deleteKey,
+      module: AccountingAccountModule(),
+      permission: AccountingAccountModule.deleteKey,
       child: IconButton(
         key: key ?? const Key('AccountingAccountDeleteIconButton'),
         icon: const Icon(Icons.delete),

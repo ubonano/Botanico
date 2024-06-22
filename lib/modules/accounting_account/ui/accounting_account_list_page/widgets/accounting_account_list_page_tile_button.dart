@@ -10,8 +10,8 @@ class AccountingAccountListPageTileButton extends StatelessWidget with Navigatio
   Widget build(BuildContext context) {
     return ProtectedWidget(
       key: key ?? const Key('AccountingAccountListPageTileButton'),
-      module: AccountingAccountModulePermissions().toModel(),
-      permission: AccountingAccountModulePermissions.viewKey,
+      module: AccountingAccountModule(),
+      permission: AccountingAccountModule.viewKey,
       child: ListTile(
         leading: const Icon(Icons.account_balance),
         title: const Text('Cuentas Contables'),

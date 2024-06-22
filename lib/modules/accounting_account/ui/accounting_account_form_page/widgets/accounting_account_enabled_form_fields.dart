@@ -10,8 +10,8 @@ class AccountingAccountEnabledFormFields extends GetView<AccountingAccountFormCo
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
-      module: AccountingAccountModulePermissions().toModel(),
-      permission: AccountingAccountModulePermissions.updateKey,
+      module: AccountingAccountModule(),
+      permission: AccountingAccountModule.updateKey,
       child: IconButton(
         key: key ?? const Key('AccountingAccountEnabledFormFields'),
         icon: const Icon(Icons.edit),

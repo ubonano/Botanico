@@ -9,8 +9,8 @@ class AccountingAccountCreateFAB extends StatelessWidget with NavigationHelperIn
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
-      module: AccountingAccountModulePermissions().toModel(),
-      permission: AccountingAccountModulePermissions.createKey,
+      module: AccountingAccountModule(),
+      permission: AccountingAccountModule.createKey,
       child: FloatingActionButton(
         key: key ?? const Key('AccountingAccountCreateFAB'),
         onPressed: () => navigate.toAccountingAccountForm(canPop: true),

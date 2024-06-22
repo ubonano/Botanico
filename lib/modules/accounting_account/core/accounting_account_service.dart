@@ -6,14 +6,14 @@ import 'package:botanico/modules/foundation/module.dart';
 import '../module.dart';
 
 class AccountingAccountService extends GetxService with GlobalHelper implements IAccountingAccountService {
-  late final ModuleModel _module = AccountingAccountModulePermissions().toModel();
+  late final IModuleStructure _module = AccountingAccountModule();
   late final IAccountingAccountBusinessLogic _accountingAccountBusinessLogic = Get.find();
 
   @override
   Future<AccountingAccountModel?> get(String id) async => await operation.perform(
         operationName: 'Get accounting account $id',
         module: _module,
-        permissionKey: AccountingAccountModulePermissions.viewKey,
+        permissionKey: AccountingAccountModule.viewKey,
         operation: (_) async => await _accountingAccountBusinessLogic.get(id),
       );
 
@@ -21,7 +21,7 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   Future<void> create(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Create accounting account ${accountingAccount.uid}',
         module: _module,
-        permissionKey: AccountingAccountModulePermissions.createKey,
+        permissionKey: AccountingAccountModule.createKey,
         operation: (_) async => await _accountingAccountBusinessLogic.create(accountingAccount),
       );
 
@@ -29,7 +29,7 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   Future<void> update(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Update accounting account ${accountingAccount.uid}',
         module: _module,
-        permissionKey: AccountingAccountModulePermissions.updateKey,
+        permissionKey: AccountingAccountModule.updateKey,
         operation: (_) async => await _accountingAccountBusinessLogic.update(accountingAccount),
       );
 
@@ -37,7 +37,7 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   Future<void> delete(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Delete accounting account ${accountingAccount.uid}',
         module: _module,
-        permissionKey: AccountingAccountModulePermissions.deleteKey,
+        permissionKey: AccountingAccountModule.deleteKey,
         operation: (_) async => await _accountingAccountBusinessLogic.delete(accountingAccount),
       );
 

@@ -11,8 +11,8 @@ class WorkerNavigateToModuleListIconButton extends StatelessWidget with Navigati
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
-      module: WorkerModulePermissions().toModel(),
-      permission: WorkerModulePermissions.managePermissionsKey,
+      module: WorkerModule(),
+      permission: WorkerModule.managePermissionsKey,
       child: IconButton(
         key: key ?? const Key('WorkerNavigateToModuleListIconButton'),
         icon: const Icon(Icons.security),

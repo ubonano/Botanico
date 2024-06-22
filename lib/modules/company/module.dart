@@ -57,12 +57,12 @@ void dependencies() {
   Get.lazyPut<CompanyFormController>(() => CompanyFormController(), fenix: true);
 }
 
-class CompanyModulePermissions implements ModuleStructure {
+class CompanyModule implements IModuleStructure {
   @override
-  String get moduleId => 'company';
+  String get id => 'company';
 
   @override
-  String get moduleName => 'Empresa';
+  String get name => 'Empresa';
 
   static const updateKey = 'company.update';
 
@@ -70,7 +70,4 @@ class CompanyModulePermissions implements ModuleStructure {
   List<PermissionModel> get permissions => [
         PermissionModel(id: updateKey, name: 'Actualizar'),
       ];
-
-  @override
-  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

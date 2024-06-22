@@ -10,8 +10,8 @@ class VendorEnabledFormFields extends GetView<VendorFormController> {
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
-      module: VendorModulePermissions().toModel(),
-      permission: VendorModulePermissions.updateKey,
+      module: VendorModule(),
+      permission: VendorModule.updateKey,
       child: IconButton(
         key: key ?? const Key('VendorEnabledFormFields'),
         icon: const Icon(Icons.edit),

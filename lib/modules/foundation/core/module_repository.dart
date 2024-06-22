@@ -7,10 +7,10 @@ import 'package:botanico/modules/via_shipment/module.dart';
 
 class ModuleRepository {
   final modules$ = [
-    CompanyModulePermissions().toModel(),
-    WorkerModulePermissions().toModel(),
-    VendorModulePermissions().toModel(),
-    AccountingAccountModulePermissions().toModel(),
-    ViaShipmentModulePermissions().toModel(),
+    CompanyModule(),
+    WorkerModule(),
+    VendorModule(),
+    AccountingAccountModule(),
+    ViaShipmentModule(),
   ].obs;
 }

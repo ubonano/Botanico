@@ -121,12 +121,12 @@ void dependencies() {
   Get.lazyPut<ViaShipmentDashboardController>(() => ViaShipmentDashboardController(), fenix: true);
 }
 
-class ViaShipmentModulePermissions implements ModuleStructure {
+class ViaShipmentModule implements IModuleStructure {
   @override
-  String get moduleId => 'via_shipment';
+  String get id => 'via_shipment';
 
   @override
-  String get moduleName => 'Envíos Via';
+  String get name => 'Envíos Via';
 
   static const viewKey = 'via_shipment.view';
   static const createKey = 'via_shipment.create';
@@ -160,7 +160,4 @@ class ViaShipmentModulePermissions implements ModuleStructure {
         PermissionModel(id: changeStateKey, name: 'Cambiar estado'),
         PermissionModel(id: changeDeliveryPlaceKey, name: 'Cambiar lugar de entrega'),
       ];
-
-  @override
-  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

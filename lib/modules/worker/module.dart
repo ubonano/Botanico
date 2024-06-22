@@ -80,12 +80,12 @@ void dependencies() {
   Get.lazyPut<WorkerPermissionToggleController>(() => WorkerPermissionToggleController(), fenix: true);
 }
 
-class WorkerModulePermissions implements ModuleStructure {
+class WorkerModule implements IModuleStructure {
   @override
-  String get moduleId => 'worker';
+  String get id => 'worker';
 
   @override
-  String get moduleName => 'Trabajadores';
+  String get name => 'Trabajadores';
 
   static const viewKey = 'worker.view';
   static const linkKey = 'worker.link';
@@ -99,7 +99,4 @@ class WorkerModulePermissions implements ModuleStructure {
         PermissionModel(id: unlinkKey, name: 'Desvincular'),
         PermissionModel(id: managePermissionsKey, name: 'Gestionar permisos'),
       ];
-
-  @override
-  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

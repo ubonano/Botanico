@@ -25,7 +25,7 @@ class CompanyService extends GetxService with GlobalHelper implements ICompanySe
   @override
   Future<void> update(CompanyModel company) async => await operation.perform(
         operationName: 'Update company ${company.uid}',
-        permissionKey: CompanyModulePermissions.updateKey,
+        permissionKey: CompanyModule.updateKey,
         inTransaction: true,
         operation: (txn) async => await _companyBusinessLogic.update(company, txn: txn),
       );

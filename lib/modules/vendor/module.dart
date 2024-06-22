@@ -72,12 +72,12 @@ void dependencies() {
   Get.lazyPut<VendorListController>(() => VendorListController(), fenix: true);
 }
 
-class VendorModulePermissions implements ModuleStructure {
+class VendorModule implements IModuleStructure {
   @override
-  String get moduleId => 'vendor';
+  String get id => 'vendor';
 
   @override
-  String get moduleName => 'Proveedores';
+  String get name => 'Proveedores';
 
   static const viewKey = 'vendor.view';
   static const createKey = 'vendor.create';
@@ -91,7 +91,4 @@ class VendorModulePermissions implements ModuleStructure {
         PermissionModel(id: updateKey, name: 'Actualizar'),
         PermissionModel(id: deleteKey, name: 'Eliminar'),
       ];
-
-  @override
-  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

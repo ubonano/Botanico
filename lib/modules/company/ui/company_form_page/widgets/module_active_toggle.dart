@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
 class ModuleActiveToggle extends GetView<CompanyFormController> {
-  final ModuleModel module;
+  final IModuleStructure module;
 
   const ModuleActiveToggle(this.module, {super.key});
 

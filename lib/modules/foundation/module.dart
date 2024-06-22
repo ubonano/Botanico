@@ -7,15 +7,13 @@ export 'ui/widgets/custom_drawer/custom_drawer_controller.dart';
 export 'ui/home_page/home_controller.dart';
 
 export 'core/helpers/validator_helper.dart';
-export 'core/helpers/module_structure.dart';
+export 'core/helpers/i_module_structure.dart';
 export 'core/helpers/function_helper.dart';
 
 export 'core/helpers/life_cycle_logging_controller_helper.dart';
 export 'core/helpers/form_helper.dart';
 export 'core/helpers/paginated_list_helper.dart';
 export 'core/helpers/global_helper.dart';
-
-export '../worker/core/model/module_model.dart';
 
 import 'core/helpers/log_helper.dart';
 import 'core/helpers/navigation_helper.dart';

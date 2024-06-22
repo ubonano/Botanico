@@ -12,8 +12,8 @@ class ViaShipmentDeleteIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
-      module: ViaShipmentModulePermissions().toModel(),
-      permission: ViaShipmentModulePermissions.deleteKey,
+      module: ViaShipmentModule(),
+      permission: ViaShipmentModule.deleteKey,
       child: IconButton(
         key: key ?? const Key('ViaShipmentDeleteIconButton'),
         icon: const Icon(Icons.delete),

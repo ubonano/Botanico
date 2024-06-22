@@ -64,12 +64,12 @@ void dependencies() {
   Get.lazyPut<AccountingAccountListController>(() => AccountingAccountListController(), fenix: true);
 }
 
-class AccountingAccountModulePermissions implements ModuleStructure {
+class AccountingAccountModule implements IModuleStructure {
   @override
-  String get moduleId => 'accounting_account';
+  String get id => 'accounting_account';
 
   @override
-  String get moduleName => 'Cuentas Contables';
+  String get name => 'Cuentas Contables';
 
   static const viewKey = 'accounting_account.view';
   static const createKey = 'accounting_account.create';
@@ -83,7 +83,4 @@ class AccountingAccountModulePermissions implements ModuleStructure {
         PermissionModel(id: updateKey, name: 'Actualizar'),
         PermissionModel(id: deleteKey, name: 'Eliminar'),
       ];
-
-  @override
-  ModuleModel toModel() => ModuleModel(id: moduleId, name: moduleName, permissions: permissions);
 }

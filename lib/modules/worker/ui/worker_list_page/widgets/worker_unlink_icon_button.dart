@@ -12,8 +12,8 @@ class WorkerUnlinkIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProtectedWidget(
-      module: WorkerModulePermissions().toModel(),
-      permission: WorkerModulePermissions.unlinkKey,
+      module: WorkerModule(),
+      permission: WorkerModule.unlinkKey,
       child: IconButton(
         key: key ?? const Key('WorkerUnlinkIconButton'),
         icon: const Icon(Icons.person_off),
