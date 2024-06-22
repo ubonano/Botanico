@@ -2,27 +2,27 @@ import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
-export 'core/controllers/worker_link_controller.dart';
-export 'core/controllers/worker_list_controller.dart';
-export 'core/controllers/worker_lobby_controller.dart';
-export 'core/controllers/worker_form_controller.dart';
-export 'core/controllers/worker_permission_toggle_controller.dart';
+export 'ui/worker_link_page/worker_link_controller.dart';
+export 'ui/worker_list_page/worker_list_controller.dart';
+export 'ui/worker_lobby_page/worker_lobby_controller.dart';
+export 'ui/worker_form_page/worker_form_controller.dart';
+export 'ui/worker_permission_toggle/worker_permission_toggle_controller.dart';
 
 export 'core/worker_business_logic.dart';
 
-export 'core/helpers/exceptions/worker_not_found_exception.dart';
-export 'core/helpers/worker_navigation_helper.dart';
+export 'core/exceptions/worker_not_found_exception.dart';
+export 'navigation_helper.dart';
 
-export 'core/helpers/interfaces/i_worker_business_logic.dart';
-export 'core/helpers/interfaces/i_worker_repository.dart';
-export 'core/helpers/interfaces/i_linked_worker_repository.dart';
-export 'core/helpers/interfaces/i_worker_service.dart';
+export 'core/interfaces/i_worker_business_logic.dart';
+export 'core/interfaces/i_worker_repository.dart';
+export 'core/interfaces/i_linked_worker_repository.dart';
+export 'core/interfaces/i_worker_service.dart';
 
-export 'core/helpers/enums/worker_role.dart';
-export 'core/worker_model.dart';
+export 'core/model/enums/worker_role.dart';
+export 'core/model/worker_model.dart';
 
-export 'core/worker_repository.dart';
-export 'core/linked_worker_repository.dart';
+export 'core/model/worker_repository.dart';
+export 'core/model/linked_worker_repository.dart';
 export 'core/worker_service.dart';
 
 export 'tests/flows/worker_create_from_sign_up_flow.dart';
@@ -34,30 +34,30 @@ export 'tests/worker_create/worker_create_invalid_dni_format_test.dart';
 export 'tests/worker_create/worker_create_success_from_sign_up_test.dart';
 export 'tests/worker_create/worker_create_success_from_sign_in_test.dart';
 
-export 'ui/worker_link_page.dart';
-export 'ui/worker_list_page.dart';
-export 'ui/worker_form_page.dart';
+export 'ui/worker_link_page/worker_link_page.dart';
+export 'ui/worker_list_page/worker_list_page.dart';
+export 'ui/worker_form_page/worker_form_page.dart';
 
-export 'ui/worker_lobby_page.dart';
-export 'ui/widgets/fields/birthdate_input_field.dart';
-export 'ui/widgets/fields/dni_input_field.dart';
-export 'ui/widgets/fields/fullname_input_field.dart';
-export 'ui/widgets/fields/worker_uid_input_field.dart';
-export 'ui/widgets/worker_list.dart';
+export 'ui/worker_lobby_page/worker_lobby_page.dart';
+export 'ui/worker_form_page/widgets/fields/birthdate_input_field.dart';
+export 'ui/worker_form_page/widgets/fields/dni_input_field.dart';
+export 'ui/worker_form_page/widgets/fields/fullname_input_field.dart';
+export 'ui/worker_form_page/widgets/fields/worker_uid_input_field.dart';
+export 'ui/worker_list_page/widgets/worker_list.dart';
 
-export 'ui/widgets/buttons/worker_list_page_tile_button.dart';
-export 'ui/widgets/buttons/worker_link_fab.dart';
-export 'ui/widgets/buttons/worker_save_button.dart';
-export 'ui/widgets/buttons/worker_copy_uid_button.dart';
-export 'ui/widgets/buttons/worker_paste_uid_button.dart';
-export 'ui/widgets/buttons/worker_link_button.dart';
-export 'ui/widgets/buttons/worker_scan_qr_button.dart';
-export 'ui/widgets/buttons/worker_navigate_to_module_list_icon_button.dart';
-export 'ui/widgets/buttons/worker_unlink_icon_button.dart';
-export 'ui/widgets/buttons/worker_list_tile_trailing_icon_buttons.dart';
+export 'ui/worker_list_page/widgets/worker_list_page_tile_button.dart';
+export 'ui/worker_list_page/widgets/worker_link_fab.dart';
+export 'ui/worker_form_page/widgets/worker_save_button.dart';
+export 'ui/worker_lobby_page/widgets/worker_copy_uid_button.dart';
+export 'ui/worker_link_page/widgets/worker_paste_uid_button.dart';
+export 'ui/worker_list_page/widgets/worker_link_button.dart';
+export 'ui/worker_lobby_page/widgets/worker_scan_qr_button.dart';
+export 'ui/worker_list_page/widgets/worker_navigate_to_module_list_icon_button.dart';
+export 'ui/worker_list_page/widgets/worker_unlink_icon_button.dart';
+export 'ui/worker_list_page/widgets/worker_list_tile_trailing_icon_buttons.dart';
 
-export 'ui/widgets/worker_uid_qr_code.dart';
-export 'ui/widgets/worker_permission_toggle.dart';
+export 'ui/worker_lobby_page/widgets/worker_uid_qr_code.dart';
+export 'ui/worker_permission_toggle/worker_permission_toggle.dart';
 
 void dependencies() {
   Get.put<IWorkerBusinessLogic>(WorkerBusinessLogic(), permanent: true);

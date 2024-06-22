@@ -4,7 +4,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../module.dart';
+import '../../module.dart';
 
 class WorkerFormPage extends GetView<WorkerFormController> {
   const WorkerFormPage({super.key});

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/authentication/module.dart';
 
-import '../module.dart';
+import '../../module.dart';
 
 class LobbyPage extends GetView<WorkerLobbyController> {
   const LobbyPage({super.key});

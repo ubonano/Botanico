@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../worker_model.dart';
+import '../model/worker_model.dart';
 
 abstract class IWorkerBusinessLogic {
   WorkerModel? get loggedWorker$;
