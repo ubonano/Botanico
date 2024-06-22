@@ -84,11 +84,11 @@ class VendorModulePermissions implements ModuleStructure {
   static const deleteKey = 'vendor.delete';
 
   @override
-  List<PermissionModel> get permissions => [
-        PermissionModel(id: viewKey, name: 'Ver'),
-        PermissionModel(id: createKey, name: 'Crear'),
-        PermissionModel(id: updateKey, name: 'Actualizar'),
-        PermissionModel(id: deleteKey, name: 'Eliminar'),
+  List<WorkerPermissionModel> get permissions => [
+        WorkerPermissionModel(id: viewKey, name: 'Ver'),
+        WorkerPermissionModel(id: createKey, name: 'Crear'),
+        WorkerPermissionModel(id: updateKey, name: 'Actualizar'),
+        WorkerPermissionModel(id: deleteKey, name: 'Eliminar'),
       ];
 
   @override

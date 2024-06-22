@@ -87,11 +87,11 @@ class WorkerModulePermissions implements ModuleStructure {
   static const managePermissionsKey = 'worker.managePermissions';
 
   @override
-  List<PermissionModel> get permissions => [
-        PermissionModel(id: viewKey, name: 'Ver'),
-        PermissionModel(id: linkKey, name: 'Vincular'),
-        PermissionModel(id: unlinkKey, name: 'Desvincular'),
-        PermissionModel(id: managePermissionsKey, name: 'Gestionar permisos'),
+  List<WorkerPermissionModel> get permissions => [
+        WorkerPermissionModel(id: viewKey, name: 'Ver'),
+        WorkerPermissionModel(id: linkKey, name: 'Vincular'),
+        WorkerPermissionModel(id: unlinkKey, name: 'Desvincular'),
+        WorkerPermissionModel(id: managePermissionsKey, name: 'Gestionar permisos'),
       ];
 
   @override

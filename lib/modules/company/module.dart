@@ -66,8 +66,8 @@ class CompanyModulePermissions implements ModuleStructure {
   static const updateKey = 'company.update';
 
   @override
-  List<PermissionModel> get permissions => [
-        PermissionModel(id: updateKey, name: 'Actualizar'),
+  List<WorkerPermissionModel> get permissions => [
+        WorkerPermissionModel(id: updateKey, name: 'Actualizar'),
       ];
 
   @override

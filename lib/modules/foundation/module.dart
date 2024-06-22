@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'core/controllers/module_list_controller.dart';
-import 'core/controllers/home_controller.dart';
-import 'core/controllers/custom_drawer_controller.dart';
+import 'ui/module_list_page/module_list_controller.dart';
+import 'ui/home_page/home_controller.dart';
+import 'ui/widgets/custom_drawer/custom_drawer_controller.dart';
 
-export 'core/controllers/custom_drawer_controller.dart';
-export 'core/controllers/home_controller.dart';
-export 'core/controllers/module_list_controller.dart';
+export 'ui/widgets/custom_drawer/custom_drawer_controller.dart';
+export 'ui/home_page/home_controller.dart';
+export 'ui/module_list_page/module_list_controller.dart';
 
 export 'core/helpers/validator_helper.dart';
 export 'core/helpers/module_structure.dart';
@@ -17,7 +17,7 @@ export 'core/helpers/paginated_list_helper.dart';
 export 'core/helpers/global_helper.dart';
 
 export 'core/models/module_model.dart';
-export 'core/models/permission_model.dart';
+export '../worker/core/model/worker_permission_model.dart';
 
 import 'core/helpers/log_helper.dart';
 import 'core/helpers/navigation_helper.dart';
@@ -40,15 +40,15 @@ export 'ui/widgets/buttons/home_page_tile_button.dart';
 
 export 'ui/widgets/custom_input_field.dart';
 export 'ui/widgets/module_expansion_tile.dart';
-export 'ui/widgets/custom_drawer.dart';
+export 'ui/widgets/custom_drawer/custom_drawer.dart';
 export 'ui/widgets/confirmation_dialog.dart';
 export 'ui/widgets/custom_scaffold.dart';
 export 'ui/widgets/protected_widget.dart';
 export 'ui/widgets/module_active_toggle.dart';
 
-export 'ui/module_list_page.dart';
+export 'ui/module_list_page/module_list_page.dart';
 
-export 'ui/home_page.dart';
+export 'ui/home_page/home_page.dart';
 
 export '../../app.dart';
 export '../../setup/bindings.dart';

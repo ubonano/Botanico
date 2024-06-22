@@ -5,7 +5,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import '../../module.dart';
 
 class WorkerPermissionToggle extends GetView<WorkerPermissionToggleController> {
-  final PermissionModel permission;
+  final WorkerPermissionModel permission;
 
   const WorkerPermissionToggle(this.permission, {super.key});
 
