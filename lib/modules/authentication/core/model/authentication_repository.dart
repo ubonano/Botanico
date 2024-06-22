@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:get/get.dart';
 
-import '../module.dart';
+import '../../module.dart';
 
 class AuthenticationRepository implements IAuthenticationRepository {
   late final FirebaseAuth _auth = Get.find();

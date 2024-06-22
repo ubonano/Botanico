@@ -5,34 +5,34 @@ import 'package:get/get.dart';
 
 export 'core/authentication_business_logic.dart';
 
-export 'core/controllers/sign_in_recover_controller.dart';
-export 'core/controllers/sign_in_controller.dart';
-export 'core/controllers/sign_up_controller.dart';
-export 'core/controllers/sign_out_controller.dart';
+export 'ui/sign_in_recover_dialog/sign_in_recover_controller.dart';
+export 'ui/sign_in_page/sign_in_controller.dart';
+export 'ui/sign_up_page/sign_up_controller.dart';
+export 'ui/sign_out_button/sign_out_controller.dart';
 
-export 'core/helpers/interfaces/i_authenticatin_business_logic.dart';
-export 'core/helpers/interfaces/i_authentication_service.dart';
-export 'core/helpers/interfaces/i_authentication_repository.dart';
-export 'core/helpers/authentication_navigate_helper.dart';
+export 'core/interfaces/i_authenticatin_business_logic.dart';
+export 'core/interfaces/i_authentication_service.dart';
+export 'core/interfaces/i_authentication_repository.dart';
+export 'navigate_helper.dart';
 
-export 'core/authentication_repository.dart';
+export 'core/model/authentication_repository.dart';
 
 export 'core/authentication_service.dart';
 
-export 'ui/widgets/fields/confirm_password_input_field.dart';
-export 'ui/widgets/fields/email_input_field.dart';
-export 'ui/widgets/fields/password_input_field.dart';
+export 'ui/sign_up_page/widgets/confirm_password_input_field.dart';
+export 'ui/sign_in_page/widgets/email_input_field.dart';
+export 'ui/sign_in_page/widgets/password_input_field.dart';
 
-export 'ui/widgets/sign_in_recover_dialog.dart';
-export 'ui/widgets/buttons/sign_out_button.dart';
-export 'ui/widgets/buttons/sign_in_button.dart';
-export 'ui/widgets/buttons/sign_in_recover_button.dart';
-export 'ui/widgets/buttons/sign_up_button.dart';
-export 'ui/widgets/buttons/sign_in_navigate_button.dart';
-export 'ui/widgets/buttons/sign_up_navigate_button.dart';
+export 'ui/sign_in_recover_dialog/sign_in_recover_dialog.dart';
+export 'ui/sign_out_button/sign_out_button.dart';
+export 'ui/sign_in_page/widgets/sign_in_button.dart';
+export 'ui/sign_in_page/widgets/sign_in_recover_button.dart';
+export 'ui/sign_up_page/widgets/sign_up_button.dart';
+export 'ui/sign_in_page/widgets/sign_in_navigate_button.dart';
+export 'ui/sign_up_page/widgets/sign_up_navigate_button.dart';
 
-export 'ui/sign_in_page.dart';
-export 'ui/sign_up_page.dart';
+export 'ui/sign_in_page/sign_in_page.dart';
+export 'ui/sign_up_page/sign_up_page.dart';
 
 export 'tests/flows/sign_in_navigate_flow.dart';
 export 'tests/flows/sign_up_navigate_flow.dart';

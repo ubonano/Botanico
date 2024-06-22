@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/foundation/module.dart';
 
-import '../module.dart';
+import '../../module.dart';
 
-class SignInPage extends GetView<SignInController> {
-  const SignInPage({super.key});
+class SignUpPage extends GetView<SignUpController> {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      key: key ?? const Key('SignInPage'),
-      title: 'Iniciar Sesión',
+      key: key ?? const Key('SignUpPage'),
+      title: 'Registro',
       drawer: null,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -21,10 +21,10 @@ class SignInPage extends GetView<SignInController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               EmailInputField(controller),
-              PasswordInputField(controller, onFieldSubmitted: controller.secureSubmit),
-              const SignInButton(),
-              const SignInRecoverButton(),
-              SignUpNavigateButton(),
+              PasswordInputField(controller),
+              ConfirmPasswordInputField(controller, onFieldSubmitted: controller.secureSubmit),
+              const SignUpButton(),
+              SignInNavigateButton(),
             ],
           ),
         ),
