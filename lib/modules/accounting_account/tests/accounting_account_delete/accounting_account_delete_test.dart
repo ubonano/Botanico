@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/accounting_account/module.dart';
 
@@ -28,4 +27,3 @@ void accountingAccountDeleteTest(String email, String password) {
     expect(find.text(accountingAccountName), findsNothing);
   });
 }
-

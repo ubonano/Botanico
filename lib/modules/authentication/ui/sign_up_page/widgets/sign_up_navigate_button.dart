@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/company/module.dart';
 
 class SignUpNavigateButton extends StatelessWidget with NavigationHelperInstance {
   SignUpNavigateButton({super.key});

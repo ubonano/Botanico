@@ -2,7 +2,6 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/via_shipment/module.dart';
 

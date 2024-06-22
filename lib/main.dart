@@ -1,9 +1,10 @@
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'setup/firebase_service.dart';
+
+import 'package:botanico/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/authentication/module.dart';
-import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/accounting_account/module.dart';

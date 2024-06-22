@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/foundation/module.dart';
+import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 
 class ModuleExpansionTile extends StatelessWidget {

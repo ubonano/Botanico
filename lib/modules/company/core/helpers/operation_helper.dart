@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/company/module.dart';
+import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 
 class OperationHelper with GlobalHelper {

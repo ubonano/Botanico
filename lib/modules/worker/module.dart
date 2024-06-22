@@ -1,6 +1,6 @@
+import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/foundation/module.dart';
 
 export 'ui/worker_link_page/worker_link_controller.dart';
 export 'ui/worker_list_page/worker_list_controller.dart';

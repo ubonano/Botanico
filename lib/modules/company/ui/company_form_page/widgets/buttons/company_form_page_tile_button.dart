@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 
 import '../../../../module.dart';

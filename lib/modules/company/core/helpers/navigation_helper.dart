@@ -8,8 +8,6 @@ import 'package:botanico/modules/worker/module.dart';
 import 'package:botanico/modules/accounting_account/module.dart';
 import 'package:botanico/modules/via_shipment/module.dart';
 
-import '../../module.dart';
-
 class NavigationHelper
     with
         AuthenticationNavigateHelper,

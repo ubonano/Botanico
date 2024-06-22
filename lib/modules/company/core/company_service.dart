@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
-import 'package:botanico/modules/foundation/module.dart';
-
-import '../module.dart';
+import 'package:botanico/modules/company/module.dart';
 
 class CompanyService extends GetxService with GlobalHelper implements ICompanyService {
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
