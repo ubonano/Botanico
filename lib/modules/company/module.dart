@@ -47,48 +47,48 @@ export 'ui/company_form_page/widgets/buttons/company_form_page_tile_button.dart'
 
 export 'ui/company_form_page/company_form_page.dart';
 
-import '../company/ui/home_page/home_controller.dart';
-import '../company/ui/widgets/custom_drawer/custom_drawer_controller.dart';
+import 'ui/home_page/home_controller.dart';
+import 'ui/widgets/custom_drawer/custom_drawer_controller.dart';
 
-export '../company/ui/widgets/custom_drawer/custom_drawer_controller.dart';
-export '../company/ui/home_page/home_controller.dart';
+export 'ui/widgets/custom_drawer/custom_drawer_controller.dart';
+export 'ui/home_page/home_controller.dart';
 
-export '../company/core/helpers/validator_helper.dart';
-export '../company/core/interfaces/i_module_structure.dart';
-export '../company/core/helpers/function_helper.dart';
+export 'core/helpers/validator_helper.dart';
+export 'core/interfaces/i_module_structure.dart';
+export 'core/helpers/function_helper.dart';
 
-export '../company/core/helpers/life_cycle_logging_controller_helper.dart';
-export '../company/core/helpers/form_helper.dart';
-export '../company/core/helpers/paginated_list_helper.dart';
-export '../company/core/helpers/global_helper.dart';
+export 'core/helpers/life_cycle_logging_controller_helper.dart';
+export 'core/helpers/form_helper.dart';
+export 'core/helpers/paginated_list_helper.dart';
+export 'core/helpers/global_helper.dart';
 
-import '../company/core/helpers/log_helper.dart';
-import '../company/core/helpers/navigation_helper.dart';
-import '../company/core/helpers/operation_helper.dart';
-import '../company/core/model/module_repository.dart';
-import '../company/core/helpers/snackbar_helper.dart';
+import 'core/helpers/log_helper.dart';
+import 'core/helpers/navigation_helper.dart';
+import 'core/helpers/operation_helper.dart';
+import 'core/model/module_repository.dart';
+import 'core/helpers/snackbar_helper.dart';
 
-export '../company/core/helpers/snackbar_helper.dart';
-export '../company/core/helpers/operation_helper.dart';
-export '../company/core/helpers/log_helper.dart';
-export '../company/core/helpers/navigation_helper.dart';
-export '../company/core/helpers/fields_key.dart';
-export '../company/core/model/module_repository.dart';
+export 'core/helpers/snackbar_helper.dart';
+export 'core/helpers/operation_helper.dart';
+export 'core/helpers/log_helper.dart';
+export 'core/helpers/navigation_helper.dart';
+export 'core/helpers/fields_key.dart';
+export 'core/model/module_repository.dart';
 
-export '../company/tests/flows/open_drawer_flow.dart';
+export 'tests/flows/open_drawer_flow.dart';
 
-export '../company/ui/widgets/buttons/custom_button.dart';
-export '../company/ui/widgets/buttons/custom_text_button.dart';
-export '../company/ui/home_page/widgets/home_page_tile_button.dart';
+export 'ui/widgets/buttons/custom_button.dart';
+export 'ui/widgets/buttons/custom_text_button.dart';
+export 'ui/home_page/widgets/home_page_tile_button.dart';
 
-export '../company/ui/widgets/custom_input_field.dart';
-export '../company/ui/widgets/custom_drawer/custom_drawer.dart';
-export '../company/ui/widgets/confirmation_dialog.dart';
-export '../company/ui/widgets/custom_scaffold.dart';
-export '../company/ui/widgets/protected_widget.dart';
-export '../company/ui/company_form_page/widgets/module_active_toggle.dart';
+export 'ui/widgets/custom_input_field.dart';
+export 'ui/widgets/custom_drawer/custom_drawer.dart';
+export 'ui/widgets/confirmation_dialog.dart';
+export 'ui/widgets/custom_scaffold.dart';
+export 'ui/widgets/protected_widget.dart';
+export 'ui/company_form_page/widgets/module_active_toggle.dart';
 
-export '../company/ui/home_page/home_page.dart';
+export 'ui/home_page/home_page.dart';
 
 export '../../app.dart';
 export '../../setup/bindings.dart';
