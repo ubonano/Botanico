@@ -4,7 +4,7 @@ import 'package:botanico/modules/foundation/module.dart';
 import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../module.dart';
+import '../../module.dart';
 
 class AccountingAccountFormPage extends GetView<AccountingAccountFormController> {
   const AccountingAccountFormPage({super.key});

@@ -1,31 +1,31 @@
 import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 
-import 'core/controllers/accounting_account_form_controller.dart';
-import 'core/controllers/accounting_account_list_controller.dart';
+import 'ui/accounting_account_form_page/accounting_account_form_controller.dart';
+import 'ui/accounting_account_list_page/accounting_account_list_controller.dart';
 
-import 'core/helpers/interfaces/i_accounting_account_business_logic.dart';
-import 'core/helpers/interfaces/i_accounting_account_repository.dart';
-import 'core/helpers/interfaces/i_accounting_account_service.dart';
+import 'core/interfaces/i_accounting_account_business_logic.dart';
+import 'core/interfaces/i_accounting_account_repository.dart';
+import 'core/interfaces/i_accounting_account_service.dart';
 
 import 'core/accounting_account_business_logic.dart';
-import 'core/accounting_account_repository.dart';
+import 'core/model/accounting_account_repository.dart';
 import 'core/accounting_account_service.dart';
 
-export 'core/controllers/accounting_account_form_controller.dart';
-export 'core/controllers/accounting_account_list_controller.dart';
+export 'ui/accounting_account_form_page/accounting_account_form_controller.dart';
+export 'ui/accounting_account_list_page/accounting_account_list_controller.dart';
 
 export 'core/accounting_account_business_logic.dart';
 
-export 'core/helpers/interfaces/i_accounting_account_business_logic.dart';
-export 'core/helpers/interfaces/i_accounting_account_repository.dart';
-export 'core/helpers/interfaces/i_accounting_account_service.dart';
+export 'core/interfaces/i_accounting_account_business_logic.dart';
+export 'core/interfaces/i_accounting_account_repository.dart';
+export 'core/interfaces/i_accounting_account_service.dart';
 
-export 'core/helpers/accounting_account_navigation_helper.dart';
+export 'navigation_helper.dart';
 
-export 'core/accounting_account_model.dart';
+export 'core/model/accounting_account_model.dart';
 
-export 'core/accounting_account_repository.dart';
+export 'core/model/accounting_account_repository.dart';
 export 'core/accounting_account_service.dart';
 
 export 'tests/flows/accounting_account_list_navigate_flow.dart';
@@ -40,18 +40,18 @@ export 'tests/accounting_account_list/accounting_account_list_find_enter_validat
 export 'tests/accounting_account_update/accounting_account_update_success_test.dart';
 export 'tests/accounting_account_delete/accounting_account_delete_test.dart';
 
-export 'ui/widgets/buttons/accounting_account_create_fab.dart';
-export 'ui/widgets/buttons/accounting_account_list_page_tile_button.dart';
-export 'ui/widgets/buttons/accounting_account_delete_icon_button.dart';
-export 'ui/widgets/buttons/accounting_account_list_tile_trailing_icon_buttons.dart';
-export 'ui/widgets/buttons/accounting_account_enabled_form_fields.dart';
+export 'ui/accounting_account_list_page/widgets/accounting_account_create_fab.dart';
+export 'ui/accounting_account_list_page/widgets/accounting_account_list_page_tile_button.dart';
+export 'ui/accounting_account_list_page/widgets/accounting_account_delete_icon_button.dart';
+export 'ui/accounting_account_list_page/widgets/accounting_account_list_tile_trailing_icon_buttons.dart';
+export 'ui/accounting_account_form_page/widgets/accounting_account_enabled_form_fields.dart';
 
-export 'ui/widgets/buttons/accounting_account_save_button.dart';
-export 'ui/widgets/fields/name_input_field.dart';
-export 'ui/widgets/accounting_account_list.dart';
+export 'ui/accounting_account_form_page/widgets/accounting_account_save_button.dart';
+export 'ui/accounting_account_form_page/widgets/name_input_field.dart';
+export 'ui/accounting_account_list_page/widgets/accounting_account_list.dart';
 
-export 'ui/accounting_account_form_page.dart';
-export 'ui/accounting_account_list_page.dart';
+export 'ui/accounting_account_form_page/accounting_account_form_page.dart';
+export 'ui/accounting_account_list_page/accounting_account_list_page.dart';
 
 void dependencies() {
   Get.lazyPut<IAccountingAccountBusinessLogic>(() => AccountingAccountBusinessLogic(), fenix: true);

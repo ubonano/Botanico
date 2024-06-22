@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../module.dart';
+import '../../module.dart';
 
 class AccountingAccountRepository implements IAccountingAccountRepository {
   late final FirebaseFirestore _firestore = Get.find();

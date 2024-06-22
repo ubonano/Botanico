@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../accounting_account_model.dart';
+import '../../module.dart';
 
-abstract class IAccountingAccountBusinessLogic {
+abstract class IAccountingAccountService {
   Future<AccountingAccountModel?> get(String id);
   Future<void> create(AccountingAccountModel accountingAccount);
   Future<void> update(AccountingAccountModel accountingAccount);
