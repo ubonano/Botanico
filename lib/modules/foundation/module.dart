@@ -36,15 +36,15 @@ export 'tests/flows/open_drawer_flow.dart';
 
 export 'ui/widgets/buttons/custom_button.dart';
 export 'ui/widgets/buttons/custom_text_button.dart';
-export 'ui/widgets/buttons/home_page_tile_button.dart';
+export 'ui/home_page/widgets/home_page_tile_button.dart';
 
 export 'ui/widgets/custom_input_field.dart';
-export 'ui/widgets/module_expansion_tile.dart';
+export 'ui/module_list_page/widgets/module_expansion_tile.dart';
 export 'ui/widgets/custom_drawer/custom_drawer.dart';
 export 'ui/widgets/confirmation_dialog.dart';
 export 'ui/widgets/custom_scaffold.dart';
 export 'ui/widgets/protected_widget.dart';
-export 'ui/widgets/module_active_toggle.dart';
+export '../company/ui/company_form_page/widgets/module_active_toggle.dart';
 
 export 'ui/module_list_page/module_list_page.dart';
 
