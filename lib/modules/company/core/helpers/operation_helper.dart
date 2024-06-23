@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../../../worker/core/exceptions/worker_not_found_exception.dart';
+import '../../../worker/setup/exceptions/worker_not_found_exception.dart';
 import '../../../worker/setup/interfaces/i_worker_service.dart';
 
 class OperationHelper with GlobalHelper {

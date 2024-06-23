@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'package:botanico/modules/worker/setup/permissions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
 import '../setup/interfaces/i_worker_business_logic.dart';
 import '../setup/interfaces/i_worker_service.dart';
+import '../setup/permissions.dart';
 
 class WorkerService with GlobalHelper implements IWorkerService {
   late final WorkerPermissions _module = Get.find();
