@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../module.dart';
+import '../../model/via_shipment_model.dart';
+
+export '../../model/via_shipment_model.dart';
+export '../../model/enums/via_shipment_state.dart';
+export '../../model/enums/via_shipment_delivery_place.dart';
 
 abstract class IViaShipmentRepository {
   String get generateId;

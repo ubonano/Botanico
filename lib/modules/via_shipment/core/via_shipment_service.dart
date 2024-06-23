@@ -3,17 +3,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../module.dart';
+import '../setup/interfaces/i_via_shipment_business_logic.dart';
+import '../setup/interfaces/i_via_shipment_service.dart';
+import '../setup/permissions.dart';
 
 class ViaShipmentService extends GetxService with GlobalHelper implements IViaShipmentService {
-  late final IPermissionsStructure _module = ViaShipmentModule();
+  late final ViaShipmentPermissions _module = Get.find();
   late final IViaShipmentBusinessLogic _viaShipmentBusinessLogic = Get.find();
 
   @override
   Future<ViaShipmentModel?> get(String id) async => await operation.perform(
         operationName: 'Get shipment $id',
         module: _module,
-        permissionKey: ViaShipmentModule.viewKey,
+        permissionKey: _module.viewKey,
         operation: (_) async => await _viaShipmentBusinessLogic.get(id),
       );
 
@@ -29,7 +31,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   Future<void> create(ViaShipmentModel shipment) async => await operation.perform(
         operationName: 'Create via shipment ${shipment.shipmentId}',
         module: _module,
-        permissionKey: ViaShipmentModule.createKey,
+        permissionKey: _module.createKey,
         operation: (_) async => await _viaShipmentBusinessLogic.create(shipment),
       );
 
@@ -37,7 +39,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   Future<void> update(ViaShipmentModel shipment) async => await operation.perform(
         operationName: 'Update via shipment ${shipment.shipmentId}',
         module: _module,
-        permissionKey: ViaShipmentModule.updateKey,
+        permissionKey: _module.updateKey,
         operation: (_) async => await _viaShipmentBusinessLogic.update(shipment),
       );
 
@@ -45,13 +47,13 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   Future<void> delete(ViaShipmentModel shipment) async => await operation.perform(
         operationName: 'Delete via shipment ${shipment.shipmentId}',
         module: _module,
-        permissionKey: ViaShipmentModule.deleteKey,
+        permissionKey: _module.deleteKey,
         operation: (_) async => await _viaShipmentBusinessLogic.delete(shipment),
       );
 
   @override
   Future<void> invoice(ViaShipmentModel shipment) async => await operation.perform(
-        permissionKey: ViaShipmentModule.invoiceKey,
+        permissionKey: _module.invoiceKey,
         module: _module,
         operationName: 'Invoice shipment ${shipment.shipmentId}',
         operation: (_) async => await _viaShipmentBusinessLogic.invoice(shipment),
@@ -59,7 +61,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
 
   @override
   Future<void> cancelInvoice(ViaShipmentModel shipment) async => await operation.perform(
-        permissionKey: ViaShipmentModule.cancelInvoiceKey,
+        permissionKey: _module.cancelInvoiceKey,
         module: _module,
         operationName: 'Cancel invoice shipment ${shipment.shipmentId}',
         operation: (_) async => await _viaShipmentBusinessLogic.cancelInvoice(shipment),
@@ -67,7 +69,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
 
   @override
   Future<void> archive(ViaShipmentModel shipment) async => await operation.perform(
-        permissionKey: ViaShipmentModule.archiveKey,
+        permissionKey: _module.archiveKey,
         module: _module,
         operationName: 'Archive shipment ${shipment.shipmentId}}',
         operation: (_) async => await _viaShipmentBusinessLogic.archive(shipment),
@@ -75,7 +77,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
 
   @override
   Future<void> deliver(ViaShipmentModel shipment) async => await operation.perform(
-        permissionKey: ViaShipmentModule.deliverKey,
+        permissionKey: _module.deliverKey,
         module: _module,
         operationName: 'Deliver shipment ${shipment.shipmentId}}',
         operation: (_) async => await _viaShipmentBusinessLogic.deliver(shipment),
@@ -83,7 +85,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
 
   @override
   Future<void> prepare(ViaShipmentModel shipment) async => await operation.perform(
-        permissionKey: ViaShipmentModule.prepareKey,
+        permissionKey: _module.prepareKey,
         module: _module,
         operationName: 'Prepare shipment ${shipment.shipmentId}}',
         operation: (_) async => await _viaShipmentBusinessLogic.prepare(shipment),
@@ -91,7 +93,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
 
   @override
   Future<void> process(ViaShipmentModel shipment) async => await operation.perform(
-        permissionKey: ViaShipmentModule.processKey,
+        permissionKey: _module.processKey,
         module: _module,
         operationName: 'Process shipment ${shipment.shipmentId}}',
         operation: (_) async => await _viaShipmentBusinessLogic.process(shipment),
@@ -101,7 +103,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   Future<void> changeState(ViaShipmentModel shipment, ViaShipmentState newState,
           {bool validateTransition = true}) async =>
       await operation.perform(
-        permissionKey: ViaShipmentModule.changeStateKey,
+        permissionKey: _module.changeStateKey,
         module: _module,
         operationName: 'Change state of shipment ${shipment.shipmentId} to $newState',
         operation: (_) async => await _viaShipmentBusinessLogic.changeState(
@@ -114,7 +116,7 @@ class ViaShipmentService extends GetxService with GlobalHelper implements IViaSh
   @override
   Future<void> changeDeliveryPlace(ViaShipmentModel shipment, ViaShipmentDeliveryPlace newPlace) async =>
       await operation.perform(
-        permissionKey: ViaShipmentModule.changeDeliveryPlaceKey,
+        permissionKey: _module.changeDeliveryPlaceKey,
         module: _module,
         operationName: 'Change delivery place ${shipment.shipmentId}',
         operation: (_) async => await _viaShipmentBusinessLogic.changeDeliveryPlace(shipment, newPlace),

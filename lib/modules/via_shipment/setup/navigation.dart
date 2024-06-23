@@ -1,6 +1,10 @@
 // ignore_for_file: constant_identifier_names
 
-mixin ViaShipmentNavigationHelper {
+import 'package:get/get.dart';
+
+import '../ui/ui.dart';
+
+mixin ViaShipmentNavigation {
   static const VIA_SHIPMENT_FORM = '/via-shipment-form';
   static const VIA_SHIPMENT_LIST = '/via-shipment-list';
   static const VIA_SHIPMENT_DASHBOARD = '/via-shipment-dashboard';
@@ -11,3 +15,18 @@ mixin ViaShipmentNavigationHelper {
 
   void to(String route, {dynamic arguments, bool canPop = false});
 }
+
+final pages = [
+  GetPage(
+    name: ViaShipmentNavigation.VIA_SHIPMENT_FORM,
+    page: () => const ViaShipmentFormPage(),
+  ),
+  GetPage(
+    name: ViaShipmentNavigation.VIA_SHIPMENT_LIST,
+    page: () => const ViaShipmentListPage(),
+  ),
+  GetPage(
+    name: ViaShipmentNavigation.VIA_SHIPMENT_DASHBOARD,
+    page: () => const ViaShipmentDashboardPage(),
+  ),
+];

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 
-import '../../module.dart';
+import '../../setup/interfaces/i_via_shipment_service.dart';
 
 class ViaShipmentDashboardController extends GetxController
     with PaginatedListHelper<ViaShipmentModel>, LifeCycleLoggingControllerHelper {

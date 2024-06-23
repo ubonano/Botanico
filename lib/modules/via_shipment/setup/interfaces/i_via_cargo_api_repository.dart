@@ -1,4 +1,5 @@
-import '../../module.dart';
+import '../../model/via_shipment_model.dart';
+export '../../model/via_shipment_model.dart';
 
 abstract class IViaCargoApiRepository {
   Future<String?> fetchToken();

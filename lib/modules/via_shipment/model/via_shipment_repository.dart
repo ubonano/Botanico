@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../../module.dart';
+import '../setup/interfaces/i_via_shipment_repository.dart';
 
 class ViaShipmentRepository implements IViaShipmentRepository {
   late final FirebaseFirestore _firestore = Get.find();

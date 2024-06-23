@@ -2,10 +2,9 @@ import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 
-import 'package:botanico/modules/via_shipment/module.dart';
-
 import '../../../accounting_account/setup/permissions.dart';
 import '../../../vendor/setup/permissions.dart';
+import '../../../via_shipment/setup/permissions.dart';
 
 class ModuleRepository {
   final modules$ = [
@@ -13,6 +12,6 @@ class ModuleRepository {
     WorkerModule(),
     Get.find<VendorPermissions>(),
     Get.find<AccountingAccountPermissions>(),
-    ViaShipmentModule(),
+    Get.find<ViaShipmentPermissions>(),
   ].obs;
 }

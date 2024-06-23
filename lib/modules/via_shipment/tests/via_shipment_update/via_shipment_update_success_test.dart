@@ -3,7 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/via_shipment/module.dart';
+
+import '../flows/via_shipment_create_navigate_flow.dart';
+import '../flows/via_shipment_fill_data_flow.dart';
+import '../flows/via_shipment_list_navigate_flow.dart';
+import '../flows/via_shipment_save_flow.dart';
 
 void viaShipmentUpdateAndVerifyDetailsTest(String email, String password) {
   testWidgets('Update via shipment details and verify', (WidgetTester tester) async {

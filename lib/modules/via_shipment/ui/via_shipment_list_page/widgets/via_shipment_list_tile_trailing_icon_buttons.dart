@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../module.dart';
+import '../../../model/via_shipment_model.dart';
+import '../../ui.dart';
 
 class ViaShipmentListTileTrailingIconButtons extends StatelessWidget {
   final ViaShipmentModel viaShipment;

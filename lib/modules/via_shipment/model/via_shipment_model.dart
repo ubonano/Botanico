@@ -1,6 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../module.dart';
+import 'enums/via_shipment_delivery_place.dart';
+import 'enums/via_shipment_state.dart';
+import 'via_shipment_action_log_model.dart';
+export 'enums/via_shipment_state.dart';
+export 'via_shipment_action_log_model.dart';
+export 'enums/via_shipment_delivery_place.dart';
+export 'enums/via_shipment_type.dart';
 
 class ViaShipmentModel {
   static const String collectionName = 'viaShipments';

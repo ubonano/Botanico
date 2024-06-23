@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../../module.dart';
+import '../setup/interfaces/i_via_cargo_api_repository.dart';
 
 class ViaCargoApiRepository implements IViaCargoApiRepository {
   final String _baseUrl = 'https://api.viatesting.com.ar';

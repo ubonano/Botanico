@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
 import 'package:botanico/modules/worker/module.dart';
-import 'package:botanico/modules/via_shipment/module.dart';
 
 import '../../../accounting_account/setup/navigation.dart';
 import '../../../authentication/setup/navigation.dart';
 import '../../../vendor/setup/navigation.dart';
+import '../../../via_shipment/setup/navigation.dart';
 
 class NavigationHelper
     with
@@ -17,7 +17,7 @@ class NavigationHelper
         WorkerNavigationHelper,
         VendorNavigation,
         AccountingAccountNavigation,
-        ViaShipmentNavigationHelper {
+        ViaShipmentNavigation {
   late final LogHelper _log = Get.find();
 
   static const INIT_PAGE = AuthenticationNavigate.SIGN_IN;

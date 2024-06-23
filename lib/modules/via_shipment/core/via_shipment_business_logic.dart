@@ -3,7 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/worker/module.dart';
 
-import '../module.dart';
+import '../setup/interfaces/i_via_cargo_api_repository.dart';
+import '../setup/interfaces/i_via_shipment_business_logic.dart';
+import '../setup/interfaces/i_via_shipment_repository.dart';
 
 class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
   late final IViaShipmentRepository _viaShipmentRepo = Get.find();

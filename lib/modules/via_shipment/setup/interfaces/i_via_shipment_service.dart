@@ -1,11 +1,14 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../module.dart';
+import '../../model/via_shipment_model.dart';
 
-abstract class IViaShipmentBusinessLogic {
+export '../../model/via_shipment_model.dart';
+export '../../model/enums/via_shipment_state.dart';
+export '../../model/enums/via_shipment_delivery_place.dart';
+
+abstract class IViaShipmentService {
   Future<ViaShipmentModel?> get(String id);
   Future<ViaShipmentModel?> getFromExternalAPI(String id);
   Future<void> create(ViaShipmentModel shipment);

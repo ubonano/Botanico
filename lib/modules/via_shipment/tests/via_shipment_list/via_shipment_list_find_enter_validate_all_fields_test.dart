@@ -2,7 +2,11 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/via_shipment/module.dart';
+
+import '../flows/via_shipment_create_navigate_flow.dart';
+import '../flows/via_shipment_fill_data_flow.dart';
+import '../flows/via_shipment_list_navigate_flow.dart';
+import '../flows/via_shipment_save_flow.dart';
 
 void viaShipmentListFindAndVerifyDetailsTest(String email, String password) {
   testWidgets('Create via shipment, find by name, and verify details', (WidgetTester tester) async {

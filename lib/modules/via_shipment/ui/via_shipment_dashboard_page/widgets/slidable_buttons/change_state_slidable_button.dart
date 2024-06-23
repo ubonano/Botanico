@@ -3,7 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../../../../module.dart';
+import '../../../../setup/interfaces/i_via_shipment_service.dart';
 
 class ChangeStateSlidableButton extends StatelessWidget with NavigationHelperInstance {
   final ViaShipmentModel shipment;

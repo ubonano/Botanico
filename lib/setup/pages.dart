@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:botanico/modules/accounting_account/setup/navigation.dart' as AccountingAccount;
 import 'package:botanico/modules/authentication/setup/navigation.dart' as Authentication;
 import 'package:botanico/modules/vendor/setup/navigation.dart' as Vendor;
+import 'package:botanico/modules/via_shipment/setup/navigation.dart' as ViaShipment;
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
-import 'package:botanico/modules/via_shipment/module.dart';
 
 class Pages {
   static final pages = [
@@ -47,19 +47,6 @@ class Pages {
     // - Worker
     ...Vendor.pages,
     ...AccountingAccount.pages,
-    // + Via Shipment
-    GetPage(
-      name: ViaShipmentNavigationHelper.VIA_SHIPMENT_FORM,
-      page: () => const ViaShipmentFormPage(),
-    ),
-    GetPage(
-      name: ViaShipmentNavigationHelper.VIA_SHIPMENT_LIST,
-      page: () => const ViaShipmentListPage(),
-    ),
-    GetPage(
-      name: ViaShipmentNavigationHelper.VIA_SHIPMENT_DASHBOARD,
-      page: () => const ViaShipmentDashboardPage(),
-    ),
-    // - Via Shipment
+    ...ViaShipment.pages,
   ];
 }

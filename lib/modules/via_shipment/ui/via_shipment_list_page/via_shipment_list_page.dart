@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../../module.dart';
+import '../ui.dart';
 
 class ViaShipmentListPage extends GetView<ViaShipmentListController> {
   const ViaShipmentListPage({super.key});

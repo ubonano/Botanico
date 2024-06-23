@@ -2,7 +2,10 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/via_shipment/module.dart';
+
+import '../flows/via_shipment_create_navigate_flow.dart';
+import '../flows/via_shipment_list_navigate_flow.dart';
+import '../flows/via_shipment_save_flow.dart';
 
 void viaShipmentCreateEmptyFieldsFromSignUpTest(String email, String password) {
   testWidgets('Create via shipment with empty fields', (WidgetTester tester) async {
