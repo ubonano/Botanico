@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../helpers/global_helper.dart';
+import '../../app/setup/global_helper.dart';
 import '../setup/interfaces/i_company_business_logic.dart';
 import '../setup/interfaces/i_company_service.dart';
 import '../setup/permissions.dart';

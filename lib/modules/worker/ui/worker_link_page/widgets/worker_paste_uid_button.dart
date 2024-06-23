@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../../../../company/helpers/fields_key.dart';
+import '../../../../app/setup/fields_key.dart';
 import '../../ui.dart';
 
 class WorkerPasteUidButton extends GetView<WorkerLinkController> {

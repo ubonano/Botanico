@@ -1,5 +1,5 @@
-import '../../company/setup/interfaces/i_permissions_structure.dart';
-import '../../company/model/permission_model.dart';
+import '../../app/setup/interfaces/i_permissions_structure.dart';
+export '../../app/setup/interfaces/i_permissions_structure.dart';
 
 class AccountingAccountPermissions implements IPermissionsStructure {
   @override

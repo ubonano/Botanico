@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../helpers/fields_key.dart';
-import '../../../../helpers/form_helper.dart';
-import '../../../../helpers/validator_helper.dart';
-import '../../../ui.dart';
+import '../../../../../app/setup/fields_key.dart';
+import '../../../../../app/helpers/form_helper.dart';
+import '../../../../../app/helpers/validator_helper.dart';
+import '../../../../../app/ui/ui.dart';
 
 class CityInputField extends StatelessWidget {
   final FormHelper pageController;

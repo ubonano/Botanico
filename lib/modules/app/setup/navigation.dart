@@ -7,8 +7,8 @@ import '../../authentication/setup/navigation.dart';
 import '../../vendor/setup/navigation.dart';
 import '../../via_shipment/setup/navigation.dart';
 import '../../worker/setup/navigation.dart';
-import '../setup/navigation.dart';
-import 'log_helper.dart';
+import '../../company/setup/navigation.dart';
+import '../helpers/log_helper.dart';
 
 class NavigationHelper
     with

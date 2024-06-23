@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../helpers/form_helper.dart';
-import '../../../../helpers/fields_key.dart';
-import '../../../ui.dart';
-import '../../../../helpers/validator_helper.dart';
+import '../../../../../app/helpers/form_helper.dart';
+import '../../../../../app/setup/fields_key.dart';
+import '../../../../../app/ui/ui.dart';
+import '../../../../../app/helpers/validator_helper.dart';
 
 class CountryInputField extends StatelessWidget {
   final FormHelper pageController;

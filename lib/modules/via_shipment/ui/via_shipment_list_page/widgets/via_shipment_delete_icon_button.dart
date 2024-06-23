@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../company/ui/ui.dart';
+import '../../../../app/ui/ui.dart';
 import '../../../setup/interfaces/i_via_shipment_service.dart';
 import '../../../setup/permissions.dart';
 

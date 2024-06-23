@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../company/helpers/navigation_helper.dart';
+import '../../../../app/setup/navigation.dart';
 import '../../../model/via_shipment_model.dart';
 import '../../ui.dart';
 

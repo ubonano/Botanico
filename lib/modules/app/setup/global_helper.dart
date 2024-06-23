@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-import 'log_helper.dart';
-import 'navigation_helper.dart';
-import 'operation_helper.dart';
-import 'snackbar_helper.dart';
+import '../helpers/log_helper.dart';
+import 'navigation.dart';
+import '../helpers/operation_helper.dart';
+import '../helpers/snackbar_helper.dart';
 
 mixin GlobalHelper {
   late final LogHelper log = Get.find();

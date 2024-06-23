@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../worker/setup/interfaces/i_worker_service.dart';
-import '../../setup/interfaces/i_company_service.dart';
+import '../../worker/setup/interfaces/i_worker_service.dart';
+import '../../company/setup/interfaces/i_company_service.dart';
 
 class ProtectedWidget extends StatelessWidget {
   final Widget child;

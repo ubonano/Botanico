@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../company/helpers/fields_key.dart';
+import '../../app/setup/fields_key.dart';
 import '../../company/setup/interfaces/i_company_business_logic.dart';
 import '../setup/interfaces/i_via_shipment_repository.dart';
 

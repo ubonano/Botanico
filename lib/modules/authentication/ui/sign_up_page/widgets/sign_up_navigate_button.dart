@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../company/helpers/navigation_helper.dart';
-import '../../../../company/ui/ui.dart';
+import '../../../../app/setup/navigation.dart';
+import '../../../../app/ui/ui.dart';
 
 class SignUpNavigateButton extends StatelessWidget with NavigationHelperInstance {
   SignUpNavigateButton({super.key});

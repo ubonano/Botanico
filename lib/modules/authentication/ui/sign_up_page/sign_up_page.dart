@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../company/ui/widgets/custom_scaffold.dart';
+import '../../../app/ui/custom_scaffold.dart';
 import '../ui.dart';
 
 class SignUpPage extends GetView<SignUpController> {

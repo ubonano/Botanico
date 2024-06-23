@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../company/helpers/life_cycle_logging_controller_helper.dart';
+import '../../../app/helpers/life_cycle_logging_controller_helper.dart';
 import '../../setup/interfaces/i_worker_service.dart';
 
 class WorkerLobbyController extends GetxController with LifeCycleLoggingControllerHelper {

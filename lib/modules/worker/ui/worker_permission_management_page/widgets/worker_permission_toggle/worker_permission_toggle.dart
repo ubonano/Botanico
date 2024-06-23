@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../company/model/permission_model.dart';
+import '../../../../../app/model/permission_model.dart';
 import '../../../ui.dart';
 
 class WorkerPermissionToggle extends GetView<WorkerPermissionToggleController> {

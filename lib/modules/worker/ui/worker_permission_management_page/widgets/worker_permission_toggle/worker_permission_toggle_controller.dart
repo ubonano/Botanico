@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../../../../company/helpers/global_helper.dart';
-import '../../../../../company/helpers/life_cycle_logging_controller_helper.dart';
+import '../../../../../app/setup/global_helper.dart';
+import '../../../../../app/helpers/life_cycle_logging_controller_helper.dart';
 import '../../../../setup/interfaces/i_worker_service.dart';
 
 class WorkerPermissionToggleController extends GetxController with LifeCycleLoggingControllerHelper, GlobalHelper {

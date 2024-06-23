@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../../tests/flows/app_init_flow.dart';
+import '../../../../app/tests/flows/app_init_flow.dart';
 import '../../flows/sign_in_flow.dart';
 
 void signInSuccessByNewUserTest(String email, String password) {

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../../../company/helpers/snackbar_helper.dart';
+import '../../../../../../app/helpers/snackbar_helper.dart';
 import '../../../../../model/via_shipment_model.dart';
 import '../../../../ui.dart';
 

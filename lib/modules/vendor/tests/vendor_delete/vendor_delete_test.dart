@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../tests/flows/app_init_flow.dart';
+import '../../../app/tests/flows/app_init_flow.dart';
 import '../../../company/tests/flows/company_create_from_sign_up_flow.dart';
 import '../../../company/tests/flows/open_drawer_flow.dart';
 import '../flows/vendor_create_navigate_flow.dart';

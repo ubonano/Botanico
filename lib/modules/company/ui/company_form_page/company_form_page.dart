@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../app/ui/ui.dart';
 import '../../../worker/ui/ui.dart';
 import '../ui.dart';
 

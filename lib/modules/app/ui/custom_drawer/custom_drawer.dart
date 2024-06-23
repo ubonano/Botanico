@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../accounting_account/ui/ui.dart';
-import '../../../../authentication/ui/ui.dart';
-import '../../../../vendor/ui/ui.dart';
-import '../../../../via_shipment/ui/ui.dart';
-import '../../../../worker/ui/ui.dart';
-import '../../../helpers/navigation_helper.dart';
-import '../../ui.dart';
+import '../../../accounting_account/ui/ui.dart';
+import '../../../authentication/ui/ui.dart';
+import '../../../vendor/ui/ui.dart';
+import '../../../via_shipment/ui/ui.dart';
+import '../../../worker/ui/ui.dart';
+import '../../setup/navigation.dart';
+import '../../../company/ui/ui.dart';
+import '../ui.dart';
 
 class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelperInstance {
   CustomDrawer({super.key});

@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 
+import '../../app/ui/ui.dart';
 import '../ui/ui.dart';
 
 mixin CompanyNavigation {

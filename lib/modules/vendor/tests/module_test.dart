@@ -2,7 +2,7 @@
 
 import 'package:integration_test/integration_test.dart';
 
-import '../../company/helpers/function_helper.dart';
+import '../../app/helpers/function_helper.dart';
 import 'vendor_create/vendor_create_success_test.dart';
 import 'vendor_create/vendor_empty_fields_test.dart';
 import 'vendor_create/vendor_invalid_cuit_test.dart';

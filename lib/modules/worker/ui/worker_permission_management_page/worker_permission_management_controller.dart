@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-import '../../../company/helpers/life_cycle_logging_controller_helper.dart';
-import '../../../company/model/module_repository.dart';
-import '../../../company/setup/interfaces/i_permissions_structure.dart';
+import '../../../app/helpers/life_cycle_logging_controller_helper.dart';
+import '../../../app/model/module_repository.dart';
+import '../../../app/setup/interfaces/i_permissions_structure.dart';
 
 class WorkerPermissionManagementController extends GetxController with LifeCycleLoggingControllerHelper {
   @override

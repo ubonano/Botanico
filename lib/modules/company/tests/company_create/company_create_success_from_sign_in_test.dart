@@ -4,7 +4,7 @@ import 'package:botanico/modules/company/tests/flows/company_create_fill_data_fl
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../tests/flows/app_init_flow.dart';
+import '../../../app/tests/flows/app_init_flow.dart';
 import '../../../authentication/tests/flows/sign_in_flow.dart';
 import '../../../authentication/tests/flows/sign_out_flow.dart';
 import '../../../authentication/tests/flows/sign_up_flow.dart';

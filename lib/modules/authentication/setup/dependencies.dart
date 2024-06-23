@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +11,6 @@ import 'interfaces/i_authentication_service.dart';
 
 void setupDependencies() {
   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
-  Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);
 
   Get.put<IAuthenticationBusinessLogic>(AuthenticationBusinessLogic(), permanent: true);
 

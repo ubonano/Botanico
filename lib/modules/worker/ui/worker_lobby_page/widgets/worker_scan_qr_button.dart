@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../company/ui/ui.dart';
+import '../../../../app/ui/ui.dart';
 
 class WorkerScanQrButton extends StatelessWidget {
   const WorkerScanQrButton({super.key});

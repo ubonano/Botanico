@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../helpers/form_helper.dart';
+import '../helpers/form_helper.dart';
 
 class CustomInputField extends StatelessWidget {
   final String label;

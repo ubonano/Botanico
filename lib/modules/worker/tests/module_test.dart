@@ -2,7 +2,7 @@
 
 import 'package:integration_test/integration_test.dart';
 
-import '../../company/helpers/function_helper.dart';
+import '../../app/helpers/function_helper.dart';
 import 'worker_create/worker_create_empty_fields_test.dart';
 import 'worker_create/worker_create_invalid_birthdate_format_test.dart';
 import 'worker_create/worker_create_invalid_dni_format_test.dart';

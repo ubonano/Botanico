@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../helpers/navigation_helper.dart';
-import '../../../ui.dart';
+import '../../../../../app/setup/navigation.dart';
+import '../../../../../app/ui/ui.dart';
 
 class CompanyCreateNavigateButton extends StatelessWidget with NavigationHelperInstance {
   CompanyCreateNavigateButton({super.key});

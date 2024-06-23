@@ -1,4 +1,5 @@
-import 'interfaces/i_permissions_structure.dart';
+import '../../app/setup/interfaces/i_permissions_structure.dart';
+export '../../app/setup/interfaces/i_permissions_structure.dart';
 
 class CompanyPermissions implements IPermissionsStructure {
   @override

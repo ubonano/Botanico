@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../company/helpers/fields_key.dart';
-import '../../../../../company/helpers/form_helper.dart';
-import '../../../../../company/helpers/validator_helper.dart';
-import '../../../../../company/ui/ui.dart';
+import '../../../../../app/setup/fields_key.dart';
+import '../../../../../app/helpers/form_helper.dart';
+import '../../../../../app/helpers/validator_helper.dart';
+import '../../../../../app/ui/ui.dart';
 
 class DescriptionInputField extends StatelessWidget {
   final FormHelper pageController;

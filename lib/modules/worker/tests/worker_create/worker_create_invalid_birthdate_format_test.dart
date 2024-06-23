@@ -2,7 +2,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../tests/flows/app_init_flow.dart';
+import '../../../app/tests/flows/app_init_flow.dart';
 import '../../../authentication/tests/flows/sign_up_flow.dart';
 import '../flows/worker_create_from_sign_up_flow.dart';
 

@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-import '../../../../worker/setup/interfaces/i_worker_business_logic.dart';
-import '../../../helpers/life_cycle_logging_controller_helper.dart';
-import '../../../setup/interfaces/i_company_business_logic.dart';
+import '../../../worker/setup/interfaces/i_worker_business_logic.dart';
+import '../../helpers/life_cycle_logging_controller_helper.dart';
+import '../../../company/setup/interfaces/i_company_business_logic.dart';
 
 class CustomDrawerController extends GetxController with LifeCycleLoggingControllerHelper {
   @override
