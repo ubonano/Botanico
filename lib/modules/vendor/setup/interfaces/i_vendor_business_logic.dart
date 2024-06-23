@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../model/vendor_model.dart';
+import '../../model/vendor_model.dart';
+export '../../model/vendor_model.dart';
 
 abstract class IVendorBusinessLogic {
   Future<VendorModel?> get(String id);

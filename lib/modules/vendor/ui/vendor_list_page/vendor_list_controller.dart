@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 
-import '../../module.dart';
+import '../../setup/interfaces/i_vendor_service.dart';
 
 class VendorListController extends GetxController
     with PaginatedListHelper<VendorModel>, LifeCycleLoggingControllerHelper {

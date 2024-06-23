@@ -3,8 +3,8 @@
 import 'package:get/get.dart';
 import 'package:botanico/modules/accounting_account/setup/navigation.dart' as AccountingAccount;
 import 'package:botanico/modules/authentication/setup/navigation.dart' as Authentication;
+import 'package:botanico/modules/vendor/setup/navigation.dart' as Vendor;
 import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:botanico/modules/via_shipment/module.dart';
 
@@ -45,16 +45,7 @@ class Pages {
       page: () => const LobbyPage(),
     ),
     // - Worker
-    // + Vendor
-    GetPage(
-      name: VendorNavigationHelper.VENDOR_FORM,
-      page: () => const VendorFormPage(),
-    ),
-    GetPage(
-      name: VendorNavigationHelper.VENDOR_LIST,
-      page: () => const VendorListPage(),
-    ),
-    // - Vendor
+    ...Vendor.pages,
     ...AccountingAccount.pages,
     // + Via Shipment
     GetPage(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:botanico/modules/company/module.dart';
+import 'package:get/get.dart';
 
-import '../../../module.dart';
+import '../../../model/vendor_model.dart';
+import '../../../setup/permissions.dart';
 
 class VendorUpdateIconButton extends StatelessWidget with NavigationHelperInstance {
   final VendorModel vendor;
@@ -10,9 +12,11 @@ class VendorUpdateIconButton extends StatelessWidget with NavigationHelperInstan
 
   @override
   Widget build(BuildContext context) {
+    final module = Get.find<VendorPermissions>();
+
     return ProtectedWidget(
-      module: VendorModule(),
-      permission: VendorModule.updateKey,
+      module: module,
+      permission: module.updateKey,
       child: IconButton(
         key: key ?? const Key('VendorUpdateIconButton'),
         icon: const Icon(Icons.edit),

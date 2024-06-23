@@ -3,7 +3,7 @@
 import 'package:botanico/modules/authentication/setup/dependencies.dart' as auth;
 import 'package:botanico/modules/company/module.dart' as company;
 import 'package:botanico/modules/worker/module.dart' as worker;
-import 'package:botanico/modules/vendor/module.dart' as vendor;
+import 'package:botanico/modules/vendor/setup/dependencies.dart' as vendor;
 import 'package:botanico/modules/accounting_account/setup/dependencies.dart' as accountingAccount;
 import 'package:botanico/modules/via_shipment/module.dart' as viaShipment;
 
@@ -15,7 +15,7 @@ class AppBindings extends Bindings {
     auth.setupDependencies();
     worker.dependencies();
     company.dependencies();
-    vendor.dependencies();
+    vendor.setupDependencies();
     accountingAccount.setupDependencies();
     viaShipment.dependencies();
   }

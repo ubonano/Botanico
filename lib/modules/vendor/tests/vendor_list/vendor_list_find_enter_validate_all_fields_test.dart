@@ -2,7 +2,11 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/vendor/module.dart';
+
+import '../flows/vendor_create_navigate_flow.dart';
+import '../flows/vendor_fill_data_flow.dart';
+import '../flows/vendor_list_navigate_flow.dart';
+import '../flows/vendor_save_flow.dart';
 
 void vendorListFindAndVerifyDetailsTest(String email, String password) {
   testWidgets('Create vendor, find by name, and verify details', (WidgetTester tester) async {

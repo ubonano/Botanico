@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../../../module.dart';
+import '../../../setup/interfaces/i_vendor_service.dart';
+import '../../../setup/permissions.dart';
 
 class VendorDeleteIconButton extends StatelessWidget {
   final VendorModel vendor;
@@ -11,9 +12,11 @@ class VendorDeleteIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final module = Get.find<VendorPermissions>();
+
     return ProtectedWidget(
-      module: VendorModule(),
-      permission: VendorModule.deleteKey,
+      module: module,
+      permission: module.deleteKey,
       child: IconButton(
         key: key ?? const Key('VendorDeleteIconButton'),
         icon: const Icon(Icons.delete),

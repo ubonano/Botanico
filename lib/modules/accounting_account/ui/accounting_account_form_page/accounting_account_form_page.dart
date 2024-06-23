@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../company/module.dart';
-import '../../../vendor/module.dart';
+
+import '../../../vendor/ui/ui.dart';
 import '../ui.dart';
 
 class AccountingAccountFormPage extends GetView<AccountingAccountFormController> {

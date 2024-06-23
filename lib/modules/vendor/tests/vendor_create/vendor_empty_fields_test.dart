@@ -2,7 +2,10 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/vendor/module.dart';
+
+import '../flows/vendor_create_navigate_flow.dart';
+import '../flows/vendor_list_navigate_flow.dart';
+import '../flows/vendor_save_flow.dart';
 
 void vendorCreateEmptyFieldsFromSignUpTest(String email, String password) {
   testWidgets('Create vendor with empty fields', (WidgetTester tester) async {

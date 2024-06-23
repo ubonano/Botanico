@@ -1,7 +1,7 @@
 import 'package:botanico/modules/company/module.dart';
 import 'package:get/get.dart';
 
-import '../../module.dart';
+import '../../setup/interfaces/i_vendor_service.dart';
 
 class VendorFormController extends GetxController
     with FormHelper<VendorModel>, GlobalHelper, LifeCycleLoggingControllerHelper {

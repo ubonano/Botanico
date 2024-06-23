@@ -3,17 +3,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../module.dart';
+import '../setup/interfaces/i_vendor_business_logic.dart';
+import '../setup/interfaces/i_vendor_service.dart';
+import '../setup/permissions.dart';
 
 class VendorService extends GetxService with GlobalHelper implements IVendorService {
-  late final IPermissionsStructure _module = VendorModule();
+  late final VendorPermissions _module = Get.find();
   late final IVendorBusinessLogic _vendorBusinessLogic = Get.find();
 
   @override
   Future<VendorModel?> get(String id) async => await operation.perform(
         operationName: 'Get vendor $id',
         module: _module,
-        permissionKey: VendorModule.viewKey,
+        permissionKey: _module.viewKey,
         operation: (_) async => await _vendorBusinessLogic.get(id),
       );
 
@@ -21,7 +23,7 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   Future<void> create(VendorModel vendor) async => await operation.perform(
         operationName: 'Create vendor ${vendor.uid}',
         module: _module,
-        permissionKey: VendorModule.createKey,
+        permissionKey: _module.createKey,
         operation: (_) async => await _vendorBusinessLogic.create(vendor),
       );
 
@@ -29,7 +31,7 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   Future<void> update(VendorModel vendor) async => await operation.perform(
         operationName: 'Update vendor ${vendor.uid}',
         module: _module,
-        permissionKey: VendorModule.updateKey,
+        permissionKey: _module.updateKey,
         operation: (_) async => await _vendorBusinessLogic.update(vendor),
       );
 
@@ -37,7 +39,7 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   Future<void> delete(VendorModel vendor) async => await operation.perform(
         operationName: 'Delete vendor ${vendor.uid}',
         module: _module,
-        permissionKey: VendorModule.deleteKey,
+        permissionKey: _module.deleteKey,
         operation: (_) async => await _vendorBusinessLogic.delete(vendor),
       );
 

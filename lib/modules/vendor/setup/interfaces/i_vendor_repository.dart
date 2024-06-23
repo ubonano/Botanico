@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../module.dart';
+import '../../model/vendor_model.dart';
+export '../../model/vendor_model.dart';
 
 abstract class IVendorRepository {
   String get generateId;

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../ui/ui.dart';
 
-mixin AuthenticationNavigateHelper {
+mixin AuthenticationNavigate {
   static const SIGN_IN = '/sign-in';
   static const SIGN_UP = '/sign-up';
 
@@ -16,11 +16,11 @@ mixin AuthenticationNavigateHelper {
 
 final pages = [
   GetPage(
-    name: AuthenticationNavigateHelper.SIGN_IN,
+    name: AuthenticationNavigate.SIGN_IN,
     page: () => const SignInPage(),
   ),
   GetPage(
-    name: AuthenticationNavigateHelper.SIGN_UP,
+    name: AuthenticationNavigate.SIGN_UP,
     page: () => const SignUpPage(),
   ),
 ];

@@ -3,7 +3,14 @@
 import 'package:integration_test/integration_test.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../module.dart';
+import 'vendor_create/vendor_create_success_test.dart';
+import 'vendor_create/vendor_empty_fields_test.dart';
+import 'vendor_create/vendor_invalid_cuit_test.dart';
+import 'vendor_create/vendor_invalid_phone_test.dart';
+import 'vendor_delete/vendor_delete_test.dart';
+import 'vendor_list/vendor_list_find_by_name_test.dart';
+import 'vendor_list/vendor_list_find_enter_validate_all_fields_test.dart';
+import 'vendor_update/vendor_update_success_test.dart';
 
 /* 
 -To run execute:

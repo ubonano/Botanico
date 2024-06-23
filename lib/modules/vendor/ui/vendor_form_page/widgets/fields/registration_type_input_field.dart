@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:get/get.dart';
 
-import '../../../../module.dart';
+import '../../../../model/enums/vendor_registration_type.dart';
+import '../../../ui.dart';
 
 class RegistrationTypeInputField extends StatelessWidget {
   final VendorFormController pageController;

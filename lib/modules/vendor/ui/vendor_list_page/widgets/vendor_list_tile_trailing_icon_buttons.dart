@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../module.dart';
+import '../../../model/vendor_model.dart';
+import '../../ui.dart';
 
 class VendorListTileTrailingIconButtons extends StatelessWidget {
   final VendorModel vendor;

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../../../module.dart';
+import '../../../model/vendor_model.dart';
+import '../../ui.dart';
 
 class VendorList extends GetView<VendorListController> with NavigationHelperInstance {
   VendorList({super.key});

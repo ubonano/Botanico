@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../module.dart';
+import '../setup/interfaces/i_vendor_business_logic.dart';
+import '../setup/interfaces/i_vendor_repository.dart';
 
 class VendorBusinessLogic implements IVendorBusinessLogic {
   late final IVendorRepository _vendorRepo = Get.find();
