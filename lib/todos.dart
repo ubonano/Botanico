@@ -2,7 +2,7 @@
 
 
 
-// Refactor de modulos worker y company
+// Crear modulo app y llevar todo lo que sea de app ahi
 
 
 

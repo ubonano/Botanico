@@ -1,4 +1,4 @@
-import '../../company/core/interfaces/i_permissions_structure.dart';
+import '../../company/setup/interfaces/i_permissions_structure.dart';
 
 class WorkerPermissions implements IPermissionsStructure {
   @override

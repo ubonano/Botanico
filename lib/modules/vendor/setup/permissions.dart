@@ -1,4 +1,4 @@
-import '../../company/module.dart';
+import '../../company/setup/interfaces/i_permissions_structure.dart';
 
 class VendorPermissions implements IPermissionsStructure {
   @override

@@ -1,8 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:integration_test/integration_test.dart';
-import 'package:botanico/modules/company/module.dart';
 
+import '../../company/helpers/function_helper.dart';
 import 'via_shipment_create/via_shipment_create_success_test.dart';
 import 'via_shipment_delete/via_shipment_delete_test.dart';
 import 'via_shipment_list/via_shipment_list_find_by_name_test.dart';

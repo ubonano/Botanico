@@ -1,7 +1,7 @@
 // ignore_for_file: library_prefixes
 
 import 'package:botanico/modules/authentication/setup/dependencies.dart' as auth;
-import 'package:botanico/modules/company/module.dart' as company;
+import 'package:botanico/modules/company/setup/dependencies.dart' as company;
 import 'package:botanico/modules/worker/setup/dependencies.dart' as worker;
 import 'package:botanico/modules/vendor/setup/dependencies.dart' as vendor;
 import 'package:botanico/modules/accounting_account/setup/dependencies.dart' as accountingAccount;
@@ -14,7 +14,7 @@ class AppBindings extends Bindings {
   void dependencies() {
     auth.setupDependencies();
     worker.setupDependencies();
-    company.dependencies();
+    company.setupDependencies();
     vendor.setupDependencies();
     accountingAccount.setupDependencies();
     viaShipment.setupDependencies();

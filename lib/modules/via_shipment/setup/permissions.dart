@@ -1,5 +1,5 @@
-import '../../company/core/interfaces/i_permissions_structure.dart';
-import '../../company/core/model/permission_model.dart';
+import '../../company/setup/interfaces/i_permissions_structure.dart';
+import '../../company/model/permission_model.dart';
 
 class ViaShipmentPermissions implements IPermissionsStructure {
   @override

@@ -1,8 +1,8 @@
-import 'package:botanico/modules/company/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../authentication/ui/ui.dart';
+import '../../../company/ui/ui.dart';
 import '../ui.dart';
 
 class LobbyPage extends GetView<WorkerLobbyController> {

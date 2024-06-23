@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/company/module.dart';
+
+import '../../../../helpers/navigation_helper.dart';
+import '../../../ui.dart';
 
 class CompanyCreateNavigateButton extends StatelessWidget with NavigationHelperInstance {
   CompanyCreateNavigateButton({super.key});

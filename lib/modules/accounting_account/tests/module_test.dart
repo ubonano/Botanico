@@ -1,8 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:integration_test/integration_test.dart';
-import 'package:botanico/modules/company/module.dart';
 
+import '../../company/helpers/function_helper.dart';
 import 'accounting_account_create/accounting_account_create_success_test.dart';
 import 'accounting_account_create/accounting_account_empty_fields_test.dart';
 import 'accounting_account_delete/accounting_account_delete_test.dart';

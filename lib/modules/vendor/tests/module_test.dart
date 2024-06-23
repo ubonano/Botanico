@@ -1,8 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:integration_test/integration_test.dart';
-import 'package:botanico/modules/company/module.dart';
 
+import '../../company/helpers/function_helper.dart';
 import 'vendor_create/vendor_create_success_test.dart';
 import 'vendor_create/vendor_empty_fields_test.dart';
 import 'vendor_create/vendor_invalid_cuit_test.dart';

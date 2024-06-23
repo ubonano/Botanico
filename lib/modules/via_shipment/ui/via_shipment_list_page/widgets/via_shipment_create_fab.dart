@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/company/module.dart';
 import 'package:get/get.dart';
 
+import '../../../../company/helpers/navigation_helper.dart';
+import '../../../../company/ui/ui.dart';
 import '../../../setup/permissions.dart';
 
 class ViaShipmentCreateFAB extends StatelessWidget with NavigationHelperInstance {

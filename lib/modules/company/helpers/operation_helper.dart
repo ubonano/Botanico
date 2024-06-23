@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:botanico/modules/company/module.dart';
 
-import '../../../worker/setup/exceptions/worker_not_found_exception.dart';
-import '../../../worker/setup/interfaces/i_worker_service.dart';
+import '../../worker/setup/exceptions/worker_not_found_exception.dart';
+import '../../worker/setup/interfaces/i_worker_service.dart';
+import '../setup/exceptions/company_not_found_exception.dart';
+import '../setup/interfaces/i_company_service.dart';
+import '../setup/interfaces/i_permissions_structure.dart';
+import 'global_helper.dart';
 
 class OperationHelper with GlobalHelper {
   late final FirebaseFirestore _firestore = Get.find();

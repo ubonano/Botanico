@@ -1,18 +1,19 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
 
-import '../../../accounting_account/setup/navigation.dart';
-import '../../../authentication/setup/navigation.dart';
-import '../../../vendor/setup/navigation.dart';
-import '../../../via_shipment/setup/navigation.dart';
-import '../../../worker/setup/navigation.dart';
+import '../../accounting_account/setup/navigation.dart';
+import '../../authentication/setup/navigation.dart';
+import '../../vendor/setup/navigation.dart';
+import '../../via_shipment/setup/navigation.dart';
+import '../../worker/setup/navigation.dart';
+import '../setup/navigation.dart';
+import 'log_helper.dart';
 
 class NavigationHelper
     with
         AuthenticationNavigate,
-        CompanyNavigationHelper,
+        CompanyNavigation,
         WorkerNavigation,
         VendorNavigation,
         AccountingAccountNavigation,

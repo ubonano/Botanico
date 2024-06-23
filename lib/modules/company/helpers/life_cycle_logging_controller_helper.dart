@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
+
+import 'log_helper.dart';
 
 mixin LifeCycleLoggingControllerHelper on GetxController {
   String get logTag;

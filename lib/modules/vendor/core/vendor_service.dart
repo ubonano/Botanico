@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
 
+import '../../company/helpers/global_helper.dart';
 import '../setup/interfaces/i_vendor_business_logic.dart';
 import '../setup/interfaces/i_vendor_service.dart';
 import '../setup/permissions.dart';

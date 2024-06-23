@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
 
+import '../../../../../company/helpers/global_helper.dart';
+import '../../../../../company/helpers/life_cycle_logging_controller_helper.dart';
 import '../../../../setup/interfaces/i_worker_service.dart';
 
 class WorkerPermissionToggleController extends GetxController with LifeCycleLoggingControllerHelper, GlobalHelper {

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:botanico/modules/company/module.dart';
 
+import '../../company/setup/interfaces/i_company_business_logic.dart';
 import '../setup/interfaces/i_vendor_repository.dart';
 
 class VendorRepository implements IVendorRepository {

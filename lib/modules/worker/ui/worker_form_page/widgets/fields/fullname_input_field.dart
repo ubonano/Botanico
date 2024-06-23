@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/company/module.dart';
+import '../../../../../company/helpers/form_helper.dart';
+import '../../../../../company/helpers/validator_helper.dart';
+import '../../../../../company/helpers/fields_key.dart';
+import '../../../../../company/ui/ui.dart';
 
 class FullnameInputField extends StatelessWidget {
   final FormHelper pageController;

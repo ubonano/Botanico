@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/company/module.dart';
 
+import '../../../../company/setup/interfaces/i_permissions_structure.dart';
 import '../../ui.dart';
 
 class ModuleExpansionTile extends StatelessWidget {

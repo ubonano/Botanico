@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
+
+import 'log_helper.dart';
+import 'navigation_helper.dart';
+import 'operation_helper.dart';
+import 'snackbar_helper.dart';
 
 mixin GlobalHelper {
   late final LogHelper log = Get.find();

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../company/module.dart';
-
+import '../../../company/ui/ui.dart';
 import '../../../vendor/ui/ui.dart';
 import '../ui.dart';
 

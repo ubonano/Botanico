@@ -1,6 +1,10 @@
 // ignore_for_file: constant_identifier_names
 
-mixin CompanyNavigationHelper {
+import 'package:get/get.dart';
+
+import '../ui/ui.dart';
+
+mixin CompanyNavigation {
   static const EMPTY = '/';
   static const HOME = '/home';
   static const COMPANY_FORM = '/company-form';
@@ -10,3 +14,18 @@ mixin CompanyNavigationHelper {
 
   void to(String route, {dynamic arguments, bool canPop = false});
 }
+
+final pages = [
+  GetPage(
+    name: CompanyNavigation.EMPTY,
+    page: () => const HomePage(),
+  ),
+  GetPage(
+    name: CompanyNavigation.COMPANY_FORM,
+    page: () => const CompanyFormPage(),
+  ),
+  GetPage(
+    name: CompanyNavigation.HOME,
+    page: () => const HomePage(),
+  ),
+];

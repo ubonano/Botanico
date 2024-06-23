@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../company/module.dart';
+import '../../../../company/helpers/fields_key.dart';
+import '../../../../company/helpers/form_helper.dart';
+import '../../../../company/helpers/validator_helper.dart';
+import '../../../../company/ui/ui.dart';
 
 class EmailInputField extends StatelessWidget {
   final FormHelper pageController;

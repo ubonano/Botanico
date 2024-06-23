@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:botanico/modules/company/module.dart';
 
+import '../../../../company/helpers/global_helper.dart';
+import '../../../../company/helpers/snackbar_helper.dart';
+import '../../../../company/ui/ui.dart';
 import '../../ui.dart';
 
 class WorkerCopyUidButton extends GetView<WorkerLobbyController> with GlobalHelper {

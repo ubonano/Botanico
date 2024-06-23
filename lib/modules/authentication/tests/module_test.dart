@@ -1,8 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:botanico/modules/company/module.dart';
 import 'package:integration_test/integration_test.dart';
 
+import '../../company/helpers/function_helper.dart';
 import 'pages/sign_in/sign_in_empty_fields_test.dart';
 import 'pages/sign_in/sign_in_invalid_email_test.dart';
 import 'pages/sign_in/sign_in_invalid_password_test.dart';

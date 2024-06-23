@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../company/module.dart';
+import '../../../../company/ui/widgets/buttons/custom_button.dart';
 import '../../ui.dart';
 
 class AccountingAccountSaveButton extends GetView<AccountingAccountFormController> {

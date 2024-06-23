@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../worker/ui/ui.dart';
-import '../../module.dart';
+import '../ui.dart';
 
 class CompanyFormPage extends GetView<CompanyFormController> {
   const CompanyFormPage({super.key});

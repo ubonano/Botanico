@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../worker/setup/interfaces/i_worker_service.dart';
-import '../../module.dart';
+import '../../setup/interfaces/i_company_service.dart';
 
 class ProtectedWidget extends StatelessWidget {
   final Widget child;

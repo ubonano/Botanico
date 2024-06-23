@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../company/module.dart';
+import '../../company/helpers/global_helper.dart';
 import '../setup/interfaces/i_accounting_account_business_logic.dart';
 import '../setup/interfaces/i_accounting_account_service.dart';
 import '../setup/permissions.dart';

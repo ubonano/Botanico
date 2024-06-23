@@ -2,7 +2,11 @@
 
 import 'package:integration_test/integration_test.dart';
 
-import '../module.dart';
+import '../helpers/function_helper.dart';
+import 'company_create/company_create_empty_fields_test.dart';
+import 'company_create/company_create_invalid_phone_format_test.dart';
+import 'company_create/company_create_success_from_sign_in_test.dart';
+import 'company_create/company_create_success_from_sign_up_test.dart';
 
 /* 
 

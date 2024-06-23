@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
 
 import '../../../authentication/ui/ui.dart';
+import '../../../company/ui/ui.dart';
 import '../ui.dart';
 
 class WorkerFormPage extends GetView<WorkerFormController> {

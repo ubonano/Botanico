@@ -6,7 +6,8 @@ import '../../../../authentication/ui/ui.dart';
 import '../../../../vendor/ui/ui.dart';
 import '../../../../via_shipment/ui/ui.dart';
 import '../../../../worker/ui/ui.dart';
-import '../../../module.dart';
+import '../../../helpers/navigation_helper.dart';
+import '../../ui.dart';
 
 class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelperInstance {
   CustomDrawer({super.key});

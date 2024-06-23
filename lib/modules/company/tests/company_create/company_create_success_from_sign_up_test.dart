@@ -3,9 +3,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../tests/flows/app_init_flow.dart';
 import '../../../authentication/tests/flows/sign_up_flow.dart';
 import '../../../worker/tests/flows/worker_create_from_sign_up_flow.dart';
-import '../../module.dart';
+import '../flows/company_create_fill_data_flow.dart';
+import '../flows/company_create_navigate_flow.dart';
+import '../flows/company_create_press_save_button_flow.dart';
 
 void companyCreateSuccessFromSignUpTest(String email, String password) {
   testWidgets('Create company success from sign up', (WidgetTester tester) async {

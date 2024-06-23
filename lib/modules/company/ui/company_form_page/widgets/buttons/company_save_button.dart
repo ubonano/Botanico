@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../module.dart';
+import '../../../ui.dart';
 
 class CompanySaveButton extends GetView<CompanyFormController> {
   const CompanySaveButton({super.key});

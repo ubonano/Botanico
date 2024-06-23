@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:botanico/modules/company/module.dart';
-
 import '../../authentication/setup/interfaces/i_authenticatin_business_logic.dart';
+import '../../company/setup/exceptions/company_not_found_exception.dart';
+import '../../company/setup/interfaces/i_company_business_logic.dart';
 import '../setup/interfaces/i_linked_worker_repository.dart';
 import '../setup/interfaces/i_worker_business_logic.dart';
 import '../setup/interfaces/i_worker_repository.dart';

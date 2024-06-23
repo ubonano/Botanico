@@ -3,7 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../authentication/setup/interfaces/i_authenticatin_business_logic.dart';
 import '../../worker/setup/interfaces/i_worker_business_logic.dart';
-import '../module.dart';
+import '../setup/interfaces/i_company_business_logic.dart';
+import '../setup/interfaces/i_company_repository.dart';
 
 class CompanyBusinessLogic extends GetxService implements ICompanyBusinessLogic {
   late final ICompanyRepository _companyRepo = Get.find();

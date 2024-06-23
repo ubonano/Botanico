@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/company/module.dart';
+
+import '../../../../helpers/form_helper.dart';
+import '../../../../helpers/fields_key.dart';
+import '../../../ui.dart';
+import '../../../../helpers/validator_helper.dart';
 
 class NameInputField extends StatelessWidget {
   final FormHelper pageController;

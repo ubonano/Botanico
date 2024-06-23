@@ -1,6 +1,8 @@
-import 'package:botanico/modules/company/module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../setup/interfaces/i_company_service.dart';
+import '../../ui.dart';
 
 class ModuleActiveToggle extends GetView<CompanyFormController> {
   final IPermissionsStructure module;

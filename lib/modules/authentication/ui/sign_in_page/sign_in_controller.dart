@@ -1,6 +1,10 @@
-import 'package:botanico/modules/company/module.dart';
 import 'package:get/get.dart';
 
+import '../../../company/helpers/fields_key.dart';
+import '../../../company/helpers/form_helper.dart';
+import '../../../company/helpers/global_helper.dart';
+import '../../../company/helpers/life_cycle_logging_controller_helper.dart';
+import '../../../company/setup/interfaces/i_company_service.dart';
 import '../../../worker/setup/interfaces/i_worker_service.dart';
 import '../../setup/interfaces/i_authentication_service.dart';
 

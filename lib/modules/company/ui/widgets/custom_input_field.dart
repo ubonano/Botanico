@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/company/module.dart';
-import 'package:get/get.dart'; // Asegúrate de importar correctamente el módulo que contiene FormHelper
+import 'package:get/get.dart';
+
+import '../../helpers/form_helper.dart';
 
 class CustomInputField extends StatelessWidget {
   final String label;

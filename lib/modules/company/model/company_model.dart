@@ -1,5 +1,7 @@
-import 'package:botanico/modules/company/module.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../setup/interfaces/i_permissions_structure.dart';
+export '../setup/interfaces/i_permissions_structure.dart';
 
 class CompanyModel {
   static const String collectionName = 'companies';
