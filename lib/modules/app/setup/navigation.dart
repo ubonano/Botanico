@@ -2,7 +2,7 @@
 
 import 'package:get/get.dart';
 
-import '../../accounting_account/setup/navigation.dart';
+import '../../accounting_account/lib/setup/navigation.dart';
 import '../../authentication/setup/navigation.dart';
 import '../../vendor/setup/navigation.dart';
 import '../../via_shipment/setup/navigation.dart';

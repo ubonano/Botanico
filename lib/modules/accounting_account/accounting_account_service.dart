@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../app/setup/global_helper.dart';
-import '../setup/interfaces/i_accounting_account_business_logic.dart';
-import '../setup/interfaces/i_accounting_account_service.dart';
-import '../setup/permissions.dart';
+import '../app/setup/global_helper.dart';
+import 'lib/setup/interfaces/i_accounting_account_business_logic.dart';
+import 'lib/setup/interfaces/i_accounting_account_service.dart';
+import 'lib/setup/permissions.dart';
 
 class AccountingAccountService extends GetxService with GlobalHelper implements IAccountingAccountService {
   late final AccountingAccountPermissions _accountingAccountModule = Get.find();

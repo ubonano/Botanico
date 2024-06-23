@@ -2,7 +2,7 @@
 
 import 'package:get/get.dart';
 
-import '../ui/ui.dart';
+import '../../ui/ui.dart';
 
 mixin AccountingAccountNavigation {
   static const ACCOUNTING_ACCOUNT_FORM = '/accounting-account-form';

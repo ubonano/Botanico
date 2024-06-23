@@ -6,7 +6,7 @@ import '../../../app/helpers/life_cycle_logging_controller_helper.dart';
 import '../../../app/helpers/paginated_list_helper.dart';
 import '../../../company/setup/interfaces/i_company_service.dart';
 import '../../../worker/setup/interfaces/i_worker_service.dart';
-import '../../setup/interfaces/i_accounting_account_service.dart';
+import '../../lib/setup/interfaces/i_accounting_account_service.dart';
 
 class AccountingAccountListController extends GetxController
     with PaginatedListHelper<AccountingAccountModel>, LifeCycleLoggingControllerHelper {

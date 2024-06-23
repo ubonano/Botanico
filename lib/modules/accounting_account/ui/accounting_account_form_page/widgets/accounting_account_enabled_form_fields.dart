@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../app/ui/ui.dart';
-import '../../../setup/permissions.dart';
+import '../../../lib/setup/permissions.dart';
 import '../../ui.dart';
 
 class AccountingAccountEnabledFormFields extends GetView<AccountingAccountFormController> {

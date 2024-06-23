@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../company/setup/interfaces/i_company_business_logic.dart';
-import '../setup/interfaces/i_accounting_account_repository.dart';
+import '../company/setup/interfaces/i_company_business_logic.dart';
+import 'lib/setup/interfaces/i_accounting_account_repository.dart';
 
 class AccountingAccountRepository implements IAccountingAccountRepository {
   late final FirebaseFirestore _firestore = Get.find();

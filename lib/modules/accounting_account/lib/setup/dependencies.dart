@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
-import '../core/accounting_account_business_logic.dart';
-import '../core/accounting_account_service.dart';
-import '../model/accounting_account_repository.dart';
-import '../ui/accounting_account_form_page/accounting_account_form_controller.dart';
-import '../ui/accounting_account_list_page/accounting_account_list_controller.dart';
+import '../../accounting_account_business_logic.dart';
+import '../../accounting_account_service.dart';
+import '../../accounting_account_repository.dart';
+import '../../ui/accounting_account_form_page/accounting_account_form_controller.dart';
+import '../../ui/accounting_account_list_page/accounting_account_list_controller.dart';
 import 'interfaces/i_accounting_account_business_logic.dart';
 import 'interfaces/i_accounting_account_repository.dart';
 import 'interfaces/i_accounting_account_service.dart';

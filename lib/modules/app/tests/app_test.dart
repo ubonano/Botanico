@@ -6,7 +6,7 @@ import 'package:botanico/modules/authentication/tests/module_test.dart' as authe
 import 'package:botanico/modules/company/tests/module_test.dart' as company;
 import 'package:botanico/modules/worker/tests/module_test.dart' as worker;
 import 'package:botanico/modules/vendor/tests/module_test.dart' as vendor;
-import 'package:botanico/modules/accounting_account/tests/module_test.dart' as accountingAccount;
+import 'package:botanico/modules/accounting_account/lib/tests/module_test.dart' as accountingAccount;
 import 'package:botanico/modules/via_shipment/tests/module_test.dart' as viaShipment;
 
 /* 

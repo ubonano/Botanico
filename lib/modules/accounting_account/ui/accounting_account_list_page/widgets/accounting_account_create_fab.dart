@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../app/setup/navigation.dart';
 
 import '../../../../app/ui/ui.dart';
-import '../../../setup/permissions.dart';
+import '../../../lib/setup/permissions.dart';
 
 class AccountingAccountCreateFAB extends StatelessWidget with NavigationHelperInstance {
   AccountingAccountCreateFAB({super.key});
