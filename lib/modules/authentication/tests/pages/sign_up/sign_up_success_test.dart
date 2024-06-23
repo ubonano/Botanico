@@ -4,7 +4,7 @@ import 'package:botanico/modules/company/module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../module.dart';
+import '../../flows/sign_up_flow.dart';
 
 void signUpSuccessTest(String email, String password) {
   testWidgets('Sign up success', (WidgetTester tester) async {

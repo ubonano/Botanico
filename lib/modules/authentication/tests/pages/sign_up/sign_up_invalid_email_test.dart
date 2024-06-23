@@ -3,7 +3,7 @@
 import 'package:botanico/modules/company/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../module.dart';
+import '../../flows/sign_up_flow.dart';
 
 void signUpInvalidEmailTest() {
   testWidgets('Sign up with invalid email', (WidgetTester tester) async {

@@ -2,9 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:botanico/modules/authentication/module.dart';
+
 import 'package:botanico/modules/worker/module.dart';
 
+import '../../../authentication/tests/flows/sign_in_flow.dart';
+import '../../../authentication/tests/flows/sign_out_flow.dart';
+import '../../../authentication/tests/flows/sign_up_flow.dart';
 import '../../module.dart';
 
 void companyCreateSuccessFromSignInTest(String email, String password) {

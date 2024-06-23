@@ -1,7 +1,7 @@
 import 'package:botanico/modules/company/module.dart';
 import 'package:get/get.dart';
 
-import '../../module.dart';
+import '../../setup/interfaces/i_authentication_service.dart';
 
 class SignInRecoverController extends GetxController with GlobalHelper, FormHelper, LifeCycleLoggingControllerHelper {
   @override

@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 
-import '../../module.dart';
+import '../../setup/interfaces/i_authentication_service.dart';
 
 class SignOutController extends GetxController with GlobalHelper, LifeCycleLoggingControllerHelper {
   @override

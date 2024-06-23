@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-import '../module.dart';
+import '../setup/interfaces/i_authenticatin_business_logic.dart';
+import '../setup/interfaces/i_authentication_repository.dart';
 
 class AuthenticationBusinessLogic extends GetxService implements IAuthenticationBusinessLogic {
   late final IAuthenticationRepository _authRepo = Get.find();

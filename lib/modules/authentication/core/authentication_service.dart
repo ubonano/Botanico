@@ -1,7 +1,8 @@
 import 'package:botanico/modules/company/module.dart';
 import 'package:get/get.dart';
 
-import '../module.dart';
+import '../setup/interfaces/i_authenticatin_business_logic.dart';
+import '../setup/interfaces/i_authentication_service.dart';
 
 class AuthenticationService extends GetxService with GlobalHelper implements IAuthenticationService {
   late final IAuthenticationBusinessLogic _authBusinessLogic = Get.find();

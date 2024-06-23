@@ -3,7 +3,7 @@
 import 'package:botanico/modules/company/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../module.dart';
+import '../../flows/sign_in_flow.dart';
 
 void signInWrongPassowrdTest(String email) {
   testWidgets('Sign in with wrong password', (WidgetTester tester) async {

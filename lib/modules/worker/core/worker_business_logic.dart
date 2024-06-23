@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:botanico/modules/authentication/module.dart';
+
 import 'package:botanico/modules/company/module.dart';
 
+import '../../authentication/setup/interfaces/i_authenticatin_business_logic.dart';
 import '../module.dart';
 
 class WorkerBusinessLogic implements IWorkerBusinessLogic {

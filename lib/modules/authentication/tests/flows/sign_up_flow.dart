@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../module.dart';
+import 'sign_up_navigate_flow.dart';
 
 Future<void> signUpFlow(WidgetTester tester, String email, String password, String confirmPassword) async {
   await signUpNavigateFlow(tester);

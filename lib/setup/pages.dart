@@ -1,7 +1,8 @@
+// ignore_for_file: library_prefixes
+
 import 'package:get/get.dart';
 import 'package:botanico/modules/accounting_account/setup/navigation.dart' as AccountingAccount;
-// import 'package:botanico/modules/accounting_account/module.dart';
-import 'package:botanico/modules/authentication/module.dart';
+import 'package:botanico/modules/authentication/setup/navigation.dart' as Authentication;
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/worker/module.dart';
@@ -21,14 +22,7 @@ class Pages {
       name: CompanyNavigationHelper.HOME,
       page: () => const HomePage(),
     ),
-    GetPage(
-      name: AuthenticationNavigateHelper.SIGN_IN,
-      page: () => const SignInPage(),
-    ),
-    GetPage(
-      name: AuthenticationNavigateHelper.SIGN_UP,
-      page: () => const SignUpPage(),
-    ),
+    ...Authentication.pages,
     // + Worker
     GetPage(
       name: WorkerNavigationHelper.WORKER_CREATE,
@@ -62,14 +56,6 @@ class Pages {
     ),
     // - Vendor
     ...AccountingAccount.pages,
-    // GetPage(
-    //   name: AccountingAccountNavigation.ACCOUNTING_ACCOUNT_FORM,
-    //   page: () => const AccountingAccountFormPage(),
-    // ),
-    // GetPage(
-    //   name: AccountingAccountNavigation.ACCOUNTING_ACCOUNT_LIST,
-    //   page: () => const AccountingAccountListPage(),
-    // ),
     // + Via Shipment
     GetPage(
       name: ViaShipmentNavigationHelper.VIA_SHIPMENT_FORM,

@@ -1,13 +1,13 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:get/get.dart';
-import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:botanico/modules/via_shipment/module.dart';
 
 import '../../../accounting_account/setup/navigation.dart';
+import '../../../authentication/setup/navigation.dart';
 
 class NavigationHelper
     with

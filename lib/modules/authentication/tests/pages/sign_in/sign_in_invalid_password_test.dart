@@ -3,7 +3,7 @@
 import 'package:botanico/modules/company/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../module.dart';
+import '../../flows/sign_in_flow.dart';
 
 void signInInvalidPasswordTest() {
   testWidgets('Sign in with invalid password', (WidgetTester tester) async {

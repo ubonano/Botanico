@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/company/module.dart';
+
+import '../../../../company/module.dart';
 
 class EmailInputField extends StatelessWidget {
   final FormHelper pageController;

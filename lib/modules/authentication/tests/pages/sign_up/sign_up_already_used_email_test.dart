@@ -3,7 +3,7 @@
 import 'package:botanico/modules/company/module.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../module.dart';
+import '../../flows/sign_up_flow.dart';
 
 void signUpEmailAlreadyUsedTest(String email, String password) {
   testWidgets('Sign up with email already used', (WidgetTester tester) async {
