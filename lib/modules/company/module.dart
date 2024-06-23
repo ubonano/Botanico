@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'core/interfaces/i_company_business_logic.dart';
 import 'core/interfaces/i_company_repository.dart';
 import 'core/interfaces/i_company_service.dart';
-import 'core/interfaces/i_module_structure.dart';
+import 'core/interfaces/i_permissions_structure.dart';
 import 'ui/company_form_page/company_form_controller.dart';
 export 'ui/company_form_page/company_form_controller.dart';
 
@@ -54,7 +54,7 @@ export 'ui/widgets/custom_drawer/custom_drawer_controller.dart';
 export 'ui/home_page/home_controller.dart';
 
 export 'core/helpers/validator_helper.dart';
-export 'core/interfaces/i_module_structure.dart';
+export 'core/interfaces/i_permissions_structure.dart';
 export 'core/helpers/function_helper.dart';
 
 export 'core/helpers/life_cycle_logging_controller_helper.dart';
@@ -94,7 +94,6 @@ export '../../app.dart';
 export '../../setup/bindings.dart';
 export '../../setup/firebase_options.dart';
 export '../../setup/pages.dart';
-export '../../setup/routes.dart';
 export '../../tests/flows/app_init_flow.dart';
 
 void dependencies() {
@@ -114,7 +113,7 @@ void dependencies() {
   Get.lazyPut<CompanyFormController>(() => CompanyFormController(), fenix: true);
 }
 
-class CompanyModule implements IModuleStructure {
+class CompanyModule implements IPermissionsStructure {
   @override
   String get id => 'company';
 

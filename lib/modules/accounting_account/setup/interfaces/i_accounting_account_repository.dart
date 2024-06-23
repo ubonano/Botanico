@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../module.dart';
+import '../../model/accounting_account_model.dart';
+export '../../model/accounting_account_model.dart';
 
 abstract class IAccountingAccountRepository {
   String get generateId;

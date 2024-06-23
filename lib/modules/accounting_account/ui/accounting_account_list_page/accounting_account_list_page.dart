@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
 
-import '../../module.dart';
+import '../../../company/module.dart';
+import '../ui.dart';
 
 class AccountingAccountListPage extends GetView<AccountingAccountListController> {
   const AccountingAccountListPage({super.key});

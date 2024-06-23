@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../module.dart';
+import '../setup/interfaces/i_accounting_account_business_logic.dart';
+import '../setup/interfaces/i_accounting_account_repository.dart';
 
 class AccountingAccountBusinessLogic implements IAccountingAccountBusinessLogic {
   late final IAccountingAccountRepository _accountingAccountRepo = Get.find();

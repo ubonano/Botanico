@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ModuleActiveToggle extends GetView<CompanyFormController> {
-  final IModuleStructure module;
+  final IPermissionsStructure module;
 
   const ModuleActiveToggle(this.module, {super.key});
 

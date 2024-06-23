@@ -72,7 +72,7 @@ void dependencies() {
   Get.lazyPut<VendorListController>(() => VendorListController(), fenix: true);
 }
 
-class VendorModule implements IModuleStructure {
+class VendorModule implements IPermissionsStructure {
   @override
   String get id => 'vendor';
 

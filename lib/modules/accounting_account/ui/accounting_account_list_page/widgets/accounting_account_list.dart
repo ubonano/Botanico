@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
 
-import '../../../module.dart';
+import '../../../../company/module.dart';
+import '../../../model/accounting_account_model.dart';
+import '../../ui.dart';
 
 class AccountingAccountList extends GetView<AccountingAccountListController> with NavigationHelperInstance {
   AccountingAccountList({super.key});

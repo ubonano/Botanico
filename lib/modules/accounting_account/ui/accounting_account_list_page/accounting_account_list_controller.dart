@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/worker/module.dart';
 
-import '../../module.dart';
+import '../../../company/module.dart';
+import '../../../worker/module.dart';
+import '../../setup/interfaces/i_accounting_account_service.dart';
 
 class AccountingAccountListController extends GetxController
     with PaginatedListHelper<AccountingAccountModel>, LifeCycleLoggingControllerHelper {

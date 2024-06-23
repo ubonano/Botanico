@@ -80,7 +80,7 @@ void dependencies() {
   Get.lazyPut<WorkerPermissionToggleController>(() => WorkerPermissionToggleController(), fenix: true);
 }
 
-class WorkerModule implements IModuleStructure {
+class WorkerModule implements IPermissionsStructure {
   @override
   String get id => 'worker';
 

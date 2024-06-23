@@ -3,7 +3,7 @@ import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 
 class ModuleExpansionTile extends StatelessWidget {
-  final IModuleStructure module;
+  final IPermissionsStructure module;
 
   const ModuleExpansionTile(this.module, {super.key});
 

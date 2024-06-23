@@ -6,7 +6,7 @@ import 'package:botanico/modules/company/module.dart';
 import '../module.dart';
 
 class VendorService extends GetxService with GlobalHelper implements IVendorService {
-  late final IModuleStructure _module = VendorModule();
+  late final IPermissionsStructure _module = VendorModule();
   late final IVendorBusinessLogic _vendorBusinessLogic = Get.find();
 
   @override

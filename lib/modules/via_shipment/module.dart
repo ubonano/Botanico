@@ -121,7 +121,7 @@ void dependencies() {
   Get.lazyPut<ViaShipmentDashboardController>(() => ViaShipmentDashboardController(), fenix: true);
 }
 
-class ViaShipmentModule implements IModuleStructure {
+class ViaShipmentModule implements IPermissionsStructure {
   @override
   String get id => 'via_shipment';
 

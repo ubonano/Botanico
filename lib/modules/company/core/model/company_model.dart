@@ -26,10 +26,10 @@ class CompanyModel {
     this.activeModules = const {},
   });
 
-  bool hasModuleActive(IModuleStructure module) =>
+  bool hasModuleActive(IPermissionsStructure module) =>
       activeModules.containsKey(module.id) && activeModules[module.id] == true;
 
-  void toggleModule(IModuleStructure module) {
+  void toggleModule(IPermissionsStructure module) {
     if (activeModules.containsKey(module.id) && activeModules[module.id] == true) {
       activeModules.remove(module.id);
     } else {

@@ -5,8 +5,9 @@ import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/worker/module.dart';
-import 'package:botanico/modules/accounting_account/module.dart';
 import 'package:botanico/modules/via_shipment/module.dart';
+
+import '../../../accounting_account/setup/navigation.dart';
 
 class NavigationHelper
     with
@@ -14,13 +15,11 @@ class NavigationHelper
         CompanyNavigationHelper,
         WorkerNavigationHelper,
         VendorNavigationHelper,
-        AccountingAccountNavigationHelper,
+        AccountingAccountNavigation,
         ViaShipmentNavigationHelper {
   late final LogHelper _log = Get.find();
 
   static const INIT_PAGE = AuthenticationNavigateHelper.SIGN_IN;
-
-  void toHome({bool canPop = false}) => to(Routes.HOME, canPop: canPop);
 
   @override
   void to(String route, {dynamic arguments, bool canPop = false}) {

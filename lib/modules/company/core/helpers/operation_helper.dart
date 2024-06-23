@@ -13,7 +13,7 @@ class OperationHelper with GlobalHelper {
     required Future<T?> Function(Transaction? txn) operation,
     String operationName = "Operation",
     String permissionKey = '',
-    IModuleStructure? module,
+    IPermissionsStructure? module,
     String successMessage = '',
     String? errorMessage,
     bool showErrorMessageBySnackbar = true,
@@ -88,7 +88,7 @@ class OperationHelper with GlobalHelper {
     }
   }
 
-  Future<bool> _hasModuleActive(IModuleStructure module) async {
+  Future<bool> _hasModuleActive(IPermissionsStructure module) async {
     final company = await _companyService.fetchLoggedCompany();
     if (company == null) throw CompanyNotFoundException();
     return company.hasModuleActive(module);

@@ -6,7 +6,7 @@ import 'package:botanico/modules/company/module.dart';
 import '../module.dart';
 
 class WorkerService with GlobalHelper implements IWorkerService {
-  late final IModuleStructure _module = WorkerModule();
+  late final IPermissionsStructure _module = WorkerModule();
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   @override

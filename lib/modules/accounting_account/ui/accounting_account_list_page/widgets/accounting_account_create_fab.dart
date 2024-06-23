@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/company/module.dart';
+import 'package:get/get.dart';
 
-import '../../../module.dart';
+import '../../../../company/module.dart';
+import '../../../setup/permissions.dart';
 
 class AccountingAccountCreateFAB extends StatelessWidget with NavigationHelperInstance {
   AccountingAccountCreateFAB({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final module = Get.find<AccountingAccountPermissions>();
+
     return ProtectedWidget(
-      module: AccountingAccountModule(),
-      permission: AccountingAccountModule.createKey,
+      module: module,
+      permission: module.createKey,
       child: FloatingActionButton(
         key: key ?? const Key('AccountingAccountCreateFAB'),
         onPressed: () => navigate.toAccountingAccountForm(canPop: true),

@@ -1,7 +1,7 @@
 import 'package:botanico/modules/company/module.dart';
 import 'package:get/get.dart';
 
-import '../../module.dart';
+import '../../setup/interfaces/i_accounting_account_service.dart';
 
 class AccountingAccountFormController extends GetxController
     with FormHelper<AccountingAccountModel>, GlobalHelper, LifeCycleLoggingControllerHelper {

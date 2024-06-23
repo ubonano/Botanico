@@ -7,5 +7,5 @@ class WorkerPermissionManagementController extends GetxController with LifeCycle
 
   late final ModuleRepository _moduleRepo = Get.find();
 
-  List<IModuleStructure> get modules$ => _moduleRepo.modules$;
+  List<IPermissionsStructure> get modules$ => _moduleRepo.modules$;
 }

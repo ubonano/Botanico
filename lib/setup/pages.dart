@@ -1,15 +1,16 @@
-import 'package:botanico/modules/accounting_account/module.dart';
+import 'package:get/get.dart';
+import 'package:botanico/modules/accounting_account/setup/navigation.dart' as AccountingAccount;
+// import 'package:botanico/modules/accounting_account/module.dart';
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/company/module.dart';
 import 'package:botanico/modules/vendor/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:botanico/modules/via_shipment/module.dart';
-import 'package:get/get.dart';
 
 class Pages {
   static final pages = [
     GetPage(
-      name: Routes.EMPTY,
+      name: CompanyNavigationHelper.EMPTY,
       page: () => const HomePage(),
     ),
     GetPage(
@@ -17,7 +18,7 @@ class Pages {
       page: () => const CompanyFormPage(),
     ),
     GetPage(
-      name: Routes.HOME,
+      name: CompanyNavigationHelper.HOME,
       page: () => const HomePage(),
     ),
     GetPage(
@@ -60,14 +61,15 @@ class Pages {
       page: () => const VendorListPage(),
     ),
     // - Vendor
-    GetPage(
-      name: AccountingAccountNavigationHelper.ACCOUNTING_ACCOUNT_FORM,
-      page: () => const AccountingAccountFormPage(),
-    ),
-    GetPage(
-      name: AccountingAccountNavigationHelper.ACCOUNTING_ACCOUNT_LIST,
-      page: () => const AccountingAccountListPage(),
-    ),
+    ...AccountingAccount.pages,
+    // GetPage(
+    //   name: AccountingAccountNavigation.ACCOUNTING_ACCOUNT_FORM,
+    //   page: () => const AccountingAccountFormPage(),
+    // ),
+    // GetPage(
+    //   name: AccountingAccountNavigation.ACCOUNTING_ACCOUNT_LIST,
+    //   page: () => const AccountingAccountListPage(),
+    // ),
     // + Via Shipment
     GetPage(
       name: ViaShipmentNavigationHelper.VIA_SHIPMENT_FORM,

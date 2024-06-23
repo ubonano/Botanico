@@ -3,7 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/accounting_account/module.dart';
+
+import '../flows/accounting_account_create_navigate_flow.dart';
+import '../flows/accounting_account_fill_data_flow.dart';
+import '../flows/accounting_account_list_navigate_flow.dart';
+import '../flows/accounting_account_save_flow.dart';
 
 void accountingAccountUpdateAndVerifyDetailsTest(String email, String password) {
   testWidgets('Update accounting account details and verify', (WidgetTester tester) async {

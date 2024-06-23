@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
 
-import '../../../module.dart';
+import '../../../../company/module.dart';
+import '../../../setup/interfaces/i_accounting_account_service.dart';
+import '../../../setup/permissions.dart';
 
 class AccountingAccountDeleteIconButton extends StatelessWidget {
   final AccountingAccountModel accountingAccount;
@@ -11,9 +12,11 @@ class AccountingAccountDeleteIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final module = Get.find<AccountingAccountPermissions>();
+
     return ProtectedWidget(
-      module: AccountingAccountModule(),
-      permission: AccountingAccountModule.deleteKey,
+      module: module,
+      permission: module.deleteKey,
       child: IconButton(
         key: key ?? const Key('AccountingAccountDeleteIconButton'),
         icon: const Icon(Icons.delete),

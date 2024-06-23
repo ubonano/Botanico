@@ -7,7 +7,7 @@ import '../../module.dart';
 class ProtectedWidget extends StatelessWidget {
   final Widget child;
   final String permission;
-  final IModuleStructure module;
+  final IPermissionsStructure module;
 
   const ProtectedWidget({required this.module, required this.permission, required this.child, super.key});
 

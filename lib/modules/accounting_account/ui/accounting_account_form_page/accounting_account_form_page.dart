@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/vendor/module.dart';
-import 'package:botanico/modules/company/module.dart';
 
-import '../../module.dart';
+import '../../../company/module.dart';
+import '../../../vendor/module.dart';
+import '../ui.dart';
 
 class AccountingAccountFormPage extends GetView<AccountingAccountFormController> {
   const AccountingAccountFormPage({super.key});

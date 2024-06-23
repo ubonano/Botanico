@@ -3,7 +3,12 @@
 import 'package:integration_test/integration_test.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../module.dart';
+import 'accounting_account_create/accounting_account_create_success_test.dart';
+import 'accounting_account_create/accounting_account_empty_fields_test.dart';
+import 'accounting_account_delete/accounting_account_delete_test.dart';
+import 'accounting_account_list/accounting_account_list_find_by_name_test.dart';
+import 'accounting_account_list/accounting_account_list_find_enter_validate_all_fields_test.dart';
+import 'accounting_account_update/accounting_account_update_success_test.dart';
 
 /* 
 -To run execute:

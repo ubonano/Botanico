@@ -6,7 +6,7 @@ import 'package:botanico/modules/company/module.dart';
 import '../module.dart';
 
 class ViaShipmentService extends GetxService with GlobalHelper implements IViaShipmentService {
-  late final IModuleStructure _module = ViaShipmentModule();
+  late final IPermissionsStructure _module = ViaShipmentModule();
   late final IViaShipmentBusinessLogic _viaShipmentBusinessLogic = Get.find();
 
   @override

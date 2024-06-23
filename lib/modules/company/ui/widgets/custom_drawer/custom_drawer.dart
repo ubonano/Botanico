@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:botanico/modules/authentication/module.dart';
 import 'package:botanico/modules/worker/module.dart';
 import 'package:botanico/modules/vendor/module.dart';
-import 'package:botanico/modules/accounting_account/module.dart';
 import 'package:botanico/modules/via_shipment/module.dart';
 
+import '../../../../accounting_account/ui/ui.dart';
 import '../../../module.dart';
 
 class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelperInstance {

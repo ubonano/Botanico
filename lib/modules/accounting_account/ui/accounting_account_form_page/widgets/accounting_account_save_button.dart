@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/company/module.dart';
 
-import '../../../module.dart';
+import '../../../../company/module.dart';
+import '../../ui.dart';
 
 class AccountingAccountSaveButton extends GetView<AccountingAccountFormController> {
   const AccountingAccountSaveButton({super.key});
@@ -19,4 +19,3 @@ class AccountingAccountSaveButton extends GetView<AccountingAccountFormControlle
     );
   }
 }
-

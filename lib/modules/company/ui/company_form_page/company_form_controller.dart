@@ -60,7 +60,7 @@ class CompanyFormController extends GetxController
         phone: getFieldValue(FieldKeys.phone),
       );
 
-  Future<void> toggleModule(IModuleStructure module) async {
+  Future<void> toggleModule(IPermissionsStructure module) async {
     if (modelForUpdate != null) {
       modelForUpdate!.toggleModule(module);
       await _companyService.update(modelForUpdate!);
