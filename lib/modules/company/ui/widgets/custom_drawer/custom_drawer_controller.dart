@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:botanico/modules/worker/module.dart';
 
+import '../../../../worker/setup/interfaces/i_worker_business_logic.dart';
 import '../../../module.dart';
 
 class CustomDrawerController extends GetxController with LifeCycleLoggingControllerHelper {

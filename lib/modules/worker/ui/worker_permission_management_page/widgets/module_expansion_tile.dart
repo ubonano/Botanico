@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/worker/module.dart';
+
+import '../../ui.dart';
 
 class ModuleExpansionTile extends StatelessWidget {
   final IPermissionsStructure module;

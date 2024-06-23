@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../module.dart';
+import '../../../model/worker_model.dart';
+import '../../ui.dart';
 
 class WorkerList extends GetView<WorkerListController> {
   final List<WorkerModel> list;

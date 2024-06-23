@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:botanico/modules/company/module.dart';
+import 'package:get/get.dart';
 
-import '../../../module.dart';
+import '../../../model/worker_model.dart';
+import '../../../setup/permissions.dart';
 
 class WorkerNavigateToModuleListIconButton extends StatelessWidget with NavigationHelperInstance {
   final WorkerModel worker;
@@ -10,9 +12,10 @@ class WorkerNavigateToModuleListIconButton extends StatelessWidget with Navigati
 
   @override
   Widget build(BuildContext context) {
+    final module = Get.find<WorkerPermissions>();
     return ProtectedWidget(
-      module: WorkerModule(),
-      permission: WorkerModule.managePermissionsKey,
+      module: module,
+      permission: module.managePermissionsKey,
       child: IconButton(
         key: key ?? const Key('WorkerNavigateToModuleListIconButton'),
         icon: const Icon(Icons.security),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/worker/module.dart';
 
+import '../../../../../worker/setup/interfaces/i_worker_service.dart';
 import '../../../../model/via_shipment_model.dart';
 import '../../../../setup/permissions.dart';
 import '../../../ui.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../../../module.dart';
+import '../../ui.dart';
 
 class WorkerPasteUidButton extends GetView<WorkerLinkController> {
   const WorkerPasteUidButton({super.key});

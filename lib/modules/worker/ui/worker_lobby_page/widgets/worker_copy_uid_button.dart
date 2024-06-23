@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../../../module.dart';
+import '../../ui.dart';
 
 class WorkerCopyUidButton extends GetView<WorkerLobbyController> with GlobalHelper {
   WorkerCopyUidButton({super.key});

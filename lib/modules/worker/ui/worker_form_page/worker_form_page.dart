@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
 import '../../../authentication/ui/ui.dart';
-import '../../module.dart';
+import '../ui.dart';
 
 class WorkerFormPage extends GetView<WorkerFormController> {
   const WorkerFormPage({super.key});

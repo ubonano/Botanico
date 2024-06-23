@@ -3,7 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../../../company/module.dart';
-import '../../../worker/module.dart';
+
+import '../../../worker/setup/interfaces/i_worker_service.dart';
 import '../../setup/interfaces/i_accounting_account_service.dart';
 
 class AccountingAccountListController extends GetxController

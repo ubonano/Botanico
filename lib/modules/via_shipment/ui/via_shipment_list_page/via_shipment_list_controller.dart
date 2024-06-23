@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/worker/module.dart';
 
+import '../../../worker/setup/interfaces/i_worker_service.dart';
 import '../../setup/interfaces/i_via_shipment_service.dart';
 
 class ViaShipmentListController extends GetxController

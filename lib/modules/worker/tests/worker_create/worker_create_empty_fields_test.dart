@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:botanico/modules/company/module.dart';
 
 import '../../../authentication/tests/flows/sign_up_flow.dart';
-import '../../module.dart';
+import '../flows/worker_create_from_sign_up_flow.dart';
 
 void createWorkerEmptyFieldsTest(String email, String password) {
   testWidgets('Create worker with empty fields', (WidgetTester tester) async {

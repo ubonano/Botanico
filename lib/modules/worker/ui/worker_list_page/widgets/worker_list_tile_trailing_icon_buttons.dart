@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../module.dart';
+import '../../../model/worker_model.dart';
+import '../../ui.dart';
 
 class WorkerListTileTrailingIconButtons extends StatelessWidget {
   final WorkerModel worker;

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../module.dart';
+import '../../model/worker_model.dart';
+export '../../model/worker_model.dart';
 
 abstract class ILinkedWorkerRepository {
   Future<void> link(WorkerModel worker, {Transaction? txn});

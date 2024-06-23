@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../module.dart';
+import 'enums/worker_role.dart';
+export 'enums/worker_role.dart';
 
 class WorkerModel {
   static const String collectionName = 'workers';

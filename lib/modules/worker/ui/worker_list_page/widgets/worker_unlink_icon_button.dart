@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../../../module.dart';
+import '../../../setup/interfaces/i_worker_service.dart';
+import '../../../setup/permissions.dart';
 
 class WorkerUnlinkIconButton extends StatelessWidget {
   final WorkerModel worker;
@@ -11,9 +12,11 @@ class WorkerUnlinkIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final module = Get.find<WorkerPermissions>();
+
     return ProtectedWidget(
-      module: WorkerModule(),
-      permission: WorkerModule.unlinkKey,
+      module: module,
+      permission: module.unlinkKey,
       child: IconButton(
         key: key ?? const Key('WorkerUnlinkIconButton'),
         icon: const Icon(Icons.person_off),

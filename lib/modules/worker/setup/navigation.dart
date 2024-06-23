@@ -1,6 +1,10 @@
 // ignore_for_file: constant_identifier_names
 
-mixin WorkerNavigationHelper {
+import 'package:get/get.dart';
+
+import '../ui/ui.dart';
+
+mixin WorkerNavigation {
   static const WORKER_CREATE = '/worker-create';
   static const WORKER_LIST = '/worker-list';
   static const WORKER_LINKING = '/worker-linking';
@@ -16,3 +20,26 @@ mixin WorkerNavigationHelper {
 
   void to(String route, {dynamic arguments, bool canPop = false});
 }
+
+final pages = [
+  GetPage(
+    name: WorkerNavigation.WORKER_CREATE,
+    page: () => const WorkerFormPage(),
+  ),
+  GetPage(
+    name: WorkerNavigation.WORKER_LIST,
+    page: () => const WorkerListPage(),
+  ),
+  GetPage(
+    name: WorkerNavigation.WORKER_LINKING,
+    page: () => const WorkerLinkPage(),
+  ),
+  GetPage(
+    name: WorkerNavigation.WORKER_PERMISSIONS,
+    page: () => const WorkerPermissionManagementPage(),
+  ),
+  GetPage(
+    name: WorkerNavigation.LOBBY,
+    page: () => const LobbyPage(),
+  ),
+];

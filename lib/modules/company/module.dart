@@ -1,4 +1,3 @@
-import 'package:botanico/modules/worker/module.dart';
 import 'package:get/get.dart';
 
 import 'core/interfaces/i_company_business_logic.dart';

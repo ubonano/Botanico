@@ -1,12 +1,14 @@
 import 'dart:async';
+import 'package:botanico/modules/worker/setup/permissions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../module.dart';
+import '../setup/interfaces/i_worker_business_logic.dart';
+import '../setup/interfaces/i_worker_service.dart';
 
 class WorkerService with GlobalHelper implements IWorkerService {
-  late final IPermissionsStructure _module = WorkerModule();
+  late final WorkerPermissions _module = Get.find();
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   @override
@@ -22,7 +24,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   Future<WorkerModel?> get(String id) async => await operation.perform(
         operationName: 'Get worker $id',
         module: _module,
-        permissionKey: WorkerModule.viewKey,
+        permissionKey: _module.viewKey,
         operation: (_) async => await _workerBusinessLogic.get(id),
       );
 
@@ -44,7 +46,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   Future<void> link(String id) async => await operation.perform(
         operationName: 'Link worker $id',
         module: _module,
-        permissionKey: WorkerModule.linkKey,
+        permissionKey: _module.linkKey,
         inTransaction: true,
         operation: (txn) async => await _workerBusinessLogic.link(id, txn),
       );
@@ -53,7 +55,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   Future<void> unlink(String id) async => await operation.perform(
         operationName: 'Unlink worker $id',
         module: _module,
-        permissionKey: WorkerModule.unlinkKey,
+        permissionKey: _module.unlinkKey,
         inTransaction: true,
         operation: (txn) async => await _workerBusinessLogic.unlink(id, txn),
       );

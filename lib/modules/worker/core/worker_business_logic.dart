@@ -5,7 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:botanico/modules/company/module.dart';
 
 import '../../authentication/setup/interfaces/i_authenticatin_business_logic.dart';
-import '../module.dart';
+import '../setup/interfaces/i_linked_worker_repository.dart';
+import '../setup/interfaces/i_worker_business_logic.dart';
+import '../setup/interfaces/i_worker_repository.dart';
+import 'exceptions/worker_not_found_exception.dart';
 
 class WorkerBusinessLogic implements IWorkerBusinessLogic {
   late final IWorkerRepository _workerRepo = Get.find();

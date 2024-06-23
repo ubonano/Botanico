@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/worker/module.dart';
 
 import '../../../../accounting_account/ui/ui.dart';
 import '../../../../authentication/ui/ui.dart';
 import '../../../../vendor/ui/ui.dart';
 import '../../../../via_shipment/ui/ui.dart';
+import '../../../../worker/ui/ui.dart';
 import '../../../module.dart';
 
 class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelperInstance {

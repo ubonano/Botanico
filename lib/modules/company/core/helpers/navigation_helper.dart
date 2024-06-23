@@ -3,18 +3,17 @@
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import 'package:botanico/modules/worker/module.dart';
-
 import '../../../accounting_account/setup/navigation.dart';
 import '../../../authentication/setup/navigation.dart';
 import '../../../vendor/setup/navigation.dart';
 import '../../../via_shipment/setup/navigation.dart';
+import '../../../worker/setup/navigation.dart';
 
 class NavigationHelper
     with
         AuthenticationNavigate,
         CompanyNavigationHelper,
-        WorkerNavigationHelper,
+        WorkerNavigation,
         VendorNavigation,
         AccountingAccountNavigation,
         ViaShipmentNavigation {

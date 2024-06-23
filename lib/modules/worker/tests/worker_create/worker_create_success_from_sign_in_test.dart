@@ -7,7 +7,7 @@ import 'package:botanico/modules/company/module.dart';
 import '../../../authentication/tests/flows/sign_in_flow.dart';
 import '../../../authentication/tests/flows/sign_out_flow.dart';
 import '../../../authentication/tests/flows/sign_up_flow.dart';
-import '../../module.dart';
+import '../flows/worker_create_from_sign_up_flow.dart';
 
 void createWorkerSuccessFromSignInTest(String email, String password) {
   testWidgets('Create worker success from sign up', (WidgetTester tester) async {

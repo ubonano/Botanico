@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../../module.dart';
+import '../../setup/interfaces/i_worker_service.dart';
 
 class WorkerLobbyController extends GetxController with LifeCycleLoggingControllerHelper {
   @override

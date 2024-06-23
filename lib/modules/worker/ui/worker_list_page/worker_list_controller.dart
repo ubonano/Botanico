@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:botanico/modules/company/module.dart';
 
-import '../../module.dart';
+import '../../setup/interfaces/i_worker_service.dart';
 
 class WorkerListController extends GetxController
     with PaginatedListHelper<WorkerModel>, LifeCycleLoggingControllerHelper {

@@ -2,6 +2,12 @@
 
 
 
+// Refactor de modulos worker y company
+
+
+
+
+
 
 // Bloquear la odificacion del la activacion del modulo Empresa
 
@@ -11,7 +17,6 @@
 
 
 
-// Refactor de modulos
 // TODO Crear ABM de lugares de entrega
 // TODO Bloquear modulo de trabajadores y empresa
 
