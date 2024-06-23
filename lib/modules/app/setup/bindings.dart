@@ -3,7 +3,7 @@
 import 'package:get/get.dart';
 
 import 'package:botanico/modules/app/setup/dependencies.dart' as app;
-import 'package:botanico/modules/authentication/setup/dependencies.dart' as auth;
+import 'package:botanico/modules/authentication/lib/setup/dependencies.dart' as auth;
 import 'package:botanico/modules/company/setup/dependencies.dart' as company;
 import 'package:botanico/modules/worker/setup/dependencies.dart' as worker;
 import 'package:botanico/modules/vendor/setup/dependencies.dart' as vendor;

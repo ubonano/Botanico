@@ -2,7 +2,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../app/tests/flows/app_init_flow.dart';
+import '../../../../../app/tests/flows/app_init_flow.dart';
 import '../../flows/sign_up_flow.dart';
 
 void signUpEmailAlreadyUsedTest(String email, String password) {

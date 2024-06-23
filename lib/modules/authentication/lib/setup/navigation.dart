@@ -2,7 +2,7 @@
 
 import 'package:get/get.dart';
 
-import '../ui/ui.dart';
+import '../../ui/ui.dart';
 
 mixin AuthenticationNavigate {
   static const SIGN_IN = '/sign-in';

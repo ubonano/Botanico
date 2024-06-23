@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../app/tests/flows/app_init_flow.dart';
-import '../../../authentication/tests/flows/sign_in_flow.dart';
-import '../../../authentication/tests/flows/sign_out_flow.dart';
-import '../../../authentication/tests/flows/sign_up_flow.dart';
+import '../../../authentication/lib/tests/flows/sign_in_flow.dart';
+import '../../../authentication/lib/tests/flows/sign_out_flow.dart';
+import '../../../authentication/lib/tests/flows/sign_up_flow.dart';
 import '../../../worker/tests/flows/worker_create_from_sign_up_flow.dart';
 import '../flows/company_create_navigate_flow.dart';
 import '../flows/company_create_press_save_button_flow.dart';

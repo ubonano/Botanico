@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-import '../core/authentication_business_logic.dart';
-import '../core/authentication_service.dart';
-import '../model/authentication_repository.dart';
-import '../ui/ui.dart';
+import '../../authentication_business_logic.dart';
+import '../../authentication_service.dart';
+import '../../authentication_repository.dart';
+import '../../ui/ui.dart';
 import 'interfaces/i_authenticatin_business_logic.dart';
 import 'interfaces/i_authentication_repository.dart';
 import 'interfaces/i_authentication_service.dart';

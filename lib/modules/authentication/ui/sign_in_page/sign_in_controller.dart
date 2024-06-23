@@ -6,7 +6,7 @@ import '../../../app/setup/global_helper.dart';
 import '../../../app/helpers/life_cycle_logging_controller_helper.dart';
 import '../../../company/setup/interfaces/i_company_service.dart';
 import '../../../worker/setup/interfaces/i_worker_service.dart';
-import '../../setup/interfaces/i_authentication_service.dart';
+import '../../lib/setup/interfaces/i_authentication_service.dart';
 
 class SignInController extends GetxController with GlobalHelper, FormHelper, LifeCycleLoggingControllerHelper {
   @override

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../app/tests/flows/app_init_flow.dart';
+import '../../../../../app/tests/flows/app_init_flow.dart';
 import '../../flows/sign_up_navigate_flow.dart';
 
 void signInNavigateSignUpTest() {

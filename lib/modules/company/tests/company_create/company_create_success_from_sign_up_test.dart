@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/tests/flows/app_init_flow.dart';
-import '../../../authentication/tests/flows/sign_up_flow.dart';
+import '../../../authentication/lib/tests/flows/sign_up_flow.dart';
 import '../../../worker/tests/flows/worker_create_from_sign_up_flow.dart';
 import '../flows/company_create_fill_data_flow.dart';
 import '../flows/company_create_navigate_flow.dart';

@@ -2,7 +2,7 @@
 
 import 'package:integration_test/integration_test.dart';
 
-import '../../app/helpers/function_helper.dart';
+import '../../../app/helpers/function_helper.dart';
 import 'pages/sign_in/sign_in_empty_fields_test.dart';
 import 'pages/sign_in/sign_in_invalid_email_test.dart';
 import 'pages/sign_in/sign_in_invalid_password_test.dart';
