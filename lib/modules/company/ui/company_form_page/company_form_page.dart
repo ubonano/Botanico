@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/foundation/module.dart';
 
-import '../../module.dart';
+import '../../../app/ui/ui.dart';
+import '../../../worker/ui/ui.dart';
+import '../ui.dart';
 
 class CompanyFormPage extends GetView<CompanyFormController> {
   const CompanyFormPage({super.key});
@@ -38,8 +39,10 @@ class CompanyFormPage extends GetView<CompanyFormController> {
                 () => Flexible(
                   child: ListView(
                     shrinkWrap: true,
-                    children:
-                        Get.find<ModuleListController>().modules$.map((module) => ModuleActiveToggle(module)).toList(),
+                    children: Get.find<WorkerPermissionManagementController>()
+                        .modules$
+                        .map((module) => ModuleActiveToggle(module))
+                        .toList(),
                   ),
                 ),
               ),

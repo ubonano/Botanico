@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../module.dart';
+import '../../../../content/model/via_shipment_model.dart';
 
 class ViaShipmentTypeTooltip extends StatelessWidget {
   final ViaShipmentModel viaShipment;

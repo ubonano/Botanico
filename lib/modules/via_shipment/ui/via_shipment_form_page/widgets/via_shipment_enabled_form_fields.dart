@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/foundation/module.dart';
 
-import '../../../module.dart';
+import '../../../../app/ui/ui.dart';
+import '../../../content/setup/permissions.dart';
+import '../../ui.dart';
 
 class ViaShipmentEnabledFormFields extends GetView<ViaShipmentFormController> {
   const ViaShipmentEnabledFormFields({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final module = Get.find<ViaShipmentPermissions>();
+
     return ProtectedWidget(
-      module: ViaShipmentModulePermissions().toModel(),
-      permission: ViaShipmentModulePermissions.updateKey,
+      module: module,
+      permission: module.updateKey,
       child: IconButton(
         key: key ?? const Key('ViaShipmentEnabledFormFields'),
         icon: const Icon(Icons.edit),

@@ -1,7 +1,10 @@
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 
-import '../../module.dart';
+import '../../../app/content/setup/fields_key.dart';
+import '../../../app/content/helpers/form_helper.dart';
+import '../../../app/content/helpers/global_helper.dart';
+import '../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
+import '../../content/setup/interfaces/i_via_shipment_service.dart';
 
 class ViaShipmentFormController extends GetxController
     with FormHelper<ViaShipmentModel>, GlobalHelper, LifeCycleLoggingControllerHelper {

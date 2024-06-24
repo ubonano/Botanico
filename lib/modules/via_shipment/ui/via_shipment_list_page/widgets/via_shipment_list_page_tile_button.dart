@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/foundation/module.dart';
 
-import '../../../module.dart';
+import 'package:get/get.dart';
+
+import '../../../../app/content/setup/navigation.dart';
+import '../../../../app/ui/ui.dart';
+import '../../../content/setup/permissions.dart';
 
 class ViaShipmentListPageTileButton extends StatelessWidget with NavigationHelperInstance {
   ViaShipmentListPageTileButton({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final module = Get.find<ViaShipmentPermissions>();
+
     return ProtectedWidget(
       key: key ?? const Key('ViaShipmentListPageTileButton'),
-      module: ViaShipmentModulePermissions().toModel(),
-      permission: ViaShipmentModulePermissions.viewKey,
+      module: module,
+      permission: module.viewKey,
       child: ExpansionTile(
         leading: const Icon(Icons.local_shipping),
         title: const Text('Via Shipments'),
@@ -23,8 +28,8 @@ class ViaShipmentListPageTileButton extends StatelessWidget with NavigationHelpe
           ),
           ProtectedWidget(
             key: const Key('ViaShipmentDashboardTileButton'),
-            module: ViaShipmentModulePermissions().toModel(),
-            permission: ViaShipmentModulePermissions.viewKey,
+            module: module,
+            permission: module.viewKey,
             child: ListTile(
               leading: const Icon(Icons.dashboard),
               title: const Text('Dashboard de Envíos'),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/foundation/module.dart';
 
-import '../../../module.dart';
+import '../../../../app/content/setup/navigation.dart';
+import '../../ui.dart';
 
 class ViaShipmentList extends GetView<ViaShipmentListController> with NavigationHelperInstance {
   ViaShipmentList({super.key});
