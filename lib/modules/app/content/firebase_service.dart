@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 class FirebaseService {
   static Future<void> initializeFirebase(String environment) async {
-    String configPath = 'lib/setup/firebase_config_$environment.json';
+    String configPath = 'lib/modules/app/content/setup/firebase_config_$environment.json';
     final configString = await rootBundle.loadString(configPath);
     final config = json.decode(configString);
 
