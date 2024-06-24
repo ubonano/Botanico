@@ -31,7 +31,6 @@ migrate_working_dir/
 .pub/
 /build/
 /node_modules
-lib/modules/app/content/setup/firebase_options.dart
 lib/modules/app/content/setup/firebase_config_qa.json
 lib/modules/app/content/setup/firebase_config_prod.json
 
