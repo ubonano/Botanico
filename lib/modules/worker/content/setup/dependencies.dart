@@ -12,12 +12,12 @@ import 'interfaces/i_worker_service.dart';
 import 'permissions.dart';
 
 void setupDependencies() {
-  Get.lazyPut<WorkerPermissions>(() => WorkerPermissions(), fenix: true);
+  Get.put<WorkerPermissions>(WorkerPermissions(), permanent: true);
 
-  Get.lazyPut<IWorkerBusinessLogic>(() => WorkerBusinessLogic(), fenix: true);
-  Get.lazyPut<IWorkerRepository>(() => WorkerRepository(), fenix: true);
-  Get.lazyPut<ILinkedWorkerRepository>(() => LinkedWorkerRepository(), fenix: true);
-  Get.lazyPut<IWorkerService>(() => WorkerService(), fenix: true);
+  Get.put<IWorkerBusinessLogic>(WorkerBusinessLogic(), permanent: true);
+  Get.put<IWorkerRepository>(WorkerRepository(), permanent: true);
+  Get.put<ILinkedWorkerRepository>(LinkedWorkerRepository(), permanent: true);
+  Get.put<IWorkerService>(WorkerService(), permanent: true);
 
   Get.lazyPut<WorkerPermissionManagementController>(() => WorkerPermissionManagementController(), fenix: true);
   Get.lazyPut<WorkerLobbyController>(() => WorkerLobbyController(), fenix: true);

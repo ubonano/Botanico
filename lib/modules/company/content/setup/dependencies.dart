@@ -11,11 +11,11 @@ import 'interfaces/i_company_service.dart';
 import 'permissions.dart';
 
 void setupDependencies() {
-  Get.lazyPut<CompanyPermissions>(() => CompanyPermissions(), fenix: true);
+  Get.put<CompanyPermissions>(CompanyPermissions(), permanent: true);
 
-  Get.lazyPut<ICompanyBusinessLogic>(() => CompanyBusinessLogic(), fenix: true);
-  Get.lazyPut<ICompanyRepository>(() => CompanyRepository(), fenix: true);
-  Get.lazyPut<ICompanyService>(() => CompanyService(), fenix: true);
+  Get.put<ICompanyBusinessLogic>(CompanyBusinessLogic(), permanent: true);
+  Get.put<ICompanyRepository>(CompanyRepository(), permanent: true);
+  Get.put<ICompanyService>(CompanyService(), permanent: true);
 
   Get.lazyPut<CustomDrawerController>(() => CustomDrawerController(), fenix: true);
   Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
