@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import '../../../../../app/setup/navigation.dart';
-import '../../../../model/via_shipment_model.dart';
+import '../../../../../app/content/setup/navigation.dart';
+import '../../../../content/model/via_shipment_model.dart';
 
 class EditSlidableButton extends StatelessWidget with NavigationHelperInstance {
   final ViaShipmentModel viaShipment;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/setup/navigation.dart';
-import '../../../lib/model/accounting_account_model.dart';
+import '../../../../app/content/setup/navigation.dart';
+import '../../../content/model/accounting_account_model.dart';
 import '../../ui.dart';
 
 class AccountingAccountList extends GetView<AccountingAccountListController> with NavigationHelperInstance {

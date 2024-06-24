@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../../../app/helpers/snackbar_helper.dart';
-import '../../../../../model/via_shipment_model.dart';
+import '../../../../../../app/content/helpers/snackbar_helper.dart';
+import '../../../../../content/model/via_shipment_model.dart';
 import '../../../../ui.dart';
 
 class DescriptionWidget extends StatelessWidget {

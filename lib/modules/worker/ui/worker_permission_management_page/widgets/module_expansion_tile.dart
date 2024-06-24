@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/setup/interfaces/i_permissions_structure.dart';
+import '../../../../app/content/setup/interfaces/i_permissions_structure.dart';
 import '../../ui.dart';
 
 class ModuleExpansionTile extends StatelessWidget {

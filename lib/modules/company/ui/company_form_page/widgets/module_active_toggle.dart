@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../setup/interfaces/i_company_service.dart';
+import '../../../content/setup/interfaces/i_company_service.dart';
 import '../../ui.dart';
 
 class ModuleActiveToggle extends GetView<CompanyFormController> {

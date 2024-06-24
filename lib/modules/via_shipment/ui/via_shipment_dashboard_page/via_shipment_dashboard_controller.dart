@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../../app/helpers/life_cycle_logging_controller_helper.dart';
-import '../../../app/helpers/paginated_list_helper.dart';
-import '../../../company/setup/interfaces/i_company_service.dart';
-import '../../../worker/setup/interfaces/i_worker_service.dart';
-import '../../setup/interfaces/i_via_shipment_service.dart';
+import '../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
+import '../../../app/content/helpers/paginated_list_helper.dart';
+import '../../../company/content/setup/interfaces/i_company_service.dart';
+import '../../../worker/content/setup/interfaces/i_worker_service.dart';
+import '../../content/setup/interfaces/i_via_shipment_service.dart';
 
 class ViaShipmentDashboardController extends GetxController
     with PaginatedListHelper<ViaShipmentModel>, LifeCycleLoggingControllerHelper {

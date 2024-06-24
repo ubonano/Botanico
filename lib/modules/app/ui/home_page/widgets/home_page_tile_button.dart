@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../setup/navigation.dart';
+import '../../../content/setup/navigation.dart';
 
 class HomePageTileButton extends StatelessWidget with NavigationHelperInstance {
   HomePageTileButton({super.key});

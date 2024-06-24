@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import '../../../../app/setup/navigation.dart';
+import '../../../../app/content/setup/navigation.dart';
 import '../../../../app/ui/ui.dart';
-import '../../../model/vendor_model.dart';
-import '../../../setup/permissions.dart';
+import '../../../content/model/vendor_model.dart';
+import '../../../content/setup/permissions.dart';
 
 class VendorUpdateIconButton extends StatelessWidget with NavigationHelperInstance {
   final VendorModel vendor;

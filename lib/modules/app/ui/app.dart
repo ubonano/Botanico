@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../setup/navigation.dart';
-import '../setup/bindings.dart';
-import '../setup/pages.dart';
+import '../content/setup/navigation.dart';
+import '../bindings.dart';
+import '../content/setup/pages.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

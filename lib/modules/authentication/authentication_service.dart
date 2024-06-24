@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-import '../app/setup/global_helper.dart';
-import 'lib/setup/interfaces/i_authenticatin_business_logic.dart';
-import 'lib/setup/interfaces/i_authentication_service.dart';
+import '../app/content/helpers/global_helper.dart';
+import 'content/setup/interfaces/i_authenticatin_business_logic.dart';
+import 'content/setup/interfaces/i_authentication_service.dart';
 
 class AuthenticationService extends GetxService with GlobalHelper implements IAuthenticationService {
   late final IAuthenticationBusinessLogic _authBusinessLogic = Get.find();

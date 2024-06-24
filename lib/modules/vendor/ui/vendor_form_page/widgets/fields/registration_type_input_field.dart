@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../app/helpers/validator_helper.dart';
-import '../../../../model/enums/vendor_registration_type.dart';
+import '../../../../../app/content/helpers/validator_helper.dart';
+import '../../../../content/model/enums/vendor_registration_type.dart';
 import '../../../ui.dart';
 
 class RegistrationTypeInputField extends StatelessWidget {

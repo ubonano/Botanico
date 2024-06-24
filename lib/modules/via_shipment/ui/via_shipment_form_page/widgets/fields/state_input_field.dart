@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../model/via_shipment_model.dart';
+import '../../../../content/model/via_shipment_model.dart';
 import '../../../ui.dart';
 
 class StateInputField extends StatelessWidget {

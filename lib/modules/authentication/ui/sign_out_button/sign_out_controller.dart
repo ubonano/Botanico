@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
-import '../../../app/setup/global_helper.dart';
-import '../../../app/helpers/life_cycle_logging_controller_helper.dart';
-import '../../../company/setup/interfaces/i_company_service.dart';
-import '../../../worker/setup/interfaces/i_worker_service.dart';
-import '../../lib/setup/interfaces/i_authentication_service.dart';
+import '../../../app/content/helpers/global_helper.dart';
+import '../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
+import '../../../company/content/setup/interfaces/i_company_service.dart';
+import '../../../worker/content/setup/interfaces/i_worker_service.dart';
+import '../../content/setup/interfaces/i_authentication_service.dart';
 
 class SignOutController extends GetxController with GlobalHelper, LifeCycleLoggingControllerHelper {
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/setup/navigation.dart';
-import '../../../model/vendor_model.dart';
+import '../../../../app/content/setup/navigation.dart';
+import '../../../content/model/vendor_model.dart';
 import '../../ui.dart';
 
 class VendorList extends GetView<VendorListController> with NavigationHelperInstance {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../setup/navigation.dart';
+import '../content/setup/navigation.dart';
 
 class ConfirmationDialog extends StatelessWidget with NavigationHelperInstance {
   final String title;

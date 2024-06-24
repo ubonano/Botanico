@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/setup/navigation.dart';
-import '../../../model/via_shipment_model.dart';
+import '../../../../app/content/setup/navigation.dart';
+import '../../../content/model/via_shipment_model.dart';
 import '../../ui.dart';
 
 class ViaShipmentListTile extends StatelessWidget with NavigationHelperInstance {

@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
-import '../../../app/setup/fields_key.dart';
-import '../../../app/helpers/form_helper.dart';
-import '../../../app/setup/global_helper.dart';
-import '../../../app/helpers/life_cycle_logging_controller_helper.dart';
-import '../../lib/setup/interfaces/i_accounting_account_service.dart';
+import '../../../app/content/setup/fields_key.dart';
+import '../../../app/content/helpers/form_helper.dart';
+import '../../../app/content/helpers/global_helper.dart';
+import '../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
+import '../../content/setup/interfaces/i_accounting_account_service.dart';
 
 class AccountingAccountFormController extends GetxController
     with FormHelper<AccountingAccountModel>, GlobalHelper, LifeCycleLoggingControllerHelper {

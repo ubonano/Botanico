@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/setup/navigation.dart';
+import '../../../../app/content/setup/navigation.dart';
 
 import '../../../../app/ui/ui.dart';
-import '../../../lib/setup/permissions.dart';
+import '../../../content/setup/permissions.dart';
 
 class AccountingAccountCreateFAB extends StatelessWidget with NavigationHelperInstance {
   AccountingAccountCreateFAB({super.key});

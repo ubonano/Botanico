@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../../app/helpers/form_helper.dart';
-import '../../../../../app/helpers/validator_helper.dart';
-import '../../../../../app/setup/fields_key.dart';
+import '../../../../../app/content/helpers/form_helper.dart';
+import '../../../../../app/content/helpers/validator_helper.dart';
+import '../../../../../app/content/setup/fields_key.dart';
 import '../../../../../app/ui/ui.dart';
 
 class FullnameInputField extends StatelessWidget {

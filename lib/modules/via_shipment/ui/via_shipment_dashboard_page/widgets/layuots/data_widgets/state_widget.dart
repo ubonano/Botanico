@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../model/via_shipment_model.dart';
+import '../../../../../content/model/via_shipment_model.dart';
 import '../../state_tag.dart';
 
 class StateWidget extends StatelessWidget {

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../app/setup/navigation.dart';
+import '../../../../app/content/setup/navigation.dart';
 import '../../../../app/ui/ui.dart';
-import '../../../model/worker_model.dart';
-import '../../../setup/permissions.dart';
+import '../../../content/model/worker_model.dart';
+import '../../../content/setup/permissions.dart';
 
 class WorkerNavigateToModuleListIconButton extends StatelessWidget with NavigationHelperInstance {
   final WorkerModel worker;

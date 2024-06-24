@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../app/ui/ui.dart';
-import '../../../setup/interfaces/i_worker_service.dart';
-import '../../../setup/permissions.dart';
+import '../../../content/setup/interfaces/i_worker_service.dart';
+import '../../../content/setup/permissions.dart';
 
 class WorkerUnlinkIconButton extends StatelessWidget {
   final WorkerModel worker;

@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../../app/setup/global_helper.dart';
-import '../../../../app/helpers/snackbar_helper.dart';
+import '../../../../app/content/helpers/global_helper.dart';
+import '../../../../app/content/helpers/snackbar_helper.dart';
 
 import '../../../../app/ui/ui.dart';
 import '../../ui.dart';

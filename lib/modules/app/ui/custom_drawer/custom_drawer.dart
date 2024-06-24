@@ -6,7 +6,7 @@ import '../../../authentication/ui/ui.dart';
 import '../../../vendor/ui/ui.dart';
 import '../../../via_shipment/ui/ui.dart';
 import '../../../worker/ui/ui.dart';
-import '../../setup/navigation.dart';
+import '../../content/setup/navigation.dart';
 import '../../../company/ui/ui.dart';
 import '../ui.dart';
 

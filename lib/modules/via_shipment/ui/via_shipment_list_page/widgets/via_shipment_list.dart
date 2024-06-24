@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/setup/navigation.dart';
+import '../../../../app/content/setup/navigation.dart';
 import '../../ui.dart';
 
 class ViaShipmentList extends GetView<ViaShipmentListController> with NavigationHelperInstance {

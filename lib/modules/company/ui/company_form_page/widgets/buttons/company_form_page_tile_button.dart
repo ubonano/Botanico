@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../app/setup/navigation.dart';
+import '../../../../../app/content/setup/navigation.dart';
 import '../../../../../app/ui/ui.dart';
-import '../../../../setup/interfaces/i_company_service.dart';
-import '../../../../setup/permissions.dart';
+import '../../../../content/setup/interfaces/i_company_service.dart';
+import '../../../../content/setup/permissions.dart';
 
 class CompanyFormPageTileButton extends StatelessWidget with NavigationHelperInstance {
   CompanyFormPageTileButton({super.key});

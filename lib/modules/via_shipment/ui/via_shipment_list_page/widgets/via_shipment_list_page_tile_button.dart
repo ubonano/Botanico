@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../app/setup/navigation.dart';
+import '../../../../app/content/setup/navigation.dart';
 import '../../../../app/ui/ui.dart';
-import '../../../setup/permissions.dart';
+import '../../../content/setup/permissions.dart';
 
 class ViaShipmentListPageTileButton extends StatelessWidget with NavigationHelperInstance {
   ViaShipmentListPageTileButton({super.key});
