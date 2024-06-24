@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:botanico/modules/foundation/module.dart';
+
 import 'package:get/get.dart';
 
-import '../../../../../module.dart';
+import '../../../../../../app/content/helpers/snackbar_helper.dart';
+import '../../../../../content/model/via_shipment_model.dart';
+import '../../../../ui.dart';
 
 class DescriptionWidget extends StatelessWidget {
   final ViaShipmentModel shipment;

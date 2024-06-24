@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/foundation/module.dart';
 
-import '../../../../module.dart';
+import '../../../../../app/ui/ui.dart';
+import '../../../../content/setup/permissions.dart';
+import '../../../ui.dart';
 
 class CompanyEnabledFormFields extends GetView<CompanyFormController> {
   const CompanyEnabledFormFields({super.key});
 
   @override
   Widget build(BuildContext context) {
+    late final CompanyPermissions module = Get.find();
+
     return ProtectedWidget(
-      module: CompanyModulePermissions().toModel(),
-      permission: CompanyModulePermissions.updateKey,
+      module: module,
+      permission: module.updateKey,
       child: IconButton(
         key: key ?? const Key('CompanyEnabledFormFields'),
         icon: const Icon(Icons.edit),

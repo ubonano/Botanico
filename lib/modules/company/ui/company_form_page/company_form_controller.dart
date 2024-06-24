@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
-import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/worker/module.dart';
 
-import '../../module.dart';
+import '../../../worker/content/setup/interfaces/i_worker_service.dart';
+import '../../../app/content/setup/fields_key.dart';
+import '../../../app/content/helpers/form_helper.dart';
+import '../../../app/content/helpers/global_helper.dart';
+import '../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
+import '../../content/setup/interfaces/i_company_service.dart';
 
 class CompanyFormController extends GetxController
     with FormHelper<CompanyModel>, GlobalHelper, LifeCycleLoggingControllerHelper {
@@ -61,7 +64,7 @@ class CompanyFormController extends GetxController
         phone: getFieldValue(FieldKeys.phone),
       );
 
-  Future<void> toggleModule(ModuleModel module) async {
+  Future<void> toggleModule(IPermissionsStructure module) async {
     if (modelForUpdate != null) {
       modelForUpdate!.toggleModule(module);
       await _companyService.update(modelForUpdate!);

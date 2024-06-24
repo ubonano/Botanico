@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/foundation/module.dart';
-import 'package:botanico/modules/company/module.dart';
-import 'package:botanico/modules/worker/module.dart';
 
-import '../../module.dart';
+import '../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
+import '../../../app/content/helpers/paginated_list_helper.dart';
+import '../../../company/content/setup/interfaces/i_company_service.dart';
+import '../../../worker/content/setup/interfaces/i_worker_service.dart';
+import '../../content/setup/interfaces/i_via_shipment_service.dart';
 
 class ViaShipmentListController extends GetxController
     with PaginatedListHelper<ViaShipmentModel>, LifeCycleLoggingControllerHelper {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../module.dart';
+
+import '../../../content/model/enums/via_shipment_state.dart';
 
 class StateTag extends StatelessWidget {
   final ViaShipmentState state;

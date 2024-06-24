@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:botanico/modules/foundation/module.dart';
 import 'package:get/get.dart';
 
-import '../../../../module.dart';
+import '../../../../../app/content/setup/navigation.dart';
+import '../../../../../app/ui/ui.dart';
+import '../../../../content/setup/interfaces/i_company_service.dart';
+import '../../../../content/setup/permissions.dart';
 
 class CompanyFormPageTileButton extends StatelessWidget with NavigationHelperInstance {
   CompanyFormPageTileButton({super.key});
@@ -11,10 +13,12 @@ class CompanyFormPageTileButton extends StatelessWidget with NavigationHelperIns
   Widget build(BuildContext context) {
     final loggedCompany = Get.find<ICompanyService>().loggedCompany$;
 
+    late final CompanyPermissions module = Get.find();
+
     return ProtectedWidget(
       key: key ?? const Key('CompanyFormPageTileButton'),
-      module: CompanyModulePermissions().toModel(),
-      permission: CompanyModulePermissions.updateKey,
+      module: module,
+      permission: module.updateKey,
       child: ListTile(
         leading: const Icon(Icons.business),
         title: Text(loggedCompany?.name ?? ''),

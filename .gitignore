@@ -31,9 +31,8 @@ migrate_working_dir/
 .pub/
 /build/
 /node_modules
-lib/config/firebase_options.dart
-lib/setup/firebase_config_qa.json
-lib/setup/firebase_config_prod.json
+lib/modules/app/content/setup/firebase_config_qa.json
+lib/modules/app/content/setup/firebase_config_prod.json
 
 # Symbolication related
 app.*.symbols

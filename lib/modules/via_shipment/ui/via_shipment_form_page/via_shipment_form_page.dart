@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:botanico/modules/foundation/module.dart';
 
-import '../../module.dart';
+import '../../../app/ui/ui.dart';
+import '../ui.dart';
 
 class ViaShipmentFormPage extends GetView<ViaShipmentFormController> {
   const ViaShipmentFormPage({super.key});
