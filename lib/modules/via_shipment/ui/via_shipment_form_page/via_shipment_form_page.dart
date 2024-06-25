@@ -22,7 +22,7 @@ class ViaShipmentFormPage extends GetView<ViaShipmentFormController> {
             children: [
               Row(
                 children: [
-                  Expanded(child: ShipmentIdInputField(controller)),
+                  Expanded(child: ShipmentIdInputField(controller, required: false)),
                   const ShipmentIdSearchButton(),
                 ],
               ),
