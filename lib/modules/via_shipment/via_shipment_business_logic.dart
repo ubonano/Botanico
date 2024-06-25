@@ -19,8 +19,11 @@ class ViaShipmentBusinessLogic implements IViaShipmentBusinessLogic {
       await _viaCargoApiRepo.getTrackingData(numeroEnvio: shipmentId);
 
   @override
-  Future<void> create(ViaShipmentModel shipment) async =>
-      await _viaShipmentRepo.create(shipment.copyWith(id: _viaShipmentRepo.generateId));
+  Future<void> create(ViaShipmentModel shipment) async {
+    final newShipment = shipment.copyWith(id: _viaShipmentRepo.generateId);
+    final loggedShipment = await _logAction(newShipment, 'Creación de envío');
+    await _viaShipmentRepo.create(loggedShipment);
+  }
 
   @override
   Future<void> update(ViaShipmentModel shipment) async => await _viaShipmentRepo.update(shipment);
