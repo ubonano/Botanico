@@ -1,25 +1,45 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 import '../setup/interfaces/i_via_cargo_api_repository.dart';
 
+//999020707477
 class ViaCargoApiRepository implements IViaCargoApiRepository {
-  final String _baseUrl = 'https://api.viatesting.com.ar';
+  final String _environment;
+  late final String _baseUrl;
+  late final String _usuario;
+  late final String _usuarioClave;
+  late final String _claveAcceso;
   String? _token;
+
+  ViaCargoApiRepository(this._environment);
+
+  @override
+  Future<void> initializeConfig(String environment) async {
+    String configPath = 'lib/modules/via_shipment/content/setup/via_cargo_config_$environment.json';
+    final configString = await rootBundle.loadString(configPath);
+    final config = json.decode(configString);
+    _baseUrl = config['baseUrl'];
+    _usuario = config['usuario'];
+    _usuarioClave = config['usuario_clave'];
+    _claveAcceso = config['clave_acceso'];
+  }
 
   @override
   Future<String?> fetchToken() async {
+    await initializeConfig(_environment);
+
     final url = Uri.parse('$_baseUrl/sesion');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
-      // TODO: get the credentials from the config.json file o de la base de datos
       body: jsonEncode({
-        'usuario': 'RetiroCharge',
-        'usuario_clave': '55446',
-        'clave_acceso': 'TEST-sdja83322',
+        'usuario': _usuario,
+        'usuario_clave': _usuarioClave,
+        'clave_acceso': _claveAcceso,
       }),
     );
 

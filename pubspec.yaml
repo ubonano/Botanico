@@ -75,6 +75,8 @@ flutter:
   assets:
     - lib/modules/app/content/setup/firebase_config_qa.json
     - lib/modules/app/content/setup/firebase_config_prod.json
+    - lib/modules/via_shipment/content/setup/via_cargo_config_prod.json
+    - lib/modules/via_shipment/content/setup/via_cargo_config_qa.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
