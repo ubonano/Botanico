@@ -2,7 +2,8 @@
 
 
 
-// Crear modulo app y llevar todo lo que sea de app ahi
+// Crear configuracion de modulos, por ahora solo de via_shipment, y tener ahi la configuracion de la api, para que lo configure el usuario
+// refactorizar modulo via_shipment, sacarle el VIA (pensarlo)
 
 
 
