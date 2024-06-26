@@ -42,6 +42,7 @@ export 'via_shipment_form_page/widgets/fields/weight_input_field.dart';
 export 'via_shipment_form_page/widgets/via_shipment_save_button.dart';
 export 'via_shipment_form_page/widgets/via_shipment_enabled_form_fields.dart';
 export 'via_shipment_form_page/widgets/shipment_id_search_button.dart';
+export 'via_shipment_form_page/widgets/shipment_paste_id_button.dart';
 export 'via_shipment_list_page/via_shipment_list_page.dart';
 export 'via_shipment_list_page/via_shipment_list_controller.dart';
 export 'via_shipment_list_page/widgets/tooltips/via_shipment_invoiced_tooltip.dart';

@@ -24,6 +24,7 @@ class ViaShipmentFormPage extends GetView<ViaShipmentFormController> {
                 children: [
                   Expanded(child: ShipmentIdInputField(controller, required: false)),
                   const ShipmentIdSearchButton(),
+                  const ShipmentPasteIdButton()
                 ],
               ),
               TypeInputField(controller),
