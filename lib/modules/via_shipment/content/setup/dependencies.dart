@@ -15,7 +15,7 @@ void setupDependencies() {
   Get.lazyPut<ViaShipmentPermissions>(() => ViaShipmentPermissions(), fenix: true);
 
   Get.lazyPut<IViaShipmentBusinessLogic>(() => ViaShipmentBusinessLogic(), fenix: true);
-  Get.lazyPut<IViaCargoApiRepository>(() => ViaCargoApiRepository(), fenix: true);
+  Get.lazyPut<IViaCargoApiRepository>(() => ViaCargoApiRepository('prod'));
   Get.lazyPut<IViaShipmentRepository>(() => ViaShipmentRepository(), fenix: true);
   Get.lazyPut<IViaShipmentService>(() => ViaShipmentService(), fenix: true);
 

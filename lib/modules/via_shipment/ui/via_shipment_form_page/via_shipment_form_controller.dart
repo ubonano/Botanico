@@ -51,7 +51,6 @@ class ViaShipmentFormController extends GetxController
       setFieldValue(FieldKeys.weight, modelForUpdate!.weight.toString());
       setFieldValue(FieldKeys.description, modelForUpdate!.description);
       setFieldValue(FieldKeys.isInvoiced, modelForUpdate!.isInvoiced.toString());
-      setFieldValue(FieldKeys.createdDateTime, modelForUpdate!.createdDateTime.toString());
       actionLogs.value = modelForUpdate!.actionLogs;
     }
   }
