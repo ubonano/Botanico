@@ -10,10 +10,12 @@ class ShipmentPasteIdButton extends GetView<ViaShipmentFormController> {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      key: key ?? const Key('ShipmentPasteIdButton'),
-      icon: const Icon(Icons.paste),
-      onPressed: pasteShipmentId,
+    return Obx(
+      () => IconButton(
+        key: key ?? const Key('ShipmentPasteIdButton'),
+        icon: const Icon(Icons.paste),
+        onPressed: !controller.isUpdateModeRx.value || controller.isFieldsEnabled.value ? pasteShipmentId : null,
+      ),
     );
   }
 

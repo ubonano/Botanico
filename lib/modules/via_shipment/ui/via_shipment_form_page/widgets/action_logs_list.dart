@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../ui.dart';
 
@@ -30,7 +31,7 @@ class ActionLogsList extends StatelessWidget {
                 final log = actionLogs[index];
                 return ListTile(
                   title: Text(log.action),
-                  subtitle: Text('${log.timestamp} - ${log.user}'),
+                  subtitle: Text('${DateFormat('yyyy-MM-dd HH:mm').format(log.timestamp)} - ${log.user}'),
                 );
               },
             ),
