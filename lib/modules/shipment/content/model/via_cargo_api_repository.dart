@@ -19,7 +19,7 @@ class ViaCargoApiRepository implements IViaCargoApiRepository {
 
   @override
   Future<void> initializeConfig(String environment) async {
-    String configPath = 'lib/modules/via_shipment/content/setup/via_cargo_config_$environment.json';
+    String configPath = 'lib/modules/shipment/content/setup/via_cargo_config_$environment.json';
     final configString = await rootBundle.loadString(configPath);
     final config = json.decode(configString);
     _baseUrl = config['baseUrl'];
