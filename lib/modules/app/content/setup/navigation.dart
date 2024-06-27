@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../accounting_account/content/setup/navigation.dart';
 import '../../../authentication/content/setup/navigation.dart';
 import '../../../vendor/content/setup/navigation.dart';
-import '../../../via_shipment/content/setup/navigation.dart';
+import '../../../shipment/content/setup/navigation.dart';
 import '../../../worker/content/setup/navigation.dart';
 import '../../../company/content/setup/navigation.dart';
 import '../helpers/log_helper.dart';

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../accounting_account/ui/ui.dart';
 import '../../../authentication/ui/ui.dart';
 import '../../../vendor/ui/ui.dart';
-import '../../../via_shipment/ui/ui.dart';
+import '../../../shipment/ui/ui.dart';
 import '../../../worker/ui/ui.dart';
 import '../../content/setup/navigation.dart';
 import '../../../company/ui/ui.dart';
@@ -40,7 +40,7 @@ class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelper
             WorkerListPageTileButton(),
             VendorListPageTileButton(),
             AccountingAccountListPageTileButton(),
-            ViaShipmentListPageTileButton(),
+            ShipmentListPageTileButton(),
           ],
         ),
       ),
