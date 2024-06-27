@@ -27,7 +27,7 @@ class PhoneInputField extends StatelessWidget {
       pageController: pageController,
       fieldName: fieldName,
       keyboardType: TextInputType.phone,
-      validator: (value) => ValidatorHelper.number(value, required: required),
+      validator: (value) => ValidatorHelper.integer(value, required: required),
       onFieldSubmitted: onFieldSubmitted,
     );
   }

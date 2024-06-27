@@ -26,7 +26,7 @@ class CuitInputField extends StatelessWidget {
       pageController: pageController,
       fieldName: fieldName,
       keyboardType: TextInputType.number,
-      validator: required ? (value) => ValidatorHelper.number(value) : null,
+      validator: required ? (value) => ValidatorHelper.integer(value) : null,
       onFieldSubmitted: onFieldSubmitted,
     );
   }

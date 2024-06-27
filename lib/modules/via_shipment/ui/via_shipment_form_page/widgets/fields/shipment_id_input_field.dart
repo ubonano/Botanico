@@ -26,7 +26,7 @@ class ShipmentIdInputField extends StatelessWidget {
       label: 'Número de envío',
       pageController: pageController,
       fieldName: fieldName,
-      validator: required ? (value) => ValidatorHelper.number(value) : null,
+      validator: required ? (value) => ValidatorHelper.integer(value) : null,
       onFieldSubmitted: onFieldSubmitted,
     );
   }

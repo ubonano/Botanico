@@ -114,13 +114,13 @@ class ViaShipmentModel {
       );
 
   factory ViaShipmentModel.fromApiResponse(Map<String, dynamic> response) {
-    final objeto = response['ok'][0]['objeto'];
+    final data = response['ok'][0]['objeto'];
 
     return ViaShipmentModel(
-      shipmentId: objeto['numeroEnvio'],
-      client: objeto['nombreDestinatario'],
-      weight: (objeto['kilos'] as num).toDouble(),
-      package: objeto['numeroTotalPiezas'].toString(),
+      shipmentId: data['numeroEnvio'],
+      client: data['nombreDestinatario'],
+      weight: (data['kilos'] as num).toDouble(),
+      package: data['numeroTotalPiezas'].toString(),
     );
   }
 

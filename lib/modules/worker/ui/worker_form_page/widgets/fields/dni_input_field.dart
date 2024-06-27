@@ -26,7 +26,7 @@ class DNIInputField extends StatelessWidget {
       pageController: pageController,
       fieldName: fieldName,
       keyboardType: TextInputType.number,
-      validator: (value) => ValidatorHelper.number(value, required: required),
+      validator: (value) => ValidatorHelper.integer(value, required: required),
       onFieldSubmitted: onFieldSubmitted,
     );
   }
