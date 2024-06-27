@@ -44,11 +44,20 @@ class ValidatorHelper {
     return null;
   }
 
-  static String? number(String? value, {bool required = true}) {
+  static String? integer(String? value, {bool required = true}) {
     if (required && (value == null || value.isEmpty)) {
       return 'Este campo es obligatorio';
     } else if (!RegExp(r'^[0-9]+$').hasMatch(value!)) {
       return "Este campo debe ser numérico";
+    }
+    return null;
+  }
+
+  static String? double(String? value, {bool required = true}) {
+    if (required && (value == null || value.isEmpty)) {
+      return 'Este campo es obligatorio';
+    } else if (!RegExp(r'^[0-9]*\.?[0-9]+$').hasMatch(value!)) {
+      return "Este campo debe ser un número decimal";
     }
     return null;
   }

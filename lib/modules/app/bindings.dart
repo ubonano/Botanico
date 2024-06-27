@@ -8,7 +8,7 @@ import 'package:botanico/modules/company/content/setup/dependencies.dart' as com
 import 'package:botanico/modules/worker/content/setup/dependencies.dart' as worker;
 import 'package:botanico/modules/vendor/content/setup/dependencies.dart' as vendor;
 import 'package:botanico/modules/accounting_account/content/setup/dependencies.dart' as accountingAccount;
-import 'package:botanico/modules/via_shipment/content/setup/dependencies.dart' as viaShipment;
+import 'package:botanico/modules/shipment/content/setup/dependencies.dart' as shipment;
 
 class AppBindings extends Bindings {
   @override
@@ -19,6 +19,6 @@ class AppBindings extends Bindings {
     worker.setupDependencies();
     vendor.setupDependencies();
     accountingAccount.setupDependencies();
-    viaShipment.setupDependencies();
+    shipment.setupDependencies();
   }
 }
