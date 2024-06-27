@@ -118,7 +118,7 @@ class ViaShipmentModel {
 
     return ViaShipmentModel(
       shipmentId: objeto['numeroEnvio'],
-      client: objeto['nombreRemitente'],
+      client: objeto['nombreDestinatario'],
       weight: (objeto['kilos'] as num).toDouble(),
       package: objeto['numeroTotalPiezas'].toString(),
     );
