@@ -20,6 +20,6 @@ void setupDependencies() {
   Get.lazyPut<IShipmentService>(() => ShipmentService(), fenix: true);
 
   Get.lazyPut<ShipmentFormController>(() => ShipmentFormController(), fenix: true);
-  Get.lazyPut<ShipmentListController>(() => ShipmentListController(), fenix: true);
+  Get.lazyPut<ShipmentCabinetController>(() => ShipmentCabinetController(), fenix: true);
   Get.lazyPut<ShipmentDashboardController>(() => ShipmentDashboardController(), fenix: true);
 }

@@ -9,10 +9,10 @@ import '../../../company/content/setup/interfaces/i_company_service.dart';
 import '../../../worker/content/setup/interfaces/i_worker_service.dart';
 import '../../content/setup/interfaces/i_shipment_service.dart';
 
-class ShipmentListController extends GetxController
+class ShipmentCabinetController extends GetxController
     with PaginatedListHelper<ShipmentModel>, LifeCycleLoggingControllerHelper {
   @override
-  String get logTag => 'ShipmentListController';
+  String get logTag => 'ShipmentCabinetController';
 
   late final IShipmentService _shipmentService = Get.find();
 

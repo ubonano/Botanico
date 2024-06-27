@@ -4,18 +4,18 @@ import 'package:get/get.dart';
 import '../../../app/ui/ui.dart';
 import '../ui.dart';
 
-class ShipmentListPage extends GetView<ShipmentListController> {
-  const ShipmentListPage({super.key});
+class ShipmentCabinetPage extends GetView<ShipmentCabinetController> {
+  const ShipmentCabinetPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      key: key ?? const Key('ShipmentListPage'),
-      title: 'Envios',
+      key: key ?? const Key('ShipmentCabinetPage'),
+      title: 'Archivo de envios',
       drawer: CustomDrawer(),
       body: Column(
         children: [
-          const ShipmentFilters(),
+          const ShipmentCabinetFilters(),
           Expanded(child: ShipmentList()),
         ],
       ),

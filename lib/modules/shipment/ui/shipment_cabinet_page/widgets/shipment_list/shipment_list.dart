@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/content/setup/navigation.dart';
-import '../../ui.dart';
+import '../../../../../app/content/setup/navigation.dart';
+import '../../../ui.dart';
 
-class ShipmentList extends GetView<ShipmentListController> with NavigationHelperInstance {
+class ShipmentList extends GetView<ShipmentCabinetController> with NavigationHelperInstance {
   ShipmentList({super.key});
 
   @override

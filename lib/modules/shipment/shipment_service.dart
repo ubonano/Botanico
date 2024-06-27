@@ -15,7 +15,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   Future<ShipmentModel?> get(String id) async => await operation.perform(
         operationName: 'Get shipment $id',
         module: _module,
-        permissionKey: _module.viewKey,
+        permissionKey: _module.cabinetKey,
         operation: (_) async => await _shipmentBusinessLogic.get(id),
       );
 

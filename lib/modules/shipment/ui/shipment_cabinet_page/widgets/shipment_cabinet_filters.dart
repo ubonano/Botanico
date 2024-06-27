@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import '../../ui.dart';
 
-class ShipmentFilters extends GetView<ShipmentListController> {
-  const ShipmentFilters({super.key});
+class ShipmentCabinetFilters extends GetView<ShipmentCabinetController> {
+  const ShipmentCabinetFilters({super.key});
 
   @override
   Widget build(BuildContext context) {

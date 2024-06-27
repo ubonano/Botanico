@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../content/model/shipment_model.dart';
-import '../../ui.dart';
+import '../../../../../../../../content/model/shipment_model.dart';
+import '../../../../../../../ui.dart';
 
 class ShipmentListTileTrailing extends StatelessWidget {
   final ShipmentModel shipment;

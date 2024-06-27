@@ -8,7 +8,7 @@ class ShipmentPermissions implements IPermissionsStructure {
   @override
   String get name => 'Envíos Via';
 
-  final viewKey = 'shipment.view';
+  final cabinetKey = 'shipment.cabinet';
   final createKey = 'shipment.create';
   final updateKey = 'shipment.update';
   final deleteKey = 'shipment.delete';
@@ -27,7 +27,7 @@ class ShipmentPermissions implements IPermissionsStructure {
 
   @override
   List<PermissionModel> get permissions => [
-        PermissionModel(id: viewKey, name: 'Ver'),
+        PermissionModel(id: cabinetKey, name: 'Ver archivo'),
         PermissionModel(id: createKey, name: 'Crear'),
         PermissionModel(id: updateKey, name: 'Actualizar'),
         PermissionModel(id: deleteKey, name: 'Eliminar'),

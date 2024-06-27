@@ -40,7 +40,7 @@ class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelper
             WorkerListPageTileButton(),
             VendorListPageTileButton(),
             AccountingAccountListPageTileButton(),
-            ShipmentListPageTileButton(),
+            ShipmentModuleTileButton(),
           ],
         ),
       ),

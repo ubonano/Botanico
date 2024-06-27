@@ -16,6 +16,7 @@
 // Crear los middlewares
 
 
+// TODO Refactorizar shipment_module_tile_button... separar en widget diferentes cada menu(botton para acceder a las pantallas)
 
 // TODO Crear ABM de lugares de entrega
 // TODO Bloquear modulo de trabajadores y empresa

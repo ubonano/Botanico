@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/content/setup/navigation.dart';
-import '../../../../app/ui/ui.dart';
-import '../../../content/setup/permissions.dart';
+import '../../../app/content/setup/navigation.dart';
+import '../../../app/ui/ui.dart';
+import '../../content/setup/permissions.dart';
 
 class ShipmentCreateFAB extends StatelessWidget with NavigationHelperInstance {
   ShipmentCreateFAB({super.key});
