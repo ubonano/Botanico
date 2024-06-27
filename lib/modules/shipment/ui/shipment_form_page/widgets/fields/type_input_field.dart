@@ -20,7 +20,7 @@ class TypeInputField extends StatelessWidget {
           children: [
             DropdownButtonFormField<String>(
               key: const Key('typeField'),
-              value: value.isNotEmpty ? value : shipmentTypeToString(ViaShipmentType.delivery),
+              value: value.isNotEmpty ? value : shipmentTypeToString(ShipmentType.delivery),
               onChanged: pageController.isFieldsEnabled.value || !pageController.isUpdateModeRx.value
                   ? (newValue) {
                       if (newValue != null) {
@@ -28,8 +28,8 @@ class TypeInputField extends StatelessWidget {
                       }
                     }
                   : null,
-              items: ViaShipmentType.values.map(
-                (ViaShipmentType type) {
+              items: ShipmentType.values.map(
+                (ShipmentType type) {
                   return DropdownMenuItem<String>(
                     value: shipmentTypeToString(type),
                     child: Text(shipmentTypeLabels[type]!),

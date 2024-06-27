@@ -9,11 +9,11 @@ import '../../content/setup/interfaces/i_shipment_service.dart';
 class ShipmentFormController extends GetxController
     with FormHelper<ShipmentModel>, GlobalHelper, LifeCycleLoggingControllerHelper {
   @override
-  String get logTag => 'ViaShipmentFormController';
+  String get logTag => 'ShipmentFormController';
 
   late final IShipmentService _shipmentService = Get.find();
 
-  var shipmentType = shipmentTypeToString(ViaShipmentType.delivery).obs;
+  var shipmentType = shipmentTypeToString(ShipmentType.delivery).obs;
   // var shipmentType = ''.obs;
   var shipmentState = ShipmentState.pending.obs;
   var deliveryPlace = deliveryPlaceToString(ShipmentDeliveryPlace.toDefine).obs;

@@ -9,7 +9,7 @@ export 'enums/shipment_delivery_place.dart';
 export 'enums/shipment_type.dart';
 
 class ShipmentModel {
-  static const String collectionName = 'viaShipments';
+  static const String collectionName = 'shipments';
 
   final String id;
   final String shipmentId;

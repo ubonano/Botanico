@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 
-enum ViaShipmentType {
+enum ShipmentType {
   delivery,
   dispatch,
 }
 
-String shipmentTypeToString(ViaShipmentType type) => type.toString().split('.').last;
+String shipmentTypeToString(ShipmentType type) => type.toString().split('.').last;
 
-ViaShipmentType shipmentTypeFromString(String typeString) =>
-    ViaShipmentType.values.firstWhere((type) => shipmentTypeToString(type) == typeString);
+ShipmentType shipmentTypeFromString(String typeString) =>
+    ShipmentType.values.firstWhere((type) => shipmentTypeToString(type) == typeString);
 
-final Map<ViaShipmentType, String> shipmentTypeLabels = {
-  ViaShipmentType.delivery: 'Entrega',
-  ViaShipmentType.dispatch: 'Despacho',
+final Map<ShipmentType, String> shipmentTypeLabels = {
+  ShipmentType.delivery: 'Entrega',
+  ShipmentType.dispatch: 'Despacho',
 };
 
-Color viaShipmentTypeToColor(ViaShipmentType type) {
+Color shipmentTypeToColor(ShipmentType type) {
   switch (type) {
-    case ViaShipmentType.delivery:
+    case ShipmentType.delivery:
       return Colors.red;
-    case ViaShipmentType.dispatch:
+    case ShipmentType.dispatch:
       return Colors.green;
     default:
       return Colors.black;
   }
 }
 
-const Map<ViaShipmentType, IconData> shipmentTypeIcons = {
-  ViaShipmentType.delivery: Icons.outbox,
-  ViaShipmentType.dispatch: Icons.inbox,
+const Map<ShipmentType, IconData> shipmentTypeIcons = {
+  ShipmentType.delivery: Icons.outbox,
+  ShipmentType.dispatch: Icons.inbox,
 };

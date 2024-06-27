@@ -14,7 +14,7 @@ import 'shipment_update/shipment_update_success_test.dart';
 
 flutter drive \
   --driver=test_driver/integration_test.dart \
-  --target=lib/modules/via_shipment/tests/module_test.dart \
+  --target=lib/modules/shipment/tests/module_test.dart \
   -d chrome
 */
 
@@ -30,7 +30,6 @@ void main() {
 }
 
 void _shipmentCreateTesting() {
-  // viaShipmentCreateEmptyFieldsFromSignUpTest(generateRandomEmail(), 'password123');
   shipmentCreateSuccessFromSignUpTest(generateRandomEmail(), 'password123');
 }
 

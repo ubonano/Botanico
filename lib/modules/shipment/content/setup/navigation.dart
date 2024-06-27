@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../ui/ui.dart';
 
-mixin ViaShipmentNavigation {
+mixin ShipmentNavigation {
   static const SHIPMENT_FORM = '/shipment-form';
   static const SHIPMENT_LIST = '/shipment-list';
   static const SHIPMENT_DASHBOARD = '/shipment-dashboard';
@@ -18,15 +18,15 @@ mixin ViaShipmentNavigation {
 
 final pages = [
   GetPage(
-    name: ViaShipmentNavigation.SHIPMENT_FORM,
+    name: ShipmentNavigation.SHIPMENT_FORM,
     page: () => const ShipmentFormPage(),
   ),
   GetPage(
-    name: ViaShipmentNavigation.SHIPMENT_LIST,
+    name: ShipmentNavigation.SHIPMENT_LIST,
     page: () => const ShipmentListPage(),
   ),
   GetPage(
-    name: ViaShipmentNavigation.SHIPMENT_DASHBOARD,
+    name: ShipmentNavigation.SHIPMENT_DASHBOARD,
     page: () => const ShipmentDashboardPage(),
   ),
 ];

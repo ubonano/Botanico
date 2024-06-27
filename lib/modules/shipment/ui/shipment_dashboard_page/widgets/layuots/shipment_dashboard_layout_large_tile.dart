@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../content/model/shipment_model.dart';
 import '../../../ui.dart';
 
-class ViaShipmentDashboardLayoutLargeTile extends StatelessWidget {
+class ShipmentDashboardLayoutLargeTile extends StatelessWidget {
   final ShipmentModel shipment;
   final Animation<Color?> colorAnimation;
 
-  const ViaShipmentDashboardLayoutLargeTile(this.shipment, this.colorAnimation, {super.key});
+  const ShipmentDashboardLayoutLargeTile(this.shipment, this.colorAnimation, {super.key});
 
   @override
   Widget build(BuildContext context) {

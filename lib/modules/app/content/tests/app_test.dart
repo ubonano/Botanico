@@ -7,7 +7,7 @@ import 'package:botanico/modules/company/content/tests/module_test.dart' as comp
 import 'package:botanico/modules/worker/content/tests/module_test.dart' as worker;
 import 'package:botanico/modules/vendor/content/tests/module_test.dart' as vendor;
 import 'package:botanico/modules/accounting_account/content/tests/module_test.dart' as accountingAccount;
-import 'package:botanico/modules/shipment/content/tests/module_test.dart' as viaShipment;
+import 'package:botanico/modules/shipment/content/tests/module_test.dart' as shipment;
 
 /* 
 
@@ -28,5 +28,5 @@ void main() {
   worker.runTests();
   vendor.runTests();
   accountingAccount.runTests();
-  viaShipment.runTests();
+  shipment.runTests();
 }

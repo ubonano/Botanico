@@ -13,7 +13,7 @@ class ShipmentTypeWidget extends StatelessWidget {
     return IconWithText(
       icon: shipmentTypeIcons[shipmentTypeFromString(shipment.type)]!,
       text: shipmentTypeLabels[shipmentTypeFromString(shipment.type)]!,
-      iconColor: viaShipmentTypeToColor(shipmentTypeFromString(shipment.type)),
+      iconColor: shipmentTypeToColor(shipmentTypeFromString(shipment.type)),
     );
   }
 }

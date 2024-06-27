@@ -11,10 +11,10 @@ enum ShipmentState {
   const ShipmentState(this.value);
 }
 
-String viaShipmentStateToString(ShipmentState state) => state.toString().split('.').last;
+String shipmentStateToString(ShipmentState state) => state.toString().split('.').last;
 
-ShipmentState viaShipmentStateFromString(String stateString) =>
-    ShipmentState.values.firstWhere((state) => viaShipmentStateToString(state) == stateString);
+ShipmentState shipmentStateFromString(String stateString) =>
+    ShipmentState.values.firstWhere((state) => shipmentStateToString(state) == stateString);
 
 final Map<ShipmentState, String> shipmentStateLabels = {
   ShipmentState.pending: 'Pendiente',

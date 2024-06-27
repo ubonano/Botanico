@@ -17,7 +17,7 @@ class NavigationHelper
         WorkerNavigation,
         VendorNavigation,
         AccountingAccountNavigation,
-        ViaShipmentNavigation {
+        ShipmentNavigation {
   late final LogHelper _log = Get.find();
 
   static const INIT_PAGE = AuthenticationNavigate.SIGN_IN;

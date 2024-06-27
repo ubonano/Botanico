@@ -5,14 +5,14 @@ import '../../../../../app/content/setup/navigation.dart';
 import '../../../../content/model/shipment_model.dart';
 
 class EditSlidableButton extends StatelessWidget with NavigationHelperInstance {
-  final ShipmentModel viaShipment;
+  final ShipmentModel shipment;
 
-  EditSlidableButton(this.viaShipment, {super.key});
+  EditSlidableButton(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return SlidableAction(
-      onPressed: (context) => navigate.toShipmentForm(id: viaShipment.id, canPop: true),
+      onPressed: (context) => navigate.toShipmentForm(id: shipment.id, canPop: true),
       backgroundColor: Colors.orange,
       foregroundColor: Colors.white,
       icon: Icons.edit,

@@ -3,8 +3,8 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 const FieldValue = admin.firestore.FieldValue;
 
-exports.onViaShipmentUpdate = functions.firestore
-    .document('companies/{companyId}/viaShipments/{shipmentId}')
+exports.onShipmentUpdate = functions.firestore
+    .document('companies/{companyId}/shipments/{shipmentId}')
     .onUpdate(async (change, context) => {
         const newValue = change.after.data();
         const previousValue = change.before.data();

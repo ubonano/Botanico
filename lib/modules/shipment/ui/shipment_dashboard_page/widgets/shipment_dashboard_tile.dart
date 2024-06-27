@@ -61,8 +61,8 @@ class _ShipmentDashboardTileState extends State<ShipmentDashboardTile> with Sing
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: _isSmallScreen(constraints)
-                          ? ViaShipmentDashboardLayoutSmallTile(_shipment, _colorAnimation)
-                          : ViaShipmentDashboardLayoutLargeTile(_shipment, _colorAnimation),
+                          ? ShipmentDashboardLayoutSmallTile(_shipment, _colorAnimation)
+                          : ShipmentDashboardLayoutLargeTile(_shipment, _colorAnimation),
                     ),
                   );
                 },

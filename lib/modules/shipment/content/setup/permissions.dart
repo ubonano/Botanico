@@ -3,26 +3,27 @@ export '../../../app/content/setup/interfaces/i_permissions_structure.dart';
 
 class ShipmentPermissions implements IPermissionsStructure {
   @override
-  String get id => 'via_shipment';
+  String get id => 'shipment';
 
   @override
   String get name => 'Envíos Via';
 
-  final viewKey = 'via_shipment.view';
-  final createKey = 'via_shipment.create';
-  final updateKey = 'via_shipment.update';
-  final deleteKey = 'via_shipment.delete';
-  final dashboardKey = 'via_shipment.dashboard';
-  final invoiceKey = 'via_shipment.invoice';
-  final cancelInvoiceKey = 'via_shipment.cancel_invoice';
+  final viewKey = 'shipment.view';
+  final createKey = 'shipment.create';
+  final updateKey = 'shipment.update';
+  final deleteKey = 'shipment.delete';
+  final dashboardKey = 'shipment.dashboard';
 
-  final processKey = 'via_shipment.process';
-  final prepareKey = 'via_shipment.preper';
-  final deliverKey = 'via_shipment.deliver';
-  final archiveKey = 'via_shipment.archive';
+  final invoiceKey = 'shipment.invoice';
+  final cancelInvoiceKey = 'shipment.cancel_invoice';
 
-  final changeDeliveryPlaceKey = 'via_shipment.change_delivery_place';
-  final changeStateKey = 'via_shipment.change_state';
+  final processKey = 'shipment.process';
+  final prepareKey = 'shipment.preper';
+  final deliverKey = 'shipment.deliver';
+  final archiveKey = 'shipment.archive';
+
+  final changeDeliveryPlaceKey = 'shipment.change_delivery_place';
+  final changeStateKey = 'shipment.change_state';
 
   @override
   List<PermissionModel> get permissions => [
