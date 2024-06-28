@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
-import '../../../../content/setup/interfaces/i_shipment_service.dart';
+import '../../../../../../content/setup/interfaces/i_shipment_service.dart';
 
 class InvoiceSlidableButton extends StatelessWidget {
   final ShipmentModel shipment;

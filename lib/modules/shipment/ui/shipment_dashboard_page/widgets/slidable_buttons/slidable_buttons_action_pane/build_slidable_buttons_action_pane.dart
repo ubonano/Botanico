@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../worker/content/setup/interfaces/i_worker_service.dart';
-import '../../../../content/model/shipment_model.dart';
-import '../../../../content/setup/permissions.dart';
-import '../../../ui.dart';
+import '../../../../../../worker/content/setup/interfaces/i_worker_service.dart';
+import '../../../../../content/model/shipment_model.dart';
+import '../../../../../content/setup/permissions.dart';
+import '../../../../ui.dart';
 
 final _module = Get.find<ShipmentPermissions>();
 
@@ -23,9 +23,7 @@ List<Widget> buildSlidableLeftButtonsActionPane(ShipmentModel shipment) {
   if (_hasPermission(_module.updateKey)) {
     buttons.add(EditSlidableButton(shipment));
   }
-  if (_hasPermission(_module.deleteKey)) {
-    buttons.add(DeleteSlidableButton(shipment));
-  }
+
   if (_hasPermission(_module.cancelKey)) {
     buttons.add(CancelSlidableButton(shipment));
   }
