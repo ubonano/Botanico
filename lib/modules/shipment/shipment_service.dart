@@ -76,6 +76,14 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
       );
 
   @override
+  Future<void> cancel(ShipmentModel shipment) async => await operation.perform(
+        permissionKey: _module.cancelKey,
+        module: _module,
+        operationName: 'Cancel shipment ${shipment.shipmentId}}',
+        operation: (_) async => await _shipmentBusinessLogic.cancel(shipment),
+      );
+
+  @override
   Future<void> deliver(ShipmentModel shipment) async => await operation.perform(
         permissionKey: _module.deliverKey,
         module: _module,

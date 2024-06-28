@@ -6,7 +6,7 @@ enum ShipmentState {
   ready(2, 'Lista', Colors.green),
   delivered(3, 'Entregada', Colors.grey),
   archived(4, 'Archivada', Colors.red),
-  canceled(5, 'Cancelada', Colors.purple);
+  canceled(5, 'Cancelada', Colors.red);
 
   final int value;
   final String label;

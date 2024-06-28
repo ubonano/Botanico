@@ -62,9 +62,7 @@ class ShipmentModel {
 
     List<ActionLogModel> actionLogs = [];
     if (data['actionLogs'] != null) {
-      actionLogs = (data['actionLogs'] as List)
-          .map((e) => ActionLogModel.fromMap(e as Map<String, dynamic>))
-          .toList();
+      actionLogs = (data['actionLogs'] as List).map((e) => ActionLogModel.fromMap(e as Map<String, dynamic>)).toList();
     }
 
     return ShipmentModel(
@@ -128,6 +126,7 @@ class ShipmentModel {
   bool get isInProcess => state == ShipmentState.inProcess;
   bool get isReady => state == ShipmentState.ready;
   bool get isDelivered => state == ShipmentState.delivered;
+  bool get isCanceled => state == ShipmentState.canceled;
   bool get isNotInvoiced => !isInvoiced;
 
   ShipmentModel invoice() => copyWith(isInvoiced: true);

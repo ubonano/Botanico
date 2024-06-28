@@ -21,6 +21,7 @@ abstract class IShipmentBusinessLogic {
   Future<void> prepare(ShipmentModel shipment);
   Future<void> deliver(ShipmentModel shipment);
   Future<void> archive(ShipmentModel shipment);
+  Future<void> cancel(ShipmentModel shipment);
   Future<void> changeState(ShipmentModel shipment, ShipmentState newState, {bool validateTransition = true});
   Future<void> changeDeliveryPlace(ShipmentModel shipment, ShipmentDeliveryPlace newPlace);
   StreamSubscription<List<ShipmentModel>>? initStream({

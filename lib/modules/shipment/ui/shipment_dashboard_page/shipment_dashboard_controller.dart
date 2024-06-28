@@ -45,7 +45,8 @@ class ShipmentDashboardController extends GetxController
           ShipmentState.pending,
           ShipmentState.inProcess,
           ShipmentState.ready,
-          ShipmentState.delivered
+          ShipmentState.delivered,
+          ShipmentState.canceled
         ],
         descending: false,
         onNewData: onNewData,

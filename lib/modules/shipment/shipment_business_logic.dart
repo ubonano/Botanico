@@ -55,7 +55,12 @@ class ShipmentBusinessLogic implements IShipmentBusinessLogic {
       : throw Exception('No es posible entregar un envío que no ha sido facturado.');
 
   @override
-  Future<void> archive(ShipmentModel shipment) async => await changeState(shipment, ShipmentState.archived);
+  Future<void> archive(ShipmentModel shipment) async =>
+      await changeState(shipment, ShipmentState.archived, validateTransition: false);
+
+  @override
+  Future<void> cancel(ShipmentModel shipment) async =>
+      await changeState(shipment, ShipmentState.canceled, validateTransition: false);
 
   @override
   Future<void> changeState(
