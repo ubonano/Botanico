@@ -20,7 +20,7 @@ class ShipmentFormController extends GetxController
   var isInvoiced = false.obs;
   var isLoading = false.obs;
 
-  var actionLogs = <ShipmentActionLogModel>[].obs;
+  var actionLogs = <ActionLogModel>[].obs;
 
   @override
   List<String> formFields = [

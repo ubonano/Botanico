@@ -2,10 +2,10 @@
 
 
 
+// Agregar nuevo estado (Cancelado) y accion (Cancelar) para los envios. y al cancelarse tiene que esperar 2 minutos (como cuando se termina) y enviar al archivo (tambien tiene que loguear el cancelado )
 // Crear configuracion de modulos, por ahora solo de via_shipment, y tener ahi la configuracion de la api, para que lo configure el usuario
 
 
-// Agregar nuevo estado (Cancelado) y accion (Cancelar) para los envios. y al cancelarse tiene que esperar 2 minutos (como cuando se termina) y enviar al archivo (tambien tiene que loguear el cancelado )
 
 
 

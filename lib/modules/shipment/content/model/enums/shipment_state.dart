@@ -5,7 +5,8 @@ enum ShipmentState {
   inProcess(1),
   ready(2),
   delivered(3),
-  archived(4);
+  archived(4),
+  canceled(5);
 
   final int value;
   const ShipmentState(this.value);
@@ -22,6 +23,7 @@ final Map<ShipmentState, String> shipmentStateLabels = {
   ShipmentState.ready: 'Lista',
   ShipmentState.delivered: 'Entregada',
   ShipmentState.archived: 'Archivada',
+  ShipmentState.canceled: 'Cancelada',
 };
 
 Color shipmentStateToColor(ShipmentState state) {
@@ -36,6 +38,8 @@ Color shipmentStateToColor(ShipmentState state) {
       return Colors.grey;
     case ShipmentState.archived:
       return Colors.red;
+    case ShipmentState.canceled:
+      return Colors.purple;
     default:
       return Colors.black;
   }

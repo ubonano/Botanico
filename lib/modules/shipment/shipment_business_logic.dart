@@ -90,8 +90,8 @@ class ShipmentBusinessLogic implements IShipmentBusinessLogic {
   Future<ShipmentModel> _logAction(ShipmentModel shipment, String action) async {
     final loggedWorker = Get.find<IWorkerService>().loggedWorker$;
 
-    final newLog = ShipmentActionLogModel(action: action, timestamp: DateTime.now(), user: loggedWorker!.name);
-    final updatedLogs = List<ShipmentActionLogModel>.from(shipment.actionLogs)..add(newLog);
+    final newLog = ActionLogModel(action: action, timestamp: DateTime.now(), user: loggedWorker!.name);
+    final updatedLogs = List<ActionLogModel>.from(shipment.actionLogs)..add(newLog);
     return shipment.copyWith(actionLogs: updatedLogs);
   }
 
