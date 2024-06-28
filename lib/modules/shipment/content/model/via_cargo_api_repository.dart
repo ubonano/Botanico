@@ -21,7 +21,7 @@ class ViaCargoApiRepository implements IViaCargoApiRepository {
     String configPath = 'lib/modules/shipment/content/setup/via_cargo_config_$environment.json';
     final configString = await rootBundle.loadString(configPath);
     final config = json.decode(configString);
-    _baseUrl = config['baseUrl'];
+    _baseUrl = config['base_url'];
     _usuario = config['usuario'];
     _usuarioClave = config['usuario_clave'];
     _claveAcceso = config['clave_acceso'];

@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'enums/shipment_delivery_place.dart';
 import 'enums/shipment_state.dart';
-import 'shipment_action_log_model.dart';
+import '../../../app/content/model/action_log_model.dart';
 export 'enums/shipment_state.dart';
-export 'shipment_action_log_model.dart';
+export '../../../app/content/model/action_log_model.dart';
 export 'enums/shipment_delivery_place.dart';
 export 'enums/shipment_type.dart';
 
@@ -22,7 +22,7 @@ class ShipmentModel {
   final bool isInvoiced;
   final DateTime createdDateTime;
   final String deliveryPlace;
-  final List<ShipmentActionLogModel> actionLogs;
+  final List<ActionLogModel> actionLogs;
 
   final DocumentSnapshot? documentSnapshot;
 
@@ -60,11 +60,9 @@ class ShipmentModel {
   static ShipmentModel fromSnapshot(DocumentSnapshot snapshot) {
     final data = snapshot.data() as Map<String, dynamic>;
 
-    List<ShipmentActionLogModel> actionLogs = [];
+    List<ActionLogModel> actionLogs = [];
     if (data['actionLogs'] != null) {
-      actionLogs = (data['actionLogs'] as List)
-          .map((e) => ShipmentActionLogModel.fromMap(e as Map<String, dynamic>))
-          .toList();
+      actionLogs = (data['actionLogs'] as List).map((e) => ActionLogModel.fromMap(e as Map<String, dynamic>)).toList();
     }
 
     return ShipmentModel(
@@ -96,7 +94,7 @@ class ShipmentModel {
     bool? isInvoiced,
     DateTime? createdDateTime,
     String? deliveryPlace,
-    List<ShipmentActionLogModel>? actionLogs,
+    List<ActionLogModel>? actionLogs,
   }) =>
       ShipmentModel(
         id: id ?? this.id,
@@ -128,6 +126,7 @@ class ShipmentModel {
   bool get isInProcess => state == ShipmentState.inProcess;
   bool get isReady => state == ShipmentState.ready;
   bool get isDelivered => state == ShipmentState.delivered;
+  bool get isCanceled => state == ShipmentState.canceled;
   bool get isNotInvoiced => !isInvoiced;
 
   ShipmentModel invoice() => copyWith(isInvoiced: true);

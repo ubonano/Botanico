@@ -26,6 +26,9 @@ List<Widget> buildSlidableLeftButtonsActionPane(ShipmentModel shipment) {
   if (_hasPermission(_module.deleteKey)) {
     buttons.add(DeleteSlidableButton(shipment));
   }
+  if (_hasPermission(_module.cancelKey)) {
+    buttons.add(CancelSlidableButton(shipment));
+  }
   return buttons;
 }
 
@@ -45,7 +48,7 @@ List<Widget> buildSlidableRightButtonsActionPane(ShipmentModel shipment) {
   if (shipment.isReady && _hasPermission(_module.deliverKey)) {
     buttons.add(DeliverSlidableButton(shipment));
   }
-  if (shipment.isDelivered && _hasPermission(_module.archiveKey)) {
+  if ((shipment.isDelivered || shipment.isCanceled) && _hasPermission(_module.archiveKey)) {
     buttons.add(ArchiveSlidableButton(shipment));
   }
 

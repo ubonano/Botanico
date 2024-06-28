@@ -31,7 +31,7 @@ class StateInputField extends StatelessWidget {
                 (ShipmentState state) {
                   return DropdownMenuItem<ShipmentState>(
                     value: state,
-                    child: Text(shipmentStateLabels[state]!),
+                    child: Text(state.label),
                   );
                 },
               ).toList(),

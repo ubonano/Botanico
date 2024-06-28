@@ -10,12 +10,12 @@ class ShipmentStateTooltip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: shipmentStateLabels[shipment.state]!,
+      message: shipment.state.label,
       child: Container(
         width: 16,
         height: 16,
         decoration: BoxDecoration(
-          color: shipmentStateToColor(shipment.state),
+          color: shipment.state.color,
           shape: BoxShape.circle,
         ),
       ),

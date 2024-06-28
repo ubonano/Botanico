@@ -42,6 +42,7 @@ class ShipmentCabinetController extends GetxController
         list$: list$,
         startAfter: startAfter,
         limit: limit,
+        states: [ShipmentState.archived],
         fromDate: startDateController.text.isNotEmpty
             ? DateTime.parse(startDateController.text).toLocal().copyWith(hour: 0, minute: 0, second: 0, millisecond: 0)
             : null,

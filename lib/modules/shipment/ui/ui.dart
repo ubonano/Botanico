@@ -13,6 +13,7 @@ export 'shipment_dashboard_page/widgets/layuots/data_widgets/client_widget.dart'
 export 'shipment_dashboard_page/widgets/layuots/shipment_dashboard_layout_large_tile.dart';
 export 'shipment_dashboard_page/widgets/layuots/shipment_dashboard_layout_small_tile.dart';
 export 'shipment_dashboard_page/widgets/slidable_buttons/archive_slidable_button.dart';
+export 'shipment_dashboard_page/widgets/slidable_buttons/cancel_slidable_button.dart';
 export 'shipment_dashboard_page/widgets/slidable_buttons/build_slidable_buttons_action_pane.dart';
 export 'shipment_dashboard_page/widgets/slidable_buttons/cancel_invoice_slidable_button.dart';
 export 'shipment_dashboard_page/widgets/slidable_buttons/change_delivery_place_slidable_button.dart';

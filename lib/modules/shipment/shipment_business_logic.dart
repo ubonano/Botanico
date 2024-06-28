@@ -55,7 +55,12 @@ class ShipmentBusinessLogic implements IShipmentBusinessLogic {
       : throw Exception('No es posible entregar un envío que no ha sido facturado.');
 
   @override
-  Future<void> archive(ShipmentModel shipment) async => await changeState(shipment, ShipmentState.archived);
+  Future<void> archive(ShipmentModel shipment) async =>
+      await changeState(shipment, ShipmentState.archived, validateTransition: false);
+
+  @override
+  Future<void> cancel(ShipmentModel shipment) async =>
+      await changeState(shipment, ShipmentState.canceled, validateTransition: false);
 
   @override
   Future<void> changeState(
@@ -67,7 +72,7 @@ class ShipmentBusinessLogic implements IShipmentBusinessLogic {
       var oldState = shipment.state;
       final updatedShipment = await _logAction(
         shipment.changeState(newState),
-        'Cambio de estado: ${shipmentStateLabels[oldState]} a ${shipmentStateLabels[newState]}',
+        'Cambio de estado: ${oldState.label} a ${newState.label}',
       );
       await _shipmentRepo.update(updatedShipment);
     } else {
@@ -75,8 +80,7 @@ class ShipmentBusinessLogic implements IShipmentBusinessLogic {
     }
   }
 
-  bool _canTransition(ShipmentState currentState, ShipmentState newState) =>
-      newState.index == currentState.index + 1;
+  bool _canTransition(ShipmentState currentState, ShipmentState newState) => newState.index == currentState.index + 1;
 
   @override
   Future<void> changeDeliveryPlace(ShipmentModel shipment, ShipmentDeliveryPlace newPlace) async {
@@ -90,8 +94,8 @@ class ShipmentBusinessLogic implements IShipmentBusinessLogic {
   Future<ShipmentModel> _logAction(ShipmentModel shipment, String action) async {
     final loggedWorker = Get.find<IWorkerService>().loggedWorker$;
 
-    final newLog = ShipmentActionLogModel(action: action, timestamp: DateTime.now(), user: loggedWorker!.name);
-    final updatedLogs = List<ShipmentActionLogModel>.from(shipment.actionLogs)..add(newLog);
+    final newLog = ActionLogModel(action: action, timestamp: DateTime.now(), user: loggedWorker!.name);
+    final updatedLogs = List<ActionLogModel>.from(shipment.actionLogs)..add(newLog);
     return shipment.copyWith(actionLogs: updatedLogs);
   }
 

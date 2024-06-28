@@ -17,12 +17,12 @@ class StateTag extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
         decoration: BoxDecoration(
-          color: shipmentStateToColor(state),
+          color: state.color,
           borderRadius: BorderRadius.circular(4.0),
         ),
         child: Center(
           child: Text(
-            shipmentStateLabels[state]!,
+            state.label,
             style: const TextStyle(color: Colors.white),
           ),
         ),
