@@ -1,46 +1,21 @@
 import 'package:flutter/material.dart';
 
 enum ShipmentState {
-  pending(0),
-  inProcess(1),
-  ready(2),
-  delivered(3),
-  archived(4),
-  canceled(5);
+  pending(0, 'Pendiente', Colors.orange),
+  inProcess(1, 'Procesando', Colors.blue),
+  ready(2, 'Lista', Colors.green),
+  delivered(3, 'Entregada', Colors.grey),
+  archived(4, 'Archivada', Colors.red),
+  canceled(5, 'Cancelada', Colors.purple);
 
   final int value;
-  const ShipmentState(this.value);
-}
+  final String label;
+  final Color color;
 
-String shipmentStateToString(ShipmentState state) => state.toString().split('.').last;
+  const ShipmentState(this.value, this.label, this.color);
+
+  String toShortString() => toString().split('.').last;
+}
 
 ShipmentState shipmentStateFromString(String stateString) =>
-    ShipmentState.values.firstWhere((state) => shipmentStateToString(state) == stateString);
-
-final Map<ShipmentState, String> shipmentStateLabels = {
-  ShipmentState.pending: 'Pendiente',
-  ShipmentState.inProcess: 'Procesando',
-  ShipmentState.ready: 'Lista',
-  ShipmentState.delivered: 'Entregada',
-  ShipmentState.archived: 'Archivada',
-  ShipmentState.canceled: 'Cancelada',
-};
-
-Color shipmentStateToColor(ShipmentState state) {
-  switch (state) {
-    case ShipmentState.pending:
-      return Colors.orange;
-    case ShipmentState.inProcess:
-      return Colors.blue;
-    case ShipmentState.ready:
-      return Colors.green;
-    case ShipmentState.delivered:
-      return Colors.grey;
-    case ShipmentState.archived:
-      return Colors.red;
-    case ShipmentState.canceled:
-      return Colors.purple;
-    default:
-      return Colors.black;
-  }
-}
+    ShipmentState.values.firstWhere((state) => state.toShortString() == stateString);

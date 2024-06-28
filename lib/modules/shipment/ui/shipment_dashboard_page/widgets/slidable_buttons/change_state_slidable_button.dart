@@ -35,7 +35,7 @@ class ChangeStateSlidableButton extends StatelessWidget with NavigationHelperIns
                 mainAxisSize: MainAxisSize.min,
                 children: ShipmentState.values.map((entry) {
                   return RadioListTile<ShipmentState>(
-                    title: Text(shipmentStateLabels[entry]!),
+                    title: Text(entry.label),
                     value: entry,
                     groupValue: selectedState,
                     onChanged: (ShipmentState? value) {

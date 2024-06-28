@@ -67,7 +67,7 @@ class ShipmentBusinessLogic implements IShipmentBusinessLogic {
       var oldState = shipment.state;
       final updatedShipment = await _logAction(
         shipment.changeState(newState),
-        'Cambio de estado: ${shipmentStateLabels[oldState]} a ${shipmentStateLabels[newState]}',
+        'Cambio de estado: ${oldState.label} a ${newState.label}',
       );
       await _shipmentRepo.update(updatedShipment);
     } else {
@@ -75,8 +75,7 @@ class ShipmentBusinessLogic implements IShipmentBusinessLogic {
     }
   }
 
-  bool _canTransition(ShipmentState currentState, ShipmentState newState) =>
-      newState.index == currentState.index + 1;
+  bool _canTransition(ShipmentState currentState, ShipmentState newState) => newState.index == currentState.index + 1;
 
   @override
   Future<void> changeDeliveryPlace(ShipmentModel shipment, ShipmentDeliveryPlace newPlace) async {
