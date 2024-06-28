@@ -9,8 +9,8 @@ exports.onShipmentUpdate = functions.firestore
         const newValue = change.after.data();
         const previousValue = change.before.data();
 
-        // Verifica si el estado ha cambiado a 'delivered'
-        if (newValue.state === 3 && previousValue.state !== 3) {
+        // Verifica si el estado ha cambiado a 'delivered' o 'cancelled'
+        if ((newValue.state === 3 && previousValue.state !== 3) || (newValue.state === 5 && previousValue.state !== 5)) {
             try {
                 await new Promise(resolve => setTimeout(resolve, 120000));
 
