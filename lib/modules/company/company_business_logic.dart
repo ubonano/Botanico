@@ -45,7 +45,9 @@ class CompanyBusinessLogic extends GetxService implements ICompanyBusinessLogic 
 
   @override
   Future<CompanyModel?> fetchLoggedCompany() async {
-    String id = _workerBusinessLogic.loggedWorker$!.companyId;
+    String id = _workerBusinessLogic.currentWorker$!.companyId;
+    if (id == '') return null;
+
     _currentCompany$.value = await get(id);
     return _currentCompany$.value;
   }

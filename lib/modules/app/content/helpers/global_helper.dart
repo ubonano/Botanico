@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import 'log_helper.dart';
-import '../setup/navigation.dart';
+import '../../ui/navigation.dart';
 import 'operation_helper.dart';
 import 'snackbar_helper.dart';
 

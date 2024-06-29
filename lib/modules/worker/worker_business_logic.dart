@@ -19,19 +19,19 @@ class WorkerBusinessLogic implements IWorkerBusinessLogic {
 
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
 
-  final _loggedWorker = Rx<WorkerModel?>(null);
+  final _currentWorker = Rx<WorkerModel?>(null);
 
   @override
-  WorkerModel? get loggedWorker$ => _loggedWorker.value;
+  WorkerModel? get currentWorker$ => _currentWorker.value;
 
   @override
-  Future<WorkerModel?> fetchLoggedWorker() async {
-    _loggedWorker.value = await get(_currentUserId);
-    return _loggedWorker.value;
+  Future<WorkerModel?> fetchCurrentWorker() async {
+    _currentWorker.value = await get(_currentUserId);
+    return _currentWorker.value;
   }
 
   @override
-  void clearLoggedWorker() => _loggedWorker.value = null;
+  void clearLoggedWorker() => _currentWorker.value = null;
 
   @override
   Future<WorkerModel?> get(String id) async => _workerRepo.get(id);
@@ -43,7 +43,7 @@ class WorkerBusinessLogic implements IWorkerBusinessLogic {
       {'companyId': companyId, 'role': workerRoleToString(WorkerRole.owner)},
       txn: txn,
     );
-    await fetchLoggedWorker();
+    await fetchCurrentWorker();
   }
 
   @override

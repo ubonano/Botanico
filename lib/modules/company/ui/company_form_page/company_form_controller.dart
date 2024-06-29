@@ -44,7 +44,7 @@ class CompanyFormController extends GetxController
     try {
       isUpdateMode ? await _companyService.update(buildModel()) : await _companyService.create(buildModel());
 
-      await _workerService.fetchLoggedWorker();
+      await _workerService.fetchCurrentWorker();
       await _companyService.fetchLoggedCompany();
 
       navigate.toHome();

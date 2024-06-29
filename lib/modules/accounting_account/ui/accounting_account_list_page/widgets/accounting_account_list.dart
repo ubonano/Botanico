@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/content/setup/navigation.dart';
+import '../../../../app/ui/navigation.dart';
 import '../../../content/model/accounting_account_model.dart';
 import '../../ui.dart';
 

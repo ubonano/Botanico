@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../app/content/setup/fields_key.dart';
 import '../../../../app/content/helpers/form_helper.dart';
 import '../../../../app/content/helpers/validator_helper.dart';
-import '../../../../app/ui/custom_input_field.dart';
+import '../../../../app/ui/widgets/custom_input_field.dart';
 
 class ConfirmPasswordInputField extends StatelessWidget {
   final FormHelper pageController;

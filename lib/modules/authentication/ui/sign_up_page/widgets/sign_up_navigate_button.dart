@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/content/setup/navigation.dart';
+import '../../../../app/ui/navigation.dart';
 import '../../../../app/ui/ui.dart';
 
 class SignUpNavigateButton extends StatelessWidget with AppNavigationInstance {

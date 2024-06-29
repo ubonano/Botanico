@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../app/ui/buttons/custom_button.dart';
+import '../../../app/ui/widgets/buttons/custom_button.dart';
 import '../ui.dart';
 
 class SignOutButton extends GetView<SignOutController> {

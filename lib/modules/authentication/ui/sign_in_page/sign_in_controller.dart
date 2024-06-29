@@ -34,7 +34,7 @@ class SignInController extends GetxController with GlobalHelper, FormHelper, Lif
   }
 
   Future<void> redirect() async {
-    WorkerModel? worker = await _workerService.fetchLoggedWorker();
+    WorkerModel? worker = await _workerService.fetchCurrentWorker();
 
     if (worker == null) {
       navigate.toWorkerCreate();

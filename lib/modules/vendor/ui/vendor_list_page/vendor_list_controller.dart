@@ -20,7 +20,7 @@ class VendorListController extends GetxController
 
   @override
   Future<void> onInit() async {
-    await _workerService.fetchLoggedWorker();
+    await _workerService.fetchCurrentWorker();
     await _companyService.fetchLoggedCompany();
 
     super.onInit();

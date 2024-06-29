@@ -12,10 +12,10 @@ class WorkerService with GlobalHelper implements IWorkerService {
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   @override
-  WorkerModel? get loggedWorker$ => _workerBusinessLogic.loggedWorker$;
+  WorkerModel? get currentWorker$ => _workerBusinessLogic.currentWorker$;
 
   @override
-  Future<WorkerModel?> fetchLoggedWorker() async => _workerBusinessLogic.fetchLoggedWorker();
+  Future<WorkerModel?> fetchCurrentWorker() async => _workerBusinessLogic.fetchCurrentWorker();
 
   @override
   void clearCurrentWorker() => _workerBusinessLogic.clearLoggedWorker();

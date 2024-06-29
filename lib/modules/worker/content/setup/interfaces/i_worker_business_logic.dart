@@ -6,9 +6,9 @@ import '../../model/worker_model.dart';
 export '../../model/worker_model.dart';
 
 abstract class IWorkerBusinessLogic {
-  WorkerModel? get loggedWorker$;
+  WorkerModel? get currentWorker$;
 
-  Future<WorkerModel?> fetchLoggedWorker();
+  Future<WorkerModel?> fetchCurrentWorker();
   void clearLoggedWorker();
   Future<WorkerModel?> get(String id);
   Future<void> updateWorkerAsOwner(String companyId, Transaction? txn);

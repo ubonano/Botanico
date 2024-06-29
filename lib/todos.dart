@@ -1,3 +1,5 @@
+// Middlewares para permisos y modulos
+
 // Refactor de los widgets de shipmet
 // Refactor de service y busines logic, reducir los metodos de las acciones
 // Revisar que la sesion se mantenga activa siempre
@@ -12,8 +14,11 @@
 // CREa modulo de COMPRAS! Finaliza el feature y comenza uno nuevo
 // Crear proceso programaado para que elimine todos los dias los envios archivados de dos meses hacia atras
 
-
-// TODO Refactorizar shipment_module_tile_button... separar en widget diferentes cada menu(botton para acceder a las pantallas)
+// TODO llevar la creacion de GetPage a cada page en particular y referenciarla en el navigation (en el pages[])
+// TODO extraer el pages en un archivo aparte (Tal vez al ui.dart)
+// TODO Al ingresar al worker_form, en el caso de que el usuario loggeado tenga un worker, que lo cargue automaticamente
+// TODO al ingresar al company_form, en el caso de que el usuario loggeado tenga una empresa, que lo cargue automaticamente
+//// TODO Refactorizar shipment_module_tile_button... separar en widget diferentes cada menu(botton para acceder a las pantallas)
 
 // TODO Crear ABM de lugares de entrega
 // TODO Bloquear modulo de trabajadores y empresa

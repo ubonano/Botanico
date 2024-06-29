@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../../app/content/setup/navigation.dart';
+import '../../../../../../../app/ui/navigation.dart';
 import '../../../../../../content/setup/interfaces/i_shipment_service.dart';
 
 class ChangeDeliveryPlaceSlidableButton extends StatelessWidget with AppNavigationInstance {

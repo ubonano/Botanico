@@ -99,7 +99,7 @@ class OperationHelper with GlobalHelper {
   }
 
   Future<bool> _hasPermission(String permissionKey) async {
-    final worker = await _workerService.fetchLoggedWorker();
+    final worker = await _workerService.fetchCurrentWorker();
 
     if (worker == null) throw WorkerNotFoundException();
 

@@ -34,7 +34,10 @@ class CompanyService extends GetxService with GlobalHelper implements ICompanySe
       );
 
   @override
-  Future<CompanyModel?> fetchLoggedCompany() async => _companyBusinessLogic.fetchLoggedCompany();
+  Future<CompanyModel?> fetchLoggedCompany() async => await operation.perform(
+        operationName: 'Fetch logged company',
+        operation: (_) async => await _companyBusinessLogic.fetchLoggedCompany(),
+      );
 
   @override
   void clearCurrentCompany() => _companyBusinessLogic.clearCurrentCompany();

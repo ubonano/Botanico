@@ -53,4 +53,4 @@ List<Widget> buildSlidableRightButtonsActionPane(ShipmentModel shipment) {
   return buttons;
 }
 
-bool _hasPermission(String permission) => Get.find<IWorkerService>().loggedWorker$?.hasPermission(permission) ?? false;
+bool _hasPermission(String permission) => Get.find<IWorkerService>().currentWorker$?.hasPermission(permission) ?? false;
