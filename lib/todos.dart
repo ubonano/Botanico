@@ -1,19 +1,16 @@
-// CREa modulo de COMPRAS! Finaliza el feature y comenza uno nuevo
+// Refactor de los widgets de shipmet
+// Refactor de service y busines logic, reducir los metodos de las acciones
+// Revisar que la sesion se mantenga activa siempre
+// Crear los middlewares
 
 
 
-// Agregar nuevo estado (Cancelado) y accion (Cancelar) para los envios. y al cancelarse tiene que esperar 2 minutos (como cuando se termina) y enviar al archivo (tambien tiene que loguear el cancelado )
 // Crear configuracion de modulos, por ahora solo de via_shipment, y tener ahi la configuracion de la api, para que lo configure el usuario
-
-
-
-
 
 // Bloquear la modificacion del la activacion del modulo Empresa
 
-// Revisar que la sesion se mantenga activa siempre
+// CREa modulo de COMPRAS! Finaliza el feature y comenza uno nuevo
 // Crear proceso programaado para que elimine todos los dias los envios archivados de dos meses hacia atras
-// Crear los middlewares
 
 
 // TODO Refactorizar shipment_module_tile_button... separar en widget diferentes cada menu(botton para acceder a las pantallas)
