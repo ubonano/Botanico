@@ -10,7 +10,7 @@ import 'navigation.dart';
 void setupDependencies() {
   Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);
 
-  Get.lazyPut<NavigationHelper>(() => NavigationHelper(), fenix: true);
+  Get.lazyPut<AppNavigation>(() => AppNavigation(), fenix: true);
   Get.lazyPut<LogHelper>(() => LogHelper(), fenix: true);
   Get.lazyPut<SnackbarHelper>(() => SnackbarHelper(), fenix: true);
   Get.lazyPut<OperationHelper>(() => OperationHelper(), fenix: true);

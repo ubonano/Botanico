@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../app/content/setup/navigation.dart';
 import '../../../ui.dart';
 
-class ShipmentList extends GetView<ShipmentCabinetController> with NavigationHelperInstance {
+class ShipmentList extends GetView<ShipmentCabinetController> with AppNavigationInstance {
   ShipmentList({super.key});
 
   @override

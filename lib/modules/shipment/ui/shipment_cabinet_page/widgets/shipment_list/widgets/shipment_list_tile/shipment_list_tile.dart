@@ -4,7 +4,7 @@ import '../../../../../../../app/content/setup/navigation.dart';
 import '../../../../../../content/model/shipment_model.dart';
 import '../../../../../ui.dart';
 
-class ShipmentListTile extends StatelessWidget with NavigationHelperInstance {
+class ShipmentListTile extends StatelessWidget with AppNavigationInstance {
   final ShipmentModel shipment;
 
   ShipmentListTile(this.shipment, {super.key});

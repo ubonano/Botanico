@@ -6,7 +6,7 @@ import '../../../../app/ui/ui.dart';
 import '../../../content/model/vendor_model.dart';
 import '../../../content/setup/permissions.dart';
 
-class VendorUpdateIconButton extends StatelessWidget with NavigationHelperInstance {
+class VendorUpdateIconButton extends StatelessWidget with AppNavigationInstance {
   final VendorModel vendor;
 
   VendorUpdateIconButton(this.vendor, {super.key});

@@ -10,7 +10,7 @@ import '../../../worker/content/setup/navigation.dart';
 import '../../../company/content/setup/navigation.dart';
 import '../helpers/log_helper.dart';
 
-class NavigationHelper
+class AppNavigation
     with
         AuthenticationNavigate,
         CompanyNavigation,
@@ -39,6 +39,6 @@ class NavigationHelper
   }
 }
 
-mixin NavigationHelperInstance {
-  late final NavigationHelper navigate = Get.find();
+mixin AppNavigationInstance {
+  late final AppNavigation navigate = Get.find();
 }

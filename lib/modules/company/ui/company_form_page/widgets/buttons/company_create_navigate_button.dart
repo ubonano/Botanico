@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../app/content/setup/navigation.dart';
 import '../../../../../app/ui/ui.dart';
 
-class CompanyCreateNavigateButton extends StatelessWidget with NavigationHelperInstance {
+class CompanyCreateNavigateButton extends StatelessWidget with AppNavigationInstance {
   CompanyCreateNavigateButton({super.key});
 
   @override

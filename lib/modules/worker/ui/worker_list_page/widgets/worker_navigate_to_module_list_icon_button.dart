@@ -7,7 +7,7 @@ import '../../../../app/ui/ui.dart';
 import '../../../content/model/worker_model.dart';
 import '../../../content/setup/permissions.dart';
 
-class WorkerNavigateToModuleListIconButton extends StatelessWidget with NavigationHelperInstance {
+class WorkerNavigateToModuleListIconButton extends StatelessWidget with AppNavigationInstance {
   final WorkerModel worker;
 
   WorkerNavigateToModuleListIconButton(this.worker, {super.key});

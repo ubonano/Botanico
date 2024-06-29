@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialBinding: AppBindings(),
       title: 'Botanico',
-      initialRoute: NavigationHelper.INIT_PAGE,
+      initialRoute: AppNavigation.INIT_PAGE,
       getPages: Pages.pages,
     );
   }

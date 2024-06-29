@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../../../../../app/content/setup/navigation.dart';
 import '../../../../../../content/setup/interfaces/i_shipment_service.dart';
 
-class ChangeStateSlidableButton extends StatelessWidget with NavigationHelperInstance {
+class ChangeStateSlidableButton extends StatelessWidget with AppNavigationInstance {
   final ShipmentModel shipment;
 
   ChangeStateSlidableButton(this.shipment, {super.key});

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../app/content/setup/navigation.dart';
 import '../../../../app/ui/ui.dart';
 
-class SignInNavigateButton extends StatelessWidget with NavigationHelperInstance {
+class SignInNavigateButton extends StatelessWidget with AppNavigationInstance {
   SignInNavigateButton({super.key});
 
   @override

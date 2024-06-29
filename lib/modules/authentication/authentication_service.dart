@@ -8,6 +8,9 @@ class AuthenticationService extends GetxService with GlobalHelper implements IAu
   late final IAuthenticationBusinessLogic _authBusinessLogic = Get.find();
 
   @override
+  User? get currentUser => _authBusinessLogic.currentUser;
+
+  @override
   Future<void> signUp(String email, String password) async => await operation.perform(
         operationName: 'Sign up $email',
         operation: (_) async => await _authBusinessLogic.signUp(email, password),

@@ -5,7 +5,7 @@ import '../../../../app/content/setup/navigation.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../content/setup/permissions.dart';
 
-class VendorListPageTileButton extends StatelessWidget with NavigationHelperInstance {
+class VendorListPageTileButton extends StatelessWidget with AppNavigationInstance {
   VendorListPageTileButton({super.key});
 
   @override

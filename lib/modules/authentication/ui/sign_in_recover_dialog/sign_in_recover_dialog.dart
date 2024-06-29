@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../app/content/setup/navigation.dart';
 import '../ui.dart';
 
-class SignInRecoverDialog extends GetView<SignInRecoverController> with NavigationHelperInstance {
+class SignInRecoverDialog extends GetView<SignInRecoverController> with AppNavigationInstance {
   SignInRecoverDialog({super.key});
 
   @override

@@ -5,7 +5,7 @@ import '../../../app/content/setup/navigation.dart';
 import '../../../app/ui/ui.dart';
 import '../../content/setup/permissions.dart';
 
-class ShipmentCreateFAB extends StatelessWidget with NavigationHelperInstance {
+class ShipmentCreateFAB extends StatelessWidget with AppNavigationInstance {
   ShipmentCreateFAB({super.key});
 
   @override

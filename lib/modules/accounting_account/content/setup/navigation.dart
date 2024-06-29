@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 
+import '../../../authentication/content/setup/middlewares.dart';
 import '../../ui/ui.dart';
 
 mixin AccountingAccountNavigation {
@@ -19,9 +20,11 @@ final pages = [
   GetPage(
     name: AccountingAccountNavigation.ACCOUNTING_ACCOUNT_FORM,
     page: () => const AccountingAccountFormPage(),
+    middlewares: [AuthMiddleware()],
   ),
   GetPage(
     name: AccountingAccountNavigation.ACCOUNTING_ACCOUNT_LIST,
     page: () => const AccountingAccountListPage(),
+    middlewares: [AuthMiddleware()],
   ),
 ];

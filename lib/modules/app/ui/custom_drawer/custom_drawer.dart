@@ -10,7 +10,7 @@ import '../../content/setup/navigation.dart';
 import '../../../company/ui/ui.dart';
 import '../ui.dart';
 
-class CustomDrawer extends GetView<CustomDrawerController> with NavigationHelperInstance {
+class CustomDrawer extends GetView<CustomDrawerController> with AppNavigationInstance {
   CustomDrawer({super.key});
 
   @override

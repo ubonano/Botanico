@@ -5,7 +5,7 @@ import '../../../../app/content/setup/navigation.dart';
 import '../../../content/model/vendor_model.dart';
 import '../../ui.dart';
 
-class VendorList extends GetView<VendorListController> with NavigationHelperInstance {
+class VendorList extends GetView<VendorListController> with AppNavigationInstance {
   VendorList({super.key});
 
   @override

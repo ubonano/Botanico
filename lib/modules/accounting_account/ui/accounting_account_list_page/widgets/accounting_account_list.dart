@@ -5,7 +5,7 @@ import '../../../../app/content/setup/navigation.dart';
 import '../../../content/model/accounting_account_model.dart';
 import '../../ui.dart';
 
-class AccountingAccountList extends GetView<AccountingAccountListController> with NavigationHelperInstance {
+class AccountingAccountList extends GetView<AccountingAccountListController> with AppNavigationInstance {
   AccountingAccountList({super.key});
 
   @override

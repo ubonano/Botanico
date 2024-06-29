@@ -5,7 +5,7 @@ import '../../../../app/content/setup/navigation.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../content/setup/permissions.dart';
 
-class WorkerListPageTileButton extends StatelessWidget with NavigationHelperInstance {
+class WorkerListPageTileButton extends StatelessWidget with AppNavigationInstance {
   WorkerListPageTileButton({super.key});
 
   @override

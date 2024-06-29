@@ -6,7 +6,7 @@ import '../../../../../app/ui/ui.dart';
 import '../../../../content/setup/interfaces/i_company_service.dart';
 import '../../../../content/setup/permissions.dart';
 
-class CompanyFormPageTileButton extends StatelessWidget with NavigationHelperInstance {
+class CompanyFormPageTileButton extends StatelessWidget with AppNavigationInstance {
   CompanyFormPageTileButton({super.key});
 
   @override

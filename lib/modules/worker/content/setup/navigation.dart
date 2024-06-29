@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 
+import '../../../authentication/content/setup/middlewares.dart';
 import '../../ui/ui.dart';
 
 mixin WorkerNavigation {
@@ -25,21 +26,26 @@ final pages = [
   GetPage(
     name: WorkerNavigation.WORKER_CREATE,
     page: () => const WorkerFormPage(),
+    middlewares: [AuthMiddleware()],
   ),
   GetPage(
     name: WorkerNavigation.WORKER_LIST,
     page: () => const WorkerListPage(),
+    middlewares: [AuthMiddleware()],
   ),
   GetPage(
     name: WorkerNavigation.WORKER_LINKING,
     page: () => const WorkerLinkPage(),
+    middlewares: [AuthMiddleware()],
   ),
   GetPage(
     name: WorkerNavigation.WORKER_PERMISSIONS,
     page: () => const WorkerPermissionManagementPage(),
+    middlewares: [AuthMiddleware()],
   ),
   GetPage(
     name: WorkerNavigation.LOBBY,
     page: () => const LobbyPage(),
+    middlewares: [AuthMiddleware()],
   ),
 ];

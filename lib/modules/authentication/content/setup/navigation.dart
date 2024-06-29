@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 
 import '../../ui/ui.dart';
+import 'middlewares.dart';
 
 mixin AuthenticationNavigate {
   static const SIGN_IN = '/sign-in';
@@ -18,9 +19,11 @@ final pages = [
   GetPage(
     name: AuthenticationNavigate.SIGN_IN,
     page: () => const SignInPage(),
+    middlewares: [NoAuthMiddleware()],
   ),
   GetPage(
     name: AuthenticationNavigate.SIGN_UP,
     page: () => const SignUpPage(),
+    middlewares: [NoAuthMiddleware()],
   ),
 ];

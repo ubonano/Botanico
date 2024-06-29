@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 
+import '../../../authentication/content/setup/middlewares.dart';
 import '../../ui/ui.dart';
 
 mixin ShipmentNavigation {
@@ -20,13 +21,16 @@ final pages = [
   GetPage(
     name: ShipmentNavigation.SHIPMENT_FORM,
     page: () => const ShipmentFormPage(),
+    middlewares: [AuthMiddleware()],
   ),
   GetPage(
     name: ShipmentNavigation.SHIPMENT_CABINET,
     page: () => const ShipmentCabinetPage(),
+    middlewares: [AuthMiddleware()],
   ),
   GetPage(
     name: ShipmentNavigation.SHIPMENT_DASHBOARD,
     page: () => const ShipmentDashboardPage(),
+    middlewares: [AuthMiddleware()],
   ),
 ];

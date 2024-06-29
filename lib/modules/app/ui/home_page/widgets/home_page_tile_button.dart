@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../content/setup/navigation.dart';
 
-class HomePageTileButton extends StatelessWidget with NavigationHelperInstance {
+class HomePageTileButton extends StatelessWidget with AppNavigationInstance {
   HomePageTileButton({super.key});
 
   @override

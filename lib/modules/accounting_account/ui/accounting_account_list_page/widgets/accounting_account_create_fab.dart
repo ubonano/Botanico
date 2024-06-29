@@ -6,7 +6,7 @@ import '../../../../app/content/setup/navigation.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../content/setup/permissions.dart';
 
-class AccountingAccountCreateFAB extends StatelessWidget with NavigationHelperInstance {
+class AccountingAccountCreateFAB extends StatelessWidget with AppNavigationInstance {
   AccountingAccountCreateFAB({super.key});
 
   @override

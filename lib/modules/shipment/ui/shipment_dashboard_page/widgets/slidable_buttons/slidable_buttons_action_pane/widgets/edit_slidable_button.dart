@@ -4,7 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import '../../../../../../../app/content/setup/navigation.dart';
 import '../../../../../../content/model/shipment_model.dart';
 
-class EditSlidableButton extends StatelessWidget with NavigationHelperInstance {
+class EditSlidableButton extends StatelessWidget with AppNavigationInstance {
   final ShipmentModel shipment;
 
   EditSlidableButton(this.shipment, {super.key});

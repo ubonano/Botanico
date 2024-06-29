@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 
 import '../../../app/ui/ui.dart';
+import '../../../authentication/content/setup/middlewares.dart';
 import '../../ui/ui.dart';
 
 mixin CompanyNavigation {
@@ -20,13 +21,16 @@ final pages = [
   GetPage(
     name: CompanyNavigation.EMPTY,
     page: () => const HomePage(),
+    middlewares: [AuthMiddleware()],
   ),
   GetPage(
     name: CompanyNavigation.COMPANY_FORM,
     page: () => const CompanyFormPage(),
+    middlewares: [AuthMiddleware()],
   ),
   GetPage(
     name: CompanyNavigation.HOME,
     page: () => const HomePage(),
+    middlewares: [AuthMiddleware()],
   ),
 ];

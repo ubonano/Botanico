@@ -6,7 +6,7 @@ import '../../../../app/content/setup/navigation.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../content/setup/permissions.dart';
 
-class WorkerLinkFAB extends StatelessWidget with NavigationHelperInstance {
+class WorkerLinkFAB extends StatelessWidget with AppNavigationInstance {
   WorkerLinkFAB({super.key});
 
   @override

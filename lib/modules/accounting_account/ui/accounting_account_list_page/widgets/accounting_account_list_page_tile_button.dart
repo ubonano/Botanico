@@ -6,7 +6,7 @@ import '../../../../app/content/setup/navigation.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../content/setup/permissions.dart';
 
-class AccountingAccountListPageTileButton extends StatelessWidget with NavigationHelperInstance {
+class AccountingAccountListPageTileButton extends StatelessWidget with AppNavigationInstance {
   AccountingAccountListPageTileButton({super.key});
 
   @override

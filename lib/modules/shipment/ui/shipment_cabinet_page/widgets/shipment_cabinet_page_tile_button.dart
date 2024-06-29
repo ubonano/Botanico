@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../app/content/setup/navigation.dart';
-import '../../../app/ui/ui.dart';
-import '../../content/setup/permissions.dart';
+import '../../../../app/content/setup/navigation.dart';
+import '../../../../app/ui/ui.dart';
+import '../../../content/setup/permissions.dart';
 
 class ShipmentModuleTileButton extends StatelessWidget with AppNavigationInstance {
   ShipmentModuleTileButton({super.key});
@@ -16,16 +16,17 @@ class ShipmentModuleTileButton extends StatelessWidget with AppNavigationInstanc
     return ProtectedWidget(
       key: key ?? const Key('ShipmentCabinetPageTileButton'),
       module: module,
+      permission: module.cabinetKey,
       child: ExpansionTile(
         leading: const Icon(Icons.local_shipping),
         title: const Text('Envíos'),
         children: [
           ProtectedWidget(
-            key: const Key('ShipmentCabinetTileButton'),
+            key: const Key('ProtectedArchivoEnvios'),
             module: module,
             permission: module.cabinetKey,
             child: ListTile(
-              leading: const Icon(Icons.archive),
+              leading: const Icon(Icons.list),
               title: const Text('Archivo'),
               onTap: navigate.toShipmentCabinet,
             ),

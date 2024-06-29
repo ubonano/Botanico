@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../content/setup/navigation.dart';
 
-class ConfirmationDialog extends StatelessWidget with NavigationHelperInstance {
+class ConfirmationDialog extends StatelessWidget with AppNavigationInstance {
   final String title;
   final String content;
   final String cancelButtonText;

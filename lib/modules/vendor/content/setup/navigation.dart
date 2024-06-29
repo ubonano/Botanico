@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 
+import '../../../authentication/content/setup/middlewares.dart';
 import '../../ui/ui.dart';
 
 mixin VendorNavigation {
@@ -18,9 +19,11 @@ final pages = [
   GetPage(
     name: VendorNavigation.VENDOR_FORM,
     page: () => const VendorFormPage(),
+    middlewares: [AuthMiddleware()],
   ),
   GetPage(
     name: VendorNavigation.VENDOR_LIST,
     page: () => const VendorListPage(),
+    middlewares: [AuthMiddleware()],
   ),
 ];
