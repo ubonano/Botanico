@@ -6,6 +6,7 @@ class CustomScaffold extends StatelessWidget {
   final Widget? floatingActionButton;
   final Widget? drawer;
   final List<Widget>? actionButtons;
+  final bool showAppBar;
 
   const CustomScaffold({
     Key? key,
@@ -14,15 +15,18 @@ class CustomScaffold extends StatelessWidget {
     this.floatingActionButton,
     required this.drawer,
     this.actionButtons,
+    this.showAppBar = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        actions: actionButtons,
-      ),
+      appBar: showAppBar
+          ? AppBar(
+              title: Text(title),
+              actions: actionButtons,
+            )
+          : null,
       drawer: drawer,
       body: body,
       floatingActionButton: floatingActionButton,

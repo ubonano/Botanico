@@ -11,6 +11,7 @@ class SignInPage extends GetView<SignInController> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       key: key ?? const Key('SignInPage'),
+      showAppBar: false,
       title: 'Iniciar Sesión',
       drawer: null,
       body: Padding(

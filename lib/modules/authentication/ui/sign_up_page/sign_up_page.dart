@@ -11,6 +11,7 @@ class SignUpPage extends GetView<SignUpController> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       key: key ?? const Key('SignUpPage'),
+      showAppBar: false,
       title: 'Registro',
       drawer: null,
       body: Padding(
