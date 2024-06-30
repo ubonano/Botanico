@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../content/model/accounting_account_model.dart';
+import '../../../../setup/model/accounting_account_model.dart';
 import '../../../ui.dart';
 
 class AccountingAccountListTileTrailingIconButtons extends StatelessWidget {

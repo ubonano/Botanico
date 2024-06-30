@@ -3,7 +3,7 @@
 import 'package:botanico/modules/worker/ui/middlewares.dart';
 import 'package:get/get.dart';
 
-import '../../authentication/content/setup/middlewares.dart';
+import '../../authentication/ui/middlewares.dart';
 import 'ui.dart';
 
 mixin ShipmentNavigation {

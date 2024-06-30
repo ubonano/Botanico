@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../content/model/accounting_account_model.dart';
+import '../../../../setup/model/accounting_account_model.dart';
 import '../../../ui.dart';
 
 class AccountingAccountList extends GetView<AccountingAccountListController> {

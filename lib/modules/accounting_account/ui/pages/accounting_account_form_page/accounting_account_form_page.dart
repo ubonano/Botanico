@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../app/ui/navigation.dart';
 import '../../../../app/ui/ui.dart';
-import '../../../../authentication/content/setup/middlewares.dart';
+import '../../../../authentication/ui/middlewares.dart';
 import '../../../../company/ui/ui.dart';
 import '../../../../vendor/ui/ui.dart';
 import '../../../../worker/ui/middlewares.dart';
@@ -15,7 +15,7 @@ class AccountingAccountFormPage extends GetView<AccountingAccountFormController>
   static navigate({String argument = '', bool canPop = false}) =>
       Get.find<AppNavigation>().to(route, arguments: argument, canPop: canPop);
 
-  static get route => '/accounting-account-form';
+  static const String route = '/accounting-account-form';
 
   static GetPage get page => GetPage(
         name: route,

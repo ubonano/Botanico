@@ -4,7 +4,7 @@ import '../../../../app/content/setup/fields_key.dart';
 import '../../../../app/content/helpers/form_helper.dart';
 import '../../../../app/content/helpers/global_helper.dart';
 import '../../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
-import '../../../content/setup/interfaces/i_accounting_account_service.dart';
+import '../../../setup/interfaces/i_accounting_account_service.dart';
 
 class AccountingAccountFormController extends GetxController
     with FormHelper<AccountingAccountModel>, GlobalHelper, LifeCycleLoggingControllerHelper {

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../app/ui/navigation.dart';
 import '../../../../app/ui/ui.dart';
-import '../../../../authentication/content/setup/middlewares.dart';
+import '../../../../authentication/ui/middlewares.dart';
 import '../../../../worker/ui/middlewares.dart';
 import '../../ui.dart';
 
@@ -11,7 +11,9 @@ class AccountingAccountListPage extends GetView<AccountingAccountListController>
   const AccountingAccountListPage({super.key});
 
   static navigate({bool canPop = false}) => Get.find<AppNavigation>().to(route, canPop: canPop);
-  static get route => '/accounting-account-list';
+
+  static const String route = '/accounting-account-list';
+
   static get page => GetPage(
         name: route,
         page: () => const AccountingAccountListPage(),
@@ -28,8 +30,8 @@ class AccountingAccountListPage extends GetView<AccountingAccountListController>
       key: key ?? const Key('AccountingAccountListPage'),
       drawer: CustomDrawer(),
       title: 'Cuentas Contables',
-      body: AccountingAccountList(),
-      floatingActionButton: AccountingAccountCreateFAB(),
+      body: const AccountingAccountList(),
+      floatingActionButton: const AccountingAccountCreateFAB(),
     );
   }
 }

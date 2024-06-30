@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../accounting_account/content/setup/permissions.dart';
+import '../../../accounting_account/setup/permissions.dart';
 import '../../../vendor/content/setup/permissions.dart';
 import '../../../shipment/content/setup/permissions.dart';
 import '../../../worker/content/setup/permissions.dart';

@@ -2,11 +2,11 @@
 
 import 'package:integration_test/integration_test.dart';
 
-import 'package:botanico/modules/authentication/content/tests/module_test.dart' as authentication;
+import 'package:botanico/modules/authentication/setup/tests/module_test.dart' as authentication;
 import 'package:botanico/modules/company/content/tests/module_test.dart' as company;
 import 'package:botanico/modules/worker/content/tests/module_test.dart' as worker;
 import 'package:botanico/modules/vendor/content/tests/module_test.dart' as vendor;
-import 'package:botanico/modules/accounting_account/content/tests/module_test.dart' as accountingAccount;
+import 'package:botanico/modules/accounting_account/setup/tests/module_test.dart' as accountingAccount;
 import 'package:botanico/modules/shipment/content/tests/module_test.dart' as shipment;
 
 /* 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
-import '../../../../content/setup/permissions.dart';
+import '../../../../setup/permissions.dart';
 import '../../../ui.dart';
 
 class AccountingAccountCreateFAB extends StatelessWidget {

@@ -3,7 +3,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../app/content/tests/flows/app_init_flow.dart';
-import '../../../../authentication/content/tests/flows/sign_up_flow.dart';
+import '../../../../authentication/setup/tests/flows/sign_up_flow.dart';
 import '../../../../worker/content/tests/flows/worker_create_from_sign_up_flow.dart';
 import 'company_create_fill_data_flow.dart';
 import 'company_create_navigate_flow.dart';

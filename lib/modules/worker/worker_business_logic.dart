@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../authentication/content/setup/interfaces/i_authenticatin_business_logic.dart';
+import '../authentication/setup/interfaces/i_authenticatin_business_logic.dart';
 import '../company/content/setup/exceptions/company_not_found_exception.dart';
 import '../company/content/setup/interfaces/i_company_business_logic.dart';
 import 'content/setup/interfaces/i_linked_worker_repository.dart';

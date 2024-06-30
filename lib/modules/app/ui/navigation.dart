@@ -2,8 +2,9 @@
 
 import 'package:get/get.dart';
 
-import '../../authentication/content/setup/middlewares.dart';
-import '../../authentication/ui/navigation.dart';
+import '../../authentication/ui/middlewares.dart';
+
+import '../../authentication/ui/ui.dart';
 import '../../vendor/ui/navigation.dart';
 import '../../shipment/ui/navigation.dart';
 import '../../worker/ui/middlewares.dart';
@@ -12,11 +13,10 @@ import '../../company/ui/navigation.dart';
 import 'ui.dart';
 import '../content/helpers/log_helper.dart';
 
-class AppNavigation
-    with AuthenticationNavigate, CompanyNavigation, WorkerNavigation, VendorNavigation, ShipmentNavigation {
+class AppNavigation with CompanyNavigation, WorkerNavigation, VendorNavigation, ShipmentNavigation {
   late final LogHelper _log = Get.find();
 
-  static const INIT_PAGE = AuthenticationNavigate.SIGN_IN;
+  static const INIT_PAGE = SignInPage.route;
 
   static const EMPTY = '/';
   static const HOME = '/home';
