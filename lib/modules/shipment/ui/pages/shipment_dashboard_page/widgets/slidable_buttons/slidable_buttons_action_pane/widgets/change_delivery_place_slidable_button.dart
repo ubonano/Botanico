@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../../../app/ui/navigation.dart';
 import '../../../../../../../setup/interfaces/i_shipment_service.dart';
 
-class ChangeDeliveryPlaceSlidableButton extends StatelessWidget with AppNavigationInstance {
+class ChangeDeliveryPlaceSlidableButton extends StatelessWidget {
   final ShipmentModel shipment;
 
-  ChangeDeliveryPlaceSlidableButton(this.shipment, {super.key});
+  const ChangeDeliveryPlaceSlidableButton(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +49,7 @@ class ChangeDeliveryPlaceSlidableButton extends StatelessWidget with AppNavigati
                 TextButton(
                   child: const Text('Cambiar lugar de entrega'),
                   onPressed: () {
-                    Get.find<IShipmentService>()
-                        .changeDeliveryPlace(shipment, deliveryPlaceFromString(selectedPlace));
+                    Get.find<IShipmentService>().changeDeliveryPlace(shipment, deliveryPlaceFromString(selectedPlace));
                     Get.back();
                   },
                 ),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../app/ui/navigation.dart';
 import '../../../../../app/ui/ui.dart';
 import '../../../ui.dart';
 
-class SignInNavigateButton extends StatelessWidget with AppNavigationInstance {
-  SignInNavigateButton({super.key});
+class SignInNavigateButton extends StatelessWidget {
+  const SignInNavigateButton({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -6,12 +6,11 @@ import '../../../../authentication/ui/ui.dart';
 import '../../../../vendor/ui/ui.dart';
 import '../../../../shipment/ui/ui.dart';
 import '../../../../worker/ui/ui.dart';
-import '../../navigation.dart';
 import '../../../../company/ui/ui.dart';
 import '../../ui.dart';
 
-class CustomDrawer extends GetView<CustomDrawerController> with AppNavigationInstance {
-  CustomDrawer({super.key});
+class CustomDrawer extends GetView<CustomDrawerController> {
+  const CustomDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +34,12 @@ class CustomDrawer extends GetView<CustomDrawerController> with AppNavigationIns
               ),
               otherAccountsPictures: const [SignOutIconButton()],
             ),
-            CompanyFormPageTileButton(),
-            HomePageTileButton(),
-            WorkerListPageTileButton(),
-            VendorListPageTileButton(),
-            AccountingAccountListPageTileButton(),
-            ShipmentModuleTileButton(),
+            const CompanyFormPageTileButton(),
+            const HomePageTileButton(),
+            const WorkerListPageTileButton(),
+            const VendorListPageTileButton(),
+            const AccountingAccountListPageTileButton(),
+            const ShipmentModuleTileButton(),
           ],
         ),
       ),

@@ -1,3 +1,8 @@
+import 'package:get/get.dart';
+
+import 'home_page/home_page.dart';
+
+export 'navigation.dart';
 export '../app.dart';
 export 'widgets/buttons/custom_button.dart';
 export 'widgets/buttons/custom_text_button.dart';
@@ -10,3 +15,7 @@ export 'home_page/home_controller.dart';
 export 'home_page/home_page.dart';
 export 'home_page/widgets/home_page_tile_button.dart';
 export 'widgets/protected_widget.dart';
+
+final List<GetPage> pages = [
+  HomePage.page,
+];

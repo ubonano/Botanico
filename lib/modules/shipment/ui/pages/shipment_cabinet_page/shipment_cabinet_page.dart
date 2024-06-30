@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/ui/navigation.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../../authentication/ui/middlewares.dart';
 import '../../../../worker/ui/middlewares.dart';
@@ -30,10 +29,10 @@ class ShipmentCabinetPage extends GetView<ShipmentCabinetController> {
     return CustomScaffold(
       key: key ?? const Key('ShipmentCabinetPage'),
       title: 'Archivo de envios',
-      drawer: CustomDrawer(),
-      body: Column(
+      drawer: const CustomDrawer(),
+      body: const Column(
         children: [
-          const ShipmentCabinetFilters(),
+          ShipmentCabinetFilters(),
           Expanded(child: ShipmentList()),
         ],
       ),

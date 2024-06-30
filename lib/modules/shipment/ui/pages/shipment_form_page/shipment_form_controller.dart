@@ -60,7 +60,7 @@ class ShipmentFormController extends GetxController
     try {
       isUpdateMode ? await _shipmentService.update(buildModel()) : await _shipmentService.create(buildModel());
 
-      navigate.back();
+      Get.back();
     } catch (e) {
       logTag;
     }
@@ -86,8 +86,7 @@ class ShipmentFormController extends GetxController
   Future<void> fetchShipmentDataFromExternalAPI() async {
     isLoading.value = true;
     try {
-      final ShipmentModel? shipment =
-          await _shipmentService.getFromExternalAPI(getFieldValue(FieldKeys.shipmentId));
+      final ShipmentModel? shipment = await _shipmentService.getFromExternalAPI(getFieldValue(FieldKeys.shipmentId));
 
       if (shipment != null) {
         setFieldValue(FieldKeys.client, shipment.client);

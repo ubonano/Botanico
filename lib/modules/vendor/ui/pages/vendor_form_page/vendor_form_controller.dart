@@ -42,7 +42,7 @@ class VendorFormController extends GetxController
   Future<void> submit() async {
     try {
       isUpdateMode ? await _vendorService.update(buildModel()) : await _vendorService.create(buildModel());
-      navigate.back();
+      Get.back();
     } catch (e) {
       logTag;
     }

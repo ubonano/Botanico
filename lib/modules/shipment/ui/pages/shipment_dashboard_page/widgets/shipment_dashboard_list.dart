@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../app/ui/navigation.dart';
 import '../../../ui.dart';
 
-class ShipmentDashboardList extends GetView<ShipmentDashboardController> with AppNavigationInstance {
-  ShipmentDashboardList({super.key});
+class ShipmentDashboardList extends GetView<ShipmentDashboardController> {
+  const ShipmentDashboardList({super.key});
 
   @override
   Widget build(BuildContext context) {

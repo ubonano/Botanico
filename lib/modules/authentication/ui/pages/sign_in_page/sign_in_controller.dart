@@ -4,6 +4,7 @@ import '../../../../app/content/setup/fields_key.dart';
 import '../../../../app/content/helpers/form_helper.dart';
 import '../../../../app/content/helpers/global_helper.dart';
 import '../../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
+import '../../../../app/ui/ui.dart';
 import '../../../../company/setup/interfaces/i_company_service.dart';
 import '../../../../worker/content/setup/interfaces/i_worker_service.dart';
 import '../../../../worker/ui/ui.dart';
@@ -45,7 +46,7 @@ class SignInController extends GetxController with GlobalHelper, FormHelper, Lif
     CompanyModel? company = await _companyService.fetchLoggedCompany();
 
     if (company != null) {
-      navigate.toHome();
+      HomePage.navigate();
     } else {
       LobbyPage.navigate();
     }

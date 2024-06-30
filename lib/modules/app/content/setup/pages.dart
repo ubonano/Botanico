@@ -1,6 +1,6 @@
 // ignore_for_file: library_prefixes
 
-import 'package:botanico/modules/app/ui/navigation.dart' as App;
+import 'package:botanico/modules/app/ui/ui.dart' as App;
 import 'package:botanico/modules/accounting_account/ui/ui.dart' as AccountingAccount;
 import 'package:botanico/modules/authentication/ui/ui.dart' as Authentication;
 import 'package:botanico/modules/vendor/ui/ui.dart' as Vendor;

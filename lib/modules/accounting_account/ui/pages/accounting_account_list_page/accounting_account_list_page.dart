@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/ui/navigation.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../../authentication/ui/middlewares.dart';
 import '../../../../worker/ui/middlewares.dart';
@@ -29,7 +28,7 @@ class AccountingAccountListPage extends GetView<AccountingAccountListController>
   Widget build(BuildContext context) {
     return CustomScaffold(
       key: key ?? const Key('AccountingAccountListPage'),
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
       title: 'Cuentas Contables',
       body: const AccountingAccountList(),
       floatingActionButton: const AccountingAccountCreateFAB(),

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../navigation.dart';
-
-class ConfirmationDialog extends StatelessWidget with AppNavigationInstance {
+class ConfirmationDialog extends StatelessWidget {
   final String title;
   final String content;
   final String cancelButtonText;
   final String confirmButtonText;
   final VoidCallback onConfirm;
 
-  ConfirmationDialog({
+  const ConfirmationDialog({
     Key? key,
     required this.title,
     required this.content,
@@ -25,12 +24,12 @@ class ConfirmationDialog extends StatelessWidget with AppNavigationInstance {
       content: Text(content),
       actions: <Widget>[
         TextButton(
-          onPressed: () => navigate.back(),
+          onPressed: Get.back,
           child: Text(cancelButtonText),
         ),
         TextButton(
           onPressed: () {
-            navigate.back();
+            Get.back();
             onConfirm();
           },
           child: Text(confirmButtonText),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/ui/navigation.dart';
 import '../../ui.dart';
 
-class SignInRecoverDialog extends GetView<SignInRecoverController> with AppNavigationInstance {
-  SignInRecoverDialog({super.key});
+class SignInRecoverDialog extends GetView<SignInRecoverController> {
+  const SignInRecoverDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class SignInRecoverDialog extends GetView<SignInRecoverController> with AppNavig
         child: EmailInputField(controller, onFieldSubmitted: controller.secureSubmit),
       ),
       actions: [
-        TextButton(onPressed: navigate.back, child: const Text('Cancelar')),
+        TextButton(onPressed: Get.back, child: const Text('Cancelar')),
         TextButton(onPressed: controller.secureSubmit, child: const Text('Enviar')),
       ],
     );

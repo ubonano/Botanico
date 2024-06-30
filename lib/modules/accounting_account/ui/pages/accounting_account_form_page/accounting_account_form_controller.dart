@@ -33,7 +33,7 @@ class AccountingAccountFormController extends GetxController
           ? await _accountingAccountService.update(buildModel())
           : await _accountingAccountService.create(buildModel());
 
-      navigate.back();
+      Get.back();
     } catch (e) {
       isUpdateMode;
     }

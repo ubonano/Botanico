@@ -40,7 +40,7 @@ class SignUpPage extends GetView<SignUpController> {
               PasswordInputField(controller),
               ConfirmPasswordInputField(controller, onFieldSubmitted: controller.secureSubmit),
               const SignUpButton(),
-              SignInNavigateButton(),
+              const SignInNavigateButton(),
             ],
           ),
         ),

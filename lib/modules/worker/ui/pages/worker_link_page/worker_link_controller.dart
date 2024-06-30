@@ -20,7 +20,7 @@ class WorkerLinkController extends GetxController with GlobalHelper, FormHelper,
     try {
       await _workerService.link(getFieldValue(FieldKeys.uid));
 
-      navigate.back();
+      Get.back();
     } catch (e) {
       logTag;
     }

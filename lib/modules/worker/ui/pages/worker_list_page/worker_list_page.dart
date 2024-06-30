@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/ui/navigation.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../../authentication/ui/middlewares.dart';
 import '../../middlewares.dart';
@@ -30,7 +29,7 @@ class WorkerListPage extends GetView<WorkerListController> {
     return CustomScaffold(
       key: key ?? const Key('workerListPage'),
       title: 'Trabajadores Vinculados',
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
       body: Obx(() => WorkerList(controller.list$.toList())),
       floatingActionButton: const WorkerLinkFAB(),
     );

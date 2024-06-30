@@ -1,6 +1,7 @@
-import 'package:botanico/modules/app/ui/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../app/ui/ui.dart';
 import '../content/setup/interfaces/i_worker_service.dart';
 import 'ui.dart';
 
@@ -46,7 +47,7 @@ class IsNotEmployedOrOwnerMiddleware extends GetMiddleware {
     final IWorkerService workerService = Get.find();
 
     if (workerService.currentWorker$?.companyId != '' && workerService.currentWorker$?.isOwner == true) {
-      return const RouteSettings(name: AppNavigation.HOME);
+      return const RouteSettings(name: HomePage.route);
     }
     return null;
   }

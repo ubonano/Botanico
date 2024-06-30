@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../../../app/ui/navigation.dart';
 import '../../../../../../../setup/interfaces/i_shipment_service.dart';
 
-class ChangeStateSlidableButton extends StatelessWidget with AppNavigationInstance {
+class ChangeStateSlidableButton extends StatelessWidget {
   final ShipmentModel shipment;
 
-  ChangeStateSlidableButton(this.shipment, {super.key});
+  const ChangeStateSlidableButton(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {

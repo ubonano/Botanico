@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/ui/navigation.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../../authentication/ui/middlewares.dart';
 import '../../../../worker/ui/middlewares.dart';
@@ -30,8 +29,8 @@ class ShipmentDashboardPage extends GetView<ShipmentDashboardController> {
     return CustomScaffold(
       key: key ?? const Key('ShipmentDashboardPage'),
       title: 'Dashboard de Envíos',
-      drawer: CustomDrawer(),
-      body: ShipmentDashboardList(),
+      drawer: const CustomDrawer(),
+      body: const ShipmentDashboardList(),
       floatingActionButton: const ShipmentCreateFAB(),
     );
   }

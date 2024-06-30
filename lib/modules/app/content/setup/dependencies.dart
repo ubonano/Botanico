@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+import '../../ui/navigation.dart';
 import '../helpers/log_helper.dart';
 import '../helpers/operation_helper.dart';
 import '../helpers/snackbar_helper.dart';
 import '../model/module_repository.dart';
-import '../../ui/navigation.dart';
 
 void setupDependencies() {
   Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);

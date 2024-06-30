@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'ui/navigation.dart';
+import 'ui/home_page/home_page.dart';
 import 'bindings.dart';
 import 'content/setup/pages.dart';
 
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialBinding: AppBindings(),
       title: 'Botanico',
-      initialRoute: AppNavigation.INIT_PAGE,
+      initialRoute: HomePage.route,
       getPages: Pages.pages,
     );
   }

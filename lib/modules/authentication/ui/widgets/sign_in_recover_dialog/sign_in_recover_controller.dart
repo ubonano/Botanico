@@ -20,7 +20,7 @@ class SignInRecoverController extends GetxController with GlobalHelper, FormHelp
     try {
       await _authService.passwordRecover(getFieldValue(FieldKeys.email));
 
-      navigate.back();
+      Get.back();
     } catch (e) {
       logTag;
     }

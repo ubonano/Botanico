@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../../../app/ui/ui.dart';
 import '../../../../worker/content/setup/interfaces/i_worker_service.dart';
 import '../../../../app/content/setup/fields_key.dart';
 import '../../../../app/content/helpers/form_helper.dart';
@@ -47,7 +48,7 @@ class CompanyFormController extends GetxController
       await _workerService.fetchCurrentWorker();
       await _companyService.fetchLoggedCompany();
 
-      navigate.toHome();
+      HomePage.navigate();
     } catch (e) {
       logTag;
     }
