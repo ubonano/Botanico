@@ -4,6 +4,7 @@ import '../../../../app/content/setup/fields_key.dart';
 import '../../../../app/content/helpers/form_helper.dart';
 import '../../../../app/content/helpers/global_helper.dart';
 import '../../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
+import '../../../../worker/ui/ui.dart';
 import '../../../setup/interfaces/i_authentication_service.dart';
 
 class SignUpController extends GetxController with GlobalHelper, FormHelper, LifeCycleLoggingControllerHelper {
@@ -23,7 +24,7 @@ class SignUpController extends GetxController with GlobalHelper, FormHelper, Lif
         getFieldValue(FieldKeys.password),
       );
 
-      navigate.toWorkerCreate();
+      WorkerFormPage.navigate();
     } catch (e) {
       logTag;
     }

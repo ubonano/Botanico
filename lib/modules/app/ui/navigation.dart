@@ -6,11 +6,10 @@ import '../../authentication/ui/middlewares.dart';
 
 import '../../authentication/ui/ui.dart';
 import '../../worker/ui/middlewares.dart';
-import '../../worker/ui/navigation.dart';
 import 'ui.dart';
 import '../content/helpers/log_helper.dart';
 
-class AppNavigation with WorkerNavigation {
+class AppNavigation {
   late final LogHelper _log = Get.find();
 
   static const INIT_PAGE = SignInPage.route;
@@ -20,7 +19,6 @@ class AppNavigation with WorkerNavigation {
 
   void toHome({bool canPop = false}) => to(HOME, canPop: canPop);
 
-  @override
   void to(String route, {dynamic arguments, bool canPop = false}) {
     if (canPop) {
       _log.debug('Navigate to named: $route');

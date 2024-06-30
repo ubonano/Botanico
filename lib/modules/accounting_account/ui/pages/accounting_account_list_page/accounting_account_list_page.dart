@@ -10,7 +10,8 @@ import '../../ui.dart';
 class AccountingAccountListPage extends GetView<AccountingAccountListController> {
   const AccountingAccountListPage({super.key});
 
-  static navigate({bool canPop = false}) => Get.find<AppNavigation>().to(route, canPop: canPop);
+  static navigate({String argument = '', bool canPop = false}) =>
+      Get.find<AppNavigation>().to(route, arguments: argument, canPop: canPop);
 
   static const String route = '/accounting-account-list';
 

@@ -6,6 +6,7 @@ import '../../../../app/content/helpers/global_helper.dart';
 import '../../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
 import '../../../../company/setup/interfaces/i_company_service.dart';
 import '../../../../worker/content/setup/interfaces/i_worker_service.dart';
+import '../../../../worker/ui/ui.dart';
 import '../../../setup/interfaces/i_authentication_service.dart';
 
 class SignInController extends GetxController with GlobalHelper, FormHelper, LifeCycleLoggingControllerHelper {
@@ -37,7 +38,7 @@ class SignInController extends GetxController with GlobalHelper, FormHelper, Lif
     WorkerModel? worker = await _workerService.fetchCurrentWorker();
 
     if (worker == null) {
-      navigate.toWorkerCreate();
+      WorkerFormPage.navigate();
       return;
     }
 
@@ -46,7 +47,7 @@ class SignInController extends GetxController with GlobalHelper, FormHelper, Lif
     if (company != null) {
       navigate.toHome();
     } else {
-      navigate.toLobby();
+      LobbyPage.navigate();
     }
   }
 }

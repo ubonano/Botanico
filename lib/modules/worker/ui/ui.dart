@@ -1,3 +1,11 @@
+import 'package:get/get.dart';
+
+import 'pages/worker_form_page/worker_form_page.dart';
+import 'pages/worker_link_page/worker_link_page.dart';
+import 'pages/worker_list_page/worker_list_page.dart';
+import 'pages/worker_lobby_page/worker_lobby_page.dart';
+import 'pages/worker_permission_management_page/worker_permission_management_page.dart';
+
 export 'pages/worker_lobby_page/widgets/worker_copy_uid_button.dart';
 export 'pages/worker_list_page/worker_list_page.dart';
 export 'pages/worker_form_page/widgets/fields/worker_uid_input_field.dart';
@@ -27,3 +35,11 @@ export 'pages/worker_lobby_page/worker_lobby_controller.dart';
 export 'pages/worker_list_page/widgets/worker_list_tile_trailing_icon_buttons.dart';
 export 'pages/worker_permission_management_page/worker_permission_management_controller.dart';
 export 'pages/worker_form_page/widgets/fields/birthdate_input_field.dart';
+
+final List<GetPage> pages = [
+  LobbyPage.page,
+  WorkerFormPage.page,
+  WorkerListPage.page,
+  WorkerLinkPage.page,
+  WorkerPermissionManagementPage.page,
+];

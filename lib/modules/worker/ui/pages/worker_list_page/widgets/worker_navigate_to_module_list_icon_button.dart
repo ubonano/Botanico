@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
-import '../../../../../app/ui/navigation.dart';
 import '../../../../../app/ui/ui.dart';
 import '../../../../content/model/worker_model.dart';
 import '../../../../content/setup/permissions.dart';
+import '../../../ui.dart';
 
-class WorkerNavigateToModuleListIconButton extends StatelessWidget with AppNavigationInstance {
+class WorkerNavigateToModuleListIconButton extends StatelessWidget {
   final WorkerModel worker;
 
-  WorkerNavigateToModuleListIconButton(this.worker, {super.key});
+  const WorkerNavigateToModuleListIconButton(this.worker, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class WorkerNavigateToModuleListIconButton extends StatelessWidget with AppNavig
       child: IconButton(
         key: key ?? const Key('WorkerNavigateToModuleListIconButton'),
         icon: const Icon(Icons.security),
-        onPressed: () => navigate.toPermissions(worker.uid, canPop: true),
+        onPressed: () => WorkerPermissionManagementPage.navigate(argument: worker.uid, canPop: true),
       ),
     );
   }

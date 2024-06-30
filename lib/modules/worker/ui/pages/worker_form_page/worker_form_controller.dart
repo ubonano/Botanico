@@ -1,3 +1,4 @@
+import 'package:botanico/modules/worker/ui/ui.dart';
 import 'package:get/get.dart';
 
 import '../../../../app/content/setup/fields_key.dart';
@@ -21,7 +22,7 @@ class WorkerFormController extends GetxController
     try {
       await _workerService.create(buildModel());
       await _workerService.fetchCurrentWorker();
-      navigate.toLobby();
+      LobbyPage.navigate();
     } catch (e) {
       logTag;
     }
