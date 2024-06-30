@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../app/content/helpers/global_helper.dart';
-import 'content/setup/interfaces/i_vendor_business_logic.dart';
-import 'content/setup/interfaces/i_vendor_service.dart';
-import 'content/setup/permissions.dart';
+import 'setup/interfaces/i_vendor_business_logic.dart';
+import 'setup/interfaces/i_vendor_service.dart';
+import 'setup/permissions.dart';
 
 class VendorService extends GetxService with GlobalHelper implements IVendorService {
   late final VendorPermissions _module = Get.find();

@@ -5,13 +5,12 @@ import 'package:get/get.dart';
 import '../../authentication/ui/middlewares.dart';
 
 import '../../authentication/ui/ui.dart';
-import '../../vendor/ui/navigation.dart';
 import '../../worker/ui/middlewares.dart';
 import '../../worker/ui/navigation.dart';
 import 'ui.dart';
 import '../content/helpers/log_helper.dart';
 
-class AppNavigation with WorkerNavigation, VendorNavigation {
+class AppNavigation with WorkerNavigation {
   late final LogHelper _log = Get.find();
 
   static const INIT_PAGE = SignInPage.route;
