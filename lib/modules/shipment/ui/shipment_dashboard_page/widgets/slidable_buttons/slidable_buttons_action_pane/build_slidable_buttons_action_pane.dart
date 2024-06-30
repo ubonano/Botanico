@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../worker/content/setup/interfaces/i_worker_service.dart';
-import '../../../../../content/model/shipment_model.dart';
-import '../../../../../content/setup/permissions.dart';
+import '../../../../../setup/model/shipment_model.dart';
+import '../../../../../setup/permissions.dart';
 import '../../../../ui.dart';
 
 final _module = Get.find<ShipmentPermissions>();

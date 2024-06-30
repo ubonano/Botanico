@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
-import '../setup/interfaces/i_via_cargo_api_repository.dart';
+import '../interfaces/i_via_cargo_api_repository.dart';
 
 class ViaCargoApiRepository implements IViaCargoApiRepository {
   final String _environment;
@@ -18,7 +18,7 @@ class ViaCargoApiRepository implements IViaCargoApiRepository {
 
   @override
   Future<void> initializeConfig(String environment) async {
-    String configPath = 'lib/modules/shipment/content/setup/via_cargo_config_$environment.json';
+    String configPath = 'lib/modules/shipment/setup/credentials/via_cargo_config_$environment.json';
     final configString = await rootBundle.loadString(configPath);
     final config = json.decode(configString);
     _baseUrl = config['base_url'];

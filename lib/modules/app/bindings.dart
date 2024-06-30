@@ -8,7 +8,7 @@ import 'package:botanico/modules/company/setup/dependencies.dart' as company;
 import 'package:botanico/modules/worker/content/setup/dependencies.dart' as worker;
 import 'package:botanico/modules/vendor/content/setup/dependencies.dart' as vendor;
 import 'package:botanico/modules/accounting_account/setup/dependencies.dart' as accountingAccount;
-import 'package:botanico/modules/shipment/content/setup/dependencies.dart' as shipment;
+import 'package:botanico/modules/shipment/setup/dependencies.dart' as shipment;
 
 class AppBindings extends Bindings {
   @override

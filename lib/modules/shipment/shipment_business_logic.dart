@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../worker/content/setup/interfaces/i_worker_service.dart';
-import 'content/setup/interfaces/i_via_cargo_api_repository.dart';
-import 'content/setup/interfaces/i_shipment_business_logic.dart';
-import 'content/setup/interfaces/i_shipment_repository.dart';
+import 'setup/interfaces/i_via_cargo_api_repository.dart';
+import 'setup/interfaces/i_shipment_business_logic.dart';
+import 'setup/interfaces/i_shipment_repository.dart';
 
 class ShipmentBusinessLogic implements IShipmentBusinessLogic {
   late final IShipmentRepository _shipmentRepo = Get.find();

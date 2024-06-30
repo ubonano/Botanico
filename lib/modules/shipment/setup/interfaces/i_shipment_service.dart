@@ -2,11 +2,11 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../model/shipment_model.dart';
+import '../model/shipment_model.dart';
 
-export '../../model/shipment_model.dart';
-export '../../model/enums/shipment_state.dart';
-export '../../model/enums/shipment_delivery_place.dart';
+export '../model/shipment_model.dart';
+export '../model/enums/shipment_state.dart';
+export '../model/enums/shipment_delivery_place.dart';
 
 abstract class IShipmentService {
   Future<ShipmentModel?> get(String id);

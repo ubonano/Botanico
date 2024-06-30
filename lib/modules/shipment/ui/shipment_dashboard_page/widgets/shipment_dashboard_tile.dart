@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import '../../../content/model/shipment_model.dart';
+import '../../../setup/model/shipment_model.dart';
 import '../../ui.dart';
 
 class ShipmentDashboardTile extends StatefulWidget {

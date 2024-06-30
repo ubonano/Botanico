@@ -1,5 +1,5 @@
-import '../../../app/content/setup/interfaces/i_permissions_structure.dart';
-export '../../../app/content/setup/interfaces/i_permissions_structure.dart';
+import '../../app/content/setup/interfaces/i_permissions_structure.dart';
+export '../../app/content/setup/interfaces/i_permissions_structure.dart';
 
 class ShipmentPermissions implements IPermissionsStructure {
   @override

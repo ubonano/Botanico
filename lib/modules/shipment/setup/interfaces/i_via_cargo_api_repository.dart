@@ -1,5 +1,5 @@
-import '../../model/shipment_model.dart';
-export '../../model/shipment_model.dart';
+import '../model/shipment_model.dart';
+export '../model/shipment_model.dart';
 
 abstract class IViaCargoApiRepository {
   Future<void> initializeConfig(String environment);

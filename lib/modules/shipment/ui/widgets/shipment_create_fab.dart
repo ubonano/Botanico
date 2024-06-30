@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../app/ui/navigation.dart';
 import '../../../app/ui/ui.dart';
-import '../../content/setup/permissions.dart';
+import '../../setup/permissions.dart';
+import '../ui.dart';
 
-class ShipmentCreateFAB extends StatelessWidget with AppNavigationInstance {
-  ShipmentCreateFAB({super.key});
+class ShipmentCreateFAB extends StatelessWidget {
+  const ShipmentCreateFAB({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class ShipmentCreateFAB extends StatelessWidget with AppNavigationInstance {
       permission: module.createKey,
       child: FloatingActionButton(
         key: key ?? const Key('ShipmentCreateFAB'),
-        onPressed: () => navigate.toShipmentForm(canPop: true),
+        onPressed: () => ShipmentFormPage.navigate(canPop: true),
         child: const Icon(Icons.add),
       ),
     );

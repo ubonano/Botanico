@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../app/content/helpers/snackbar_helper.dart';
-import '../../../../../content/model/shipment_model.dart';
+import '../../../../../setup/model/shipment_model.dart';
 import '../../../../ui.dart';
 
 class DescriptionWidget extends StatelessWidget {

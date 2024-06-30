@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../app/ui/navigation.dart';
-import '../../../../../../content/model/shipment_model.dart';
+import '../../../../../../setup/model/shipment_model.dart';
 import '../../../../../ui.dart';
 
-class ShipmentListTile extends StatelessWidget with AppNavigationInstance {
+class ShipmentListTile extends StatelessWidget {
   final ShipmentModel shipment;
 
-  ShipmentListTile(this.shipment, {super.key});
+  const ShipmentListTile(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: ShipmentListTileTitle(shipment),
       trailing: ShipmentListTileTrailing(shipment),
-      onTap: () => navigate.toShipmentForm(id: shipment.id, canPop: true),
+      onTap: () => ShipmentFormPage.navigate(argument: shipment.id, canPop: true),
     );
   }
 }

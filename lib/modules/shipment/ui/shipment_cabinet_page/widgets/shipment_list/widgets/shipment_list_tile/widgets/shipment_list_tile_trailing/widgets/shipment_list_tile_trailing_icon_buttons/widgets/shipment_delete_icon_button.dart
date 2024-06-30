@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../../../../../../../app/ui/ui.dart';
-import '../../../../../../../../../../../content/setup/interfaces/i_shipment_service.dart';
-import '../../../../../../../../../../../content/setup/permissions.dart';
+import '../../../../../../../../../../../setup/interfaces/i_shipment_service.dart';
+import '../../../../../../../../../../../setup/permissions.dart';
 
 class ShipmentDeleteIconButton extends StatelessWidget {
   final ShipmentModel shipment;

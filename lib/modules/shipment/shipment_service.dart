@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../app/content/helpers/global_helper.dart';
-import 'content/setup/interfaces/i_shipment_business_logic.dart';
-import 'content/setup/interfaces/i_shipment_service.dart';
-import 'content/setup/permissions.dart';
+import 'setup/interfaces/i_shipment_business_logic.dart';
+import 'setup/interfaces/i_shipment_service.dart';
+import 'setup/permissions.dart';
 
 class ShipmentService extends GetxService with GlobalHelper implements IShipmentService {
   late final ShipmentPermissions _module = Get.find();

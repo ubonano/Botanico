@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
-import '../../shipment_business_logic.dart';
-import '../../shipment_service.dart';
-import '../model/via_cargo_api_repository.dart';
-import '../../shipment_repository.dart';
-import '../../ui/ui.dart';
+import '../shipment_business_logic.dart';
+import '../shipment_service.dart';
+import 'model/via_cargo_api_repository.dart';
+import '../shipment_repository.dart';
+import '../ui/ui.dart';
 import 'interfaces/i_via_cargo_api_repository.dart';
 import 'interfaces/i_shipment_business_logic.dart';
 import 'interfaces/i_shipment_repository.dart';

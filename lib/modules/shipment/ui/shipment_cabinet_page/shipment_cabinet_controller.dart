@@ -7,7 +7,7 @@ import '../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
 import '../../../app/content/helpers/paginated_list_helper.dart';
 import '../../../company/setup/interfaces/i_company_service.dart';
 import '../../../worker/content/setup/interfaces/i_worker_service.dart';
-import '../../content/setup/interfaces/i_shipment_service.dart';
+import '../../setup/interfaces/i_shipment_service.dart';
 
 class ShipmentCabinetController extends GetxController
     with PaginatedListHelper<ShipmentModel>, LifeCycleLoggingControllerHelper {

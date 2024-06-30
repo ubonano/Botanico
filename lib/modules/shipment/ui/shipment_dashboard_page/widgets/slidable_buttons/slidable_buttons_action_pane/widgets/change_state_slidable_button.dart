@@ -3,7 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../../app/ui/navigation.dart';
-import '../../../../../../content/setup/interfaces/i_shipment_service.dart';
+import '../../../../../../setup/interfaces/i_shipment_service.dart';
 
 class ChangeStateSlidableButton extends StatelessWidget with AppNavigationInstance {
   final ShipmentModel shipment;

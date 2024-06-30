@@ -1,3 +1,9 @@
+import 'package:botanico/modules/shipment/ui/shipment_cabinet_page/shipment_cabinet_page.dart';
+import 'package:botanico/modules/shipment/ui/shipment_dashboard_page/shipment_dashboard_page.dart';
+import 'package:get/get.dart';
+
+import 'shipment_form_page/shipment_form_page.dart';
+
 export 'shipment_dashboard_page/shipment_dashboard_page.dart';
 export 'shipment_dashboard_page/shipment_dashboard_controller.dart';
 export 'shipment_dashboard_page/widgets/layuots/data_widgets/description_widget.dart';
@@ -58,3 +64,9 @@ export 'shipment_cabinet_page/widgets/shipment_list/widgets/shipment_list_tile/s
 export 'shipment_cabinet_page/widgets/shipment_list/widgets/shipment_list_tile/widgets/shipment_list_tile_title.dart';
 export 'shipment_cabinet_page/widgets/shipment_list/widgets/shipment_list_tile/widgets/shipment_list_tile_trailing/shipment_list_tile_trailing.dart';
 export 'shipment_cabinet_page/widgets/shipment_list/widgets/shipment_list_tile/widgets/shipment_list_tile_trailing/widgets/shipment_list_tile_trailing_icon_buttons/shipment_list_tile_trailing_icon_buttons.dart';
+
+final List<GetPage> pages = [
+  ShipmentFormPage.page,
+  ShipmentCabinetPage.page,
+  ShipmentDashboardPage.page,
+];

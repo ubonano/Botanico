@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import '../../../../../../../app/ui/navigation.dart';
-import '../../../../../../content/model/shipment_model.dart';
+import '../../../../../../setup/model/shipment_model.dart';
+import '../../../../../ui.dart';
 
-class EditSlidableButton extends StatelessWidget with AppNavigationInstance {
+class EditSlidableButton extends StatelessWidget {
   final ShipmentModel shipment;
 
-  EditSlidableButton(this.shipment, {super.key});
+  const EditSlidableButton(this.shipment, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return SlidableAction(
-      onPressed: (context) => navigate.toShipmentForm(id: shipment.id, canPop: true),
+      onPressed: (context) => ShipmentFormPage.navigate(argument: shipment.id, canPop: true),
       backgroundColor: Colors.orange,
       foregroundColor: Colors.white,
       icon: Icons.edit,

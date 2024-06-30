@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../app/ui/navigation.dart';
 import '../../../app/ui/ui.dart';
+import '../../../authentication/ui/middlewares.dart';
+import '../../../worker/ui/middlewares.dart';
 import '../ui.dart';
 
 class ShipmentFormPage extends GetView<ShipmentFormController> {
   const ShipmentFormPage({super.key});
+
+  static navigate({String argument = '', bool canPop = false}) =>
+      Get.find<AppNavigation>().to(route, arguments: argument, canPop: canPop);
+
+  static const String route = '/shipment-form';
+
+  static GetPage get page => GetPage(
+        name: route,
+        page: () => const ShipmentFormPage(),
+        middlewares: [
+          AuthMiddleware(),
+          HasWorkerMiddleware(),
+        ],
+      );
 
   @override
   Widget build(BuildContext context) {

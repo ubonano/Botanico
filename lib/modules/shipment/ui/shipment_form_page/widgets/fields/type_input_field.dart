@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../app/content/helpers/validator_helper.dart';
-import '../../../../content/model/shipment_model.dart';
+import '../../../../setup/model/shipment_model.dart';
 import '../../../ui.dart';
 
 class TypeInputField extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../content/model/enums/shipment_state.dart';
+import '../../../../../../setup/model/enums/shipment_state.dart';
 
 class StateTag extends StatelessWidget {
   final ShipmentState state;

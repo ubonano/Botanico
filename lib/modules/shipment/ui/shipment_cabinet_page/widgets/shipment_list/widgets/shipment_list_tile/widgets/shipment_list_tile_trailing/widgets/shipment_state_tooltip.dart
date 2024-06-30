@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../../content/model/shipment_model.dart';
+import '../../../../../../../../../setup/model/shipment_model.dart';
 
 class ShipmentStateTooltip extends StatelessWidget {
   final ShipmentModel shipment;
