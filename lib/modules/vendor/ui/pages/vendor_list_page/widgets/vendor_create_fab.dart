@@ -18,7 +18,7 @@ class VendorCreateFAB extends StatelessWidget {
       permission: module.createKey,
       child: FloatingActionButton(
         key: key ?? const Key('VendorCreateFAB'),
-        onPressed: () => VendorListPage.navigate(canPop: true),
+        onPressed: () => VendorFormPage.navigate(canPop: true),
         child: const Icon(Icons.add),
       ),
     );
