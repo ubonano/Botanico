@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
-import '../../../app/ui/ui.dart';
-import '../../company_business_logic.dart';
-import '../../company_service.dart';
-import '../../company_repository.dart';
-import '../../ui/ui.dart';
+import '../../app/ui/ui.dart';
+import '../company_business_logic.dart';
+import '../company_service.dart';
+import '../company_repository.dart';
+import '../ui/ui.dart';
 import 'interfaces/i_company_business_logic.dart';
 import 'interfaces/i_company_repository.dart';
 import 'interfaces/i_company_service.dart';

@@ -6,7 +6,7 @@ import 'package:botanico/modules/authentication/ui/ui.dart' as Authentication;
 import 'package:botanico/modules/vendor/ui/navigation.dart' as Vendor;
 import 'package:botanico/modules/shipment/ui/navigation.dart' as Shipment;
 import 'package:botanico/modules/worker/ui/navigation.dart' as Worker;
-import 'package:botanico/modules/company/ui/navigation.dart' as Company;
+import 'package:botanico/modules/company/ui/ui.dart' as Company;
 
 class Pages {
   static final pages = [

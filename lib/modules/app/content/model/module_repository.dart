@@ -4,7 +4,7 @@ import '../../../accounting_account/setup/permissions.dart';
 import '../../../vendor/content/setup/permissions.dart';
 import '../../../shipment/content/setup/permissions.dart';
 import '../../../worker/content/setup/permissions.dart';
-import '../../../company/content/setup/permissions.dart';
+import '../../../company/setup/permissions.dart';
 
 class ModuleRepository {
   final modules$ = [

@@ -9,11 +9,10 @@ import '../../vendor/ui/navigation.dart';
 import '../../shipment/ui/navigation.dart';
 import '../../worker/ui/middlewares.dart';
 import '../../worker/ui/navigation.dart';
-import '../../company/ui/navigation.dart';
 import 'ui.dart';
 import '../content/helpers/log_helper.dart';
 
-class AppNavigation with CompanyNavigation, WorkerNavigation, VendorNavigation, ShipmentNavigation {
+class AppNavigation with WorkerNavigation, VendorNavigation, ShipmentNavigation {
   late final LogHelper _log = Get.find();
 
   static const INIT_PAGE = SignInPage.route;

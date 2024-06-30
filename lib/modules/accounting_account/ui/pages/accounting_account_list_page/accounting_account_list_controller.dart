@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
 import '../../../../app/content/helpers/paginated_list_helper.dart';
-import '../../../../company/content/setup/interfaces/i_company_service.dart';
+import '../../../../company/setup/interfaces/i_company_service.dart';
 import '../../../../worker/content/setup/interfaces/i_worker_service.dart';
 import '../../../setup/interfaces/i_accounting_account_service.dart';
 

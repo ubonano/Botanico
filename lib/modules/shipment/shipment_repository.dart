@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../app/content/setup/fields_key.dart';
-import '../company/content/setup/interfaces/i_company_business_logic.dart';
+import '../company/setup/interfaces/i_company_business_logic.dart';
 import 'content/setup/interfaces/i_shipment_repository.dart';
 
 class ShipmentRepository implements IShipmentRepository {

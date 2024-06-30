@@ -5,7 +5,7 @@ import '../../../app/content/setup/fields_key.dart';
 import '../../../app/content/helpers/form_helper.dart';
 import '../../../app/content/helpers/global_helper.dart';
 import '../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
-import '../../content/setup/interfaces/i_company_service.dart';
+import '../../setup/interfaces/i_company_service.dart';
 
 class CompanyFormController extends GetxController
     with FormHelper<CompanyModel>, GlobalHelper, LifeCycleLoggingControllerHelper {

@@ -1,6 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:botanico/modules/company/content/tests/flows/company_create_fill_data_flow.dart';
+import 'package:botanico/modules/company/setup/tests/flows/company_create_fill_data_flow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

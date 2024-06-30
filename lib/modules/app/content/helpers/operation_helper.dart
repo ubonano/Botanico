@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../worker/content/setup/exceptions/worker_not_found_exception.dart';
 import '../../../worker/content/setup/interfaces/i_worker_service.dart';
-import '../../../company/content/setup/exceptions/company_not_found_exception.dart';
-import '../../../company/content/setup/interfaces/i_company_service.dart';
+import '../../../company/setup/exceptions/company_not_found_exception.dart';
+import '../../../company/setup/interfaces/i_company_service.dart';
 import 'global_helper.dart';
 
 class OperationHelper with GlobalHelper {

@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
 import '../app/content/helpers/global_helper.dart';
-import 'content/setup/interfaces/i_company_business_logic.dart';
-import 'content/setup/interfaces/i_company_service.dart';
-import 'content/setup/permissions.dart';
+import 'setup/interfaces/i_company_business_logic.dart';
+import 'setup/interfaces/i_company_service.dart';
+import 'setup/permissions.dart';
 
 class CompanyService extends GetxService with GlobalHelper implements ICompanyService {
   late final CompanyPermissions _module = Get.find();

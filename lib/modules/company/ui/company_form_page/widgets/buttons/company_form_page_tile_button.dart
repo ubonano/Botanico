@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../app/ui/navigation.dart';
 import '../../../../../app/ui/ui.dart';
-import '../../../../content/setup/interfaces/i_company_service.dart';
-import '../../../../content/setup/permissions.dart';
+import '../../../../setup/interfaces/i_company_service.dart';
+import '../../../../setup/permissions.dart';
+import '../../../ui.dart';
 
-class CompanyFormPageTileButton extends StatelessWidget with AppNavigationInstance {
-  CompanyFormPageTileButton({super.key});
+class CompanyFormPageTileButton extends StatelessWidget {
+  const CompanyFormPageTileButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class CompanyFormPageTileButton extends StatelessWidget with AppNavigationInstan
       child: ListTile(
         leading: const Icon(Icons.business),
         title: Text(loggedCompany?.name ?? ''),
-        onTap: () => navigate.toCompanyForm(id: loggedCompany?.uid ?? '', canPop: true),
+        onTap: () => CompanyFormPage.navigate(argument: loggedCompany?.uid ?? '', canPop: true),
       ),
     );
   }

@@ -1,5 +1,5 @@
-import '../../model/company_model.dart';
-export '../../model/company_model.dart';
+import '../model/company_model.dart';
+export '../model/company_model.dart';
 
 abstract class ICompanyService {
   CompanyModel? get loggedCompany$;
