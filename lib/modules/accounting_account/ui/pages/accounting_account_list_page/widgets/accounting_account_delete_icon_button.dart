@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/ui/ui.dart';
-import '../../../content/setup/interfaces/i_accounting_account_service.dart';
-import '../../../content/setup/permissions.dart';
+import '../../../../../app/ui/ui.dart';
+import '../../../../content/setup/interfaces/i_accounting_account_service.dart';
+import '../../../../content/setup/permissions.dart';
 
 class AccountingAccountDeleteIconButton extends StatelessWidget {
   final AccountingAccountModel accountingAccount;

@@ -2,7 +2,6 @@
 
 import 'package:get/get.dart';
 
-import '../../accounting_account/ui/navigation.dart';
 import '../../authentication/content/setup/middlewares.dart';
 import '../../authentication/ui/navigation.dart';
 import '../../vendor/ui/navigation.dart';
@@ -14,13 +13,7 @@ import 'ui.dart';
 import '../content/helpers/log_helper.dart';
 
 class AppNavigation
-    with
-        AuthenticationNavigate,
-        CompanyNavigation,
-        WorkerNavigation,
-        VendorNavigation,
-        AccountingAccountNavigation,
-        ShipmentNavigation {
+    with AuthenticationNavigate, CompanyNavigation, WorkerNavigation, VendorNavigation, ShipmentNavigation {
   late final LogHelper _log = Get.find();
 
   static const INIT_PAGE = AuthenticationNavigate.SIGN_IN;

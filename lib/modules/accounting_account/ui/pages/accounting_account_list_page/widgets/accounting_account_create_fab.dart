@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/ui/navigation.dart';
+import '../../../../../app/ui/ui.dart';
+import '../../../../content/setup/permissions.dart';
+import '../../../ui.dart';
 
-import '../../../../app/ui/ui.dart';
-import '../../../content/setup/permissions.dart';
-
-class AccountingAccountCreateFAB extends StatelessWidget with AppNavigationInstance {
-  AccountingAccountCreateFAB({super.key});
+class AccountingAccountCreateFAB extends StatelessWidget {
+  const AccountingAccountCreateFAB({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class AccountingAccountCreateFAB extends StatelessWidget with AppNavigationInsta
       permission: module.createKey,
       child: FloatingActionButton(
         key: key ?? const Key('AccountingAccountCreateFAB'),
-        onPressed: () => navigate.toAccountingAccountForm(canPop: true),
+        onPressed: () => AccountingAccountFormPage.navigate(canPop: true),
         child: const Icon(Icons.add),
       ),
     );

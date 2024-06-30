@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/ui/navigation.dart';
+import '../../../../../app/ui/ui.dart';
+import '../../../../content/setup/permissions.dart';
+import '../../../ui.dart';
 
-import '../../../../app/ui/ui.dart';
-import '../../../content/setup/permissions.dart';
-
-class AccountingAccountListPageTileButton extends StatelessWidget with AppNavigationInstance {
-  AccountingAccountListPageTileButton({super.key});
+class AccountingAccountListPageTileButton extends StatelessWidget {
+  const AccountingAccountListPageTileButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class AccountingAccountListPageTileButton extends StatelessWidget with AppNaviga
       child: ListTile(
         leading: const Icon(Icons.account_balance),
         title: const Text('Cuentas Contables'),
-        onTap: navigate.toAccountingAccountList,
+        onTap: () => AccountingAccountListPage.navigate(),
       ),
     );
   }

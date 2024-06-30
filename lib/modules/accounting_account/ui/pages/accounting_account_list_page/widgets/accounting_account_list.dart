@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/ui/navigation.dart';
-import '../../../content/model/accounting_account_model.dart';
-import '../../ui.dart';
+import '../../../../content/model/accounting_account_model.dart';
+import '../../../ui.dart';
 
-class AccountingAccountList extends GetView<AccountingAccountListController> with AppNavigationInstance {
-  AccountingAccountList({super.key});
+class AccountingAccountList extends GetView<AccountingAccountListController> {
+  const AccountingAccountList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class AccountingAccountList extends GetView<AccountingAccountListController> wit
             return ListTile(
               title: Text(accountingAccount.name),
               trailing: AccountingAccountListTileTrailingIconButtons(accountingAccount),
-              onTap: () => navigate.toAccountingAccountForm(id: accountingAccount.uid, canPop: true),
+              onTap: () => AccountingAccountFormPage.navigate(argument: accountingAccount.uid, canPop: true),
             );
           },
         );
