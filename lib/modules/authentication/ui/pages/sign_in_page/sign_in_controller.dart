@@ -43,7 +43,7 @@ class SignInController extends GetxController with GlobalHelper, FormHelper, Lif
       return;
     }
 
-    CompanyModel? company = await _companyService.fetchLoggedCompany();
+    CompanyModel? company = await _companyService.fetchCurrentCompany();
 
     if (company != null) {
       HomePage.navigate();

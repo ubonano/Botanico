@@ -15,8 +15,7 @@ class LoadingPage extends GetView<LoadingController> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<LoadingController>();
-    controller.fetchCurrentWorker();
+    controller.fetchData();
 
     return CustomScaffold(
       key: key ?? const Key('LoadingPage'),

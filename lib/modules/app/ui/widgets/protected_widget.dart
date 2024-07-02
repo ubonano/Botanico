@@ -17,7 +17,7 @@ class ProtectedWidget extends StatelessWidget {
       () {
         final companyService = Get.find<ICompanyService>();
         final workerService = Get.find<IWorkerService>();
-        final hasModuleActive = companyService.loggedCompany$?.hasModuleActive(module) == true;
+        final hasModuleActive = companyService.currentCompany$?.hasModuleActive(module) == true;
         final hasPermission = permission == null || workerService.currentWorker$?.hasPermission(permission!) == true;
 
         return hasModuleActive && hasPermission ? child : const SizedBox.shrink();

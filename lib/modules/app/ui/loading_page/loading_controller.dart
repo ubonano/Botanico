@@ -15,9 +15,9 @@ class LoadingController extends GetxController with LifeCycleLoggingControllerHe
     super.onInit();
   }
 
-  Future<void> fetchCurrentWorker() async {
+  Future<void> fetchData() async {
     final worker = await Get.find<IWorkerService>().fetchCurrentWorker();
-    await Get.find<ICompanyService>().fetchLoggedCompany();
+    await Get.find<ICompanyService>().fetchCurrentCompany();
 
     if (worker == null) {
       WorkerFormPage.navigate();

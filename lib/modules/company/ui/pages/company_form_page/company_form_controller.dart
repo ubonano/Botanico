@@ -46,7 +46,7 @@ class CompanyFormController extends GetxController
       isUpdateMode ? await _companyService.update(buildModel()) : await _companyService.create(buildModel());
 
       await _workerService.fetchCurrentWorker();
-      await _companyService.fetchLoggedCompany();
+      await _companyService.fetchCurrentCompany();
 
       HomePage.navigate();
     } catch (e) {
@@ -70,7 +70,7 @@ class CompanyFormController extends GetxController
       modelForUpdate!.toggleModule(module);
       await _companyService.update(modelForUpdate!);
 
-      await _companyService.fetchLoggedCompany();
+      await _companyService.fetchCurrentCompany();
     }
   }
 }

@@ -22,6 +22,7 @@ class WorkerFormController extends GetxController
     try {
       await _workerService.create(buildModel());
       await _workerService.fetchCurrentWorker();
+
       LobbyPage.navigate();
     } catch (e) {
       logTag;

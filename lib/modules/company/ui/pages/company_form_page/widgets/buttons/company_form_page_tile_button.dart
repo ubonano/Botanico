@@ -11,7 +11,7 @@ class CompanyFormPageTileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loggedCompany = Get.find<ICompanyService>().loggedCompany$;
+    final loggedCompany = Get.find<ICompanyService>().currentCompany$;
 
     late final CompanyPermissions module = Get.find();
 

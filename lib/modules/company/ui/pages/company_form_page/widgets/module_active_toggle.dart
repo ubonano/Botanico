@@ -15,7 +15,7 @@ class ModuleActiveToggle extends GetView<CompanyFormController> {
       () {
         return CheckboxListTile(
           title: Text(module.name),
-          value: Get.find<ICompanyService>().loggedCompany$?.hasModuleActive(module),
+          value: Get.find<ICompanyService>().currentCompany$?.hasModuleActive(module),
           onChanged: (bool? value) => controller.toggleModule(module),
         );
       },

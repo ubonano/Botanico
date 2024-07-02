@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../worker/content/setup/exceptions/worker_not_found_exception.dart';
 import '../../../worker/content/setup/interfaces/i_worker_service.dart';
-import '../../../company/setup/exceptions/company_not_found_exception.dart';
 import '../../../company/setup/interfaces/i_company_service.dart';
 import 'global_helper.dart';
 
@@ -26,7 +25,7 @@ class OperationHelper with GlobalHelper {
     bool inTransaction = false,
   }) async {
     T? result;
-    if (module != null && !await _hasModuleActive(module)) {
+    if (module != null && !_hasModuleActive(module)) {
       throw Exception('module-not-active');
     }
 
@@ -72,7 +71,7 @@ class OperationHelper with GlobalHelper {
   }) async {
     try {
       log.info("Executing $operationName.");
-      if (permissionKey.isNotEmpty && await _hasPermission(permissionKey)) throw Exception('permission-denied');
+      if (permissionKey.isNotEmpty && _hasPermission(permissionKey)) throw Exception('permission-denied');
 
       T? result = await operation();
 
@@ -82,7 +81,7 @@ class OperationHelper with GlobalHelper {
       onSuccess?.call();
       return result;
     } catch (e) {
-      String finalErrorMessage = errorMessage ?? _getErrorMessage(e); // Usar errorMessage si está disponible
+      String finalErrorMessage = errorMessage ?? _getErrorMessage(e);
       if (showErrorMessageBySnackbar) snackbar.error(finalErrorMessage);
       log.error("$operationName fallida: $finalErrorMessage", e);
 
@@ -92,19 +91,10 @@ class OperationHelper with GlobalHelper {
     }
   }
 
-  Future<bool> _hasModuleActive(IPermissionsStructure module) async {
-    final company = await _companyService.fetchLoggedCompany();
-    if (company == null) throw CompanyNotFoundException();
-    return company.hasModuleActive(module);
-  }
+  bool _hasModuleActive(IPermissionsStructure module) => _companyService.currentCompany$!.hasModuleActive(module);
 
-  Future<bool> _hasPermission(String permissionKey) async {
-    final worker = await _workerService.fetchCurrentWorker();
-
-    if (worker == null) throw WorkerNotFoundException();
-
-    return permissionKey.isNotEmpty && !worker.hasPermission(permissionKey);
-  }
+  bool _hasPermission(String permissionKey) =>
+      permissionKey.isNotEmpty && !_workerService.currentWorker$!.hasPermission(permissionKey);
 }
 
 String _getErrorMessage(Object e) {

@@ -10,7 +10,7 @@ class CompanyService extends GetxService with GlobalHelper implements ICompanySe
   late final ICompanyBusinessLogic _companyBusinessLogic = Get.find();
 
   @override
-  CompanyModel? get loggedCompany$ => _companyBusinessLogic.currentCompany$;
+  CompanyModel? get currentCompany$ => _companyBusinessLogic.currentCompany$;
 
   @override
   Future<CompanyModel?> get(String id) async => await operation.perform(
@@ -34,7 +34,7 @@ class CompanyService extends GetxService with GlobalHelper implements ICompanySe
       );
 
   @override
-  Future<CompanyModel?> fetchLoggedCompany() async => await operation.perform(
+  Future<CompanyModel?> fetchCurrentCompany() async => await operation.perform(
         operationName: 'Fetch logged company',
         operation: (_) async => await _companyBusinessLogic.fetchLoggedCompany(),
       );
