@@ -11,7 +11,7 @@ class HasWorkerMiddleware extends GetMiddleware {
     final IWorkerService workerService = Get.find();
 
     if (workerService.currentWorker$ == null) {
-      return const RouteSettings(name: WorkerFormPage.route);
+      return const RouteSettings(name: LoadingPage.route);
     }
     return null;
   }

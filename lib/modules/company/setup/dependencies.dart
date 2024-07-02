@@ -18,6 +18,5 @@ void setupDependencies() {
   Get.put<ICompanyService>(CompanyService(), permanent: true);
 
   Get.lazyPut<CustomDrawerController>(() => CustomDrawerController(), fenix: true);
-  Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
   Get.lazyPut<CompanyFormController>(() => CompanyFormController(), fenix: true);
 }

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import 'home_page/home_page.dart';
+import 'loading_page/loading_page.dart';
 
 export 'navigation.dart';
 export '../app.dart';
@@ -13,9 +14,12 @@ export 'widgets/custom_input_field.dart';
 export 'widgets/custom_scaffold.dart';
 export 'home_page/home_controller.dart';
 export 'home_page/home_page.dart';
+export 'loading_page/loading_page.dart';
+export 'loading_page/loading_controller.dart';
 export 'home_page/widgets/home_page_tile_button.dart';
 export 'widgets/protected_widget.dart';
 
 final List<GetPage> pages = [
   HomePage.page,
+  LoadingPage.page,
 ];
