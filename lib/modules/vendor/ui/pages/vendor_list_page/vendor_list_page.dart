@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../app/ui/navigation.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../../authentication/ui/middlewares.dart';
 import '../../../../worker/ui/middlewares.dart';
@@ -29,7 +28,7 @@ class VendorListPage extends GetView<VendorListController> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       key: key ?? const Key('VendorListPage'),
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
       title: 'Proveedores',
       body: const VendorList(),
       floatingActionButton: const VendorCreateFAB(),
