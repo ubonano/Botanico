@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../app/content/model/permission_model.dart';
+import '../../../../../../app/content/model/key_model.dart';
 import '../../../../ui.dart';
 
 class WorkerPermissionToggle extends GetView<WorkerPermissionToggleController> {
-  final PermissionModel permission;
+  final KeyModel permission;
 
   const WorkerPermissionToggle(this.permission, {super.key});
 
@@ -14,7 +14,7 @@ class WorkerPermissionToggle extends GetView<WorkerPermissionToggleController> {
     return Obx(
       () {
         return CheckboxListTile(
-          title: Text(permission.name),
+          title: Text(permission.label),
           value: controller.worker$?.permissions[permission.id] ?? false,
           onChanged: (bool? value) => controller.togglePermission(permission.id),
         );

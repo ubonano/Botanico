@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../app/ui/ui.dart';
-import '../../../../../setup/permissions.dart';
+import '../../../../../setup/module.dart';
 import '../../../../ui.dart';
 
 class CompanyEnabledFormFields extends GetView<CompanyFormController> {
@@ -10,11 +10,11 @@ class CompanyEnabledFormFields extends GetView<CompanyFormController> {
 
   @override
   Widget build(BuildContext context) {
-    late final CompanyPermissions module = Get.find();
+    late final CompanyModule module = Get.find();
 
     return ProtectedWidget(
       module: module,
-      permission: module.updateKey,
+      permission: CompanyKeys.update.id,
       child: IconButton(
         key: key ?? const Key('CompanyEnabledFormFields'),
         icon: const Icon(Icons.edit),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
-import '../../../../setup/permissions.dart';
+import '../../../../setup/module.dart';
 import '../../../ui.dart';
 
 class ShipmentEnabledFormFields extends GetView<ShipmentFormController> {
@@ -10,11 +10,11 @@ class ShipmentEnabledFormFields extends GetView<ShipmentFormController> {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<ShipmentPermissions>();
+    final module = Get.find<ShipmentModule>();
 
     return ProtectedWidget(
       module: module,
-      permission: module.updateKey,
+      permission: ShipmentKeys.update.id,
       child: IconButton(
         key: key ?? const Key('ShipmentEnabledFormFields'),
         icon: const Icon(Icons.edit),

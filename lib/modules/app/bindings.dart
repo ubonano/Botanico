@@ -2,23 +2,23 @@
 
 import 'package:get/get.dart';
 
-import 'package:botanico/modules/app/content/setup/dependencies.dart' as app;
-import 'package:botanico/modules/authentication/setup/dependencies.dart' as auth;
-import 'package:botanico/modules/company/setup/dependencies.dart' as company;
-import 'package:botanico/modules/worker/content/setup/dependencies.dart' as worker;
-import 'package:botanico/modules/vendor/setup/dependencies.dart' as vendor;
-import 'package:botanico/modules/accounting_account/setup/dependencies.dart' as accountingAccount;
-import 'package:botanico/modules/shipment/setup/dependencies.dart' as shipment;
+import 'package:botanico/modules/app/content/setup/module.dart';
+import 'package:botanico/modules/authentication/setup/module.dart';
+import 'package:botanico/modules/company/setup/module.dart';
+import 'package:botanico/modules/worker/content/setup/module.dart';
+import 'package:botanico/modules/vendor/setup/module.dart';
+import 'package:botanico/modules/accounting_account/setup/module.dart';
+import 'package:botanico/modules/shipment/setup/module.dart';
 
 class AppBindings extends Bindings {
   @override
   void dependencies() {
-    app.setupDependencies();
-    auth.setupDependencies();
-    company.setupDependencies();
-    worker.setupDependencies();
-    vendor.setupDependencies();
-    accountingAccount.setupDependencies();
-    shipment.setupDependencies();
+    ApplicationModule.dependencies();
+    AuthenticationModule.dependencies();
+    CompanyModule.dependencies();
+    WorkerModule.dependencies();
+    VendorModule.dependencies();
+    AccountingAccountModule.dependencies();
+    ShipmentModule.dependencies();
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
-import '../../../../content/setup/permissions.dart';
+import '../../../../content/setup/module.dart';
 import '../../../ui.dart';
 
 class WorkerListPageTileButton extends StatelessWidget {
@@ -10,12 +10,12 @@ class WorkerListPageTileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<WorkerPermissions>();
+    final module = Get.find<WorkerModule>();
 
     return ProtectedWidget(
       key: key ?? const Key('WorkerListPageTileButton'),
       module: module,
-      permission: module.viewKey,
+      permission: WorkerKeys.view.id,
       child: const ListTile(
         leading: Icon(Icons.work),
         title: Text('Trabajadores'),

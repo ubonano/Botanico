@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../app/ui/ui.dart';
 import '../../../../setup/model/vendor_model.dart';
-import '../../../../setup/permissions.dart';
+import '../../../../setup/module.dart';
 import '../../../ui.dart';
 
 class VendorUpdateIconButton extends StatelessWidget {
@@ -13,11 +13,11 @@ class VendorUpdateIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<VendorPermissions>();
+    final module = Get.find<VendorModule>();
 
     return ProtectedWidget(
       module: module,
-      permission: module.updateKey,
+      permission: VendorKeys.update.id,
       child: IconButton(
         key: key ?? const Key('VendorUpdateIconButton'),
         icon: const Icon(Icons.edit),

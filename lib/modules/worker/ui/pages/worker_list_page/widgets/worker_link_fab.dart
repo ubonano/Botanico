@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
-import '../../../../content/setup/permissions.dart';
+import '../../../../content/setup/module.dart';
 import '../../../ui.dart';
 
 class WorkerLinkFAB extends StatelessWidget {
@@ -10,11 +10,11 @@ class WorkerLinkFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<WorkerPermissions>();
+    final module = Get.find<WorkerModule>();
 
     return ProtectedWidget(
       module: module,
-      permission: module.linkKey,
+      permission: WorkerKeys.link.id,
       child: FloatingActionButton(
         key: key ?? const Key('WorkerLinkFAB'),
         onPressed: () => WorkerLinkPage.navigate(canPop: true),

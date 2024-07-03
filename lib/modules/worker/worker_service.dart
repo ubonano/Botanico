@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import '../app/content/helpers/global_helper.dart';
 import 'content/setup/interfaces/i_worker_business_logic.dart';
 import 'content/setup/interfaces/i_worker_service.dart';
-import 'content/setup/permissions.dart';
+import 'content/setup/module.dart';
 
 class WorkerService with GlobalHelper implements IWorkerService {
-  late final WorkerPermissions _module = Get.find();
+  late final WorkerModule _module = Get.find();
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   @override
@@ -27,7 +27,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   Future<WorkerModel?> get(String id) async => await operation.perform(
         operationName: 'Get worker $id',
         module: _module,
-        permissionKey: _module.viewKey,
+        permissionKey: WorkerKeys.view.id,
         operation: (_) async => await _workerBusinessLogic.get(id),
       );
 
@@ -49,7 +49,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   Future<void> link(String id) async => await operation.perform(
         operationName: 'Link worker $id',
         module: _module,
-        permissionKey: _module.linkKey,
+        permissionKey: WorkerKeys.link.id,
         inTransaction: true,
         operation: (txn) async => await _workerBusinessLogic.link(id, txn),
       );
@@ -58,7 +58,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   Future<void> unlink(String id) async => await operation.perform(
         operationName: 'Unlink worker $id',
         module: _module,
-        permissionKey: _module.unlinkKey,
+        permissionKey: WorkerKeys.unlink.id,
         inTransaction: true,
         operation: (txn) async => await _workerBusinessLogic.unlink(id, txn),
       );

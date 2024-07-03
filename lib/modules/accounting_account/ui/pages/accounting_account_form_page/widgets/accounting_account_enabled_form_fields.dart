@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
-import '../../../../setup/permissions.dart';
+import '../../../../setup/module.dart';
 import '../../../ui.dart';
 
 class AccountingAccountEnabledFormFields extends GetView<AccountingAccountFormController> {
@@ -10,11 +10,11 @@ class AccountingAccountEnabledFormFields extends GetView<AccountingAccountFormCo
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<AccountingAccountPermissions>();
+    final module = Get.find<AccountingAccountModule>();
 
     return ProtectedWidget(
       module: module,
-      permission: module.updateKey,
+      permission: AccountingAccountKeys.update.id,
       child: IconButton(
         key: key ?? const Key('AccountingAccountEnabledFormFields'),
         icon: const Icon(Icons.edit),

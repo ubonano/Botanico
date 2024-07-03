@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../../authentication/ui/middlewares.dart';
 import '../../../../worker/ui/middlewares.dart';
+import '../../../setup/module.dart';
 import '../../ui.dart';
 
 class AccountingAccountListPage extends GetView<AccountingAccountListController> {
@@ -21,6 +22,7 @@ class AccountingAccountListPage extends GetView<AccountingAccountListController>
           AuthMiddleware(),
           HasWorkerMiddleware(),
           IsEmployedOrOwnerMiddleware(),
+          AccessMiddleware(AccountingAccountModule.moduleId, AccountingAccountKeys.view.id),
         ],
       );
 

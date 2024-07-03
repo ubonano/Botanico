@@ -6,6 +6,7 @@ import '../../../../authentication/ui/middlewares.dart';
 import '../../../../company/ui/ui.dart';
 import '../../../../vendor/ui/ui.dart';
 import '../../../../worker/ui/middlewares.dart';
+import '../../../setup/module.dart';
 import '../../ui.dart';
 
 class AccountingAccountFormPage extends GetView<AccountingAccountFormController> {
@@ -23,6 +24,7 @@ class AccountingAccountFormPage extends GetView<AccountingAccountFormController>
           AuthMiddleware(),
           HasWorkerMiddleware(),
           IsEmployedOrOwnerMiddleware(),
+          AccessMiddleware(AccountingAccountModule.moduleId, AccountingAccountKeys.create.id),
         ],
       );
 

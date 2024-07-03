@@ -1,3 +1,5 @@
+// ver tema de permisos, el la pantalla de crear... Si le pongo de creacion, el que actualiza no va  apoder
+
 // Middlewares para permisos y modulos
 
 // Refactor de los widgets de shipmet

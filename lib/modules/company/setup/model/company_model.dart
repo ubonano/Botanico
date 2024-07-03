@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../app/content/setup/interfaces/i_permissions_structure.dart';
-export '../../../app/content/setup/interfaces/i_permissions_structure.dart';
+import '../../../app/content/setup/interfaces/i_module_structure.dart';
+export '../../../app/content/setup/interfaces/i_module_structure.dart';
 
 class CompanyModel {
   static const String collectionName = 'companies';
@@ -28,10 +28,13 @@ class CompanyModel {
     this.activeModules = const {},
   });
 
-  bool hasModuleActive(IPermissionsStructure module) =>
+  @Deprecated('Use hasModuleActive(String moduleId) instead')
+  bool hasModuleActiveDeprecated(IModuleStructure module) =>
       activeModules.containsKey(module.id) && activeModules[module.id] == true;
 
-  void toggleModule(IPermissionsStructure module) {
+  bool hasModuleActive(String moduleId) => activeModules.containsKey(moduleId) && activeModules[moduleId] == true;
+
+  void toggleModule(IModuleStructure module) {
     if (activeModules.containsKey(module.id) && activeModules[module.id] == true) {
       activeModules.remove(module.id);
     } else {

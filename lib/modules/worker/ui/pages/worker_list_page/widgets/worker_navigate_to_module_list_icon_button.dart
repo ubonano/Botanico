@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
 import '../../../../content/model/worker_model.dart';
-import '../../../../content/setup/permissions.dart';
+import '../../../../content/setup/module.dart';
 import '../../../ui.dart';
 
 class WorkerNavigateToModuleListIconButton extends StatelessWidget {
@@ -13,10 +13,10 @@ class WorkerNavigateToModuleListIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<WorkerPermissions>();
+    final module = Get.find<WorkerModule>();
     return ProtectedWidget(
       module: module,
-      permission: module.managePermissionsKey,
+      permission: WorkerKeys.managePermissions.id,
       child: IconButton(
         key: key ?? const Key('WorkerNavigateToModuleListIconButton'),
         icon: const Icon(Icons.security),

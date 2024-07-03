@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
-import '../../../../setup/permissions.dart';
+import '../../../../setup/module.dart';
 import '../../../ui.dart';
 
 class AccountingAccountListPageTileButton extends StatelessWidget {
@@ -10,16 +10,16 @@ class AccountingAccountListPageTileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<AccountingAccountPermissions>();
+    final module = Get.find<AccountingAccountModule>();
 
     return ProtectedWidget(
       key: key ?? const Key('AccountingAccountListPageTileButton'),
       module: module,
-      permission: module.viewKey,
-      child: ListTile(
-        leading: const Icon(Icons.account_balance),
-        title: const Text('Cuentas Contables'),
-        onTap: () => AccountingAccountListPage.navigate(),
+      permission: AccountingAccountKeys.view.id,
+      child: const ListTile(
+        leading: Icon(Icons.account_balance),
+        title: Text('Cuentas Contables'),
+        onTap: AccountingAccountListPage.navigate,
       ),
     );
   }

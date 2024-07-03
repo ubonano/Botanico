@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
 import '../../../../setup/interfaces/i_vendor_service.dart';
-import '../../../../setup/permissions.dart';
+import '../../../../setup/module.dart';
 
 class VendorDeleteIconButton extends StatelessWidget {
   final VendorModel vendor;
@@ -12,11 +12,11 @@ class VendorDeleteIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<VendorPermissions>();
+    final module = Get.find<VendorModule>();
 
     return ProtectedWidget(
       module: module,
-      permission: module.deleteKey,
+      permission: VendorKeys.delete.id,
       child: IconButton(
         key: key ?? const Key('VendorDeleteIconButton'),
         icon: const Icon(Icons.delete),

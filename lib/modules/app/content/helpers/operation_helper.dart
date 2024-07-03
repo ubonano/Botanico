@@ -16,7 +16,7 @@ class OperationHelper with GlobalHelper {
     required Future<T?> Function(Transaction? txn) operation,
     String operationName = "Operation",
     String permissionKey = '',
-    IPermissionsStructure? module,
+    IModuleStructure? module,
     String successMessage = '',
     String? errorMessage,
     bool showErrorMessageBySnackbar = true,
@@ -25,9 +25,11 @@ class OperationHelper with GlobalHelper {
     bool inTransaction = false,
   }) async {
     T? result;
-    if (module != null && !_hasModuleActive(module)) {
+    if (module != null && !_hasModuleActive(module.id)) {
       throw Exception('module-not-active');
     }
+
+    if (permissionKey.isNotEmpty && _hasPermission(permissionKey)) throw Exception('permission-denied');
 
     if (inTransaction) {
       result = await _firestore.runTransaction(
@@ -35,7 +37,6 @@ class OperationHelper with GlobalHelper {
           return await _executeWithHandling(
             operation: () async => await operation(txn),
             operationName: operationName,
-            permissionKey: permissionKey,
             successMessage: successMessage,
             errorMessage: errorMessage,
             showErrorMessageBySnackbar: showErrorMessageBySnackbar,
@@ -48,7 +49,6 @@ class OperationHelper with GlobalHelper {
       result = await _executeWithHandling<T>(
         operation: () async => await operation(null),
         operationName: operationName,
-        permissionKey: permissionKey,
         successMessage: successMessage,
         errorMessage: errorMessage,
         showErrorMessageBySnackbar: showErrorMessageBySnackbar,
@@ -62,7 +62,6 @@ class OperationHelper with GlobalHelper {
   Future<T?> _executeWithHandling<T>({
     required Future<T?> Function() operation,
     String operationName = "Operation",
-    String permissionKey = '',
     String successMessage = '',
     String? errorMessage,
     bool showErrorMessageBySnackbar = true,
@@ -71,7 +70,6 @@ class OperationHelper with GlobalHelper {
   }) async {
     try {
       log.info("Executing $operationName.");
-      if (permissionKey.isNotEmpty && _hasPermission(permissionKey)) throw Exception('permission-denied');
 
       T? result = await operation();
 
@@ -91,7 +89,7 @@ class OperationHelper with GlobalHelper {
     }
   }
 
-  bool _hasModuleActive(IPermissionsStructure module) => _companyService.currentCompany$!.hasModuleActive(module);
+  bool _hasModuleActive(String moduleId) => _companyService.currentCompany$!.hasModuleActive(moduleId);
 
   bool _hasPermission(String permissionKey) =>
       permissionKey.isNotEmpty && !_workerService.currentWorker$!.hasPermission(permissionKey);

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
 import '../../../../setup/interfaces/i_accounting_account_service.dart';
-import '../../../../setup/permissions.dart';
+import '../../../../setup/module.dart';
 
 class AccountingAccountDeleteIconButton extends StatelessWidget {
   final AccountingAccountModel accountingAccount;
@@ -12,11 +12,11 @@ class AccountingAccountDeleteIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<AccountingAccountPermissions>();
+    final module = Get.find<AccountingAccountModule>();
 
     return ProtectedWidget(
       module: module,
-      permission: module.deleteKey,
+      permission: AccountingAccountKeys.delete.id,
       child: IconButton(
         key: key ?? const Key('AccountingAccountDeleteIconButton'),
         icon: const Icon(Icons.delete),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
-import '../../../../setup/permissions.dart';
+import '../../../../setup/module.dart';
 import '../../../ui.dart';
 
 class VendorCreateFAB extends StatelessWidget {
@@ -11,11 +11,11 @@ class VendorCreateFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<VendorPermissions>();
+    final module = Get.find<VendorModule>();
 
     return ProtectedWidget(
       module: module,
-      permission: module.createKey,
+      permission: VendorKeys.create.id,
       child: FloatingActionButton(
         key: key ?? const Key('VendorCreateFAB'),
         onPressed: () => VendorFormPage.navigate(canPop: true),

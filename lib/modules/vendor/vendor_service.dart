@@ -5,17 +5,17 @@ import 'package:get/get.dart';
 import '../app/content/helpers/global_helper.dart';
 import 'setup/interfaces/i_vendor_business_logic.dart';
 import 'setup/interfaces/i_vendor_service.dart';
-import 'setup/permissions.dart';
+import 'setup/module.dart';
 
 class VendorService extends GetxService with GlobalHelper implements IVendorService {
-  late final VendorPermissions _module = Get.find();
+  late final VendorModule _module = Get.find();
   late final IVendorBusinessLogic _vendorBusinessLogic = Get.find();
 
   @override
   Future<VendorModel?> get(String id) async => await operation.perform(
         operationName: 'Get vendor $id',
         module: _module,
-        permissionKey: _module.viewKey,
+        permissionKey: VendorKeys.view.id,
         operation: (_) async => await _vendorBusinessLogic.get(id),
       );
 
@@ -23,7 +23,7 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   Future<void> create(VendorModel vendor) async => await operation.perform(
         operationName: 'Create vendor ${vendor.uid}',
         module: _module,
-        permissionKey: _module.createKey,
+        permissionKey: VendorKeys.create.id,
         operation: (_) async => await _vendorBusinessLogic.create(vendor),
       );
 
@@ -31,7 +31,7 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   Future<void> update(VendorModel vendor) async => await operation.perform(
         operationName: 'Update vendor ${vendor.uid}',
         module: _module,
-        permissionKey: _module.updateKey,
+        permissionKey: VendorKeys.update.id,
         operation: (_) async => await _vendorBusinessLogic.update(vendor),
       );
 
@@ -39,7 +39,7 @@ class VendorService extends GetxService with GlobalHelper implements IVendorServ
   Future<void> delete(VendorModel vendor) async => await operation.perform(
         operationName: 'Delete vendor ${vendor.uid}',
         module: _module,
-        permissionKey: _module.deleteKey,
+        permissionKey: VendorKeys.delete.id,
         operation: (_) async => await _vendorBusinessLogic.delete(vendor),
       );
 

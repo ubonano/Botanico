@@ -5,17 +5,17 @@ import 'package:get/get.dart';
 import '../app/content/helpers/global_helper.dart';
 import 'setup/interfaces/i_accounting_account_business_logic.dart';
 import 'setup/interfaces/i_accounting_account_service.dart';
-import 'setup/permissions.dart';
+import 'setup/module.dart';
 
 class AccountingAccountService extends GetxService with GlobalHelper implements IAccountingAccountService {
-  late final AccountingAccountPermissions _accountingAccountModule = Get.find();
+  late final AccountingAccountModule _accountingAccountModule = Get.find();
   late final IAccountingAccountBusinessLogic _accountingAccountBusinessLogic = Get.find();
 
   @override
   Future<AccountingAccountModel?> get(String id) async => await operation.perform(
         operationName: 'Get accounting account $id',
         module: _accountingAccountModule,
-        permissionKey: _accountingAccountModule.viewKey,
+        permissionKey: AccountingAccountKeys.view.id,
         operation: (_) async => await _accountingAccountBusinessLogic.get(id),
       );
 
@@ -23,7 +23,7 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   Future<void> create(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Create accounting account ${accountingAccount.uid}',
         module: _accountingAccountModule,
-        permissionKey: _accountingAccountModule.createKey,
+        permissionKey: AccountingAccountKeys.create.id,
         operation: (_) async => await _accountingAccountBusinessLogic.create(accountingAccount),
       );
 
@@ -31,7 +31,7 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   Future<void> update(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Update accounting account ${accountingAccount.uid}',
         module: _accountingAccountModule,
-        permissionKey: _accountingAccountModule.updateKey,
+        permissionKey: AccountingAccountKeys.update.id,
         operation: (_) async => await _accountingAccountBusinessLogic.update(accountingAccount),
       );
 
@@ -39,7 +39,7 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   Future<void> delete(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Delete accounting account ${accountingAccount.uid}',
         module: _accountingAccountModule,
-        permissionKey: _accountingAccountModule.deleteKey,
+        permissionKey: AccountingAccountKeys.delete.id,
         operation: (_) async => await _accountingAccountBusinessLogic.delete(accountingAccount),
       );
 

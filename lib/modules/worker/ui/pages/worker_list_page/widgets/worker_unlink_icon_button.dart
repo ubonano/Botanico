@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
 import '../../../../content/setup/interfaces/i_worker_service.dart';
-import '../../../../content/setup/permissions.dart';
+import '../../../../content/setup/module.dart';
 
 class WorkerUnlinkIconButton extends StatelessWidget {
   final WorkerModel worker;
@@ -12,11 +12,11 @@ class WorkerUnlinkIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<WorkerPermissions>();
+    final module = Get.find<WorkerModule>();
 
     return ProtectedWidget(
       module: module,
-      permission: module.unlinkKey,
+      permission: WorkerKeys.unlink.id,
       child: IconButton(
         key: key ?? const Key('WorkerUnlinkIconButton'),
         icon: const Icon(Icons.person_off),

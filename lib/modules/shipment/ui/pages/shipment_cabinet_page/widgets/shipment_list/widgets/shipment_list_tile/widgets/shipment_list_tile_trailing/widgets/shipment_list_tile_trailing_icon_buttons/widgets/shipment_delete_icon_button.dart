@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../../../../../../../../../../app/ui/ui.dart';
 import '../../../../../../../../../../../../setup/interfaces/i_shipment_service.dart';
-import '../../../../../../../../../../../../setup/permissions.dart';
+import '../../../../../../../../../../../../setup/module.dart';
 
 class ShipmentDeleteIconButton extends StatelessWidget {
   final ShipmentModel shipment;
@@ -12,11 +12,11 @@ class ShipmentDeleteIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<ShipmentPermissions>();
+    final module = Get.find<ShipmentModule>();
 
     return ProtectedWidget(
       module: module,
-      permission: module.deleteKey,
+      permission: ShipmentKeys.delete.id,
       child: IconButton(
         key: key ?? const Key('ShipmentDeleteIconButton'),
         icon: const Icon(Icons.delete),

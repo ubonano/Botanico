@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../app/ui/ui.dart';
-import '../../setup/permissions.dart';
+import '../../setup/module.dart';
 import '../ui.dart';
 
 class ShipmentModuleTileButton extends StatelessWidget {
@@ -11,7 +11,7 @@ class ShipmentModuleTileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<ShipmentPermissions>();
+    final module = Get.find<ShipmentModule>();
 
     return ProtectedWidget(
       key: key ?? const Key('ShipmentCabinetPageTileButton'),
@@ -23,7 +23,7 @@ class ShipmentModuleTileButton extends StatelessWidget {
           ProtectedWidget(
             key: const Key('ShipmentCabinetTileButton'),
             module: module,
-            permission: module.cabinetKey,
+            permission: ShipmentKeys.cabinet.id,
             child: const ListTile(
               leading: Icon(Icons.archive),
               title: Text('Archivo'),
@@ -33,7 +33,7 @@ class ShipmentModuleTileButton extends StatelessWidget {
           ProtectedWidget(
             key: const Key('ShipmentDashboardTileButton'),
             module: module,
-            permission: module.dashboardKey,
+            permission: ShipmentKeys.dashboard.id,
             child: const ListTile(
               leading: Icon(Icons.dashboard),
               title: Text('Dashboard'),

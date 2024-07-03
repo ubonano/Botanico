@@ -54,20 +54,20 @@ class IsNotEmployedOrOwnerMiddleware extends GetMiddleware {
   }
 }
 
-class ModuleAndPermissionMiddleware extends GetMiddleware {
-  final IPermissionsStructure module;
-  final String permission;
+class AccessMiddleware extends GetMiddleware {
+  final String moduleId;
+  final String key;
 
-  ModuleAndPermissionMiddleware(this.module, this.permission);
+  AccessMiddleware(this.moduleId, this.key);
 
   @override
   RouteSettings? redirect(String? route) {
     final IWorkerService workerService = Get.find();
     final ICompanyService companyService = Get.find();
 
-    final hasModuleActive = companyService.currentCompany$?.hasModuleActive(module) ?? false;
+    final hasModuleActive = companyService.currentCompany$?.hasModuleActive(moduleId) ?? false;
     final isOwner = workerService.currentWorker$?.isOwner ?? false;
-    final hasPermission = workerService.currentWorker$?.hasPermission(permission) ?? false;
+    final hasPermission = workerService.currentWorker$?.hasPermission(key) ?? false;
 
     if (!hasModuleActive || (!isOwner && !hasPermission)) {
       return const RouteSettings(name: HomePage.route);

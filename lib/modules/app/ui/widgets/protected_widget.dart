@@ -7,7 +7,7 @@ import '../../../company/setup/interfaces/i_company_service.dart';
 class ProtectedWidget extends StatelessWidget {
   final Widget child;
   final String? permission;
-  final IPermissionsStructure module;
+  final IModuleStructure module;
 
   const ProtectedWidget({required this.module, this.permission, required this.child, super.key});
 
@@ -17,7 +17,7 @@ class ProtectedWidget extends StatelessWidget {
       () {
         final companyService = Get.find<ICompanyService>();
         final workerService = Get.find<IWorkerService>();
-        final hasModuleActive = companyService.currentCompany$?.hasModuleActive(module) == true;
+        final hasModuleActive = companyService.currentCompany$?.hasModuleActiveDeprecated(module) == true;
         final hasPermission = permission == null || workerService.currentWorker$?.hasPermission(permission!) == true;
 
         return hasModuleActive && hasPermission ? child : const SizedBox.shrink();

@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import '../../../../app/content/helpers/life_cycle_logging_controller_helper.dart';
 import '../../../../app/content/model/module_repository.dart';
-import '../../../../app/content/setup/interfaces/i_permissions_structure.dart';
+import '../../../../app/content/setup/interfaces/i_module_structure.dart';
 
 class WorkerPermissionManagementController extends GetxController with LifeCycleLoggingControllerHelper {
   @override
@@ -10,5 +10,5 @@ class WorkerPermissionManagementController extends GetxController with LifeCycle
 
   late final ModuleRepository _moduleRepo = Get.find();
 
-  List<IPermissionsStructure> get modules$ => _moduleRepo.modules$;
+  List<IModuleStructure> get modules$ => _moduleRepo.modules$;
 }

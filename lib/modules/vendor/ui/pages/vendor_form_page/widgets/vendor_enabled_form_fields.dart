@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../app/ui/ui.dart';
-import '../../../../setup/permissions.dart';
+import '../../../../setup/module.dart';
 import '../../../ui.dart';
 
 class VendorEnabledFormFields extends GetView<VendorFormController> {
@@ -10,11 +10,11 @@ class VendorEnabledFormFields extends GetView<VendorFormController> {
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<VendorPermissions>();
+    final module = Get.find<VendorModule>();
 
     return ProtectedWidget(
       module: module,
-      permission: module.updateKey,
+      permission: VendorKeys.update.id,
       child: IconButton(
         key: key ?? const Key('VendorEnabledFormFields'),
         icon: const Icon(Icons.edit),
