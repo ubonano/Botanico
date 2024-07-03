@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../app/ui/ui.dart';
 import '../../../../authentication/ui/middlewares.dart';
+import '../../../content/setup/module.dart';
 import '../../middlewares.dart';
 import '../../ui.dart';
 
@@ -21,6 +22,7 @@ class WorkerListPage extends GetView<WorkerListController> {
           AuthMiddleware(),
           HasWorkerMiddleware(),
           IsEmployedOrOwnerMiddleware(),
+          AccessMiddleware(WorkerModule.moduleId, [WorkerKeys.view.id]),
         ],
       );
 

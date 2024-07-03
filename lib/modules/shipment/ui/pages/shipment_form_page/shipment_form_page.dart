@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../../authentication/ui/middlewares.dart';
 import '../../../../worker/ui/middlewares.dart';
+import '../../../setup/module.dart';
 import '../../ui.dart';
 
 class ShipmentFormPage extends GetView<ShipmentFormController> {
@@ -20,6 +21,7 @@ class ShipmentFormPage extends GetView<ShipmentFormController> {
         middlewares: [
           AuthMiddleware(),
           HasWorkerMiddleware(),
+          AccessMiddleware(ShipmentModule.moduleId, [ShipmentKeys.create.id, ShipmentKeys.update.id]),
         ],
       );
 

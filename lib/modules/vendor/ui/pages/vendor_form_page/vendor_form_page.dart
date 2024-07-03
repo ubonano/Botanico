@@ -5,6 +5,7 @@ import '../../../../app/ui/ui.dart';
 import '../../../../authentication/ui/middlewares.dart';
 import '../../../../company/ui/ui.dart';
 import '../../../../worker/ui/middlewares.dart';
+import '../../../setup/module.dart';
 import '../../ui.dart';
 
 class VendorFormPage extends GetView<VendorFormController> {
@@ -22,6 +23,7 @@ class VendorFormPage extends GetView<VendorFormController> {
           AuthMiddleware(),
           HasWorkerMiddleware(),
           IsEmployedOrOwnerMiddleware(),
+          AccessMiddleware(VendorModule.moduleId, [VendorKeys.create.id, VendorKeys.update.id]),
         ],
       );
 

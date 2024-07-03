@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../app/ui/ui.dart';
 import '../../../../authentication/ui/middlewares.dart';
 import '../../../../worker/ui/middlewares.dart';
+import '../../../setup/module.dart';
 import '../../ui.dart';
 
 class ShipmentDashboardPage extends GetView<ShipmentDashboardController> {
@@ -21,6 +22,7 @@ class ShipmentDashboardPage extends GetView<ShipmentDashboardController> {
           AuthMiddleware(),
           HasWorkerMiddleware(),
           IsEmployedOrOwnerMiddleware(),
+          AccessMiddleware(ShipmentModule.moduleId, [ShipmentKeys.dashboard.id]),
         ],
       );
 

@@ -50,7 +50,3 @@ enum AccountingAccountKeys {
 
   const AccountingAccountKeys(this.id, this.label);
 }
-
-// Cambiar el perform, para que reciba un id de modulo y no la instancia de la clase.
-// Refactor de los servicios
-// Aplicar los middlewares a las paginas

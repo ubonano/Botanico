@@ -8,13 +8,12 @@ import 'setup/interfaces/i_shipment_service.dart';
 import 'setup/module.dart';
 
 class ShipmentService extends GetxService with GlobalHelper implements IShipmentService {
-  late final ShipmentModule _module = Get.find();
   late final IShipmentBusinessLogic _shipmentBusinessLogic = Get.find();
 
   @override
   Future<ShipmentModel?> get(String id) async => await operation.perform(
         operationName: 'Get shipment $id',
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         permissionKey: ShipmentKeys.cabinet.id,
         operation: (_) async => await _shipmentBusinessLogic.get(id),
       );
@@ -23,14 +22,14 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   Future<ShipmentModel?> getFromExternalAPI(String id) async => await operation.perform(
         operationName: 'Get shipment from External API $id',
         errorMessage: 'Error al obtener el envío $id',
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         operation: (_) async => _shipmentBusinessLogic.getFromExternalAPI(id),
       );
 
   @override
   Future<void> create(ShipmentModel shipment) async => await operation.perform(
         operationName: 'Create shipment ${shipment.shipmentId}',
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         permissionKey: ShipmentKeys.create.id,
         operation: (_) async => await _shipmentBusinessLogic.create(shipment),
       );
@@ -38,7 +37,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   @override
   Future<void> update(ShipmentModel shipment) async => await operation.perform(
         operationName: 'Update shipment ${shipment.shipmentId}',
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         permissionKey: ShipmentKeys.update.id,
         operation: (_) async => await _shipmentBusinessLogic.update(shipment),
       );
@@ -46,7 +45,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   @override
   Future<void> delete(ShipmentModel shipment) async => await operation.perform(
         operationName: 'Delete shipment ${shipment.shipmentId}',
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         permissionKey: ShipmentKeys.delete.id,
         operation: (_) async => await _shipmentBusinessLogic.delete(shipment),
       );
@@ -54,7 +53,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   @override
   Future<void> invoice(ShipmentModel shipment) async => await operation.perform(
         permissionKey: ShipmentKeys.invoice.id,
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Invoice shipment ${shipment.shipmentId}',
         operation: (_) async => await _shipmentBusinessLogic.invoice(shipment),
       );
@@ -62,7 +61,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   @override
   Future<void> cancelInvoice(ShipmentModel shipment) async => await operation.perform(
         permissionKey: ShipmentKeys.cancelInvoice.id,
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Cancel invoice shipment ${shipment.shipmentId}',
         operation: (_) async => await _shipmentBusinessLogic.cancelInvoice(shipment),
       );
@@ -70,7 +69,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   @override
   Future<void> archive(ShipmentModel shipment) async => await operation.perform(
         permissionKey: ShipmentKeys.archive.id,
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Archive shipment ${shipment.shipmentId}}',
         operation: (_) async => await _shipmentBusinessLogic.archive(shipment),
       );
@@ -78,7 +77,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   @override
   Future<void> cancel(ShipmentModel shipment) async => await operation.perform(
         permissionKey: ShipmentKeys.cancel.id,
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Cancel shipment ${shipment.shipmentId}}',
         operation: (_) async => await _shipmentBusinessLogic.cancel(shipment),
       );
@@ -86,7 +85,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   @override
   Future<void> deliver(ShipmentModel shipment) async => await operation.perform(
         permissionKey: ShipmentKeys.deliver.id,
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Deliver shipment ${shipment.shipmentId}}',
         operation: (_) async => await _shipmentBusinessLogic.deliver(shipment),
       );
@@ -94,7 +93,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   @override
   Future<void> prepare(ShipmentModel shipment) async => await operation.perform(
         permissionKey: ShipmentKeys.prepare.id,
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Prepare shipment ${shipment.shipmentId}}',
         operation: (_) async => await _shipmentBusinessLogic.prepare(shipment),
       );
@@ -102,7 +101,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   @override
   Future<void> process(ShipmentModel shipment) async => await operation.perform(
         permissionKey: ShipmentKeys.process.id,
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Process shipment ${shipment.shipmentId}}',
         operation: (_) async => await _shipmentBusinessLogic.process(shipment),
       );
@@ -111,7 +110,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   Future<void> changeState(ShipmentModel shipment, ShipmentState newState, {bool validateTransition = true}) async =>
       await operation.perform(
         permissionKey: ShipmentKeys.changeState.id,
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Change state of shipment ${shipment.shipmentId} to $newState',
         operation: (_) async => await _shipmentBusinessLogic.changeState(
           shipment,
@@ -124,7 +123,7 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   Future<void> changeDeliveryPlace(ShipmentModel shipment, ShipmentDeliveryPlace newPlace) async =>
       await operation.perform(
         permissionKey: ShipmentKeys.changeDeliveryPlace.id,
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Change delivery place ${shipment.shipmentId}',
         operation: (_) async => await _shipmentBusinessLogic.changeDeliveryPlace(shipment, newPlace),
       );

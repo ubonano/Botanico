@@ -8,13 +8,12 @@ import 'setup/interfaces/i_accounting_account_service.dart';
 import 'setup/module.dart';
 
 class AccountingAccountService extends GetxService with GlobalHelper implements IAccountingAccountService {
-  late final AccountingAccountModule _accountingAccountModule = Get.find();
   late final IAccountingAccountBusinessLogic _accountingAccountBusinessLogic = Get.find();
 
   @override
   Future<AccountingAccountModel?> get(String id) async => await operation.perform(
         operationName: 'Get accounting account $id',
-        module: _accountingAccountModule,
+        moduleId: AccountingAccountModule.moduleId,
         permissionKey: AccountingAccountKeys.view.id,
         operation: (_) async => await _accountingAccountBusinessLogic.get(id),
       );
@@ -22,7 +21,7 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   @override
   Future<void> create(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Create accounting account ${accountingAccount.uid}',
-        module: _accountingAccountModule,
+        moduleId: AccountingAccountModule.moduleId,
         permissionKey: AccountingAccountKeys.create.id,
         operation: (_) async => await _accountingAccountBusinessLogic.create(accountingAccount),
       );
@@ -30,7 +29,7 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   @override
   Future<void> update(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Update accounting account ${accountingAccount.uid}',
-        module: _accountingAccountModule,
+        moduleId: AccountingAccountModule.moduleId,
         permissionKey: AccountingAccountKeys.update.id,
         operation: (_) async => await _accountingAccountBusinessLogic.update(accountingAccount),
       );
@@ -38,7 +37,7 @@ class AccountingAccountService extends GetxService with GlobalHelper implements 
   @override
   Future<void> delete(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Delete accounting account ${accountingAccount.uid}',
-        module: _accountingAccountModule,
+        moduleId: AccountingAccountModule.moduleId,
         permissionKey: AccountingAccountKeys.delete.id,
         operation: (_) async => await _accountingAccountBusinessLogic.delete(accountingAccount),
       );

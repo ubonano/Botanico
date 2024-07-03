@@ -24,7 +24,8 @@ class AccountingAccountFormPage extends GetView<AccountingAccountFormController>
           AuthMiddleware(),
           HasWorkerMiddleware(),
           IsEmployedOrOwnerMiddleware(),
-          AccessMiddleware(AccountingAccountModule.moduleId, AccountingAccountKeys.create.id),
+          AccessMiddleware(
+              AccountingAccountModule.moduleId, [AccountingAccountKeys.create.id, AccountingAccountKeys.update.id]),
         ],
       );
 

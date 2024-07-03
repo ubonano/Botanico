@@ -16,7 +16,7 @@ class OperationHelper with GlobalHelper {
     required Future<T?> Function(Transaction? txn) operation,
     String operationName = "Operation",
     String permissionKey = '',
-    IModuleStructure? module,
+    String moduleId = '',
     String successMessage = '',
     String? errorMessage,
     bool showErrorMessageBySnackbar = true,
@@ -25,7 +25,7 @@ class OperationHelper with GlobalHelper {
     bool inTransaction = false,
   }) async {
     T? result;
-    if (module != null && !_hasModuleActive(module.id)) {
+    if (moduleId.isNotEmpty && !_hasModuleActive(moduleId)) {
       throw Exception('module-not-active');
     }
 

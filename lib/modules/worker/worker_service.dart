@@ -8,7 +8,6 @@ import 'content/setup/interfaces/i_worker_service.dart';
 import 'content/setup/module.dart';
 
 class WorkerService with GlobalHelper implements IWorkerService {
-  late final WorkerModule _module = Get.find();
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   @override
@@ -26,7 +25,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   @override
   Future<WorkerModel?> get(String id) async => await operation.perform(
         operationName: 'Get worker $id',
-        module: _module,
+        moduleId: WorkerModule.moduleId,
         permissionKey: WorkerKeys.view.id,
         operation: (_) async => await _workerBusinessLogic.get(id),
       );
@@ -48,7 +47,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   @override
   Future<void> link(String id) async => await operation.perform(
         operationName: 'Link worker $id',
-        module: _module,
+        moduleId: WorkerModule.moduleId,
         permissionKey: WorkerKeys.link.id,
         inTransaction: true,
         operation: (txn) async => await _workerBusinessLogic.link(id, txn),
@@ -57,7 +56,7 @@ class WorkerService with GlobalHelper implements IWorkerService {
   @override
   Future<void> unlink(String id) async => await operation.perform(
         operationName: 'Unlink worker $id',
-        module: _module,
+        moduleId: WorkerModule.moduleId,
         permissionKey: WorkerKeys.unlink.id,
         inTransaction: true,
         operation: (txn) async => await _workerBusinessLogic.unlink(id, txn),

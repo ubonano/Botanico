@@ -22,7 +22,7 @@ class AccountingAccountListPage extends GetView<AccountingAccountListController>
           AuthMiddleware(),
           HasWorkerMiddleware(),
           IsEmployedOrOwnerMiddleware(),
-          AccessMiddleware(AccountingAccountModule.moduleId, AccountingAccountKeys.view.id),
+          AccessMiddleware(AccountingAccountModule.moduleId, [AccountingAccountKeys.view.id]),
         ],
       );
 
