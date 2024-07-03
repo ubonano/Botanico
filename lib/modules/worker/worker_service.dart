@@ -5,17 +5,19 @@ import 'package:get/get.dart';
 import '../app/content/helpers/global_helper.dart';
 import 'content/setup/interfaces/i_worker_business_logic.dart';
 import 'content/setup/interfaces/i_worker_service.dart';
-import 'content/setup/permissions.dart';
+import 'content/setup/module.dart';
 
 class WorkerService with GlobalHelper implements IWorkerService {
-  late final WorkerPermissions _module = Get.find();
   late final IWorkerBusinessLogic _workerBusinessLogic = Get.find();
 
   @override
-  WorkerModel? get loggedWorker$ => _workerBusinessLogic.loggedWorker$;
+  WorkerModel? get currentWorker$ => _workerBusinessLogic.currentWorker$;
 
   @override
-  Future<WorkerModel?> fetchLoggedWorker() async => _workerBusinessLogic.fetchLoggedWorker();
+  Future<WorkerModel?> fetchCurrentWorker() async => await operation.perform(
+        operationName: 'Fetch current worker',
+        operation: (_) async => await _workerBusinessLogic.fetchCurrentWorker(),
+      );
 
   @override
   void clearCurrentWorker() => _workerBusinessLogic.clearLoggedWorker();
@@ -23,8 +25,8 @@ class WorkerService with GlobalHelper implements IWorkerService {
   @override
   Future<WorkerModel?> get(String id) async => await operation.perform(
         operationName: 'Get worker $id',
-        module: _module,
-        permissionKey: _module.viewKey,
+        moduleId: WorkerModule.moduleId,
+        permissionKey: WorkerKeys.view.id,
         operation: (_) async => await _workerBusinessLogic.get(id),
       );
 
@@ -45,8 +47,8 @@ class WorkerService with GlobalHelper implements IWorkerService {
   @override
   Future<void> link(String id) async => await operation.perform(
         operationName: 'Link worker $id',
-        module: _module,
-        permissionKey: _module.linkKey,
+        moduleId: WorkerModule.moduleId,
+        permissionKey: WorkerKeys.link.id,
         inTransaction: true,
         operation: (txn) async => await _workerBusinessLogic.link(id, txn),
       );
@@ -54,8 +56,8 @@ class WorkerService with GlobalHelper implements IWorkerService {
   @override
   Future<void> unlink(String id) async => await operation.perform(
         operationName: 'Unlink worker $id',
-        module: _module,
-        permissionKey: _module.unlinkKey,
+        moduleId: WorkerModule.moduleId,
+        permissionKey: WorkerKeys.unlink.id,
         inTransaction: true,
         operation: (txn) async => await _workerBusinessLogic.unlink(id, txn),
       );

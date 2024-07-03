@@ -4,8 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../worker/content/setup/exceptions/worker_not_found_exception.dart';
 import '../../../worker/content/setup/interfaces/i_worker_service.dart';
-import '../../../company/content/setup/exceptions/company_not_found_exception.dart';
-import '../../../company/content/setup/interfaces/i_company_service.dart';
+import '../../../company/setup/interfaces/i_company_service.dart';
 import 'global_helper.dart';
 
 class OperationHelper with GlobalHelper {
@@ -17,7 +16,7 @@ class OperationHelper with GlobalHelper {
     required Future<T?> Function(Transaction? txn) operation,
     String operationName = "Operation",
     String permissionKey = '',
-    IPermissionsStructure? module,
+    String moduleId = '',
     String successMessage = '',
     String? errorMessage,
     bool showErrorMessageBySnackbar = true,
@@ -26,9 +25,11 @@ class OperationHelper with GlobalHelper {
     bool inTransaction = false,
   }) async {
     T? result;
-    if (module != null && !await _hasModuleActive(module)) {
+    if (moduleId.isNotEmpty && !_hasModuleActive(moduleId)) {
       throw Exception('module-not-active');
     }
+
+    if (permissionKey.isNotEmpty && _hasPermission(permissionKey)) throw Exception('permission-denied');
 
     if (inTransaction) {
       result = await _firestore.runTransaction(
@@ -36,7 +37,6 @@ class OperationHelper with GlobalHelper {
           return await _executeWithHandling(
             operation: () async => await operation(txn),
             operationName: operationName,
-            permissionKey: permissionKey,
             successMessage: successMessage,
             errorMessage: errorMessage,
             showErrorMessageBySnackbar: showErrorMessageBySnackbar,
@@ -49,7 +49,6 @@ class OperationHelper with GlobalHelper {
       result = await _executeWithHandling<T>(
         operation: () async => await operation(null),
         operationName: operationName,
-        permissionKey: permissionKey,
         successMessage: successMessage,
         errorMessage: errorMessage,
         showErrorMessageBySnackbar: showErrorMessageBySnackbar,
@@ -63,7 +62,6 @@ class OperationHelper with GlobalHelper {
   Future<T?> _executeWithHandling<T>({
     required Future<T?> Function() operation,
     String operationName = "Operation",
-    String permissionKey = '',
     String successMessage = '',
     String? errorMessage,
     bool showErrorMessageBySnackbar = true,
@@ -72,7 +70,6 @@ class OperationHelper with GlobalHelper {
   }) async {
     try {
       log.info("Executing $operationName.");
-      if (permissionKey.isNotEmpty && await _hasPermission(permissionKey)) throw Exception('permission-denied');
 
       T? result = await operation();
 
@@ -82,7 +79,7 @@ class OperationHelper with GlobalHelper {
       onSuccess?.call();
       return result;
     } catch (e) {
-      String finalErrorMessage = errorMessage ?? _getErrorMessage(e); // Usar errorMessage si está disponible
+      String finalErrorMessage = errorMessage ?? _getErrorMessage(e);
       if (showErrorMessageBySnackbar) snackbar.error(finalErrorMessage);
       log.error("$operationName fallida: $finalErrorMessage", e);
 
@@ -92,19 +89,10 @@ class OperationHelper with GlobalHelper {
     }
   }
 
-  Future<bool> _hasModuleActive(IPermissionsStructure module) async {
-    final company = await _companyService.fetchLoggedCompany();
-    if (company == null) throw CompanyNotFoundException();
-    return company.hasModuleActive(module);
-  }
+  bool _hasModuleActive(String moduleId) => _companyService.currentCompany$!.hasModuleActive(moduleId);
 
-  Future<bool> _hasPermission(String permissionKey) async {
-    final worker = await _workerService.fetchLoggedWorker();
-
-    if (worker == null) throw WorkerNotFoundException();
-
-    return permissionKey.isNotEmpty && !worker.hasPermission(permissionKey);
-  }
+  bool _hasPermission(String permissionKey) =>
+      permissionKey.isNotEmpty && !_workerService.currentWorker$!.hasPermission(permissionKey);
 }
 
 String _getErrorMessage(Object e) {

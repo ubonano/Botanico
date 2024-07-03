@@ -3,43 +3,42 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../app/content/helpers/global_helper.dart';
-import 'content/setup/interfaces/i_accounting_account_business_logic.dart';
-import 'content/setup/interfaces/i_accounting_account_service.dart';
-import 'content/setup/permissions.dart';
+import 'setup/interfaces/i_accounting_account_business_logic.dart';
+import 'setup/interfaces/i_accounting_account_service.dart';
+import 'setup/module.dart';
 
 class AccountingAccountService extends GetxService with GlobalHelper implements IAccountingAccountService {
-  late final AccountingAccountPermissions _accountingAccountModule = Get.find();
   late final IAccountingAccountBusinessLogic _accountingAccountBusinessLogic = Get.find();
 
   @override
   Future<AccountingAccountModel?> get(String id) async => await operation.perform(
         operationName: 'Get accounting account $id',
-        module: _accountingAccountModule,
-        permissionKey: _accountingAccountModule.viewKey,
+        moduleId: AccountingAccountModule.moduleId,
+        permissionKey: AccountingAccountKeys.view.id,
         operation: (_) async => await _accountingAccountBusinessLogic.get(id),
       );
 
   @override
   Future<void> create(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Create accounting account ${accountingAccount.uid}',
-        module: _accountingAccountModule,
-        permissionKey: _accountingAccountModule.createKey,
+        moduleId: AccountingAccountModule.moduleId,
+        permissionKey: AccountingAccountKeys.create.id,
         operation: (_) async => await _accountingAccountBusinessLogic.create(accountingAccount),
       );
 
   @override
   Future<void> update(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Update accounting account ${accountingAccount.uid}',
-        module: _accountingAccountModule,
-        permissionKey: _accountingAccountModule.updateKey,
+        moduleId: AccountingAccountModule.moduleId,
+        permissionKey: AccountingAccountKeys.update.id,
         operation: (_) async => await _accountingAccountBusinessLogic.update(accountingAccount),
       );
 
   @override
   Future<void> delete(AccountingAccountModel accountingAccount) async => await operation.perform(
         operationName: 'Delete accounting account ${accountingAccount.uid}',
-        module: _accountingAccountModule,
-        permissionKey: _accountingAccountModule.deleteKey,
+        moduleId: AccountingAccountModule.moduleId,
+        permissionKey: AccountingAccountKeys.delete.id,
         operation: (_) async => await _accountingAccountBusinessLogic.delete(accountingAccount),
       );
 

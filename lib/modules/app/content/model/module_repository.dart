@@ -1,17 +1,17 @@
 import 'package:get/get.dart';
 
-import '../../../accounting_account/content/setup/permissions.dart';
-import '../../../vendor/content/setup/permissions.dart';
-import '../../../shipment/content/setup/permissions.dart';
-import '../../../worker/content/setup/permissions.dart';
-import '../../../company/content/setup/permissions.dart';
+import '../../../accounting_account/setup/module.dart';
+import '../../../vendor/setup/module.dart';
+import '../../../shipment/setup/module.dart';
+import '../../../worker/content/setup/module.dart';
+import '../../../company/setup/module.dart';
 
 class ModuleRepository {
   final modules$ = [
-    Get.find<CompanyPermissions>(),
-    Get.find<WorkerPermissions>(),
-    Get.find<VendorPermissions>(),
-    Get.find<AccountingAccountPermissions>(),
-    Get.find<ShipmentPermissions>(),
+    Get.find<CompanyModule>(),
+    Get.find<WorkerModule>(),
+    Get.find<VendorModule>(),
+    Get.find<AccountingAccountModule>(),
+    Get.find<ShipmentModule>(),
   ].obs;
 }

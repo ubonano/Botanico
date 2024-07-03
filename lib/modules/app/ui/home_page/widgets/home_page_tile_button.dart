@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../content/setup/navigation.dart';
+import '../../ui.dart';
 
-class HomePageTileButton extends StatelessWidget with NavigationHelperInstance {
-  HomePageTileButton({super.key});
+class HomePageTileButton extends StatelessWidget {
+  const HomePageTileButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class HomePageTileButton extends StatelessWidget with NavigationHelperInstance {
       key: key ?? const Key('HomePageTileButton'),
       leading: const Icon(Icons.home),
       title: const Text('Inicio'),
-      onTap: navigate.toHome,
+      onTap: HomePage.navigate,
     );
   }
 }

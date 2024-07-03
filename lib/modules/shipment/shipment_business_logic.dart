@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../worker/content/setup/interfaces/i_worker_service.dart';
-import 'content/setup/interfaces/i_via_cargo_api_repository.dart';
-import 'content/setup/interfaces/i_shipment_business_logic.dart';
-import 'content/setup/interfaces/i_shipment_repository.dart';
+import 'setup/interfaces/i_via_cargo_api_repository.dart';
+import 'setup/interfaces/i_shipment_business_logic.dart';
+import 'setup/interfaces/i_shipment_repository.dart';
 
 class ShipmentBusinessLogic implements IShipmentBusinessLogic {
   late final IShipmentRepository _shipmentRepo = Get.find();
@@ -92,7 +92,7 @@ class ShipmentBusinessLogic implements IShipmentBusinessLogic {
   }
 
   Future<ShipmentModel> _logAction(ShipmentModel shipment, String action) async {
-    final loggedWorker = Get.find<IWorkerService>().loggedWorker$;
+    final loggedWorker = Get.find<IWorkerService>().currentWorker$;
 
     final newLog = ActionLogModel(action: action, timestamp: DateTime.now(), user: loggedWorker!.name);
     final updatedLogs = List<ActionLogModel>.from(shipment.actionLogs)..add(newLog);

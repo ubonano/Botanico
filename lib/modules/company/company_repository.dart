@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'content/setup/interfaces/i_company_repository.dart';
+import 'setup/interfaces/i_company_repository.dart';
 
 class CompanyRepository implements ICompanyRepository {
   late final FirebaseFirestore _firestore = Get.find();

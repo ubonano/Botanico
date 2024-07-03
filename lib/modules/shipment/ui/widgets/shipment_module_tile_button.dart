@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../app/content/setup/navigation.dart';
 import '../../../app/ui/ui.dart';
-import '../../content/setup/permissions.dart';
+import '../../setup/module.dart';
+import '../ui.dart';
 
-class ShipmentModuleTileButton extends StatelessWidget with NavigationHelperInstance {
-  ShipmentModuleTileButton({super.key});
+class ShipmentModuleTileButton extends StatelessWidget {
+  const ShipmentModuleTileButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final module = Get.find<ShipmentPermissions>();
+    final module = Get.find<ShipmentModule>();
 
     return ProtectedWidget(
       key: key ?? const Key('ShipmentCabinetPageTileButton'),
@@ -23,21 +23,21 @@ class ShipmentModuleTileButton extends StatelessWidget with NavigationHelperInst
           ProtectedWidget(
             key: const Key('ShipmentCabinetTileButton'),
             module: module,
-            permission: module.cabinetKey,
-            child: ListTile(
-              leading: const Icon(Icons.archive),
-              title: const Text('Archivo'),
-              onTap: navigate.toShipmentCabinet,
+            permission: ShipmentKeys.cabinet.id,
+            child: const ListTile(
+              leading: Icon(Icons.archive),
+              title: Text('Archivo'),
+              onTap: ShipmentCabinetPage.navigate,
             ),
           ),
           ProtectedWidget(
             key: const Key('ShipmentDashboardTileButton'),
             module: module,
-            permission: module.dashboardKey,
-            child: ListTile(
-              leading: const Icon(Icons.dashboard),
-              title: const Text('Dashboard'),
-              onTap: navigate.toShipmentDashboard,
+            permission: ShipmentKeys.dashboard.id,
+            child: const ListTile(
+              leading: Icon(Icons.dashboard),
+              title: Text('Dashboard'),
+              onTap: ShipmentDashboardPage.navigate,
             ),
           ),
         ],

@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
 
 import '../app/content/helpers/global_helper.dart';
-import 'content/setup/interfaces/i_authenticatin_business_logic.dart';
-import 'content/setup/interfaces/i_authentication_service.dart';
+import 'setup/interfaces/i_authenticatin_business_logic.dart';
+import 'setup/interfaces/i_authentication_service.dart';
 
 class AuthenticationService extends GetxService with GlobalHelper implements IAuthenticationService {
   late final IAuthenticationBusinessLogic _authBusinessLogic = Get.find();
+
+  @override
+  User? get currentUser => _authBusinessLogic.currentUser;
 
   @override
   Future<void> signUp(String email, String password) async => await operation.perform(

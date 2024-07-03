@@ -3,19 +3,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../app/content/helpers/global_helper.dart';
-import 'content/setup/interfaces/i_shipment_business_logic.dart';
-import 'content/setup/interfaces/i_shipment_service.dart';
-import 'content/setup/permissions.dart';
+import 'setup/interfaces/i_shipment_business_logic.dart';
+import 'setup/interfaces/i_shipment_service.dart';
+import 'setup/module.dart';
 
 class ShipmentService extends GetxService with GlobalHelper implements IShipmentService {
-  late final ShipmentPermissions _module = Get.find();
   late final IShipmentBusinessLogic _shipmentBusinessLogic = Get.find();
 
   @override
   Future<ShipmentModel?> get(String id) async => await operation.perform(
         operationName: 'Get shipment $id',
-        module: _module,
-        permissionKey: _module.cabinetKey,
+        moduleId: ShipmentModule.moduleId,
+        permissionKey: ShipmentKeys.cabinet.id,
         operation: (_) async => await _shipmentBusinessLogic.get(id),
       );
 
@@ -23,86 +22,86 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   Future<ShipmentModel?> getFromExternalAPI(String id) async => await operation.perform(
         operationName: 'Get shipment from External API $id',
         errorMessage: 'Error al obtener el envío $id',
-        module: _module,
+        moduleId: ShipmentModule.moduleId,
         operation: (_) async => _shipmentBusinessLogic.getFromExternalAPI(id),
       );
 
   @override
   Future<void> create(ShipmentModel shipment) async => await operation.perform(
         operationName: 'Create shipment ${shipment.shipmentId}',
-        module: _module,
-        permissionKey: _module.createKey,
+        moduleId: ShipmentModule.moduleId,
+        permissionKey: ShipmentKeys.create.id,
         operation: (_) async => await _shipmentBusinessLogic.create(shipment),
       );
 
   @override
   Future<void> update(ShipmentModel shipment) async => await operation.perform(
         operationName: 'Update shipment ${shipment.shipmentId}',
-        module: _module,
-        permissionKey: _module.updateKey,
+        moduleId: ShipmentModule.moduleId,
+        permissionKey: ShipmentKeys.update.id,
         operation: (_) async => await _shipmentBusinessLogic.update(shipment),
       );
 
   @override
   Future<void> delete(ShipmentModel shipment) async => await operation.perform(
         operationName: 'Delete shipment ${shipment.shipmentId}',
-        module: _module,
-        permissionKey: _module.deleteKey,
+        moduleId: ShipmentModule.moduleId,
+        permissionKey: ShipmentKeys.delete.id,
         operation: (_) async => await _shipmentBusinessLogic.delete(shipment),
       );
 
   @override
   Future<void> invoice(ShipmentModel shipment) async => await operation.perform(
-        permissionKey: _module.invoiceKey,
-        module: _module,
+        permissionKey: ShipmentKeys.invoice.id,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Invoice shipment ${shipment.shipmentId}',
         operation: (_) async => await _shipmentBusinessLogic.invoice(shipment),
       );
 
   @override
   Future<void> cancelInvoice(ShipmentModel shipment) async => await operation.perform(
-        permissionKey: _module.cancelInvoiceKey,
-        module: _module,
+        permissionKey: ShipmentKeys.cancelInvoice.id,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Cancel invoice shipment ${shipment.shipmentId}',
         operation: (_) async => await _shipmentBusinessLogic.cancelInvoice(shipment),
       );
 
   @override
   Future<void> archive(ShipmentModel shipment) async => await operation.perform(
-        permissionKey: _module.archiveKey,
-        module: _module,
+        permissionKey: ShipmentKeys.archive.id,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Archive shipment ${shipment.shipmentId}}',
         operation: (_) async => await _shipmentBusinessLogic.archive(shipment),
       );
 
   @override
   Future<void> cancel(ShipmentModel shipment) async => await operation.perform(
-        permissionKey: _module.cancelKey,
-        module: _module,
+        permissionKey: ShipmentKeys.cancel.id,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Cancel shipment ${shipment.shipmentId}}',
         operation: (_) async => await _shipmentBusinessLogic.cancel(shipment),
       );
 
   @override
   Future<void> deliver(ShipmentModel shipment) async => await operation.perform(
-        permissionKey: _module.deliverKey,
-        module: _module,
+        permissionKey: ShipmentKeys.deliver.id,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Deliver shipment ${shipment.shipmentId}}',
         operation: (_) async => await _shipmentBusinessLogic.deliver(shipment),
       );
 
   @override
   Future<void> prepare(ShipmentModel shipment) async => await operation.perform(
-        permissionKey: _module.prepareKey,
-        module: _module,
+        permissionKey: ShipmentKeys.prepare.id,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Prepare shipment ${shipment.shipmentId}}',
         operation: (_) async => await _shipmentBusinessLogic.prepare(shipment),
       );
 
   @override
   Future<void> process(ShipmentModel shipment) async => await operation.perform(
-        permissionKey: _module.processKey,
-        module: _module,
+        permissionKey: ShipmentKeys.process.id,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Process shipment ${shipment.shipmentId}}',
         operation: (_) async => await _shipmentBusinessLogic.process(shipment),
       );
@@ -110,8 +109,8 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   @override
   Future<void> changeState(ShipmentModel shipment, ShipmentState newState, {bool validateTransition = true}) async =>
       await operation.perform(
-        permissionKey: _module.changeStateKey,
-        module: _module,
+        permissionKey: ShipmentKeys.changeState.id,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Change state of shipment ${shipment.shipmentId} to $newState',
         operation: (_) async => await _shipmentBusinessLogic.changeState(
           shipment,
@@ -123,8 +122,8 @@ class ShipmentService extends GetxService with GlobalHelper implements IShipment
   @override
   Future<void> changeDeliveryPlace(ShipmentModel shipment, ShipmentDeliveryPlace newPlace) async =>
       await operation.perform(
-        permissionKey: _module.changeDeliveryPlaceKey,
-        module: _module,
+        permissionKey: ShipmentKeys.changeDeliveryPlace.id,
+        moduleId: ShipmentModule.moduleId,
         operationName: 'Change delivery place ${shipment.shipmentId}',
         operation: (_) async => await _shipmentBusinessLogic.changeDeliveryPlace(shipment, newPlace),
       );
