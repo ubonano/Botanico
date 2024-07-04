@@ -36,25 +36,18 @@ class SignInController extends GetxController with GlobalHelper, FormHelper, Lif
   }
 
   Future<void> redirect() async {
-    print('Debug: Antes de obtener el trabajador');
     WorkerModel? worker = await _workerService.fetchCurrentWorker();
-    print('Debug: Trabajador obtenido: $worker');
 
     if (worker == null) {
-      print('Debug: Trabajador nulo, navegando a WorkerFormPage');
       WorkerFormPage.navigate();
       return;
     }
 
-    print('Debug: Antes de obtener la compañía');
     CompanyModel? company = await _companyService.fetchCurrentCompany();
-    print('Debug: Compañía obtenida: $company');
 
     if (company != null) {
-      print('Debug: Compañía encontrada, navegando a HomePage');
       HomePage.navigate();
     } else {
-      print('Debug: Compañía nula, navegando a LobbyPage');
       LobbyPage.navigate();
     }
   }

@@ -25,6 +25,7 @@ class PasswordInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomInputField(
       key: key ?? const Key('passwordField'),
+      autofillHints: const [AutofillHints.password],
       label: 'Contraseña',
       pageController: pageController,
       fieldName: fieldName,

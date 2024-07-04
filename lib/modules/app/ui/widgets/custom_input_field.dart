@@ -18,6 +18,7 @@ class CustomInputField extends StatelessWidget {
   final bool readOnly;
   final TextInputAction? textInputAction;
   final Function? onFieldSubmitted;
+  final Iterable<String>? autofillHints;
 
   const CustomInputField({
     Key? key,
@@ -35,6 +36,7 @@ class CustomInputField extends StatelessWidget {
     this.readOnly = false,
     this.textInputAction,
     this.onFieldSubmitted,
+    this.autofillHints,
   }) : super(key: key);
 
   @override
@@ -43,6 +45,7 @@ class CustomInputField extends StatelessWidget {
       () => Column(
         children: [
           TextFormField(
+            autofillHints: autofillHints,
             controller: pageController.getFieldController(fieldName)!,
             obscureText: obscureText,
             keyboardType: keyboardType,

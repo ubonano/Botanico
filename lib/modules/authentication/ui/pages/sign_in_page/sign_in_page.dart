@@ -32,15 +32,17 @@ class SignInPage extends GetView<SignInController> {
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: controller.formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              EmailInputField(controller),
-              PasswordInputField(controller, onFieldSubmitted: controller.secureSubmit),
-              const SignInButton(),
-              const SignInRecoverButton(),
-              const SignUpNavigateButton(),
-            ],
+          child: AutofillGroup(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                EmailInputField(controller),
+                PasswordInputField(controller, onFieldSubmitted: controller.secureSubmit),
+                const SignInButton(),
+                const SignInRecoverButton(),
+                const SignUpNavigateButton(),
+              ],
+            ),
           ),
         ),
       ),

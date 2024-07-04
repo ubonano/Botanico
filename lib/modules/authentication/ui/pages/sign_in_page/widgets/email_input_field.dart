@@ -23,6 +23,7 @@ class EmailInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomInputField(
       key: key ?? const Key('emailField'),
+      autofillHints: const [AutofillHints.email],
       label: 'Email',
       pageController: pageController,
       fieldName: fieldName,
