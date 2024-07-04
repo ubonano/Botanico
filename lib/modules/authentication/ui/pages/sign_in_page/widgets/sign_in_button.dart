@@ -9,10 +9,13 @@ class SignInButton extends GetView<SignInController> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomButton(
-      key: key ?? const Key('signInButton'),
-      text: 'Iniciar Sesión',
-      onPressed: controller.secureSubmit,
+    return Obx(
+      () => CustomButton(
+        key: key ?? const Key('signInButton'),
+        text: 'Iniciar Sesión',
+        onPressed: controller.secureSubmit,
+        isLoading: controller.isLoading.value,
+      ),
     );
   }
 }

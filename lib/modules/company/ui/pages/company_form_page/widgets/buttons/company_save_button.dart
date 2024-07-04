@@ -15,6 +15,7 @@ class CompanySaveButton extends GetView<CompanyFormController> {
         text: 'Guardar empresa',
         onPressed: controller.secureSubmit,
         enabled: controller.isUpdateModeRx.value ? controller.isFieldsEnabled.value : true,
+        isLoading: controller.isLoading.value,
       ),
     );
   }

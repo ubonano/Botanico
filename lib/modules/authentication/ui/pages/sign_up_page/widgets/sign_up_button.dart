@@ -9,10 +9,13 @@ class SignUpButton extends GetView<SignUpController> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomButton(
-      key: key ?? const Key('signUpButton'),
-      text: 'Registrar',
-      onPressed: controller.secureSubmit,
+    return Obx(
+      () => CustomButton(
+        key: key ?? const Key('signUpButton'),
+        text: 'Registrar',
+        onPressed: controller.secureSubmit,
+        isLoading: controller.isLoading.value,
+      ),
     );
   }
 }

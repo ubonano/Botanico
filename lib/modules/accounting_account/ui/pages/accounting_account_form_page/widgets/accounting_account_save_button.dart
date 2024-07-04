@@ -15,6 +15,7 @@ class AccountingAccountSaveButton extends GetView<AccountingAccountFormControlle
         text: 'Guardar cuenta contable',
         onPressed: controller.secureSubmit,
         enabled: controller.isUpdateModeRx.value ? controller.isFieldsEnabled.value : true,
+        isLoading: controller.isLoading.value,
       ),
     );
   }

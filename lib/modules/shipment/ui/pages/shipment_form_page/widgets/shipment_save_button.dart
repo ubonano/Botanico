@@ -15,6 +15,7 @@ class ShipmentSaveButton extends GetView<ShipmentFormController> {
         text: 'Guardar envío',
         onPressed: controller.secureSubmit,
         enabled: controller.isUpdateModeRx.value ? controller.isFieldsEnabled.value : true,
+        isLoading: controller.isLoading.value,
       ),
     );
   }

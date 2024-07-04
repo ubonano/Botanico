@@ -16,6 +16,8 @@ mixin FormHelper<T> on GetxController {
   bool get isUpdateMode => (modelId != null && modelId != '');
   RxBool get isUpdateModeRx => isUpdateMode.obs;
 
+  var isLoading = false.obs;
+
   String getFieldValue(String field) => _textControllers[field]!.text.trim();
 
   String setFieldValue(String field, dynamic value) => _textControllers[field]!.text = value;
@@ -26,7 +28,9 @@ mixin FormHelper<T> on GetxController {
 
   Future<void> secureSubmit() async {
     if (validateForm()) {
+      isLoading.value = true;
       await submit();
+      isLoading.value = false;
     }
   }
 

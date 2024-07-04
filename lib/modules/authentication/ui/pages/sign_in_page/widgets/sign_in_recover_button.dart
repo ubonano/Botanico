@@ -12,7 +12,7 @@ class SignInRecoverButton extends StatelessWidget {
     return CustomTextButton(
       key: key ?? const Key('SignInRecoverButton'),
       text: '¿Olvidaste tu contraseña?',
-      onPressed: () => Get.dialog(SignInRecoverDialog()),
+      onPressed: () => Get.dialog(const SignInRecoverDialog()),
     );
   }
 }

@@ -9,10 +9,13 @@ class WorkerSaveButton extends GetView<WorkerFormController> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomButton(
-      key: key ?? const Key('WorkerSaveButton'),
-      text: 'Guardar Perfil',
-      onPressed: controller.secureSubmit,
+    return Obx(
+      () => CustomButton(
+        key: key ?? const Key('WorkerSaveButton'),
+        text: 'Guardar Perfil',
+        onPressed: controller.secureSubmit,
+        isLoading: controller.isLoading.value,
+      ),
     );
   }
 }

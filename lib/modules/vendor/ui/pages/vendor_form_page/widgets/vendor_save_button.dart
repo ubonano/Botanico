@@ -15,6 +15,7 @@ class VendorSaveButton extends GetView<VendorFormController> {
         text: 'Guardar proveedor',
         onPressed: controller.secureSubmit,
         enabled: controller.isUpdateModeRx.value ? controller.isFieldsEnabled.value : true,
+        isLoading: controller.isLoading.value,
       ),
     );
   }
